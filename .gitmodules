@@ -1,0 +1,18 @@
+[submodule "lib/solas"]
+	path = lib/solas
+	url = git@github.com:takram-design-engineering/solas.git
+[submodule "lib/takram-nanovg"]
+	path = lib/takram-nanovg
+	url = git@github.com:takram-design-engineering/takram-nanovg.git
+[submodule "lib/takram-math"]
+	path = lib/takram-math
+	url = git@github.com:takram-design-engineering/takram-math.git
+[submodule "lib/takram-graphics"]
+	path = lib/takram-graphics
+	url = git@github.com:takram-design-engineering/takram-graphics.git
+[submodule "lib/takram-algorithm"]
+	path = lib/takram-algorithm
+	url = git@github.com:takram-design-engineering/takram-algorithm.git
+[submodule "lib/takram-tween"]
+	path = lib/takram-tween
+	url = git@github.com:takram-design-engineering/takram-tween.git
