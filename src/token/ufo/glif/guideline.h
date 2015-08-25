@@ -28,6 +28,7 @@
 #ifndef TOKEN_UFO_GLIF_GUIDELINE_H_
 #define TOKEN_UFO_GLIF_GUIDELINE_H_
 
+#include <memory>
 #include <string>
 #include <utility>
 
@@ -52,7 +53,8 @@ class Guideline final {
   bool operator!=(const Guideline& other) const;
 
   // Property tree
-  static Guideline read(const boost::property_tree::ptree& tree);
+  static std::unique_ptr<Guideline> read(
+      const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -83,14 +85,15 @@ inline bool Guideline::operator!=(const Guideline& other) const {
 
 #pragma mark Property tree
 
-inline Guideline Guideline::read(const boost::property_tree::ptree& tree) {
-  Guideline result;
-  io::read_attr(tree, "x", &result.x);
-  io::read_attr(tree, "y", &result.y);
-  io::read_attr(tree, "angle", &result.angle);
-  io::read_attr(tree, "name", &result.name);
-  io::read_attr(tree, "color", &result.color);
-  io::read_attr(tree, "identifier", &result.identifier);
+inline std::unique_ptr<Guideline> Guideline::read(
+    const boost::property_tree::ptree& tree) {
+  auto result = std::make_unique<Guideline>();
+  io::read_attr(tree, "x", &result->x);
+  io::read_attr(tree, "y", &result->y);
+  io::read_attr(tree, "angle", &result->angle);
+  io::read_attr(tree, "name", &result->name);
+  io::read_attr(tree, "color", &result->color);
+  io::read_attr(tree, "identifier", &result->identifier);
   return std::move(result);
 }
 

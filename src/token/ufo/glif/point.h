@@ -29,6 +29,7 @@
 #define TOKEN_UFO_GLIF_POINT_H_
 
 #include <cassert>
+#include <memory>
 #include <string>
 #include <utility>
 
@@ -62,7 +63,8 @@ class Point final {
   bool operator!=(const Point& other) const;
 
   // Property tree
-  static Point read(const boost::property_tree::ptree& tree);
+  static std::unique_ptr<Point> read(
+      const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -95,30 +97,31 @@ inline bool Point::operator!=(const Point& other) const {
 
 #pragma mark Property tree
 
-inline Point Point::read(const boost::property_tree::ptree& tree) {
-  Point result;
-  io::read_attr(tree, "x", &result.x);
-  io::read_attr(tree, "y", &result.y);
+inline std::unique_ptr<Point> Point::read(
+    const boost::property_tree::ptree& tree) {
+  auto result = std::make_unique<Point>();
+  io::read_attr(tree, "x", &result->x);
+  io::read_attr(tree, "y", &result->y);
   std::string type;
   io::read_attr(tree, "type", &type);
   if (type == "move") {
-    result.type = Type::MOVE;
+    result->type = Type::MOVE;
   } else if (type == "line") {
-    result.type = Type::LINE;
+    result->type = Type::LINE;
   } else if (type == "offcurve") {
-    result.type = Type::OFFCURVE;
+    result->type = Type::OFFCURVE;
   } else if (type == "curve") {
-    result.type = Type::CURVE;
+    result->type = Type::CURVE;
   } else if (type == "qcurve") {
-    result.type = Type::QCURVE;
+    result->type = Type::QCURVE;
   }
   std::string smooth;
   io::read_attr(tree, "smooth", &smooth);
   if (smooth == "yes") {
-    result.smooth = true;
+    result->smooth = true;
   }
-  io::read_attr(tree, "name", &result.name);
-  io::read_attr(tree, "identifier", &result.identifier);
+  io::read_attr(tree, "name", &result->name);
+  io::read_attr(tree, "identifier", &result->identifier);
   return std::move(result);
 }
 

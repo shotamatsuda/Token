@@ -28,6 +28,8 @@
 #ifndef TOKEN_UFO_GLIF_GLYPH_H_
 #define TOKEN_UFO_GLIF_GLYPH_H_
 
+#include <algorithm>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
@@ -51,26 +53,31 @@ class Glyph final {
   Glyph() = default;
   explicit Glyph(const std::string& name);
 
-  // Copy semantics
-  Glyph(const Glyph& other) = default;
-  Glyph& operator=(const Glyph& other) = default;
+  // Disallow copy semantics
+  Glyph(const Glyph& other) = delete;
+  Glyph& operator=(const Glyph& other) = delete;
+
+  // Move semantics
+  Glyph(Glyph&& other) = default;
+  Glyph& operator=(Glyph&& other) = default;
 
   // Comparison
   bool operator==(const Glyph& other) const;
   bool operator!=(const Glyph& other) const;
 
   // Property tree
-  static Glyph read(const boost::property_tree::ptree& tree);
+  static std::unique_ptr<Glyph> read(
+      const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
   std::string name;
-  Advance advance;
-  std::vector<Unicode> unicodes;
-  Image image;
-  std::vector<Guideline> guidelines;
-  std::vector<Anchor> anchors;
-  Outline outline;
+  std::unique_ptr<Advance> advance;
+  std::vector<std::unique_ptr<Unicode>> unicodes;
+  std::unique_ptr<Image> image;
+  std::vector<std::unique_ptr<Guideline>> guidelines;
+  std::vector<std::unique_ptr<Anchor>> anchors;
+  std::unique_ptr<Outline> outline;
   static constexpr const int format = 2;
 };
 
@@ -83,12 +90,16 @@ inline Glyph::Glyph(const std::string& name) : name(name) {}
 #pragma mark Comparison
 
 inline bool Glyph::operator==(const Glyph& other) const {
+  const auto predicate = [](const auto& a, const auto& b) { return *a == *b; };
   return (name == other.name &&
           advance == other.advance &&
-          unicodes == other.unicodes &&
+          std::equal(std::begin(unicodes), std::end(unicodes),
+                     std::begin(other.unicodes), predicate) &&
           image == other.image &&
-          guidelines == other.guidelines &&
-          anchors == other.anchors &&
+          std::equal(std::begin(guidelines), std::end(guidelines),
+                     std::begin(other.guidelines), predicate) &&
+          std::equal(std::begin(anchors), std::end(anchors),
+                     std::begin(other.anchors), predicate) &&
           outline == other.outline);
 }
 
@@ -98,16 +109,17 @@ inline bool Glyph::operator!=(const Glyph& other) const {
 
 #pragma mark Property tree
 
-inline Glyph Glyph::read(const boost::property_tree::ptree& tree) {
+inline std::unique_ptr<Glyph> Glyph::read(
+    const boost::property_tree::ptree& tree) {
+  auto result = std::make_unique<Glyph>();
   const auto& glyph = tree.get_child("glyph");
-  Glyph result;
-  io::read_attr(glyph, "name", &result.name);
-  io::read_child(glyph, "advance", &result.advance);
-  io::read_children(glyph, "unicode", &result.unicodes);
-  io::read_child(glyph, "image", &result.image);
-  io::read_children(glyph, "guideline", &result.guidelines);
-  io::read_children(glyph, "anchor", &result.anchors);
-  io::read_child(glyph, "outline", &result.outline);
+  io::read_attr(glyph, "name", &result->name);
+  io::read_child(glyph, "advance", &result->advance);
+  io::read_children(glyph, "unicode", &result->unicodes);
+  io::read_child(glyph, "image", &result->image);
+  io::read_children(glyph, "guideline", &result->guidelines);
+  io::read_children(glyph, "anchor", &result->anchors);
+  io::read_child(glyph, "outline", &result->outline);
   return std::move(result);
 }
 

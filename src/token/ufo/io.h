@@ -29,6 +29,7 @@
 #define TOKEN_UFO_IO_H_
 
 #include <cassert>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -55,7 +56,7 @@ inline void read_attr(const boost::property_tree::ptree& tree,
 template <class T>
 inline void read_child(const boost::property_tree::ptree& tree,
                        const std::string& name,
-                       T *output) {
+                       std::unique_ptr<T> *output) {
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
@@ -66,7 +67,7 @@ inline void read_child(const boost::property_tree::ptree& tree,
 template <class T>
 inline void read_children(const boost::property_tree::ptree& tree,
                           const std::string& name,
-                          std::vector<T> *output) {
+                          std::vector<std::unique_ptr<T>> *output) {
   assert(output);
   const auto values = tree.find(name);
   if (values != tree.not_found()) {
@@ -92,23 +93,21 @@ inline void write_attr(boost::property_tree::ptree *tree,
 template <class T, class U = T>
 inline void write_child(boost::property_tree::ptree *tree,
                         const std::string& name,
-                        const T& value,
-                        const U& default_value = U()) {
+                        const std::unique_ptr<T>& value) {
   assert(tree);
-  if (value != default_value) {
-    tree->add_child(name, value.write());
+  if (value) {
+    tree->add_child(name, value->write());
   }
 }
 
 template <class T, class U = T>
 inline void write_children(boost::property_tree::ptree *tree,
                            const std::string& name,
-                           const std::vector<T>& values,
-                           const U& default_value = U()) {
+                           const std::vector<std::unique_ptr<T>>& values) {
   assert(tree);
   for (const auto& value : values) {
-    if (value != default_value) {
-      tree->add_child(name, value.write());
+    if (value) {
+      tree->add_child(name, value->write());
     }
   }
 }

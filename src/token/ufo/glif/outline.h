@@ -28,6 +28,8 @@
 #ifndef TOKEN_UFO_GLIF_OUTLINE_H_
 #define TOKEN_UFO_GLIF_OUTLINE_H_
 
+#include <algorithm>
+#include <memory>
 #include <utility>
 #include <vector>
 
@@ -45,21 +47,26 @@ class Outline final {
  public:
   Outline() = default;
 
-  // Copy semantics
-  Outline(const Outline& other) = default;
-  Outline& operator=(const Outline& other) = default;
+  // Disallow copy semantics
+  Outline(const Outline& other) = delete;
+  Outline& operator=(const Outline& other) = delete;
+
+  // Move semantics
+  Outline(Outline&& other) = default;
+  Outline& operator=(Outline&& other) = default;
 
   // Comparison
   bool operator==(const Outline& other) const;
   bool operator!=(const Outline& other) const;
 
   // Property tree
-  static Outline read(const boost::property_tree::ptree& tree);
+  static std::unique_ptr<Outline> read(
+      const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
-  std::vector<Component> components;
-  std::vector<Contour> contours;
+  std::vector<std::unique_ptr<Component>> components;
+  std::vector<std::unique_ptr<Contour>> contours;
 };
 
 #pragma mark -
@@ -67,7 +74,11 @@ class Outline final {
 #pragma mark Comparison
 
 inline bool Outline::operator==(const Outline& other) const {
-  return (components == other.components && contours == other.contours);
+  const auto predicate = [](const auto& a, const auto& b) { return *a == *b; };
+  return (std::equal(std::begin(components), std::end(components),
+                     std::begin(other.components), predicate) &&
+          std::equal(std::begin(contours), std::end(contours),
+                     std::begin(other.contours), predicate));
 }
 
 inline bool Outline::operator!=(const Outline& other) const {
@@ -76,10 +87,11 @@ inline bool Outline::operator!=(const Outline& other) const {
 
 #pragma mark Property tree
 
-inline Outline Outline::read(const boost::property_tree::ptree& tree) {
-  Outline result;
-  io::read_children(tree, "component", &result.components);
-  io::read_children(tree, "contour", &result.contours);
+inline std::unique_ptr<Outline> Outline::read(
+    const boost::property_tree::ptree& tree) {
+  auto result = std::make_unique<Outline>();
+  io::read_children(tree, "component", &result->components);
+  io::read_children(tree, "contour", &result->contours);
   return std::move(result);
 }
 

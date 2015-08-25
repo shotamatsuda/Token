@@ -46,6 +46,6 @@ int main(int argc, char **argv) {
   pt::xml_parser::read_xml(sstream, tree);
   auto glyph = token::ufo::Glyph::read(tree);
   pt::xml_writer_settings<std::string> settings('\t', 1);
-  pt::xml_parser::write_xml("test.xml", glyph.write(), std::locale(), settings);
+  pt::xml_parser::write_xml("test.xml", glyph->write(), std::locale(), settings);
   return EXIT_SUCCESS;
 }

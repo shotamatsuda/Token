@@ -28,6 +28,7 @@
 #ifndef TOKEN_UFO_GLIF_UNICODE_H_
 #define TOKEN_UFO_GLIF_UNICODE_H_
 
+#include <memory>
 #include <string>
 #include <utility>
 
@@ -53,7 +54,8 @@ class Unicode final {
   bool operator!=(const Unicode& other) const;
 
   // Property tree
-  static Unicode read(const boost::property_tree::ptree& tree);
+  static std::unique_ptr<Unicode> read(
+      const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -76,9 +78,10 @@ inline bool Unicode::operator!=(const Unicode& other) const {
 
 #pragma mark Property tree
 
-inline Unicode Unicode::read(const boost::property_tree::ptree& tree) {
-  Unicode result;
-  io::read_attr(tree, "hex", &result.hex);
+inline std::unique_ptr<Unicode> Unicode::read(
+    const boost::property_tree::ptree& tree) {
+  auto result = std::make_unique<Unicode>();
+  io::read_attr(tree, "hex", &result->hex);
   return std::move(result);
 }
 
