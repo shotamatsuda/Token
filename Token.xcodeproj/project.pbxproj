@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
 		9334A8961B6C871E00FF2CE7 /* libtakram_nanovg_gl3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */; };
+		9337DC221B8C06720070814C /* glif.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC211B8C06720070814C /* glif.cc */; };
 		93563A191B672580004C47E4 /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
 		93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
@@ -192,6 +193,9 @@
 
 /* Begin PBXFileReference section */
 		9310892A1B6858410094B581 /* tween.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tween.xcodeproj; path = "lib/takram-tween/tween.xcodeproj"; sourceTree = "<group>"; };
+		9337DC1A1B8C06300070814C /* glif */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glif; sourceTree = BUILT_PRODUCTS_DIR; };
+		9337DC211B8C06720070814C /* glif.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glif.cc; path = src/glif.cc; sourceTree = SOURCE_ROOT; };
+		9337DC231B8C12250070814C /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
 		93563A741B674472004C47E4 /* nanovg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nanovg.xcodeproj; path = "lib/takram-nanovg/nanovg.xcodeproj"; sourceTree = "<group>"; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
 		93A224941B7B1FD200CB1DBB /* advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = advance.h; sourceTree = "<group>"; };
@@ -205,7 +209,6 @@
 		93A2249C1B7B1FD200CB1DBB /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point.h; sourceTree = "<group>"; };
 		93A2249D1B7B1FD200CB1DBB /* unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode.h; sourceTree = "<group>"; };
 		93A2249E1B7B1FD200CB1DBB /* glif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glif.h; sourceTree = "<group>"; };
-		93A2249F1B7B1FD200CB1DBB /* number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = number.h; sourceTree = "<group>"; };
 		93A224A31B7B1FD200CB1DBB /* ufo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufo.h; sourceTree = "<group>"; };
 		93A224A81B7B21B400CB1DBB /* ufo.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ufo.cc; sourceTree = "<group>"; };
 		93A224B61B7B2F9600CB1DBB /* stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stroker.cc; sourceTree = "<group>"; };
@@ -225,6 +228,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9337DC171B8C06300070814C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93FEF94B1AD97263009D0646 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,6 +258,13 @@
 				931089391B6858410094B581 /* takram_tween_test */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9337DC071B8C027A0070814C /* test */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		93563A091B672571004C47E4 /* Products */ = {
@@ -288,8 +305,8 @@
 		93A224921B7B1FD200CB1DBB /* ufo */ = {
 			isa = PBXGroup;
 			children = (
-				93A2249F1B7B1FD200CB1DBB /* number.h */,
 				93A2249E1B7B1FD200CB1DBB /* glif.h */,
+				9337DC231B8C12250070814C /* io.h */,
 				93A224931B7B1FD200CB1DBB /* glif */,
 			);
 			path = ufo;
@@ -316,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				93FEF9501AD97263009D0646 /* src */,
+				9337DC071B8C027A0070814C /* test */,
 				93FEF9751AD972AA009D0646 /* config */,
 				93FEF94F1AD97263009D0646 /* products */,
 				93FEF9761AD972E8009D0646 /* Solas.xcodeproj */,
@@ -329,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				93FEF94E1AD97263009D0646 /* Token.app */,
+				9337DC1A1B8C06300070814C /* glif */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -336,6 +355,7 @@
 		93FEF9501AD97263009D0646 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9337DC211B8C06720070814C /* glif.cc */,
 				93FEF9901AD97397009D0646 /* main.cc */,
 				93A224B71B7B2F9600CB1DBB /* stroker.h */,
 				93A224B61B7B2F9600CB1DBB /* stroker.cc */,
@@ -366,6 +386,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9337DC191B8C06300070814C /* glif */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9337DC1E1B8C06300070814C /* Build configuration list for PBXNativeTarget "glif" */;
+			buildPhases = (
+				9337DC161B8C06300070814C /* Sources */,
+				9337DC171B8C06300070814C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = glif;
+			productName = glif;
+			productReference = 9337DC1A1B8C06300070814C /* glif */;
+			productType = "com.apple.product-type.tool";
+		};
 		93FEF94D1AD97263009D0646 /* Token */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93FEF96B1AD97263009D0646 /* Build configuration list for PBXNativeTarget "Token" */;
@@ -397,6 +433,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "takram design engineering";
 				TargetAttributes = {
+					9337DC191B8C06300070814C = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -434,6 +473,7 @@
 			projectRoot = "";
 			targets = (
 				93FEF94D1AD97263009D0646 /* Token */,
+				9337DC191B8C06300070814C /* glif */,
 			);
 		};
 /* End PBXProject section */
@@ -578,6 +618,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9337DC161B8C06300070814C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9337DC221B8C06720070814C /* glif.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93FEF94A1AD97263009D0646 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -616,6 +664,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9337DC1F1B8C06300070814C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9337DC201B8C06300070814C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		93FEF9691AD97263009D0646 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93F859271B575DCC00C32E8D /* project_debug.xcconfig */;
@@ -674,6 +738,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9337DC1E1B8C06300070814C /* Build configuration list for PBXNativeTarget "glif" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9337DC1F1B8C06300070814C /* Debug */,
+				9337DC201B8C06300070814C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		93FEF9491AD97263009D0646 /* Build configuration list for PBXProject "Token" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

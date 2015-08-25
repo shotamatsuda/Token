@@ -29,6 +29,11 @@
 #define TOKEN_UFO_GLIF_UNICODE_H_
 
 #include <string>
+#include <utility>
+
+#include <boost/property_tree/ptree.hpp>
+
+#include "token/ufo/io.h"
 
 namespace token {
 namespace ufo {
@@ -36,6 +41,7 @@ namespace glif {
 
 class Unicode final {
  public:
+  Unicode() = default;
   explicit Unicode(const std::string& hex);
 
   // Copy semantics
@@ -45,6 +51,10 @@ class Unicode final {
   // Comparison
   bool operator==(const Unicode& other) const;
   bool operator!=(const Unicode& other) const;
+
+  // Property tree
+  static Unicode read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree write() const;
 
  public:
   std::string hex;
@@ -62,6 +72,20 @@ inline bool Unicode::operator==(const Unicode& other) const {
 
 inline bool Unicode::operator!=(const Unicode& other) const {
   return !operator==(other);
+}
+
+#pragma mark Property tree
+
+inline Unicode Unicode::read(const boost::property_tree::ptree& tree) {
+  Unicode result;
+  io::read_attr(tree, "hex", &result.hex);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Unicode::write() const {
+  boost::property_tree::ptree tree;
+  io::write_attr(&tree, "hex", hex);
+  return std::move(tree);
 }
 
 }  // namespace glif

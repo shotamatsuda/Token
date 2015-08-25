@@ -28,9 +28,13 @@
 #ifndef TOKEN_UFO_GLIF_POINT_H_
 #define TOKEN_UFO_GLIF_POINT_H_
 
+#include <cassert>
 #include <string>
+#include <utility>
 
-#include "token/ufo/number.h"
+#include <boost/property_tree/ptree.hpp>
+
+#include "token/ufo/io.h"
 
 namespace token {
 namespace ufo {
@@ -57,9 +61,13 @@ class Point final {
   bool operator==(const Point& other) const;
   bool operator!=(const Point& other) const;
 
+  // Property tree
+  static Point read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree write() const;
+
  public:
-  Number x;
-  Number y;
+  double x;
+  double y;
   Type type;
   bool smooth;
   std::string name;
@@ -83,6 +91,57 @@ inline bool Point::operator==(const Point& other) const {
 
 inline bool Point::operator!=(const Point& other) const {
   return !operator==(other);
+}
+
+#pragma mark Property tree
+
+inline Point Point::read(const boost::property_tree::ptree& tree) {
+  Point result;
+  io::read_attr(tree, "x", &result.x);
+  io::read_attr(tree, "y", &result.y);
+  std::string type;
+  io::read_attr(tree, "type", &type);
+  if (type == "move") {
+    result.type = Type::MOVE;
+  } else if (type == "line") {
+    result.type = Type::LINE;
+  } else if (type == "offcurve") {
+    result.type = Type::OFFCURVE;
+  } else if (type == "curve") {
+    result.type = Type::CURVE;
+  } else if (type == "qcurve") {
+    result.type = Type::QCURVE;
+  }
+  std::string smooth;
+  io::read_attr(tree, "smooth", &smooth);
+  if (smooth == "yes") {
+    result.smooth = true;
+  }
+  io::read_attr(tree, "name", &result.name);
+  io::read_attr(tree, "identifier", &result.identifier);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Point::write() const {
+  std::string type;
+  switch (this->type) {
+    case Type::MOVE: type = "move"; break;
+    case Type::LINE: type = "line"; break;
+    case Type::OFFCURVE: type = "offcurve"; break;
+    case Type::CURVE: type = "curve"; break;
+    case Type::QCURVE: type = "qcurve"; break;
+    default:
+      assert(false);
+      break;
+  }
+  boost::property_tree::ptree tree;
+  io::write_attr(&tree, "x", x);
+  io::write_attr(&tree, "y", y);
+  io::write_attr(&tree, "type", type, "offcurve");
+  io::write_attr(&tree, "smooth", smooth ? "yes" : "no", "no");
+  io::write_attr(&tree, "name", name);
+  io::write_attr(&tree, "identifier", identifier);
+  return std::move(tree);
 }
 
 }  // namespace glif

@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  main.cc
 //
 //  The MIT License
 //
@@ -24,10 +24,28 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <streambuf>
+#include <string>
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 #include "token/ufo/glif.h"
 
-#endif  // TOKEN_UFO_H_
+int main(int argc, char **argv) {
+  std::ifstream stream(argv[1]);
+  const std::string contents((std::istreambuf_iterator<char>(stream)),
+                             std::istreambuf_iterator<char>());
+  std::istringstream sstream(contents);
+  namespace pt = boost::property_tree;
+  pt::ptree tree;
+  pt::xml_parser::read_xml(sstream, tree);
+  auto glyph = token::ufo::Glyph::read(tree);
+  pt::xml_writer_settings<std::string> settings('\t', 1);
+  pt::xml_parser::write_xml("test.xml", glyph.write(), std::locale(), settings);
+  return EXIT_SUCCESS;
+}

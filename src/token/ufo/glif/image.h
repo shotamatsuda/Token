@@ -29,8 +29,11 @@
 #define TOKEN_UFO_GLIF_IMAGE_H_
 
 #include <string>
+#include <utility>
 
-#include "token/ufo/number.h"
+#include <boost/property_tree/ptree.hpp>
+
+#include "token/ufo/io.h"
 
 namespace token {
 namespace ufo {
@@ -48,24 +51,28 @@ class Image final {
   bool operator==(const Image& other) const;
   bool operator!=(const Image& other) const;
 
+  // Property tree
+  static Image read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree write() const;
+
  public:
   std::string file_name;
-  Number x_scale;
-  Number xy_scale;
-  Number yx_scale;
-  Number y_scale;
-  Number x_offset;
-  Number y_offset;
+  double x_scale;
+  double xy_scale;
+  double yx_scale;
+  double y_scale;
+  double x_offset;
+  double y_offset;
   std::string color;
 };
 
 #pragma mark -
 
 inline Image::Image()
-    : x_scale(1),
+    : x_scale(1.0),
       xy_scale(),
       yx_scale(),
-      y_scale(1),
+      y_scale(1.0),
       x_offset(),
       y_offset() {}
 
@@ -84,6 +91,34 @@ inline bool Image::operator==(const Image& other) const {
 
 inline bool Image::operator!=(const Image& other) const {
   return !operator==(other);
+}
+
+#pragma mark Property tree
+
+inline Image Image::read(const boost::property_tree::ptree& tree) {
+  Image result;
+  io::read_attr(tree, "fileName", &result.file_name);
+  io::read_attr(tree, "xScale", &result.x_scale);
+  io::read_attr(tree, "xyScale", &result.xy_scale);
+  io::read_attr(tree, "yxScale", &result.yx_scale);
+  io::read_attr(tree, "yScale", &result.y_scale);
+  io::read_attr(tree, "xOffset", &result.x_offset);
+  io::read_attr(tree, "yOffset", &result.y_offset);
+  io::read_attr(tree, "color", &result.color);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Image::write() const {
+  boost::property_tree::ptree tree;
+  io::write_attr(&tree, "fileName", file_name);
+  io::write_attr(&tree, "xScale", x_scale);
+  io::write_attr(&tree, "xyScale", xy_scale);
+  io::write_attr(&tree, "yxScale", yx_scale);
+  io::write_attr(&tree, "yScale", y_scale);
+  io::write_attr(&tree, "xOffset", x_offset);
+  io::write_attr(&tree, "yOffset", y_offset);
+  io::write_attr(&tree, "color", color);
+  return std::move(tree);
 }
 
 }  // namespace glif

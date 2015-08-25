@@ -29,9 +29,13 @@
 #define TOKEN_UFO_GLIF_CONTOUR_H_
 
 #include <string>
+#include <utility>
 #include <vector>
 
+#include <boost/property_tree/ptree.hpp>
+
 #include "token/ufo/glif/point.h"
+#include "token/ufo/io.h"
 
 namespace token {
 namespace ufo {
@@ -49,6 +53,10 @@ class Contour final {
   bool operator==(const Contour& other) const;
   bool operator!=(const Contour& other) const;
 
+  // Property tree
+  static Contour read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree write() const;
+
  public:
   std::string identifier;
   std::vector<Point> points;
@@ -64,6 +72,22 @@ inline bool Contour::operator==(const Contour& other) const {
 
 inline bool Contour::operator!=(const Contour& other) const {
   return !operator==(other);
+}
+
+#pragma mark Property tree
+
+inline Contour Contour::read(const boost::property_tree::ptree& tree) {
+  Contour result;
+  io::read_attr(tree, "identifier", &result.identifier);
+  io::read_children(tree, "point", &result.points);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Contour::write() const {
+  boost::property_tree::ptree tree;
+  io::write_attr(&tree, "identifier", identifier);
+  io::write_children(&tree, "point", points);
+  return std::move(tree);
 }
 
 }  // namespace glif

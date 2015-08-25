@@ -29,8 +29,11 @@
 #define TOKEN_UFO_GLIF_ANCHOR_H_
 
 #include <string>
+#include <utility>
 
-#include "token/ufo/number.h"
+#include <boost/property_tree/ptree.hpp>
+
+#include "token/ufo/io.h"
 
 namespace token {
 namespace ufo {
@@ -48,9 +51,13 @@ class Anchor final {
   bool operator==(const Anchor& other) const;
   bool operator!=(const Anchor& other) const;
 
+  // Property tree
+  static Anchor read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree write() const;
+
  public:
-  Number x;
-  Number y;
+  double x;
+  double y;
   std::string name;
   std::string color;
   std::string identifier;
@@ -70,6 +77,28 @@ inline bool Anchor::operator==(const Anchor& other) const {
 
 inline bool Anchor::operator!=(const Anchor& other) const {
   return !operator==(other);
+}
+
+#pragma mark Property tree
+
+inline Anchor Anchor::read(const boost::property_tree::ptree& tree) {
+  Anchor result;
+  io::read_attr(tree, "x", &result.x);
+  io::read_attr(tree, "y", &result.y);
+  io::read_attr(tree, "name", &result.name);
+  io::read_attr(tree, "color", &result.color);
+  io::read_attr(tree, "identifier", &result.identifier);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Anchor::write() const {
+  boost::property_tree::ptree tree;
+  io::write_attr(&tree, "x", x);
+  io::write_attr(&tree, "y", y);
+  io::write_attr(&tree, "name", name);
+  io::write_attr(&tree, "color", color);
+  io::write_attr(&tree, "identifier", identifier);
+  return std::move(tree);
 }
 
 }  // namespace glif

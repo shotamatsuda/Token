@@ -28,10 +28,14 @@
 #ifndef TOKEN_UFO_GLIF_OUTLINE_H_
 #define TOKEN_UFO_GLIF_OUTLINE_H_
 
+#include <utility>
 #include <vector>
+
+#include <boost/property_tree/ptree.hpp>
 
 #include "token/ufo/glif/component.h"
 #include "token/ufo/glif/contour.h"
+#include "token/ufo/io.h"
 
 namespace token {
 namespace ufo {
@@ -49,6 +53,10 @@ class Outline final {
   bool operator==(const Outline& other) const;
   bool operator!=(const Outline& other) const;
 
+  // Property tree
+  static Outline read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree write() const;
+
  public:
   std::vector<Component> components;
   std::vector<Contour> contours;
@@ -64,6 +72,22 @@ inline bool Outline::operator==(const Outline& other) const {
 
 inline bool Outline::operator!=(const Outline& other) const {
   return !operator==(other);
+}
+
+#pragma mark Property tree
+
+inline Outline Outline::read(const boost::property_tree::ptree& tree) {
+  Outline result;
+  io::read_children(tree, "component", &result.components);
+  io::read_children(tree, "contour", &result.contours);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Outline::write() const {
+  boost::property_tree::ptree tree;
+  io::write_children(&tree, "component", components);
+  io::write_children(&tree, "contour", contours);
+  return std::move(tree);
 }
 
 }  // namespace glif

@@ -28,9 +28,9 @@ SOLAS_DIR = $(PROJECT_DIR)/lib/solas
 #include "lib/solas/config/shared.xcconfig"
 
 // Search Paths
-HEADER_SEARCH_PATHS = $(inherited) $(BOOST_HEADER_SEARCH_PATHS) "$(PROJECT_DIR)/build/skia/include/**"
+HEADER_SEARCH_PATHS = $(inherited) $(BOOST_HEADER_SEARCH_PATHS) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**"
 USER_HEADER_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/src"
-LIBRARY_SEARCH_PATHS = $(inerited) "$(PROJECT_DIR)/build/skia/lib"
+LIBRARY_SEARCH_PATHS = $(inerited) "/usr/local/lib" "$(PROJECT_DIR)/build/skia/lib"
 
 // Linking
 OTHER_LDFLAGS = $(inherited) -lskia $(SOLAS_OTHER_LDFLAGS)
