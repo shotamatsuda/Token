@@ -1,5 +1,5 @@
 //
-//  token/ufo/io.h
+//  token/ufo/xml.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_IO_H_
-#define TOKEN_UFO_IO_H_
+#ifndef TOKEN_UFO_XML_H_
+#define TOKEN_UFO_XML_H_
 
 #include <cassert>
 #include <memory>
@@ -37,7 +37,7 @@
 
 namespace token {
 namespace ufo {
-namespace io {
+namespace xml {
 
 template <class T>
 inline void read_attr(const boost::property_tree::ptree& tree,
@@ -112,8 +112,8 @@ inline void write_children(boost::property_tree::ptree *tree,
   }
 }
 
-}  // namespace io
+}  // namespace xml
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_IO_H_
+#endif  // TOKEN_UFO_XML_H_

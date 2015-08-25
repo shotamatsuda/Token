@@ -34,7 +34,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -100,27 +100,27 @@ inline bool Component::operator!=(const Component& other) const {
 inline std::unique_ptr<Component> Component::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Component>();
-  io::read_attr(tree, "base", &result->base);
-  io::read_attr(tree, "xScale", &result->x_scale);
-  io::read_attr(tree, "xyScale", &result->xy_scale);
-  io::read_attr(tree, "yxScale", &result->yx_scale);
-  io::read_attr(tree, "yScale", &result->y_scale);
-  io::read_attr(tree, "xOffset", &result->x_offset);
-  io::read_attr(tree, "yOffset", &result->y_offset);
-  io::read_attr(tree, "identifier", &result->identifier);
+  xml::read_attr(tree, "base", &result->base);
+  xml::read_attr(tree, "xScale", &result->x_scale);
+  xml::read_attr(tree, "xyScale", &result->xy_scale);
+  xml::read_attr(tree, "yxScale", &result->yx_scale);
+  xml::read_attr(tree, "yScale", &result->y_scale);
+  xml::read_attr(tree, "xOffset", &result->x_offset);
+  xml::read_attr(tree, "yOffset", &result->y_offset);
+  xml::read_attr(tree, "identifier", &result->identifier);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Component::write() const {
   boost::property_tree::ptree tree;
-  io::write_attr(&tree, "base", base);
-  io::write_attr(&tree, "xScale", x_scale, 1.0);
-  io::write_attr(&tree, "xyScale", xy_scale);
-  io::write_attr(&tree, "yxScale", yx_scale);
-  io::write_attr(&tree, "yScale", y_scale, 1.0);
-  io::write_attr(&tree, "xOffset", x_offset);
-  io::write_attr(&tree, "yOffset", y_offset);
-  io::write_attr(&tree, "identifier", identifier);
+  xml::write_attr(&tree, "base", base);
+  xml::write_attr(&tree, "xScale", x_scale, 1.0);
+  xml::write_attr(&tree, "xyScale", xy_scale);
+  xml::write_attr(&tree, "yxScale", yx_scale);
+  xml::write_attr(&tree, "yScale", y_scale, 1.0);
+  xml::write_attr(&tree, "xOffset", x_offset);
+  xml::write_attr(&tree, "yOffset", y_offset);
+  xml::write_attr(&tree, "identifier", identifier);
   return std::move(tree);
 }
 

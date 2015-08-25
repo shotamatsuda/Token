@@ -33,7 +33,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -80,15 +80,15 @@ inline bool Advance::operator!=(const Advance& other) const {
 inline std::unique_ptr<Advance> Advance::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Advance>();
-  io::read_attr(tree, "width", &result->width);
-  io::read_attr(tree, "height", &result->height);
+  xml::read_attr(tree, "width", &result->width);
+  xml::read_attr(tree, "height", &result->height);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Advance::write() const {
   boost::property_tree::ptree tree;
-  io::write_attr(&tree, "width", width);
-  io::write_attr(&tree, "height", height);
+  xml::write_attr(&tree, "width", width);
+  xml::write_attr(&tree, "height", height);
   return std::move(tree);
 }
 

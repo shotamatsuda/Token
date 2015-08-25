@@ -34,7 +34,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -88,23 +88,23 @@ inline bool Guideline::operator!=(const Guideline& other) const {
 inline std::unique_ptr<Guideline> Guideline::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Guideline>();
-  io::read_attr(tree, "x", &result->x);
-  io::read_attr(tree, "y", &result->y);
-  io::read_attr(tree, "angle", &result->angle);
-  io::read_attr(tree, "name", &result->name);
-  io::read_attr(tree, "color", &result->color);
-  io::read_attr(tree, "identifier", &result->identifier);
+  xml::read_attr(tree, "x", &result->x);
+  xml::read_attr(tree, "y", &result->y);
+  xml::read_attr(tree, "angle", &result->angle);
+  xml::read_attr(tree, "name", &result->name);
+  xml::read_attr(tree, "color", &result->color);
+  xml::read_attr(tree, "identifier", &result->identifier);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Guideline::write() const {
   boost::property_tree::ptree tree;
-  io::write_attr(&tree, "x", x);
-  io::write_attr(&tree, "y", y);
-  io::write_attr(&tree, "angle", angle);
-  io::write_attr(&tree, "name", name);
-  io::write_attr(&tree, "color", color);
-  io::write_attr(&tree, "identifier", identifier);
+  xml::write_attr(&tree, "x", x);
+  xml::write_attr(&tree, "y", y);
+  xml::write_attr(&tree, "angle", angle);
+  xml::write_attr(&tree, "name", name);
+  xml::write_attr(&tree, "color", color);
+  xml::write_attr(&tree, "identifier", identifier);
   return std::move(tree);
 }
 

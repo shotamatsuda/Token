@@ -35,7 +35,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -100,10 +100,10 @@ inline bool Point::operator!=(const Point& other) const {
 inline std::unique_ptr<Point> Point::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Point>();
-  io::read_attr(tree, "x", &result->x);
-  io::read_attr(tree, "y", &result->y);
+  xml::read_attr(tree, "x", &result->x);
+  xml::read_attr(tree, "y", &result->y);
   std::string type;
-  io::read_attr(tree, "type", &type);
+  xml::read_attr(tree, "type", &type);
   if (type == "move") {
     result->type = Type::MOVE;
   } else if (type == "line") {
@@ -116,12 +116,12 @@ inline std::unique_ptr<Point> Point::read(
     result->type = Type::QCURVE;
   }
   std::string smooth;
-  io::read_attr(tree, "smooth", &smooth);
+  xml::read_attr(tree, "smooth", &smooth);
   if (smooth == "yes") {
     result->smooth = true;
   }
-  io::read_attr(tree, "name", &result->name);
-  io::read_attr(tree, "identifier", &result->identifier);
+  xml::read_attr(tree, "name", &result->name);
+  xml::read_attr(tree, "identifier", &result->identifier);
   return std::move(result);
 }
 
@@ -138,12 +138,12 @@ inline boost::property_tree::ptree Point::write() const {
       break;
   }
   boost::property_tree::ptree tree;
-  io::write_attr(&tree, "x", x);
-  io::write_attr(&tree, "y", y);
-  io::write_attr(&tree, "type", type, "offcurve");
-  io::write_attr(&tree, "smooth", smooth ? "yes" : "no", "no");
-  io::write_attr(&tree, "name", name);
-  io::write_attr(&tree, "identifier", identifier);
+  xml::write_attr(&tree, "x", x);
+  xml::write_attr(&tree, "y", y);
+  xml::write_attr(&tree, "type", type, "offcurve");
+  xml::write_attr(&tree, "smooth", smooth ? "yes" : "no", "no");
+  xml::write_attr(&tree, "name", name);
+  xml::write_attr(&tree, "identifier", identifier);
   return std::move(tree);
 }
 

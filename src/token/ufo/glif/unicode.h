@@ -34,7 +34,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -81,13 +81,13 @@ inline bool Unicode::operator!=(const Unicode& other) const {
 inline std::unique_ptr<Unicode> Unicode::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Unicode>();
-  io::read_attr(tree, "hex", &result->hex);
+  xml::read_attr(tree, "hex", &result->hex);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Unicode::write() const {
   boost::property_tree::ptree tree;
-  io::write_attr(&tree, "hex", hex);
+  xml::write_attr(&tree, "hex", hex);
   return std::move(tree);
 }
 

@@ -42,7 +42,7 @@
 #include "token/ufo/glif/image.h"
 #include "token/ufo/glif/outline.h"
 #include "token/ufo/glif/unicode.h"
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -113,26 +113,26 @@ inline std::unique_ptr<Glyph> Glyph::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Glyph>();
   const auto& glyph = tree.get_child("glyph");
-  io::read_attr(glyph, "name", &result->name);
-  io::read_child(glyph, "advance", &result->advance);
-  io::read_children(glyph, "unicode", &result->unicodes);
-  io::read_child(glyph, "image", &result->image);
-  io::read_children(glyph, "guideline", &result->guidelines);
-  io::read_children(glyph, "anchor", &result->anchors);
-  io::read_child(glyph, "outline", &result->outline);
+  xml::read_attr(glyph, "name", &result->name);
+  xml::read_child(glyph, "advance", &result->advance);
+  xml::read_children(glyph, "unicode", &result->unicodes);
+  xml::read_child(glyph, "image", &result->image);
+  xml::read_children(glyph, "guideline", &result->guidelines);
+  xml::read_children(glyph, "anchor", &result->anchors);
+  xml::read_child(glyph, "outline", &result->outline);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Glyph::write() const {
   boost::property_tree::ptree glyph;
-  io::write_attr(&glyph, "name", name);
-  io::write_attr(&glyph, "format", format);
-  io::write_child(&glyph, "advance", advance);
-  io::write_children(&glyph, "unicode", unicodes);
-  io::write_child(&glyph, "image", image);
-  io::write_children(&glyph, "guideline", guidelines);
-  io::write_children(&glyph, "anchor", anchors);
-  io::write_child(&glyph, "outline", outline);
+  xml::write_attr(&glyph, "name", name);
+  xml::write_attr(&glyph, "format", format);
+  xml::write_child(&glyph, "advance", advance);
+  xml::write_children(&glyph, "unicode", unicodes);
+  xml::write_child(&glyph, "image", image);
+  xml::write_children(&glyph, "guideline", guidelines);
+  xml::write_children(&glyph, "anchor", anchors);
+  xml::write_child(&glyph, "outline", outline);
   boost::property_tree::ptree tree;
   tree.add_child("glyph", glyph);
   return std::move(tree);

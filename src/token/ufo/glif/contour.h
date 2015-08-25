@@ -37,7 +37,7 @@
 #include <boost/property_tree/ptree.hpp>
 
 #include "token/ufo/glif/point.h"
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -89,15 +89,15 @@ inline bool Contour::operator!=(const Contour& other) const {
 inline std::unique_ptr<Contour> Contour::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Contour>();
-  io::read_attr(tree, "identifier", &result->identifier);
-  io::read_children(tree, "point", &result->points);
+  xml::read_attr(tree, "identifier", &result->identifier);
+  xml::read_children(tree, "point", &result->points);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Contour::write() const {
   boost::property_tree::ptree tree;
-  io::write_attr(&tree, "identifier", identifier);
-  io::write_children(&tree, "point", points);
+  xml::write_attr(&tree, "identifier", identifier);
+  xml::write_children(&tree, "point", points);
   return std::move(tree);
 }
 

@@ -37,7 +37,7 @@
 
 #include "token/ufo/glif/component.h"
 #include "token/ufo/glif/contour.h"
-#include "token/ufo/io.h"
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -90,15 +90,15 @@ inline bool Outline::operator!=(const Outline& other) const {
 inline std::unique_ptr<Outline> Outline::read(
     const boost::property_tree::ptree& tree) {
   auto result = std::make_unique<Outline>();
-  io::read_children(tree, "component", &result->components);
-  io::read_children(tree, "contour", &result->contours);
+  xml::read_children(tree, "component", &result->components);
+  xml::read_children(tree, "contour", &result->contours);
   return std::move(result);
 }
 
 inline boost::property_tree::ptree Outline::write() const {
   boost::property_tree::ptree tree;
-  io::write_children(&tree, "component", components);
-  io::write_children(&tree, "contour", contours);
+  xml::write_children(&tree, "component", components);
+  xml::write_children(&tree, "contour", contours);
   return std::move(tree);
 }
 
