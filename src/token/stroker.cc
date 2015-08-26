@@ -112,7 +112,7 @@ takram::Shape2d Stroker::operator()(const takram::Shape2d& shape) const {
   for (const auto& path : shape.paths()) {
     stroke.rewind();
     paint.getFillPath(convertPath(path), &stroke, nullptr, tolerance_);
-    Simplify(stroke, &stroke);
+//    Simplify(stroke, &stroke);
 //    fixDirection(&stroke);
     result.addPath(stroke);
   }

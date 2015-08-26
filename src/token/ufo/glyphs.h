@@ -1,5 +1,5 @@
 //
-//  main.cc
+//  token/ufo/glyphs.h
 //
 //  The MIT License
 //
@@ -24,35 +24,56 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <streambuf>
+#pragma once
+#ifndef TOKEN_UFO_GLYPHS_H_
+#define TOKEN_UFO_GLYPHS_H_
+
+#include <memory>
 #include <string>
+#include <unordered_map>
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
+#include "token/ufo/glif/glyph.h"
 
-#include "token/ufo/glyphs.h"
-#include "token/ufo/glif.h"
+namespace token {
+namespace ufo {
 
-int main(int argc, char **argv) {
-//  std::ifstream stream(argv[1]);
-//  const std::string contents((std::istreambuf_iterator<char>(stream)),
-//                             std::istreambuf_iterator<char>());
-//  std::istringstream sstream(contents);
-//  namespace pt = boost::property_tree;
-//  pt::ptree tree;
-//  pt::xml_parser::read_xml(sstream, tree);
-//  auto glyph = token::ufo::Glyph::read(tree);
-//  pt::xml_writer_settings<std::string> settings('\t', 1);
-//  pt::xml_parser::write_xml("out.xml", glyph->write(), std::locale(), settings);
+class Glyphs final {
+ public:
+  Glyphs();
+  explicit Glyphs(const std::string& path);
 
+  // Disallow copy semantics
+  Glyphs(const Glyphs&) = delete;
+  Glyphs& operator=(const Glyphs&) = delete;
 
-  token::ufo::Glyphs glyphs("/Users/sgss/Desktop/AkkuratStd-Regular.ufo/glyphs/");
-  auto& glyph = glyphs.get("a");
-  std::cout << glyph.name;
+  // Move semantics
+  Glyphs(Glyphs&&) = default;
+  Glyphs& operator=(Glyphs&&) = default;
 
-  return EXIT_SUCCESS;
-}
+  // Glyphs
+  const std::unique_ptr<Glyph>& get(const std::string& name) const;
+
+ private:
+  void * open(const std::string& file_name) const;
+  std::unique_ptr<Glyph> read(const std::string& name) const;
+
+ private:
+  std::string path_;
+  void *contents_;
+  void *layerinfo_;
+  mutable std::unordered_map<std::string, std::unique_ptr<Glyph>> glyphs_;
+};
+
+#pragma mark -
+
+inline Glyphs::Glyphs() : contents_(), layerinfo_() {}
+
+inline Glyphs::Glyphs(const std::string& path)
+    : path_(path),
+      contents_(open("contents.plist")),
+      layerinfo_(open("layerinfo.plist")) {}
+
+}  // namespace ufo
+}  // namespace token
+
+#endif  // TOKEN_UFO_GLYPHS_H_

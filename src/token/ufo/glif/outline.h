@@ -29,6 +29,7 @@
 #define TOKEN_UFO_GLIF_OUTLINE_H_
 
 #include <algorithm>
+#include <iterator>
 #include <memory>
 #include <utility>
 #include <vector>

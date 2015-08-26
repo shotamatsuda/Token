@@ -1,0 +1,99 @@
+//
+//  token/ufo/glyphs.cc
+//
+//  The MIT License
+//
+//  Copyright (C) 2015 Shota Matsuda
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a
+//  copy of this software and associated documentation files (the "Software"),
+//  to deal in the Software without restriction, including without limitation
+//  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+//  and/or sell copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+//  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//  DEALINGS IN THE SOFTWARE.
+//
+
+#include "token/ufo/glyphs.h"
+
+extern "C" {
+#include <plist/plist.h>
+}  // extern "C"
+
+#include <cassert>
+#include <iterator>
+#include <fstream>
+#include <memory>
+#include <string>
+
+#include <boost/filesystem/path.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+
+#include "token/ufo/glif/glyph.h"
+
+namespace token {
+namespace ufo {
+
+plist_t Glyphs::open(const std::string& file_name) const {
+  std::ifstream file((boost::filesystem::path(path_) / file_name).string());
+  if (!file.good()) {
+    return nullptr;
+  }
+  const std::istreambuf_iterator<char> first(file);
+  const std::string contents(first, std::istreambuf_iterator<char>());
+  plist_t plist{};
+  plist_from_xml(contents.c_str(), contents.size(), &plist);
+  if (!plist) {
+    return nullptr;
+  }
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  return plist;
+}
+
+#pragma mark Glyphs
+
+const std::unique_ptr<Glyph>& Glyphs::get(const std::string& name) const {
+  const auto itr = glyphs_.find(name);
+  if (itr != std::end(glyphs_)) {
+    return itr->second;
+  }
+  auto glyph = read(name);
+  auto result = glyphs_.emplace(std::make_pair(name, nullptr));
+  assert(result.second);
+  result.first->second = std::move(glyph);
+  return result.first->second;
+}
+
+std::unique_ptr<Glyph> Glyphs::read(const std::string& name) const {
+  const auto node = plist_dict_get_item(contents_, name.c_str());
+  if (!node) {
+    return std::unique_ptr<Glyph>();
+  }
+  assert(plist_get_node_type(node) == PLIST_STRING);
+  char *file_name{};
+  plist_get_string_val(node, &file_name);
+  if (!file_name) {
+    return std::unique_ptr<Glyph>();
+  }
+  std::ifstream stream((boost::filesystem::path(path_) / file_name).string());
+  if (!stream.good()) {
+    return std::unique_ptr<Glyph>();
+  }
+  boost::property_tree::ptree tree;
+  boost::property_tree::xml_parser::read_xml(stream, tree);
+  return Glyph::read(tree);
+}
+
+}  // namespace ufo
+}  // namespace token

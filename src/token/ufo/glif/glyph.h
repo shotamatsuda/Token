@@ -29,6 +29,7 @@
 #define TOKEN_UFO_GLIF_GLYPH_H_
 
 #include <algorithm>
+#include <iterator>
 #include <memory>
 #include <string>
 #include <utility>
@@ -78,10 +79,7 @@ class Glyph final {
   std::vector<std::unique_ptr<Guideline>> guidelines;
   std::vector<std::unique_ptr<Anchor>> anchors;
   std::unique_ptr<Outline> outline;
-  static constexpr const int format = 2;
 };
-
-constexpr const int Glyph::format;
 
 #pragma mark -
 
@@ -126,7 +124,7 @@ inline std::unique_ptr<Glyph> Glyph::read(
 inline boost::property_tree::ptree Glyph::write() const {
   boost::property_tree::ptree glyph;
   xml::write_attr(&glyph, "name", name);
-  xml::write_attr(&glyph, "format", format);
+  xml::write_attr(&glyph, "format", 2);
   xml::write_child(&glyph, "advance", advance);
   xml::write_children(&glyph, "unicode", unicodes);
   xml::write_child(&glyph, "image", image);

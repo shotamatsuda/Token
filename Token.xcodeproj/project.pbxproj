@@ -10,10 +10,20 @@
 		9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
 		9334A8961B6C871E00FF2CE7 /* libtakram_nanovg_gl3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */; };
 		9337DC221B8C06720070814C /* glif.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC211B8C06720070814C /* glif.cc */; };
+		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
+		9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
+		9337DC651B8D765D0070814C /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
+		9337DC661B8D765D0070814C /* libtakram_nanovg_gl3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */; };
+		9337DC671B8D765D0070814C /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
+		9337DC681B8D765D0070814C /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
+		9337DC6B1B8D765D0070814C /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9337DC721B8D766D0070814C /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC711B8D766D0070814C /* glyph.cc */; };
+		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
+		9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
+		934956301B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		93563A191B672580004C47E4 /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
 		93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
-		93A224A91B7B21B400CB1DBB /* ufo.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224A81B7B21B400CB1DBB /* ufo.cc */; };
 		93A224B81B7B2F9600CB1DBB /* stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224B61B7B2F9600CB1DBB /* stroker.cc */; };
 		93A224BC1B7B2FA900CB1DBB /* pathfinder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */; };
 		93A224BF1B7B362200CB1DBB /* skia.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BD1B7B362200CB1DBB /* skia.cc */; };
@@ -62,6 +72,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 938D14581B50969900CCA57D;
 			remoteInfo = nanovg_gl3_static;
+		};
+		9337DC571B8D765D0070814C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = graphics_static;
+		};
+		9337DC591B8D765D0070814C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 938D14581B50969900CCA57D;
+			remoteInfo = nanovg_gl3_static;
+		};
+		9337DC5B1B8D765D0070814C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = tween_static;
+		};
+		9337DC5D1B8D765D0070814C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93E913571AB27DE400DDF7F9;
+			remoteInfo = Solas;
 		};
 		93563A0F1B672571004C47E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -178,6 +216,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		9337DC6A1B8D765D0070814C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9337DC6B1B8D765D0070814C /* Solas.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93EBABCB1AD980EE00BF8959 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,6 +245,13 @@
 		9337DC1A1B8C06300070814C /* glif */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glif; sourceTree = BUILT_PRODUCTS_DIR; };
 		9337DC211B8C06720070814C /* glif.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glif.cc; path = src/glif.cc; sourceTree = SOURCE_ROOT; };
 		9337DC231B8C12250070814C /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
+		9337DC441B8D671B0070814C /* glyph_outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyph_outline.h; sourceTree = "<group>"; };
+		9337DC531B8D67F20070814C /* glyph_outline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_outline.cc; sourceTree = "<group>"; };
+		9337DC6F1B8D765D0070814C /* Glyph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glyph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9337DC701B8D765D0070814C /* Token copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Token copy-Info.plist"; path = "/Users/sgss/Dropbox/Github/token/Token copy-Info.plist"; sourceTree = "<absolute>"; };
+		9337DC711B8D766D0070814C /* glyph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glyph.cc; path = src/glyph.cc; sourceTree = SOURCE_ROOT; };
+		9349561E1B8D8820000FD457 /* glyphs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyphs.h; sourceTree = "<group>"; };
+		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		93563A741B674472004C47E4 /* nanovg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nanovg.xcodeproj; path = "lib/takram-nanovg/nanovg.xcodeproj"; sourceTree = "<group>"; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
 		93A224941B7B1FD200CB1DBB /* advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = advance.h; sourceTree = "<group>"; };
@@ -210,7 +266,6 @@
 		93A2249D1B7B1FD200CB1DBB /* unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode.h; sourceTree = "<group>"; };
 		93A2249E1B7B1FD200CB1DBB /* glif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glif.h; sourceTree = "<group>"; };
 		93A224A31B7B1FD200CB1DBB /* ufo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufo.h; sourceTree = "<group>"; };
-		93A224A81B7B21B400CB1DBB /* ufo.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ufo.cc; sourceTree = "<group>"; };
 		93A224B61B7B2F9600CB1DBB /* stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stroker.cc; sourceTree = "<group>"; };
 		93A224B71B7B2F9600CB1DBB /* stroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stroker.h; sourceTree = "<group>"; };
 		93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathfinder.cc; sourceTree = "<group>"; };
@@ -232,6 +287,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9337DC641B8D765D0070814C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9337DC651B8D765D0070814C /* libtakram_graphics.a in Frameworks */,
+				9337DC661B8D765D0070814C /* libtakram_nanovg_gl3.a in Frameworks */,
+				9337DC671B8D765D0070814C /* libtakram_tween.a in Frameworks */,
+				9337DC681B8D765D0070814C /* Solas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,9 +371,11 @@
 		93A224921B7B1FD200CB1DBB /* ufo */ = {
 			isa = PBXGroup;
 			children = (
-				9337DC231B8C12250070814C /* xml.h */,
+				9349561E1B8D8820000FD457 /* glyphs.h */,
+				9349562D1B8D8B17000FD457 /* glyphs.cc */,
 				93A2249E1B7B1FD200CB1DBB /* glif.h */,
 				93A224931B7B1FD200CB1DBB /* glif */,
+				9337DC231B8C12250070814C /* xml.h */,
 			);
 			path = ufo;
 			sourceTree = "<group>";
@@ -340,6 +408,7 @@
 				93563AAB1B674487004C47E4 /* graphics.xcodeproj */,
 				93563A741B674472004C47E4 /* nanovg.xcodeproj */,
 				9310892A1B6858410094B581 /* tween.xcodeproj */,
+				9337DC701B8D765D0070814C /* Token copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -348,6 +417,7 @@
 			children = (
 				93FEF94E1AD97263009D0646 /* Token.app */,
 				9337DC1A1B8C06300070814C /* glif */,
+				9337DC6F1B8D765D0070814C /* Glyph.app */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -355,16 +425,18 @@
 		93FEF9501AD97263009D0646 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				9337DC211B8C06720070814C /* glif.cc */,
 				93FEF9901AD97397009D0646 /* main.cc */,
+				9337DC211B8C06720070814C /* glif.cc */,
+				9337DC711B8D766D0070814C /* glyph.cc */,
 				93A224B71B7B2F9600CB1DBB /* stroker.h */,
 				93A224B61B7B2F9600CB1DBB /* stroker.cc */,
 				93A224BB1B7B2FA900CB1DBB /* pathfinder.h */,
 				93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */,
 				93A224BE1B7B362200CB1DBB /* skia.h */,
 				93A224BD1B7B362200CB1DBB /* skia.cc */,
+				9337DC441B8D671B0070814C /* glyph_outline.h */,
+				9337DC531B8D67F20070814C /* glyph_outline.cc */,
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
-				93A224A81B7B21B400CB1DBB /* ufo.cc */,
 				93A224921B7B1FD200CB1DBB /* ufo */,
 			);
 			name = src;
@@ -401,6 +473,28 @@
 			productName = glif;
 			productReference = 9337DC1A1B8C06300070814C /* glif */;
 			productType = "com.apple.product-type.tool";
+		};
+		9337DC551B8D765D0070814C /* Glyph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9337DC6C1B8D765D0070814C /* Build configuration list for PBXNativeTarget "Glyph" */;
+			buildPhases = (
+				9337DC5E1B8D765D0070814C /* Sources */,
+				9337DC641B8D765D0070814C /* Frameworks */,
+				9337DC691B8D765D0070814C /* Resources */,
+				9337DC6A1B8D765D0070814C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9337DC561B8D765D0070814C /* PBXTargetDependency */,
+				9337DC581B8D765D0070814C /* PBXTargetDependency */,
+				9337DC5A1B8D765D0070814C /* PBXTargetDependency */,
+				9337DC5C1B8D765D0070814C /* PBXTargetDependency */,
+			);
+			name = Glyph;
+			productName = Zorozoro;
+			productReference = 9337DC6F1B8D765D0070814C /* Glyph.app */;
+			productType = "com.apple.product-type.application";
 		};
 		93FEF94D1AD97263009D0646 /* Token */ = {
 			isa = PBXNativeTarget;
@@ -473,6 +567,7 @@
 			projectRoot = "";
 			targets = (
 				93FEF94D1AD97263009D0646 /* Token */,
+				9337DC551B8D765D0070814C /* Glyph */,
 				9337DC191B8C06300070814C /* glif */,
 			);
 		};
@@ -608,6 +703,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9337DC691B8D765D0070814C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93FEF94C1AD97263009D0646 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -622,7 +724,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				934956301B8D8B17000FD457 /* glyphs.cc in Sources */,
 				9337DC221B8C06720070814C /* glif.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9337DC5E1B8D765D0070814C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */,
+				9337DC721B8D766D0070814C /* glyph.cc in Sources */,
+				9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,11 +743,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */,
 				93A224B81B7B2F9600CB1DBB /* stroker.cc in Sources */,
-				93A224A91B7B21B400CB1DBB /* ufo.cc in Sources */,
 				93A224BC1B7B2FA900CB1DBB /* pathfinder.cc in Sources */,
 				93FEF9921AD97397009D0646 /* main.cc in Sources */,
 				93A224BF1B7B362200CB1DBB /* skia.cc in Sources */,
+				9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +764,26 @@
 			isa = PBXTargetDependency;
 			name = nanovg_gl3_static;
 			targetProxy = 9334A8941B6C871A00FF2CE7 /* PBXContainerItemProxy */;
+		};
+		9337DC561B8D765D0070814C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = graphics_static;
+			targetProxy = 9337DC571B8D765D0070814C /* PBXContainerItemProxy */;
+		};
+		9337DC581B8D765D0070814C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = nanovg_gl3_static;
+			targetProxy = 9337DC591B8D765D0070814C /* PBXContainerItemProxy */;
+		};
+		9337DC5A1B8D765D0070814C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = tween_static;
+			targetProxy = 9337DC5B1B8D765D0070814C /* PBXContainerItemProxy */;
+		};
+		9337DC5C1B8D765D0070814C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Solas;
+			targetProxy = 9337DC5D1B8D765D0070814C /* PBXContainerItemProxy */;
 		};
 		93563A181B67257E004C47E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -677,6 +811,40 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9337DC6D1B8D765D0070814C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				INFOPLIST_FILE = config/osx.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					OpenGL,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Glyph;
+			};
+			name = Debug;
+		};
+		9337DC6E1B8D765D0070814C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				INFOPLIST_FILE = config/osx.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					OpenGL,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Glyph;
 			};
 			name = Release;
 		};
@@ -743,6 +911,15 @@
 			buildConfigurations = (
 				9337DC1F1B8C06300070814C /* Debug */,
 				9337DC201B8C06300070814C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9337DC6C1B8D765D0070814C /* Build configuration list for PBXNativeTarget "Glyph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9337DC6D1B8D765D0070814C /* Debug */,
+				9337DC6E1B8D765D0070814C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,5 +1,5 @@
 //
-//  token/ufo.cc
+//  token/glyph_outline.h
 //
 //  The MIT License
 //
@@ -24,10 +24,42 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/ufo.h"
+#pragma once
+#ifndef TOKEN_GLYPH_H_
+#define TOKEN_GLYPH_H_
+
+#include "takram/graphics.h"
+#include "token/ufo/glif/contour.h"
+#include "token/ufo/glif/glyph.h"
 
 namespace token {
-namespace ufo {
 
-}  // namespace ufo
+class GlyphOutline final {
+ public:
+  GlyphOutline() = default;
+  explicit GlyphOutline(const ufo::Glyph& glyph);
+
+  // Disallow copy semantics
+  GlyphOutline(const GlyphOutline& other) = delete;
+  GlyphOutline& operator=(const GlyphOutline& other) = delete;
+
+  // Move semantics
+  GlyphOutline(GlyphOutline&& other) = default;
+  GlyphOutline& operator=(GlyphOutline&& other) = default;
+
+  // Attributes
+  const takram::Shape2d& shape() const { return shape_; }
+  takram::Shape2d& shape() { return shape_; }
+
+ private:
+  void processContour(const ufo::Contour& contour);
+
+ public:
+  takram::Shape2d shape_;
+};
+
+#pragma mark -
+
 }  // namespace token
+
+#endif  // TOKEN_UFO_GLIF_GLYPH_H_

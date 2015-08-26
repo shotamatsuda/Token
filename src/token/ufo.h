@@ -29,6 +29,7 @@
 #define TOKEN_UFO_H_
 
 #include "token/ufo/glif.h"
+#include "token/ufo/glyphs.h"
 #include "token/ufo/xml.h"
 
 #endif  // TOKEN_UFO_H_
