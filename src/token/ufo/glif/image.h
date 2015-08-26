@@ -28,7 +28,6 @@
 #ifndef TOKEN_UFO_GLIF_IMAGE_H_
 #define TOKEN_UFO_GLIF_IMAGE_H_
 
-#include <memory>
 #include <string>
 #include <utility>
 
@@ -53,8 +52,7 @@ class Image final {
   bool operator!=(const Image& other) const;
 
   // Property tree
-  static std::unique_ptr<Image> read(
-      const boost::property_tree::ptree& tree);
+  static Image read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -97,17 +95,16 @@ inline bool Image::operator!=(const Image& other) const {
 
 #pragma mark Property tree
 
-inline std::unique_ptr<Image> Image::read(
-    const boost::property_tree::ptree& tree) {
-  auto result = std::make_unique<Image>();
-  xml::read_attr(tree, "fileName", &result->file_name);
-  xml::read_attr(tree, "xScale", &result->x_scale);
-  xml::read_attr(tree, "xyScale", &result->xy_scale);
-  xml::read_attr(tree, "yxScale", &result->yx_scale);
-  xml::read_attr(tree, "yScale", &result->y_scale);
-  xml::read_attr(tree, "xOffset", &result->x_offset);
-  xml::read_attr(tree, "yOffset", &result->y_offset);
-  xml::read_attr(tree, "color", &result->color);
+inline Image Image::read(const boost::property_tree::ptree& tree) {
+  Image result;
+  xml::read_attr(tree, "fileName", &result.file_name);
+  xml::read_attr(tree, "xScale", &result.x_scale);
+  xml::read_attr(tree, "xyScale", &result.xy_scale);
+  xml::read_attr(tree, "yxScale", &result.yx_scale);
+  xml::read_attr(tree, "yScale", &result.y_scale);
+  xml::read_attr(tree, "xOffset", &result.x_offset);
+  xml::read_attr(tree, "yOffset", &result.y_offset);
+  xml::read_attr(tree, "color", &result.color);
   return std::move(result);
 }
 

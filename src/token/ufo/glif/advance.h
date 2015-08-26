@@ -28,7 +28,6 @@
 #ifndef TOKEN_UFO_GLIF_ADVANCE_H_
 #define TOKEN_UFO_GLIF_ADVANCE_H_
 
-#include <memory>
 #include <utility>
 
 #include <boost/property_tree/ptree.hpp>
@@ -52,8 +51,7 @@ class Advance final {
   bool operator!=(const Advance& other) const;
 
   // Property tree
-  static std::unique_ptr<Advance> read(
-      const boost::property_tree::ptree& tree);
+  static Advance read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -77,11 +75,10 @@ inline bool Advance::operator!=(const Advance& other) const {
 
 #pragma mark Property tree
 
-inline std::unique_ptr<Advance> Advance::read(
-    const boost::property_tree::ptree& tree) {
-  auto result = std::make_unique<Advance>();
-  xml::read_attr(tree, "width", &result->width);
-  xml::read_attr(tree, "height", &result->height);
+inline Advance Advance::read(const boost::property_tree::ptree& tree) {
+  Advance result;
+  xml::read_attr(tree, "width", &result.width);
+  xml::read_attr(tree, "height", &result.height);
   return std::move(result);
 }
 

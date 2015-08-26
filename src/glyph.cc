@@ -64,8 +64,8 @@ class App : public solas::View {
     takram::nvg::Scope save;
     takram::nvg::translate(translation_);
     takram::nvg::beginPath();
-    takram::nvg::translate(0, height());
-    takram::nvg::scale(1.0, -1.0);
+//    takram::nvg::translate(0, height());
+//    takram::nvg::scale(1.0, -1.0);
     drawShape(shape);
     takram::nvg::fillColor(takram::Color4d(0.0));
     takram::nvg::fill();
@@ -179,7 +179,7 @@ class App : public solas::View {
   }
 
   void keyPressed() override {
-    auto& glyph = glyphs_.get(std::string() + key());
+    auto glyph = glyphs_.find(std::string() + key());
     if (glyph) {
       glyph_ = token::GlyphOutline(*glyph);
     }

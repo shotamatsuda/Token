@@ -37,13 +37,12 @@
 namespace token {
 
 GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) {
-  if (!glyph.outline || glyph.outline->contours.empty()) {
+  if (!glyph.outline.first || glyph.outline.second.contours.empty()) {
     return;
   }
-  for (auto& contour : glyph.outline->contours) {
-    assert(contour);
-    if (!contour->points.empty()) {
-      processContour(*contour);
+  for (auto& contour : glyph.outline.second.contours) {
+    if (!contour.points.empty()) {
+      processContour(contour);
     }
   }
 }
@@ -54,10 +53,9 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
   assert(begin != end);
   auto itr = begin;
   const auto& point = *itr;
-  assert(point);
   // When a contour starts with a move point, it signifies an open contour.
-  const bool open = point->type == ufo::Point::Type::MOVE;
-  shape_.moveTo(point->x, point->y);
+  const bool open = (point.type == ufo::Point::Type::MOVE);
+  shape_.moveTo(point.x, point.y);
   ++itr;
   auto offcurve1 = end;
   auto offcurve2 = end;
@@ -69,13 +67,12 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
       itr = begin;
     }
     const auto& point = *itr;
-    assert(point);
-    switch (point->type) {
+    switch (point.type) {
       case ufo::Point::Type::MOVE:
         assert(false);  // A point of move must apear the first.
         break;
       case ufo::Point::Type::LINE:
-        shape_.lineTo(point->x, point->y);
+        shape_.lineTo(point.x, point.y);
         offcurve1 = offcurve2 = end;
         break;
       case ufo::Point::Type::OFFCURVE:
@@ -89,14 +86,13 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
         break;
       case ufo::Point::Type::CURVE:
         if (offcurve1 == end) {
-          shape_.lineTo(point->x, point->y);
+          shape_.lineTo(point.x, point.y);
         } else if (offcurve2 == end) {
-          shape_.quadraticTo((*offcurve2)->x, (*offcurve2)->y,
-                               point->x, point->y);
+          shape_.quadraticTo(offcurve2->x, offcurve2->y, point.x, point.y);
         } else {
-          shape_.cubicTo((*offcurve1)->x, (*offcurve1)->y,
-                           (*offcurve2)->x, (*offcurve2)->y,
-                           point->x, point->y);
+          shape_.cubicTo(offcurve1->x, offcurve1->y,
+                         offcurve2->x, offcurve2->y,
+                         point.x, point.y);
         }
         offcurve1 = offcurve2 = end;
         break;

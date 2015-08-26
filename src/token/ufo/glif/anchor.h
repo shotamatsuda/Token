@@ -28,7 +28,6 @@
 #ifndef TOKEN_UFO_GLIF_ANCHOR_H_
 #define TOKEN_UFO_GLIF_ANCHOR_H_
 
-#include <memory>
 #include <string>
 #include <utility>
 
@@ -53,8 +52,7 @@ class Anchor final {
   bool operator!=(const Anchor& other) const;
 
   // Property tree
-  static std::unique_ptr<Anchor> read(
-      const boost::property_tree::ptree& tree);
+  static Anchor read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -83,14 +81,13 @@ inline bool Anchor::operator!=(const Anchor& other) const {
 
 #pragma mark Property tree
 
-inline std::unique_ptr<Anchor> Anchor::read(
-    const boost::property_tree::ptree& tree) {
-  auto result = std::make_unique<Anchor>();
-  xml::read_attr(tree, "x", &result->x);
-  xml::read_attr(tree, "y", &result->y);
-  xml::read_attr(tree, "name", &result->name);
-  xml::read_attr(tree, "color", &result->color);
-  xml::read_attr(tree, "identifier", &result->identifier);
+inline Anchor Anchor::read(const boost::property_tree::ptree& tree) {
+  Anchor result;
+  xml::read_attr(tree, "x", &result.x);
+  xml::read_attr(tree, "y", &result.y);
+  xml::read_attr(tree, "name", &result.name);
+  xml::read_attr(tree, "color", &result.color);
+  xml::read_attr(tree, "identifier", &result.identifier);
   return std::move(result);
 }
 

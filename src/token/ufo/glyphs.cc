@@ -33,7 +33,6 @@ extern "C" {
 #include <cassert>
 #include <iterator>
 #include <fstream>
-#include <memory>
 #include <string>
 
 #include <boost/filesystem/path.hpp>
@@ -45,12 +44,12 @@ extern "C" {
 namespace token {
 namespace ufo {
 
-plist_t Glyphs::open(const std::string& file_name) const {
-  std::ifstream file((boost::filesystem::path(path_) / file_name).string());
-  if (!file.good()) {
+plist_t Glyphs::open(const std::string& file) const {
+  std::ifstream stream((boost::filesystem::path(path_) / file).string());
+  if (!stream.good()) {
     return nullptr;
   }
-  const std::istreambuf_iterator<char> first(file);
+  const std::istreambuf_iterator<char> first(stream);
   const std::string contents(first, std::istreambuf_iterator<char>());
   plist_t plist{};
   plist_from_xml(contents.c_str(), contents.size(), &plist);
@@ -63,35 +62,54 @@ plist_t Glyphs::open(const std::string& file_name) const {
 
 #pragma mark Glyphs
 
-const std::unique_ptr<Glyph>& Glyphs::get(const std::string& name) const {
-  const auto itr = glyphs_.find(name);
-  if (itr != std::end(glyphs_)) {
-    return itr->second;
-  }
-  auto glyph = read(name);
-  auto result = glyphs_.emplace(std::make_pair(name, nullptr));
-  assert(result.second);
-  result.first->second = std::move(glyph);
-  return result.first->second;
+const Glyph& Glyphs::get(const std::string& name) const {
+  auto glyph = find(name);
+  assert(glyph);
+  return *glyph;
 }
 
-std::unique_ptr<Glyph> Glyphs::read(const std::string& name) const {
+Glyph& Glyphs::get(const std::string& name) {
+  return const_cast<Glyph&>(const_cast<const Glyphs *>(this)->get(name));
+}
+
+const Glyph * Glyphs::find(const std::string& name) const {
+  const auto itr = glyphs_.find(name);
+  if (itr != std::end(glyphs_)) {
+    return &itr->second;
+  }
+  auto stream = openGlyph(name);
+  if (!stream.good()) {
+    return nullptr;
+  }
+  auto glyph = readGlyph(&stream);
+  const auto result = glyphs_.emplace(std::make_pair(name, std::move(glyph)));
+  assert(result.second);
+  return &result.first->second;
+}
+
+Glyph * Glyphs::find(const std::string& name) {
+  return const_cast<Glyph *>(const_cast<const Glyphs *>(this)->find(name));
+}
+
+std::ifstream Glyphs::openGlyph(const std::string& name) const {
   const auto node = plist_dict_get_item(contents_, name.c_str());
   if (!node) {
-    return std::unique_ptr<Glyph>();
+    return std::ifstream(nullptr);
   }
   assert(plist_get_node_type(node) == PLIST_STRING);
   char *file_name{};
   plist_get_string_val(node, &file_name);
   if (!file_name) {
-    return std::unique_ptr<Glyph>();
+    return std::ifstream(nullptr);
   }
-  std::ifstream stream((boost::filesystem::path(path_) / file_name).string());
-  if (!stream.good()) {
-    return std::unique_ptr<Glyph>();
-  }
+  return std::ifstream((boost::filesystem::path(path_) / file_name).string());
+}
+
+Glyph Glyphs::readGlyph(std::ifstream *stream) const {
+  assert(stream);
+  assert(stream->good());
   boost::property_tree::ptree tree;
-  boost::property_tree::xml_parser::read_xml(stream, tree);
+  boost::property_tree::xml_parser::read_xml(*stream, tree);
   return Glyph::read(tree);
 }
 

@@ -28,7 +28,7 @@
 #ifndef TOKEN_UFO_GLYPHS_H_
 #define TOKEN_UFO_GLYPHS_H_
 
-#include <memory>
+#include <fstream>
 #include <string>
 #include <unordered_map>
 
@@ -42,26 +42,26 @@ class Glyphs final {
   Glyphs();
   explicit Glyphs(const std::string& path);
 
-  // Disallow copy semantics
-  Glyphs(const Glyphs&) = delete;
-  Glyphs& operator=(const Glyphs&) = delete;
-
-  // Move semantics
-  Glyphs(Glyphs&&) = default;
-  Glyphs& operator=(Glyphs&&) = default;
+  // Copy semantics
+  Glyphs(const Glyphs&) = default;
+  Glyphs& operator=(const Glyphs&) = default;
 
   // Glyphs
-  const std::unique_ptr<Glyph>& get(const std::string& name) const;
+  const Glyph& get(const std::string& name) const;
+  Glyph& get(const std::string& name);
+  const Glyph * find(const std::string& name) const;
+  Glyph * find(const std::string& name);
 
  private:
-  void * open(const std::string& file_name) const;
-  std::unique_ptr<Glyph> read(const std::string& name) const;
+  void * open(const std::string& file) const;
+  std::ifstream openGlyph(const std::string& name) const;
+  Glyph readGlyph(std::ifstream *stream) const;
 
  private:
   std::string path_;
   void *contents_;
   void *layerinfo_;
-  mutable std::unordered_map<std::string, std::unique_ptr<Glyph>> glyphs_;
+  mutable std::unordered_map<std::string, Glyph> glyphs_;
 };
 
 #pragma mark -

@@ -28,9 +28,6 @@
 #ifndef TOKEN_UFO_GLIF_CONTOUR_H_
 #define TOKEN_UFO_GLIF_CONTOUR_H_
 
-#include <algorithm>
-#include <iterator>
-#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
@@ -48,26 +45,21 @@ class Contour final {
  public:
   Contour() = default;
 
-  // Disallow copy semantics
-  Contour(const Contour& other) = delete;
-  Contour& operator=(const Contour& other) = delete;
-
-  // Move semantics
-  Contour(Contour&& other) = default;
-  Contour& operator=(Contour&& other) = default;
+  // Copy semantics
+  Contour(const Contour& other) = default;
+  Contour& operator=(const Contour& other) = default;
 
   // Comparison
   bool operator==(const Contour& other) const;
   bool operator!=(const Contour& other) const;
 
   // Property tree
-  static std::unique_ptr<Contour> read(
-      const boost::property_tree::ptree& tree);
+  static Contour read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
   std::string identifier;
-  std::vector<std::unique_ptr<Point>> points;
+  std::vector<Point> points;
 };
 
 #pragma mark -
@@ -75,10 +67,7 @@ class Contour final {
 #pragma mark Comparison
 
 inline bool Contour::operator==(const Contour& other) const {
-  const auto predicate = [](const auto& a, const auto& b) { return *a == *b; };
-  return (identifier == other.identifier &&
-          std::equal(std::begin(points), std::end(points),
-                     std::begin(other.points), predicate));
+  return (identifier == other.identifier && points == other.points);
 }
 
 inline bool Contour::operator!=(const Contour& other) const {
@@ -87,11 +76,10 @@ inline bool Contour::operator!=(const Contour& other) const {
 
 #pragma mark Property tree
 
-inline std::unique_ptr<Contour> Contour::read(
-    const boost::property_tree::ptree& tree) {
-  auto result = std::make_unique<Contour>();
-  xml::read_attr(tree, "identifier", &result->identifier);
-  xml::read_children(tree, "point", &result->points);
+inline Contour Contour::read(const boost::property_tree::ptree& tree) {
+  Contour result;
+  xml::read_attr(tree, "identifier", &result.identifier);
+  xml::read_children(tree, "point", &result.points);
   return std::move(result);
 }
 

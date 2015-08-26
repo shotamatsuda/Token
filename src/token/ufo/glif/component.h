@@ -28,7 +28,6 @@
 #ifndef TOKEN_UFO_GLIF_COMPONENT_H_
 #define TOKEN_UFO_GLIF_COMPONENT_H_
 
-#include <memory>
 #include <string>
 #include <utility>
 
@@ -53,8 +52,7 @@ class Component final {
   bool operator!=(const Component& other) const;
 
   // Property tree
-  static std::unique_ptr<Component> read(
-      const boost::property_tree::ptree& tree);
+  static Component read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
@@ -97,17 +95,16 @@ inline bool Component::operator!=(const Component& other) const {
 
 #pragma mark Property tree
 
-inline std::unique_ptr<Component> Component::read(
-    const boost::property_tree::ptree& tree) {
-  auto result = std::make_unique<Component>();
-  xml::read_attr(tree, "base", &result->base);
-  xml::read_attr(tree, "xScale", &result->x_scale);
-  xml::read_attr(tree, "xyScale", &result->xy_scale);
-  xml::read_attr(tree, "yxScale", &result->yx_scale);
-  xml::read_attr(tree, "yScale", &result->y_scale);
-  xml::read_attr(tree, "xOffset", &result->x_offset);
-  xml::read_attr(tree, "yOffset", &result->y_offset);
-  xml::read_attr(tree, "identifier", &result->identifier);
+inline Component Component::read(const boost::property_tree::ptree& tree) {
+  Component result;
+  xml::read_attr(tree, "base", &result.base);
+  xml::read_attr(tree, "xScale", &result.x_scale);
+  xml::read_attr(tree, "xyScale", &result.xy_scale);
+  xml::read_attr(tree, "yxScale", &result.yx_scale);
+  xml::read_attr(tree, "yScale", &result.y_scale);
+  xml::read_attr(tree, "xOffset", &result.x_offset);
+  xml::read_attr(tree, "yOffset", &result.y_offset);
+  xml::read_attr(tree, "identifier", &result.identifier);
   return std::move(result);
 }
 

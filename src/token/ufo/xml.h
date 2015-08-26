@@ -31,6 +31,7 @@
 #include <cassert>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
@@ -56,7 +57,7 @@ inline void read_attr(const boost::property_tree::ptree& tree,
 template <class T>
 inline void read_child(const boost::property_tree::ptree& tree,
                        const std::string& name,
-                       std::unique_ptr<T> *output) {
+                       T *output) {
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
@@ -65,9 +66,23 @@ inline void read_child(const boost::property_tree::ptree& tree,
 }
 
 template <class T>
+inline void read_child(const boost::property_tree::ptree& tree,
+                       const std::string& name,
+                       std::pair<bool, T> *output) {
+  assert(output);
+  const auto itr = tree.find(name);
+  if (itr != tree.not_found()) {
+    output->first = true;
+    output->second = T::read(itr->second);
+  } else {
+    output->first = false;
+  }
+}
+
+template <class T>
 inline void read_children(const boost::property_tree::ptree& tree,
                           const std::string& name,
-                          std::vector<std::unique_ptr<T>> *output) {
+                          std::vector<T> *output) {
   assert(output);
   const auto values = tree.find(name);
   if (values != tree.not_found()) {
@@ -90,25 +105,31 @@ inline void write_attr(boost::property_tree::ptree *tree,
   }
 }
 
-template <class T, class U = T>
+template <class T>
 inline void write_child(boost::property_tree::ptree *tree,
                         const std::string& name,
-                        const std::unique_ptr<T>& value) {
+                        const T& value) {
   assert(tree);
-  if (value) {
-    tree->add_child(name, value->write());
+  tree->add_child(name, value->write());
+}
+
+template <class T>
+inline void write_child(boost::property_tree::ptree *tree,
+                        const std::string& name,
+                        const std::pair<bool, T>& value) {
+  assert(tree);
+  if (value.first) {
+    tree->add_child(name, value.second.write());
   }
 }
 
-template <class T, class U = T>
+template <class T>
 inline void write_children(boost::property_tree::ptree *tree,
                            const std::string& name,
-                           const std::vector<std::unique_ptr<T>>& values) {
+                           const std::vector<T>& values) {
   assert(tree);
   for (const auto& value : values) {
-    if (value) {
-      tree->add_child(name, value->write());
-    }
+    tree->add_child(name, value.write());
   }
 }
 
