@@ -99,9 +99,9 @@ inline boost::property_tree::ptree Guideline::write() const {
   xml::write_attr(&tree, "x", x);
   xml::write_attr(&tree, "y", y);
   xml::write_attr(&tree, "angle", angle);
-  xml::write_attr(&tree, "name", name);
-  xml::write_attr(&tree, "color", color);
-  xml::write_attr(&tree, "identifier", identifier);
+  xml::write_attr(&tree, "name", name, "");
+  xml::write_attr(&tree, "color", color, "");
+  xml::write_attr(&tree, "identifier", identifier, "");
   return std::move(tree);
 }
 

@@ -27,7 +27,9 @@
 #include "token/ufo/glyphs.h"
 
 extern "C" {
+
 #include <plist/plist.h>
+
 }  // extern "C"
 
 #include <cassert>
@@ -44,7 +46,7 @@ extern "C" {
 namespace token {
 namespace ufo {
 
-plist_t Glyphs::open(const std::string& file) const {
+plist_t Glyphs::openPropertyList(const std::string& file) const {
   std::ifstream stream((boost::filesystem::path(path_) / file).string());
   if (!stream.good()) {
     return nullptr;
@@ -77,7 +79,7 @@ const Glyph * Glyphs::find(const std::string& name) const {
   if (itr != std::end(glyphs_)) {
     return &itr->second;
   }
-  auto stream = openGlyph(name);
+  auto stream = openGLIF(name);
   if (!stream.good()) {
     return nullptr;
   }
@@ -91,7 +93,7 @@ Glyph * Glyphs::find(const std::string& name) {
   return const_cast<Glyph *>(const_cast<const Glyphs *>(this)->find(name));
 }
 
-std::ifstream Glyphs::openGlyph(const std::string& name) const {
+std::ifstream Glyphs::openGLIF(const std::string& name) const {
   const auto node = plist_dict_get_item(contents_, name.c_str());
   if (!node) {
     return std::ifstream(nullptr);

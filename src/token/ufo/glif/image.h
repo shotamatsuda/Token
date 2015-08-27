@@ -111,13 +111,13 @@ inline Image Image::read(const boost::property_tree::ptree& tree) {
 inline boost::property_tree::ptree Image::write() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "fileName", file_name);
-  xml::write_attr(&tree, "xScale", x_scale);
-  xml::write_attr(&tree, "xyScale", xy_scale);
-  xml::write_attr(&tree, "yxScale", yx_scale);
-  xml::write_attr(&tree, "yScale", y_scale);
-  xml::write_attr(&tree, "xOffset", x_offset);
-  xml::write_attr(&tree, "yOffset", y_offset);
-  xml::write_attr(&tree, "color", color);
+  xml::write_attr(&tree, "xScale", x_scale, 1.0);
+  xml::write_attr(&tree, "xyScale", xy_scale, 0.0);
+  xml::write_attr(&tree, "yxScale", yx_scale, 0.0);
+  xml::write_attr(&tree, "yScale", y_scale, 1.0);
+  xml::write_attr(&tree, "xOffset", x_offset, 0.0);
+  xml::write_attr(&tree, "yOffset", y_offset, 0.0);
+  xml::write_attr(&tree, "color", color, "");
   return std::move(tree);
 }
 

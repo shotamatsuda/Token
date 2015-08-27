@@ -52,6 +52,12 @@ class Point final {
 
  public:
   Point();
+  Point(double x,
+        double y,
+        Type type = Type::OFFCURVE,
+        bool smooth = false,
+        const std::string& name = std::string(),
+        const std::string& identifier = std::string());
 
   // Copy semantics
   Point(const Point& other) = default;
@@ -60,6 +66,9 @@ class Point final {
   // Comparison
   bool operator==(const Point& other) const;
   bool operator!=(const Point& other) const;
+
+  // Mutator
+  void reset();
 
   // Property tree
   static Point read(const boost::property_tree::ptree& tree);
@@ -76,17 +85,30 @@ class Point final {
 
 #pragma mark -
 
-inline Point::Point() : type(Type::OFFCURVE), smooth(false) {}
+inline Point::Point() : type(Type::OFFCURVE), smooth() {}
+
+inline Point::Point(double x,
+                    double y,
+                    Type type,
+                    bool smooth,
+                    const std::string& name,
+                    const std::string& identifier)
+    : x(x),
+      y(y),
+      type(type),
+      smooth(smooth),
+      name(name),
+      identifier(identifier) {}
 
 #pragma mark Comparison
 
 inline bool Point::operator==(const Point& other) const {
-  return (identifier == other.identifier &&
-          x == other.x &&
+  return (x == other.x &&
           y == other.y &&
           type == other.type &&
           smooth == other.smooth &&
-          name == other.name);
+          name == other.name &&
+          identifier == other.identifier);
 }
 
 inline bool Point::operator!=(const Point& other) const {
@@ -139,8 +161,8 @@ inline boost::property_tree::ptree Point::write() const {
   xml::write_attr(&tree, "y", y);
   xml::write_attr(&tree, "type", type, "offcurve");
   xml::write_attr(&tree, "smooth", smooth ? "yes" : "no", "no");
-  xml::write_attr(&tree, "name", name);
-  xml::write_attr(&tree, "identifier", identifier);
+  xml::write_attr(&tree, "name", name, "");
+  xml::write_attr(&tree, "identifier", identifier, "");
   return std::move(tree);
 }
 

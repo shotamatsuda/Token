@@ -53,8 +53,8 @@ class Glyphs final {
   Glyph * find(const std::string& name);
 
  private:
-  void * open(const std::string& file) const;
-  std::ifstream openGlyph(const std::string& name) const;
+  void * openPropertyList(const std::string& file) const;
+  std::ifstream openGLIF(const std::string& name) const;
   Glyph readGlyph(std::ifstream *stream) const;
 
  private:
@@ -70,8 +70,8 @@ inline Glyphs::Glyphs() : contents_(), layerinfo_() {}
 
 inline Glyphs::Glyphs(const std::string& path)
     : path_(path),
-      contents_(open("contents.plist")),
-      layerinfo_(open("layerinfo.plist")) {}
+      contents_(openPropertyList("contents.plist")),
+      layerinfo_(openPropertyList("layerinfo.plist")) {}
 
 }  // namespace ufo
 }  // namespace token

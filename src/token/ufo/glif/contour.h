@@ -85,7 +85,7 @@ inline Contour Contour::read(const boost::property_tree::ptree& tree) {
 
 inline boost::property_tree::ptree Contour::write() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "identifier", identifier);
+  xml::write_attr(&tree, "identifier", identifier, "");
   xml::write_children(&tree, "point", points);
   return std::move(tree);
 }

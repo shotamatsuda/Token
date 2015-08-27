@@ -84,8 +84,8 @@ inline Advance Advance::read(const boost::property_tree::ptree& tree) {
 
 inline boost::property_tree::ptree Advance::write() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "width", width);
-  xml::write_attr(&tree, "height", height);
+  xml::write_attr(&tree, "width", width, 0.0);
+  xml::write_attr(&tree, "height", height, 0.0);
   return std::move(tree);
 }
 

@@ -94,11 +94,19 @@ inline void read_children(const boost::property_tree::ptree& tree,
   }
 }
 
-template <class T, class U = T>
+template <class T>
+inline void write_attr(boost::property_tree::ptree *tree,
+                       const std::string& name,
+                       const T& value) {
+  assert(tree);
+  tree->put("<xmlattr>." + name, value);
+}
+
+template <class T, class U>
 inline void write_attr(boost::property_tree::ptree *tree,
                        const std::string& name,
                        const T& value,
-                       const U& default_value = U()) {
+                       const U& default_value) {
   assert(tree);
   if (value != default_value) {
     tree->put("<xmlattr>." + name, value);
