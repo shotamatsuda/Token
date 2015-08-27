@@ -38,23 +38,22 @@ class GlyphOutline final {
  public:
   GlyphOutline() = default;
   explicit GlyphOutline(const ufo::Glyph& glyph);
+  GlyphOutline(const ufo::Glyph& glyph, const takram::Shape2d& shape);
 
-  // Disallow copy semantics
-  GlyphOutline(const GlyphOutline& other) = delete;
-  GlyphOutline& operator=(const GlyphOutline& other) = delete;
-
-  // Move semantics
-  GlyphOutline(GlyphOutline&& other) = default;
-  GlyphOutline& operator=(GlyphOutline&& other) = default;
+  // Copy semantics
+  GlyphOutline(const GlyphOutline& other) = default;
+  GlyphOutline& operator=(const GlyphOutline& other) = default;
 
   // Attributes
+  const ufo::Glyph& glyph() const { return glyph_; }
   const takram::Shape2d& shape() const { return shape_; }
-  takram::Shape2d& shape() { return shape_; }
 
  private:
   void processContour(const ufo::Contour& contour);
+  void processPath(const takram::Path2d& path);
 
  public:
+  ufo::Glyph glyph_;
   takram::Shape2d shape_;
 };
 

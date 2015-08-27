@@ -26,7 +26,9 @@
 
 #include "token/glyph_outline.h"
 
+#include <algorithm>
 #include <cassert>
+#include <deque>
 #include <iterator>
 
 #include "takram/graphics.h"
@@ -36,13 +38,28 @@
 
 namespace token {
 
-GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) {
-  if (!glyph.outline.first || glyph.outline.second.contours.empty()) {
+GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) : glyph_(glyph) {
+  if (!glyph_.outline.first || glyph_.outline.second.contours.empty()) {
     return;
   }
-  for (auto& contour : glyph.outline.second.contours) {
+  for (const auto& contour : glyph_.outline.second.contours) {
     if (!contour.points.empty()) {
       processContour(contour);
+    }
+  }
+}
+
+GlyphOutline::GlyphOutline(const ufo::Glyph& glyph,
+                           const takram::Shape2d& shape)
+    : glyph_(glyph),
+      shape_(shape) {
+  if (glyph_.outline.first) {
+    glyph_.outline.second.contours.clear();
+  }
+  for (const auto& path : shape.paths()) {
+    if (!shape.empty()) {
+      glyph_.outline.first = true;
+      processPath(path);
     }
   }
 }
@@ -52,11 +69,12 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
   const auto end = std::end(contour.points);
   assert(begin != end);
   auto itr = begin;
-  const auto& point = *itr;
+
   // When a contour starts with a move point, it signifies an open contour.
-  const bool open = (point.type == ufo::Point::Type::MOVE);
-  shape_.moveTo(point.x, point.y);
+  const bool open = (itr->type == ufo::Point::Type::MOVE);
+  shape_.moveTo(itr->x, itr->y);
   ++itr;
+
   auto offcurve1 = end;
   auto offcurve2 = end;
   for (;; ++itr) {
@@ -66,13 +84,12 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
       }
       itr = begin;
     }
-    const auto& point = *itr;
-    switch (point.type) {
+    switch (itr->type) {
       case ufo::Point::Type::MOVE:
-        assert(false);  // A point of move must apear the first.
+        assert(false);  // A point of move must apear the first
         break;
       case ufo::Point::Type::LINE:
-        shape_.lineTo(point.x, point.y);
+        shape_.lineTo(itr->x, itr->y);
         offcurve1 = offcurve2 = end;
         break;
       case ufo::Point::Type::OFFCURVE:
@@ -86,13 +103,13 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
         break;
       case ufo::Point::Type::CURVE:
         if (offcurve1 == end) {
-          shape_.lineTo(point.x, point.y);
+          shape_.lineTo(itr->x, itr->y);
         } else if (offcurve2 == end) {
-          shape_.quadraticTo(offcurve2->x, offcurve2->y, point.x, point.y);
+          shape_.quadraticTo(offcurve2->x, offcurve2->y, itr->x, itr->y);
         } else {
           shape_.cubicTo(offcurve1->x, offcurve1->y,
                          offcurve2->x, offcurve2->y,
-                         point.x, point.y);
+                         itr->x, itr->y);
         }
         offcurve1 = offcurve2 = end;
         break;
@@ -106,6 +123,63 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
     if (itr == begin) {
       break;  // This is the end of a closed contour
     }
+  }
+}
+
+void GlyphOutline::processPath(const takram::Path2d& path) {
+  assert(!path.empty());
+  std::deque<ufo::Point> points;
+  for (const auto& command : path) {
+    switch (command.type()) {
+      case takram::graphics::CommandType::MOVE:
+        points.emplace_back(command.point().x,
+                            command.point().y,
+                            ufo::Point::Type::MOVE);
+        break;
+      case takram::graphics::CommandType::LINE:
+        points.emplace_back(command.point().x,
+                            command.point().y,
+                            ufo::Point::Type::LINE);
+        break;
+      case takram::graphics::CommandType::QUADRATIC:
+        points.emplace_back(command.control().x,
+                            command.control().y);
+        points.emplace_back(command.point().x,
+                            command.point().y,
+                            ufo::Point::Type::CURVE);
+        break;
+      case takram::graphics::CommandType::CONIC:
+        assert(false);  // Not supported
+        break;
+      case takram::graphics::CommandType::CUBIC:
+        points.emplace_back(command.control1().x,
+                            command.control1().y);
+        points.emplace_back(command.control2().x,
+                            command.control2().y);
+        points.emplace_back(command.point().x,
+                            command.point().y,
+                            ufo::Point::Type::CURVE);
+        break;
+      case takram::graphics::CommandType::CLOSE:
+        break;  // Ignore
+      default:
+        assert(false);
+        break;
+    }
+  }
+  if (path.closed()) {
+    // Remove the first point of move type and move the point of the last
+    // command to the first of points.
+    points.pop_front();
+    auto back = points.back();
+    points.pop_back();
+    points.push_front(std::move(back));
+  }
+  if (!points.empty()) {
+    glyph_.outline.second.contours.emplace_back();
+    auto& target = glyph_.outline.second.contours.back().points;
+    target.resize(points.size());
+    std::copy(std::begin(points), std::end(points), std::begin(target));
   }
 }
 

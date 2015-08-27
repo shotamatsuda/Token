@@ -21,6 +21,7 @@
 		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		934956301B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
+		934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
 		93563A191B672580004C47E4 /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
 		93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
@@ -100,6 +101,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93E913571AB27DE400DDF7F9;
 			remoteInfo = Solas;
+		};
+		934956331B8EAC00000FD457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = graphics_static;
 		};
 		93563A0F1B672571004C47E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -468,6 +476,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				934956341B8EAC00000FD457 /* PBXTargetDependency */,
 			);
 			name = glif;
 			productName = glif;
@@ -726,6 +735,7 @@
 			files = (
 				934956301B8D8B17000FD457 /* glyphs.cc in Sources */,
 				9337DC221B8C06720070814C /* glif.cc in Sources */,
+				934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +794,11 @@
 			isa = PBXTargetDependency;
 			name = Solas;
 			targetProxy = 9337DC5D1B8D765D0070814C /* PBXContainerItemProxy */;
+		};
+		934956341B8EAC00000FD457 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = graphics_static;
+			targetProxy = 934956331B8EAC00000FD457 /* PBXContainerItemProxy */;
 		};
 		93563A181B67257E004C47E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
