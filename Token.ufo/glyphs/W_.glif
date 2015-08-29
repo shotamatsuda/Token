@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="W" format="1">
+  <advance width="778"/>
+  <unicode hex="0057"/>
+  <outline>
+    <contour>
+      <point x="715.977" y="680" type="move"/>
+      <point x="561" y="0" type="line"/>
+      <point x="389" y="582.005" type="line"/>
+      <point x="217" y="0" type="line"/>
+      <point x="62.023" y="680" type="line"/>
+    </contour>
+  </outline>
+</glyph>

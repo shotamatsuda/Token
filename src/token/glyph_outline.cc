@@ -72,11 +72,21 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
 
   // When a contour starts with a move point, it signifies an open contour.
   const bool open = (itr->type == ufo::Point::Type::MOVE);
-  shape_.moveTo(itr->x, itr->y);
-  ++itr;
-
+  auto close = begin;
   auto offcurve1 = end;
   auto offcurve2 = end;
+  if (itr->type == ufo::Point::Type::MOVE) {
+    shape_.moveTo(itr->x, itr->y);
+    ++itr;
+  } else {
+    while (itr->type == ufo::Point::Type::OFFCURVE && itr != end) {
+      ++itr;
+    }
+    if (itr != end) {
+      shape_.moveTo(itr->x, itr->y);
+      close = itr++;
+    }
+  }
   for (;; ++itr) {
     if (itr == end) {
       if (open) {
@@ -120,10 +130,19 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
         assert(false);
         break;
     }
-    if (itr == begin) {
+    if (itr == close) {
       break;  // This is the end of a closed contour
     }
   }
+  auto cap = Stroker::Cap::ROUND;
+  if (open) {
+    if (contour.points.back().name == "butt") {
+      cap = Stroker::Cap::BUTT;
+    } else if (contour.points.back().name == "project") {
+      cap = Stroker::Cap::PROJECT;
+    }
+  }
+  caps_.emplace(shape_.paths().size() - 1, cap);
 }
 
 void GlyphOutline::processPath(const takram::Path2d& path) {
@@ -142,11 +161,7 @@ void GlyphOutline::processPath(const takram::Path2d& path) {
                             ufo::Point::Type::LINE);
         break;
       case takram::graphics::CommandType::QUADRATIC:
-        points.emplace_back(command.control().x,
-                            command.control().y);
-        points.emplace_back(command.point().x,
-                            command.point().y,
-                            ufo::Point::Type::CURVE);
+        assert(false);  // Not supported
         break;
       case takram::graphics::CommandType::CONIC:
         assert(false);  // Not supported
@@ -161,7 +176,7 @@ void GlyphOutline::processPath(const takram::Path2d& path) {
                             ufo::Point::Type::CURVE);
         break;
       case takram::graphics::CommandType::CLOSE:
-        break;  // Ignore
+        break;  // We'll check this later
       default:
         assert(false);
         break;
@@ -173,7 +188,7 @@ void GlyphOutline::processPath(const takram::Path2d& path) {
     points.pop_front();
     auto back = points.back();
     points.pop_back();
-    points.push_front(std::move(back));
+    points.push_front(back);
   }
   if (!points.empty()) {
     glyph_.outline.second.contours.emplace_back();

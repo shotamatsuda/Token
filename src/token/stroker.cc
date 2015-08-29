@@ -72,33 +72,22 @@ inline SkPaint::Join convertJoin(Stroker::Join join) {
   return SkPaint::Join::kDefault_Join;
 }
 
-static void fixDirection(SkPath *stroke) {
-  assert(stroke);
-  takram::Shape2d shape(convertShape(*stroke));
-  if (shape.size() == 1) {
-    return;  // Nothing to fix
-  }
-  stroke->rewind();
-  takram::Rect2d max_bounds;
-  auto& paths = shape.paths();
-  auto max_itr = paths.begin();
-  for (auto itr = paths.begin(); itr != paths.end(); ++itr) {
-    const auto& bounds = itr->bounds();
-    if (bounds.area() > max_bounds.area()) {
-      max_bounds = bounds;
-      max_itr = itr;
-    }
-  }
-  for (auto itr = paths.begin(); itr != paths.end(); ++itr) {
-    if (itr != max_itr &&
-        itr->direction() != takram::PathDirection::COUNTER_CLOCKWISE) {
-      itr->reverse();
-    }
-  }
-  *stroke = convertShape(shape);
-}
-
 }  // namespace
+
+takram::Shape2d Stroker::operator()(const takram::Path2d& path) const {
+  SkPaint paint;
+  paint.setStyle(SkPaint::kStroke_Style);
+  paint.setStrokeWidth(width_);
+  paint.setStrokeMiter(miter_);
+  paint.setStrokeCap(convertCap(cap_));
+  paint.setStrokeJoin(convertJoin(join_));
+  SkPath result;
+  SkPath stroke;
+  stroke.rewind();
+  paint.getFillPath(convertPath(path), &stroke, nullptr, precision_);
+  result.addPath(stroke);
+  return convertShape(result);
+}
 
 takram::Shape2d Stroker::operator()(const takram::Shape2d& shape) const {
   SkPaint paint;
@@ -111,9 +100,7 @@ takram::Shape2d Stroker::operator()(const takram::Shape2d& shape) const {
   SkPath stroke;
   for (const auto& path : shape.paths()) {
     stroke.rewind();
-    paint.getFillPath(convertPath(path), &stroke, nullptr, tolerance_);
-//    Simplify(stroke, &stroke);
-//    fixDirection(&stroke);
+    paint.getFillPath(convertPath(path), &stroke, nullptr, precision_);
     result.addPath(stroke);
   }
   return convertShape(result);

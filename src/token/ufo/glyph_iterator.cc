@@ -1,5 +1,5 @@
 //
-//  main.cc
+//  token/ufo/glyph_iterator.cc
 //
 //  The MIT License
 //
@@ -24,35 +24,53 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
+#include "token/ufo/glyph_iterator.h"
+
+extern "C" {
+
+#include <plist/plist.h>
+
+}  // extern "C"
+
+#include <cassert>
 #include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <streambuf>
-#include <string>
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
-
+#include "token/ufo/glif/glyph.h"
 #include "token/ufo/glyphs.h"
-#include "token/ufo/glif.h"
 
-int main(int argc, char **argv) {
-//  std::ifstream stream(argv[1]);
-//  const std::string contents((std::istreambuf_iterator<char>(stream)),
-//                             std::istreambuf_iterator<char>());
-//  std::istringstream sstream(contents);
-//  namespace pt = boost::property_tree;
-//  pt::ptree tree;
-//  pt::xml_parser::read_xml(sstream, tree);
-//  auto glyph = token::ufo::Glyph::read(tree);
-//  pt::xml_writer_settings<std::string> settings('\t', 1);
-//  pt::xml_parser::write_xml("out.xml", glyph->write(), std::locale(), settings);
+namespace token {
+namespace ufo {
 
-
-  token::ufo::Glyphs glyphs("/Users/sgss/Desktop/AkkuratStd-Regular.ufo/glyphs/");
-  auto& glyph = glyphs.get("a");
-  std::cout << glyph.name;
-
-  return EXIT_SUCCESS;
+template <class T>
+GlyphIterator<T>::GlyphIterator(Glyphs *glyphs)
+    : glyphs_(glyphs),
+      current_() {
+  if (glyphs_->contents_) {
+    assert(plist_get_node_type(glyphs_->contents_) == PLIST_DICT);
+    plist_dict_new_iter(glyphs_->contents_, &current_);
+    operator++();
+  }
 }
+
+#pragma mark Iterator
+
+template <class T>
+inline GlyphIterator<T>& GlyphIterator<T>::operator++() {
+  char *key;
+  plist_t value{};
+  plist_dict_next_item(glyphs_->contents_, current_, &key, &value);
+  if (key) {
+    key_ = key;
+    std::free(key);
+  } else {
+    key_.clear();
+    current_ = nullptr;
+  }
+  return *this;
+}
+
+template class GlyphIterator<Glyph>;
+template class GlyphIterator<const Glyph>;
+
+}  // namespace ufo
+}  // namespace token

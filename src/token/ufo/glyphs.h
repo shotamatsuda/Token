@@ -31,26 +31,44 @@
 #include <fstream>
 #include <string>
 #include <unordered_map>
+#include <utility>
 
 #include "token/ufo/glif/glyph.h"
+#include "token/ufo/glyph_iterator.h"
 
 namespace token {
 namespace ufo {
 
 class Glyphs final {
  public:
+  using Iterator = GlyphIterator<Glyph>;
+  using ConstIterator = GlyphIterator<const Glyph>;
+
+ public:
   Glyphs();
   explicit Glyphs(const std::string& path);
+  ~Glyphs();
 
-  // Copy semantics
-  Glyphs(const Glyphs&) = default;
-  Glyphs& operator=(const Glyphs&) = default;
+  // Disallow copy semantics
+  Glyphs(const Glyphs&) = delete;
+  Glyphs& operator=(const Glyphs&) = delete;
+
+  // Move semantics
+  Glyphs(Glyphs&& other);
+  Glyphs& operator=(Glyphs&& other);
 
   // Glyphs
   const Glyph& get(const std::string& name) const;
   Glyph& get(const std::string& name);
   const Glyph * find(const std::string& name) const;
   Glyph * find(const std::string& name);
+  void set(const std::string& name, const Glyph& glyph);
+
+  // Iterator
+  Iterator begin() { return Iterator(this); }
+  ConstIterator begin() const { return ConstIterator(this); }
+  Iterator end() { return Iterator(); }
+  ConstIterator end() const { return ConstIterator(); }
 
  private:
   void * openPropertyList(const std::string& file) const;
@@ -62,6 +80,10 @@ class Glyphs final {
   void *contents_;
   void *layerinfo_;
   mutable std::unordered_map<std::string, Glyph> glyphs_;
+
+ private:
+  template <class T>
+  friend class GlyphIterator;
 };
 
 #pragma mark -
@@ -72,6 +94,27 @@ inline Glyphs::Glyphs(const std::string& path)
     : path_(path),
       contents_(openPropertyList("contents.plist")),
       layerinfo_(openPropertyList("layerinfo.plist")) {}
+
+#pragma mark Move semantics
+
+inline Glyphs::Glyphs(Glyphs&& other)
+    : path_(std::move(other.path_)),
+      contents_(other.contents_),
+      layerinfo_(other.layerinfo_),
+      glyphs_(std::move(other.glyphs_)) {
+  other.contents_ = nullptr;
+  other.layerinfo_ = nullptr;
+}
+
+inline Glyphs& Glyphs::operator=(Glyphs&& other) {
+  if (&other != this) {
+    std::swap(path_, other.path_);
+    std::swap(contents_, other.contents_);
+    std::swap(layerinfo_, other.layerinfo_);
+    std::swap(glyphs_, other.glyphs_);
+  }
+  return *this;
+}
 
 }  // namespace ufo
 }  // namespace token

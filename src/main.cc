@@ -340,9 +340,9 @@ class App : public solas::View {
         stroker.set_width(width_);
         stroker.set_cap(Stroker::Cap::ROUND);
         stroker.set_join(Stroker::Join::ROUND);
-        stroker.set_tolerance(10.0);
+        stroker.set_precision(10.0);
         stroke_ = stroker(shape_);
-//        stroke_ = simplify(stroke_);
+        stroke_ = simplify(stroke_);
         stroke_.convertConicsToQuadratics();
         needs_stroking_ = false;
       } else {

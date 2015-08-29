@@ -57,6 +57,7 @@ class Stroker final {
   Stroker& operator=(const Stroker& other) = default;
 
   // Stroking
+  takram::Shape2d operator()(const takram::Path2d& path) const;
   takram::Shape2d operator()(const takram::Shape2d& shape) const;
 
   // Comparison
@@ -72,15 +73,15 @@ class Stroker final {
   void set_cap(Cap value) { cap_ = value; }
   Join join() const { return join_; }
   void set_join(Join value) { join_ = value; }
-  Real tolerance() const { return tolerance_; }
-  void set_tolerance(Real value) { tolerance_ = value; }
+  Real precision() const { return precision_; }
+  void set_precision(Real value) { precision_ = value; }
 
  private:
   Real width_;
   Real miter_;
   Cap cap_;
   Join join_;
-  Real tolerance_;
+  Real precision_;
 };
 
 #pragma mark -
@@ -90,7 +91,7 @@ inline Stroker::Stroker()
       miter_(),
       cap_(Cap::BUTT),
       join_(Join::MITER),
-      tolerance_(1.0) {}
+      precision_(1.0) {}
 
 #pragma mark Comparison
 
@@ -99,7 +100,7 @@ inline bool Stroker::operator==(const Stroker& other) const {
           miter_ == other.miter_ &&
           cap_ == other.cap_ &&
           join_ == other.join_ &&
-          tolerance_ == other.tolerance_);
+          precision_ == other.precision_);
 }
 
 inline bool Stroker::operator!=(const Stroker& other) const {

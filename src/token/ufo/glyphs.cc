@@ -46,8 +46,18 @@ extern "C" {
 namespace token {
 namespace ufo {
 
+Glyphs::~Glyphs() {
+  if (contents_) {
+    plist_free(contents_);
+  }
+  if (layerinfo_) {
+    plist_free(layerinfo_);
+  }
+}
+
 plist_t Glyphs::openPropertyList(const std::string& file) const {
-  std::ifstream stream((boost::filesystem::path(path_) / file).string());
+  const auto path = boost::filesystem::path(path_) / "glyphs" / file;
+  std::ifstream stream(path.string());
   if (!stream.good()) {
     return nullptr;
   }
@@ -84,13 +94,36 @@ const Glyph * Glyphs::find(const std::string& name) const {
     return nullptr;
   }
   auto glyph = readGlyph(&stream);
-  const auto result = glyphs_.emplace(std::make_pair(name, std::move(glyph)));
+  const auto result = glyphs_.emplace(name, std::move(glyph));
   assert(result.second);
   return &result.first->second;
 }
 
 Glyph * Glyphs::find(const std::string& name) {
   return const_cast<Glyph *>(const_cast<const Glyphs *>(this)->find(name));
+}
+
+void Glyphs::set(const std::string& name, const Glyph& glyph) {
+  const auto node = plist_dict_get_item(contents_, name.c_str());
+  assert(plist_get_node_type(node) == PLIST_STRING);
+  char *file_name{};
+  plist_get_string_val(node, &file_name);
+  if (!file_name) {
+    return;  // Setting a new glyph is not supported
+  }
+  namespace ptree = boost::property_tree;
+  auto tree = glyph.write();
+  ptree::xml_writer_settings<std::string> settings(' ', 2);
+  const auto path = boost::filesystem::path(path_) / "glyphs" / file_name;
+  ptree::xml_parser::write_xml(path.string(), tree, std::locale(), settings);
+
+  // Update cache
+  const auto itr = glyphs_.find(name);
+  if (itr != std::end(glyphs_)) {
+    itr->second = glyph;
+  } else {
+    glyphs_.emplace(name, glyph);
+  }
 }
 
 std::ifstream Glyphs::openGLIF(const std::string& name) const {
@@ -104,7 +137,8 @@ std::ifstream Glyphs::openGLIF(const std::string& name) const {
   if (!file_name) {
     return std::ifstream(nullptr);
   }
-  return std::ifstream((boost::filesystem::path(path_) / file_name).string());
+  const auto path = boost::filesystem::path(path_) / "glyphs" / file_name;
+  return std::ifstream(path.string());
 }
 
 Glyph Glyphs::readGlyph(std::ifstream *stream) const {

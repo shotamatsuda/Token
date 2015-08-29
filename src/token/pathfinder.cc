@@ -26,7 +26,10 @@
 
 #include "token/pathfinder.h"
 
+#include <cassert>
 #include <utility>
+#include <iostream>
+#include <list>
 
 #include "SkPath.h"
 #include "SkPathOps.h"
@@ -49,7 +52,7 @@ takram::Shape2d simplify(const takram::Shape2d& shape) {
   for (auto& result_path : result_shape.paths()) {
     for (auto& difference_path : difference_shape.paths()) {
       if (result_path.bounds() == difference_path.bounds()) {
-        difference_path.reverse();
+        result_path.reverse();
       }
     }
   }
