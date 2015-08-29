@@ -43,8 +43,8 @@
 #include "token/ufo/glif.h"
 
 int main(int argc, char **argv) {
-  const std::string source = "/Users/sgss/Desktop/T/T.ufo";
-  const std::string destination = "/Users/sgss/Desktop/T.ufo";
+  const std::string source = "/Users/sgss/Dropbox/Github/token/Token.ufo";
+  const std::string destination = "/Users/sgss/Desktop/Token.ufo";
   @autoreleasepool {
     NSString *from = [NSString stringWithUTF8String:source.c_str()];
     NSString *to = [NSString stringWithUTF8String:destination.c_str()];
@@ -57,11 +57,24 @@ int main(int argc, char **argv) {
   }
   token::ufo::Glyphs glyphs(destination);
   token::GlyphStroker stroker;
-  stroker.set_width(100.0);
+  stroker.set_width(4.0);
   for (auto& glyph : glyphs) {
     token::GlyphOutline outline(glyph);
     takram::Shape2d shape;
     shape = stroker.stroke(outline);
+    for (auto& command : shape) {
+      for (auto& other : shape) {
+        if (&command == &other) {
+          continue;
+        }
+        if (std::abs(command.point().x - other.point().x) < 0.01 &&
+            std::abs(command.point().y - other.point().y) < 0.01) {
+          const auto mid = (command.point() + other.point()) / 2;
+          command.point() = mid;
+          other.point() = mid;
+        }
+      }
+    }
     shape = stroker.simplify(shape);
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();

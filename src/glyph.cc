@@ -25,8 +25,9 @@
 //
 
 #include <algorithm>
-#include <cstdlib>
+#include <cmath>
 #include <iostream>
+#include <locale>
 #include <string>
 
 #include "solas.h"
@@ -41,9 +42,10 @@
 class App : public solas::View {
  public:
   void setup() override {
-    glyphs_ = token::ufo::Glyphs("/Users/sgss/Desktop/T/T.ufo");
+    glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo");
     context_.init();
     scale_ = 1.0;
+    width_ = 100.0;
     resize(1280, 1024);
   }
 
@@ -60,6 +62,19 @@ class App : public solas::View {
       token::GlyphStroker stroker;
       stroker.set_width(width_);
       shape_ = stroker.stroke(glyph_);
+      for (auto& command : shape_) {
+        for (auto& other : shape_) {
+          if (&command == &other) {
+            continue;
+          }
+          if (std::abs(command.point().x - other.point().x) < 0.02 &&
+              std::abs(command.point().y - other.point().y) < 0.02) {
+            const auto mid = (command.point() + other.point()) / 2;
+            command.point() = mid;
+            other.point() = mid;
+          }
+        }
+      }
       shape_ = stroker.simplify(shape_);
       shape_.convertConicsToQuadratics();
       shape_.convertQuadraticsToCubics();
@@ -80,10 +95,19 @@ class App : public solas::View {
     }
     takram::nvg::Scope save;
     takram::nvg::translate(translation_);
-    takram::nvg::beginPath();
     drawShape(shape);
-    takram::nvg::strokeColor(takram::Color4d(0.5, 0.5));
-    takram::nvg::stroke();
+    takram::nvg::fillColor(takram::Color4d::black());
+    takram::nvg::fill();
+    for (const auto& path : shape.paths()) {
+      takram::nvg::beginPath();
+      drawPath(path);
+      if (path.direction() == takram::PathDirection::CLOCKWISE) {
+        takram::nvg::strokeColor(takram::Color4d::cyan());
+      } else {
+        takram::nvg::strokeColor(takram::Color4d::magenta());
+      }
+      takram::nvg::stroke();
+    }
     drawControl(shape);
 
     takram::nvg::translateY(-translation_.y);
@@ -127,6 +151,7 @@ class App : public solas::View {
   }
 
   void drawShape(const takram::Shape2d& shape) {
+    takram::nvg::beginPath();
     for (const auto& path : shape.paths()) {
       drawPath(path);
       if (path.direction() == takram::PathDirection::CLOCKWISE) {
@@ -238,7 +263,7 @@ class App : public solas::View {
 
   void mouseWheel(const solas::MouseEvent& event) override {
     if (event.modifiers() % solas::KeyModifier::ALTERNATE) {
-      width_ = std::max(1.0, width_ + event.wheel().y / 2.0);
+      width_ = std::max(4.0, width_ + event.wheel().y / 2.0);
       needs_stroking_ = true;
     } else {
       const auto scale = scale_;

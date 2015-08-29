@@ -11,11 +11,11 @@
 	<key>descender</key>
 	<integer>-250</integer>
 	<key>familyName</key>
-	<string>T Typeface</string>
+	<string>T Type</string>
 	<key>macintoshFONDFamilyID</key>
 	<integer>128</integer>
 	<key>macintoshFONDName</key>
-	<string>T Typeface</string>
+	<string>T Type</string>
 	<key>openTypeHeadCreated</key>
 	<string>2014/07/21 20:42:28</string>
 	<key>openTypeHeadFlags</key>
@@ -24,9 +24,11 @@
 	<key>openTypeHheaAscender</key>
 	<integer>1000</integer>
 	<key>openTypeHheaDescender</key>
-	<integer>-200</integer>
+	<integer>200</integer>
 	<key>openTypeHheaLineGap</key>
-	<integer>0</integer>
+	<integer>200</integer>
+	<key>openTypeNameCompatibleFullName</key>
+	<string>T Type</string>
 	<key>openTypeNameDescription</key>
 	<string>Copyright © 2014-2015 takram design engineering. www.takram.com All rights reserved.</string>
 	<key>openTypeNameDesigner</key>
@@ -42,15 +44,15 @@
 	<key>openTypeNameManufacturerURL</key>
 	<string>http://www.takram.com</string>
 	<key>openTypeNamePreferredFamilyName</key>
-	<string>T Typeface</string>
+	<string>T Type</string>
 	<key>openTypeNamePreferredSubfamilyName</key>
 	<string>Regular</string>
 	<key>openTypeNameSampleText</key>
 	<string></string>
 	<key>openTypeNameUniqueID</key>
-	<string>1.000;TKRM;TTypeface-Regular</string>
+	<string>1.000;TKRM;TType-Regular</string>
 	<key>openTypeNameVersion</key>
-	<string>Version 1.000;PS 001.000;hotconv 1.0.70;makeotf.lib2.5.58329</string>
+	<string>Version 1.000</string>
 	<key>openTypeOS2CodePageRanges</key>
 	<array>
 		<integer>0</integer>
@@ -111,7 +113,7 @@
 		<integer>0</integer>
 	</array>
 	<key>openTypeOS2VendorID</key>
-	<string>UKWN</string>
+	<string>TKRM</string>
 	<key>openTypeOS2WeightClass</key>
 	<integer>400</integer>
 	<key>openTypeOS2WidthClass</key>
@@ -132,24 +134,24 @@
 		<integer>0</integer>
 	</array>
 	<key>postscriptFontName</key>
-	<string>T Typeface</string>
+	<string>TType-Regular</string>
 	<key>postscriptForceBold</key>
 	<false/>
 	<key>postscriptFullName</key>
-	<string>T Typeface</string>
+	<string>T Type Regular</string>
 	<key>postscriptIsFixedPitch</key>
 	<false/>
 	<key>postscriptOtherBlues</key>
 	<array>
 	</array>
 	<key>postscriptUnderlinePosition</key>
-	<integer>-67</integer>
+	<integer>-75</integer>
 	<key>postscriptUnderlineThickness</key>
-	<integer>66</integer>
+	<integer>50</integer>
 	<key>postscriptUniqueID</key>
 	<integer>-1</integer>
 	<key>styleMapFamilyName</key>
-	<string>T Typeface</string>
+	<string>T Type</string>
 	<key>styleMapStyleName</key>
 	<string>regular</string>
 	<key>styleName</key>
@@ -165,6 +167,6 @@
 	<key>xHeight</key>
 	<integer>480</integer>
 	<key>year</key>
-	<integer>2014</integer>
+	<integer>2015</integer>
 </dict>
 </plist>

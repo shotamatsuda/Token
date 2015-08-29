@@ -36,9 +36,6 @@ class GlyphOutline;
 
 class GlyphStroker final {
  public:
-  using Real = double;
-
- public:
   enum class Cap {
     UNDEFINED,
     BUTT,
@@ -62,8 +59,8 @@ class GlyphStroker final {
 
   // Stroking
   takram::Shape2d stroke(const GlyphOutline& outline) const;
-  takram::Shape2d stroke(const takram::Path2d& path) const;
   takram::Shape2d stroke(const takram::Shape2d& shape) const;
+  takram::Shape2d stroke(const takram::Path2d& path) const;
   takram::Shape2d simplify(const takram::Shape2d& shape) const;
 
   // Comparison
@@ -71,23 +68,23 @@ class GlyphStroker final {
   bool operator!=(const GlyphStroker& other) const;
 
   // Parameters
-  Real width() const { return width_; }
-  void set_width(Real value) { width_ = value; }
-  Real miter() const { return miter_; }
-  void set_miter(Real value) { miter_ = value; }
+  double width() const { return width_; }
+  void set_width(double value) { width_ = value; }
+  double miter() const { return miter_; }
+  void set_miter(double value) { miter_ = value; }
   Cap cap() const { return cap_; }
   void set_cap(Cap value) { cap_ = value; }
   Join join() const { return join_; }
   void set_join(Join value) { join_ = value; }
-  Real precision() const { return precision_; }
-  void set_precision(Real value) { precision_ = value; }
+  double precision() const { return precision_; }
+  void set_precision(double value) { precision_ = value; }
 
  private:
-  Real width_;
-  Real miter_;
+  double width_;
+  double miter_;
   mutable Cap cap_;
   Join join_;
-  Real precision_;
+  double precision_;
 };
 
 #pragma mark -

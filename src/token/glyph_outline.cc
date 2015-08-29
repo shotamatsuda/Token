@@ -97,7 +97,7 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
     }
     switch (itr->type) {
       case ufo::Point::Type::MOVE:
-        assert(false);  // A point of move must apear the first
+        assert(false);  // A move point must appear the first
         break;
       case ufo::Point::Type::LINE:
         shape_.lineTo(itr->x, itr->y);

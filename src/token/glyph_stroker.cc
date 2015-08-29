@@ -27,6 +27,8 @@
 #include "token/glyph_stroker.h"
 
 #include <cassert>
+#include <iterator>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -187,7 +189,7 @@ inline SkPath convertPath(const takram::Path2d& other) {
 }  // namespace
 
 takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
-  takram::Shape2d shape;
+  takram::Shape2d result;
   const auto initial_cap = cap_;
   for (const auto& path : outline.shape().paths()) {
     const auto cap = outline.cap(path);
@@ -196,12 +198,24 @@ takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
     } else {
       cap_ = initial_cap;
     }
-    const auto stroked_shape = stroke(path);
-    for (const auto& path : stroked_shape.paths()) {
-      shape.paths().emplace_back(path);
+    const auto shape = stroke(path);
+    for (const auto& path : shape.paths()) {
+      result.paths().emplace_back(path);
     }
   }
-  return std::move(shape);
+  cap_ = initial_cap;
+  return std::move(result);
+}
+
+takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
+  takram::Shape2d result;
+  for (const auto& path : shape.paths()) {
+    const auto shape = stroke(path);
+    for (const auto& path : shape.paths()) {
+      result.paths().emplace_back(path);
+    }
+  }
+  return std::move(result);
 }
 
 takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
@@ -212,47 +226,42 @@ takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
   paint.setStrokeCap(convertCap(cap_));
   paint.setStrokeJoin(convertJoin(join_));
   SkPath result;
-  SkPath stroke;
-  stroke.rewind();
-  paint.getFillPath(convertPath(path), &stroke, nullptr, precision_);
-  result.addPath(stroke);
-  return convertShape(result);
-}
-
-takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
-  SkPaint paint;
-  paint.setStyle(SkPaint::kStroke_Style);
-  paint.setStrokeWidth(width_);
-  paint.setStrokeMiter(miter_);
-  paint.setStrokeCap(convertCap(cap_));
-  paint.setStrokeJoin(convertJoin(join_));
-  SkPath result;
-  SkPath stroke;
-  for (const auto& path : shape.paths()) {
-    stroke.rewind();
-    paint.getFillPath(convertPath(path), &stroke, nullptr, precision_);
-    result.addPath(stroke);
-  }
+  paint.getFillPath(convertPath(path), &result, nullptr, precision_);
   return convertShape(result);
 }
 
 takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
-  SkPath path(convertShape(shape));
-  SkPath result;
-  Simplify(path, &result);
-  SkPath difference = result;
-  difference.setFillType(SkPath::FillType::kWinding_FillType);
-  Op(difference, result, SkPathOp::kDifference_SkPathOp, &difference);
-  takram::Shape2d result_shape(convertShape(result));
-  takram::Shape2d difference_shape(convertShape(difference));
-  for (auto& result_path : result_shape.paths()) {
-    for (auto& difference_path : difference_shape.paths()) {
-      if (result_path.bounds() == difference_path.bounds()) {
-        result_path.reverse();
+  SkPath sk_path(convertShape(shape));
+  SkPath sk_result;
+  Simplify(sk_path, &sk_result);
+  auto result = convertShape(sk_result);
+  std::unordered_map<takram::Path2d *, int> depths;
+  auto& paths = result.paths();
+  for (auto itr = std::begin(paths); itr != std::end(paths);) {
+    if (itr->direction() == takram::PathDirection::UNDEFINED) {
+      itr = paths.erase(itr);
+    } else {
+      for (auto& other : result.paths()) {
+        if (&*itr != &other) {
+          depths[&*itr] += other.bounds().contains(itr->bounds());
+        }
       }
+      ++itr;
     }
   }
-  return std::move(result_shape);
+  for (const auto& pair : depths) {
+    auto& path = *pair.first;
+    if (pair.second % 2) {
+      if (path.direction() != takram::PathDirection::CLOCKWISE) {
+        path.reverse();
+        assert(path.direction() == takram::PathDirection::CLOCKWISE);
+      }
+    } else if (path.direction() != takram::PathDirection::COUNTER_CLOCKWISE) {
+      path.reverse();
+      assert(path.direction() == takram::PathDirection::COUNTER_CLOCKWISE);
+    }
+  }
+  return std::move(result);
 }
 
 }  // namespace token
