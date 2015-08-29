@@ -1,5 +1,5 @@
 //
-//  token/skia.cc
+//  token/glyph_stroker.cc
 //
 //  The MIT License
 //
@@ -24,7 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/skia.h"
+#include "token/glyph_stroker.h"
 
 #include <cassert>
 #include <utility>
@@ -36,10 +36,47 @@
 
 #include "takram/math.h"
 #include "takram/graphics.h"
+#include "token/glyph_outline.h"
 
 namespace token {
 
-takram::Shape2d convertShape(const SkPath& other) {
+namespace {
+
+inline SkPaint::Cap convertCap(GlyphStroker::Cap cap) {
+  switch (cap) {
+    case GlyphStroker::Cap::UNDEFINED:
+      return SkPaint::Cap::kDefault_Cap;
+    case GlyphStroker::Cap::BUTT:
+      return SkPaint::Cap::kButt_Cap;
+    case GlyphStroker::Cap::ROUND:
+      return SkPaint::Cap::kRound_Cap;
+    case GlyphStroker::Cap::PROJECT:
+      return SkPaint::Cap::kSquare_Cap;
+    default:
+      assert(false);
+      break;
+  }
+  return SkPaint::Cap::kDefault_Cap;
+}
+
+inline SkPaint::Join convertJoin(GlyphStroker::Join join) {
+  switch (join) {
+    case GlyphStroker::Join::UNDEFINED:
+      return SkPaint::Join::kDefault_Join;
+    case GlyphStroker::Join::MITER:
+      return SkPaint::Join::kMiter_Join;
+    case GlyphStroker::Join::ROUND:
+      return SkPaint::Join::kRound_Join;
+    case GlyphStroker::Join::BEVEL:
+      return SkPaint::Join::kBevel_Join;
+    default:
+      assert(false);
+      break;
+  }
+  return SkPaint::Join::kDefault_Join;
+}
+
+inline takram::Shape2d convertShape(const SkPath& other) {
   takram::Shape2d shape;
   SkPath::RawIter itr(other);
   SkPath::Verb verb;
@@ -77,7 +114,7 @@ takram::Shape2d convertShape(const SkPath& other) {
   return std::move(shape);
 }
 
-SkPath convertShape(const takram::Shape2d& other) {
+inline SkPath convertShape(const takram::Shape2d& other) {
   SkPath path;
   for (const auto& command : other) {
     switch (command.type()) {
@@ -112,45 +149,7 @@ SkPath convertShape(const takram::Shape2d& other) {
   return std::move(path);
 }
 
-takram::Path2d convertPath(const SkPath& other) {
-  takram::Path2d path;
-  SkPath::RawIter itr(other);
-  SkPath::Verb verb;
-  std::vector<SkPoint> points(4);
-  while ((verb = itr.next(points.data())) != SkPath::kDone_Verb) {
-    switch (verb) {
-      case SkPath::Verb::kMove_Verb:
-        path.moveTo(points[0].x(), points[0].y());
-        break;
-      case SkPath::Verb::kLine_Verb:
-        path.lineTo(points[1].x(), points[1].y());
-        break;
-      case SkPath::Verb::kQuad_Verb:
-        path.quadraticTo(points[1].x(), points[1].y(),
-                         points[2].x(), points[2].y());
-        break;
-      case SkPath::Verb::kConic_Verb:
-        path.conicTo(points[1].x(), points[1].y(),
-                     points[2].x(), points[2].y(),
-                     itr.conicWeight());
-        break;
-      case SkPath::Verb::kCubic_Verb:
-        path.cubicTo(points[1].x(), points[1].y(),
-                     points[2].x(), points[2].y(),
-                     points[3].x(), points[3].y());
-        break;
-      case SkPath::Verb::kClose_Verb:
-        path.close();
-        break;
-      default:
-        assert(false);
-        break;
-    }
-  }
-  return std::move(path);
-}
-
-SkPath convertPath(const takram::Path2d& other) {
+inline SkPath convertPath(const takram::Path2d& other) {
   SkPath path;
   for (const auto& command : other) {
     switch (command.type()) {
@@ -183,6 +182,77 @@ SkPath convertPath(const takram::Path2d& other) {
     }
   }
   return std::move(path);
+}
+
+}  // namespace
+
+takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
+  takram::Shape2d shape;
+  const auto initial_cap = cap_;
+  for (const auto& path : outline.shape().paths()) {
+    const auto cap = outline.cap(path);
+    if (cap != Cap::UNDEFINED) {
+      cap_ = outline.cap(path);
+    } else {
+      cap_ = initial_cap;
+    }
+    const auto stroked_shape = stroke(path);
+    for (const auto& path : stroked_shape.paths()) {
+      shape.paths().emplace_back(path);
+    }
+  }
+  return std::move(shape);
+}
+
+takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
+  SkPaint paint;
+  paint.setStyle(SkPaint::kStroke_Style);
+  paint.setStrokeWidth(width_);
+  paint.setStrokeMiter(miter_);
+  paint.setStrokeCap(convertCap(cap_));
+  paint.setStrokeJoin(convertJoin(join_));
+  SkPath result;
+  SkPath stroke;
+  stroke.rewind();
+  paint.getFillPath(convertPath(path), &stroke, nullptr, precision_);
+  result.addPath(stroke);
+  return convertShape(result);
+}
+
+takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
+  SkPaint paint;
+  paint.setStyle(SkPaint::kStroke_Style);
+  paint.setStrokeWidth(width_);
+  paint.setStrokeMiter(miter_);
+  paint.setStrokeCap(convertCap(cap_));
+  paint.setStrokeJoin(convertJoin(join_));
+  SkPath result;
+  SkPath stroke;
+  for (const auto& path : shape.paths()) {
+    stroke.rewind();
+    paint.getFillPath(convertPath(path), &stroke, nullptr, precision_);
+    result.addPath(stroke);
+  }
+  return convertShape(result);
+}
+
+takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
+  SkPath path(convertShape(shape));
+  SkPath result;
+  Simplify(path, &result);
+  SkPath difference = result;
+  difference.setFillType(SkPath::FillType::kWinding_FillType);
+  Op(difference, result, SkPathOp::kDifference_SkPathOp, &difference);
+  takram::Shape2d result_shape(convertShape(result));
+  takram::Shape2d difference_shape(convertShape(difference));
+  for (auto& result_path : result_shape.paths()) {
+    for (auto& difference_path : difference_shape.paths()) {
+      if (result_path.bounds() == difference_path.bounds()) {
+        result_path.reverse();
+      }
+    }
+  }
+  return std::move(result_shape);
 }
 
 }  // namespace token

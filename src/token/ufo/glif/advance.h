@@ -41,6 +41,7 @@ namespace glif {
 class Advance final {
  public:
   Advance();
+  Advance(double width, double height);
 
   // Copy semantics
   Advance(const Advance& other) = default;
@@ -62,6 +63,10 @@ class Advance final {
 #pragma mark -
 
 inline Advance::Advance() : width(), height() {}
+
+inline Advance::Advance(double width, double height)
+    : width(width),
+      height(height) {}
 
 #pragma mark Comparison
 

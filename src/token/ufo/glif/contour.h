@@ -44,6 +44,8 @@ namespace glif {
 class Contour final {
  public:
   Contour() = default;
+  Contour(const std::string& identifier,
+          const std::vector<Point>& points);
 
   // Copy semantics
   Contour(const Contour& other) = default;
@@ -63,6 +65,11 @@ class Contour final {
 };
 
 #pragma mark -
+
+inline Contour::Contour(const std::string& identifier,
+                        const std::vector<Point>& points)
+    : identifier(identifier),
+      points(points) {}
 
 #pragma mark Comparison
 

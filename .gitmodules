@@ -16,6 +16,3 @@
 [submodule "lib/takram-tween"]
 	path = lib/takram-tween
 	url = git@github.com:takram-design-engineering/takram-tween.git
-[submodule "lib/afdko"]
-	path = lib/afdko
-	url = git@github.com:adobe-type-tools/afdko.git

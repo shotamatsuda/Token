@@ -1,5 +1,5 @@
 //
-//  token/stroker.h
+//  token/glyph_stroker.h
 //
 //  The MIT License
 //
@@ -25,44 +25,50 @@
 //
 
 #pragma once
-#ifndef TOKEN_STROKER_H_
-#define TOKEN_STROKER_H_
+#ifndef TOKEN_GLYPH_STROKER_H_
+#define TOKEN_GLYPH_STROKER_H_
 
-#include "takram/graphics/shape.h"
+#include "takram/graphics.h"
 
 namespace token {
 
-class Stroker final {
+class GlyphOutline;
+
+class GlyphStroker final {
  public:
   using Real = double;
 
  public:
   enum class Cap {
+    UNDEFINED,
     BUTT,
     ROUND,
     PROJECT
   };
 
   enum class Join {
+    UNDEFINED,
     MITER,
     ROUND,
     BEVEL
   };
 
  public:
-  Stroker();
+  GlyphStroker();
 
   // Copy semantics
-  Stroker(const Stroker& other) = default;
-  Stroker& operator=(const Stroker& other) = default;
+  GlyphStroker(const GlyphStroker& other) = default;
+  GlyphStroker& operator=(const GlyphStroker& other) = default;
 
   // Stroking
-  takram::Shape2d operator()(const takram::Path2d& path) const;
-  takram::Shape2d operator()(const takram::Shape2d& shape) const;
+  takram::Shape2d stroke(const GlyphOutline& outline) const;
+  takram::Shape2d stroke(const takram::Path2d& path) const;
+  takram::Shape2d stroke(const takram::Shape2d& shape) const;
+  takram::Shape2d simplify(const takram::Shape2d& shape) const;
 
   // Comparison
-  bool operator==(const Stroker& other) const;
-  bool operator!=(const Stroker& other) const;
+  bool operator==(const GlyphStroker& other) const;
+  bool operator!=(const GlyphStroker& other) const;
 
   // Parameters
   Real width() const { return width_; }
@@ -79,23 +85,23 @@ class Stroker final {
  private:
   Real width_;
   Real miter_;
-  Cap cap_;
+  mutable Cap cap_;
   Join join_;
   Real precision_;
 };
 
 #pragma mark -
 
-inline Stroker::Stroker()
+inline GlyphStroker::GlyphStroker()
     : width_(),
       miter_(),
-      cap_(Cap::BUTT),
-      join_(Join::MITER),
-      precision_(1.0) {}
+      cap_(Cap::ROUND),
+      join_(Join::ROUND),
+      precision_(0.1) {}
 
 #pragma mark Comparison
 
-inline bool Stroker::operator==(const Stroker& other) const {
+inline bool GlyphStroker::operator==(const GlyphStroker& other) const {
   return (width_ == other.width_ &&
           miter_ == other.miter_ &&
           cap_ == other.cap_ &&
@@ -103,10 +109,10 @@ inline bool Stroker::operator==(const Stroker& other) const {
           precision_ == other.precision_);
 }
 
-inline bool Stroker::operator!=(const Stroker& other) const {
+inline bool GlyphStroker::operator!=(const GlyphStroker& other) const {
   return !operator==(other);
 }
 
 }  // namespace token
 
-#endif  // TOKEN_STROKER_H_
+#endif  // TOKEN_GLYPH_STROKER_H_

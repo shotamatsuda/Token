@@ -42,6 +42,11 @@ namespace glif {
 class Anchor final {
  public:
   Anchor() = default;
+  Anchor(double x,
+         double y,
+         const std::string& name,
+         const std::string& color,
+         const std::string& identifier);
 
   // Copy semantics
   Anchor(const Anchor& other) = default;
@@ -64,6 +69,17 @@ class Anchor final {
 };
 
 #pragma mark -
+
+inline Anchor::Anchor(double x,
+                      double y,
+                      const std::string& name,
+                      const std::string& color,
+                      const std::string& identifier)
+    : x(x),
+      y(y),
+      name(name),
+      color(color),
+      identifier(identifier) {}
 
 #pragma mark Comparison
 

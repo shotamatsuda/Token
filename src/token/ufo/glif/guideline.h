@@ -42,6 +42,12 @@ namespace glif {
 class Guideline final {
  public:
   Guideline() = default;
+  Guideline(double x,
+            double y,
+            double angle,
+            const std::string& name,
+            const std::string& color,
+            const std::string& identifier);
 
   // Copy semantics
   Guideline(const Guideline& other) = default;
@@ -65,6 +71,19 @@ class Guideline final {
 };
 
 #pragma mark -
+
+inline Guideline::Guideline(double x,
+                            double y,
+                            double angle,
+                            const std::string& name,
+                            const std::string& color,
+                            const std::string& identifier)
+    : x(x),
+      y(y),
+      angle(angle),
+      name(name),
+      color(color),
+      identifier(identifier) {}
 
 #pragma mark Comparison
 

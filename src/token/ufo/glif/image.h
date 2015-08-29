@@ -42,6 +42,14 @@ namespace glif {
 class Image final {
  public:
   Image();
+  Image(const std::string& file_name,
+        double x_scale,
+        double xy_scale,
+        double yx_scale,
+        double y_scale,
+        double x_offset,
+        double y_offset,
+        const std::string& color);
 
   // Copy semantics
   Image(const Image& other) = default;
@@ -75,6 +83,23 @@ inline Image::Image()
       y_scale(1.0),
       x_offset(),
       y_offset() {}
+
+inline Image::Image(const std::string& file_name,
+                    double x_scale,
+                    double xy_scale,
+                    double yx_scale,
+                    double y_scale,
+                    double x_offset,
+                    double y_offset,
+                    const std::string& color)
+    : file_name(file_name),
+      x_scale(x_scale),
+      xy_scale(xy_scale),
+      yx_scale(yx_scale),
+      y_scale(y_scale),
+      x_offset(x_offset),
+      y_offset(y_offset),
+      color(color) {}
 
 #pragma mark Comparison
 

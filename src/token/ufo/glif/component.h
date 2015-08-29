@@ -42,6 +42,14 @@ namespace glif {
 class Component final {
  public:
   Component();
+  Component(const std::string& base,
+            double x_scale,
+            double xy_scale,
+            double yx_scale,
+            double y_scale,
+            double x_offset,
+            double y_offset,
+            const std::string& identifier);
 
   // Copy semantics
   Component(const Component& other) = default;
@@ -75,6 +83,23 @@ inline Component::Component()
       y_scale(1.0),
       x_offset(),
       y_offset() {}
+
+inline Component::Component(const std::string& base,
+                            double x_scale,
+                            double xy_scale,
+                            double yx_scale,
+                            double y_scale,
+                            double x_offset,
+                            double y_offset,
+                            const std::string& identifier)
+    : base(base),
+      x_scale(x_scale),
+      xy_scale(xy_scale),
+      yx_scale(yx_scale),
+      y_scale(y_scale),
+      x_offset(x_offset),
+      y_offset(y_offset),
+      identifier(identifier) {}
 
 #pragma mark Comparison
 

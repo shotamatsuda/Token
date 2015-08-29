@@ -32,6 +32,7 @@
 #include <iterator>
 
 #include "takram/graphics.h"
+#include "token/glyph_stroker.h"
 #include "token/ufo/glif/contour.h"
 #include "token/ufo/glif/glyph.h"
 #include "token/ufo/glif/point.h"
@@ -134,12 +135,14 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
       break;  // This is the end of a closed contour
     }
   }
-  auto cap = Stroker::Cap::ROUND;
+  auto cap = GlyphStroker::Cap::UNDEFINED;
   if (open) {
     if (contour.points.back().name == "butt") {
-      cap = Stroker::Cap::BUTT;
+      cap = GlyphStroker::Cap::BUTT;
+    } else if (contour.points.back().name == "round") {
+      cap = GlyphStroker::Cap::ROUND;
     } else if (contour.points.back().name == "project") {
-      cap = Stroker::Cap::PROJECT;
+      cap = GlyphStroker::Cap::PROJECT;
     }
   }
   caps_.emplace(shape_.paths().size() - 1, cap);

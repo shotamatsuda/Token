@@ -38,10 +38,9 @@
 #include <boost/property_tree/xml_parser.hpp>
 
 #include "token/glyph_outline.h"
+#include "token/glyph_stroker.h"
 #include "token/ufo/glyphs.h"
 #include "token/ufo/glif.h"
-#include "token/stroker.h"
-#include "token/pathfinder.h"
 
 int main(int argc, char **argv) {
   const std::string source = "/Users/sgss/Desktop/T/T.ufo";
@@ -57,24 +56,16 @@ int main(int argc, char **argv) {
     [manager copyItemAtPath:from toPath:to error:&error];
   }
   token::ufo::Glyphs glyphs(destination);
-  token::Stroker stroker;
+  token::GlyphStroker stroker;
   stroker.set_width(100.0);
-  stroker.set_join(token::Stroker::Join::ROUND);
-  stroker.set_precision(0.1);
   for (auto& glyph : glyphs) {
     token::GlyphOutline outline(glyph);
     takram::Shape2d shape;
-    for (const auto& path : outline.shape().paths()) {
-      stroker.set_cap(outline.cap(path));
-      const auto stroke = stroker(path);
-      for (const auto& path : stroke.paths()) {
-        shape.paths().emplace_back(path);
-      }
-    }
-    shape = token::simplify(shape);
+    shape = stroker.stroke(outline);
+    shape = stroker.simplify(shape);
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();
-    shape.removeDuplicates(0.1);
+    shape.removeDuplicates(1.0);
     token::GlyphOutline stroked(glyph, shape);
     glyphs.set(glyph.name, stroked.glyph());
   }

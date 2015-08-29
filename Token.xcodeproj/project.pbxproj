@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
-		93159C251B8F152B004DE6C9 /* pathfinder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */; };
 		9334A8961B6C871E00FF2CE7 /* libtakram_nanovg_gl3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */; };
 		9337DC221B8C06720070814C /* glif.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC211B8C06720070814C /* glif.mm */; };
 		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
@@ -23,20 +22,15 @@
 		9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		934956301B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
-		934956351B8EBE62000FD457 /* stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224B61B7B2F9600CB1DBB /* stroker.cc */; };
-		934956361B8EBE68000FD457 /* skia.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BD1B7B362200CB1DBB /* skia.cc */; };
-		934956371B8EC12A000FD457 /* pathfinder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */; };
 		9349563F1B8EEF88000FD457 /* glyph_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349563E1B8EEF88000FD457 /* glyph_iterator.cc */; };
 		934956401B8EEF88000FD457 /* glyph_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349563E1B8EEF88000FD457 /* glyph_iterator.cc */; };
 		934956411B8EEF88000FD457 /* glyph_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349563E1B8EEF88000FD457 /* glyph_iterator.cc */; };
-		934956421B8EFA7B000FD457 /* stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224B61B7B2F9600CB1DBB /* stroker.cc */; };
-		934956431B8EFA7F000FD457 /* skia.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BD1B7B362200CB1DBB /* skia.cc */; };
 		93563A191B672580004C47E4 /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
 		93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
-		93A224B81B7B2F9600CB1DBB /* stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224B61B7B2F9600CB1DBB /* stroker.cc */; };
-		93A224BC1B7B2FA900CB1DBB /* pathfinder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */; };
-		93A224BF1B7B362200CB1DBB /* skia.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A224BD1B7B362200CB1DBB /* skia.cc */; };
+		93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
+		93E5FF181B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
+		93E5FF191B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
 		93FEF9921AD97397009D0646 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93FEF9901AD97397009D0646 /* main.cc */; };
 /* End PBXBuildFile section */
 
@@ -284,13 +278,9 @@
 		93A2249D1B7B1FD200CB1DBB /* unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode.h; sourceTree = "<group>"; };
 		93A2249E1B7B1FD200CB1DBB /* glif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glif.h; sourceTree = "<group>"; };
 		93A224A31B7B1FD200CB1DBB /* ufo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufo.h; sourceTree = "<group>"; };
-		93A224B61B7B2F9600CB1DBB /* stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stroker.cc; sourceTree = "<group>"; };
-		93A224B71B7B2F9600CB1DBB /* stroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stroker.h; sourceTree = "<group>"; };
-		93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathfinder.cc; sourceTree = "<group>"; };
-		93A224BB1B7B2FA900CB1DBB /* pathfinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pathfinder.h; sourceTree = "<group>"; };
-		93A224BD1B7B362200CB1DBB /* skia.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = skia.cc; sourceTree = "<group>"; };
-		93A224BE1B7B362200CB1DBB /* skia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skia.h; sourceTree = "<group>"; };
 		93B4749E1B64CF8800613FB6 /* product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = product.xcconfig; path = config/product.xcconfig; sourceTree = SOURCE_ROOT; };
+		93E5FF151B915970006E968A /* glyph_stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_stroker.cc; sourceTree = "<group>"; };
+		93E5FF161B915970006E968A /* glyph_stroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glyph_stroker.h; sourceTree = "<group>"; };
 		93F859251B575DCC00C32E8D /* osx.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = osx.plist; path = config/osx.plist; sourceTree = SOURCE_ROOT; };
 		93F859271B575DCC00C32E8D /* project_debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = project_debug.xcconfig; path = config/project_debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		93F859281B575DCC00C32E8D /* project_release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = project_release.xcconfig; path = config/project_release.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -447,12 +437,8 @@
 				93FEF9901AD97397009D0646 /* main.cc */,
 				9337DC211B8C06720070814C /* glif.mm */,
 				9337DC711B8D766D0070814C /* glyph.cc */,
-				93A224B71B7B2F9600CB1DBB /* stroker.h */,
-				93A224B61B7B2F9600CB1DBB /* stroker.cc */,
-				93A224BB1B7B2FA900CB1DBB /* pathfinder.h */,
-				93A224BA1B7B2FA900CB1DBB /* pathfinder.cc */,
-				93A224BE1B7B362200CB1DBB /* skia.h */,
-				93A224BD1B7B362200CB1DBB /* skia.cc */,
+				93E5FF161B915970006E968A /* glyph_stroker.h */,
+				93E5FF151B915970006E968A /* glyph_stroker.cc */,
 				9337DC441B8D671B0070814C /* glyph_outline.h */,
 				9337DC531B8D67F20070814C /* glyph_outline.cc */,
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
@@ -752,7 +738,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ditto \"${PROJECT_DIR}/lib/afdko/FDK/Tools/osx\" \"${BUILT_PRODUCTS_DIR}/bin\"";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -762,11 +748,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				934956301B8D8B17000FD457 /* glyphs.cc in Sources */,
+				93E5FF191B915970006E968A /* glyph_stroker.cc in Sources */,
 				9337DC221B8C06720070814C /* glif.mm in Sources */,
-				93159C251B8F152B004DE6C9 /* pathfinder.cc in Sources */,
 				934956411B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
-				934956431B8EFA7F000FD457 /* skia.cc in Sources */,
-				934956421B8EFA7B000FD457 /* stroker.cc in Sources */,
 				934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -775,13 +759,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				934956351B8EBE62000FD457 /* stroker.cc in Sources */,
+				93E5FF181B915970006E968A /* glyph_stroker.cc in Sources */,
 				9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */,
-				934956371B8EC12A000FD457 /* pathfinder.cc in Sources */,
 				9337DC721B8D766D0070814C /* glyph.cc in Sources */,
 				934956401B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
 				9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */,
-				934956361B8EBE68000FD457 /* skia.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,11 +772,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */,
-				93A224B81B7B2F9600CB1DBB /* stroker.cc in Sources */,
-				93A224BC1B7B2FA900CB1DBB /* pathfinder.cc in Sources */,
+				93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */,
 				93FEF9921AD97397009D0646 /* main.cc in Sources */,
 				9349563F1B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
-				93A224BF1B7B362200CB1DBB /* skia.cc in Sources */,
 				9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

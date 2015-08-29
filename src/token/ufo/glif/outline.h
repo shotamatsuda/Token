@@ -44,6 +44,8 @@ namespace glif {
 class Outline final {
  public:
   Outline() = default;
+  Outline(const std::vector<Component>& components,
+          const std::vector<Contour>& contours);
 
   // Copy semantics
   Outline(const Outline& other) = default;
@@ -63,6 +65,11 @@ class Outline final {
 };
 
 #pragma mark -
+
+inline Outline::Outline(const std::vector<Component>& components,
+                        const std::vector<Contour>& contours)
+    : components(components),
+      contours(contours) {}
 
 #pragma mark Comparison
 

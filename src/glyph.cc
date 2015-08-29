@@ -34,8 +34,7 @@
 #include "takram/math.h"
 #include "takram/nanovg.h"
 #include "token/glyph_outline.h"
-#include "token/pathfinder.h"
-#include "token/stroker.h"
+#include "token/glyph_stroker.h"
 #include "token/ufo/glif.h"
 #include "token/ufo/glyphs.h"
 
@@ -58,22 +57,13 @@ class App : public solas::View {
 
   void update() override {
     if (needs_stroking_) {
-      token::Stroker stroker;
+      token::GlyphStroker stroker;
       stroker.set_width(width_);
-      stroker.set_join(token::Stroker::Join::ROUND);
-      stroker.set_precision(0.1);
-      shape_.reset();
-      for (const auto& path : glyph_.shape().paths()) {
-        stroker.set_cap(glyph_.cap(path));
-        const auto stroke = stroker(path);
-        for (const auto& path : stroke.paths()) {
-          shape_.paths().emplace_back(path);
-        }
-      }
-      shape_ = token::simplify(shape_);
+      shape_ = stroker.stroke(glyph_);
+      shape_ = stroker.simplify(shape_);
       shape_.convertConicsToQuadratics();
       shape_.convertQuadraticsToCubics();
-      shape_.removeDuplicates(0.1);
+      shape_.removeDuplicates(1.0);
       needs_stroking_ = false;
     }
   }

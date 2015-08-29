@@ -34,7 +34,7 @@
 
 #include "takram/graphics.h"
 #include "takram/math.h"
-#include "token/stroker.h"
+#include "token/glyph_stroker.h"
 #include "token/ufo/glif/contour.h"
 #include "token/ufo/glif/glyph.h"
 
@@ -53,7 +53,7 @@ class GlyphOutline final {
   // Attributes
   const ufo::Glyph& glyph() const { return glyph_; }
   const takram::Shape2d& shape() const { return shape_; }
-  Stroker::Cap cap(const takram::Path2d& path) const;
+  GlyphStroker::Cap cap(const takram::Path2d& path) const;
 
  private:
   void processContour(const ufo::Contour& contour);
@@ -62,17 +62,19 @@ class GlyphOutline final {
  public:
   ufo::Glyph glyph_;
   takram::Shape2d shape_;
-  std::unordered_map<std::size_t, Stroker::Cap> caps_;
+  std::unordered_map<std::size_t, GlyphStroker::Cap> caps_;
 };
 
 #pragma mark -
 
 #pragma mark Attributes
 
-inline Stroker::Cap GlyphOutline::cap(const takram::Path2d& path) const {
+inline GlyphStroker::Cap GlyphOutline::cap(const takram::Path2d& path) const {
   const auto& paths = shape_.paths();
   const auto itr = std::find(std::begin(paths), std::end(paths), path);
-  assert(itr != std::end(paths));
+  if (itr == std::end(paths)) {
+    return GlyphStroker::Cap::UNDEFINED;
+  }
   const auto index = std::distance(std::begin(paths), itr);
   return caps_.at(index);
 }
