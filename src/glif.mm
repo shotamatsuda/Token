@@ -62,19 +62,6 @@ int main(int argc, char **argv) {
     token::GlyphOutline outline(glyph);
     takram::Shape2d shape;
     shape = stroker.stroke(outline);
-    for (auto& command : shape) {
-      for (auto& other : shape) {
-        if (&command == &other) {
-          continue;
-        }
-        if (std::abs(command.point().x - other.point().x) < 0.01 &&
-            std::abs(command.point().y - other.point().y) < 0.01) {
-          const auto mid = (command.point() + other.point()) / 2;
-          command.point() = mid;
-          other.point() = mid;
-        }
-      }
-    }
     shape = stroker.simplify(shape);
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();

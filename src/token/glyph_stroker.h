@@ -78,6 +78,8 @@ class GlyphStroker final {
   void set_join(Join value) { join_ = value; }
   double precision() const { return precision_; }
   void set_precision(double value) { precision_ = value; }
+  double tolerance() const { return tolerance_; }
+  void set_tolerance(double value) { tolerance_ = value; }
 
  private:
   double width_;
@@ -85,6 +87,7 @@ class GlyphStroker final {
   mutable Cap cap_;
   Join join_;
   double precision_;
+  double tolerance_;
 };
 
 #pragma mark -
@@ -94,7 +97,8 @@ inline GlyphStroker::GlyphStroker()
       miter_(),
       cap_(Cap::ROUND),
       join_(Join::ROUND),
-      precision_(0.1) {}
+      precision_(0.5),
+      tolerance_(0.02) {}
 
 #pragma mark Comparison
 
@@ -103,7 +107,8 @@ inline bool GlyphStroker::operator==(const GlyphStroker& other) const {
           miter_ == other.miter_ &&
           cap_ == other.cap_ &&
           join_ == other.join_ &&
-          precision_ == other.precision_);
+          precision_ == other.precision_ &&
+          tolerance_ == other.tolerance_);
 }
 
 inline bool GlyphStroker::operator!=(const GlyphStroker& other) const {

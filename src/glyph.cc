@@ -25,7 +25,6 @@
 //
 
 #include <algorithm>
-#include <cmath>
 #include <iostream>
 #include <locale>
 #include <string>
@@ -45,7 +44,7 @@ class App : public solas::View {
     glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo");
     context_.init();
     scale_ = 1.0;
-    width_ = 100.0;
+    width_ = 3;
     resize(1280, 1024);
   }
 
@@ -62,19 +61,6 @@ class App : public solas::View {
       token::GlyphStroker stroker;
       stroker.set_width(width_);
       shape_ = stroker.stroke(glyph_);
-      for (auto& command : shape_) {
-        for (auto& other : shape_) {
-          if (&command == &other) {
-            continue;
-          }
-          if (std::abs(command.point().x - other.point().x) < 0.02 &&
-              std::abs(command.point().y - other.point().y) < 0.02) {
-            const auto mid = (command.point() + other.point()) / 2;
-            command.point() = mid;
-            other.point() = mid;
-          }
-        }
-      }
       shape_ = stroker.simplify(shape_);
       shape_.convertConicsToQuadratics();
       shape_.convertQuadraticsToCubics();
