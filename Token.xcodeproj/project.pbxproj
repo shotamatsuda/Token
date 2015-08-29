@@ -483,6 +483,7 @@
 			buildPhases = (
 				9337DC161B8C06300070814C /* Sources */,
 				9337DC171B8C06300070814C /* Frameworks */,
+				93943B881B914AC500592E5E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -738,6 +739,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		93943B881B914AC500592E5E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ditto \"${PROJECT_DIR}/lib/afdko/FDK/Tools/osx\" \"${BUILT_PRODUCTS_DIR}/bin\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9337DC161B8C06300070814C /* Sources */ = {
