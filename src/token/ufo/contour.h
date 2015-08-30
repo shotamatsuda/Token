@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/anchor.h
+//  token/ufo/contour.h
 //
 //  The MIT License
 //
@@ -25,103 +25,78 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_ANCHOR_H_
-#define TOKEN_UFO_GLIF_ANCHOR_H_
+#ifndef TOKEN_UFO_CONTOUR_H_
+#define TOKEN_UFO_CONTOUR_H_
 
 #include <string>
 #include <utility>
+#include <vector>
 
 #include <boost/property_tree/ptree.hpp>
 
+#include "token/ufo/point.h"
 #include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
-namespace glif {
 
-class Anchor final {
+class Contour final {
  public:
-  Anchor() = default;
-  Anchor(double x,
-         double y,
-         const std::string& name,
-         const std::string& color,
-         const std::string& identifier);
+  Contour() = default;
+  Contour(const std::string& identifier,
+          const std::vector<Point>& points);
 
   // Copy semantics
-  Anchor(const Anchor& other) = default;
-  Anchor& operator=(const Anchor& other) = default;
+  Contour(const Contour& other) = default;
+  Contour& operator=(const Contour& other) = default;
 
   // Comparison
-  bool operator==(const Anchor& other) const;
-  bool operator!=(const Anchor& other) const;
+  bool operator==(const Contour& other) const;
+  bool operator!=(const Contour& other) const;
 
   // Property tree
-  static Anchor read(const boost::property_tree::ptree& tree);
+  static Contour read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
-  double x;
-  double y;
-  std::string name;
-  std::string color;
   std::string identifier;
+  std::vector<Point> points;
 };
 
 #pragma mark -
 
-inline Anchor::Anchor(double x,
-                      double y,
-                      const std::string& name,
-                      const std::string& color,
-                      const std::string& identifier)
-    : x(x),
-      y(y),
-      name(name),
-      color(color),
-      identifier(identifier) {}
+inline Contour::Contour(const std::string& identifier,
+                        const std::vector<Point>& points)
+    : identifier(identifier),
+      points(points) {}
 
 #pragma mark Comparison
 
-inline bool Anchor::operator==(const Anchor& other) const {
-  return (x == other.x &&
-          y == other.y &&
-          name == other.name &&
-          color == other.color &&
-          identifier == other.identifier);
+inline bool Contour::operator==(const Contour& other) const {
+  return (identifier == other.identifier && points == other.points);
 }
 
-inline bool Anchor::operator!=(const Anchor& other) const {
+inline bool Contour::operator!=(const Contour& other) const {
   return !operator==(other);
 }
 
 #pragma mark Property tree
 
-inline Anchor Anchor::read(const boost::property_tree::ptree& tree) {
-  Anchor result;
-  xml::read_attr(tree, "x", &result.x);
-  xml::read_attr(tree, "y", &result.y);
-  xml::read_attr(tree, "name", &result.name);
-  xml::read_attr(tree, "color", &result.color);
+inline Contour Contour::read(const boost::property_tree::ptree& tree) {
+  Contour result;
   xml::read_attr(tree, "identifier", &result.identifier);
+  xml::read_children(tree, "point", &result.points);
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Anchor::write() const {
+inline boost::property_tree::ptree Contour::write() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "x", x);
-  xml::write_attr(&tree, "y", y);
-  xml::write_attr(&tree, "name", name, "");
-  xml::write_attr(&tree, "color", color, "");
   xml::write_attr(&tree, "identifier", identifier, "");
+  xml::write_children(&tree, "point", points);
   return std::move(tree);
 }
-
-}  // namespace glif
-
-using glif::Anchor;
 
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_ANCHOR_H_
+#endif  // TOKEN_UFO_CONTOUR_H_

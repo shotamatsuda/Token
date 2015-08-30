@@ -41,7 +41,7 @@ extern "C" {
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 
-#include "token/ufo/glif/glyph.h"
+#include "token/ufo/glyph.h"
 
 namespace token {
 namespace ufo {

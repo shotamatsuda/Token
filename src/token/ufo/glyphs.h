@@ -33,7 +33,7 @@
 #include <unordered_map>
 #include <utility>
 
-#include "token/ufo/glif/glyph.h"
+#include "token/ufo/glyph.h"
 #include "token/ufo/glyph_iterator.h"
 
 namespace token {

@@ -35,7 +35,7 @@ extern "C" {
 #include <cassert>
 #include <cstdlib>
 
-#include "token/ufo/glif/glyph.h"
+#include "token/ufo/glyph.h"
 #include "token/ufo/glyphs.h"
 
 namespace token {

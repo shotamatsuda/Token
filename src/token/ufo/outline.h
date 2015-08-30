@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/contour.h
+//  token/ufo/outline.h
 //
 //  The MIT License
 //
@@ -25,83 +25,78 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_CONTOUR_H_
-#define TOKEN_UFO_GLIF_CONTOUR_H_
+#ifndef TOKEN_UFO_OUTLINE_H_
+#define TOKEN_UFO_OUTLINE_H_
 
-#include <string>
 #include <utility>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/glif/point.h"
+#include "token/ufo/component.h"
+#include "token/ufo/contour.h"
 #include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
-namespace glif {
 
-class Contour final {
+class Outline final {
  public:
-  Contour() = default;
-  Contour(const std::string& identifier,
-          const std::vector<Point>& points);
+  Outline() = default;
+  Outline(const std::vector<Component>& components,
+          const std::vector<Contour>& contours);
 
   // Copy semantics
-  Contour(const Contour& other) = default;
-  Contour& operator=(const Contour& other) = default;
+  Outline(const Outline& other) = default;
+  Outline& operator=(const Outline& other) = default;
 
   // Comparison
-  bool operator==(const Contour& other) const;
-  bool operator!=(const Contour& other) const;
+  bool operator==(const Outline& other) const;
+  bool operator!=(const Outline& other) const;
 
   // Property tree
-  static Contour read(const boost::property_tree::ptree& tree);
+  static Outline read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
-  std::string identifier;
-  std::vector<Point> points;
+  std::vector<Component> components;
+  std::vector<Contour> contours;
 };
 
 #pragma mark -
 
-inline Contour::Contour(const std::string& identifier,
-                        const std::vector<Point>& points)
-    : identifier(identifier),
-      points(points) {}
+inline Outline::Outline(const std::vector<Component>& components,
+                        const std::vector<Contour>& contours)
+    : components(components),
+      contours(contours) {}
 
 #pragma mark Comparison
 
-inline bool Contour::operator==(const Contour& other) const {
-  return (identifier == other.identifier && points == other.points);
+inline bool Outline::operator==(const Outline& other) const {
+  return (components == other.components && contours == other.contours);
 }
 
-inline bool Contour::operator!=(const Contour& other) const {
+inline bool Outline::operator!=(const Outline& other) const {
   return !operator==(other);
 }
 
 #pragma mark Property tree
 
-inline Contour Contour::read(const boost::property_tree::ptree& tree) {
-  Contour result;
-  xml::read_attr(tree, "identifier", &result.identifier);
-  xml::read_children(tree, "point", &result.points);
+inline Outline Outline::read(const boost::property_tree::ptree& tree) {
+  Outline result;
+  xml::read_children(tree, "component", &result.components);
+  xml::read_children(tree, "contour", &result.contours);
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Contour::write() const {
+inline boost::property_tree::ptree Outline::write() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "identifier", identifier, "");
-  xml::write_children(&tree, "point", points);
+  xml::write_children(&tree, "component", components);
+  xml::write_children(&tree, "contour", contours);
   return std::move(tree);
 }
-
-}  // namespace glif
-
-using glif::Contour;
 
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_CONTOUR_H_
+#endif  // TOKEN_UFO_OUTLINE_H_

@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/guideline.h
+//  token/ufo/anchor.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_GUIDELINE_H_
-#define TOKEN_UFO_GLIF_GUIDELINE_H_
+#ifndef TOKEN_UFO_ANCHOR_H_
+#define TOKEN_UFO_ANCHOR_H_
 
 #include <string>
 #include <utility>
@@ -37,34 +37,31 @@
 
 namespace token {
 namespace ufo {
-namespace glif {
 
-class Guideline final {
+class Anchor final {
  public:
-  Guideline() = default;
-  Guideline(double x,
-            double y,
-            double angle,
-            const std::string& name,
-            const std::string& color,
-            const std::string& identifier);
+  Anchor() = default;
+  Anchor(double x,
+         double y,
+         const std::string& name,
+         const std::string& color,
+         const std::string& identifier);
 
   // Copy semantics
-  Guideline(const Guideline& other) = default;
-  Guideline& operator=(const Guideline& other) = default;
+  Anchor(const Anchor& other) = default;
+  Anchor& operator=(const Anchor& other) = default;
 
   // Comparison
-  bool operator==(const Guideline& other) const;
-  bool operator!=(const Guideline& other) const;
+  bool operator==(const Anchor& other) const;
+  bool operator!=(const Anchor& other) const;
 
   // Property tree
-  static Guideline read(const boost::property_tree::ptree& tree);
+  static Anchor read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
   double x;
   double y;
-  double angle;
   std::string name;
   std::string color;
   std::string identifier;
@@ -72,63 +69,54 @@ class Guideline final {
 
 #pragma mark -
 
-inline Guideline::Guideline(double x,
-                            double y,
-                            double angle,
-                            const std::string& name,
-                            const std::string& color,
-                            const std::string& identifier)
+inline Anchor::Anchor(double x,
+                      double y,
+                      const std::string& name,
+                      const std::string& color,
+                      const std::string& identifier)
     : x(x),
       y(y),
-      angle(angle),
       name(name),
       color(color),
       identifier(identifier) {}
 
 #pragma mark Comparison
 
-inline bool Guideline::operator==(const Guideline& other) const {
+inline bool Anchor::operator==(const Anchor& other) const {
   return (x == other.x &&
           y == other.y &&
-          angle == other.angle &&
           name == other.name &&
           color == other.color &&
           identifier == other.identifier);
 }
 
-inline bool Guideline::operator!=(const Guideline& other) const {
+inline bool Anchor::operator!=(const Anchor& other) const {
   return !operator==(other);
 }
 
 #pragma mark Property tree
 
-inline Guideline Guideline::read(const boost::property_tree::ptree& tree) {
-  Guideline result;
+inline Anchor Anchor::read(const boost::property_tree::ptree& tree) {
+  Anchor result;
   xml::read_attr(tree, "x", &result.x);
   xml::read_attr(tree, "y", &result.y);
-  xml::read_attr(tree, "angle", &result.angle);
   xml::read_attr(tree, "name", &result.name);
   xml::read_attr(tree, "color", &result.color);
   xml::read_attr(tree, "identifier", &result.identifier);
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Guideline::write() const {
+inline boost::property_tree::ptree Anchor::write() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "x", x);
   xml::write_attr(&tree, "y", y);
-  xml::write_attr(&tree, "angle", angle);
   xml::write_attr(&tree, "name", name, "");
   xml::write_attr(&tree, "color", color, "");
   xml::write_attr(&tree, "identifier", identifier, "");
   return std::move(tree);
 }
 
-}  // namespace glif
-
-using glif::Guideline;
-
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_GUIDELINE_H_
+#endif  // TOKEN_UFO_ANCHOR_H_

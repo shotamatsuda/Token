@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/outline.h
+//  token/ufo/advance.h
 //
 //  The MIT License
 //
@@ -25,83 +25,75 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_OUTLINE_H_
-#define TOKEN_UFO_GLIF_OUTLINE_H_
+#ifndef TOKEN_UFO_ADVANCE_H_
+#define TOKEN_UFO_ADVANCE_H_
 
 #include <utility>
-#include <vector>
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/glif/component.h"
-#include "token/ufo/glif/contour.h"
 #include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
-namespace glif {
 
-class Outline final {
+class Advance final {
  public:
-  Outline() = default;
-  Outline(const std::vector<Component>& components,
-          const std::vector<Contour>& contours);
+  Advance();
+  Advance(double width, double height);
 
   // Copy semantics
-  Outline(const Outline& other) = default;
-  Outline& operator=(const Outline& other) = default;
+  Advance(const Advance& other) = default;
+  Advance& operator=(const Advance& other) = default;
 
   // Comparison
-  bool operator==(const Outline& other) const;
-  bool operator!=(const Outline& other) const;
+  bool operator==(const Advance& other) const;
+  bool operator!=(const Advance& other) const;
 
   // Property tree
-  static Outline read(const boost::property_tree::ptree& tree);
+  static Advance read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree write() const;
 
  public:
-  std::vector<Component> components;
-  std::vector<Contour> contours;
+  double width;
+  double height;
 };
 
 #pragma mark -
 
-inline Outline::Outline(const std::vector<Component>& components,
-                        const std::vector<Contour>& contours)
-    : components(components),
-      contours(contours) {}
+inline Advance::Advance() : width(), height() {}
+
+inline Advance::Advance(double width, double height)
+    : width(width),
+      height(height) {}
 
 #pragma mark Comparison
 
-inline bool Outline::operator==(const Outline& other) const {
-  return (components == other.components && contours == other.contours);
+inline bool Advance::operator==(const Advance& other) const {
+  return (width == other.width && height == other.height);
 }
 
-inline bool Outline::operator!=(const Outline& other) const {
+inline bool Advance::operator!=(const Advance& other) const {
   return !operator==(other);
 }
 
 #pragma mark Property tree
 
-inline Outline Outline::read(const boost::property_tree::ptree& tree) {
-  Outline result;
-  xml::read_children(tree, "component", &result.components);
-  xml::read_children(tree, "contour", &result.contours);
+inline Advance Advance::read(const boost::property_tree::ptree& tree) {
+  Advance result;
+  xml::read_attr(tree, "width", &result.width);
+  xml::read_attr(tree, "height", &result.height);
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Outline::write() const {
+inline boost::property_tree::ptree Advance::write() const {
   boost::property_tree::ptree tree;
-  xml::write_children(&tree, "component", components);
-  xml::write_children(&tree, "contour", contours);
+  xml::write_attr(&tree, "width", width, 0.0);
+  xml::write_attr(&tree, "height", height, 0.0);
   return std::move(tree);
 }
-
-}  // namespace glif
-
-using glif::Outline;
 
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_OUTLINE_H_
+#endif  // TOKEN_UFO_ADVANCE_H_

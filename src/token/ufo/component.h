@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/component.h
+//  token/ufo/component.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_COMPONENT_H_
-#define TOKEN_UFO_GLIF_COMPONENT_H_
+#ifndef TOKEN_UFO_COMPONENT_H_
+#define TOKEN_UFO_COMPONENT_H_
 
 #include <string>
 #include <utility>
@@ -37,7 +37,6 @@
 
 namespace token {
 namespace ufo {
-namespace glif {
 
 class Component final {
  public:
@@ -146,11 +145,7 @@ inline boost::property_tree::ptree Component::write() const {
   return std::move(tree);
 }
 
-}  // namespace glif
-
-using glif::Component;
-
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_COMPONENT_H_
+#endif  // TOKEN_UFO_COMPONENT_H_

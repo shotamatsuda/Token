@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/unicode.h
+//  token/ufo/unicode.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_UNICODE_H_
-#define TOKEN_UFO_GLIF_UNICODE_H_
+#ifndef TOKEN_UFO_UNICODE_H_
+#define TOKEN_UFO_UNICODE_H_
 
 #include <string>
 #include <utility>
@@ -37,7 +37,6 @@
 
 namespace token {
 namespace ufo {
-namespace glif {
 
 class Unicode final {
  public:
@@ -88,11 +87,7 @@ inline boost::property_tree::ptree Unicode::write() const {
   return std::move(tree);
 }
 
-}  // namespace glif
-
-using glif::Unicode;
-
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_UNICODE_H_
+#endif  // TOKEN_UFO_UNICODE_H_

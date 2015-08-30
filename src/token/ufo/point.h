@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/point.h
+//  token/ufo/point.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_POINT_H_
-#define TOKEN_UFO_GLIF_POINT_H_
+#ifndef TOKEN_UFO_POINT_H_
+#define TOKEN_UFO_POINT_H_
 
 #include <cassert>
 #include <string>
@@ -38,7 +38,6 @@
 
 namespace token {
 namespace ufo {
-namespace glif {
 
 class Point final {
  public:
@@ -166,11 +165,7 @@ inline boost::property_tree::ptree Point::write() const {
   return std::move(tree);
 }
 
-}  // namespace glif
-
-using glif::Point;
-
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_POINT_H_
+#endif  // TOKEN_UFO_POINT_H_

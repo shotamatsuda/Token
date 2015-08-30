@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/glyph.h
+//  token/ufo/glyph.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_GLYPH_H_
-#define TOKEN_UFO_GLIF_GLYPH_H_
+#ifndef TOKEN_UFO_GLYPH_H_
+#define TOKEN_UFO_GLYPH_H_
 
 #include <string>
 #include <utility>
@@ -34,17 +34,16 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/glif/advance.h"
-#include "token/ufo/glif/anchor.h"
-#include "token/ufo/glif/guideline.h"
-#include "token/ufo/glif/image.h"
-#include "token/ufo/glif/outline.h"
-#include "token/ufo/glif/unicode.h"
+#include "token/ufo/advance.h"
+#include "token/ufo/anchor.h"
+#include "token/ufo/guideline.h"
+#include "token/ufo/image.h"
+#include "token/ufo/outline.h"
+#include "token/ufo/unicode.h"
 #include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
-namespace glif {
 
 class Glyph final {
  public:
@@ -123,11 +122,7 @@ inline boost::property_tree::ptree Glyph::write() const {
   return std::move(tree);
 }
 
-}  // namespace glif
-
-using glif::Glyph;
-
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_GLYPH_H_
+#endif  // TOKEN_UFO_GLYPH_H_

@@ -1,5 +1,5 @@
 //
-//  token/ufo/glif/image.h
+//  token/ufo/image.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GLIF_IMAGE_H_
-#define TOKEN_UFO_GLIF_IMAGE_H_
+#ifndef TOKEN_UFO_IMAGE_H_
+#define TOKEN_UFO_IMAGE_H_
 
 #include <string>
 #include <utility>
@@ -37,7 +37,6 @@
 
 namespace token {
 namespace ufo {
-namespace glif {
 
 class Image final {
  public:
@@ -146,11 +145,7 @@ inline boost::property_tree::ptree Image::write() const {
   return std::move(tree);
 }
 
-}  // namespace glif
-
-using glif::Image;
-
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GLIF_IMAGE_H_
+#endif  // TOKEN_UFO_IMAGE_H_
