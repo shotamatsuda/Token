@@ -47,8 +47,8 @@ class Outline final {
           const std::vector<Contour>& contours);
 
   // Copy semantics
-  Outline(const Outline& other) = default;
-  Outline& operator=(const Outline& other) = default;
+  Outline(const Outline&) = default;
+  Outline& operator=(const Outline&) = default;
 
   // Comparison
   bool operator==(const Outline& other) const;

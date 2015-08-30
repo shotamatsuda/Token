@@ -59,8 +59,8 @@ class Point final {
         const std::string& identifier = std::string());
 
   // Copy semantics
-  Point(const Point& other) = default;
-  Point& operator=(const Point& other) = default;
+  Point(const Point&) = default;
+  Point& operator=(const Point&) = default;
 
   // Comparison
   bool operator==(const Point& other) const;

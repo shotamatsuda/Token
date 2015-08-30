@@ -30,12 +30,12 @@
 
 #include <map>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include "token/ufo/gasp_range_record.h"
 #include "token/ufo/guideline.h"
 #include "token/ufo/name_record.h"
+#include "token/ufo/optional.h"
 #include "token/ufo/woff.h"
 
 namespace token {
@@ -43,11 +43,17 @@ namespace ufo {
 
 class Fontinfo final {
  public:
-  Fontinfo() = default;
+  Fontinfo();
+  explicit Fontinfo(const std::string& path);
+  ~Fontinfo();
 
-  // Copy semantics
-  Fontinfo(const Fontinfo& other) = default;
-  Fontinfo& operator=(const Fontinfo& other) = default;
+  // Disallow copy semantics
+  Fontinfo(const Fontinfo&) = delete;
+  Fontinfo& operator=(const Fontinfo&) = delete;
+
+  // Move semantics
+  Fontinfo(Fontinfo&& other);
+  Fontinfo& operator=(Fontinfo&& other);
 
  public:
   // Generic Identification Information
@@ -55,21 +61,21 @@ class Fontinfo final {
   std::string style_name;
   std::string style_map_family_name;
   std::string style_map_style_name;
-  std::pair<bool, int> version_major;
-  std::pair<bool, unsigned int> version_minor;
-  std::pair<bool, int> year;
+  Optional<int> version_major;
+  Optional<unsigned int> version_minor;
+  Optional<int> year;
 
   // Generic Legal Information
   std::string copyright;
   std::string trademark;
 
   // Generic Dimension Information
-  std::pair<bool, double> units_per_em;
-  std::pair<bool, double> descender;
-  std::pair<bool, double> x_height;
-  std::pair<bool, double> cap_height;
-  std::pair<bool, double> ascender;
-  std::pair<bool, double> italic_angle;
+  Optional<double> units_per_em;
+  Optional<double> descender;
+  Optional<double> x_height;
+  Optional<double> cap_height;
+  Optional<double> ascender;
+  Optional<double> italic_angle;
 
   // Generic Miscellaneous Information
   std::string note;
@@ -79,16 +85,16 @@ class Fontinfo final {
 
   // OpenType head Table Fields
   std::string open_type_head_created;
-  std::pair<bool, unsigned int> open_type_head_lowest_rec_ppem;
+  Optional<unsigned int> open_type_head_lowest_rec_ppem;
   std::vector<unsigned int> open_type_head_flags;
 
   // OpenType hhea Table Fields
-  std::pair<bool, int> open_type_hhea_ascender;
-  std::pair<bool, int> open_type_hhea_descender;
-  std::pair<bool, int> open_type_hhea_line_gap;
-  std::pair<bool, int> open_type_hhea_caret_slope_rise;
-  std::pair<bool, int> open_type_hhea_caret_slope_run;
-  std::pair<bool, int> open_type_hhea_caret_offset;
+  Optional<int> open_type_hhea_ascender;
+  Optional<int> open_type_hhea_descender;
+  Optional<int> open_type_hhea_line_gap;
+  Optional<int> open_type_hhea_caret_slope_rise;
+  Optional<int> open_type_hhea_caret_slope_run;
+  Optional<int> open_type_hhea_caret_offset;
 
   // OpenType Name Table Fields
   std::string open_type_name_designer;
@@ -106,73 +112,73 @@ class Fontinfo final {
   std::string open_type_name_sample_text;
   std::string open_type_name_wws_family_name;
   std::string open_type_name_wws_subfamily_name;
-  std::pair<bool, std::vector<NameRecord>> open_type_name_records;
+  Optional<std::vector<NameRecord>> open_type_name_records;
 
   // OpenType OS/2 Table Fields
-  std::pair<bool, int> open_type_os2_width_class;
-  std::pair<bool, int> open_type_os2_weight_class;
+  Optional<int> open_type_os2_width_class;
+  Optional<int> open_type_os2_weight_class;
   std::vector<unsigned int> open_type_os2_selection;
   std::string open_type_os2_vendor_id;
   std::vector<unsigned int> open_type_os2_panose;
   std::vector<unsigned int> open_type_os2_family_class;
   std::vector<unsigned int> open_type_os2_unicode_ranges;
   std::vector<unsigned int> open_type_os2_code_page_ranges;
-  std::pair<bool, int> open_type_os2_typo_ascender;
-  std::pair<bool, int> open_type_os2_typo_descender;
-  std::pair<bool, int> open_type_os2_typo_line_gap;
-  std::pair<bool, unsigned int> open_type_os2_win_ascent;
-  std::pair<bool, unsigned int> open_type_os2_win_descent;
+  Optional<int> open_type_os2_typo_ascender;
+  Optional<int> open_type_os2_typo_descender;
+  Optional<int> open_type_os2_typo_line_gap;
+  Optional<unsigned int> open_type_os2_win_ascent;
+  Optional<unsigned int> open_type_os2_win_descent;
   std::vector<unsigned int> open_type_os2_type;
-  std::pair<bool, int> open_type_os2_subscript_x_size;
-  std::pair<bool, int> open_type_os2_subscript_y_size;
-  std::pair<bool, int> open_type_os2_subscript_x_offset;
-  std::pair<bool, int> open_type_os2_subscript_y_offset;
-  std::pair<bool, int> open_type_os2_superscript_x_size;
-  std::pair<bool, int> open_type_os2_superscript_y_size;
-  std::pair<bool, int> open_type_os2_superscript_x_offset;
-  std::pair<bool, int> open_type_os2_superscript_y_offset;
-  std::pair<bool, int> open_type_os2_strikeout_size;
-  std::pair<bool, int> open_type_os2_strikeout_position;
+  Optional<int> open_type_os2_subscript_x_size;
+  Optional<int> open_type_os2_subscript_y_size;
+  Optional<int> open_type_os2_subscript_x_offset;
+  Optional<int> open_type_os2_subscript_y_offset;
+  Optional<int> open_type_os2_superscript_x_size;
+  Optional<int> open_type_os2_superscript_y_size;
+  Optional<int> open_type_os2_superscript_x_offset;
+  Optional<int> open_type_os2_superscript_y_offset;
+  Optional<int> open_type_os2_strikeout_size;
+  Optional<int> open_type_os2_strikeout_position;
 
   // OpenType vhea Table Fields
-  std::pair<bool, int> open_type_vhea_vert_typo_ascender;
-  std::pair<bool, int> open_type_vhea_vert_typo_descender;
-  std::pair<bool, int> open_type_vhea_vert_typo_line_gap;
-  std::pair<bool, int> open_type_vhea_caret_slope_rise;
-  std::pair<bool, int> open_type_vhea_caret_slope_run;
-  std::pair<bool, int> open_type_vhea_caret_offset;
+  Optional<int> open_type_vhea_vert_typo_ascender;
+  Optional<int> open_type_vhea_vert_typo_descender;
+  Optional<int> open_type_vhea_vert_typo_line_gap;
+  Optional<int> open_type_vhea_caret_slope_rise;
+  Optional<int> open_type_vhea_caret_slope_run;
+  Optional<int> open_type_vhea_caret_offset;
 
   // PostScript Specific Data
   std::string postscript_font_name;
   std::string postscript_full_name;
-  std::pair<bool, double> postscript_slant_angle;
-  std::pair<bool, int> postscript_unique_id;
-  std::pair<bool, double> postscript_underline_thickness;
-  std::pair<bool, double> postscript_underline_position;
-  std::pair<bool, bool> postscript_is_fixed_pitch;
+  Optional<double> postscript_slant_angle;
+  Optional<int> postscript_unique_id;
+  Optional<double> postscript_underline_thickness;
+  Optional<double> postscript_underline_position;
+  Optional<bool> postscript_is_fixed_pitch;
   std::vector<double> postscript_blue_values;
   std::vector<double> postscript_other_blues;
   std::vector<double> postscript_family_blues;
   std::vector<double> postscript_family_other_blues;
   std::vector<double> postscript_stem_snap_h;
   std::vector<double> postscript_stem_snap_v;
-  std::pair<bool, double> postscript_blue_fuzz;
-  std::pair<bool, double> postscript_blue_shift;
-  std::pair<bool, float> postscript_blue_scale;
-  std::pair<bool, bool> postscript_force_bold;
-  std::pair<bool, double> postscript_default_width_x;
-  std::pair<bool, double> postscript_nominal_width_x;
+  Optional<double> postscript_blue_fuzz;
+  Optional<double> postscript_blue_shift;
+  Optional<float> postscript_blue_scale;
+  Optional<bool> postscript_force_bold;
+  Optional<double> postscript_default_width_x;
+  Optional<double> postscript_nominal_width_x;
   std::string postscript_weight_name;
   std::string postscript_default_character;
-  std::pair<bool, int> postscript_windows_character_set;
+  Optional<int> postscript_windows_character_set;
 
   // Macintosh FOND Resource Data
-  std::pair<bool, int> macintosh_fond_family_id;
+  Optional<int> macintosh_fond_family_id;
   std::string macintosh_fond_name;
 
   // WOFF Data
-  std::pair<bool, unsigned int> woff_major_version;
-  std::pair<bool, unsigned int> woff_minor_version;
+  Optional<unsigned int> woff_major_version;
+  Optional<unsigned int> woff_minor_version;
   std::map<std::string, woff::metadata::UniqueID> woff_metadata_unique_id;
   std::map<std::string, woff::metadata::Vendor> woff_metadata_vendor;
   std::map<std::string, woff::metadata::Credits> woff_metadata_credits;
@@ -185,7 +191,19 @@ class Fontinfo final {
 
   // Guidelines
   std::vector<Guideline> guidelines;
+
+ private:
+  std::string path_;
+  void *fontinfo_;
 };
+
+#pragma mark -
+
+inline Fontinfo::Fontinfo() : fontinfo_() {}
+
+inline Fontinfo::Fontinfo(const std::string& path)
+    : path_(path),
+      fontinfo_() {}
 
 }  // namespace ufo
 }  // namespace token

@@ -37,7 +37,7 @@ namespace metadata {
 
 class Licensee final {
  public:
-  Licensee();
+  Licensee() = default;
 
   // Copy semantics
   Licensee(const Licensee&) = default;

@@ -37,7 +37,7 @@ namespace metadata {
 
 class ExtensionValue final {
  public:
-  ExtensionValue();
+  ExtensionValue() = default;
 
   // Copy semantics
   ExtensionValue(const ExtensionValue&) = default;

@@ -47,8 +47,8 @@ class Contour final {
           const std::vector<Point>& points);
 
   // Copy semantics
-  Contour(const Contour& other) = default;
-  Contour& operator=(const Contour& other) = default;
+  Contour(const Contour&) = default;
+  Contour& operator=(const Contour&) = default;
 
   // Comparison
   bool operator==(const Contour& other) const;

@@ -118,7 +118,7 @@ inline bool Optional<T>::operator!=(const Optional& other) const {
 
 template <class T>
 inline bool Optional<T>::operator==(const T& other) const {
-  return value_ == other;
+  return !exists_ && value_ == other;
 }
 
 template <class T>

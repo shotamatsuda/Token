@@ -40,7 +40,7 @@ namespace metadata {
 
 class Description final {
  public:
-  Description();
+  Description() = default;
 
   // Copy semantics
   Description(const Description&) = default;

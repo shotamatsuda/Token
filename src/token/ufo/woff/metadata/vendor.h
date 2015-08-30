@@ -37,7 +37,7 @@ namespace metadata {
 
 class Vendor final {
  public:
-  Vendor();
+  Vendor() = default;
 
   // Copy semantics
   Vendor(const Vendor&) = default;

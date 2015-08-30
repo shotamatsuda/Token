@@ -54,8 +54,8 @@ class GlyphStroker final {
   GlyphStroker();
 
   // Copy semantics
-  GlyphStroker(const GlyphStroker& other) = default;
-  GlyphStroker& operator=(const GlyphStroker& other) = default;
+  GlyphStroker(const GlyphStroker&) = default;
+  GlyphStroker& operator=(const GlyphStroker&) = default;
 
   // Stroking
   takram::Shape2d stroke(const GlyphOutline& outline) const;

@@ -43,8 +43,8 @@ class Advance final {
   Advance(double width, double height);
 
   // Copy semantics
-  Advance(const Advance& other) = default;
-  Advance& operator=(const Advance& other) = default;
+  Advance(const Advance&) = default;
+  Advance& operator=(const Advance&) = default;
 
   // Comparison
   bool operator==(const Advance& other) const;

@@ -41,7 +41,7 @@ namespace metadata {
 
 class ExtensionItem final {
  public:
-  ExtensionItem();
+  ExtensionItem() = default;
 
   // Copy semantics
   ExtensionItem(const ExtensionItem&) = default;
@@ -52,7 +52,7 @@ class ExtensionItem final {
   bool operator!=(const ExtensionItem& other) const;
 
  public:
-  std::string id;
+  std::string identifier;
   std::vector<ExtensionName> names;
   std::vector<ExtensionValue> values;
 };
@@ -62,7 +62,9 @@ class ExtensionItem final {
 #pragma mark Comparison
 
 inline bool ExtensionItem::operator==(const ExtensionItem& other) const {
-  return id == other.id && names == other.names && values == other.values;
+  return (identifier == other.identifier &&
+          names == other.names &&
+          values == other.values);
 }
 
 inline bool ExtensionItem::operator!=(const ExtensionItem& other) const {

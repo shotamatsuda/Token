@@ -51,8 +51,8 @@ class Image final {
         const std::string& color);
 
   // Copy semantics
-  Image(const Image& other) = default;
-  Image& operator=(const Image& other) = default;
+  Image(const Image&) = default;
+  Image& operator=(const Image&) = default;
 
   // Comparison
   bool operator==(const Image& other) const;

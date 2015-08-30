@@ -37,7 +37,7 @@ namespace metadata {
 
 class Credit final {
  public:
-  Credit();
+  Credit() = default;
 
   // Copy semantics
   Credit(const Credit&) = default;

@@ -38,8 +38,8 @@ class GASPRangeRecord final {
   GASPRangeRecord();
 
   // Copy semantics
-  GASPRangeRecord(const GASPRangeRecord& other) = default;
-  GASPRangeRecord& operator=(const GASPRangeRecord& other) = default;
+  GASPRangeRecord(const GASPRangeRecord&) = default;
+  GASPRangeRecord& operator=(const GASPRangeRecord&) = default;
 
   // Comparison
   bool operator==(const GASPRangeRecord& other) const;
@@ -51,6 +51,20 @@ class GASPRangeRecord final {
 };
 
 #pragma mark -
+
+inline GASPRangeRecord::GASPRangeRecord()
+    : range_max_ppem() {}
+
+#pragma mark Comparison
+
+inline bool GASPRangeRecord::operator==(const GASPRangeRecord& other) const {
+  return (range_max_ppem == other.range_max_ppem &&
+          range_gasp_behavior == other.range_gasp_behavior);
+}
+
+inline bool GASPRangeRecord::operator!=(const GASPRangeRecord& other) const {
+  return operator==(other);
+}
 
 }  // namespace ufo
 }  // namespace token

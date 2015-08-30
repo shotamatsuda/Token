@@ -37,7 +37,7 @@ namespace metadata {
 
 class Text final {
  public:
-  Text();
+  Text() = default;
 
   // Copy semantics
   Text(const Text&) = default;

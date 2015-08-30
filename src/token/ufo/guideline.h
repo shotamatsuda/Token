@@ -49,8 +49,8 @@ class Guideline final {
             const std::string& identifier);
 
   // Copy semantics
-  Guideline(const Guideline& other) = default;
-  Guideline& operator=(const Guideline& other) = default;
+  Guideline(const Guideline&) = default;
+  Guideline& operator=(const Guideline&) = default;
 
   // Comparison
   bool operator==(const Guideline& other) const;

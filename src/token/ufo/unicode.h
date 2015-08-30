@@ -44,8 +44,8 @@ class Unicode final {
   explicit Unicode(const std::string& hex);
 
   // Copy semantics
-  Unicode(const Unicode& other) = default;
-  Unicode& operator=(const Unicode& other) = default;
+  Unicode(const Unicode&) = default;
+  Unicode& operator=(const Unicode&) = default;
 
   // Comparison
   bool operator==(const Unicode& other) const;

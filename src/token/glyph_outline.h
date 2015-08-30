@@ -47,8 +47,8 @@ class GlyphOutline final {
   GlyphOutline(const ufo::Glyph& glyph, const takram::Shape2d& shape);
 
   // Copy semantics
-  GlyphOutline(const GlyphOutline& other) = default;
-  GlyphOutline& operator=(const GlyphOutline& other) = default;
+  GlyphOutline(const GlyphOutline&) = default;
+  GlyphOutline& operator=(const GlyphOutline&) = default;
 
   // Attributes
   const ufo::Glyph& glyph() const { return glyph_; }

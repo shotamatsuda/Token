@@ -51,8 +51,8 @@ class Component final {
             const std::string& identifier);
 
   // Copy semantics
-  Component(const Component& other) = default;
-  Component& operator=(const Component& other) = default;
+  Component(const Component&) = default;
+  Component& operator=(const Component&) = default;
 
   // Comparison
   bool operator==(const Component& other) const;

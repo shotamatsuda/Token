@@ -39,7 +39,7 @@ namespace metadata {
 
 class Trademark final {
  public:
-  Trademark();
+  Trademark() = default;
 
   // Copy semantics
   Trademark(const Trademark&) = default;

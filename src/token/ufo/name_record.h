@@ -38,8 +38,8 @@ class NameRecord final {
   NameRecord();
 
   // Copy semantics
-  NameRecord(const NameRecord& other) = default;
-  NameRecord& operator=(const NameRecord& other) = default;
+  NameRecord(const NameRecord&) = default;
+  NameRecord& operator=(const NameRecord&) = default;
 
   // Comparison
   bool operator==(const NameRecord& other) const;
@@ -54,6 +54,26 @@ class NameRecord final {
 };
 
 #pragma mark -
+
+inline NameRecord::NameRecord()
+    : name_id(),
+      platform_id(),
+      encoding_id(),
+      language_id() {}
+
+#pragma mark Comparison
+
+inline bool NameRecord::operator==(const NameRecord& other) const {
+  return (name_id == other.name_id &&
+          platform_id == other.platform_id &&
+          encoding_id == other.encoding_id &&
+          language_id == other.language_id &&
+          string == other.string);
+}
+
+inline bool NameRecord::operator!=(const NameRecord& other) const {
+  return operator==(other);
+}
 
 }  // namespace ufo
 }  // namespace token

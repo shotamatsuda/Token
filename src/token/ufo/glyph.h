@@ -52,8 +52,8 @@ class Glyph final {
   explicit Glyph(const std::string& name);
 
   // Copy semantics
-  Glyph(const Glyph& other) = default;
-  Glyph& operator=(const Glyph& other) = default;
+  Glyph(const Glyph&) = default;
+  Glyph& operator=(const Glyph&) = default;
 
   // Comparison
   bool operator==(const Glyph& other) const;

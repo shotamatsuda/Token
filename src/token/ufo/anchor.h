@@ -48,8 +48,8 @@ class Anchor final {
          const std::string& identifier);
 
   // Copy semantics
-  Anchor(const Anchor& other) = default;
-  Anchor& operator=(const Anchor& other) = default;
+  Anchor(const Anchor&) = default;
+  Anchor& operator=(const Anchor&) = default;
 
   // Comparison
   bool operator==(const Anchor& other) const;

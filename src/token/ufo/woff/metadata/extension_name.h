@@ -37,7 +37,7 @@ namespace metadata {
 
 class ExtensionName final {
  public:
-  ExtensionName();
+  ExtensionName() = default;
 
   // Copy semantics
   ExtensionName(const ExtensionName&) = default;

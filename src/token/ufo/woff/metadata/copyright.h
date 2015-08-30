@@ -39,7 +39,7 @@ namespace metadata {
 
 class Copyright final {
  public:
-  Copyright();
+  Copyright() = default;
 
   // Copy semantics
   Copyright(const Copyright&) = default;

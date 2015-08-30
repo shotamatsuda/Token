@@ -52,6 +52,8 @@ class UniqueID final {
   std::vector<unsigned int> range_gasp_behavior;
 };
 
+inline UniqueID::UniqueID() : range_max_ppem() {}
+
 #pragma mark -
 
 #pragma mark Comparison

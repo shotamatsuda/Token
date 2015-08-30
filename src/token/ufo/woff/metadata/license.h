@@ -40,7 +40,7 @@ namespace metadata {
 
 class License final {
  public:
-  License();
+  License() = default;
 
   // Copy semantics
   License(const License&) = default;
@@ -52,7 +52,7 @@ class License final {
 
  public:
   std::string url;
-  std::string id;
+  std::string identifier;
   std::vector<Text> text;
 };
 
@@ -61,7 +61,9 @@ class License final {
 #pragma mark Comparison
 
 inline bool License::operator==(const License& other) const {
-  return url == other.url && id == other.id && text == other.text;
+  return (url == other.url &&
+          identifier == other.identifier &&
+          text == other.text);
 }
 
 inline bool License::operator!=(const License& other) const {
