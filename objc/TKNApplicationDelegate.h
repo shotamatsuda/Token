@@ -1,5 +1,5 @@
 //
-//  main.cc
+//  TKNApplicationDelegate.h
 //
 //  The MIT License
 //
@@ -24,12 +24,13 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "solas.h"
-#include "token/glyph.h"
+#import <AppKit/AppKit.h>
 
-int main(int argc, char **argv) {
-  solas::RunOptions options;
-  options.runner().set_backend(solas::Backend::OPENGL3 |
-                               solas::Backend::OPENGLES3);
-  return solas::run<App>(argc, argv, options);
-}
+#import "TKNMainWindowController.h"
+
+@interface TKNApplicationDelegate : NSObject <NSApplicationDelegate>
+
+@property (nonatomic, strong, readonly)
+    TKNMainWindowController *windowController;
+
+@end

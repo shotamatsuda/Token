@@ -39,8 +39,7 @@
 
 #include "token/glyph_outline.h"
 #include "token/glyph_stroker.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/glif.h"
+#include "token/ufo.h"
 
 int main(int argc, char **argv) {
   const std::string source = "/Users/sgss/Dropbox/Github/token/Token.ufo";
@@ -57,11 +56,19 @@ int main(int argc, char **argv) {
   }
   token::ufo::Glyphs glyphs(destination);
   token::GlyphStroker stroker;
-  stroker.set_width(4.0);
+  stroker.set_width(50.0);
   for (auto& glyph : glyphs) {
     token::GlyphOutline outline(glyph);
-    takram::Shape2d shape;
-    shape = stroker.stroke(outline);
+    auto shape = outline.shape();
+    const auto advance = outline.glyph().advance->width;
+    const auto scale = (680.0 - stroker.width()) / 680.0;
+    const takram::Vec2d center(advance / 2.0, 340.0);
+    for (auto& command : shape) {
+      command.point() = center + (command.point() - center) * scale;
+      command.control1() = center + (command.control1() - center) * scale;
+      command.control2() = center + (command.control2() - center) * scale;
+    }
+    shape = stroker.stroke(shape);
     shape = stroker.simplify(shape);
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();
@@ -69,8 +76,9 @@ int main(int argc, char **argv) {
     token::GlyphOutline stroked(glyph, shape);
     glyphs.set(glyph.name, stroked.glyph());
   }
-  std::system(("FDK_EXE=\"/Users/sgss/bin/FDK/Tools/osx\";"
-               "PATH=${PATH}:\"/Users/sgss/bin/FDK/Tools/osx\";"
+  const std::string path([[NSBundle mainBundle].executablePath stringByDeletingLastPathComponent].UTF8String);
+  std::system(("FDK_EXE=\"" + path + "/FDK/Tools/osx\";"
+               "PATH=${PATH}:\"" + path + "/FDK/Tools/osx\";"
                "export PATH;"
                "export FDK_EXE;"
                "makeotf -f \"" + destination + "\"").c_str());

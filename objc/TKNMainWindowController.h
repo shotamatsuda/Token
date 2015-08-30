@@ -1,5 +1,5 @@
 //
-//  main.cc
+//  TKNMainWindowController.h
 //
 //  The MIT License
 //
@@ -24,12 +24,19 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "solas.h"
-#include "token/glyph.h"
+#import <AppKit/AppKit.h>
 
-int main(int argc, char **argv) {
-  solas::RunOptions options;
-  options.runner().set_backend(solas::Backend::OPENGL3 |
-                               solas::Backend::OPENGLES3);
-  return solas::run<App>(argc, argv, options);
-}
+#import "SLSNSViewController.h"
+#import "SLSRunner.h"
+
+@interface TKNMainWindowController : NSWindowController
+
+@property (nonatomic, strong, nonnull) SLSRunner *runner;
+@property (nonatomic, strong, nonnull) SLSNSViewController *viewController;
+
+@property (nonatomic, assign) double physicalAscent;
+@property (nonatomic, assign) double physicalStrokeWidth;
+
+- (void)generateFont;
+
+@end

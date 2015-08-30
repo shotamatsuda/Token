@@ -33,17 +33,17 @@
 
 #include "takram/graphics.h"
 #include "token/glyph_stroker.h"
-#include "token/ufo/glif/contour.h"
-#include "token/ufo/glif/glyph.h"
-#include "token/ufo/glif/point.h"
+#include "token/ufo/contour.h"
+#include "token/ufo/glyph.h"
+#include "token/ufo/point.h"
 
 namespace token {
 
 GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) : glyph_(glyph) {
-  if (!glyph_.outline.first || glyph_.outline.second.contours.empty()) {
+  if (!glyph_.outline.exists() || glyph_.outline->contours.empty()) {
     return;
   }
-  for (const auto& contour : glyph_.outline.second.contours) {
+  for (const auto& contour : glyph_.outline->contours) {
     if (!contour.points.empty()) {
       processContour(contour);
     }
@@ -54,12 +54,12 @@ GlyphOutline::GlyphOutline(const ufo::Glyph& glyph,
                            const takram::Shape2d& shape)
     : glyph_(glyph),
       shape_(shape) {
-  if (glyph_.outline.first) {
-    glyph_.outline.second.contours.clear();
+  if (glyph_.outline.exists()) {
+    glyph_.outline->contours.clear();
   }
+  glyph_.outline.emplace();
   for (const auto& path : shape.paths()) {
     if (!shape.empty()) {
-      glyph_.outline.first = true;
       processPath(path);
     }
   }
@@ -124,7 +124,7 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
         }
         offcurve1 = offcurve2 = end;
         break;
-      case ufo::glif::Point::Type::QCURVE:
+      case ufo::Point::Type::QCURVE:
         assert(false);  // Not supported
         break;
       default:
@@ -194,8 +194,8 @@ void GlyphOutline::processPath(const takram::Path2d& path) {
     points.push_front(back);
   }
   if (!points.empty()) {
-    glyph_.outline.second.contours.emplace_back();
-    auto& target = glyph_.outline.second.contours.back().points;
+    glyph_.outline->contours.emplace_back();
+    auto& target = glyph_.outline->contours.back().points;
     target.resize(points.size());
     std::copy(std::begin(points), std::end(points), std::begin(target));
   }

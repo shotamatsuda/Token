@@ -1,5 +1,5 @@
 //
-//  main.cc
+//  token/view.h
 //
 //  The MIT License
 //
@@ -24,12 +24,50 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "solas.h"
-#include "token/glyph.h"
+#pragma once
+#ifndef TOKEN_VIEW_H_
+#define TOKEN_VIEW_H_
 
-int main(int argc, char **argv) {
-  solas::RunOptions options;
-  options.runner().set_backend(solas::Backend::OPENGL3 |
-                               solas::Backend::OPENGLES3);
-  return solas::run<App>(argc, argv, options);
-}
+#include <list>
+
+#include "solas.h"
+#include "takram/graphics.h"
+#include "takram/nanovg.h"
+#include "token/glyph_outline.h"
+#include "token/glyph_stroker.h"
+#include "token/ufo.h"
+
+namespace token {
+
+class View : public solas::View {
+ public:
+  // Lifecycle
+  void setup() override;
+  void pre() override;
+  void post() override;
+  void update() override;
+  void draw() override;
+
+  // Events
+  void mouseDragged() override;
+  void mouseWheel(const solas::MouseEvent& event) override;
+
+ private:
+  void drawShape(const takram::Shape2d& shape);
+  void drawPath(const takram::Path2d& path);
+
+ private:
+  takram::nvg::Context context_;
+  token::ufo::Glyphs glyphs_;
+  token::GlyphStroker stroker_;
+  std::list<token::GlyphOutline> outlines_;
+  std::list<takram::Shape2d> shapes_;
+  takram::Vec2d translation_;
+  double scale_;
+  int units_per_em_;
+  bool needs_stroking_;
+};
+
+}  // namespace token
+
+#endif  // TOKEN_VIEW_H_

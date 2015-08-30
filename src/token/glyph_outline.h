@@ -35,8 +35,8 @@
 #include "takram/graphics.h"
 #include "takram/math.h"
 #include "token/glyph_stroker.h"
-#include "token/ufo/glif/contour.h"
-#include "token/ufo/glif/glyph.h"
+#include "token/ufo/contour.h"
+#include "token/ufo/glyph.h"
 
 namespace token {
 
