@@ -173,15 +173,15 @@ class Fontinfo final {
   // WOFF Data
   std::pair<bool, unsigned int> woff_major_version;
   std::pair<bool, unsigned int> woff_minor_version;
-  std::map<std::string, woff::MetadataUniqueID> woff_metadata_unique_id;
-  std::map<std::string, woff::MetadataVendor> woff_metadata_vendor;
-  std::map<std::string, woff::MetadataCredits> woff_metadata_credits;
-  std::map<std::string, woff::MetadataDescription> woff_metadata_description;
-  std::map<std::string, woff::MetadataLicense> woff_metadata_license;
-  std::map<std::string, woff::MetadataCopyright> woff_metadata_copyright;
-  std::map<std::string, woff::MetadataTrademark> woff_metadata_trademark;
-  std::map<std::string, woff::MetadataLicensee> woff_metadata_licensee;
-  std::vector<woff::MetadataExtension> woff_metadata_extensions;
+  std::map<std::string, woff::metadata::UniqueID> woff_metadata_unique_id;
+  std::map<std::string, woff::metadata::Vendor> woff_metadata_vendor;
+  std::map<std::string, woff::metadata::Credits> woff_metadata_credits;
+  std::map<std::string, woff::metadata::Description> woff_metadata_description;
+  std::map<std::string, woff::metadata::License> woff_metadata_license;
+  std::map<std::string, woff::metadata::Copyright> woff_metadata_copyright;
+  std::map<std::string, woff::metadata::Trademark> woff_metadata_trademark;
+  std::map<std::string, woff::metadata::Licensee> woff_metadata_licensee;
+  std::vector<woff::metadata::Extension> woff_metadata_extensions;
 
   // Guidelines
   std::vector<Guideline> guidelines;

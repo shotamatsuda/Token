@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_vendor.h
+//  token/ufo/woff/metadata/unique_id.h
 //
 //  The MIT License
 //
@@ -25,38 +25,49 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_VENDOR_H_
-#define TOKEN_UFO_WOFF_METADATA_VENDOR_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
+#define TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
 
-#include <string>
+#include <vector>
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataVendor final {
+class UniqueID final {
  public:
-  MetadataVendor();
+  UniqueID();
 
   // Copy semantics
-  MetadataVendor(const MetadataVendor&) = default;
-  MetadataVendor& operator=(const MetadataVendor&) = default;
+  UniqueID(const UniqueID&) = default;
+  UniqueID& operator=(const UniqueID&) = default;
 
   // Comparison
-  bool operator==(const MetadataVendor& other) const;
-  bool operator!=(const MetadataVendor& other) const;
+  bool operator==(const UniqueID& other) const;
+  bool operator!=(const UniqueID& other) const;
 
  public:
-  std::string name;
-  std::string url;
-  std::string dir;
-  std::string klass;
+  unsigned int range_max_ppem;
+  std::vector<unsigned int> range_gasp_behavior;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool UniqueID::operator==(const UniqueID& other) const {
+  return (range_max_ppem == other.range_max_ppem &&
+          range_gasp_behavior == other.range_gasp_behavior);
+}
+
+inline bool UniqueID::operator!=(const UniqueID& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_VENDOR_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_

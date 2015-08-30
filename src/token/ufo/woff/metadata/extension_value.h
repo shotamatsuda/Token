@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_copyright.h
+//  token/ufo/woff/metadata/extension_value.h
 //
 //  The MIT License
 //
@@ -25,37 +25,53 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_COPYRIGHT_H_
-#define TOKEN_UFO_WOFF_METADATA_COPYRIGHT_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_VALUE_H_
+#define TOKEN_UFO_WOFF_METADATA_EXTENSION_VALUE_H_
 
-#include <vector>
-
-#include "token/ufo/woff/metadata_text.h"
+#include <string>
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataCopyright final {
+class ExtensionValue final {
  public:
-  MetadataCopyright();
+  ExtensionValue();
 
   // Copy semantics
-  MetadataCopyright(const MetadataCopyright&) = default;
-  MetadataCopyright& operator=(const MetadataCopyright&) = default;
+  ExtensionValue(const ExtensionValue&) = default;
+  ExtensionValue& operator=(const ExtensionValue&) = default;
 
   // Comparison
-  bool operator==(const MetadataCopyright& other) const;
-  bool operator!=(const MetadataCopyright& other) const;
+  bool operator==(const ExtensionValue& other) const;
+  bool operator!=(const ExtensionValue& other) const;
 
  public:
-  std::vector<MetadataText> text;
+  std::string text;
+  std::string language;
+  std::string dir;
+  std::string klass;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool ExtensionValue::operator==(const ExtensionValue& other) const {
+  return (text == other.text &&
+          language == other.language &&
+          dir == other.dir &&
+          klass == other.klass);
+}
+
+inline bool ExtensionValue::operator!=(const ExtensionValue& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_COPYRIGHT_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_VALUE_H_

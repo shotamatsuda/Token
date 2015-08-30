@@ -266,20 +266,20 @@
 		933162DA1B92CB6A009FFC7C /* optional.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = optional.h; sourceTree = "<group>"; };
 		933162DB1B92D901009FFC7C /* gasp_range_record.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gasp_range_record.h; sourceTree = "<group>"; };
 		933162DD1B92D901009FFC7C /* name_record.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = name_record.h; sourceTree = "<group>"; };
-		933162ED1B92D9F2009FFC7C /* metadata_copyright.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_copyright.h; sourceTree = "<group>"; };
-		933162EE1B92D9F2009FFC7C /* metadata_credit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_credit.h; sourceTree = "<group>"; };
-		933162EF1B92D9F2009FFC7C /* metadata_credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_credits.h; sourceTree = "<group>"; };
-		933162F01B92D9F2009FFC7C /* metadata_description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_description.h; sourceTree = "<group>"; };
-		933162F11B92D9F2009FFC7C /* metadata_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_extension.h; sourceTree = "<group>"; };
-		933162F21B92D9F2009FFC7C /* metadata_extension_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_extension_item.h; sourceTree = "<group>"; };
-		933162F31B92D9F2009FFC7C /* metadata_extension_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_extension_name.h; sourceTree = "<group>"; };
-		933162F41B92D9F2009FFC7C /* metadata_extension_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_extension_value.h; sourceTree = "<group>"; };
-		933162F51B92D9F2009FFC7C /* metadata_license.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_license.h; sourceTree = "<group>"; };
-		933162F61B92D9F2009FFC7C /* metadata_licensee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_licensee.h; sourceTree = "<group>"; };
-		933162F71B92D9F2009FFC7C /* metadata_text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_text.h; sourceTree = "<group>"; };
-		933162F81B92D9F2009FFC7C /* metadata_trademark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_trademark.h; sourceTree = "<group>"; };
-		933162F91B92D9F2009FFC7C /* metadata_unique_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_unique_id.h; sourceTree = "<group>"; };
-		933162FA1B92D9F2009FFC7C /* metadata_vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_vendor.h; sourceTree = "<group>"; };
+		933162ED1B92D9F2009FFC7C /* copyright.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = copyright.h; path = src/token/ufo/woff/metadata/copyright.h; sourceTree = SOURCE_ROOT; };
+		933162EE1B92D9F2009FFC7C /* credit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = credit.h; path = src/token/ufo/woff/metadata/credit.h; sourceTree = SOURCE_ROOT; };
+		933162EF1B92D9F2009FFC7C /* credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = credits.h; path = src/token/ufo/woff/metadata/credits.h; sourceTree = SOURCE_ROOT; };
+		933162F01B92D9F2009FFC7C /* description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = description.h; path = src/token/ufo/woff/metadata/description.h; sourceTree = SOURCE_ROOT; };
+		933162F11B92D9F2009FFC7C /* extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extension.h; path = src/token/ufo/woff/metadata/extension.h; sourceTree = SOURCE_ROOT; };
+		933162F21B92D9F2009FFC7C /* extension_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extension_item.h; path = src/token/ufo/woff/metadata/extension_item.h; sourceTree = SOURCE_ROOT; };
+		933162F31B92D9F2009FFC7C /* extension_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extension_name.h; path = src/token/ufo/woff/metadata/extension_name.h; sourceTree = SOURCE_ROOT; };
+		933162F41B92D9F2009FFC7C /* extension_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extension_value.h; path = src/token/ufo/woff/metadata/extension_value.h; sourceTree = SOURCE_ROOT; };
+		933162F51B92D9F2009FFC7C /* license.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = license.h; path = src/token/ufo/woff/metadata/license.h; sourceTree = SOURCE_ROOT; };
+		933162F61B92D9F2009FFC7C /* licensee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = licensee.h; path = src/token/ufo/woff/metadata/licensee.h; sourceTree = SOURCE_ROOT; };
+		933162F71B92D9F2009FFC7C /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = text.h; path = src/token/ufo/woff/metadata/text.h; sourceTree = SOURCE_ROOT; };
+		933162F81B92D9F2009FFC7C /* trademark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trademark.h; path = src/token/ufo/woff/metadata/trademark.h; sourceTree = SOURCE_ROOT; };
+		933162F91B92D9F2009FFC7C /* unique_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unique_id.h; path = src/token/ufo/woff/metadata/unique_id.h; sourceTree = SOURCE_ROOT; };
+		933162FA1B92D9F2009FFC7C /* vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vendor.h; path = src/token/ufo/woff/metadata/vendor.h; sourceTree = SOURCE_ROOT; };
 		933162FB1B92DA60009FFC7C /* woff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = woff.h; sourceTree = "<group>"; };
 		9337DC1A1B8C06300070814C /* glif */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glif; sourceTree = BUILT_PRODUCTS_DIR; };
 		9337DC211B8C06720070814C /* glif.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = glif.mm; path = src/glif.mm; sourceTree = SOURCE_ROOT; };
@@ -373,20 +373,7 @@
 		933162EC1B92D9F2009FFC7C /* woff */ = {
 			isa = PBXGroup;
 			children = (
-				933162F91B92D9F2009FFC7C /* metadata_unique_id.h */,
-				933162FA1B92D9F2009FFC7C /* metadata_vendor.h */,
-				933162EE1B92D9F2009FFC7C /* metadata_credit.h */,
-				933162EF1B92D9F2009FFC7C /* metadata_credits.h */,
-				933162F71B92D9F2009FFC7C /* metadata_text.h */,
-				933162F01B92D9F2009FFC7C /* metadata_description.h */,
-				933162F51B92D9F2009FFC7C /* metadata_license.h */,
-				933162ED1B92D9F2009FFC7C /* metadata_copyright.h */,
-				933162F81B92D9F2009FFC7C /* metadata_trademark.h */,
-				933162F61B92D9F2009FFC7C /* metadata_licensee.h */,
-				933162F31B92D9F2009FFC7C /* metadata_extension_name.h */,
-				933162F41B92D9F2009FFC7C /* metadata_extension_value.h */,
-				933162F21B92D9F2009FFC7C /* metadata_extension_item.h */,
-				933162F11B92D9F2009FFC7C /* metadata_extension.h */,
+				93C18F381B92E1010044AAEB /* metadata */,
 			);
 			path = woff;
 			sourceTree = "<group>";
@@ -474,6 +461,27 @@
 				93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */,
 			);
 			path = objc;
+			sourceTree = "<group>";
+		};
+		93C18F381B92E1010044AAEB /* metadata */ = {
+			isa = PBXGroup;
+			children = (
+				933162F91B92D9F2009FFC7C /* unique_id.h */,
+				933162FA1B92D9F2009FFC7C /* vendor.h */,
+				933162EE1B92D9F2009FFC7C /* credit.h */,
+				933162EF1B92D9F2009FFC7C /* credits.h */,
+				933162F71B92D9F2009FFC7C /* text.h */,
+				933162F01B92D9F2009FFC7C /* description.h */,
+				933162F51B92D9F2009FFC7C /* license.h */,
+				933162ED1B92D9F2009FFC7C /* copyright.h */,
+				933162F81B92D9F2009FFC7C /* trademark.h */,
+				933162F61B92D9F2009FFC7C /* licensee.h */,
+				933162F31B92D9F2009FFC7C /* extension_name.h */,
+				933162F41B92D9F2009FFC7C /* extension_value.h */,
+				933162F21B92D9F2009FFC7C /* extension_item.h */,
+				933162F11B92D9F2009FFC7C /* extension.h */,
+			);
+			path = metadata;
 			sourceTree = "<group>";
 		};
 		93FEF9451AD97263009D0646 = {

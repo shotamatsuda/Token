@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_extension_item.h
+//  token/ufo/woff/metadata/licensee.h
 //
 //  The MIT License
 //
@@ -25,41 +25,49 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
-#define TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_LICENSEE_H_
+#define TOKEN_UFO_WOFF_METADATA_LICENSEE_H_
 
 #include <string>
-#include <vector>
-
-#include "token/ufo/woff/metadata_extension_name.h"
-#include "token/ufo/woff/metadata_extension_value.h"
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataExtensionItem final {
+class Licensee final {
  public:
-  MetadataExtensionItem();
+  Licensee();
 
   // Copy semantics
-  MetadataExtensionItem(const MetadataExtensionItem&) = default;
-  MetadataExtensionItem& operator=(const MetadataExtensionItem&) = default;
+  Licensee(const Licensee&) = default;
+  Licensee& operator=(const Licensee&) = default;
 
   // Comparison
-  bool operator==(const MetadataExtensionItem& other) const;
-  bool operator!=(const MetadataExtensionItem& other) const;
+  bool operator==(const Licensee& other) const;
+  bool operator!=(const Licensee& other) const;
 
  public:
-  std::string id;
-  std::vector<MetadataExtensionName> names;
-  std::vector<MetadataExtensionValue> values;
+  std::string name;
+  std::string dir;
+  std::string klass;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool Licensee::operator==(const Licensee& other) const {
+  return name == other.name && dir == other.dir && klass == other.klass;
+}
+
+inline bool Licensee::operator!=(const Licensee& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_LICENSEE_H_

@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_text.h
+//  token/ufo/woff/metadata/credit.h
 //
 //  The MIT License
 //
@@ -25,38 +25,53 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_TEXT_H_
-#define TOKEN_UFO_WOFF_METADATA_TEXT_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_CREDIT_H_
+#define TOKEN_UFO_WOFF_METADATA_CREDIT_H_
 
 #include <string>
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataText final {
+class Credit final {
  public:
-  MetadataText();
+  Credit();
 
   // Copy semantics
-  MetadataText(const MetadataText&) = default;
-  MetadataText& operator=(const MetadataText&) = default;
+  Credit(const Credit&) = default;
+  Credit& operator=(const Credit&) = default;
 
   // Comparison
-  bool operator==(const MetadataText& other) const;
-  bool operator!=(const MetadataText& other) const;
+  bool operator==(const Credit& other) const;
+  bool operator!=(const Credit& other) const;
 
  public:
-  std::string text;
-  std::string language;
+  std::string name;
+  std::string url;
   std::string dir;
   std::string klass;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool Credit::operator==(const Credit& other) const {
+  return (name == other.name &&
+          url == other.url &&
+          dir == other.dir &&
+          klass == other.klass);
+}
+
+inline bool Credit::operator!=(const Credit& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_TEXT_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_CREDIT_H_

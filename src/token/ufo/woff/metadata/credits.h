@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_unique_id.h
+//  token/ufo/woff/metadata/credits.h
 //
 //  The MIT License
 //
@@ -25,36 +25,49 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
-#define TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_CREDITS_H_
+#define TOKEN_UFO_WOFF_METADATA_CREDITS_H_
 
 #include <vector>
+
+#include "token/ufo/woff/metadata/credit.h"
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataUniqueID final {
+class Credits final {
  public:
-  MetadataUniqueID();
+  Credits();
 
   // Copy semantics
-  MetadataUniqueID(const MetadataUniqueID&) = default;
-  MetadataUniqueID& operator=(const MetadataUniqueID&) = default;
+  Credits(const Credits&) = default;
+  Credits& operator=(const Credits&) = default;
 
   // Comparison
-  bool operator==(const MetadataUniqueID& other) const;
-  bool operator!=(const MetadataUniqueID& other) const;
+  bool operator==(const Credits& other) const;
+  bool operator!=(const Credits& other) const;
 
  public:
-  unsigned int range_max_ppem;
-  std::vector<unsigned int> range_gasp_behavior;
+  std::vector<Credit> credits;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool Credits::operator==(const Credits& other) const {
+  return credits == other.credits;
+}
+
+inline bool Credits::operator!=(const Credits& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_CREDITS_H_

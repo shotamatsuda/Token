@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_trademark.h
+//  token/ufo/woff/metadata/vendor.h
 //
 //  The MIT License
 //
@@ -25,37 +25,53 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_TRADEMARK_H_
-#define TOKEN_UFO_WOFF_METADATA_TRADEMARK_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_VENDOR_H_
+#define TOKEN_UFO_WOFF_METADATA_VENDOR_H_
 
-#include <vector>
-
-#include "token/ufo/woff/metadata_text.h"
+#include <string>
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataTrademark final {
+class Vendor final {
  public:
-  MetadataTrademark();
+  Vendor();
 
   // Copy semantics
-  MetadataTrademark(const MetadataTrademark&) = default;
-  MetadataTrademark& operator=(const MetadataTrademark&) = default;
+  Vendor(const Vendor&) = default;
+  Vendor& operator=(const Vendor&) = default;
 
   // Comparison
-  bool operator==(const MetadataTrademark& other) const;
-  bool operator!=(const MetadataTrademark& other) const;
+  bool operator==(const Vendor& other) const;
+  bool operator!=(const Vendor& other) const;
 
  public:
-  std::vector<MetadataText> text;
+  std::string name;
+  std::string url;
+  std::string dir;
+  std::string klass;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool Vendor::operator==(const Vendor& other) const {
+  return (name == other.name &&
+          url == other.url &&
+          dir == other.dir &&
+          klass == other.klass);
+}
+
+inline bool Vendor::operator!=(const Vendor& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_TRADEMARK_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_VENDOR_H_

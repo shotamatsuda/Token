@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_credits.h
+//  token/ufo/woff/metadata/license.h
 //
 //  The MIT License
 //
@@ -25,37 +25,52 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_CREDITS_H_
-#define TOKEN_UFO_WOFF_METADATA_CREDITS_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_LICENSE_H_
+#define TOKEN_UFO_WOFF_METADATA_LICENSE_H_
 
+#include <string>
 #include <vector>
 
-#include "token/ufo/woff/metadata_credit.h"
+#include "token/ufo/woff/metadata/text.h"
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataCredits final {
+class License final {
  public:
-  MetadataCredits();
+  License();
 
   // Copy semantics
-  MetadataCredits(const MetadataCredits&) = default;
-  MetadataCredits& operator=(const MetadataCredits&) = default;
+  License(const License&) = default;
+  License& operator=(const License&) = default;
 
   // Comparison
-  bool operator==(const MetadataCredits& other) const;
-  bool operator!=(const MetadataCredits& other) const;
+  bool operator==(const License& other) const;
+  bool operator!=(const License& other) const;
 
  public:
-  std::vector<MetadataCredit> credits;
+  std::string url;
+  std::string id;
+  std::vector<Text> text;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool License::operator==(const License& other) const {
+  return url == other.url && id == other.id && text == other.text;
+}
+
+inline bool License::operator!=(const License& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_CREDITS_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_LICENSE_H_

@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_extension_name.h
+//  token/ufo/woff/metadata/extension_item.h
 //
 //  The MIT License
 //
@@ -25,38 +25,53 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
-#define TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
+#define TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
 
 #include <string>
+#include <vector>
+
+#include "token/ufo/woff/metadata/extension_name.h"
+#include "token/ufo/woff/metadata/extension_value.h"
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataExtensionName final {
+class ExtensionItem final {
  public:
-  MetadataExtensionName();
+  ExtensionItem();
 
   // Copy semantics
-  MetadataExtensionName(const MetadataExtensionName&) = default;
-  MetadataExtensionName& operator=(const MetadataExtensionName&) = default;
+  ExtensionItem(const ExtensionItem&) = default;
+  ExtensionItem& operator=(const ExtensionItem&) = default;
 
   // Comparison
-  bool operator==(const MetadataExtensionName& other) const;
-  bool operator!=(const MetadataExtensionName& other) const;
+  bool operator==(const ExtensionItem& other) const;
+  bool operator!=(const ExtensionItem& other) const;
 
  public:
-  std::string text;
-  std::string language;
-  std::string dir;
-  std::string klass;
+  std::string id;
+  std::vector<ExtensionName> names;
+  std::vector<ExtensionValue> values;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool ExtensionItem::operator==(const ExtensionItem& other) const {
+  return id == other.id && names == other.names && values == other.values;
+}
+
+inline bool ExtensionItem::operator!=(const ExtensionItem& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_

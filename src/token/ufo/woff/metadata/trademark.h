@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata_extension.h
+//  token/ufo/woff/metadata/trademark.h
 //
 //  The MIT License
 //
@@ -25,41 +25,49 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_H_
-#define TOKEN_UFO_WOFF_METADATA_EXTENSION_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_TRADEMARK_H_
+#define TOKEN_UFO_WOFF_METADATA_TRADEMARK_H_
 
-#include <string>
 #include <vector>
 
-#include "token/ufo/woff/metadata_extension_item.h"
-#include "token/ufo/woff/metadata_extension_name.h"
+#include "token/ufo/woff/metadata/text.h"
 
 namespace token {
 namespace ufo {
 namespace woff {
+namespace metadata {
 
-class MetadataExtension final {
+class Trademark final {
  public:
-  MetadataExtension();
+  Trademark();
 
   // Copy semantics
-  MetadataExtension(const MetadataExtension&) = default;
-  MetadataExtension& operator=(const MetadataExtension&) = default;
+  Trademark(const Trademark&) = default;
+  Trademark& operator=(const Trademark&) = default;
 
   // Comparison
-  bool operator==(const MetadataExtension& other) const;
-  bool operator!=(const MetadataExtension& other) const;
+  bool operator==(const Trademark& other) const;
+  bool operator!=(const Trademark& other) const;
 
  public:
-  std::string id;
-  std::vector<MetadataExtensionName> names;
-  std::vector<MetadataExtensionItem> items;
+  std::vector<Text> text;
 };
 
 #pragma mark -
 
+#pragma mark Comparison
+
+inline bool Trademark::operator==(const Trademark& other) const {
+  return text == other.text;
+}
+
+inline bool Trademark::operator!=(const Trademark& other) const {
+  return operator==(other);
+}
+
+}  // namespace metadata
 }  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_H_
+#endif  // TOKEN_UFO_WOFF_METADATA_TRADEMARK_H_
