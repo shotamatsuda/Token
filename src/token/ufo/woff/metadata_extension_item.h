@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  token/ufo/woff/metadata_extension_item.h
 //
 //  The MIT License
 //
@@ -25,24 +25,41 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
+#define TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_
 
-#include "token/ufo/advance.h"
-#include "token/ufo/anchor.h"
-#include "token/ufo/component.h"
-#include "token/ufo/contour.h"
-#include "token/ufo/fontinfo.h"
-#include "token/ufo/glyph.h"
-#include "token/ufo/glyph_iterator.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/guideline.h"
-#include "token/ufo/image.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/outline.h"
-#include "token/ufo/point.h"
-#include "token/ufo/unicode.h"
-#include "token/ufo/woff.h"
-#include "token/ufo/xml.h"
+#include <string>
+#include <vector>
 
-#endif  // TOKEN_UFO_H_
+#include "token/ufo/woff/metadata_extension_name.h"
+#include "token/ufo/woff/metadata_extension_value.h"
+
+namespace token {
+namespace ufo {
+namespace woff {
+
+class MetadataExtensionItem final {
+ public:
+  MetadataExtensionItem();
+
+  // Copy semantics
+  MetadataExtensionItem(const MetadataExtensionItem&) = default;
+  MetadataExtensionItem& operator=(const MetadataExtensionItem&) = default;
+
+  // Comparison
+  bool operator==(const MetadataExtensionItem& other) const;
+  bool operator!=(const MetadataExtensionItem& other) const;
+
+ public:
+  std::string id;
+  std::vector<MetadataExtensionName> names;
+  std::vector<MetadataExtensionValue> values;
+};
+
+#pragma mark -
+
+}  // namespace woff
+}  // namespace ufo
+}  // namespace token
+
+#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_ITEM_H_

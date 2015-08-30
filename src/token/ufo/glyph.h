@@ -38,6 +38,7 @@
 #include "token/ufo/anchor.h"
 #include "token/ufo/guideline.h"
 #include "token/ufo/image.h"
+#include "token/ufo/optional.h"
 #include "token/ufo/outline.h"
 #include "token/ufo/unicode.h"
 #include "token/ufo/xml.h"
@@ -64,12 +65,12 @@ class Glyph final {
 
  public:
   std::string name;
-  std::pair<bool, Advance> advance;
+  Optional<Advance> advance;
   std::vector<Unicode> unicodes;
-  std::pair<bool, Image> image;
+  Optional<Image> image;
   std::vector<Guideline> guidelines;
   std::vector<Anchor> anchors;
-  std::pair<bool, Outline> outline;
+  Optional<Outline> outline;
 };
 
 #pragma mark -

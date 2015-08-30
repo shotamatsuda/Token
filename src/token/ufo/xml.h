@@ -31,10 +31,11 @@
 #include <cassert>
 #include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
+
+#include "token/ufo/optional.h"
 
 namespace token {
 namespace ufo {
@@ -68,14 +69,11 @@ inline void read_child(const boost::property_tree::ptree& tree,
 template <class T>
 inline void read_child(const boost::property_tree::ptree& tree,
                        const std::string& name,
-                       std::pair<bool, T> *output) {
+                       Optional<T> *output) {
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
-    output->first = true;
-    output->second = T::read(itr->second);
-  } else {
-    output->first = false;
+    *output = T::read(itr->second);
   }
 }
 
@@ -118,16 +116,16 @@ inline void write_child(boost::property_tree::ptree *tree,
                         const std::string& name,
                         const T& value) {
   assert(tree);
-  tree->add_child(name, value->write());
+  tree->add_child(name, value.write());
 }
 
 template <class T>
 inline void write_child(boost::property_tree::ptree *tree,
                         const std::string& name,
-                        const std::pair<bool, T>& value) {
+                        const Optional<T>& value) {
   assert(tree);
-  if (value.first) {
-    tree->add_child(name, value.second.write());
+  if (value.exists()) {
+    tree->add_child(name, value->write());
   }
 }
 

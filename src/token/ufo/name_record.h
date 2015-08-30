@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  token/ufo/name_record.h
 //
 //  The MIT License
 //
@@ -25,24 +25,37 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#ifndef TOKEN_UFO_NAME_RECORD_H_
+#define TOKEN_UFO_NAME_RECORD_H_
 
-#include "token/ufo/advance.h"
-#include "token/ufo/anchor.h"
-#include "token/ufo/component.h"
-#include "token/ufo/contour.h"
-#include "token/ufo/fontinfo.h"
-#include "token/ufo/glyph.h"
-#include "token/ufo/glyph_iterator.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/guideline.h"
-#include "token/ufo/image.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/outline.h"
-#include "token/ufo/point.h"
-#include "token/ufo/unicode.h"
-#include "token/ufo/woff.h"
-#include "token/ufo/xml.h"
+#include <string>
 
-#endif  // TOKEN_UFO_H_
+namespace token {
+namespace ufo {
+
+class NameRecord final {
+ public:
+  NameRecord();
+
+  // Copy semantics
+  NameRecord(const NameRecord& other) = default;
+  NameRecord& operator=(const NameRecord& other) = default;
+
+  // Comparison
+  bool operator==(const NameRecord& other) const;
+  bool operator!=(const NameRecord& other) const;
+
+ public:
+  unsigned int name_id;
+  unsigned int platform_id;
+  unsigned int encoding_id;
+  unsigned int language_id;
+  std::string string;
+};
+
+#pragma mark -
+
+}  // namespace ufo
+}  // namespace token
+
+#endif  // TOKEN_UFO_NAME_RECORD_H_

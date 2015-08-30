@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  token/ufo/gasp_range_record.h
 //
 //  The MIT License
 //
@@ -25,24 +25,34 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#ifndef TOKEN_UFO_GASP_RANGE_RECORD_H_
+#define TOKEN_UFO_GASP_RANGE_RECORD_H_
 
-#include "token/ufo/advance.h"
-#include "token/ufo/anchor.h"
-#include "token/ufo/component.h"
-#include "token/ufo/contour.h"
-#include "token/ufo/fontinfo.h"
-#include "token/ufo/glyph.h"
-#include "token/ufo/glyph_iterator.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/guideline.h"
-#include "token/ufo/image.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/outline.h"
-#include "token/ufo/point.h"
-#include "token/ufo/unicode.h"
-#include "token/ufo/woff.h"
-#include "token/ufo/xml.h"
+#include <vector>
 
-#endif  // TOKEN_UFO_H_
+namespace token {
+namespace ufo {
+
+class GASPRangeRecord final {
+ public:
+  GASPRangeRecord();
+
+  // Copy semantics
+  GASPRangeRecord(const GASPRangeRecord& other) = default;
+  GASPRangeRecord& operator=(const GASPRangeRecord& other) = default;
+
+  // Comparison
+  bool operator==(const GASPRangeRecord& other) const;
+  bool operator!=(const GASPRangeRecord& other) const;
+
+ public:
+  unsigned int range_max_ppem;
+  std::vector<unsigned int> range_gasp_behavior;
+};
+
+#pragma mark -
+
+}  // namespace ufo
+}  // namespace token
+
+#endif  // TOKEN_UFO_GASP_RANGE_RECORD_H_

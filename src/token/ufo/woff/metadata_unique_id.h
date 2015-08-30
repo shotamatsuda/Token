@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  token/ufo/woff/metadata_unique_id.h
 //
 //  The MIT License
 //
@@ -25,24 +25,36 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
+#define TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
 
-#include "token/ufo/advance.h"
-#include "token/ufo/anchor.h"
-#include "token/ufo/component.h"
-#include "token/ufo/contour.h"
-#include "token/ufo/fontinfo.h"
-#include "token/ufo/glyph.h"
-#include "token/ufo/glyph_iterator.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/guideline.h"
-#include "token/ufo/image.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/outline.h"
-#include "token/ufo/point.h"
-#include "token/ufo/unicode.h"
-#include "token/ufo/woff.h"
-#include "token/ufo/xml.h"
+#include <vector>
 
-#endif  // TOKEN_UFO_H_
+namespace token {
+namespace ufo {
+namespace woff {
+
+class MetadataUniqueID final {
+ public:
+  MetadataUniqueID();
+
+  // Copy semantics
+  MetadataUniqueID(const MetadataUniqueID&) = default;
+  MetadataUniqueID& operator=(const MetadataUniqueID&) = default;
+
+  // Comparison
+  bool operator==(const MetadataUniqueID& other) const;
+  bool operator!=(const MetadataUniqueID& other) const;
+
+ public:
+  unsigned int range_max_ppem;
+  std::vector<unsigned int> range_gasp_behavior;
+};
+
+#pragma mark -
+
+}  // namespace woff
+}  // namespace ufo
+}  // namespace token
+
+#endif  // TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_

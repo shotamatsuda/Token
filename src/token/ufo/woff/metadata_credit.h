@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  token/ufo/woff/metadata_credit.h
 //
 //  The MIT License
 //
@@ -25,24 +25,38 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#ifndef TOKEN_UFO_WOFF_METADATA_CREDIT_H_
+#define TOKEN_UFO_WOFF_METADATA_CREDIT_H_
 
-#include "token/ufo/advance.h"
-#include "token/ufo/anchor.h"
-#include "token/ufo/component.h"
-#include "token/ufo/contour.h"
-#include "token/ufo/fontinfo.h"
-#include "token/ufo/glyph.h"
-#include "token/ufo/glyph_iterator.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/guideline.h"
-#include "token/ufo/image.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/outline.h"
-#include "token/ufo/point.h"
-#include "token/ufo/unicode.h"
-#include "token/ufo/woff.h"
-#include "token/ufo/xml.h"
+#include <string>
 
-#endif  // TOKEN_UFO_H_
+namespace token {
+namespace ufo {
+namespace woff {
+
+class MetadataCredit final {
+ public:
+  MetadataCredit();
+
+  // Copy semantics
+  MetadataCredit(const MetadataCredit&) = default;
+  MetadataCredit& operator=(const MetadataCredit&) = default;
+
+  // Comparison
+  bool operator==(const MetadataCredit& other) const;
+  bool operator!=(const MetadataCredit& other) const;
+
+ public:
+  std::string name;
+  std::string url;
+  std::string dir;
+  std::string klass;
+};
+
+#pragma mark -
+
+}  // namespace woff
+}  // namespace ufo
+}  // namespace token
+
+#endif  // TOKEN_UFO_WOFF_METADATA_CREDIT_H_

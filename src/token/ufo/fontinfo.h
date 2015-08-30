@@ -33,114 +33,15 @@
 #include <utility>
 #include <vector>
 
+#include "token/ufo/gasp_range_record.h"
+#include "token/ufo/guideline.h"
+#include "token/ufo/name_record.h"
+#include "token/ufo/woff.h"
+
 namespace token {
 namespace ufo {
 
 class Fontinfo final {
- public:
-  struct GASPRangeRecord {
-    unsigned int range_max_ppem;
-    std::vector<unsigned int> range_gasp_behavior;
-  };
-
-  struct NameRecord {
-    unsigned int name_id;
-    unsigned int platform_id;
-    unsigned int encoding_id;
-    unsigned int language_id;
-    std::string string;
-  };
-
-  struct WOFFMetadataUniqueID {
-    std::string id;
-  };
-
-  struct WOFFMetadataVendor {
-    std::string name;
-    std::string url;
-    std::string dir;
-    std::string klass;
-  };
-
-  struct WOFFMetadataCredit {
-    std::string name;
-    std::string url;
-    std::string role;
-    std::string dir;
-    std::string klass;
-  };
-
-  struct WOFFMetadataCredits {
-    std::vector<WOFFMetadataCredit> credits;
-  };
-
-  struct WOFFMetadataText {
-    std::string text;
-    std::string language;
-    std::string dir;
-    std::string klass;
-  };
-
-  struct WOFFMetadataDescription {
-    std::string url;
-    std::vector<WOFFMetadataText> text;
-  };
-
-  struct WOFFMetadataLicense {
-    std::string url;
-    std::string id;
-    std::vector<WOFFMetadataText> text;
-  };
-
-  struct WOFFMetadataCopyright {
-    std::vector<WOFFMetadataText> text;
-  };
-
-  struct WOFFMetadataTrademark {
-    std::vector<WOFFMetadataText> text;
-  };
-
-  struct WOFFMetadataLicensee {
-    std::string name;
-    std::string dir;
-    std::string klass;
-  };
-
-  struct WOFFMetadataExtensionName {
-    std::string text;
-    std::string language;
-    std::string dir;
-    std::string klass;
-  };
-
-  struct WOFFMetadataExtensionValue {
-    std::string text;
-    std::string language;
-    std::string dir;
-    std::string klass;
-  };
-
-  struct WOFFMetadataExtensionItem {
-    std::string id;
-    std::vector<WOFFMetadataExtensionName> names;
-    std::vector<WOFFMetadataExtensionValue> values;
-  };
-
-  struct WOFFMetadataExtension {
-    std::string id;
-    std::vector<WOFFMetadataExtensionName> names;
-    std::vector<WOFFMetadataExtensionItem> items;
-  };
-
-  struct Guideline {
-    double x;
-    double y;
-    double angle;
-    std::string name;
-    std::string color;
-    std::string identifier;
-  };
-
  public:
   Fontinfo() = default;
 
@@ -272,15 +173,15 @@ class Fontinfo final {
   // WOFF Data
   std::pair<bool, unsigned int> woff_major_version;
   std::pair<bool, unsigned int> woff_minor_version;
-  std::map<std::string, WOFFMetadataUniqueID> woff_metadata_unique_id;
-  std::map<std::string, WOFFMetadataVendor> woff_metadata_vendor;
-  std::map<std::string, WOFFMetadataCredits> woff_metadata_credits;
-  std::map<std::string, WOFFMetadataDescription> woff_metadata_description;
-  std::map<std::string, WOFFMetadataLicense> woff_metadata_license;
-  std::map<std::string, WOFFMetadataCopyright> woff_metadata_copyright;
-  std::map<std::string, WOFFMetadataTrademark> woff_metadata_trademark;
-  std::map<std::string, WOFFMetadataLicensee> woff_metadata_licensee;
-  std::vector<WOFFMetadataExtension> woff_metadata_extensions;
+  std::map<std::string, woff::MetadataUniqueID> woff_metadata_unique_id;
+  std::map<std::string, woff::MetadataVendor> woff_metadata_vendor;
+  std::map<std::string, woff::MetadataCredits> woff_metadata_credits;
+  std::map<std::string, woff::MetadataDescription> woff_metadata_description;
+  std::map<std::string, woff::MetadataLicense> woff_metadata_license;
+  std::map<std::string, woff::MetadataCopyright> woff_metadata_copyright;
+  std::map<std::string, woff::MetadataTrademark> woff_metadata_trademark;
+  std::map<std::string, woff::MetadataLicensee> woff_metadata_licensee;
+  std::vector<woff::MetadataExtension> woff_metadata_extensions;
 
   // Guidelines
   std::vector<Guideline> guidelines;
