@@ -36,6 +36,7 @@ extern "C" {
 #include <iterator>
 #include <fstream>
 #include <string>
+#include <utility>
 
 #include <boost/filesystem/path.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -46,30 +47,21 @@ extern "C" {
 namespace token {
 namespace ufo {
 
-Glyphs::~Glyphs() {
-  if (contents_) {
-    plist_free(contents_);
-  }
-  if (layerinfo_) {
-    plist_free(layerinfo_);
-  }
-}
-
-plist_t Glyphs::openPropertyList(const std::string& file) const {
+PropertyList Glyphs::openPropertyList(const std::string& file) const {
   const auto path = boost::filesystem::path(path_) / "glyphs" / file;
   std::ifstream stream(path.string());
   if (!stream.good()) {
-    return nullptr;
+    return PropertyList();
   }
   const std::istreambuf_iterator<char> first(stream);
   const std::string contents(first, std::istreambuf_iterator<char>());
   plist_t plist{};
   plist_from_xml(contents.c_str(), contents.size(), &plist);
   if (!plist) {
-    return nullptr;
+    return PropertyList();
   }
   assert(plist_get_node_type(plist) == PLIST_DICT);
-  return plist;
+  return PropertyList(plist);
 }
 
 #pragma mark Glyphs
@@ -112,7 +104,7 @@ void Glyphs::set(const std::string& name, const Glyph& glyph) {
     return;  // Setting a new glyph is not supported
   }
   namespace ptree = boost::property_tree;
-  auto tree = glyph.write();
+  auto tree = glyph.ptree();
   ptree::xml_writer_settings<std::string> settings(' ', 2);
   const auto path = boost::filesystem::path(path_) / "glyphs" / file_name;
   ptree::xml_parser::write_xml(path.string(), tree, std::locale(), settings);

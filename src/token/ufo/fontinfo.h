@@ -36,6 +36,7 @@
 #include "token/ufo/guideline.h"
 #include "token/ufo/name_record.h"
 #include "token/ufo/optional.h"
+#include "token/ufo/property_list.h"
 #include "token/ufo/woff.h"
 
 namespace token {
@@ -45,15 +46,30 @@ class Fontinfo final {
  public:
   Fontinfo();
   explicit Fontinfo(const std::string& path);
-  ~Fontinfo();
 
   // Disallow copy semantics
   Fontinfo(const Fontinfo&) = delete;
   Fontinfo& operator=(const Fontinfo&) = delete;
 
   // Move semantics
-  Fontinfo(Fontinfo&& other);
-  Fontinfo& operator=(Fontinfo&& other);
+  Fontinfo(Fontinfo&&) = default;
+  Fontinfo& operator=(Fontinfo&&) = default;
+
+ private:
+  void readGenericIdentificationInformation();
+  void readGenericLegalInformation();
+  void readGenericDimensionInformation();
+  void readGenericMiscellaneousInformation();
+  void readOpenTypeGASPTableFields();
+  void readOpenTypeHEADTableFields();
+  void readOpenTypeHHEATableFields();
+  void readOpenTypeNameTableFields();
+  void readOpenTypeOS2TableFields();
+  void readOpenTypeVHEATableFields();
+  void readPostScriptSpecificData();
+  void readMacintoshFONDResourceData();
+  void readWOFFData();
+  void readGuidelines();
 
  public:
   // Generic Identification Information
@@ -112,7 +128,7 @@ class Fontinfo final {
   std::string open_type_name_sample_text;
   std::string open_type_name_wws_family_name;
   std::string open_type_name_wws_subfamily_name;
-  Optional<std::vector<NameRecord>> open_type_name_records;
+  std::vector<NameRecord> open_type_name_records;
 
   // OpenType OS/2 Table Fields
   Optional<int> open_type_os2_width_class;
@@ -179,31 +195,30 @@ class Fontinfo final {
   // WOFF Data
   Optional<unsigned int> woff_major_version;
   Optional<unsigned int> woff_minor_version;
-  std::map<std::string, woff::metadata::UniqueID> woff_metadata_unique_id;
-  std::map<std::string, woff::metadata::Vendor> woff_metadata_vendor;
-  std::map<std::string, woff::metadata::Credits> woff_metadata_credits;
-  std::map<std::string, woff::metadata::Description> woff_metadata_description;
-  std::map<std::string, woff::metadata::License> woff_metadata_license;
-  std::map<std::string, woff::metadata::Copyright> woff_metadata_copyright;
-  std::map<std::string, woff::metadata::Trademark> woff_metadata_trademark;
-  std::map<std::string, woff::metadata::Licensee> woff_metadata_licensee;
+  Optional<woff::metadata::UniqueID> woff_metadata_unique_id;
+  Optional<woff::metadata::Vendor> woff_metadata_vendor;
+  Optional<woff::metadata::Credits> woff_metadata_credits;
+  Optional<woff::metadata::Description> woff_metadata_description;
+  Optional<woff::metadata::License> woff_metadata_license;
+  Optional<woff::metadata::Copyright> woff_metadata_copyright;
+  Optional<woff::metadata::Trademark> woff_metadata_trademark;
+  Optional<woff::metadata::Licensee> woff_metadata_licensee;
   std::vector<woff::metadata::Extension> woff_metadata_extensions;
 
   // Guidelines
   std::vector<Guideline> guidelines;
 
  private:
+  PropertyList openPropertyList(const std::string& file) const;
+
+ private:
   std::string path_;
-  void *fontinfo_;
+  PropertyList fontinfo_;
 };
 
 #pragma mark -
 
 inline Fontinfo::Fontinfo() : fontinfo_() {}
-
-inline Fontinfo::Fontinfo(const std::string& path)
-    : path_(path),
-      fontinfo_() {}
 
 }  // namespace ufo
 }  // namespace token

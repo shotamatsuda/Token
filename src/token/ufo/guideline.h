@@ -33,6 +33,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
+#include "token/ufo/property_list.h"
 #include "token/ufo/xml.h"
 
 namespace token {
@@ -58,7 +59,9 @@ class Guideline final {
 
   // Property tree
   static Guideline read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  static Guideline read(const PropertyList& plist);
+  boost::property_tree::ptree ptree() const;
+  PropertyList plist() const;
 
  public:
   double x;
@@ -112,7 +115,7 @@ inline Guideline Guideline::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Guideline::write() const {
+inline boost::property_tree::ptree Guideline::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "x", x);
   xml::write_attr(&tree, "y", y);

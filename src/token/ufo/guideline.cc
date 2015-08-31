@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata/extension_name.h
+//  token/ufo/guideline.cc
 //
 //  The MIT License
 //
@@ -24,60 +24,39 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
-#define TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
+#include "token/ufo/guideline.h"
 
-#include <string>
+extern "C" {
 
+#include <plist/plist.h>
+
+}  // extern "C"
+
+#include <utility>
+
+#include "token/ufo/plist.h"
 #include "token/ufo/property_list.h"
 
 namespace token {
 namespace ufo {
-namespace woff {
-namespace metadata {
 
-class ExtensionName final {
- public:
-  ExtensionName() = default;
+#pragma mark Property list
 
-  // Copy semantics
-  ExtensionName(const ExtensionName&) = default;
-  ExtensionName& operator=(const ExtensionName&) = default;
-
-  // Comparison
-  bool operator==(const ExtensionName& other) const;
-  bool operator!=(const ExtensionName& other) const;
-
-  // Property list
-  static ExtensionName read(const PropertyList& plist);
-  PropertyList plist() const;
-
- public:
-  std::string text;
-  std::string language;
-  std::string dir;
-  std::string klass;
-};
-
-#pragma mark -
-
-#pragma mark Comparison
-
-inline bool ExtensionName::operator==(const ExtensionName& other) const {
-  return (text == other.text &&
-          language == other.language &&
-          dir == other.dir &&
-          klass == other.klass);
+Guideline Guideline::read(const PropertyList& plist) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  Guideline result;
+  plist::read_number(plist, "x", &result.x);
+  plist::read_number(plist, "y", &result.y);
+  plist::read_number(plist, "angle", &result.angle);
+  plist::read_string(plist, "name", &result.name);
+  plist::read_string(plist, "color", &result.color);
+  plist::read_string(plist, "identifier", &result.identifier);
+  return std::move(result);
 }
 
-inline bool ExtensionName::operator!=(const ExtensionName& other) const {
-  return operator==(other);
+PropertyList Guideline::plist() const {
+  return PropertyList();
 }
 
-}  // namespace metadata
-}  // namespace woff
 }  // namespace ufo
 }  // namespace token
-
-#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_

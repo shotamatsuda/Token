@@ -61,7 +61,7 @@ class Glyph final {
 
   // Property tree
   static Glyph read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   std::string name;
@@ -108,7 +108,7 @@ inline Glyph Glyph::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Glyph::write() const {
+inline boost::property_tree::ptree Glyph::ptree() const {
   boost::property_tree::ptree glyph;
   xml::write_attr(&glyph, "name", name);
   xml::write_attr(&glyph, "format", 2);

@@ -35,6 +35,7 @@
 
 #include "token/ufo/glyph.h"
 #include "token/ufo/glyph_iterator.h"
+#include "token/ufo/property_list.h"
 
 namespace token {
 namespace ufo {
@@ -47,15 +48,14 @@ class Glyphs final {
  public:
   Glyphs();
   explicit Glyphs(const std::string& path);
-  ~Glyphs();
 
   // Disallow copy semantics
   Glyphs(const Glyphs&) = delete;
   Glyphs& operator=(const Glyphs&) = delete;
 
   // Move semantics
-  Glyphs(Glyphs&& other);
-  Glyphs& operator=(Glyphs&& other);
+  Glyphs(Glyphs&& other) = default;
+  Glyphs& operator=(Glyphs&& other) = default;
 
   // Glyphs
   const Glyph& get(const std::string& name) const;
@@ -71,14 +71,14 @@ class Glyphs final {
   ConstIterator end() const { return ConstIterator(); }
 
  private:
-  void * openPropertyList(const std::string& file) const;
+  PropertyList openPropertyList(const std::string& file) const;
   std::ifstream openGLIF(const std::string& name) const;
   Glyph readGlyph(std::ifstream *stream) const;
 
  private:
   std::string path_;
-  void *contents_;
-  void *layerinfo_;
+  PropertyList contents_;
+  PropertyList layerinfo_;
   mutable std::unordered_map<std::string, Glyph> glyphs_;
 
  private:
@@ -94,27 +94,6 @@ inline Glyphs::Glyphs(const std::string& path)
     : path_(path),
       contents_(openPropertyList("contents.plist")),
       layerinfo_(openPropertyList("layerinfo.plist")) {}
-
-#pragma mark Move semantics
-
-inline Glyphs::Glyphs(Glyphs&& other)
-    : path_(std::move(other.path_)),
-      contents_(other.contents_),
-      layerinfo_(other.layerinfo_),
-      glyphs_(std::move(other.glyphs_)) {
-  other.contents_ = nullptr;
-  other.layerinfo_ = nullptr;
-}
-
-inline Glyphs& Glyphs::operator=(Glyphs&& other) {
-  if (&other != this) {
-    std::swap(path_, other.path_);
-    std::swap(contents_, other.contents_);
-    std::swap(layerinfo_, other.layerinfo_);
-    std::swap(glyphs_, other.glyphs_);
-  }
-  return *this;
-}
 
 }  // namespace ufo
 }  // namespace token

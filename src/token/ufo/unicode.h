@@ -53,7 +53,7 @@ class Unicode final {
 
   // Property tree
   static Unicode read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   std::string hex;
@@ -81,7 +81,7 @@ inline Unicode Unicode::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Unicode::write() const {
+inline boost::property_tree::ptree Unicode::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "hex", hex);
   return std::move(tree);

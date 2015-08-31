@@ -30,6 +30,8 @@
 
 #include <string>
 
+#include "token/ufo/property_list.h"
+
 namespace token {
 namespace ufo {
 
@@ -44,6 +46,10 @@ class NameRecord final {
   // Comparison
   bool operator==(const NameRecord& other) const;
   bool operator!=(const NameRecord& other) const;
+
+  // Property list
+  static NameRecord read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   unsigned int name_id;

@@ -28,7 +28,9 @@
 #ifndef TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
 #define TOKEN_UFO_WOFF_METADATA_UNIQUE_ID_H_
 
-#include <vector>
+#include <string>
+
+#include "token/ufo/property_list.h"
 
 namespace token {
 namespace ufo {
@@ -37,7 +39,7 @@ namespace metadata {
 
 class UniqueID final {
  public:
-  UniqueID();
+  UniqueID() = default;
 
   // Copy semantics
   UniqueID(const UniqueID&) = default;
@@ -47,20 +49,20 @@ class UniqueID final {
   bool operator==(const UniqueID& other) const;
   bool operator!=(const UniqueID& other) const;
 
- public:
-  unsigned int range_max_ppem;
-  std::vector<unsigned int> range_gasp_behavior;
-};
+  // Property list
+  static UniqueID read(const PropertyList& plist);
+  PropertyList plist() const;
 
-inline UniqueID::UniqueID() : range_max_ppem() {}
+ public:
+  std::string identifier;
+};
 
 #pragma mark -
 
 #pragma mark Comparison
 
 inline bool UniqueID::operator==(const UniqueID& other) const {
-  return (range_max_ppem == other.range_max_ppem &&
-          range_gasp_behavior == other.range_gasp_behavior);
+  return identifier == other.identifier;
 }
 
 inline bool UniqueID::operator!=(const UniqueID& other) const {

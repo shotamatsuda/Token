@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931043E61B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
+		931043E71B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
+		931043E81B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
 		9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
 		933162D71B92C58F009FFC7C /* fontinfo.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* fontinfo.cc */; };
 		933162D81B92C58F009FFC7C /* fontinfo.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* fontinfo.cc */; };
@@ -37,6 +40,57 @@
 		93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */; };
 		93B7635F1B91B332009CA8B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
 		93B7638F1B91F744009CA8B0 /* view.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93B7638E1B91F744009CA8B0 /* view.cc */; };
+		93C18F491B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
+		93C18F4A1B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
+		93C18F4B1B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
+		93C18F921B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
+		93C18F931B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
+		93C18F941B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
+		93C18F951B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
+		93C18F961B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
+		93C18F971B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
+		93C18F981B930D440044AAEB /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
+		93C18F991B930D440044AAEB /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
+		93C18F9A1B930D440044AAEB /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
+		93C18F9B1B930D440044AAEB /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
+		93C18F9C1B930D440044AAEB /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
+		93C18F9D1B930D440044AAEB /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
+		93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
+		93C18F9F1B930D440044AAEB /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
+		93C18FA01B930D440044AAEB /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
+		93C18FA11B930D440044AAEB /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
+		93C18FA21B930D440044AAEB /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
+		93C18FA31B930D440044AAEB /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
+		93C18FA41B930D440044AAEB /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
+		93C18FA51B930D440044AAEB /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
+		93C18FA61B930D440044AAEB /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
+		93C18FA71B930D440044AAEB /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
+		93C18FA81B930D440044AAEB /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
+		93C18FA91B930D440044AAEB /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
+		93C18FAA1B930D440044AAEB /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
+		93C18FAB1B930D440044AAEB /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
+		93C18FAC1B930D440044AAEB /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
+		93C18FAD1B930D440044AAEB /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
+		93C18FAE1B930D440044AAEB /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
+		93C18FAF1B930D440044AAEB /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
+		93C18FB01B930D440044AAEB /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
+		93C18FB11B930D440044AAEB /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
+		93C18FB21B930D440044AAEB /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
+		93C18FB31B930D440044AAEB /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
+		93C18FB41B930D440044AAEB /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
+		93C18FB51B930D440044AAEB /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
+		93C18FB61B930D440044AAEB /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
+		93C18FB71B930D440044AAEB /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
+		93C18FB81B930D440044AAEB /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
+		93C18FB91B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
+		93C18FBA1B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
+		93C18FBB1B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
+		93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
+		93C18FBF1B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
+		93C18FC01B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
+		93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
+		93C18FC21B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
+		93C18FC31B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
 		93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
 		93E5FF181B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
 		93E5FF191B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
@@ -260,6 +314,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		931043E51B93F47300DAC200 /* guideline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guideline.cc; sourceTree = "<group>"; };
 		9310892A1B6858410094B581 /* tween.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tween.xcodeproj; path = "lib/takram-tween/tween.xcodeproj"; sourceTree = "<group>"; };
 		933162C71B92C3F3009FFC7C /* fontinfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fontinfo.h; sourceTree = "<group>"; };
 		933162D61B92C58F009FFC7C /* fontinfo.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontinfo.cc; sourceTree = "<group>"; };
@@ -316,6 +371,25 @@
 		93B7638C1B91BB2B009CA8B0 /* glyph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyph.h; sourceTree = "<group>"; };
 		93B7638D1B91F73A009CA8B0 /* view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = view.h; sourceTree = "<group>"; };
 		93B7638E1B91F744009CA8B0 /* view.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = view.cc; sourceTree = "<group>"; };
+		93C18F471B9307930044AAEB /* property_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = property_list.h; sourceTree = "<group>"; };
+		93C18F481B93089D0044AAEB /* property_list.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property_list.cc; sourceTree = "<group>"; };
+		93C18F841B930D430044AAEB /* copyright.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = copyright.cc; sourceTree = "<group>"; };
+		93C18F851B930D430044AAEB /* credit.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = credit.cc; sourceTree = "<group>"; };
+		93C18F861B930D430044AAEB /* credits.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = credits.cc; sourceTree = "<group>"; };
+		93C18F871B930D440044AAEB /* description.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = description.cc; sourceTree = "<group>"; };
+		93C18F881B930D440044AAEB /* extension_item.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extension_item.cc; sourceTree = "<group>"; };
+		93C18F891B930D440044AAEB /* extension_name.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extension_name.cc; sourceTree = "<group>"; };
+		93C18F8A1B930D440044AAEB /* extension_value.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extension_value.cc; sourceTree = "<group>"; };
+		93C18F8B1B930D440044AAEB /* extension.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extension.cc; sourceTree = "<group>"; };
+		93C18F8C1B930D440044AAEB /* license.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = license.cc; sourceTree = "<group>"; };
+		93C18F8D1B930D440044AAEB /* licensee.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = licensee.cc; sourceTree = "<group>"; };
+		93C18F8E1B930D440044AAEB /* text.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text.cc; sourceTree = "<group>"; };
+		93C18F8F1B930D440044AAEB /* trademark.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trademark.cc; sourceTree = "<group>"; };
+		93C18F901B930D440044AAEB /* unique_id.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unique_id.cc; sourceTree = "<group>"; };
+		93C18F911B930D440044AAEB /* vendor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vendor.cc; sourceTree = "<group>"; };
+		93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gasp_range_record.cc; sourceTree = "<group>"; };
+		93C18FBD1B930E0D0044AAEB /* name_record.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = name_record.cc; sourceTree = "<group>"; };
+		93C18FCD1B93561B0044AAEB /* plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		93E5FF151B915970006E968A /* glyph_stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_stroker.cc; sourceTree = "<group>"; };
 		93E5FF161B915970006E968A /* glyph_stroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glyph_stroker.h; sourceTree = "<group>"; };
 		93F859251B575DCC00C32E8D /* osx.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = osx.plist; path = config/osx.plist; sourceTree = SOURCE_ROOT; };
@@ -424,11 +498,16 @@
 			isa = PBXGroup;
 			children = (
 				9337DC231B8C12250070814C /* xml.h */,
+				93C18FCD1B93561B0044AAEB /* plist.h */,
+				93C18F471B9307930044AAEB /* property_list.h */,
+				93C18F481B93089D0044AAEB /* property_list.cc */,
 				933162DA1B92CB6A009FFC7C /* optional.h */,
 				933162C71B92C3F3009FFC7C /* fontinfo.h */,
 				933162D61B92C58F009FFC7C /* fontinfo.cc */,
 				933162DB1B92D901009FFC7C /* gasp_range_record.h */,
+				93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */,
 				933162DD1B92D901009FFC7C /* name_record.h */,
+				93C18FBD1B930E0D0044AAEB /* name_record.cc */,
 				933162FB1B92DA60009FFC7C /* woff.h */,
 				933162EC1B92D9F2009FFC7C /* woff */,
 				9349561E1B8D8820000FD457 /* glyphs.h */,
@@ -440,6 +519,7 @@
 				93A2249D1B7B1FD200CB1DBB /* unicode.h */,
 				93A2249A1B7B1FD200CB1DBB /* image.h */,
 				93A224991B7B1FD200CB1DBB /* guideline.h */,
+				931043E51B93F47300DAC200 /* guideline.cc */,
 				93A224951B7B1FD200CB1DBB /* anchor.h */,
 				93A2249B1B7B1FD200CB1DBB /* outline.h */,
 				93A224961B7B1FD200CB1DBB /* component.h */,
@@ -467,19 +547,33 @@
 			isa = PBXGroup;
 			children = (
 				933162F91B92D9F2009FFC7C /* unique_id.h */,
+				93C18F901B930D440044AAEB /* unique_id.cc */,
 				933162FA1B92D9F2009FFC7C /* vendor.h */,
+				93C18F911B930D440044AAEB /* vendor.cc */,
 				933162EE1B92D9F2009FFC7C /* credit.h */,
+				93C18F851B930D430044AAEB /* credit.cc */,
 				933162EF1B92D9F2009FFC7C /* credits.h */,
+				93C18F861B930D430044AAEB /* credits.cc */,
 				933162F71B92D9F2009FFC7C /* text.h */,
+				93C18F8E1B930D440044AAEB /* text.cc */,
 				933162F01B92D9F2009FFC7C /* description.h */,
+				93C18F871B930D440044AAEB /* description.cc */,
 				933162F51B92D9F2009FFC7C /* license.h */,
+				93C18F8C1B930D440044AAEB /* license.cc */,
 				933162ED1B92D9F2009FFC7C /* copyright.h */,
+				93C18F841B930D430044AAEB /* copyright.cc */,
 				933162F81B92D9F2009FFC7C /* trademark.h */,
+				93C18F8F1B930D440044AAEB /* trademark.cc */,
 				933162F61B92D9F2009FFC7C /* licensee.h */,
+				93C18F8D1B930D440044AAEB /* licensee.cc */,
 				933162F31B92D9F2009FFC7C /* extension_name.h */,
+				93C18F891B930D440044AAEB /* extension_name.cc */,
 				933162F41B92D9F2009FFC7C /* extension_value.h */,
+				93C18F8A1B930D440044AAEB /* extension_value.cc */,
 				933162F21B92D9F2009FFC7C /* extension_item.h */,
+				93C18F881B930D440044AAEB /* extension_item.cc */,
 				933162F11B92D9F2009FFC7C /* extension.h */,
+				93C18F8B1B930D440044AAEB /* extension.cc */,
 			);
 			path = metadata;
 			sourceTree = "<group>";
@@ -829,11 +923,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C18FA31B930D440044AAEB /* extension_name.cc in Sources */,
+				93C18FAC1B930D440044AAEB /* license.cc in Sources */,
+				93C18FAF1B930D440044AAEB /* licensee.cc in Sources */,
+				93C18F9D1B930D440044AAEB /* description.cc in Sources */,
+				93C18F971B930D440044AAEB /* credit.cc in Sources */,
 				934956301B8D8B17000FD457 /* glyphs.cc in Sources */,
+				93C18FB21B930D440044AAEB /* text.cc in Sources */,
+				93C18F941B930D440044AAEB /* copyright.cc in Sources */,
+				931043E81B93F47300DAC200 /* guideline.cc in Sources */,
+				93C18FB51B930D440044AAEB /* trademark.cc in Sources */,
 				93E5FF191B915970006E968A /* glyph_stroker.cc in Sources */,
+				93C18FC31B930E0D0044AAEB /* name_record.cc in Sources */,
 				933162D91B92C58F009FFC7C /* fontinfo.cc in Sources */,
+				93C18FB81B930D440044AAEB /* unique_id.cc in Sources */,
+				93C18F4B1B93089E0044AAEB /* property_list.cc in Sources */,
+				93C18F9A1B930D440044AAEB /* credits.cc in Sources */,
+				93C18FA91B930D440044AAEB /* extension.cc in Sources */,
+				93C18FC01B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
+				93C18FA61B930D440044AAEB /* extension_value.cc in Sources */,
+				93C18FA01B930D440044AAEB /* extension_item.cc in Sources */,
 				9337DC221B8C06720070814C /* glif.mm in Sources */,
 				934956411B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
+				93C18FBB1B930D440044AAEB /* vendor.cc in Sources */,
 				934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -842,11 +954,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C18FA21B930D440044AAEB /* extension_name.cc in Sources */,
+				93C18FAB1B930D440044AAEB /* license.cc in Sources */,
+				93C18FAE1B930D440044AAEB /* licensee.cc in Sources */,
+				93C18F9C1B930D440044AAEB /* description.cc in Sources */,
+				93C18F961B930D440044AAEB /* credit.cc in Sources */,
 				93E5FF181B915970006E968A /* glyph_stroker.cc in Sources */,
+				93C18FB11B930D440044AAEB /* text.cc in Sources */,
+				93C18F931B930D440044AAEB /* copyright.cc in Sources */,
+				931043E71B93F47300DAC200 /* guideline.cc in Sources */,
+				93C18FB41B930D440044AAEB /* trademark.cc in Sources */,
 				9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */,
+				93C18FC21B930E0D0044AAEB /* name_record.cc in Sources */,
 				933162D81B92C58F009FFC7C /* fontinfo.cc in Sources */,
+				93C18FB71B930D440044AAEB /* unique_id.cc in Sources */,
+				93C18F4A1B93089E0044AAEB /* property_list.cc in Sources */,
+				93C18F991B930D440044AAEB /* credits.cc in Sources */,
+				93C18FA81B930D440044AAEB /* extension.cc in Sources */,
+				93C18FBF1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
+				93C18FA51B930D440044AAEB /* extension_value.cc in Sources */,
+				93C18F9F1B930D440044AAEB /* extension_item.cc in Sources */,
 				9337DC721B8D766D0070814C /* glyph.cc in Sources */,
 				934956401B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
+				93C18FBA1B930D440044AAEB /* vendor.cc in Sources */,
 				9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,14 +985,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C18F951B930D440044AAEB /* credit.cc in Sources */,
 				9381EE581B91B20000807B1B /* TKNApplicationDelegate.m in Sources */,
+				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
+				93C18FA11B930D440044AAEB /* extension_name.cc in Sources */,
+				93C18FA71B930D440044AAEB /* extension.cc in Sources */,
+				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
 				9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */,
 				933162D71B92C58F009FFC7C /* fontinfo.cc in Sources */,
 				93B7634E1B91B268009CA8B0 /* TKNMainWindowController.mm in Sources */,
 				93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */,
 				9349563F1B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
+				93C18FB31B930D440044AAEB /* trademark.cc in Sources */,
+				93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */,
 				9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */,
+				93C18F921B930D440044AAEB /* copyright.cc in Sources */,
+				93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */,
 				93B7638F1B91F744009CA8B0 /* view.cc in Sources */,
+				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
+				93C18FB01B930D440044AAEB /* text.cc in Sources */,
+				93C18FB61B930D440044AAEB /* unique_id.cc in Sources */,
+				931043E61B93F47300DAC200 /* guideline.cc in Sources */,
+				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
+				93C18FB91B930D440044AAEB /* vendor.cc in Sources */,
+				93C18F981B930D440044AAEB /* credits.cc in Sources */,
+				93C18FA41B930D440044AAEB /* extension_value.cc in Sources */,
+				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
 				93B7635F1B91B332009CA8B0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

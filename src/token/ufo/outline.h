@@ -56,7 +56,7 @@ class Outline final {
 
   // Property tree
   static Outline read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   std::vector<Component> components;
@@ -89,7 +89,7 @@ inline Outline Outline::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Outline::write() const {
+inline boost::property_tree::ptree Outline::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_children(&tree, "component", components);
   xml::write_children(&tree, "contour", contours);

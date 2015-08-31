@@ -31,6 +31,7 @@
 #include <string>
 #include <vector>
 
+#include "token/ufo/property_list.h"
 #include "token/ufo/woff/metadata/text.h"
 
 namespace token {
@@ -49,6 +50,10 @@ class Description final {
   // Comparison
   bool operator==(const Description& other) const;
   bool operator!=(const Description& other) const;
+
+  // Property list
+  static Description read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   std::string url;

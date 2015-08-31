@@ -60,7 +60,7 @@ class Image final {
 
   // Property tree
   static Image read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   std::string file_name;
@@ -132,7 +132,7 @@ inline Image Image::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Image::write() const {
+inline boost::property_tree::ptree Image::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "fileName", file_name);
   xml::write_attr(&tree, "xScale", x_scale, 1.0);

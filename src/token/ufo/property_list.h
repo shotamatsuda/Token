@@ -1,7 +1,7 @@
 //
-//  token/ufo/woff/metadata/extension_name.h
+//  token/ufo/property_list.h
 //
-//  The MIT License
+//  MIT License
 //
 //  Copyright (C) 2015 Shota Matsuda
 //
@@ -25,59 +25,63 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
-#define TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
+#ifndef TOKEN_UFO_PROPERTY_LIST_H_
+#define TOKEN_UFO_PROPERTY_LIST_H_
 
-#include <string>
-
-#include "token/ufo/property_list.h"
+#include <utility>
 
 namespace token {
 namespace ufo {
-namespace woff {
-namespace metadata {
 
-class ExtensionName final {
+class PropertyList final {
  public:
-  ExtensionName() = default;
+  PropertyList();
+  explicit PropertyList(void *plist, bool owner = true);
+  ~PropertyList();
 
-  // Copy semantics
-  ExtensionName(const ExtensionName&) = default;
-  ExtensionName& operator=(const ExtensionName&) = default;
+  // Disallow copy semantics
+  PropertyList(const PropertyList&) = delete;
+  PropertyList& operator=(const PropertyList&) = delete;
 
-  // Comparison
-  bool operator==(const ExtensionName& other) const;
-  bool operator!=(const ExtensionName& other) const;
+  // Move semantics
+  PropertyList(PropertyList&&);
+  PropertyList& operator=(PropertyList&&);
 
-  // Property list
-  static ExtensionName read(const PropertyList& plist);
-  PropertyList plist() const;
+  // Value access
+  void * get() const { return plist_; }
+  operator void *() const { return plist_; }
 
  public:
-  std::string text;
-  std::string language;
-  std::string dir;
-  std::string klass;
+  void *plist_;
+  bool owner_;
 };
 
 #pragma mark -
 
-#pragma mark Comparison
+inline PropertyList::PropertyList() : plist_(), owner_() {}
 
-inline bool ExtensionName::operator==(const ExtensionName& other) const {
-  return (text == other.text &&
-          language == other.language &&
-          dir == other.dir &&
-          klass == other.klass);
+inline PropertyList::PropertyList(void *plist, bool owner)
+    : plist_(plist),
+      owner_(owner) {}
+
+#pragma mark Move semantics
+
+inline PropertyList::PropertyList(PropertyList&& other)
+    : plist_(other.plist_),
+      owner_(other.owner_) {
+  other.plist_ = nullptr;
+  other.owner_ = false;
 }
 
-inline bool ExtensionName::operator!=(const ExtensionName& other) const {
-  return operator==(other);
+inline PropertyList& PropertyList::operator=(PropertyList&& other) {
+  if (&other != this) {
+    std::swap(plist_, other.plist_);
+    std::swap(owner_, other.owner_);
+  }
+  return *this;
 }
 
-}  // namespace metadata
-}  // namespace woff
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_WOFF_METADATA_EXTENSION_NAME_H_
+#endif  // TOKEN_UFO_PROPERTY_LIST_H_

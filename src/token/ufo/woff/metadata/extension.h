@@ -31,6 +31,7 @@
 #include <string>
 #include <vector>
 
+#include "token/ufo/property_list.h"
 #include "token/ufo/woff/metadata/extension_item.h"
 #include "token/ufo/woff/metadata/extension_name.h"
 
@@ -50,6 +51,10 @@ class Extension final {
   // Comparison
   bool operator==(const Extension& other) const;
   bool operator!=(const Extension& other) const;
+
+  // Property list
+  static Extension read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   std::string identifier;

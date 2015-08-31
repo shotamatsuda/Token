@@ -30,6 +30,8 @@
 
 #include <vector>
 
+#include "token/ufo/property_list.h"
+
 namespace token {
 namespace ufo {
 
@@ -44,6 +46,10 @@ class GASPRangeRecord final {
   // Comparison
   bool operator==(const GASPRangeRecord& other) const;
   bool operator!=(const GASPRangeRecord& other) const;
+
+  // Property list
+  static GASPRangeRecord read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   unsigned int range_max_ppem;

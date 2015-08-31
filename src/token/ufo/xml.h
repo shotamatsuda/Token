@@ -116,7 +116,7 @@ inline void write_child(boost::property_tree::ptree *tree,
                         const std::string& name,
                         const T& value) {
   assert(tree);
-  tree->add_child(name, value.write());
+  tree->add_child(name, value.ptree());
 }
 
 template <class T>
@@ -125,7 +125,7 @@ inline void write_child(boost::property_tree::ptree *tree,
                         const Optional<T>& value) {
   assert(tree);
   if (value.exists()) {
-    tree->add_child(name, value->write());
+    tree->add_child(name, value->ptree());
   }
 }
 
@@ -135,7 +135,7 @@ inline void write_children(boost::property_tree::ptree *tree,
                            const std::vector<T>& values) {
   assert(tree);
   for (const auto& value : values) {
-    tree->add_child(name, value.write());
+    tree->add_child(name, value.ptree());
   }
 }
 

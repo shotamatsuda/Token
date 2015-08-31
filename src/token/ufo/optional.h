@@ -42,8 +42,8 @@ class Optional final {
 
  public:
   Optional();
-  Optional(const T& value);
-  Optional(T&& value);
+  explicit Optional(const T& value);
+  explicit Optional(T&& value);
 
   // Copy semantics
   Optional(const Optional&) = default;

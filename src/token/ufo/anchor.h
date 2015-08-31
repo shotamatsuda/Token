@@ -57,7 +57,7 @@ class Anchor final {
 
   // Property tree
   static Anchor read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   double x;
@@ -106,7 +106,7 @@ inline Anchor Anchor::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Anchor::write() const {
+inline boost::property_tree::ptree Anchor::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "x", x);
   xml::write_attr(&tree, "y", y);

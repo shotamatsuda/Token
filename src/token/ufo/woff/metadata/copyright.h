@@ -30,6 +30,7 @@
 
 #include <vector>
 
+#include "token/ufo/property_list.h"
 #include "token/ufo/woff/metadata/text.h"
 
 namespace token {
@@ -48,6 +49,10 @@ class Copyright final {
   // Comparison
   bool operator==(const Copyright& other) const;
   bool operator!=(const Copyright& other) const;
+
+  // Property list
+  static Copyright read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   std::vector<Text> text;

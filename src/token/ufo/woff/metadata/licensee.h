@@ -30,6 +30,8 @@
 
 #include <string>
 
+#include "token/ufo/property_list.h"
+
 namespace token {
 namespace ufo {
 namespace woff {
@@ -46,6 +48,10 @@ class Licensee final {
   // Comparison
   bool operator==(const Licensee& other) const;
   bool operator!=(const Licensee& other) const;
+
+  // Property list
+  static Licensee read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   std::string name;

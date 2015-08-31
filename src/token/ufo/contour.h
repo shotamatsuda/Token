@@ -56,7 +56,7 @@ class Contour final {
 
   // Property tree
   static Contour read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   std::string identifier;
@@ -89,7 +89,7 @@ inline Contour Contour::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Contour::write() const {
+inline boost::property_tree::ptree Contour::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "identifier", identifier, "");
   xml::write_children(&tree, "point", points);

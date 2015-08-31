@@ -30,6 +30,8 @@
 
 #include <string>
 
+#include "token/ufo/property_list.h"
+
 namespace token {
 namespace ufo {
 namespace woff {
@@ -46,6 +48,10 @@ class Vendor final {
   // Comparison
   bool operator==(const Vendor& other) const;
   bool operator!=(const Vendor& other) const;
+
+  // Property list
+  static Vendor read(const PropertyList& plist);
+  PropertyList plist() const;
 
  public:
   std::string name;

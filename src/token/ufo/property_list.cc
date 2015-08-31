@@ -1,7 +1,7 @@
 //
-//  token/ufo/woff/metadata/credits.h
+//  token/ufo/property_list.cc
 //
-//  The MIT License
+//  MIT License
 //
 //  Copyright (C) 2015 Shota Matsuda
 //
@@ -24,55 +24,24 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_UFO_WOFF_METADATA_CREDITS_H_
-#define TOKEN_UFO_WOFF_METADATA_CREDITS_H_
-
-#include <vector>
-
 #include "token/ufo/property_list.h"
-#include "token/ufo/woff/metadata/credit.h"
+
+extern "C" {
+
+#include <plist/plist.h>
+
+}  // extern "C"
 
 namespace token {
 namespace ufo {
-namespace woff {
-namespace metadata {
 
-class Credits final {
- public:
-  Credits() = default;
-
-  // Copy semantics
-  Credits(const Credits&) = default;
-  Credits& operator=(const Credits&) = default;
-
-  // Comparison
-  bool operator==(const Credits& other) const;
-  bool operator!=(const Credits& other) const;
-
-  // Property list
-  static Credits read(const PropertyList& plist);
-  PropertyList plist() const;
-
- public:
-  std::vector<Credit> credits;
-};
-
-#pragma mark -
-
-#pragma mark Comparison
-
-inline bool Credits::operator==(const Credits& other) const {
-  return credits == other.credits;
+PropertyList::~PropertyList() {
+  if (owner_ && plist_) {
+    plist_free(plist_);
+    plist_ = nullptr;
+    owner_ = false;
+  }
 }
 
-inline bool Credits::operator!=(const Credits& other) const {
-  return operator==(other);
-}
-
-}  // namespace metadata
-}  // namespace woff
 }  // namespace ufo
 }  // namespace token
-
-#endif  // TOKEN_UFO_WOFF_METADATA_CREDITS_H_

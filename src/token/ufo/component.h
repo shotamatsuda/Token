@@ -60,7 +60,7 @@ class Component final {
 
   // Property tree
   static Component read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   std::string base;
@@ -132,7 +132,7 @@ inline Component Component::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Component::write() const {
+inline boost::property_tree::ptree Component::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "base", base);
   xml::write_attr(&tree, "xScale", x_scale, 1.0);

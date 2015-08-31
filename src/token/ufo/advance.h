@@ -52,7 +52,7 @@ class Advance final {
 
   // Property tree
   static Advance read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   double width;
@@ -86,7 +86,7 @@ inline Advance Advance::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Advance::write() const {
+inline boost::property_tree::ptree Advance::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attr(&tree, "width", width, 0.0);
   xml::write_attr(&tree, "height", height, 0.0);

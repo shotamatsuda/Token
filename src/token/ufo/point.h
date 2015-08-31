@@ -71,7 +71,7 @@ class Point final {
 
   // Property tree
   static Point read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree write() const;
+  boost::property_tree::ptree ptree() const;
 
  public:
   double x;
@@ -143,7 +143,7 @@ inline Point Point::read(const boost::property_tree::ptree& tree) {
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Point::write() const {
+inline boost::property_tree::ptree Point::ptree() const {
   std::string type;
   switch (this->type) {
     case Type::MOVE: type = "move"; break;
