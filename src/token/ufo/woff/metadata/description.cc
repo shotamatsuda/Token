@@ -53,7 +53,10 @@ Description Description::read(const PropertyList& plist) {
 }
 
 PropertyList Description::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "url", url);
+  plist::write_vector(plist, "text", text);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

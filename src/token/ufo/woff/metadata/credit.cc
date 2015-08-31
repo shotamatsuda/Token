@@ -55,7 +55,12 @@ Credit Credit::read(const PropertyList& plist) {
 }
 
 PropertyList Credit::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "name", name);
+  plist::write_string(plist, "url", url);
+  plist::write_string(plist, "dir", dir);
+  plist::write_string(plist, "class", klass);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

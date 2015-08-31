@@ -47,21 +47,56 @@ extern "C" {
 namespace token {
 namespace ufo {
 
-PropertyList Glyphs::openPropertyList(const std::string& file) const {
-  const auto path = boost::filesystem::path(path_) / "glyphs" / file;
-  std::ifstream stream(path.string());
-  if (!stream.good()) {
-    return PropertyList();
+#pragma mark Opening
+
+bool Glyphs::open(const std::string& path) {
+  std::string glyphs;
+  std::string contents;
+  if (boost::filesystem::path(path).leaf() == "contents.plist") {
+    glyphs = boost::filesystem::path(path).parent_path().string();
+    contents = path;
+  } else {
+    glyphs = path;
+    contents = (boost::filesystem::path(path) / "contents.plist").string();
   }
-  const std::istreambuf_iterator<char> first(stream);
+  std::ifstream stream(contents);
+  const auto result = open(&stream);
+  stream.close();
+  path_ = glyphs;
+  return result;
+}
+
+bool Glyphs::open(std::istream *stream) {
+  assert(stream);
+  if (!stream->good()) {
+    return false;
+  }
+  const std::istreambuf_iterator<char> first(*stream);
   const std::string contents(first, std::istreambuf_iterator<char>());
-  plist_t plist{};
-  plist_from_xml(contents.c_str(), contents.size(), &plist);
-  if (!plist) {
-    return PropertyList();
+  plist_t node{};
+  plist_from_xml(contents.c_str(), contents.size(), &node);
+  if (!node) {
+    return false;
   }
-  assert(plist_get_node_type(plist) == PLIST_DICT);
-  return PropertyList(plist);
+  assert(plist_get_node_type(node) == PLIST_DICT);
+  PropertyList plist(node);
+  plist_dict_iter itr{};
+  plist_dict_new_iter(plist, &itr);
+  const auto size = plist_dict_get_size(node);
+  for (std::uint32_t i{}; i < size; ++i) {
+    char *key{};
+    plist_t item{};
+    plist_dict_next_item(plist, itr, &key, &item);
+    assert(key);
+    assert(plist_get_node_type(item) == PLIST_STRING);
+    char *value{};
+    plist_get_string_val(item, &value);
+    contents_.emplace(key, value);
+    std::free(key);
+    std::free(value);
+  }
+  std::free(itr);
+  return true;
 }
 
 #pragma mark Glyphs
@@ -73,7 +108,9 @@ const Glyph& Glyphs::get(const std::string& name) const {
 }
 
 Glyph& Glyphs::get(const std::string& name) {
-  return const_cast<Glyph&>(const_cast<const Glyphs *>(this)->get(name));
+  auto glyph = find(name);
+  assert(glyph);
+  return *glyph;
 }
 
 const Glyph * Glyphs::find(const std::string& name) const {
@@ -81,11 +118,15 @@ const Glyph * Glyphs::find(const std::string& name) const {
   if (itr != std::end(glyphs_)) {
     return &itr->second;
   }
-  auto stream = openGLIF(name);
-  if (!stream.good()) {
+  const auto value = contents_.find(name);
+  if (value == std::end(contents_)) {
     return nullptr;
   }
-  auto glyph = readGlyph(&stream);
+  const auto path = boost::filesystem::path(path_) / value->second;
+  Glyph glyph;
+  if (!glyph.open(path.string())) {
+    return nullptr;
+  }
   const auto result = glyphs_.emplace(name, std::move(glyph));
   assert(result.second);
   return &result.first->second;
@@ -96,49 +137,15 @@ Glyph * Glyphs::find(const std::string& name) {
 }
 
 void Glyphs::set(const std::string& name, const Glyph& glyph) {
-  const auto node = plist_dict_get_item(contents_, name.c_str());
-  assert(plist_get_node_type(node) == PLIST_STRING);
-  char *file_name{};
-  plist_get_string_val(node, &file_name);
-  if (!file_name) {
+  if (contents_.find(name) == std::end(contents_)) {
     return;  // Setting a new glyph is not supported
   }
-  namespace ptree = boost::property_tree;
-  auto tree = glyph.ptree();
-  ptree::xml_writer_settings<std::string> settings(' ', 2);
-  const auto path = boost::filesystem::path(path_) / "glyphs" / file_name;
-  ptree::xml_parser::write_xml(path.string(), tree, std::locale(), settings);
-
-  // Update cache
   const auto itr = glyphs_.find(name);
   if (itr != std::end(glyphs_)) {
     itr->second = glyph;
   } else {
     glyphs_.emplace(name, glyph);
   }
-}
-
-std::ifstream Glyphs::openGLIF(const std::string& name) const {
-  const auto node = plist_dict_get_item(contents_, name.c_str());
-  if (!node) {
-    return std::ifstream(nullptr);
-  }
-  assert(plist_get_node_type(node) == PLIST_STRING);
-  char *file_name{};
-  plist_get_string_val(node, &file_name);
-  if (!file_name) {
-    return std::ifstream(nullptr);
-  }
-  const auto path = boost::filesystem::path(path_) / "glyphs" / file_name;
-  return std::ifstream(path.string());
-}
-
-Glyph Glyphs::readGlyph(std::ifstream *stream) const {
-  assert(stream);
-  assert(stream->good());
-  boost::property_tree::ptree tree;
-  boost::property_tree::xml_parser::read_xml(*stream, tree);
-  return Glyph::read(tree);
 }
 
 }  // namespace ufo

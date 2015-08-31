@@ -28,6 +28,8 @@
 #ifndef TOKEN_UFO_GLYPH_H_
 #define TOKEN_UFO_GLYPH_H_
 
+#include <istream>
+#include <ostream>
 #include <string>
 #include <utility>
 #include <vector>
@@ -41,7 +43,6 @@
 #include "token/ufo/optional.h"
 #include "token/ufo/outline.h"
 #include "token/ufo/unicode.h"
-#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
@@ -49,7 +50,7 @@ namespace ufo {
 class Glyph final {
  public:
   Glyph() = default;
-  explicit Glyph(const std::string& name);
+  explicit Glyph(const std::string& path);
 
   // Copy semantics
   Glyph(const Glyph&) = default;
@@ -59,9 +60,11 @@ class Glyph final {
   bool operator==(const Glyph& other) const;
   bool operator!=(const Glyph& other) const;
 
-  // Property tree
-  static Glyph read(const boost::property_tree::ptree& tree);
-  boost::property_tree::ptree ptree() const;
+  // Opening and saving
+  bool open(const std::string& path);
+  bool open(std::istream *stream);
+  bool save(const std::string& path);
+  bool save(std::ostream *stream);
 
  public:
   std::string name;
@@ -75,7 +78,9 @@ class Glyph final {
 
 #pragma mark -
 
-inline Glyph::Glyph(const std::string& name) : name(name) {}
+inline Glyph::Glyph(const std::string& path) {
+  open(path);
+}
 
 #pragma mark Comparison
 
@@ -91,36 +96,6 @@ inline bool Glyph::operator==(const Glyph& other) const {
 
 inline bool Glyph::operator!=(const Glyph& other) const {
   return operator==(other);
-}
-
-#pragma mark Property tree
-
-inline Glyph Glyph::read(const boost::property_tree::ptree& tree) {
-  Glyph result;
-  const auto& glyph = tree.get_child("glyph");
-  xml::read_attr(glyph, "name", &result.name);
-  xml::read_child(glyph, "advance", &result.advance);
-  xml::read_children(glyph, "unicode", &result.unicodes);
-  xml::read_child(glyph, "image", &result.image);
-  xml::read_children(glyph, "guideline", &result.guidelines);
-  xml::read_children(glyph, "anchor", &result.anchors);
-  xml::read_child(glyph, "outline", &result.outline);
-  return std::move(result);
-}
-
-inline boost::property_tree::ptree Glyph::ptree() const {
-  boost::property_tree::ptree glyph;
-  xml::write_attr(&glyph, "name", name);
-  xml::write_attr(&glyph, "format", 2);
-  xml::write_child(&glyph, "advance", advance);
-  xml::write_children(&glyph, "unicode", unicodes);
-  xml::write_child(&glyph, "image", image);
-  xml::write_children(&glyph, "guideline", guidelines);
-  xml::write_children(&glyph, "anchor", anchors);
-  xml::write_child(&glyph, "outline", outline);
-  boost::property_tree::ptree tree;
-  tree.add_child("glyph", glyph);
-  return std::move(tree);
 }
 
 }  // namespace ufo

@@ -28,7 +28,9 @@
 #ifndef TOKEN_UFO_FONTINFO_H_
 #define TOKEN_UFO_FONTINFO_H_
 
+#include <istream>
 #include <map>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -44,8 +46,9 @@ namespace ufo {
 
 class Fontinfo final {
  public:
-  Fontinfo();
-  explicit Fontinfo(const std::string& path);
+  Fontinfo() = default;
+  explicit Fontinfo(const std::string& ufo_path);
+  explicit Fontinfo(std::istream *stream);
 
   // Disallow copy semantics
   Fontinfo(const Fontinfo&) = delete;
@@ -55,24 +58,47 @@ class Fontinfo final {
   Fontinfo(Fontinfo&&) = default;
   Fontinfo& operator=(Fontinfo&&) = default;
 
+  // Opening and saving
+  bool open(const std::string& path);
+  bool open(std::istream *stream);
+  bool save(const std::string& path);
+  bool save(std::ostream *stream);
+
  private:
-  void readGenericIdentificationInformation();
-  void readGenericLegalInformation();
-  void readGenericDimensionInformation();
-  void readGenericMiscellaneousInformation();
-  void readOpenTypeGASPTableFields();
-  void readOpenTypeHEADTableFields();
-  void readOpenTypeHHEATableFields();
-  void readOpenTypeNameTableFields();
-  void readOpenTypeOS2TableFields();
-  void readOpenTypeVHEATableFields();
-  void readPostScriptSpecificData();
-  void readMacintoshFONDResourceData();
-  void readWOFFData();
-  void readGuidelines();
+  // Reading from property list
+  void readIdentificationInformation(const PropertyList& plist);
+  void readLegalInformation(const PropertyList& plist);
+  void readDimensionInformation(const PropertyList& plist);
+  void readMiscellaneousInformation(const PropertyList& plist);
+  void readOpenTypeGASPTableFields(const PropertyList& plist);
+  void readOpenTypeHEADTableFields(const PropertyList& plist);
+  void readOpenTypeHHEATableFields(const PropertyList& plist);
+  void readOpenTypeNameTableFields(const PropertyList& plist);
+  void readOpenTypeOS2TableFields(const PropertyList& plist);
+  void readOpenTypeVHEATableFields(const PropertyList& plist);
+  void readPostScriptSpecificData(const PropertyList& plist);
+  void readMacintoshFONDResourceData(const PropertyList& plist);
+  void readWOFFData(const PropertyList& plist);
+  void readGuidelines(const PropertyList& plist);
+
+  // Writing to property list
+  void writeIdentificationInformation(const PropertyList& plist);
+  void writeLegalInformation(const PropertyList& plist);
+  void writeDimensionInformation(const PropertyList& plist);
+  void writeMiscellaneousInformation(const PropertyList& plist);
+  void writeOpenTypeGASPTableFields(const PropertyList& plist);
+  void writeOpenTypeHEADTableFields(const PropertyList& plist);
+  void writeOpenTypeHHEATableFields(const PropertyList& plist);
+  void writeOpenTypeNameTableFields(const PropertyList& plist);
+  void writeOpenTypeOS2TableFields(const PropertyList& plist);
+  void writeOpenTypeVHEATableFields(const PropertyList& plist);
+  void writePostScriptSpecificData(const PropertyList& plist);
+  void writeMacintoshFONDResourceData(const PropertyList& plist);
+  void writeWOFFData(const PropertyList& plist);
+  void writeGuidelines(const PropertyList& plist);
 
  public:
-  // Generic Identification Information
+  // Identification Information
   std::string family_name;
   std::string style_name;
   std::string style_map_family_name;
@@ -81,11 +107,11 @@ class Fontinfo final {
   Optional<unsigned int> version_minor;
   Optional<int> year;
 
-  // Generic Legal Information
+  // Legal Information
   std::string copyright;
   std::string trademark;
 
-  // Generic Dimension Information
+  // Dimension Information
   Optional<double> units_per_em;
   Optional<double> descender;
   Optional<double> x_height;
@@ -93,7 +119,7 @@ class Fontinfo final {
   Optional<double> ascender;
   Optional<double> italic_angle;
 
-  // Generic Miscellaneous Information
+  // Miscellaneous Information
   std::string note;
 
   // OpenType gasp Table Fields
@@ -207,18 +233,17 @@ class Fontinfo final {
 
   // Guidelines
   std::vector<Guideline> guidelines;
-
- private:
-  PropertyList openPropertyList(const std::string& file) const;
-
- private:
-  std::string path_;
-  PropertyList fontinfo_;
 };
 
 #pragma mark -
 
-inline Fontinfo::Fontinfo() : fontinfo_() {}
+inline Fontinfo::Fontinfo(const std::string& path) {
+  open(path);
+}
+
+inline Fontinfo::Fontinfo(std::istream *stream) {
+  open(stream);
+}
 
 }  // namespace ufo
 }  // namespace token

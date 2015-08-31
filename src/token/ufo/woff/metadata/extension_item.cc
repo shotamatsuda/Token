@@ -54,7 +54,11 @@ ExtensionItem ExtensionItem::read(const PropertyList& plist) {
 }
 
 PropertyList ExtensionItem::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "identifier", identifier);
+  plist::write_vector(plist, "names", names);
+  plist::write_vector(plist, "values", values);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

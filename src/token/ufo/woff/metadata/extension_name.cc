@@ -50,12 +50,17 @@ ExtensionName ExtensionName::read(const PropertyList& plist) {
   plist::read_string(plist, "text", &result.text);
   plist::read_string(plist, "language", &result.language);
   plist::read_string(plist, "dir", &result.dir);
-  plist::read_string(plist, "klass", &result.klass);
+  plist::read_string(plist, "class", &result.klass);
   return std::move(result);
 }
 
 PropertyList ExtensionName::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "text", text);
+  plist::write_string(plist, "language", language);
+  plist::write_string(plist, "dir", dir);
+  plist::write_string(plist, "class", klass);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

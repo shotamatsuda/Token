@@ -108,20 +108,10 @@ inline void read_object(plist_t plist,
   }
 }
 
-template <class T, std::enable_if_t<std::is_class<T>::value> * = nullptr>
-inline void read_vector(plist_t plist,
-                        const std::string& name,
-                        std::vector<T> *output) {
-  assert(output);
-  assert(plist_get_node_type(plist) == PLIST_DICT);
-  const auto node = plist_dict_get_item(plist, name.c_str());
-  if (node) {
-    assert(plist_get_node_type(node) == PLIST_DICT);
-    output->emplace_back(T::read(PropertyList(node, false)));
-  }
-}
-
-template <class T, std::enable_if_t<std::is_arithmetic<T>::value> * = nullptr>
+template <
+  class T,
+  std::enable_if_t<std::is_arithmetic<T>::value> * = nullptr
+>
 inline void read_vector(plist_t plist,
                         const std::string& name,
                         std::vector<T> *output) {
@@ -149,6 +139,161 @@ inline void read_vector(plist_t plist,
       }
     }
   }
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_class<T>::value> * = nullptr
+>
+inline void read_vector(plist_t plist,
+                        const std::string& name,
+                        std::vector<T> *output) {
+  assert(output);
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_dict_get_item(plist, name.c_str());
+  if (node) {
+    assert(plist_get_node_type(node) == PLIST_DICT);
+    output->emplace_back(T::read(PropertyList(node, false)));
+  }
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_integral<T>::value> * = nullptr
+>
+inline void write_number(plist_t plist, const std::string& name, T value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_new_uint(value);
+  plist_dict_set_item(plist, name.c_str(), node);
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_floating_point<T>::value> * = nullptr
+>
+inline void write_number(plist_t plist, const std::string& name, T value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_new_real(value);
+  plist_dict_set_item(plist, name.c_str(), node);
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_integral<T>::value> * = nullptr
+>
+inline void write_number(plist_t plist,
+                         const std::string& name,
+                         const Optional<T>& value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  if (value.exists()) {
+    const auto node = plist_new_uint(value);
+    plist_dict_set_item(plist, name.c_str(), node);
+  }
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_floating_point<T>::value> * = nullptr
+>
+inline void write_number(plist_t plist,
+                         const std::string& name,
+                         const Optional<T>& value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  if (value.exists()) {
+    const auto node = plist_new_real(value);
+    plist_dict_set_item(plist, name.c_str(), node);
+  }
+}
+
+inline void write_string(plist_t plist,
+                         const std::string& name,
+                         const std::string& value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  if (value.empty()) {
+    return;
+  }
+  const auto node = plist_new_string(value.c_str());
+  plist_dict_set_item(plist, name.c_str(), node);
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_object<T>::value> * = nullptr
+>
+inline void write_object(plist_t plist,
+                         const std::string& name,
+                         const T& value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  plist_dict_set_item(plist, name.c_str(), value.plist().release());
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_object<T>::value> * = nullptr
+>
+inline void write_object(plist_t plist,
+                         const std::string& name,
+                         const Optional<T>& value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  if (value.exists()) {
+    plist_dict_set_item(plist, name.c_str(), value->plist().release());
+  }
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_integral<T>::value> * = nullptr
+>
+inline void write_vector(plist_t plist,
+                         const std::string& name,
+                         const std::vector<T>& values) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  if (values.empty()) {
+    return;
+  }
+  const auto node = plist_new_array();
+  for (const auto& value : values) {
+    const auto item = plist_new_uint(value);
+    plist_array_append_item(node, item);
+  }
+  plist_dict_set_item(plist, name.c_str(), node);
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_floating_point<T>::value> * = nullptr
+>
+inline void write_vector(plist_t plist,
+                         const std::string& name,
+                         const std::vector<T>& values) {
+  if (values.empty()) {
+    return;
+  }
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_new_array();
+  for (const auto& value : values) {
+    const auto item = plist_new_real(value);
+    plist_array_append_item(node, item);
+  }
+  plist_dict_set_item(plist, name.c_str(), node);
+}
+
+template <
+  class T,
+  std::enable_if_t<std::is_class<T>::value> * = nullptr
+>
+inline void write_vector(plist_t plist,
+                         const std::string& name,
+                         const std::vector<T>& values) {
+  if (values.empty()) {
+    return;
+  }
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_new_array();
+  for (const auto& value : values) {
+    plist_array_append_item(node, value.plist().release());
+  }
+  plist_dict_set_item(plist, name.c_str(), node);
 }
 
 }  // namespace plist

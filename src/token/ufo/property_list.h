@@ -49,6 +49,7 @@ class PropertyList final {
 
   // Value access
   void * get() const { return plist_; }
+  void * release();
   operator void *() const { return plist_; }
 
  public:
@@ -79,6 +80,16 @@ inline PropertyList& PropertyList::operator=(PropertyList&& other) {
     std::swap(owner_, other.owner_);
   }
   return *this;
+}
+
+#pragma mark Value access
+
+inline void * PropertyList::release() {
+  void *plist;
+  std::swap(plist, plist_);
+  plist_ = nullptr;
+  owner_ = false;
+  return plist;
 }
 
 }  // namespace ufo

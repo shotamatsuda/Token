@@ -59,8 +59,10 @@ class Guideline final {
 
   // Property tree
   static Guideline read(const boost::property_tree::ptree& tree);
-  static Guideline read(const PropertyList& plist);
   boost::property_tree::ptree ptree() const;
+
+  // Property list
+  static Guideline read(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

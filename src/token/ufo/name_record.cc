@@ -54,7 +54,13 @@ NameRecord NameRecord::read(const PropertyList& plist) {
 }
 
 PropertyList NameRecord::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_number(plist, "nameID", name_id);
+  plist::write_number(plist, "platformID", platform_id);
+  plist::write_number(plist, "encodingID", encoding_id);
+  plist::write_number(plist, "languageID", language_id);
+  plist::write_string(plist, "string", string);
+  return PropertyList(plist);
 }
 
 }  // namespace ufo

@@ -55,7 +55,12 @@ Text Text::read(const PropertyList& plist) {
 }
 
 PropertyList Text::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "text", text);
+  plist::write_string(plist, "language", language);
+  plist::write_string(plist, "dir", dir);
+  plist::write_string(plist, "class", klass);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

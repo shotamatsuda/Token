@@ -40,13 +40,13 @@
 class App : public solas::View {
  public:
   void setup() override {
-    glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo");
-    auto fontinfo = token::ufo::Fontinfo("/Users/sgss/Dropbox/Github/token/Token.ufo");
-    std::cout << fontinfo.family_name << std::endl;
+    glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo/glyphs");
+    token::ufo::Fontinfo fontinfo;
+    fontinfo.open("/Users/sgss/Dropbox/Github/token/Token.ufo");
+    fontinfo.save("/Users/sgss/Desktop");
     context_.init();
     scale_ = 1.0;
     width_ = 3;
-//    resize(1280, 1024);
   }
 
   void pre() override {

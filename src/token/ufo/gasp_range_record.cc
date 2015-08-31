@@ -51,7 +51,10 @@ GASPRangeRecord GASPRangeRecord::read(const PropertyList& plist) {
 }
 
 PropertyList GASPRangeRecord::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_number(plist, "rangeMaxPPEM", range_max_ppem);
+  plist::write_vector(plist, "rangeGaspBehavior", range_gasp_behavior);
+  return PropertyList(plist);
 }
 
 }  // namespace ufo

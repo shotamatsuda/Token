@@ -49,12 +49,16 @@ Licensee Licensee::read(const PropertyList& plist) {
   Licensee result;
   plist::read_string(plist, "name", &result.name);
   plist::read_string(plist, "dir", &result.dir);
-  plist::read_string(plist, "klass", &result.klass);
+  plist::read_string(plist, "class", &result.klass);
   return std::move(result);
 }
 
 PropertyList Licensee::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "name", name);
+  plist::write_string(plist, "dir", dir);
+  plist::write_string(plist, "class", klass);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

@@ -1,5 +1,4 @@
 //
-//
 //  token/ufo/optional.h
 //
 //  The MIT License

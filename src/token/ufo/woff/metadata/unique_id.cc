@@ -52,7 +52,9 @@ UniqueID UniqueID::read(const PropertyList& plist) {
 }
 
 PropertyList UniqueID::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_string(plist, "identifier", identifier);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata

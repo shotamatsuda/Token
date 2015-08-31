@@ -30,6 +30,7 @@
 
 #include <fstream>
 #include <string>
+#include <iterator>
 #include <unordered_map>
 #include <utility>
 
@@ -46,7 +47,7 @@ class Glyphs final {
   using ConstIterator = GlyphIterator<const Glyph>;
 
  public:
-  Glyphs();
+  Glyphs() = default;
   explicit Glyphs(const std::string& path);
 
   // Disallow copy semantics
@@ -57,6 +58,9 @@ class Glyphs final {
   Glyphs(Glyphs&& other) = default;
   Glyphs& operator=(Glyphs&& other) = default;
 
+  // Opening
+  bool open(const std::string& path);
+
   // Glyphs
   const Glyph& get(const std::string& name) const;
   Glyph& get(const std::string& name);
@@ -65,20 +69,17 @@ class Glyphs final {
   void set(const std::string& name, const Glyph& glyph);
 
   // Iterator
-  Iterator begin() { return Iterator(this); }
-  ConstIterator begin() const { return ConstIterator(this); }
-  Iterator end() { return Iterator(); }
-  ConstIterator end() const { return ConstIterator(); }
+  Iterator begin();
+  ConstIterator begin() const;
+  Iterator end();
+  ConstIterator end() const;
 
  private:
-  PropertyList openPropertyList(const std::string& file) const;
-  std::ifstream openGLIF(const std::string& name) const;
-  Glyph readGlyph(std::ifstream *stream) const;
+  bool open(std::istream *stream);
 
  private:
   std::string path_;
-  PropertyList contents_;
-  PropertyList layerinfo_;
+  std::unordered_map<std::string, std::string> contents_;
   mutable std::unordered_map<std::string, Glyph> glyphs_;
 
  private:
@@ -88,12 +89,27 @@ class Glyphs final {
 
 #pragma mark -
 
-inline Glyphs::Glyphs() : contents_(), layerinfo_() {}
+inline Glyphs::Glyphs(const std::string& path) {
+  open(path);
+}
 
-inline Glyphs::Glyphs(const std::string& path)
-    : path_(path),
-      contents_(openPropertyList("contents.plist")),
-      layerinfo_(openPropertyList("layerinfo.plist")) {}
+#pragma mark Iterator
+
+inline typename Glyphs::Iterator Glyphs::begin() {
+  return Iterator(this, std::begin(contents_));
+}
+
+inline typename Glyphs::ConstIterator Glyphs::begin() const {
+  return ConstIterator(this, std::begin(contents_));
+}
+
+inline typename Glyphs::Iterator Glyphs::end() {
+  return Iterator(this, std::end(contents_));
+}
+
+inline typename Glyphs::ConstIterator Glyphs::end() const {
+  return ConstIterator(this, std::end(contents_));
+}
 
 }  // namespace ufo
 }  // namespace token

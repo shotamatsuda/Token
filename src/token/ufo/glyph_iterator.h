@@ -30,7 +30,6 @@
 
 #include <functional>
 #include <iterator>
-#include <string>
 
 namespace token {
 namespace ufo {
@@ -41,11 +40,18 @@ template <class T>
 class GlyphIterator final : public std::iterator<std::forward_iterator_tag, T> {
  public:
   using Glyphs = typename std::conditional<
-      std::is_const<T>::value, const Glyphs, Glyphs>::type;
+    std::is_const<T>::value,
+    const Glyphs, Glyphs
+  >::type;
+  using Iterator = typename std::conditional<
+    std::is_const<T>::value,
+    typename decltype(std::declval<Glyphs>().contents_)::const_iterator,
+    typename decltype(std::declval<Glyphs>().contents_)::iterator
+  >::type;
 
  public:
   GlyphIterator();
-  explicit GlyphIterator(Glyphs *glyphs);
+  GlyphIterator(Glyphs *glyphs, Iterator iterator);
 
   // Copy semantics
   GlyphIterator(const GlyphIterator&) = default;
@@ -63,20 +69,24 @@ class GlyphIterator final : public std::iterator<std::forward_iterator_tag, T> {
 
  private:
   Glyphs *glyphs_;
-  void *current_;
-  std::string key_;
+  Iterator iterator_;
 };
 
 #pragma mark -
 
 template <class T>
-inline GlyphIterator<T>::GlyphIterator() : glyphs_(), current_() {}
+inline GlyphIterator<T>::GlyphIterator() : glyphs_(), iterator_() {}
+
+template <class T>
+inline GlyphIterator<T>::GlyphIterator(Glyphs *glyphs, Iterator iterator)
+    : glyphs_(glyphs),
+      iterator_(iterator) {}
 
 #pragma mark Comparison
 
 template <class T>
 inline bool GlyphIterator<T>::operator==(const GlyphIterator& other) const {
-  return current_ == other.current_;
+  return glyphs_ == other.glyphs_ && iterator_ == other.iterator_;
 }
 
 template <class T>
@@ -88,7 +98,13 @@ inline bool GlyphIterator<T>::operator!=(const GlyphIterator& other) const {
 
 template <class T>
 inline T& GlyphIterator<T>::operator*() const {
-  return glyphs_->get(key_);
+  return glyphs_->get(iterator_->first);
+}
+
+template <class T>
+inline GlyphIterator<T>& GlyphIterator<T>::operator++() {
+  ++iterator_;
+  return *this;
 }
 
 template <class T>

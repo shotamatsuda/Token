@@ -10,6 +10,9 @@
 		931043E61B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
 		931043E71B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
 		931043E81B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
+		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
+		931043F91B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
+		931043FA1B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
 		9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
 		933162D71B92C58F009FFC7C /* fontinfo.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* fontinfo.cc */; };
 		933162D81B92C58F009FFC7C /* fontinfo.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* fontinfo.cc */; };
@@ -28,9 +31,6 @@
 		9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		934956301B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
-		9349563F1B8EEF88000FD457 /* glyph_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349563E1B8EEF88000FD457 /* glyph_iterator.cc */; };
-		934956401B8EEF88000FD457 /* glyph_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349563E1B8EEF88000FD457 /* glyph_iterator.cc */; };
-		934956411B8EEF88000FD457 /* glyph_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349563E1B8EEF88000FD457 /* glyph_iterator.cc */; };
 		93563A191B672580004C47E4 /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
 		93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
@@ -315,6 +315,7 @@
 
 /* Begin PBXFileReference section */
 		931043E51B93F47300DAC200 /* guideline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guideline.cc; sourceTree = "<group>"; };
+		931043F71B94184F00DAC200 /* glyph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph.cc; sourceTree = "<group>"; };
 		9310892A1B6858410094B581 /* tween.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tween.xcodeproj; path = "lib/takram-tween/tween.xcodeproj"; sourceTree = "<group>"; };
 		933162C71B92C3F3009FFC7C /* fontinfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fontinfo.h; sourceTree = "<group>"; };
 		933162D61B92C58F009FFC7C /* fontinfo.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontinfo.cc; sourceTree = "<group>"; };
@@ -346,7 +347,6 @@
 		9349561E1B8D8820000FD457 /* glyphs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyphs.h; sourceTree = "<group>"; };
 		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		9349563C1B8EEF0E000FD457 /* glyph_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyph_iterator.h; sourceTree = "<group>"; };
-		9349563E1B8EEF88000FD457 /* glyph_iterator.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_iterator.cc; sourceTree = "<group>"; };
 		93563A741B674472004C47E4 /* nanovg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nanovg.xcodeproj; path = "lib/takram-nanovg/nanovg.xcodeproj"; sourceTree = "<group>"; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
 		9381EE561B91B20000807B1B /* TKNApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNApplicationDelegate.h; sourceTree = "<group>"; };
@@ -497,24 +497,13 @@
 		93A224921B7B1FD200CB1DBB /* ufo */ = {
 			isa = PBXGroup;
 			children = (
-				9337DC231B8C12250070814C /* xml.h */,
-				93C18FCD1B93561B0044AAEB /* plist.h */,
-				93C18F471B9307930044AAEB /* property_list.h */,
-				93C18F481B93089D0044AAEB /* property_list.cc */,
-				933162DA1B92CB6A009FFC7C /* optional.h */,
 				933162C71B92C3F3009FFC7C /* fontinfo.h */,
 				933162D61B92C58F009FFC7C /* fontinfo.cc */,
-				933162DB1B92D901009FFC7C /* gasp_range_record.h */,
-				93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */,
-				933162DD1B92D901009FFC7C /* name_record.h */,
-				93C18FBD1B930E0D0044AAEB /* name_record.cc */,
-				933162FB1B92DA60009FFC7C /* woff.h */,
-				933162EC1B92D9F2009FFC7C /* woff */,
 				9349561E1B8D8820000FD457 /* glyphs.h */,
 				9349562D1B8D8B17000FD457 /* glyphs.cc */,
 				9349563C1B8EEF0E000FD457 /* glyph_iterator.h */,
-				9349563E1B8EEF88000FD457 /* glyph_iterator.cc */,
 				93A224981B7B1FD200CB1DBB /* glyph.h */,
+				931043F71B94184F00DAC200 /* glyph.cc */,
 				93A224941B7B1FD200CB1DBB /* advance.h */,
 				93A2249D1B7B1FD200CB1DBB /* unicode.h */,
 				93A2249A1B7B1FD200CB1DBB /* image.h */,
@@ -525,6 +514,17 @@
 				93A224961B7B1FD200CB1DBB /* component.h */,
 				93A224971B7B1FD200CB1DBB /* contour.h */,
 				93A2249C1B7B1FD200CB1DBB /* point.h */,
+				933162DB1B92D901009FFC7C /* gasp_range_record.h */,
+				93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */,
+				933162DD1B92D901009FFC7C /* name_record.h */,
+				93C18FBD1B930E0D0044AAEB /* name_record.cc */,
+				933162FB1B92DA60009FFC7C /* woff.h */,
+				933162EC1B92D9F2009FFC7C /* woff */,
+				9337DC231B8C12250070814C /* xml.h */,
+				93C18FCD1B93561B0044AAEB /* plist.h */,
+				93C18F471B9307930044AAEB /* property_list.h */,
+				93C18F481B93089D0044AAEB /* property_list.cc */,
+				933162DA1B92CB6A009FFC7C /* optional.h */,
 			);
 			path = ufo;
 			sourceTree = "<group>";
@@ -942,9 +942,9 @@
 				93C18FA91B930D440044AAEB /* extension.cc in Sources */,
 				93C18FC01B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
 				93C18FA61B930D440044AAEB /* extension_value.cc in Sources */,
+				931043FA1B94184F00DAC200 /* glyph.cc in Sources */,
 				93C18FA01B930D440044AAEB /* extension_item.cc in Sources */,
 				9337DC221B8C06720070814C /* glif.mm in Sources */,
-				934956411B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
 				93C18FBB1B930D440044AAEB /* vendor.cc in Sources */,
 				934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */,
 			);
@@ -973,9 +973,9 @@
 				93C18FA81B930D440044AAEB /* extension.cc in Sources */,
 				93C18FBF1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
 				93C18FA51B930D440044AAEB /* extension_value.cc in Sources */,
+				931043F91B94184F00DAC200 /* glyph.cc in Sources */,
 				93C18F9F1B930D440044AAEB /* extension_item.cc in Sources */,
 				9337DC721B8D766D0070814C /* glyph.cc in Sources */,
-				934956401B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
 				93C18FBA1B930D440044AAEB /* vendor.cc in Sources */,
 				9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */,
 			);
@@ -995,7 +995,6 @@
 				933162D71B92C58F009FFC7C /* fontinfo.cc in Sources */,
 				93B7634E1B91B268009CA8B0 /* TKNMainWindowController.mm in Sources */,
 				93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */,
-				9349563F1B8EEF88000FD457 /* glyph_iterator.cc in Sources */,
 				93C18FB31B930D440044AAEB /* trademark.cc in Sources */,
 				93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */,
 				9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */,
@@ -1009,6 +1008,7 @@
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
 				93C18FB91B930D440044AAEB /* vendor.cc in Sources */,
 				93C18F981B930D440044AAEB /* credits.cc in Sources */,
+				931043F81B94184F00DAC200 /* glyph.cc in Sources */,
 				93C18FA41B930D440044AAEB /* extension_value.cc in Sources */,
 				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
 				93B7635F1B91B332009CA8B0 /* main.m in Sources */,

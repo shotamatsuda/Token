@@ -52,7 +52,9 @@ Credits Credits::read(const PropertyList& plist) {
 }
 
 PropertyList Credits::plist() const {
-  return PropertyList();
+  plist_t plist = plist_new_dict();
+  plist::write_vector(plist, "credits", credits);
+  return PropertyList(plist);
 }
 
 }  // namespace metadata
