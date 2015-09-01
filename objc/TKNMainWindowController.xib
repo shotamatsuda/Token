@@ -6,10 +6,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TKNMainWindowController">
             <connections>
-                <outlet property="contentView" destination="PW9-Qw-Fku" id="LV8-4S-4nZ"/>
-                <outlet property="controlView" destination="odB-sE-9h6" id="fnO-G6-vN5"/>
-                <outlet property="settingsView" destination="vVG-8w-bKs" id="ThF-mA-zN3"/>
-                <outlet property="splitView" destination="YUR-Ef-ZBi" id="USD-lF-Y96"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -22,104 +18,12 @@
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="628"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <splitView dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="YUR-Ef-ZBi" customClass="SLSNSSplitView">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="628"/>
-                        <subviews>
-                            <customView id="PW9-Qw-Fku">
-                                <rect key="frame" x="0.0" y="0.0" width="800" height="390"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="odB-sE-9h6">
-                                        <rect key="frame" x="0.0" y="0.0" width="800" height="25"/>
-                                        <subviews>
-                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="FeD-sG-hUT">
-                                                <rect key="frame" x="765" y="0.0" width="25" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="AEn-By-JuX"/>
-                                                    <constraint firstAttribute="height" constant="25" id="BuH-tU-cbh"/>
-                                                </constraints>
-                                                <animations/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5dT-ma-91e">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6ty-6I-yxZ">
-                                                <rect key="frame" x="703" y="5" width="64" height="14"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="FUj-s8-5ha"/>
-                                                </constraints>
-                                                <animations/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="GwL-mx-odD">
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="i9y-pK-dEr">
-                                                <rect key="frame" x="680" y="0.0" width="25" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="3iZ-2M-rhr"/>
-                                                    <constraint firstAttribute="width" constant="25" id="UzM-hj-Y3F"/>
-                                                </constraints>
-                                                <animations/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="OJv-k9-GdA">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="centerY" secondItem="6ty-6I-yxZ" secondAttribute="centerY" id="5PG-NK-ddi"/>
-                                            <constraint firstItem="6ty-6I-yxZ" firstAttribute="leading" secondItem="i9y-pK-dEr" secondAttribute="trailing" id="9MO-ga-u7p"/>
-                                            <constraint firstAttribute="height" constant="25" id="Bal-mt-EHl"/>
-                                            <constraint firstAttribute="trailing" secondItem="FeD-sG-hUT" secondAttribute="trailing" constant="10" id="egI-7a-lRd"/>
-                                            <constraint firstItem="FeD-sG-hUT" firstAttribute="leading" secondItem="6ty-6I-yxZ" secondAttribute="trailing" id="nTn-N6-ZPn"/>
-                                            <constraint firstAttribute="centerY" secondItem="i9y-pK-dEr" secondAttribute="centerY" id="osS-rh-Lrg"/>
-                                            <constraint firstAttribute="centerY" secondItem="FeD-sG-hUT" secondAttribute="centerY" id="zh4-Rj-WiQ"/>
-                                        </constraints>
-                                        <animations/>
-                                    </customView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="odB-sE-9h6" secondAttribute="bottom" id="6Kr-X4-AFm"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="320" id="EjG-xW-SxX"/>
-                                    <constraint firstAttribute="trailing" secondItem="odB-sE-9h6" secondAttribute="trailing" id="Tfw-2L-w1d"/>
-                                    <constraint firstItem="odB-sE-9h6" firstAttribute="leading" secondItem="PW9-Qw-Fku" secondAttribute="leading" id="e2P-m5-NWd"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="640" id="rO5-MN-gnW"/>
-                                </constraints>
-                                <animations/>
-                            </customView>
-                            <customView fixedFrame="YES" id="vVG-8w-bKs">
-                                <rect key="frame" x="0.0" y="391" width="800" height="237"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <animations/>
-                            </customView>
-                        </subviews>
-                        <animations/>
-                        <holdingPriorities>
-                            <real value="250"/>
-                            <real value="251"/>
-                        </holdingPriorities>
-                    </splitView>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="YUR-Ef-ZBi" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="8fI-bx-mWR"/>
-                    <constraint firstAttribute="trailing" secondItem="YUR-Ef-ZBi" secondAttribute="trailing" id="NJA-i7-1tE"/>
-                    <constraint firstAttribute="bottom" secondItem="YUR-Ef-ZBi" secondAttribute="bottom" id="nXh-J0-GCv"/>
-                    <constraint firstItem="YUR-Ef-ZBi" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="uwz-Cs-5YV"/>
-                </constraints>
                 <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="609" y="787"/>
+            <point key="canvasLocation" x="-113" y="670"/>
         </window>
     </objects>
-    <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
-    </resources>
 </document>

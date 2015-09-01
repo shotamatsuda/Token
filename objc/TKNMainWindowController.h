@@ -26,19 +26,15 @@
 
 #import <AppKit/AppKit.h>
 
-#import "SLSNSViewController.h"
-#import "SLSRunner.h"
-#import "TKNSettingViewController.h"
+#import "TKNSettingsViewController.h"
 #import "TKNTypeViewController.h"
 
 @interface TKNMainWindowController : NSWindowController
 
-@property (nonatomic, strong, nonnull) SLSRunner *runner;
-@property (nonatomic, strong, nonnull) SLSNSViewController *viewController;
 @property (nonatomic, strong, nonnull)
     TKNTypeViewController *typeViewController;
 @property (nonatomic, strong, nonnull)
-    TKNSettingViewController *settingsViewController;
+    TKNSettingsViewController *settingsViewController;
 
 #pragma mark Parameters
 

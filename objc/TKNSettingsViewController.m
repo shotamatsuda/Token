@@ -1,5 +1,5 @@
 //
-//  TKNSettingViewController.h
+//  TKNSettingsViewController.m
 //
 //  The MIT License
 //
@@ -24,8 +24,16 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNSettingsViewController.h"
 
-@interface TKNSettingViewController : NSViewController
+@implementation TKNSettingsViewController
+
+- (instancetype)init {
+  self = [self initWithNibName:@"TKNSettingsViewController"
+                        bundle:[NSBundle mainBundle]];
+  if (self) {
+  }
+  return self;
+}
 
 @end

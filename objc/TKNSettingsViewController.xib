@@ -4,23 +4,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TKNSettingViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="TKNSettingsViewController">
             <connections>
                 <outlet property="view" destination="NGS-Gu-dto" id="0tJ-T9-LZz"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="NGS-Gu-dto" customClass="NSVisualEffectView">
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="NGS-Gu-dto" customClass="TKNSettingsView">
             <rect key="frame" x="0.0" y="0.0" width="800" height="237"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Krq-UN-elN" customClass="TKNBackgroundView">
-                    <rect key="frame" x="390" y="0.0" width="20" height="237"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="yUA-Pq-BTe"/>
-                    </constraints>
-                    <animations/>
-                </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="iH7-Cb-6Xa" customClass="TKNBackgroundView">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="237"/>
                     <subviews>
@@ -29,42 +22,10 @@
                             <animations/>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNAscentTemplate" id="AwD-Re-cPc"/>
                         </imageView>
-                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uh6-G7-axi" customClass="TKNBackgroundImageView">
-                            <rect key="frame" x="30" y="71" width="50" height="64"/>
-                            <animations/>
-                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNWidthTemplate" id="Cd8-1f-5Yn"/>
-                        </imageView>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
-                            <rect key="frame" x="28" y="32" width="185" height="18"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="14" id="pd5-j6-9pJ"/>
-                            </constraints>
-                            <animations/>
-                            <buttonCell key="cell" type="check" title="Accent equals units per em" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ACg-Bx-10t">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" size="13" name=".AppleSystemUIFontThin"/>
-                            </buttonCell>
-                        </button>
-                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kb7-Bh-fQ1">
-                            <rect key="frame" x="10" y="142" width="380" height="5"/>
-                            <animations/>
-                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <font key="titleFont" metaFont="system"/>
-                        </box>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yii-1p-DNU" customClass="TKNBackgroundTextField">
                             <rect key="frame" x="87" y="178" width="46" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ascent" id="gpp-Q6-rzA">
-                                <font key="font" size="13" name=".AppleSystemUIFontThin"/>
-                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u09-l7-1EI" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="88" y="95" width="40" height="17"/>
-                            <animations/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Width" id="fpo-aj-CIq">
                                 <font key="font" size="13" name=".AppleSystemUIFontThin"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -82,6 +43,46 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="a9F-LY-pAb">
+                            <rect key="frame" x="310" y="83" width="60" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="TJW-6s-qFp"/>
+                                <constraint firstAttribute="width" constant="60" id="Y7a-gp-ETo"/>
+                            </constraints>
+                            <animations/>
+                            <popUpButtonCell key="cell" type="square" title="mm" bezelStyle="shadowlessSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="Q4N-ly-8Vd" id="YxB-mj-teD">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="16" name=".AppleSystemUIFontThin"/>
+                                <menu key="menu" id="Rvc-Xr-fZG">
+                                    <items>
+                                        <menuItem title="mm" state="on" id="Q4N-ly-8Vd"/>
+                                        <menuItem title="pt" id="kZA-Rj-HN0"/>
+                                        <menuItem title="in" id="lZ4-Hs-fPn"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kb7-Bh-fQ1">
+                            <rect key="frame" x="10" y="142" width="380" height="5"/>
+                            <animations/>
+                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <font key="titleFont" metaFont="system"/>
+                        </box>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uh6-G7-axi" customClass="TKNBackgroundImageView">
+                            <rect key="frame" x="30" y="71" width="50" height="64"/>
+                            <animations/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNWidthTemplate" id="Cd8-1f-5Yn"/>
+                        </imageView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u09-l7-1EI" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="88" y="95" width="40" height="17"/>
+                            <animations/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Width" id="fpo-aj-CIq">
+                                <font key="font" size="13" name=".AppleSystemUIFontThin"/>
+                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="08k-tM-iID">
                             <rect key="frame" x="129" y="80" width="181" height="51"/>
                             <constraints>
@@ -95,12 +96,13 @@
                             </textFieldCell>
                         </textField>
                         <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Yiu-Cm-c0D">
-                            <rect key="frame" x="310" y="166" width="60" height="23"/>
+                            <rect key="frame" x="310" y="166" width="60" height="24"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="24" id="Gxg-3K-Hm5"/>
                                 <constraint firstAttribute="width" constant="60" id="xW3-mj-9Td"/>
                             </constraints>
                             <animations/>
-                            <popUpButtonCell key="cell" type="square" title="mm" bezelStyle="shadowlessSquare" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="91j-1Y-gtK" id="MIH-2E-HL6">
+                            <popUpButtonCell key="cell" type="square" title="mm" bezelStyle="shadowlessSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="91j-1Y-gtK" id="MIH-2E-HL6">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" size="16" name=".AppleSystemUIFontThin"/>
                                 <menu key="menu" id="RJG-8N-s5P">
@@ -112,24 +114,17 @@
                                 </menu>
                             </popUpButtonCell>
                         </popUpButton>
-                        <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="a9F-LY-pAb">
-                            <rect key="frame" x="310" y="83" width="60" height="23"/>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
+                            <rect key="frame" x="28" y="32" width="185" height="18"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="Y7a-gp-ETo"/>
+                                <constraint firstAttribute="height" constant="14" id="pd5-j6-9pJ"/>
                             </constraints>
                             <animations/>
-                            <popUpButtonCell key="cell" type="square" title="mm" bezelStyle="shadowlessSquare" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="Q4N-ly-8Vd" id="YxB-mj-teD">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="16" name=".AppleSystemUIFontThin"/>
-                                <menu key="menu" id="Rvc-Xr-fZG">
-                                    <items>
-                                        <menuItem title="mm" state="on" id="Q4N-ly-8Vd"/>
-                                        <menuItem title="pt" id="kZA-Rj-HN0"/>
-                                        <menuItem title="in" id="lZ4-Hs-fPn"/>
-                                    </items>
-                                </menu>
-                            </popUpButtonCell>
-                        </popUpButton>
+                            <buttonCell key="cell" type="check" title="Ascent equals units per em" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ACg-Bx-10t">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" size="13" name=".AppleSystemUIFontThin"/>
+                            </buttonCell>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="kb7-Bh-fQ1" firstAttribute="top" secondItem="iH7-Cb-6Xa" secondAttribute="top" constant="92" id="0r4-m5-Cb7"/>
@@ -158,44 +153,20 @@
                     </constraints>
                     <animations/>
                 </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Krq-UN-elN" customClass="TKNBackgroundView">
+                    <rect key="frame" x="390" y="0.0" width="20" height="237"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="yUA-Pq-BTe"/>
+                    </constraints>
+                    <animations/>
+                </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="kve-Rx-3K7" customClass="TKNBackgroundView">
                     <rect key="frame" x="410" y="0.0" width="390" height="237"/>
                     <subviews>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="cqf-Ku-NJ2">
-                            <rect key="frame" x="0.0" y="20" width="370" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="WqN-Pk-Snq"/>
-                            </constraints>
-                            <animations/>
-                            <buttonCell key="cell" type="square" title="Install" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fd-ri-rXd" customClass="TKNDefaultRoundedButtonCell">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="18" name=".AppleSystemUIFontThin"/>
-                            </buttonCell>
-                        </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="npS-hh-VDh">
-                            <rect key="frame" x="0.0" y="74" width="370" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="Tkh-hT-IMy"/>
-                            </constraints>
-                            <animations/>
-                            <buttonCell key="cell" type="square" title="Export" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4k2-Z2-Wfm" customClass="TKNRoundedButtonCell">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="18" name=".AppleSystemUIFontThin"/>
-                            </buttonCell>
-                        </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF">
                             <rect key="frame" x="-2" y="190" width="84" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="nHG-1H-oux">
-                                <font key="font" size="13" name=".AppleSystemUIFontThin"/>
-                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI">
-                            <rect key="frame" x="-2" y="165" width="76" height="17"/>
-                            <animations/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
                                 <font key="font" size="13" name=".AppleSystemUIFontThin"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -210,6 +181,15 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI">
+                            <rect key="frame" x="-2" y="165" width="76" height="17"/>
+                            <animations/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
+                                <font key="font" size="13" name=".AppleSystemUIFontThin"/>
+                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO">
                             <rect key="frame" x="86" y="165" width="101" height="17"/>
                             <animations/>
@@ -219,6 +199,28 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="npS-hh-VDh">
+                            <rect key="frame" x="0.0" y="74" width="370" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Tkh-hT-IMy"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" title="Export" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4k2-Z2-Wfm" customClass="TKNRoundedButtonCell">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="18" name=".AppleSystemUIFontThin"/>
+                            </buttonCell>
+                        </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="cqf-Ku-NJ2">
+                            <rect key="frame" x="0.0" y="20" width="370" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="WqN-Pk-Snq"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" title="Install" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fd-ri-rXd" customClass="TKNDefaultRoundedButtonCell">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="18" name=".AppleSystemUIFontThin"/>
+                            </buttonCell>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="atb-Eb-4cF" firstAttribute="top" secondItem="kve-Rx-3K7" secondAttribute="top" constant="30" id="BGG-1P-4TU"/>
@@ -242,20 +244,20 @@
             <constraints>
                 <constraint firstItem="kve-Rx-3K7" firstAttribute="leading" secondItem="Krq-UN-elN" secondAttribute="trailing" id="70m-cg-xif"/>
                 <constraint firstAttribute="bottom" secondItem="Krq-UN-elN" secondAttribute="bottom" id="9eC-jI-Lf8"/>
-                <constraint firstItem="iH7-Cb-6Xa" firstAttribute="top" secondItem="NGS-Gu-dto" secondAttribute="top" id="Gkw-h9-2vb"/>
+                <constraint firstItem="kve-Rx-3K7" firstAttribute="top" secondItem="NGS-Gu-dto" secondAttribute="top" id="Hsd-7R-jX9"/>
                 <constraint firstAttribute="bottom" secondItem="iH7-Cb-6Xa" secondAttribute="bottom" id="Lmj-tP-Ktz"/>
-                <constraint firstItem="Krq-UN-elN" firstAttribute="top" secondItem="NGS-Gu-dto" secondAttribute="top" id="NbI-I2-Q93"/>
                 <constraint firstItem="iH7-Cb-6Xa" firstAttribute="leading" secondItem="NGS-Gu-dto" secondAttribute="leading" id="PFh-GI-fbj"/>
                 <constraint firstAttribute="height" constant="237" id="WXV-BU-m4g"/>
                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="640" id="axa-cv-XGI"/>
                 <constraint firstAttribute="trailing" secondItem="kve-Rx-3K7" secondAttribute="trailing" id="dGg-zC-qfN"/>
-                <constraint firstItem="kve-Rx-3K7" firstAttribute="top" secondItem="NGS-Gu-dto" secondAttribute="top" id="hJI-r7-10F"/>
+                <constraint firstItem="iH7-Cb-6Xa" firstAttribute="top" secondItem="NGS-Gu-dto" secondAttribute="top" id="dRc-A6-NfS"/>
+                <constraint firstItem="Krq-UN-elN" firstAttribute="top" secondItem="NGS-Gu-dto" secondAttribute="top" id="fca-aH-PIo"/>
                 <constraint firstAttribute="bottom" secondItem="kve-Rx-3K7" secondAttribute="bottom" id="i3P-e4-e1p"/>
-                <constraint firstAttribute="centerX" secondItem="Krq-UN-elN" secondAttribute="centerX" id="sY1-N1-p3L"/>
+                <constraint firstAttribute="centerX" secondItem="Krq-UN-elN" secondAttribute="centerX" id="qOV-Zq-bBI"/>
                 <constraint firstItem="Krq-UN-elN" firstAttribute="leading" secondItem="iH7-Cb-6Xa" secondAttribute="trailing" id="uE3-zR-qqE"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="554" y="552.5"/>
+            <point key="canvasLocation" x="473" y="523.5"/>
         </customView>
     </objects>
     <resources>

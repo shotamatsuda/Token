@@ -26,13 +26,15 @@
 
 #import "TKNDefaultRoundedButtonCell.h"
 
+#import "TKNNSBezierPath+RoundedRect.h"
+
 @implementation TKNDefaultRoundedButtonCell
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
   [NSGraphicsContext saveGraphicsState];
-  NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:frame
-                                                       xRadius:5.0
-                                                       yRadius:5.0];
+  NSBezierPath *path = [NSBezierPath
+      bezierPathWithRoundedRect:frame
+      cornerRadius:5.0];
   if (self.highlighted) {
     [[NSColor whiteColor] setFill];
     [[NSColor whiteColor] setStroke];

@@ -1,5 +1,5 @@
 //
-//  TKNTypeViewController.m
+//  TKNSettingsViewController.h
 //
 //  The MIT License
 //
@@ -24,16 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypeViewController.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNTypeViewController
-
-- (instancetype)init {
-  self = [self initWithNibName:@"TKNTypeViewController"
-                        bundle:[NSBundle mainBundle]];
-  if (self) {
-  }
-  return self;
-}
+@interface TKNSettingsViewController : NSViewController
 
 @end

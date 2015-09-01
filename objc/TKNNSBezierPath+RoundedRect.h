@@ -1,5 +1,5 @@
 //
-//  TKNSettingViewController.m
+//  TKNNSBezierPath+RoundedRect.h
 //
 //  The MIT License
 //
@@ -24,16 +24,25 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNSettingViewController.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNSettingViewController
+typedef NS_ENUM(NSUInteger, TKNRectCorner) {
+  TKNRectCornerTopLeft = 1 << 0,
+  TKNRectCornerBottomLeft = 1 << 1,
+  TKNRectCornerTopRight = 1 << 2,
+  TKNRectCornerBottomRight = 1 << 3,
+  TKNRectCornerAllCorners = (TKNRectCornerTopLeft |
+                             TKNRectCornerBottomLeft |
+                             TKNRectCornerTopRight |
+                             TKNRectCornerBottomRight)
+};
 
-- (instancetype)init {
-  self = [self initWithNibName:@"TKNSettingViewController"
-                        bundle:[NSBundle mainBundle]];
-  if (self) {
-  }
-  return self;
-}
+@interface NSBezierPath (TKNRoundedRect)
+
++ (NSBezierPath *)bezierPathWithRoundedRect:(NSRect)rect
+                          byRoundingCorners:(TKNRectCorner)corners
+                               cornerRadius:(CGFloat)cornerRadius;
++ (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect
+                               cornerRadius:(CGFloat)cornerRadius;
 
 @end

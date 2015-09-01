@@ -1,5 +1,5 @@
 //
-//  TKNTypeViewController.m
+//  TKNSettingsView.h
 //
 //  The MIT License
 //
@@ -24,16 +24,10 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypeViewController.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNTypeViewController
+@interface TKNSettingsView : NSVisualEffectView
 
-- (instancetype)init {
-  self = [self initWithNibName:@"TKNTypeViewController"
-                        bundle:[NSBundle mainBundle]];
-  if (self) {
-  }
-  return self;
-}
+@property (nonatomic, assign) BOOL rounded;
 
 @end
