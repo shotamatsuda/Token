@@ -152,7 +152,10 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-xP-wtL">
-                                                <rect key="frame" x="159" y="163" width="151" height="51"/>
+                                                <rect key="frame" x="129" y="163" width="181" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mQD-sK-vB0"/>
+                                                </constraints>
                                                 <animations/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.0" usesSingleLineMode="YES" id="KPq-ZS-gVc">
                                                     <font key="font" size="42" name=".AppleSystemUIFontThin"/>
@@ -161,7 +164,10 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CPe-rO-4eE">
-                                                <rect key="frame" x="159" y="80" width="151" height="51"/>
+                                                <rect key="frame" x="129" y="80" width="181" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ZAZ-tD-diY"/>
+                                                </constraints>
                                                 <animations/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.0" usesSingleLineMode="YES" id="gbv-UH-sQg">
                                                     <font key="font" size="42" name=".AppleSystemUIFontThin"/>
@@ -218,7 +224,7 @@
                                             <constraint firstItem="k4h-G4-RCE" firstAttribute="leading" secondItem="gfa-xA-kN9" secondAttribute="trailing" constant="10" id="LLD-Yp-l8q"/>
                                             <constraint firstItem="Ncb-RS-eIY" firstAttribute="leading" secondItem="Aaa-oL-fg4" secondAttribute="leading" constant="30" id="OlS-d2-5a0"/>
                                             <constraint firstItem="Ncb-RS-eIY" firstAttribute="top" secondItem="w1o-bx-lLK" secondAttribute="bottom" constant="9" id="UyW-sL-a0H"/>
-                                            <constraint firstItem="Avj-xP-wtL" firstAttribute="leading" secondItem="k4h-G4-RCE" secondAttribute="trailing" constant="30" id="WvH-Lz-n6Y"/>
+                                            <constraint firstItem="Avj-xP-wtL" firstAttribute="leading" secondItem="k4h-G4-RCE" secondAttribute="trailing" id="WvH-Lz-n6Y"/>
                                             <constraint firstItem="U6B-QW-8L8" firstAttribute="leading" secondItem="CPe-rO-4eE" secondAttribute="trailing" constant="2" id="XCI-vL-XnJ"/>
                                             <constraint firstItem="CPe-rO-4eE" firstAttribute="baseline" secondItem="U6B-QW-8L8" secondAttribute="baseline" id="XtR-I5-NTx"/>
                                             <constraint firstItem="Avj-xP-wtL" firstAttribute="centerY" secondItem="gfa-xA-kN9" secondAttribute="centerY" constant="-2" id="by4-NC-oeX"/>
@@ -244,7 +250,7 @@
                                                 <animations/>
                                                 <buttonCell key="cell" type="square" title="Install" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ENG-IA-zro" customClass="TKNDefaultRoundedButtonCell">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" size="18" name=".AppleSystemUIFontThin"/>
                                                 </buttonCell>
                                             </button>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="t8k-NP-8jw">
@@ -253,13 +259,13 @@
                                                     <constraint firstAttribute="height" constant="44" id="I0k-Op-HzU"/>
                                                 </constraints>
                                                 <animations/>
-                                                <buttonCell key="cell" type="square" title="Export" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3vy-SN-4qf" customClass="TKNRoundedButtonCell">
+                                                <buttonCell key="cell" type="square" title="Export" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3vy-SN-4qf" customClass="TKNAlternativeRoundedButtonCell">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" size="18" name=".AppleSystemUIFontThin"/>
                                                 </buttonCell>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O9u-tA-MeS">
-                                                <rect key="frame" x="-2" y="180" width="84" height="17"/>
+                                                <rect key="frame" x="-2" y="190" width="84" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="AdD-s1-pAH">
                                                     <font key="font" size="13" name=".AppleSystemUIFontThin"/>
@@ -268,7 +274,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sht-qh-zgu">
-                                                <rect key="frame" x="-2" y="155" width="76" height="17"/>
+                                                <rect key="frame" x="-2" y="165" width="76" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="eas-np-bya">
                                                     <font key="font" size="13" name=".AppleSystemUIFontThin"/>
@@ -277,7 +283,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l6b-aj-nnQ">
-                                                <rect key="frame" x="86" y="180" width="45" height="17"/>
+                                                <rect key="frame" x="86" y="190" width="45" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="T Type" id="7Wx-vS-WDc">
                                                     <font key="font" size="13" name=".AppleSystemUIFontThin"/>
@@ -286,7 +292,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WqB-eX-GON">
-                                                <rect key="frame" x="86" y="155" width="101" height="17"/>
+                                                <rect key="frame" x="86" y="165" width="101" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2.0mm / 0.2mm" id="TQk-P5-vEo">
                                                     <font key="font" size="13" name=".AppleSystemUIFontThin"/>
@@ -309,7 +315,7 @@
                                             <constraint firstAttribute="trailing" secondItem="t8k-NP-8jw" secondAttribute="trailing" constant="20" id="lYl-Ry-Qg5"/>
                                             <constraint firstItem="ohf-bM-D2g" firstAttribute="top" secondItem="t8k-NP-8jw" secondAttribute="bottom" constant="10" id="r5k-An-2dn"/>
                                             <constraint firstAttribute="bottom" secondItem="ohf-bM-D2g" secondAttribute="bottom" constant="20" id="uNJ-cQ-h9b"/>
-                                            <constraint firstItem="O9u-tA-MeS" firstAttribute="top" secondItem="8QO-8i-bYh" secondAttribute="top" constant="40" id="yfw-on-2k8"/>
+                                            <constraint firstItem="O9u-tA-MeS" firstAttribute="top" secondItem="8QO-8i-bYh" secondAttribute="top" constant="30" id="yfw-on-2k8"/>
                                         </constraints>
                                         <animations/>
                                     </customView>
@@ -350,7 +356,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="478" y="756"/>
+            <point key="canvasLocation" x="518" y="783"/>
         </window>
     </objects>
     <resources>

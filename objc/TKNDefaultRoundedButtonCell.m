@@ -33,11 +33,36 @@
   NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:frame
                                                        xRadius:5.0
                                                        yRadius:5.0];
-  [[NSColor colorWithWhite:1.0 alpha:0.9] setFill];
-  [[NSColor colorWithWhite:1.0 alpha:0.9] setStroke];
+  if (self.highlighted) {
+    [[NSColor whiteColor] setFill];
+    [[NSColor whiteColor] setStroke];
+  } else {
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.9] setFill];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.9] setStroke];
+  }
   [path fill];
   [path stroke];
   [NSGraphicsContext restoreGraphicsState];
+}
+
+- (NSAttributedString *)attributedTitle {
+  NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
+      initWithAttributedString:super.attributedTitle];
+  NSRange range = NSMakeRange(0, title.length);
+  [title beginEditing];
+  if (self.enabled) {
+    if (self.highlighted) {
+      [title addAttribute:NSForegroundColorAttributeName
+                    value:[NSColor blackColor]
+                    range:range];
+    } else {
+      [title addAttribute:NSForegroundColorAttributeName
+                    value:[[NSColor blackColor] colorWithAlphaComponent:0.75]
+                    range:range];
+    }
+  }
+  [title endEditing];
+  return title;
 }
 
 @end

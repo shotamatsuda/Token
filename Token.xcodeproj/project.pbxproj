@@ -36,8 +36,11 @@
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
 		9381EE581B91B20000807B1B /* TKNApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */; };
 		9390CB841B9523AF0088153C /* TKNDefaultRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CB811B9523AF0088153C /* TKNDefaultRoundedButtonCell.m */; };
-		9390CB851B9523AF0088153C /* TKNRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CB831B9523AF0088153C /* TKNRoundedButtonCell.m */; };
 		9390CB8F1B9526DA0088153C /* TKNBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CB8E1B9526DA0088153C /* TKNBackgroundView.m */; };
+		9390CBB81B952F880088153C /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9390CB9C1B952F2A0088153C /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9390CBC71B9532050088153C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9390CB9C1B952F2A0088153C /* Sparkle.framework */; };
+		9390CBF51B95328D0088153C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9390CBF41B95328D0088153C /* Credits.rtf */; };
+		9390CC001B953F2C0088153C /* TKNAlternativeRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CBFF1B953F2C0088153C /* TKNAlternativeRoundedButtonCell.m */; };
 		93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93AB947B1B91B1600038DCB4 /* MainMenu.xib */; };
 		93B7634E1B91B268009CA8B0 /* TKNMainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93B7634C1B91B268009CA8B0 /* TKNMainWindowController.mm */; };
 		93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */; };
@@ -291,6 +294,48 @@
 			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
 			remoteInfo = graphics_static;
 		};
+		9390CB9B1B952F2A0088153C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+		9390CB9D1B952F2A0088153C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
+			remoteInfo = "Sparkle Test App";
+		};
+		9390CB9F1B952F2A0088153C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
+		9390CBA11B952F2A0088153C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06E8D00FD68C7C005AE3F6;
+			remoteInfo = BinaryDelta;
+		};
+		9390CBA31B952F2A0088153C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55C14BB7136EEF1500649790;
+			remoteInfo = Autoupdate;
+		};
+		9390CBA51B952F6C0088153C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -311,6 +356,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9390CBB81B952F880088153C /* Sparkle.framework in Embed Frameworks */,
 				93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -358,10 +404,12 @@
 		9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNApplicationDelegate.m; sourceTree = "<group>"; };
 		9390CB801B9523AF0088153C /* TKNDefaultRoundedButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNDefaultRoundedButtonCell.h; sourceTree = "<group>"; };
 		9390CB811B9523AF0088153C /* TKNDefaultRoundedButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNDefaultRoundedButtonCell.m; sourceTree = "<group>"; };
-		9390CB821B9523AF0088153C /* TKNRoundedButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNRoundedButtonCell.h; sourceTree = "<group>"; };
-		9390CB831B9523AF0088153C /* TKNRoundedButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNRoundedButtonCell.m; sourceTree = "<group>"; };
 		9390CB8D1B9526CB0088153C /* TKNBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNBackgroundView.h; sourceTree = "<group>"; };
 		9390CB8E1B9526DA0088153C /* TKNBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundView.m; sourceTree = "<group>"; };
+		9390CB901B952F2A0088153C /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = lib/sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
+		9390CBF41B95328D0088153C /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		9390CBFE1B953F2C0088153C /* TKNAlternativeRoundedButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNAlternativeRoundedButtonCell.h; sourceTree = "<group>"; };
+		9390CBFF1B953F2C0088153C /* TKNAlternativeRoundedButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNAlternativeRoundedButtonCell.m; sourceTree = "<group>"; };
 		93A224941B7B1FD200CB1DBB /* advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = advance.h; sourceTree = "<group>"; };
 		93A224951B7B1FD200CB1DBB /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
 		93A224961B7B1FD200CB1DBB /* component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = component.h; sourceTree = "<group>"; };
@@ -440,6 +488,7 @@
 				9334A8961B6C871E00FF2CE7 /* libtakram_nanovg_gl3.a in Frameworks */,
 				9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */,
 				93563A191B672580004C47E4 /* Solas.framework in Frameworks */,
+				9390CBC71B9532050088153C /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +556,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9390CB911B952F2A0088153C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9390CB9C1B952F2A0088153C /* Sparkle.framework */,
+				9390CB9E1B952F2A0088153C /* Sparkle Test App.app */,
+				9390CBA01B952F2A0088153C /* Sparkle Unit Tests.xctest */,
+				9390CBA21B952F2A0088153C /* BinaryDelta */,
+				9390CBA41B952F2A0088153C /* Autoupdate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		93A224921B7B1FD200CB1DBB /* ufo */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,8 +615,8 @@
 				93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */,
 				9390CB8D1B9526CB0088153C /* TKNBackgroundView.h */,
 				9390CB8E1B9526DA0088153C /* TKNBackgroundView.m */,
-				9390CB821B9523AF0088153C /* TKNRoundedButtonCell.h */,
-				9390CB831B9523AF0088153C /* TKNRoundedButtonCell.m */,
+				9390CBFE1B953F2C0088153C /* TKNAlternativeRoundedButtonCell.h */,
+				9390CBFF1B953F2C0088153C /* TKNAlternativeRoundedButtonCell.m */,
 				9390CB801B9523AF0088153C /* TKNDefaultRoundedButtonCell.h */,
 				9390CB811B9523AF0088153C /* TKNDefaultRoundedButtonCell.m */,
 			);
@@ -602,6 +663,7 @@
 			children = (
 				93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */,
 				93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */,
+				9390CBF41B95328D0088153C /* Credits.rtf */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -616,6 +678,7 @@
 				93FEF9751AD972AA009D0646 /* config */,
 				93FEF94F1AD97263009D0646 /* products */,
 				93FEF9761AD972E8009D0646 /* Solas.xcodeproj */,
+				9390CB901B952F2A0088153C /* Sparkle.xcodeproj */,
 				93563AAB1B674487004C47E4 /* graphics.xcodeproj */,
 				93563A741B674472004C47E4 /* nanovg.xcodeproj */,
 				9310892A1B6858410094B581 /* tween.xcodeproj */,
@@ -722,6 +785,7 @@
 				9334A8951B6C871A00FF2CE7 /* PBXTargetDependency */,
 				931089591B6859380094B581 /* PBXTargetDependency */,
 				93563A181B67257E004C47E4 /* PBXTargetDependency */,
+				9390CBA61B952F6C0088153C /* PBXTargetDependency */,
 			);
 			name = Token;
 			productName = Zorozoro;
@@ -768,6 +832,10 @@
 				{
 					ProductGroup = 93563A091B672571004C47E4 /* Products */;
 					ProjectRef = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
+				},
+				{
+					ProductGroup = 9390CB911B952F2A0088153C /* Products */;
+					ProjectRef = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
 				},
 				{
 					ProductGroup = 9310892B1B6858410094B581 /* Products */;
@@ -910,6 +978,41 @@
 			remoteRef = 93563ABA1B674487004C47E4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9390CB9C1B952F2A0088153C /* Sparkle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sparkle.framework;
+			remoteRef = 9390CB9B1B952F2A0088153C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9390CB9E1B952F2A0088153C /* Sparkle Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sparkle Test App.app";
+			remoteRef = 9390CB9D1B952F2A0088153C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9390CBA01B952F2A0088153C /* Sparkle Unit Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.xctest";
+			remoteRef = 9390CB9F1B952F2A0088153C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9390CBA21B952F2A0088153C /* BinaryDelta */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BinaryDelta;
+			remoteRef = 9390CBA11B952F2A0088153C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9390CBA41B952F2A0088153C /* Autoupdate.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Autoupdate.app;
+			remoteRef = 9390CBA31B952F2A0088153C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -924,6 +1027,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
 				93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */,
 				93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */,
 				93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */,
@@ -1023,7 +1127,7 @@
 				93C18FA11B930D440044AAEB /* extension_name.cc in Sources */,
 				93C18FA71B930D440044AAEB /* extension.cc in Sources */,
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
-				9390CB851B9523AF0088153C /* TKNRoundedButtonCell.m in Sources */,
+				9390CC001B953F2C0088153C /* TKNAlternativeRoundedButtonCell.m in Sources */,
 				9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */,
 				933162D71B92C58F009FFC7C /* font_info.cc in Sources */,
 				93B7634E1B91B268009CA8B0 /* TKNMainWindowController.mm in Sources */,
@@ -1096,6 +1200,11 @@
 			isa = PBXTargetDependency;
 			name = graphics_static;
 			targetProxy = 93563AC81B6744C1004C47E4 /* PBXContainerItemProxy */;
+		};
+		9390CBA61B952F6C0088153C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sparkle;
+			targetProxy = 9390CBA51B952F6C0088153C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -1,5 +1,5 @@
 //
-//  TKNRoundedButtonCell.h
+//  TKNAlternativeRoundedButtonCell.h
 //
 //  The MIT License
 //
@@ -26,6 +26,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNRoundedButtonCell : NSButtonCell
+@interface TKNAlternativeRoundedButtonCell : NSButtonCell
 
 @end

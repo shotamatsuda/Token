@@ -1,5 +1,5 @@
 //
-//  TKNRoundedButtonCell.m
+//  TKNAlternativeRoundedButtonCell.m
 //
 //  The MIT License
 //
@@ -24,20 +24,45 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNRoundedButtonCell.h"
+#import "TKNAlternativeRoundedButtonCell.h"
 
-@implementation TKNRoundedButtonCell
+@implementation TKNAlternativeRoundedButtonCell
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
   [NSGraphicsContext saveGraphicsState];
   NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:frame
                                                        xRadius:5.0
                                                        yRadius:5.0];
-  [[NSColor colorWithWhite:1.0 alpha:0.1] setFill];
-  [[NSColor colorWithWhite:1.0 alpha:0.1] setStroke];
+  if (self.highlighted) {
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.15] setFill];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.15] setStroke];
+  } else {
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.1] setFill];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.1] setStroke];
+  }
   [path fill];
   [path stroke];
   [NSGraphicsContext restoreGraphicsState];
+}
+
+- (NSAttributedString *)attributedTitle {
+  NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
+      initWithAttributedString:super.attributedTitle];
+  NSRange range = NSMakeRange(0, title.length);
+  [title beginEditing];
+  if (self.enabled) {
+    if (self.highlighted) {
+      [title addAttribute:NSForegroundColorAttributeName
+                    value:[NSColor whiteColor]
+                    range:range];
+    } else {
+      [title addAttribute:NSForegroundColorAttributeName
+                    value:[[NSColor whiteColor] colorWithAlphaComponent:0.9]
+                    range:range];
+    }
+  }
+  [title endEditing];
+  return title;
 }
 
 @end
