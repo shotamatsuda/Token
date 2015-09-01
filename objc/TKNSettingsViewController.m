@@ -29,11 +29,8 @@
 @implementation TKNSettingsViewController
 
 - (instancetype)init {
-  self = [self initWithNibName:@"TKNSettingsViewController"
+  return [self initWithNibName:@"TKNSettingsViewController"
                         bundle:[NSBundle mainBundle]];
-  if (self) {
-  }
-  return self;
 }
 
 @end

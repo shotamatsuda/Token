@@ -28,4 +28,9 @@
 
 @implementation TKNTypeCustomView
 
+- (void)drawRect:(NSRect)rect {
+  [[NSColor whiteColor] setFill];
+  NSRectFill(rect);
+}
+
 @end

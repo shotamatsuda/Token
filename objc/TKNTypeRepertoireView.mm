@@ -28,4 +28,9 @@
 
 @implementation TKNTypeRepertoireView
 
+- (void)drawRect:(NSRect)rect {
+  [[NSColor whiteColor] setFill];
+  NSRectFill(rect);
+}
+
 @end

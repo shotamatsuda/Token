@@ -29,11 +29,8 @@
 @implementation TKNTypeViewController
 
 - (instancetype)init {
-  self = [self initWithNibName:@"TKNTypeViewController"
+  return [self initWithNibName:@"TKNTypeViewController"
                         bundle:[NSBundle mainBundle]];
-  if (self) {
-  }
-  return self;
 }
 
 @end

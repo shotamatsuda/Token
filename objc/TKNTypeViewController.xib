@@ -11,15 +11,15 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="715" height="438"/>
+        <customView id="Hz6-mo-xeY" customClass="TKNTypeSampleView">
+            <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="0qe-oe-Z9L">
-                    <rect key="frame" x="0.0" y="0.0" width="715" height="25"/>
+                    <rect key="frame" x="0.0" y="0.0" width="640" height="25"/>
                     <subviews>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="dJ4-dB-2FY">
-                            <rect key="frame" x="680" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="605" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="deq-WJ-FOD"/>
                                 <constraint firstAttribute="width" constant="25" id="miv-Ti-3sT"/>
@@ -31,7 +31,7 @@
                             </buttonCell>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EL8-kB-Noj">
-                            <rect key="frame" x="618" y="5" width="64" height="14"/>
+                            <rect key="frame" x="543" y="5" width="64" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="SL8-Od-RHI"/>
                             </constraints>
@@ -43,7 +43,7 @@
                             </textFieldCell>
                         </textField>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="LGi-f9-SFl">
-                            <rect key="frame" x="595" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="520" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="Uj8-JC-WD3"/>
                                 <constraint firstAttribute="height" constant="25" id="ojr-EY-DU5"/>

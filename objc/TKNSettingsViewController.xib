@@ -257,7 +257,7 @@
                 <constraint firstItem="Krq-UN-elN" firstAttribute="leading" secondItem="iH7-Cb-6Xa" secondAttribute="trailing" id="uE3-zR-qqE"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="473" y="523.5"/>
+            <point key="canvasLocation" x="465" y="595.5"/>
         </customView>
     </objects>
     <resources>

@@ -13,17 +13,17 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-            <rect key="contentRect" x="196" y="240" width="800" height="628"/>
+            <rect key="contentRect" x="196" y="240" width="800" height="640"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="800" height="628"/>
+                <rect key="frame" x="0.0" y="0.0" width="800" height="640"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-113" y="670"/>
+            <point key="canvasLocation" x="-42" y="584"/>
         </window>
     </objects>
 </document>
