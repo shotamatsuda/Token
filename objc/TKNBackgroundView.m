@@ -1,5 +1,5 @@
 //
-//  TKNMainWindowController.h
+//  TKNBackgroundView.m
 //
 //  The MIT License
 //
@@ -24,24 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNBackgroundView.h"
 
-#import "SLSNSViewController.h"
-#import "SLSRunner.h"
+@implementation TKNBackgroundView
 
-@interface TKNMainWindowController : NSWindowController
-
-@property (nonatomic, strong, nonnull) SLSRunner *runner;
-@property (nonatomic, strong, nonnull) SLSNSViewController *viewController;
-
-#pragma mark Parameters
-
-@property (nonatomic, assign) double ascent;
-@property (nonatomic, assign) double width;
-
-#pragma mark Actions
-
-- (IBAction)exportFont:(nullable id)sender;
-- (IBAction)installFont:(nullable id)sender;
+- (BOOL)acceptsFirstResponder {
+  return YES;
+}
 
 @end

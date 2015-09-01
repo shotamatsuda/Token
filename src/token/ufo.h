@@ -32,7 +32,7 @@
 #include "token/ufo/anchor.h"
 #include "token/ufo/component.h"
 #include "token/ufo/contour.h"
-#include "token/ufo/fontinfo.h"
+#include "token/ufo/font_info.h"
 #include "token/ufo/glyph.h"
 #include "token/ufo/glyph_iterator.h"
 #include "token/ufo/glyphs.h"

@@ -44,23 +44,24 @@ class GlyphOutline final {
  public:
   GlyphOutline() = default;
   explicit GlyphOutline(const ufo::Glyph& glyph);
-  GlyphOutline(const ufo::Glyph& glyph, const takram::Shape2d& shape);
 
   // Copy semantics
   GlyphOutline(const GlyphOutline&) = default;
   GlyphOutline& operator=(const GlyphOutline&) = default;
 
   // Attributes
-  const ufo::Glyph& glyph() const { return glyph_; }
   const takram::Shape2d& shape() const { return shape_; }
+  takram::Shape2d& shape() { return shape_; }
   GlyphStroker::Cap cap(const takram::Path2d& path) const;
+
+  // Conversion
+  ufo::Glyph glyph(const ufo::Glyph& prototype) const;
 
  private:
   void processContour(const ufo::Contour& contour);
-  void processPath(const takram::Path2d& path);
+  void processPath(const takram::Path2d& path, ufo::Glyph *glyph) const;
 
  public:
-  ufo::Glyph glyph_;
   takram::Shape2d shape_;
   std::unordered_map<std::size_t, GlyphStroker::Cap> caps_;
 };

@@ -28,7 +28,8 @@
 #ifndef TOKEN_VIEW_H_
 #define TOKEN_VIEW_H_
 
-#include <list>
+#include <map>
+#include <string>
 
 #include "solas.h"
 #include "takram/graphics.h"
@@ -58,13 +59,14 @@ class View : public solas::View {
 
  private:
   takram::nvg::Context context_;
+  token::ufo::FontInfo font_info_;
   token::ufo::Glyphs glyphs_;
   token::GlyphStroker stroker_;
-  std::list<token::GlyphOutline> outlines_;
-  std::list<takram::Shape2d> shapes_;
+  std::vector<std::string> names_;
+  std::map<std::string, token::GlyphOutline> outlines_;
+  std::map<std::string, takram::Shape2d> shapes_;
   takram::Vec2d translation_;
   double scale_;
-  int units_per_em_;
   bool needs_stroking_;
 };
 

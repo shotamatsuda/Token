@@ -32,11 +32,9 @@
 #include <string>
 #include <iterator>
 #include <unordered_map>
-#include <utility>
 
 #include "token/ufo/glyph.h"
 #include "token/ufo/glyph_iterator.h"
-#include "token/ufo/property_list.h"
 
 namespace token {
 namespace ufo {
@@ -91,6 +89,20 @@ class Glyphs final {
 
 inline Glyphs::Glyphs(const std::string& path) {
   open(path);
+}
+
+#pragma mark Glyphs
+
+inline const Glyph& Glyphs::get(const std::string& name) const {
+  auto glyph = find(name);
+  assert(glyph);
+  return *glyph;
+}
+
+inline Glyph& Glyphs::get(const std::string& name) {
+  auto glyph = find(name);
+  assert(glyph);
+  return *glyph;
 }
 
 #pragma mark Iterator

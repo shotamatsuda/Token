@@ -1,5 +1,5 @@
 //
-//  TKNMainWindowController.h
+//  TKNRoundedButtonCell.h
 //
 //  The MIT License
 //
@@ -26,22 +26,6 @@
 
 #import <AppKit/AppKit.h>
 
-#import "SLSNSViewController.h"
-#import "SLSRunner.h"
-
-@interface TKNMainWindowController : NSWindowController
-
-@property (nonatomic, strong, nonnull) SLSRunner *runner;
-@property (nonatomic, strong, nonnull) SLSNSViewController *viewController;
-
-#pragma mark Parameters
-
-@property (nonatomic, assign) double ascent;
-@property (nonatomic, assign) double width;
-
-#pragma mark Actions
-
-- (IBAction)exportFont:(nullable id)sender;
-- (IBAction)installFont:(nullable id)sender;
+@interface TKNRoundedButtonCell : NSButtonCell
 
 @end

@@ -39,6 +39,8 @@
 
 @property (nonatomic, strong) IBOutlet NSView *contentView;
 @property (nonatomic, strong) IBOutlet NSView *controlView;
+@property (nonatomic, strong) IBOutlet NSView *settingsView;
+@property (nonatomic, strong) IBOutlet NSSplitView *splitView;
 
 @end
 
@@ -69,32 +71,27 @@
   self.window.styleMask |= NSFullSizeContentViewWindowMask;
   NSView *view = _viewController.view;
   view.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.contentView addSubview:view positioned:NSWindowBelow relativeTo:nil];
-  [self.contentView addConstraints:[NSLayoutConstraint
+  [_contentView addSubview:view positioned:NSWindowBelow relativeTo:nil];
+  [_contentView addConstraints:[NSLayoutConstraint
       constraintsWithVisualFormat:@"|-0-[view]-0-|"
       options:0
       metrics:nil
       views:NSDictionaryOfVariableBindings(view)]];
-  [self.contentView addConstraints:[NSLayoutConstraint
+  [_contentView addConstraints:[NSLayoutConstraint
       constraintsWithVisualFormat:@"V:|-0-[view]-0-|"
       options:0
       metrics:nil
       views:NSDictionaryOfVariableBindings(view)]];
+  _splitView.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+  _controlView.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
 }
 
-- (void)setPhysicalAscent:(double)physicalAscent {
-  if (_physicalAscent != physicalAscent) {
-    _physicalAscent = physicalAscent;
-  }
+#pragma mark Actions
+
+- (IBAction)exportFont:(id)sender {
 }
 
-- (void)setPhysicalStrokeWidth:(double)physicalStrokeWidth {
-  if (_physicalStrokeWidth != physicalStrokeWidth) {
-    _physicalStrokeWidth = physicalStrokeWidth;
-  }
-}
-
-- (void)generateFont {
+- (IBAction)installFont:(id)sender {
 }
 
 @end

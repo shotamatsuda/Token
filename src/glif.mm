@@ -54,27 +54,28 @@ int main(int argc, char **argv) {
     }
     [manager copyItemAtPath:from toPath:to error:&error];
   }
+  token::ufo::FontInfo info(destination);
   token::ufo::Glyphs glyphs(destination);
   token::GlyphStroker stroker;
   stroker.set_width(50.0);
   for (auto& glyph : glyphs) {
     token::GlyphOutline outline(glyph);
-    auto shape = outline.shape();
-    const auto advance = outline.glyph().advance->width;
-    const auto scale = (680.0 - stroker.width()) / 680.0;
-    const takram::Vec2d center(advance / 2.0, 340.0);
-    for (auto& command : shape) {
+    const auto advance = glyph.advance->width;
+    const auto scale = (info.ascender - stroker.width()) / info.ascender;
+    const takram::Vec2d center(advance / 2.0, info.ascender / 2.0);
+    for (auto& command : outline.shape()) {
       command.point() = center + (command.point() - center) * scale;
       command.control1() = center + (command.control1() - center) * scale;
       command.control2() = center + (command.control2() - center) * scale;
     }
-    shape = stroker.stroke(shape);
+    auto shape = stroker.stroke(outline);
     shape = stroker.simplify(shape);
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();
     shape.removeDuplicates(1.0);
-    token::GlyphOutline stroked(glyph, shape);
-    glyphs.set(glyph.name, stroked.glyph());
+//    
+//    token::GlyphOutline stroked(glyph, shape);
+//    glyphs.set(glyph.name, stroked.glyph());
   }
   const std::string path([[NSBundle mainBundle].executablePath stringByDeletingLastPathComponent].UTF8String);
   std::system(("FDK_EXE=\"" + path + "/FDK/Tools/osx\";"

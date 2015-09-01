@@ -39,30 +39,31 @@
 
 namespace token {
 
-GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) : glyph_(glyph) {
-  if (!glyph_.outline.exists() || glyph_.outline->contours.empty()) {
+GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) {
+  if (!glyph.outline.exists() || glyph.outline->contours.empty()) {
     return;
   }
-  for (const auto& contour : glyph_.outline->contours) {
+  for (const auto& contour : glyph.outline->contours) {
     if (!contour.points.empty()) {
       processContour(contour);
     }
   }
 }
 
-GlyphOutline::GlyphOutline(const ufo::Glyph& glyph,
-                           const takram::Shape2d& shape)
-    : glyph_(glyph),
-      shape_(shape) {
-  if (glyph_.outline.exists()) {
-    glyph_.outline->contours.clear();
+#pragma mark Conversion
+
+ufo::Glyph GlyphOutline::glyph(const ufo::Glyph& prototype) const {
+  ufo::Glyph result(prototype);
+  if (result.outline.exists()) {
+    result.outline->contours.clear();
   }
-  glyph_.outline.emplace();
-  for (const auto& path : shape.paths()) {
-    if (!shape.empty()) {
-      processPath(path);
+  result.outline.emplace();
+  for (const auto& path : shape_.paths()) {
+    if (!shape_.empty()) {
+      processPath(path, &result);
     }
   }
+  return std::move(result);
 }
 
 void GlyphOutline::processContour(const ufo::Contour& contour) {
@@ -148,8 +149,10 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
   caps_.emplace(shape_.paths().size() - 1, cap);
 }
 
-void GlyphOutline::processPath(const takram::Path2d& path) {
+void GlyphOutline::processPath(const takram::Path2d& path,
+                               ufo::Glyph *glyph) const {
   assert(!path.empty());
+  assert(glyph);
   std::deque<ufo::Point> points;
   for (const auto& command : path) {
     switch (command.type()) {
@@ -194,8 +197,8 @@ void GlyphOutline::processPath(const takram::Path2d& path) {
     points.push_front(back);
   }
   if (!points.empty()) {
-    glyph_.outline->contours.emplace_back();
-    auto& target = glyph_.outline->contours.back().points;
+    glyph->outline->contours.emplace_back();
+    auto& target = glyph->outline->contours.back().points;
     target.resize(points.size());
     std::copy(std::begin(points), std::end(points), std::begin(target));
   }

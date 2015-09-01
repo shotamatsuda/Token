@@ -16,3 +16,6 @@
 [submodule "lib/takram-tween"]
 	path = lib/takram-tween
 	url = git@github.com:takram-design-engineering/takram-tween.git
+[submodule "lib/sparkle"]
+	path = lib/sparkle
+	url = git@github.com:sparkle-project/Sparkle.git

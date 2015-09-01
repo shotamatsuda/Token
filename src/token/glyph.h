@@ -41,9 +41,9 @@ class App : public solas::View {
  public:
   void setup() override {
     glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo/glyphs");
-    token::ufo::Fontinfo fontinfo;
-    fontinfo.open("/Users/sgss/Dropbox/Github/token/Token.ufo");
-    fontinfo.save("/Users/sgss/Desktop");
+    token::ufo::FontInfo font_info;
+    font_info.open("/Users/sgss/Dropbox/Github/token/Token.ufo");
+    font_info.save("/Users/sgss/Desktop");
     context_.init();
     scale_ = 1.0;
     width_ = 3;

@@ -1,5 +1,5 @@
 //
-//  token/ufo/fontinfo.h
+//  token/ufo/font_info.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_FONTINFO_H_
-#define TOKEN_UFO_FONTINFO_H_
+#ifndef TOKEN_UFO_FONT_INFO_H_
+#define TOKEN_UFO_FONT_INFO_H_
 
 #include <istream>
 #include <map>
@@ -44,25 +44,25 @@
 namespace token {
 namespace ufo {
 
-class Fontinfo final {
+class FontInfo final {
  public:
-  Fontinfo() = default;
-  explicit Fontinfo(const std::string& ufo_path);
-  explicit Fontinfo(std::istream *stream);
+  FontInfo() = default;
+  explicit FontInfo(const std::string& ufo_path);
+  explicit FontInfo(std::istream *stream);
 
   // Disallow copy semantics
-  Fontinfo(const Fontinfo&) = delete;
-  Fontinfo& operator=(const Fontinfo&) = delete;
+  FontInfo(const FontInfo&) = delete;
+  FontInfo& operator=(const FontInfo&) = delete;
 
   // Move semantics
-  Fontinfo(Fontinfo&&) = default;
-  Fontinfo& operator=(Fontinfo&&) = default;
+  FontInfo(FontInfo&&) = default;
+  FontInfo& operator=(FontInfo&&) = default;
 
   // Opening and saving
   bool open(const std::string& path);
   bool open(std::istream *stream);
-  bool save(const std::string& path);
-  bool save(std::ostream *stream);
+  bool save(const std::string& path) const;
+  bool save(std::ostream *stream) const;
 
  private:
   // Reading from property list
@@ -82,20 +82,20 @@ class Fontinfo final {
   void readGuidelines(const PropertyList& plist);
 
   // Writing to property list
-  void writeIdentificationInformation(const PropertyList& plist);
-  void writeLegalInformation(const PropertyList& plist);
-  void writeDimensionInformation(const PropertyList& plist);
-  void writeMiscellaneousInformation(const PropertyList& plist);
-  void writeOpenTypeGASPTableFields(const PropertyList& plist);
-  void writeOpenTypeHEADTableFields(const PropertyList& plist);
-  void writeOpenTypeHHEATableFields(const PropertyList& plist);
-  void writeOpenTypeNameTableFields(const PropertyList& plist);
-  void writeOpenTypeOS2TableFields(const PropertyList& plist);
-  void writeOpenTypeVHEATableFields(const PropertyList& plist);
-  void writePostScriptSpecificData(const PropertyList& plist);
-  void writeMacintoshFONDResourceData(const PropertyList& plist);
-  void writeWOFFData(const PropertyList& plist);
-  void writeGuidelines(const PropertyList& plist);
+  void writeIdentificationInformation(const PropertyList& plist) const;
+  void writeLegalInformation(const PropertyList& plist) const;
+  void writeDimensionInformation(const PropertyList& plist) const;
+  void writeMiscellaneousInformation(const PropertyList& plist) const;
+  void writeOpenTypeGASPTableFields(const PropertyList& plist) const;
+  void writeOpenTypeHEADTableFields(const PropertyList& plist) const;
+  void writeOpenTypeHHEATableFields(const PropertyList& plist) const;
+  void writeOpenTypeNameTableFields(const PropertyList& plist) const;
+  void writeOpenTypeOS2TableFields(const PropertyList& plist) const;
+  void writeOpenTypeVHEATableFields(const PropertyList& plist) const;
+  void writePostScriptSpecificData(const PropertyList& plist) const;
+  void writeMacintoshFONDResourceData(const PropertyList& plist) const;
+  void writeWOFFData(const PropertyList& plist) const;
+  void writeGuidelines(const PropertyList& plist) const;
 
  public:
   // Identification Information
@@ -237,15 +237,15 @@ class Fontinfo final {
 
 #pragma mark -
 
-inline Fontinfo::Fontinfo(const std::string& path) {
+inline FontInfo::FontInfo(const std::string& path) {
   open(path);
 }
 
-inline Fontinfo::Fontinfo(std::istream *stream) {
+inline FontInfo::FontInfo(std::istream *stream) {
   open(stream);
 }
 
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_FONTINFO_H_
+#endif  // TOKEN_UFO_FONT_INFO_H_

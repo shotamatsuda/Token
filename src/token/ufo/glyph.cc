@@ -67,14 +67,14 @@ bool Glyph::open(std::istream *stream) {
   return true;
 }
 
-bool Glyph::save(const std::string& path) {
+bool Glyph::save(const std::string& path) const {
   std::ofstream stream(path);
   const auto result = save(&stream);
   stream.close();
   return result;
 }
 
-bool Glyph::save(std::ostream *stream) {
+bool Glyph::save(std::ostream *stream) const {
   assert(stream);
   if (!stream->good()) {
     return false;

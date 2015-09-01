@@ -1,5 +1,5 @@
 //
-//  token/ufo/fontinfo.cc
+//  token/ufo/font_info.cc
 //
 //  MIT License
 //
@@ -24,7 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/ufo/fontinfo.h"
+#include "token/ufo/font_info.h"
 
 extern "C" {
 
@@ -50,14 +50,19 @@ namespace ufo {
 
 #pragma mark Opening and saving
 
-bool Fontinfo::open(const std::string& path) {
-  std::ifstream stream(path);
+bool FontInfo::open(const std::string& path) {
+  const boost::filesystem::path node(path);
+  std::string fontinfo = path;
+  if (node.leaf().extension() == ".ufo") {
+    fontinfo = (node / "fontinfo.plist").string();
+  }
+  std::ifstream stream(fontinfo);
   const auto result = open(&stream);
   stream.close();
   return result;
 }
 
-bool Fontinfo::open(std::istream *stream) {
+bool FontInfo::open(std::istream *stream) {
   assert(stream);
   if (!stream->good()) {
     return false;
@@ -88,14 +93,19 @@ bool Fontinfo::open(std::istream *stream) {
   return true;
 }
 
-bool Fontinfo::save(const std::string& path) {
-  std::ofstream stream(path);
+bool FontInfo::save(const std::string& path) const {
+  const boost::filesystem::path node(path);
+  std::string fontinfo = path;
+  if (node.leaf().extension() == ".ufo") {
+    fontinfo = (node / "fontinfo.plist").string();
+  }
+  std::ofstream stream(fontinfo);
   const auto result = save(&stream);
   stream.close();
   return result;
 }
 
-bool Fontinfo::save(std::ostream *stream) {
+bool FontInfo::save(std::ostream *stream) const {
   assert(stream);
   if (!stream->good()) {
     return false;
@@ -124,7 +134,7 @@ bool Fontinfo::save(std::ostream *stream) {
 
 #pragma mark Reading from property list
 
-void Fontinfo::readIdentificationInformation(const PropertyList& plist) {
+void FontInfo::readIdentificationInformation(const PropertyList& plist) {
   plist::read_string(plist, "familyName", &family_name);
   plist::read_string(plist, "styleName", &style_name);
   plist::read_string(plist, "styleMapFamilyName", &style_map_family_name);
@@ -134,13 +144,12 @@ void Fontinfo::readIdentificationInformation(const PropertyList& plist) {
   plist::read_number(plist, "year", &year);
 }
 
-void Fontinfo::readLegalInformation(const PropertyList& plist) {
+void FontInfo::readLegalInformation(const PropertyList& plist) {
   plist::read_string(plist, "copyright", &copyright);
   plist::read_string(plist, "trademark", &trademark);
-  
 }
 
-void Fontinfo::readDimensionInformation(const PropertyList& plist) {
+void FontInfo::readDimensionInformation(const PropertyList& plist) {
   plist::read_number(plist, "unitsPerEm", &units_per_em);
   plist::read_number(plist, "descender", &descender);
   plist::read_number(plist, "xHeight", &x_height);
@@ -149,16 +158,16 @@ void Fontinfo::readDimensionInformation(const PropertyList& plist) {
   plist::read_number(plist, "italicAngle", &italic_angle);
 }
 
-void Fontinfo::readMiscellaneousInformation(const PropertyList& plist) {
+void FontInfo::readMiscellaneousInformation(const PropertyList& plist) {
   plist::read_string(plist, "note", &note);
 }
 
-void Fontinfo::readOpenTypeGASPTableFields(const PropertyList& plist) {
+void FontInfo::readOpenTypeGASPTableFields(const PropertyList& plist) {
   plist::read_vector(plist, "openTypeGaspRangeRecords",
                      &open_type_gasp_range_records);
 }
 
-void Fontinfo::readOpenTypeHEADTableFields(const PropertyList& plist) {
+void FontInfo::readOpenTypeHEADTableFields(const PropertyList& plist) {
   plist::read_string(plist, "openTypeHeadCreated",
                      &open_type_head_created);
   plist::read_number(plist, "openTypeHeadLowestRecPPEM",
@@ -167,7 +176,7 @@ void Fontinfo::readOpenTypeHEADTableFields(const PropertyList& plist) {
                      &open_type_head_flags);
 }
 
-void Fontinfo::readOpenTypeHHEATableFields(const PropertyList& plist) {
+void FontInfo::readOpenTypeHHEATableFields(const PropertyList& plist) {
   plist::read_number(plist, "openTypeHheaAscender",
                      &open_type_hhea_ascender);
   plist::read_number(plist, "openTypeHheaDescender",
@@ -182,7 +191,7 @@ void Fontinfo::readOpenTypeHHEATableFields(const PropertyList& plist) {
                      &open_type_hhea_caret_offset);
 }
 
-void Fontinfo::readOpenTypeNameTableFields(const PropertyList& plist) {
+void FontInfo::readOpenTypeNameTableFields(const PropertyList& plist) {
   plist::read_string(plist, "openTypeNameDesigner",
                      &open_type_name_designer);
   plist::read_string(plist, "openTypeNameDesignerURL",
@@ -217,7 +226,7 @@ void Fontinfo::readOpenTypeNameTableFields(const PropertyList& plist) {
                      &open_type_name_records);
 }
 
-void Fontinfo::readOpenTypeOS2TableFields(const PropertyList& plist) {
+void FontInfo::readOpenTypeOS2TableFields(const PropertyList& plist) {
   plist::read_number(plist, "openTypeOS2WidthClass",
                      &open_type_os2_width_class);
   plist::read_number(plist, "openTypeOS2WeightClass",
@@ -268,7 +277,7 @@ void Fontinfo::readOpenTypeOS2TableFields(const PropertyList& plist) {
                      &open_type_os2_strikeout_position);
 }
 
-void Fontinfo::readOpenTypeVHEATableFields(const PropertyList& plist) {
+void FontInfo::readOpenTypeVHEATableFields(const PropertyList& plist) {
   plist::read_number(plist, "openTypeHheaAscender",
                      &open_type_vhea_vert_typo_ascender);
   plist::read_number(plist, "openTypeHheaDescender",
@@ -283,7 +292,7 @@ void Fontinfo::readOpenTypeVHEATableFields(const PropertyList& plist) {
                      &open_type_vhea_caret_offset);
 }
 
-void Fontinfo::readPostScriptSpecificData(const PropertyList& plist) {
+void FontInfo::readPostScriptSpecificData(const PropertyList& plist) {
   plist::read_string(plist, "postscriptFontName",
                      &postscript_font_name);
   plist::read_string(plist, "postscriptFullName",
@@ -330,12 +339,12 @@ void Fontinfo::readPostScriptSpecificData(const PropertyList& plist) {
                      &postscript_windows_character_set);
 }
 
-void Fontinfo::readMacintoshFONDResourceData(const PropertyList& plist) {
+void FontInfo::readMacintoshFONDResourceData(const PropertyList& plist) {
   plist::read_number(plist, "macintoshFONDFamilyID", &macintosh_fond_family_id);
   plist::read_string(plist, "macintoshFONDName", &macintosh_fond_name);
 }
 
-void Fontinfo::readWOFFData(const PropertyList& plist) {
+void FontInfo::readWOFFData(const PropertyList& plist) {
   plist::read_number(plist, "woffMajorVersion", &woff_major_version);
   plist::read_number(plist, "woffMinorVersion", &woff_minor_version);
   plist::read_object(plist, "woffMetadataUniqueID",
@@ -358,13 +367,13 @@ void Fontinfo::readWOFFData(const PropertyList& plist) {
                      &woff_metadata_extensions);
 }
 
-void Fontinfo::readGuidelines(const PropertyList& plist) {
+void FontInfo::readGuidelines(const PropertyList& plist) {
   plist::read_vector(plist, "guidelines", &guidelines);
 }
 
 #pragma mark Writing to property list
 
-void Fontinfo::writeIdentificationInformation(const PropertyList& plist) {
+void FontInfo::writeIdentificationInformation(const PropertyList& plist) const {
   plist::write_string(plist, "familyName", family_name);
   plist::write_string(plist, "styleName", style_name);
   plist::write_string(plist, "styleMapFamilyName", style_map_family_name);
@@ -374,12 +383,12 @@ void Fontinfo::writeIdentificationInformation(const PropertyList& plist) {
   plist::write_number(plist, "year", year);
 }
 
-void Fontinfo::writeLegalInformation(const PropertyList& plist) {
+void FontInfo::writeLegalInformation(const PropertyList& plist) const {
   plist::write_string(plist, "copyright", copyright);
   plist::write_string(plist, "trademark", trademark);
 }
 
-void Fontinfo::writeDimensionInformation(const PropertyList& plist) {
+void FontInfo::writeDimensionInformation(const PropertyList& plist) const {
   plist::write_number(plist, "unitsPerEm", units_per_em);
   plist::write_number(plist, "descender", descender);
   plist::write_number(plist, "xHeight", x_height);
@@ -388,16 +397,16 @@ void Fontinfo::writeDimensionInformation(const PropertyList& plist) {
   plist::write_number(plist, "italicAngle", italic_angle);
 }
 
-void Fontinfo::writeMiscellaneousInformation(const PropertyList& plist) {
+void FontInfo::writeMiscellaneousInformation(const PropertyList& plist) const {
   plist::write_string(plist, "note", note);
 }
 
-void Fontinfo::writeOpenTypeGASPTableFields(const PropertyList& plist) {
+void FontInfo::writeOpenTypeGASPTableFields(const PropertyList& plist) const {
   plist::write_vector(plist, "openTypeGaspRangeRecords",
                       open_type_gasp_range_records);
 }
 
-void Fontinfo::writeOpenTypeHEADTableFields(const PropertyList& plist) {
+void FontInfo::writeOpenTypeHEADTableFields(const PropertyList& plist) const {
   plist::write_string(plist, "openTypeHeadCreated",
                       open_type_head_created);
   plist::write_number(plist, "openTypeHeadLowestRecPPEM",
@@ -406,7 +415,7 @@ void Fontinfo::writeOpenTypeHEADTableFields(const PropertyList& plist) {
                       open_type_head_flags);
 }
 
-void Fontinfo::writeOpenTypeHHEATableFields(const PropertyList& plist) {
+void FontInfo::writeOpenTypeHHEATableFields(const PropertyList& plist) const {
   plist::write_number(plist, "openTypeHheaAscender",
                       open_type_hhea_ascender);
   plist::write_number(plist, "openTypeHheaDescender",
@@ -421,7 +430,7 @@ void Fontinfo::writeOpenTypeHHEATableFields(const PropertyList& plist) {
                       open_type_hhea_caret_offset);
 }
 
-void Fontinfo::writeOpenTypeNameTableFields(const PropertyList& plist) {
+void FontInfo::writeOpenTypeNameTableFields(const PropertyList& plist) const {
   plist::write_string(plist, "openTypeNameDesigner",
                       open_type_name_designer);
   plist::write_string(plist, "openTypeNameDesignerURL",
@@ -456,7 +465,7 @@ void Fontinfo::writeOpenTypeNameTableFields(const PropertyList& plist) {
                       open_type_name_records);
 }
 
-void Fontinfo::writeOpenTypeOS2TableFields(const PropertyList& plist) {
+void FontInfo::writeOpenTypeOS2TableFields(const PropertyList& plist) const {
   plist::write_number(plist, "openTypeOS2WidthClass",
                       open_type_os2_width_class);
   plist::write_number(plist, "openTypeOS2WeightClass",
@@ -507,7 +516,7 @@ void Fontinfo::writeOpenTypeOS2TableFields(const PropertyList& plist) {
                       open_type_os2_strikeout_position);
 }
 
-void Fontinfo::writeOpenTypeVHEATableFields(const PropertyList& plist) {
+void FontInfo::writeOpenTypeVHEATableFields(const PropertyList& plist) const {
   plist::write_number(plist, "openTypeHheaAscender",
                       open_type_vhea_vert_typo_ascender);
   plist::write_number(plist, "openTypeHheaDescender",
@@ -522,7 +531,7 @@ void Fontinfo::writeOpenTypeVHEATableFields(const PropertyList& plist) {
                       open_type_vhea_caret_offset);
 }
 
-void Fontinfo::writePostScriptSpecificData(const PropertyList& plist) {
+void FontInfo::writePostScriptSpecificData(const PropertyList& plist) const {
   plist::write_string(plist, "postscriptFontName",
                       postscript_font_name);
   plist::write_string(plist, "postscriptFullName",
@@ -569,12 +578,12 @@ void Fontinfo::writePostScriptSpecificData(const PropertyList& plist) {
                       postscript_windows_character_set);
 }
 
-void Fontinfo::writeMacintoshFONDResourceData(const PropertyList& plist) {
+void FontInfo::writeMacintoshFONDResourceData(const PropertyList& plist) const {
   plist::write_number(plist, "macintoshFONDFamilyID", macintosh_fond_family_id);
   plist::write_string(plist, "macintoshFONDName", macintosh_fond_name);
 }
 
-void Fontinfo::writeWOFFData(const PropertyList& plist) {
+void FontInfo::writeWOFFData(const PropertyList& plist) const {
   plist::write_number(plist, "woffMajorVersion", woff_major_version);
   plist::write_number(plist, "woffMinorVersion", woff_minor_version);
   plist::write_object(plist, "woffMetadataUniqueID",
@@ -597,7 +606,7 @@ void Fontinfo::writeWOFFData(const PropertyList& plist) {
                       woff_metadata_extensions);
 }
 
-void Fontinfo::writeGuidelines(const PropertyList& plist) {  
+void FontInfo::writeGuidelines(const PropertyList& plist) const {
   plist::write_vector(plist, "guidelines", guidelines);
 }
 

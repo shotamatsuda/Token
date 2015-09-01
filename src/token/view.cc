@@ -39,17 +39,19 @@ namespace token {
 void View::setup() {
   context_.init();
   scale_ = 1.0;
-  units_per_em_ = 1000;
   stroker_.set_width(50.0);
   needs_stroking_ = true;
-  glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo");
-  const std::vector<std::string> names = {
+
+  font_info_.open("/Users/sgss/Dropbox/Github/token/Token.ufo");
+  glyphs_.open("/Users/sgss/Dropbox/Github/token/Token.ufo");
+
+  names_ = {
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
     "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "one", "two",
     "three", "four", "five", "six", "seven", "eight", "nine", "zero",
   };
-  for (const auto& name : names) {
-    outlines_.emplace_back(glyphs_.get(name));
+  for (const auto& name : names_) {
+    outlines_.emplace(name, GlyphOutline(glyphs_.get(name)));
   }
 }
 
@@ -66,10 +68,10 @@ void View::update() {
     return;
   }
   shapes_.clear();
-  for (const auto& outline : outlines_) {
-    takram::Shape2d shape = outline.shape();
-    const auto advance = outline.glyph().advance->width;
-    const auto scale = (680.0 - stroker_.width()) / 680.0;
+  for (const auto& name : names_) {
+    takram::Shape2d shape = outlines_.at(name).shape();
+    const auto advance = glyphs_.get(name).advance->width;
+    const auto scale = (font_info_.ascender - stroker_.width()) / font_info_.ascender;
     const takram::Vec2d center(advance / 2.0, 340.0);
     for (auto& command : shape) {
       command.point() = center + (command.point() - center) * scale;
@@ -81,7 +83,7 @@ void View::update() {
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();
     shape.removeDuplicates(1.0);
-    shapes_.emplace_back(std::move(shape));
+    shapes_.emplace(name, std::move(shape));
   }
   needs_stroking_ = false;
 }
@@ -94,19 +96,18 @@ void View::draw() {
   takram::nvg::fill();
   takram::nvg::translate(translation_);
   takram::nvg::save();
-  auto outline = std::begin(outlines_);
-  auto shape = std::begin(shapes_);
-  for (int i{}; outline != std::end(outlines_); ++outline, ++shape, ++i) {
+  auto itr = std::begin(names_);
+  for (int i{}; itr != std::end(names_); ++itr, ++i) {
     if (!(i % 13)) {
       takram::nvg::restore();
-      takram::nvg::translateY(units_per_em_ * scale_);
+      takram::nvg::translateY(font_info_.units_per_em * scale_);
       takram::nvg::save();
     }
     takram::nvg::beginPath();
-    drawShape(*shape);
+    drawShape(shapes_.at(*itr));
     takram::nvg::fillColor(takram::Color4d::black());
     takram::nvg::fill();
-    takram::nvg::translateX(outline->glyph().advance->width * scale_);
+    takram::nvg::translateX(glyphs_.get(*itr).advance->width * scale_);
   }
 }
 
@@ -116,7 +117,8 @@ void View::mouseDragged() {
 
 void View::mouseWheel(const solas::MouseEvent& event) {
   if (event.modifiers() % solas::KeyModifier::ALTERNATE) {
-    stroker_.set_width(takram::math::constrain(stroker_.width() + event.wheel().y, 10.0, 120.0));
+    stroker_.set_width(takram::math::constrain(
+        stroker_.width() + event.wheel().y, 10.0, 120.0));
     needs_stroking_ = true;
   } else {
     const auto scale = scale_;
@@ -141,26 +143,30 @@ void View::drawPath(const takram::Path2d& path) {
   for (const auto& command : path) {
     switch (command.type()) {
       case takram::graphics::CommandType::MOVE:
-        takram::nvg::moveTo(command.point().x * scale_,
-                            (units_per_em_ - command.point().y) * scale_);
+        takram::nvg::moveTo(
+            command.point().x * scale_,
+            (font_info_.units_per_em - command.point().y) * scale_);
         break;
       case takram::graphics::CommandType::LINE:
-        takram::nvg::lineTo(command.point().x * scale_,
-                            (units_per_em_ - command.point().y) * scale_);
+        takram::nvg::lineTo(
+            command.point().x * scale_,
+            (font_info_.units_per_em - command.point().y) * scale_);
         break;
       case takram::graphics::CommandType::QUADRATIC:
-        takram::nvg::quadTo(command.control().x * scale_,
-                            (units_per_em_ - command.control().y) * scale_,
-                            command.point().x * scale_,
-                            (units_per_em_ - command.point().y) * scale_);
+        takram::nvg::quadTo(
+            command.control().x * scale_,
+            (font_info_.units_per_em - command.control().y) * scale_,
+            command.point().x * scale_,
+            (font_info_.units_per_em - command.point().y) * scale_);
         break;
       case takram::graphics::CommandType::CUBIC:
-        takram::nvg::cubicTo(command.control1().x * scale_,
-                             (units_per_em_ - command.control1().y) * scale_,
-                             command.control2().x * scale_,
-                             (units_per_em_ - command.control2().y) * scale_,
-                             command.point().x * scale_,
-                             (units_per_em_ - command.point().y) * scale_);
+        takram::nvg::cubicTo(
+            command.control1().x * scale_,
+            (font_info_.units_per_em - command.control1().y) * scale_,
+            command.control2().x * scale_,
+            (font_info_.units_per_em - command.control2().y) * scale_,
+            command.point().x * scale_,
+            (font_info_.units_per_em - command.point().y) * scale_);
         break;
       case takram::graphics::CommandType::CLOSE:
         takram::nvg::closePath();

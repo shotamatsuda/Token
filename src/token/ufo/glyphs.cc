@@ -33,6 +33,8 @@ extern "C" {
 }  // extern "C"
 
 #include <cassert>
+#include <cstdint>
+#include <cstdlib>
 #include <iterator>
 #include <fstream>
 #include <string>
@@ -50,14 +52,12 @@ namespace ufo {
 #pragma mark Opening
 
 bool Glyphs::open(const std::string& path) {
-  std::string glyphs;
-  std::string contents;
-  if (boost::filesystem::path(path).leaf() == "contents.plist") {
-    glyphs = boost::filesystem::path(path).parent_path().string();
-    contents = path;
-  } else {
-    glyphs = path;
-    contents = (boost::filesystem::path(path) / "contents.plist").string();
+  const boost::filesystem::path node(path);
+  std::string glyphs = node.parent_path().string();
+  std::string contents = path;
+  if (node.leaf().extension() == ".ufo") {
+    glyphs = (node / "glyphs").string();
+    contents = (node / "glyphs" / "contents.plist").string();
   }
   std::ifstream stream(contents);
   const auto result = open(&stream);
@@ -100,18 +100,6 @@ bool Glyphs::open(std::istream *stream) {
 }
 
 #pragma mark Glyphs
-
-const Glyph& Glyphs::get(const std::string& name) const {
-  auto glyph = find(name);
-  assert(glyph);
-  return *glyph;
-}
-
-Glyph& Glyphs::get(const std::string& name) {
-  auto glyph = find(name);
-  assert(glyph);
-  return *glyph;
-}
 
 const Glyph * Glyphs::find(const std::string& name) const {
   const auto itr = glyphs_.find(name);

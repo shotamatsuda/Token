@@ -31,7 +31,6 @@
 #include <istream>
 #include <ostream>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
@@ -63,8 +62,8 @@ class Glyph final {
   // Opening and saving
   bool open(const std::string& path);
   bool open(std::istream *stream);
-  bool save(const std::string& path);
-  bool save(std::ostream *stream);
+  bool save(const std::string& path) const;
+  bool save(std::ostream *stream) const;
 
  public:
   std::string name;

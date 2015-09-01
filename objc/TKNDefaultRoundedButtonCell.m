@@ -1,5 +1,5 @@
 //
-//  TKNMainWindowController.h
+//  TKNDefaultRoundedButtonCell.m
 //
 //  The MIT License
 //
@@ -24,24 +24,20 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNDefaultRoundedButtonCell.h"
 
-#import "SLSNSViewController.h"
-#import "SLSRunner.h"
+@implementation TKNDefaultRoundedButtonCell
 
-@interface TKNMainWindowController : NSWindowController
-
-@property (nonatomic, strong, nonnull) SLSRunner *runner;
-@property (nonatomic, strong, nonnull) SLSNSViewController *viewController;
-
-#pragma mark Parameters
-
-@property (nonatomic, assign) double ascent;
-@property (nonatomic, assign) double width;
-
-#pragma mark Actions
-
-- (IBAction)exportFont:(nullable id)sender;
-- (IBAction)installFont:(nullable id)sender;
+- (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
+  [NSGraphicsContext saveGraphicsState];
+  NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:frame
+                                                       xRadius:5.0
+                                                       yRadius:5.0];
+  [[NSColor colorWithWhite:1.0 alpha:0.9] setFill];
+  [[NSColor colorWithWhite:1.0 alpha:0.9] setStroke];
+  [path fill];
+  [path stroke];
+  [NSGraphicsContext restoreGraphicsState];
+}
 
 @end
