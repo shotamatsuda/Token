@@ -1,5 +1,5 @@
 //
-//  TKNTypeSampleView.h
+//  TKNTypeViewController.mm
 //
 //  The MIT License
 //
@@ -24,29 +24,33 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
-
-#ifdef __cplusplus
+#import "TKNTypeViewController.h"
 
 #include <map>
 #include <string>
 #include <vector>
 
+#include "token/glyph_outline.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
 
-#endif  // __cplusplus
+@interface TKNTypeViewController () {
+ @private
+  token::ufo::FontInfo _fontInfo;
+  token::ufo::Glyphs _glyphs;
+  token::GlyphStroker _stroker;
+  std::vector<std::string> _names;
+  std::map<std::string, token::GlyphOutline> _outlines;
+  std::map<std::string, takram::Shape2d> _shapes;
+}
 
-@interface TKNTypeSampleView : NSView
+@end
 
-#ifdef __cplusplus
+@implementation TKNTypeViewController
 
-@property (nonatomic, assign) token::ufo::FontInfo *fontInfo;
-@property (nonatomic, assign) token::ufo::Glyphs *glyphs;
-@property (nonatomic, assign) token::GlyphStroker *stroker;
-@property (nonatomic, assign) std::vector<std::string> *names;
-@property (nonatomic, assign) std::map<std::string, takram::Shape2d> *shapes;
-
-#endif  // __cplusplus
+- (instancetype)init {
+  return [self initWithNibName:@"TKNTypeViewController"
+                        bundle:[NSBundle mainBundle]];
+}
 
 @end

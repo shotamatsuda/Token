@@ -1,5 +1,5 @@
 //
-//  TKNTypeSampleView.h
+//  TKNTypeUnit.h
 //
 //  The MIT License
 //
@@ -24,29 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
 
-#ifdef __cplusplus
-
-#include <map>
-#include <string>
-#include <vector>
-
-#include "token/glyph_stroker.h"
-#include "token/ufo.h"
-
-#endif  // __cplusplus
-
-@interface TKNTypeSampleView : NSView
-
-#ifdef __cplusplus
-
-@property (nonatomic, assign) token::ufo::FontInfo *fontInfo;
-@property (nonatomic, assign) token::ufo::Glyphs *glyphs;
-@property (nonatomic, assign) token::GlyphStroker *stroker;
-@property (nonatomic, assign) std::vector<std::string> *names;
-@property (nonatomic, assign) std::map<std::string, takram::Shape2d> *shapes;
-
-#endif  // __cplusplus
-
-@end
+extern NSString * const TKNTypeUnitMillimeter;
+extern NSString * const TKNTypeUnitPoint;
+extern NSString * const TKNTypeUnitInch;

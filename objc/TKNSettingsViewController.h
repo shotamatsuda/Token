@@ -28,4 +28,13 @@
 
 @interface TKNSettingsViewController : NSViewController
 
+#pragma mark Parameters
+
+@property (nonatomic, assign) double ascent;
+@property (nonatomic, assign) double width;
+@property (nonatomic, strong, nonnull) NSString *ascentUnit;
+@property (nonatomic, strong, nonnull) NSString *widthUnit;
+@property (nonatomic, strong, nonnull) NSString *familyName;
+@property (nonatomic, strong, nonnull) NSString *styleName;
+
 @end

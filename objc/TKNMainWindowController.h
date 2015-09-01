@@ -40,6 +40,8 @@
 
 @property (nonatomic, assign) double ascent;
 @property (nonatomic, assign) double width;
+@property (nonatomic, strong, nonnull) NSString *ascentUnit;
+@property (nonatomic, strong, nonnull) NSString *widthUnit;
 
 #pragma mark Actions
 

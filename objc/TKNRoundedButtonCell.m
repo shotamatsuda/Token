@@ -37,13 +37,10 @@
       cornerRadius:5.0];
   if (self.highlighted) {
     [[[NSColor whiteColor] colorWithAlphaComponent:0.2] setFill];
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.2] setStroke];
   } else {
     [[[NSColor whiteColor] colorWithAlphaComponent:0.1] setFill];
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.1] setStroke];
   }
   [path fill];
-  [path stroke];
   [NSGraphicsContext restoreGraphicsState];
 }
 

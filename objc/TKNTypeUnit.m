@@ -1,5 +1,5 @@
 //
-//  TKNTypeViewController.m
+//  TKNTypeUnit.m
 //
 //  The MIT License
 //
@@ -24,13 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypeViewController.h"
+#import "TKNTypeUnit.h"
 
-@implementation TKNTypeViewController
-
-- (instancetype)init {
-  return [self initWithNibName:@"TKNTypeViewController"
-                        bundle:[NSBundle mainBundle]];
-}
-
-@end
+NSString * const TKNTypeUnitMillimeter = @"mm";
+NSString * const TKNTypeUnitPoint = @"pt";
+NSString * const TKNTypeUnitInch = @"in";
