@@ -1,5 +1,5 @@
 //
-//  TKNMainWindowController.h
+//  TKNSettingViewController.m
 //
 //  The MIT License
 //
@@ -24,30 +24,16 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
-
-#import "SLSNSViewController.h"
-#import "SLSRunner.h"
 #import "TKNSettingViewController.h"
-#import "TKNTypeViewController.h"
 
-@interface TKNMainWindowController : NSWindowController
+@implementation TKNSettingViewController
 
-@property (nonatomic, strong, nonnull) SLSRunner *runner;
-@property (nonatomic, strong, nonnull) SLSNSViewController *viewController;
-@property (nonatomic, strong, nonnull)
-    TKNTypeViewController *typeViewController;
-@property (nonatomic, strong, nonnull)
-    TKNSettingViewController *settingsViewController;
-
-#pragma mark Parameters
-
-@property (nonatomic, assign) double ascent;
-@property (nonatomic, assign) double width;
-
-#pragma mark Actions
-
-- (IBAction)exportFont:(nullable id)sender;
-- (IBAction)installFont:(nullable id)sender;
+- (instancetype)init {
+  self = [self initWithNibName:@"TKNSettingViewController"
+                        bundle:[NSBundle mainBundle]];
+  if (self) {
+  }
+  return self;
+}
 
 @end

@@ -1,5 +1,5 @@
 //
-//  TKNAlternativeRoundedButtonCell.m
+//  TKNRoundedButtonCell.m
 //
 //  The MIT License
 //
@@ -24,9 +24,9 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNAlternativeRoundedButtonCell.h"
+#import "TKNRoundedButtonCell.h"
 
-@implementation TKNAlternativeRoundedButtonCell
+@implementation TKNRoundedButtonCell
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
   [NSGraphicsContext saveGraphicsState];
@@ -34,8 +34,8 @@
                                                        xRadius:5.0
                                                        yRadius:5.0];
   if (self.highlighted) {
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.15] setFill];
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.15] setStroke];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.2] setFill];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.2] setStroke];
   } else {
     [[[NSColor whiteColor] colorWithAlphaComponent:0.1] setFill];
     [[[NSColor whiteColor] colorWithAlphaComponent:0.1] setStroke];

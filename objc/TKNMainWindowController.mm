@@ -52,6 +52,7 @@
                ofType:@"nib"];
   self = [super initWithWindowNibPath:path owner:self];
   if (self) {
+    _settingsViewController = [[TKNSettingViewController alloc] init];
     solas::RunnerOptions options;
     options.set_backend(solas::Backend::OPENGL3);
     auto view = std::make_unique<token::View>();
@@ -69,6 +70,13 @@
   self.window.titleVisibility = NSWindowTitleHidden;
   self.window.titlebarAppearsTransparent = YES;
   self.window.styleMask |= NSFullSizeContentViewWindowMask;
+
+  // Appearances
+  NSString *darkAppearance = NSAppearanceNameVibrantDark;
+  NSString *defaultAppearance = NSAppearanceNameAqua;
+  _splitView.appearance = [NSAppearance appearanceNamed:darkAppearance];
+  _controlView.appearance = [NSAppearance appearanceNamed:defaultAppearance];
+
   NSView *view = _viewController.view;
   view.translatesAutoresizingMaskIntoConstraints = NO;
   [_contentView addSubview:view positioned:NSWindowBelow relativeTo:nil];
@@ -82,8 +90,20 @@
       options:0
       metrics:nil
       views:NSDictionaryOfVariableBindings(view)]];
-  _splitView.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
-  _controlView.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
+
+  // Settings
+  NSView *settingsView = _settingsViewController.view;
+  [_settingsView addSubview:settingsView];
+  [_settingsView addConstraints:[NSLayoutConstraint
+      constraintsWithVisualFormat:@"|-0-[settingsView]-0-|"
+      options:0
+      metrics:nil
+      views:NSDictionaryOfVariableBindings(settingsView)]];
+  [_settingsView addConstraints:[NSLayoutConstraint
+      constraintsWithVisualFormat:@"V:|-0-[settingsView]-0-|"
+      options:0
+      metrics:nil
+      views:NSDictionaryOfVariableBindings(settingsView)]];
 }
 
 #pragma mark Actions

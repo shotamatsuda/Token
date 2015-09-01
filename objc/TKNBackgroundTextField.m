@@ -1,5 +1,5 @@
 //
-//  TKNAlternativeRoundedButtonCell.h
+//  TKNBackgroundTextField.m
 //
 //  The MIT License
 //
@@ -24,8 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNBackgroundTextField.h"
 
-@interface TKNAlternativeRoundedButtonCell : NSButtonCell
+@implementation TKNBackgroundTextField
+
+- (BOOL)acceptsFirstResponder {
+  return NO;
+}
 
 @end

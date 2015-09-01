@@ -37,8 +37,8 @@
     [[NSColor whiteColor] setFill];
     [[NSColor whiteColor] setStroke];
   } else {
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.9] setFill];
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.9] setStroke];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.8] setFill];
+    [[[NSColor whiteColor] colorWithAlphaComponent:0.8] setStroke];
   }
   [path fill];
   [path stroke];
