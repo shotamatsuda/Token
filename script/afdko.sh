@@ -25,8 +25,8 @@
 #  DEALINGS IN THE SOFTWARE.
 #
 
-readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
-readonly BUILD_DIR="${PROJECT_DIR}/build/afdko"
+readonly BUILD_DIR="${PROJECT_DIR}/build"
+readonly AFDKO_DIR="${BUILD_DIR}/afdko"
 readonly AFDKO_ARCHIVE="${BUILD_DIR}/afdko.zip"
 
 download_afdko() {
@@ -45,12 +45,19 @@ extract_afdko() {
     echo "Source archive is missing."
     exit
   fi
-  echo "Extracting boost into ${BOOST_DIR}..."
-  if [[ ! -d "${BOOST_DIR}" ]]; then
-    mkdir -p "${BOOST_DIR}"
-    tar -xjf "${BOOST_ARCHIVE}" -C "${BOOST_DIR}" --strip-components=1
-  fi
-  if [[ -d "${BOOST_DIR}" ]]; then
-    echo "Unpacked as ${BOOST_DIR}"
+  if [[ ! -d "${AFDKO_DIR}" ]]; then
+    echo "Extracting AFDKO into ${AFDKO_DIR}..."
+    mkdir -p "${AFDKO_DIR}"
+    unzip -q "${AFDKO_ARCHIVE}" -d "${AFDKO_DIR}"
+    rm -rf "${AFDKO_DIR}/__MACOSX"
+    if [[ -d "${AFDKO_DIR}" ]]; then
+      echo "Unpacked as ${AFDKO_DIR}"
+    fi
   fi
 }
+
+download_afdko
+extract_afdko
+
+ditto "${AFDKO_DIR}/FDK/Tools" \
+    "${BUILT_PRODUCTS_DIR}/${SHARED_SUPPORT_FOLDER_PATH}/FDK/Tools"

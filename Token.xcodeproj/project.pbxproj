@@ -513,6 +513,7 @@
 				93FEF94B1AD97263009D0646 /* Frameworks */,
 				93FEF94C1AD97263009D0646 /* Resources */,
 				93EBABCB1AD980EE00BF8959 /* Embed Frameworks */,
+				93714B651B998F3B0077B273 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -651,6 +652,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		93714B651B998F3B0077B273 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		93FEF94A1AD97263009D0646 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -722,7 +739,7 @@
 			baseConfigurationReference = 93F859271B575DCC00C32E8D /* project_debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -733,7 +750,7 @@
 			baseConfigurationReference = 93F859281B575DCC00C32E8D /* project_release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 			};
 			name = Release;

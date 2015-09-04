@@ -115,8 +115,8 @@
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bZ6-2V-qBW" customClass="TKNNumericTextField">
                                     <rect key="frame" x="-2" y="0.0" width="155" height="62"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0" id="2Qu-v0-bDC">
-                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.#" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="2" id="qv1-VQ-U3A"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.0" id="2Qu-v0-bDC">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.0" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="qv1-VQ-U3A"/>
                                         <font key="font" size="42" name=".AppleSystemUIFontThin"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -144,8 +144,8 @@
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMv-fi-50k" customClass="TKNNumericTextField">
                                     <rect key="frame" x="-2" y="0.0" width="155" height="62"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0" id="2Br-LX-DYp">
-                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="ULg-ds-c0b"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="2Br-LX-DYp">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="3" id="ULg-ds-c0b"/>
                                         <font key="font" size="42" name=".AppleSystemUIFontThin"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

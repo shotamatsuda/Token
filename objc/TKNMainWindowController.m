@@ -138,7 +138,7 @@
 - (IBAction)exportFont:(id)sender {
   NSSavePanel *panel = [NSSavePanel savePanel];
   panel.nameFieldStringValue = [_typeface.postscriptFontName
-      stringByAppendingPathExtension:@"ufo"];
+      stringByAppendingPathExtension:@"otf"];
   [panel beginSheetModalForWindow:self.window
                 completionHandler:^(NSInteger result) {
     if (result == NSFileHandlingPanelOKButton) {

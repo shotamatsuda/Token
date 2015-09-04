@@ -31,6 +31,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstdlib>
 #include <iterator>
 #include <string>
 #include <unordered_map>
@@ -62,6 +63,12 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
 @property (nonatomic, assign, readonly) double strokeWidth;
 
+#pragma mark Opening and Saving
+
+- (NSString *)createUnifiedFontObject:(NSString *)directory;
+- (void)updateGlyphsInUnifiedFontObject:(NSString *)path;
+- (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path;
+
 @end
 
 @implementation TKNTypeface
@@ -83,6 +90,8 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
   return self;
 }
 
+#pragma mark Opening and Saving
+
 - (void)openFile:(NSString *)path {
   _path = path;
   _fontInfo.open(_path.UTF8String);
@@ -93,11 +102,31 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
 }
 
 - (void)saveToFile:(NSString *)path {
-  NSFileManager *manager = [NSFileManager defaultManager];
-  [manager removeItemAtPath:path error:NULL];
-  [manager copyItemAtPath:_path toPath:path error:NULL];
+  NSString *uniqueString = [NSProcessInfo processInfo].globallyUniqueString;
+  NSString *workingDirectoryPath = [NSTemporaryDirectory()
+      stringByAppendingPathComponent:uniqueString];
+  NSString *ufoPath = [self createUnifiedFontObject:workingDirectoryPath];
+  [self updateGlyphsInUnifiedFontObject:ufoPath];
+  NSString *otfPath = [self createOpenTypeWithUnifiedFontObject:ufoPath];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  [fileManager copyItemAtPath:otfPath toPath:path error:NULL];
+  [fileManager removeItemAtPath:workingDirectoryPath error:NULL];
+}
 
-  // Glyphs
+- (NSString *)createUnifiedFontObject:(NSString *)directory {
+  NSString *ufoPath = [directory stringByAppendingPathComponent:
+      [[_path.lastPathComponent stringByDeletingPathExtension]
+          stringByAppendingPathExtension:@"ufo"]];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  [fileManager createDirectoryAtPath:directory
+         withIntermediateDirectories:YES
+                          attributes:nil
+                               error:NULL];
+  [fileManager copyItemAtPath:_path toPath:ufoPath error:NULL];
+  return ufoPath;
+}
+
+- (void)updateGlyphsInUnifiedFontObject:(NSString *)path {
   const auto glyphsPath = boost::filesystem::path(path.UTF8String) / "glyphs";
   for (const auto& glyph : _glyphs) {
     assert(_glyphOutlines.find(glyph.name) != std::end(_glyphOutlines));
@@ -106,6 +135,24 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
     const auto glyphPath = glyphsPath / _glyphs.filename(glyph.name);
     outline.glyph(glyph).save(glyphPath.string());
   }
+}
+
+- (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path {
+  NSString *directory = [path stringByDeletingLastPathComponent];
+  NSString *otfPath = [directory stringByAppendingPathComponent:
+      [[_path.lastPathComponent stringByDeletingPathExtension]
+          stringByAppendingPathExtension:@"otf"]];
+  const auto sharedSupportPath = boost::filesystem::path(
+      [NSBundle mainBundle].sharedSupportPath.UTF8String);
+  const auto toolsPath = sharedSupportPath / "FDK" / "Tools" / "osx";
+  const std::string makeotf = (toolsPath / "makeotf").string();
+  std::system(("FDK_EXE=\"" + toolsPath.string() + "\";"
+               "PATH=${PATH}:\"" + toolsPath.string() + "\";"
+               "export PATH;"
+               "export FDK_EXE;" +
+               makeotf + " -f \"" + path.UTF8String + "\"" +
+               " -o \"" + otfPath.UTF8String + "\"").c_str());
+  return otfPath;
 }
 
 #pragma mark Parameters
