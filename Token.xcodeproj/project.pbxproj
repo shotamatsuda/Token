@@ -8,34 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		931043E61B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
-		931043E71B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
-		931043E81B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
-		931043F91B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
-		931043FA1B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
-		9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
 		9321D6C11B963D370079E930 /* Token.ufo in Resources */ = {isa = PBXBuildFile; fileRef = 9321D6C01B963D370079E930 /* Token.ufo */; };
 		933162D71B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
-		933162D81B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
-		933162D91B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
 		93346DC91B9578CA00BDC3C9 /* TKNSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93346DC81B9578CA00BDC3C9 /* TKNSettingsView.m */; };
 		93346DD41B957FA300BDC3C9 /* TKNNSBezierPath+RoundedRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 93346DD31B957FA300BDC3C9 /* TKNNSBezierPath+RoundedRect.m */; };
-		9334A8961B6C871E00FF2CE7 /* libtakram_nanovg_gl3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */; };
-		9337DC221B8C06720070814C /* glif.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC211B8C06720070814C /* glif.mm */; };
 		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
-		9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
-		9337DC651B8D765D0070814C /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
-		9337DC661B8D765D0070814C /* libtakram_nanovg_gl3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */; };
-		9337DC671B8D765D0070814C /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 931089351B6858410094B581 /* libtakram_tween.a */; };
-		9337DC681B8D765D0070814C /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
-		9337DC6B1B8D765D0070814C /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9337DC721B8D766D0070814C /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC711B8D766D0070814C /* glyph.cc */; };
 		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
-		9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
-		934956301B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
-		934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
-		93563A191B672580004C47E4 /* Solas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; };
-		93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93563A101B672571004C47E4 /* Solas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
 		93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B311B9856BA0077B273 /* TKNCenteredClipView.m */; };
 		93714B351B991FB40077B273 /* TKNPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B341B991FB40077B273 /* TKNPopUpButtonCell.m */; };
@@ -56,58 +35,23 @@
 		93B7634E1B91B268009CA8B0 /* TKNMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7634C1B91B268009CA8B0 /* TKNMainWindowController.m */; };
 		93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */; };
 		93B7635F1B91B332009CA8B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
-		93B7638F1B91F744009CA8B0 /* view.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93B7638E1B91F744009CA8B0 /* view.cc */; };
 		93C18F491B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
-		93C18F4A1B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
-		93C18F4B1B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
 		93C18F921B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
-		93C18F931B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
-		93C18F941B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
 		93C18F951B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
-		93C18F961B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
-		93C18F971B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
 		93C18F981B930D440044AAEB /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
-		93C18F991B930D440044AAEB /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
-		93C18F9A1B930D440044AAEB /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
 		93C18F9B1B930D440044AAEB /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
-		93C18F9C1B930D440044AAEB /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
-		93C18F9D1B930D440044AAEB /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
 		93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
-		93C18F9F1B930D440044AAEB /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
-		93C18FA01B930D440044AAEB /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
 		93C18FA11B930D440044AAEB /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
-		93C18FA21B930D440044AAEB /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
-		93C18FA31B930D440044AAEB /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
 		93C18FA41B930D440044AAEB /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
-		93C18FA51B930D440044AAEB /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
-		93C18FA61B930D440044AAEB /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
 		93C18FA71B930D440044AAEB /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
-		93C18FA81B930D440044AAEB /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
-		93C18FA91B930D440044AAEB /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
 		93C18FAA1B930D440044AAEB /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
-		93C18FAB1B930D440044AAEB /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
-		93C18FAC1B930D440044AAEB /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
 		93C18FAD1B930D440044AAEB /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
-		93C18FAE1B930D440044AAEB /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
-		93C18FAF1B930D440044AAEB /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
 		93C18FB01B930D440044AAEB /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
-		93C18FB11B930D440044AAEB /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
-		93C18FB21B930D440044AAEB /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
 		93C18FB31B930D440044AAEB /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
-		93C18FB41B930D440044AAEB /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
-		93C18FB51B930D440044AAEB /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
 		93C18FB61B930D440044AAEB /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
-		93C18FB71B930D440044AAEB /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
-		93C18FB81B930D440044AAEB /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
 		93C18FB91B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
-		93C18FBA1B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
-		93C18FBB1B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
 		93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
-		93C18FBF1B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
-		93C18FC01B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
 		93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
-		93C18FC21B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
-		93C18FC31B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
 		93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */; };
 		93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */; };
 		93C771A71B95482100914AD9 /* TKNTypefaceSampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */; };
@@ -116,165 +60,9 @@
 		93D268591B95491D008AB659 /* TKNTypefaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D268551B95491D008AB659 /* TKNTypefaceViewController.m */; };
 		93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D268561B95491D008AB659 /* TKNTypefaceViewController.xib */; };
 		93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
-		93E5FF181B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
-		93E5FF191B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		931089321B6858410094B581 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93D906811A4DC34900BBD89C;
-			remoteInfo = tween_shared;
-		};
-		931089341B6858410094B581 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
-			remoteInfo = tween_static;
-		};
-		931089361B6858410094B581 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93F858631B564DDF00C32E8D;
-			remoteInfo = tween_ios;
-		};
-		931089381B6858410094B581 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
-			remoteInfo = tween_test;
-		};
-		931089581B6859380094B581 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = tween_static;
-		};
-		9334A8941B6C871A00FF2CE7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 938D14581B50969900CCA57D;
-			remoteInfo = nanovg_gl3_static;
-		};
-		9337DC571B8D765D0070814C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = graphics_static;
-		};
-		9337DC591B8D765D0070814C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 938D14581B50969900CCA57D;
-			remoteInfo = nanovg_gl3_static;
-		};
-		9337DC5B1B8D765D0070814C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9310892A1B6858410094B581 /* tween.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = tween_static;
-		};
-		9337DC5D1B8D765D0070814C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93E913571AB27DE400DDF7F9;
-			remoteInfo = Solas;
-		};
-		934956331B8EAC00000FD457 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = graphics_static;
-		};
-		93563A0F1B672571004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93E913581AB27DE400DDF7F9;
-			remoteInfo = Solas;
-		};
-		93563A111B672571004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93F8580F1B564B0500C32E8D;
-			remoteInfo = "Solas iOS";
-		};
-		93563A131B672571004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 936E241F1ADEA5550004C396;
-			remoteInfo = SolasStatic;
-		};
-		93563A151B672571004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 930398491AB2B0DF00577048;
-			remoteInfo = SolasTest;
-		};
-		93563A171B67257E004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93E913571AB27DE400DDF7F9;
-			remoteInfo = Solas;
-		};
-		93563A7E1B674472004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 938D14261B50949200CCA57D;
-			remoteInfo = nanovg_gl2_shared;
-		};
-		93563A801B674472004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93B5857D1B4E65B0009D7C5A;
-			remoteInfo = nanovg_gl2_static;
-		};
-		93563A821B674472004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 938D14551B50969700CCA57D;
-			remoteInfo = nanovg_gl3_shared;
-		};
-		93563A841B674472004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 938D14701B50969900CCA57D;
-			remoteInfo = nanovg_gl3_static;
-		};
-		93563A861B674472004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 938D13E41B50928900CCA57D;
-			remoteInfo = nanovg_gles2_static;
-		};
-		93563A881B674472004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 938D14941B50969B00CCA57D;
-			remoteInfo = nanovg_gles3_static;
-		};
 		93563AB41B674487004C47E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
@@ -355,17 +143,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9337DC6A1B8D765D0070814C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9337DC6B1B8D765D0070814C /* Solas.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93EBABCB1AD980EE00BF8959 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,7 +150,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				9390CBB81B952F880088153C /* Sparkle.framework in Embed Frameworks */,
-				93563A1A1B672584004C47E4 /* Solas.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,7 +159,6 @@
 /* Begin PBXFileReference section */
 		931043E51B93F47300DAC200 /* guideline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guideline.cc; sourceTree = "<group>"; };
 		931043F71B94184F00DAC200 /* glyph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph.cc; sourceTree = "<group>"; };
-		9310892A1B6858410094B581 /* tween.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tween.xcodeproj; path = "lib/takram-tween/tween.xcodeproj"; sourceTree = "<group>"; };
 		9321D6C01B963D370079E930 /* Token.ufo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Token.ufo; sourceTree = SOURCE_ROOT; };
 		933162C71B92C3F3009FFC7C /* font_info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = font_info.h; sourceTree = "<group>"; };
 		933162D61B92C58F009FFC7C /* font_info.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_info.cc; sourceTree = "<group>"; };
@@ -410,17 +185,12 @@
 		93346DD21B957FA300BDC3C9 /* TKNNSBezierPath+RoundedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TKNNSBezierPath+RoundedRect.h"; sourceTree = "<group>"; };
 		93346DD31B957FA300BDC3C9 /* TKNNSBezierPath+RoundedRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TKNNSBezierPath+RoundedRect.m"; sourceTree = "<group>"; };
 		93346DD81B95958200BDC3C9 /* TKNTypefaceUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKNTypefaceUnit.h; sourceTree = "<group>"; };
-		9337DC1A1B8C06300070814C /* glif */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glif; sourceTree = BUILT_PRODUCTS_DIR; };
-		9337DC211B8C06720070814C /* glif.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = glif.mm; path = src/glif.mm; sourceTree = SOURCE_ROOT; };
 		9337DC231B8C12250070814C /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
 		9337DC441B8D671B0070814C /* glyph_outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyph_outline.h; sourceTree = "<group>"; };
 		9337DC531B8D67F20070814C /* glyph_outline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_outline.cc; sourceTree = "<group>"; };
-		9337DC6F1B8D765D0070814C /* Glyph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glyph.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9337DC711B8D766D0070814C /* glyph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glyph.cc; path = src/glyph.cc; sourceTree = SOURCE_ROOT; };
 		9349561E1B8D8820000FD457 /* glyphs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyphs.h; sourceTree = "<group>"; };
 		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		9349563C1B8EEF0E000FD457 /* glyph_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyph_iterator.h; sourceTree = "<group>"; };
-		93563A741B674472004C47E4 /* nanovg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nanovg.xcodeproj; path = "lib/takram-nanovg/nanovg.xcodeproj"; sourceTree = "<group>"; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
 		93714B301B9856BA0077B273 /* TKNCenteredClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNCenteredClipView.h; sourceTree = "<group>"; };
 		93714B311B9856BA0077B273 /* TKNCenteredClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNCenteredClipView.m; sourceTree = "<group>"; };
@@ -465,9 +235,6 @@
 		93B7634C1B91B268009CA8B0 /* TKNMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNMainWindowController.m; sourceTree = "<group>"; };
 		93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKNMainWindowController.xib; sourceTree = "<group>"; };
 		93B7635E1B91B332009CA8B0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		93B7638C1B91BB2B009CA8B0 /* glyph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyph.h; sourceTree = "<group>"; };
-		93B7638D1B91F73A009CA8B0 /* view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = view.h; sourceTree = "<group>"; };
-		93B7638E1B91F744009CA8B0 /* view.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = view.cc; sourceTree = "<group>"; };
 		93C18F471B9307930044AAEB /* property_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = property_list.h; sourceTree = "<group>"; };
 		93C18F481B93089D0044AAEB /* property_list.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property_list.cc; sourceTree = "<group>"; };
 		93C18F841B930D430044AAEB /* copyright.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = copyright.cc; sourceTree = "<group>"; };
@@ -504,36 +271,14 @@
 		93F859281B575DCC00C32E8D /* project_release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = project_release.xcconfig; path = config/project_release.xcconfig; sourceTree = SOURCE_ROOT; };
 		93F859291B575DCC00C32E8D /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = config/project.xcconfig; sourceTree = SOURCE_ROOT; };
 		93FEF94E1AD97263009D0646 /* Token.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Token.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		93FEF9761AD972E8009D0646 /* Solas.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Solas.xcodeproj; path = lib/solas/Solas.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9337DC171B8C06300070814C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9337DC641B8D765D0070814C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9337DC651B8D765D0070814C /* libtakram_graphics.a in Frameworks */,
-				9337DC661B8D765D0070814C /* libtakram_nanovg_gl3.a in Frameworks */,
-				9337DC671B8D765D0070814C /* libtakram_tween.a in Frameworks */,
-				9337DC681B8D765D0070814C /* Solas.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93FEF94B1AD97263009D0646 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */,
-				9334A8961B6C871E00FF2CE7 /* libtakram_nanovg_gl3.a in Frameworks */,
-				9310895A1B68593D0094B581 /* libtakram_tween.a in Frameworks */,
-				93563A191B672580004C47E4 /* Solas.framework in Frameworks */,
 				9390CBC71B9532050088153C /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,17 +286,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9310892B1B6858410094B581 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				931089331B6858410094B581 /* libtakram_tween.dylib */,
-				931089351B6858410094B581 /* libtakram_tween.a */,
-				931089371B6858410094B581 /* libtakram_tween.a */,
-				931089391B6858410094B581 /* takram_tween_test */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		933162EC1B92D9F2009FFC7C /* woff */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,30 +299,6 @@
 			children = (
 			);
 			path = test;
-			sourceTree = "<group>";
-		};
-		93563A091B672571004C47E4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				93563A101B672571004C47E4 /* Solas.framework */,
-				93563A141B672571004C47E4 /* libSolas.a */,
-				93563A121B672571004C47E4 /* Solas.framework */,
-				93563A161B672571004C47E4 /* Solas Test */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		93563A751B674472004C47E4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				93563A7F1B674472004C47E4 /* libtakram_nanovg_gl2.dylib */,
-				93563A811B674472004C47E4 /* libtakram_nanovg_gl2.a */,
-				93563A831B674472004C47E4 /* libtakram_nanovg_gl3.dylib */,
-				93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */,
-				93563A871B674472004C47E4 /* libtakram_nanovg_gles2.a */,
-				93563A891B674472004C47E4 /* libtakram_nanovg_gles3.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		93563AAC1B674487004C47E4 /* Products */ = {
@@ -753,11 +463,8 @@
 				93C18FEE1B951C430044AAEB /* resource */,
 				93FEF9751AD972AA009D0646 /* config */,
 				93FEF94F1AD97263009D0646 /* products */,
-				93FEF9761AD972E8009D0646 /* Solas.xcodeproj */,
 				9390CB901B952F2A0088153C /* Sparkle.xcodeproj */,
 				93563AAB1B674487004C47E4 /* graphics.xcodeproj */,
-				93563A741B674472004C47E4 /* nanovg.xcodeproj */,
-				9310892A1B6858410094B581 /* tween.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -765,8 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				93FEF94E1AD97263009D0646 /* Token.app */,
-				9337DC1A1B8C06300070814C /* glif */,
-				9337DC6F1B8D765D0070814C /* Glyph.app */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -774,11 +479,6 @@
 		93FEF9501AD97263009D0646 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				9337DC211B8C06720070814C /* glif.mm */,
-				93B7638C1B91BB2B009CA8B0 /* glyph.h */,
-				9337DC711B8D766D0070814C /* glyph.cc */,
-				93B7638D1B91F73A009CA8B0 /* view.h */,
-				93B7638E1B91F744009CA8B0 /* view.cc */,
 				93E5FF161B915970006E968A /* glyph_stroker.h */,
 				93E5FF151B915970006E968A /* glyph_stroker.cc */,
 				9337DC441B8D671B0070814C /* glyph_outline.h */,
@@ -805,46 +505,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9337DC191B8C06300070814C /* glif */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9337DC1E1B8C06300070814C /* Build configuration list for PBXNativeTarget "glif" */;
-			buildPhases = (
-				9337DC161B8C06300070814C /* Sources */,
-				9337DC171B8C06300070814C /* Frameworks */,
-				93943B881B914AC500592E5E /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				934956341B8EAC00000FD457 /* PBXTargetDependency */,
-			);
-			name = glif;
-			productName = glif;
-			productReference = 9337DC1A1B8C06300070814C /* glif */;
-			productType = "com.apple.product-type.tool";
-		};
-		9337DC551B8D765D0070814C /* Glyph */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9337DC6C1B8D765D0070814C /* Build configuration list for PBXNativeTarget "Glyph" */;
-			buildPhases = (
-				9337DC5E1B8D765D0070814C /* Sources */,
-				9337DC641B8D765D0070814C /* Frameworks */,
-				9337DC691B8D765D0070814C /* Resources */,
-				9337DC6A1B8D765D0070814C /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9337DC561B8D765D0070814C /* PBXTargetDependency */,
-				9337DC581B8D765D0070814C /* PBXTargetDependency */,
-				9337DC5A1B8D765D0070814C /* PBXTargetDependency */,
-				9337DC5C1B8D765D0070814C /* PBXTargetDependency */,
-			);
-			name = Glyph;
-			productName = Zorozoro;
-			productReference = 9337DC6F1B8D765D0070814C /* Glyph.app */;
-			productType = "com.apple.product-type.application";
-		};
 		93FEF94D1AD97263009D0646 /* Token */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93FEF96B1AD97263009D0646 /* Build configuration list for PBXNativeTarget "Token" */;
@@ -858,9 +518,6 @@
 			);
 			dependencies = (
 				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
-				9334A8951B6C871A00FF2CE7 /* PBXTargetDependency */,
-				931089591B6859380094B581 /* PBXTargetDependency */,
-				93563A181B67257E004C47E4 /* PBXTargetDependency */,
 				9390CBA61B952F6C0088153C /* PBXTargetDependency */,
 			);
 			name = Token;
@@ -877,9 +534,6 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "takram design engineering";
 				TargetAttributes = {
-					9337DC191B8C06300070814C = {
-						CreatedOnToolsVersion = 6.4;
-					};
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -902,130 +556,18 @@
 					ProjectRef = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
 				},
 				{
-					ProductGroup = 93563A751B674472004C47E4 /* Products */;
-					ProjectRef = 93563A741B674472004C47E4 /* nanovg.xcodeproj */;
-				},
-				{
-					ProductGroup = 93563A091B672571004C47E4 /* Products */;
-					ProjectRef = 93FEF9761AD972E8009D0646 /* Solas.xcodeproj */;
-				},
-				{
 					ProductGroup = 9390CB911B952F2A0088153C /* Products */;
 					ProjectRef = 9390CB901B952F2A0088153C /* Sparkle.xcodeproj */;
-				},
-				{
-					ProductGroup = 9310892B1B6858410094B581 /* Products */;
-					ProjectRef = 9310892A1B6858410094B581 /* tween.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
 				93FEF94D1AD97263009D0646 /* Token */,
-				9337DC551B8D765D0070814C /* Glyph */,
-				9337DC191B8C06300070814C /* glif */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		931089331B6858410094B581 /* libtakram_tween.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libtakram_tween.dylib;
-			remoteRef = 931089321B6858410094B581 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		931089351B6858410094B581 /* libtakram_tween.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_tween.a;
-			remoteRef = 931089341B6858410094B581 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		931089371B6858410094B581 /* libtakram_tween.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_tween.a;
-			remoteRef = 931089361B6858410094B581 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		931089391B6858410094B581 /* takram_tween_test */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = takram_tween_test;
-			remoteRef = 931089381B6858410094B581 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A101B672571004C47E4 /* Solas.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Solas.framework;
-			remoteRef = 93563A0F1B672571004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A121B672571004C47E4 /* Solas.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Solas.framework;
-			remoteRef = 93563A111B672571004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A141B672571004C47E4 /* libSolas.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSolas.a;
-			remoteRef = 93563A131B672571004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A161B672571004C47E4 /* Solas Test */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "Solas Test";
-			remoteRef = 93563A151B672571004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A7F1B674472004C47E4 /* libtakram_nanovg_gl2.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libtakram_nanovg_gl2.dylib;
-			remoteRef = 93563A7E1B674472004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A811B674472004C47E4 /* libtakram_nanovg_gl2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_nanovg_gl2.a;
-			remoteRef = 93563A801B674472004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A831B674472004C47E4 /* libtakram_nanovg_gl3.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libtakram_nanovg_gl3.dylib;
-			remoteRef = 93563A821B674472004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A851B674472004C47E4 /* libtakram_nanovg_gl3.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_nanovg_gl3.a;
-			remoteRef = 93563A841B674472004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A871B674472004C47E4 /* libtakram_nanovg_gles2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_nanovg_gles2.a;
-			remoteRef = 93563A861B674472004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563A891B674472004C47E4 /* libtakram_nanovg_gles3.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_nanovg_gles3.a;
-			remoteRef = 93563A881B674472004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		93563AB51B674487004C47E4 /* libtakram_graphics.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1092,13 +634,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9337DC691B8D765D0070814C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93FEF94C1AD97263009D0646 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1116,85 +651,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		93943B881B914AC500592E5E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		9337DC161B8C06300070814C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93C18FA31B930D440044AAEB /* extension_name.cc in Sources */,
-				93C18FAC1B930D440044AAEB /* license.cc in Sources */,
-				93C18FAF1B930D440044AAEB /* licensee.cc in Sources */,
-				93C18F9D1B930D440044AAEB /* description.cc in Sources */,
-				93C18F971B930D440044AAEB /* credit.cc in Sources */,
-				934956301B8D8B17000FD457 /* glyphs.cc in Sources */,
-				93C18FB21B930D440044AAEB /* text.cc in Sources */,
-				93C18F941B930D440044AAEB /* copyright.cc in Sources */,
-				931043E81B93F47300DAC200 /* guideline.cc in Sources */,
-				93C18FB51B930D440044AAEB /* trademark.cc in Sources */,
-				93E5FF191B915970006E968A /* glyph_stroker.cc in Sources */,
-				93C18FC31B930E0D0044AAEB /* name_record.cc in Sources */,
-				933162D91B92C58F009FFC7C /* font_info.cc in Sources */,
-				93C18FB81B930D440044AAEB /* unique_id.cc in Sources */,
-				93C18F4B1B93089E0044AAEB /* property_list.cc in Sources */,
-				93C18F9A1B930D440044AAEB /* credits.cc in Sources */,
-				93C18FA91B930D440044AAEB /* extension.cc in Sources */,
-				93C18FC01B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
-				93C18FA61B930D440044AAEB /* extension_value.cc in Sources */,
-				931043FA1B94184F00DAC200 /* glyph.cc in Sources */,
-				93C18FA01B930D440044AAEB /* extension_item.cc in Sources */,
-				9337DC221B8C06720070814C /* glif.mm in Sources */,
-				93C18FBB1B930D440044AAEB /* vendor.cc in Sources */,
-				934956321B8E9F80000FD457 /* glyph_outline.cc in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9337DC5E1B8D765D0070814C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93C18FA21B930D440044AAEB /* extension_name.cc in Sources */,
-				93C18FAB1B930D440044AAEB /* license.cc in Sources */,
-				93C18FAE1B930D440044AAEB /* licensee.cc in Sources */,
-				93C18F9C1B930D440044AAEB /* description.cc in Sources */,
-				93C18F961B930D440044AAEB /* credit.cc in Sources */,
-				93E5FF181B915970006E968A /* glyph_stroker.cc in Sources */,
-				93C18FB11B930D440044AAEB /* text.cc in Sources */,
-				93C18F931B930D440044AAEB /* copyright.cc in Sources */,
-				931043E71B93F47300DAC200 /* guideline.cc in Sources */,
-				93C18FB41B930D440044AAEB /* trademark.cc in Sources */,
-				9349562F1B8D8B17000FD457 /* glyphs.cc in Sources */,
-				93C18FC21B930E0D0044AAEB /* name_record.cc in Sources */,
-				933162D81B92C58F009FFC7C /* font_info.cc in Sources */,
-				93C18FB71B930D440044AAEB /* unique_id.cc in Sources */,
-				93C18F4A1B93089E0044AAEB /* property_list.cc in Sources */,
-				93C18F991B930D440044AAEB /* credits.cc in Sources */,
-				93C18FA81B930D440044AAEB /* extension.cc in Sources */,
-				93C18FBF1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
-				93C18FA51B930D440044AAEB /* extension_value.cc in Sources */,
-				931043F91B94184F00DAC200 /* glyph.cc in Sources */,
-				93C18F9F1B930D440044AAEB /* extension_item.cc in Sources */,
-				9337DC721B8D766D0070814C /* glyph.cc in Sources */,
-				93C18FBA1B930D440044AAEB /* vendor.cc in Sources */,
-				9337DC631B8D765D0070814C /* glyph_outline.cc in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93FEF94A1AD97263009D0646 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1221,7 +678,6 @@
 				93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */,
 				93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */,
 				9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */,
-				93B7638F1B91F744009CA8B0 /* view.cc in Sources */,
 				93346DD41B957FA300BDC3C9 /* TKNNSBezierPath+RoundedRect.m in Sources */,
 				9390CB8F1B9526DA0088153C /* TKNBackgroundView.m in Sources */,
 				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
@@ -1248,46 +704,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		931089591B6859380094B581 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = tween_static;
-			targetProxy = 931089581B6859380094B581 /* PBXContainerItemProxy */;
-		};
-		9334A8951B6C871A00FF2CE7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = nanovg_gl3_static;
-			targetProxy = 9334A8941B6C871A00FF2CE7 /* PBXContainerItemProxy */;
-		};
-		9337DC561B8D765D0070814C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = graphics_static;
-			targetProxy = 9337DC571B8D765D0070814C /* PBXContainerItemProxy */;
-		};
-		9337DC581B8D765D0070814C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = nanovg_gl3_static;
-			targetProxy = 9337DC591B8D765D0070814C /* PBXContainerItemProxy */;
-		};
-		9337DC5A1B8D765D0070814C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = tween_static;
-			targetProxy = 9337DC5B1B8D765D0070814C /* PBXContainerItemProxy */;
-		};
-		9337DC5C1B8D765D0070814C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Solas;
-			targetProxy = 9337DC5D1B8D765D0070814C /* PBXContainerItemProxy */;
-		};
-		934956341B8EAC00000FD457 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = graphics_static;
-			targetProxy = 934956331B8EAC00000FD457 /* PBXContainerItemProxy */;
-		};
-		93563A181B67257E004C47E4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Solas;
-			targetProxy = 93563A171B67257E004C47E4 /* PBXContainerItemProxy */;
-		};
 		93563AC91B6744C1004C47E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = graphics_static;
@@ -1301,56 +717,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9337DC1F1B8C06300070814C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		9337DC201B8C06300070814C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		9337DC6D1B8D765D0070814C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				INFOPLIST_FILE = config/osx.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					OpenGL,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Glyph;
-			};
-			name = Debug;
-		};
-		9337DC6E1B8D765D0070814C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				INFOPLIST_FILE = config/osx.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					OpenGL,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Glyph;
-			};
-			name = Release;
-		};
 		93FEF9691AD97263009D0646 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93F859271B575DCC00C32E8D /* project_debug.xcconfig */;
@@ -1409,24 +775,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9337DC1E1B8C06300070814C /* Build configuration list for PBXNativeTarget "glif" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9337DC1F1B8C06300070814C /* Debug */,
-				9337DC201B8C06300070814C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9337DC6C1B8D765D0070814C /* Build configuration list for PBXNativeTarget "Glyph" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9337DC6D1B8D765D0070814C /* Debug */,
-				9337DC6E1B8D765D0070814C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		93FEF9491AD97263009D0646 /* Build configuration list for PBXProject "Token" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
