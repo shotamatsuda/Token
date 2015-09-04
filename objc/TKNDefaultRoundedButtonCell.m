@@ -49,6 +49,9 @@
       initWithAttributedString:super.attributedTitle];
   NSRange range = NSMakeRange(0, title.length);
   [title beginEditing];
+  [title addAttribute:NSBaselineOffsetAttributeName
+                value:@2.0
+                range:range];
   if (self.enabled) {
     if (self.highlighted) {
       [title addAttribute:NSForegroundColorAttributeName

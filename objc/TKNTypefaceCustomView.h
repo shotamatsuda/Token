@@ -1,5 +1,5 @@
 //
-//  TKNTypeViewController.mm
+//  TKNTypefaceCustomView.h
 //
 //  The MIT License
 //
@@ -24,33 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypeViewController.h"
+#import <AppKit/AppKit.h>
 
-#include <map>
-#include <string>
-#include <vector>
-
-#include "token/glyph_outline.h"
-#include "token/glyph_stroker.h"
-#include "token/ufo.h"
-
-@interface TKNTypeViewController () {
- @private
-  token::ufo::FontInfo _fontInfo;
-  token::ufo::Glyphs _glyphs;
-  token::GlyphStroker _stroker;
-  std::vector<std::string> _names;
-  std::map<std::string, token::GlyphOutline> _outlines;
-  std::map<std::string, takram::Shape2d> _shapes;
-}
-
-@end
-
-@implementation TKNTypeViewController
-
-- (instancetype)init {
-  return [self initWithNibName:@"TKNTypeViewController"
-                        bundle:[NSBundle mainBundle]];
-}
+@interface TKNTypefaceCustomView : NSView
 
 @end

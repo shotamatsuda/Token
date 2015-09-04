@@ -1,5 +1,5 @@
 //
-//  TKNTypeUnit.h
+//  TKNTypefaceViewController.m
 //
 //  The MIT License
 //
@@ -24,8 +24,27 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "TKNTypefaceViewController.h"
 
-extern NSString * const TKNTypeUnitMillimeter;
-extern NSString * const TKNTypeUnitPoint;
-extern NSString * const TKNTypeUnitInch;
+#import "TKNTypefaceSampleView.h"
+
+@implementation TKNTypefaceViewController
+
+- (instancetype)init {
+  return [self initWithNibName:@"TKNTypefaceViewController"
+                        bundle:[NSBundle mainBundle]];
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  _sampleView = [[TKNTypefaceSampleView alloc]
+      initWithFrame:NSMakeRect(0.0, 0.0, 1.0, 1.0)];
+  _sampleView.typeface = _typeface;
+  NSScrollView *scrollView = (NSScrollView *)self.view;
+  scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  scrollView.hasHorizontalScroller = YES;
+  scrollView.hasVerticalScroller = YES;
+  scrollView.documentView = _sampleView;
+}
+
+@end

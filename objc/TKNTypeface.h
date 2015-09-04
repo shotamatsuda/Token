@@ -1,5 +1,5 @@
 //
-//  TKNSettingsViewController.h
+//  TKNTypeface.h
 //
 //  The MIT License
 //
@@ -26,17 +26,50 @@
 
 #import <AppKit/AppKit.h>
 
+#ifdef __cplusplus
+
+#include "takram/graphics.h"
+#include "token/glyph_outline.h"
+
+#endif  // __cplusplus
+
 #import "TKNTypefaceUnit.h"
 
-@interface TKNSettingsViewController : NSViewController
+@interface TKNTypeface : NSObject
+
+- (nullable instancetype)initWithFileAtPath:(nullable NSString *)path
+    NS_DESIGNATED_INITIALIZER;
+
+#pragma mark Opening and Saving
+
+@property (nonatomic, copy, nullable) NSString *path;
+
+- (void)openFile:(nonnull NSString *)path;
+- (void)saveToFile:(nonnull NSString *)path;
 
 #pragma mark Parameters
 
 @property (nonatomic, assign) double ascent;
 @property (nonatomic, assign) double width;
+@property (nonatomic, assign) BOOL ascentEqualsUPEM;
 @property (nonatomic, assign) TKNTypefaceUnit ascentUnit;
 @property (nonatomic, assign) TKNTypefaceUnit widthUnit;
-@property (nonatomic, strong, nonnull) NSString *familyName;
-@property (nonatomic, strong, nonnull) NSString *styleName;
+
+#pragma mark Glyphs
+
+@property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
+@property (nonatomic, assign, readonly) NSInteger ascender;
+@property (nonatomic, assign, readonly) NSInteger descender;
+
+- (nullable NSBezierPath *)glyphOutlineForName:(nonnull NSString *)name;
+- (double)advanceOfGlyphForName:(nonnull NSString *)name;
+
+#ifdef __cplusplus
+
+- (nonnull NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape;
+- (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
+                       outline:(const token::GlyphOutline&)outline;
+
+#endif  // __cplusplus
 
 @end

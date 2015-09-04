@@ -30,7 +30,9 @@
 
 @interface TKNApplicationDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, strong, readonly)
+@property (nonatomic, strong, readonly, nonnull)
     TKNMainWindowController *windowController;
+
+- (IBAction)checkForUpdates:(nullable id)sender;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  TKNTypeSampleView.h
+//  TKNTypefaceSampleView.h
 //
 //  The MIT License
 //
@@ -26,27 +26,11 @@
 
 #import <AppKit/AppKit.h>
 
-#ifdef __cplusplus
+#import "TKNTypeface.h"
 
-#include <map>
-#include <string>
-#include <vector>
+@interface TKNTypefaceSampleView : NSView
 
-#include "token/glyph_stroker.h"
-#include "token/ufo.h"
-
-#endif  // __cplusplus
-
-@interface TKNTypeSampleView : NSView
-
-#ifdef __cplusplus
-
-@property (nonatomic, assign) token::ufo::FontInfo *fontInfo;
-@property (nonatomic, assign) token::ufo::Glyphs *glyphs;
-@property (nonatomic, assign) token::GlyphStroker *stroker;
-@property (nonatomic, assign) std::vector<std::string> *names;
-@property (nonatomic, assign) std::map<std::string, takram::Shape2d> *shapes;
-
-#endif  // __cplusplus
+@property (nonatomic, strong, nonnull) TKNTypeface *typeface;
+@property (nonatomic, assign) double scale;
 
 @end

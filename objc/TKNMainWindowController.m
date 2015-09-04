@@ -1,5 +1,5 @@
 //
-//  TKNMainWindowController.mm
+//  TKNMainWindowController.m
 //
 //  The MIT License
 //
@@ -28,15 +28,13 @@
 
 #import "TKNSettingsView.h"
 #import "TKNSettingsViewController.h"
-#import "TKNTypeViewController.h"
+#import "TKNTypefaceViewController.h"
 
 @interface TKNMainWindowController ()
 
 @property (nonatomic, strong) IBOutlet NSView *controlView;
-@property (nonatomic, strong) NSView *typeView;
+@property (nonatomic, strong) NSView *typefaceView;
 @property (nonatomic, strong) TKNSettingsView *settingsView;
-@property (nonatomic, strong) NSMutableArray *collapsedSettngsViewConstraints;
-@property (nonatomic, strong) NSMutableArray *expandedSettngsViewConstraints;
 @property (nonatomic, assign) CGRect windowFrame;
 
 @end
@@ -49,19 +47,14 @@
                ofType:@"nib"];
   self = [super initWithWindowNibPath:path owner:self];
   if (self) {
-    _typeViewController = [[TKNTypeViewController alloc] init];
+    _typefaceViewController = [[TKNTypefaceViewController alloc] init];
     _settingsViewController = [[TKNSettingsViewController alloc] init];
-    _collapsedSettngsViewConstraints = [NSMutableArray array];
-    _expandedSettngsViewConstraints = [NSMutableArray array];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *Path = [bundle pathForResource:@"Token" ofType:@"ufo"];
+    _typeface = [[TKNTypeface alloc] initWithFileAtPath:Path];
+    _typefaceViewController.typeface = _typeface;
   }
   return self;
-}
-
-- (void)dealloc {
-  NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-  [defaultCenter removeObserver:self
-                           name:NSWindowDidResizeNotification
-                         object:self.window];
 }
 
 - (void)windowDidLoad {
@@ -70,38 +63,48 @@
   self.window.titleVisibility = NSWindowTitleHidden;
   self.window.titlebarAppearsTransparent = YES;
   self.window.styleMask |= NSFullSizeContentViewWindowMask;
-  NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-  [defaultCenter addObserver:self
-                    selector:@selector(windowDidResize:)
-                        name:NSWindowDidResizeNotification
-                      object:self.window];
   NSView *view = self.window.contentView;
 
   // Appearances
   NSString *darkAppearance = NSAppearanceNameVibrantDark;
   NSString *defaultAppearance = NSAppearanceNameAqua;
 
-  // Type
-  _typeView = _typeViewController.view;
-  _typeView.translatesAutoresizingMaskIntoConstraints = NO;
-  _typeView.appearance = [NSAppearance appearanceNamed:defaultAppearance];
-  [view addSubview:_typeView];
+  // Typeface
+  _typefaceView = _typefaceViewController.view;
+  _typefaceView.translatesAutoresizingMaskIntoConstraints = NO;
+  _typefaceView.appearance = [NSAppearance appearanceNamed:defaultAppearance];
+  [view addSubview:_typefaceView];
   [view addConstraints:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"|-0-[_typeView]-0-|"
+      constraintsWithVisualFormat:@"|-0-[_typefaceView]-0-|"
       options:0
       metrics:nil
-      views:NSDictionaryOfVariableBindings(_typeView)]];
+      views:NSDictionaryOfVariableBindings(_typefaceView)]];
   [view addConstraints:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"V:|-0-[_typeView]"
+      constraintsWithVisualFormat:@"V:|-0-[_typefaceView]"
       options:0
       metrics:nil
-      views:NSDictionaryOfVariableBindings(_typeView)]];
+      views:NSDictionaryOfVariableBindings(_typefaceView)]];
 
   // Settings
   _settingsView = (TKNSettingsView *)_settingsViewController.view;
   _settingsView.appearance = [NSAppearance appearanceNamed:darkAppearance];
   _settingsView.translatesAutoresizingMaskIntoConstraints = NO;
   [view addSubview:_settingsView];
+  [view addConstraints:[NSLayoutConstraint
+      constraintsWithVisualFormat:@"|-0-[_settingsView]-0-|"
+      options:0
+      metrics:nil
+      views:NSDictionaryOfVariableBindings(_settingsView)]];
+  [view addConstraints:[NSLayoutConstraint
+      constraintsWithVisualFormat:@"V:[_settingsView]-0-|"
+      options:0
+      metrics:nil
+      views:NSDictionaryOfVariableBindings(_settingsView)]];
+  [view addConstraints:[NSLayoutConstraint
+      constraintsWithVisualFormat:@"V:[_typefaceView]-0-[_settingsView]"
+      options:0
+      metrics:nil
+      views:NSDictionaryOfVariableBindings(_typefaceView, _settingsView)]];
 
   // Control
   _controlView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -127,63 +130,13 @@
       attribute:NSLayoutAttributeTrailing
       multiplier:1.0
       constant:0.0]];
-
-  // Layout constraints
-  [_collapsedSettngsViewConstraints addObjectsFromArray:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"|-0-[_settingsView]-0-|"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_settingsView)]];
-  [_collapsedSettngsViewConstraints addObjectsFromArray:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"V:[_settingsView]-0-|"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_settingsView)]];
-  [_collapsedSettngsViewConstraints addObjectsFromArray:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"V:[_typeView]-0-[_settingsView]"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_typeView, _settingsView)]];
-  [_expandedSettngsViewConstraints addObjectsFromArray:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"[_settingsView(900)]-0-|"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_settingsView)]];
-  [_expandedSettngsViewConstraints addObjectsFromArray:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"V:[_settingsView]-0-|"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_settingsView)]];
-  [_expandedSettngsViewConstraints addObjectsFromArray:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"V:[_typeView]-0-|"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_typeView)]];
-  [self windowDidResize:nil];
-}
-
-- (void)windowDidResize:(NSNotification *)notification {
-  CGFloat threshold = 900.0;
-  NSView *view = self.window.contentView;
-  if (self.window.frame.size.width < threshold) {
-    if (!_windowFrame.size.width || _windowFrame.size.width >= threshold) {
-      [view removeConstraints:_expandedSettngsViewConstraints];
-      [view addConstraints:_collapsedSettngsViewConstraints];
-      _settingsView.rounded = NO;
-    }
-  } else {
-    if (!_windowFrame.size.width || _windowFrame.size.width < threshold) {
-      [view removeConstraints:_collapsedSettngsViewConstraints];
-      [view addConstraints:_expandedSettngsViewConstraints];
-      _settingsView.rounded = YES;
-    }
-  }
-  _windowFrame = self.window.frame;
 }
 
 #pragma mark Actions
 
 - (IBAction)exportFont:(id)sender {
+  _typeface.width = 50.0;
+  [_typeface saveToFile:@"/Users/sgss/Desktop/T.ufo"];
 }
 
 - (IBAction)installFont:(id)sender {

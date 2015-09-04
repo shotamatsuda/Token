@@ -60,6 +60,7 @@ class Glyphs final {
   bool open(const std::string& path);
 
   // Glyphs
+  std::string filename(const std::string& name) const;
   const Glyph& get(const std::string& name) const;
   Glyph& get(const std::string& name);
   const Glyph * find(const std::string& name) const;

@@ -1,5 +1,5 @@
 //
-//  TKNTypeViewController.h
+//  TKNTypefaceCustomView.mm
 //
 //  The MIT License
 //
@@ -24,8 +24,13 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNTypefaceCustomView.h"
 
-@interface TKNTypeViewController : NSViewController
+@implementation TKNTypefaceCustomView
+
+- (void)drawRect:(NSRect)rect {
+  [[NSColor whiteColor] setFill];
+  NSRectFill(rect);
+}
 
 @end

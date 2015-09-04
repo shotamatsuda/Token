@@ -26,7 +26,7 @@
 
 #import "TKNSettingsViewController.h"
 
-#import "TKNTypeUnit.h"
+#import "TKNTypefaceUnit.h"
 
 @implementation TKNSettingsViewController
 
@@ -34,8 +34,8 @@
   self = [self initWithNibName:@"TKNSettingsViewController"
                         bundle:[NSBundle mainBundle]];
   if (self) {
-    _ascentUnit = TKNTypeUnitMillimeter;
-    _widthUnit = TKNTypeUnitMillimeter;
+    _ascentUnit = kTKNTypefaceUnitMillimeter;
+    _widthUnit = kTKNTypefaceUnitMillimeter;
   }
   return self;
 }

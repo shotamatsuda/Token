@@ -101,16 +101,24 @@ bool Glyphs::open(std::istream *stream) {
 
 #pragma mark Glyphs
 
+std::string Glyphs::filename(const std::string& name) const {
+  const auto value = contents_.find(name);
+  if (value == std::end(contents_)) {
+    return std::string();
+  }
+  return value->second;
+}
+
 const Glyph * Glyphs::find(const std::string& name) const {
   const auto itr = glyphs_.find(name);
   if (itr != std::end(glyphs_)) {
     return &itr->second;
   }
-  const auto value = contents_.find(name);
-  if (value == std::end(contents_)) {
+  const auto filename = this->filename(name);
+  if (filename.empty()) {
     return nullptr;
   }
-  const auto path = boost::filesystem::path(path_) / value->second;
+  const auto path = boost::filesystem::path(path_) / filename;
   Glyph glyph;
   if (!glyph.open(path.string())) {
     return nullptr;

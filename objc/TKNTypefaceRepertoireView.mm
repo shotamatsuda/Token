@@ -1,5 +1,5 @@
 //
-//  TKNTypeCustomView.h
+//  TKNTypefaceRepertoireView.mm
 //
 //  The MIT License
 //
@@ -24,8 +24,13 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNTypefaceRepertoireView.h"
 
-@interface TKNTypeCustomView : NSView
+@implementation TKNTypefaceRepertoireView
+
+- (void)drawRect:(NSRect)rect {
+  [[NSColor whiteColor] setFill];
+  NSRectFill(rect);
+}
 
 @end

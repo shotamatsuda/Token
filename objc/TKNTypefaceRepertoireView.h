@@ -1,5 +1,5 @@
 //
-//  TKNTypeSampleView.mm
+//  TKNTypefaceRepertoireView.h
 //
 //  The MIT License
 //
@@ -24,13 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypeSampleView.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNTypeSampleView
-
-- (void)drawRect:(NSRect)rect {
-  [[NSColor whiteColor] setFill];
-  NSRectFill(rect);
-}
+@interface TKNTypefaceRepertoireView : NSView
 
 @end

@@ -1,5 +1,5 @@
 //
-//  TKNTypeCustomView.mm
+//  TKNCenteredClipView.h
 //
 //  The MIT License
 //
@@ -24,13 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypeCustomView.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNTypeCustomView
-
-- (void)drawRect:(NSRect)rect {
-  [[NSColor whiteColor] setFill];
-  NSRectFill(rect);
-}
+@interface TKNCenteredClipView : NSClipView
 
 @end

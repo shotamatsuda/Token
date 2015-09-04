@@ -1,5 +1,5 @@
 //
-//  TKNTypeRepertoireView.h
+//  TKNCenteredClipView.m
 //
 //  The MIT License
 //
@@ -24,8 +24,22 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNCenteredClipView.h"
 
-@interface TKNTypeRepertoireView : NSView
+@implementation TKNCenteredClipView
+
+- (CGRect)constrainBoundsRect:(CGRect)proposedBounds {
+  CGRect bounds = [super constrainBoundsRect:proposedBounds];
+  CGRect documentFrame = [self.documentView frame];
+  if (proposedBounds.size.width >= documentFrame.size.width) {
+    bounds.origin.x = floor(proposedBounds.size.width -
+                            documentFrame.size.width) / -2.0;
+  }
+  if (proposedBounds.size.height >= documentFrame.size.height) {
+    bounds.origin.y = floor(proposedBounds.size.height -
+                            documentFrame.size.height) / -2.0;
+  }
+  return bounds;
+}
 
 @end
