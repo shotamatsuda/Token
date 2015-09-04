@@ -9,4 +9,8 @@
       <point x="526.23" y="0" type="line"/>
     </contour>
   </outline>
+  <lib>
+    <key>com.takram.numberOfContours</key>
+    <integer>1</integer>
+  </lib>
 </glyph>

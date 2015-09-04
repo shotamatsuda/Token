@@ -14,4 +14,8 @@
       <point x="74.29" y="109.03" type="curve"/>
     </contour>
   </outline>
+  <lib>
+    <key>com.takram.numberOfContours</key>
+    <integer>1</integer>
+  </lib>
 </glyph>

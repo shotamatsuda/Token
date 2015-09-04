@@ -40,13 +40,12 @@
 class App : public solas::View {
  public:
   void setup() override {
-    glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo/glyphs");
+    glyphs_ = token::ufo::Glyphs("/Users/sgss/Dropbox/Github/token/Token.ufo");
     token::ufo::FontInfo font_info;
     font_info.open("/Users/sgss/Dropbox/Github/token/Token.ufo");
-    font_info.save("/Users/sgss/Desktop");
     context_.init();
     scale_ = 1.0;
-    width_ = 3;
+    width_ = 105.0001;
   }
 
   void pre() override {
@@ -62,7 +61,7 @@ class App : public solas::View {
       token::GlyphStroker stroker;
       stroker.set_width(width_);
       auto shape = glyph_.shape();
-      const auto advance = glyph_.glyph().advance->width;
+      const auto advance = glyph__.advance->width;
       const auto scale = (680.0 - stroker.width()) / 680.0;
       const takram::Vec2d center(advance / 2.0, 340.0);
       for (auto& command : shape) {
@@ -80,7 +79,7 @@ class App : public solas::View {
   }
 
   void draw() override {
-    if (glyph_.glyph().name.empty()) {
+    if (glyph__.name.empty()) {
       return;
     }
     takram::Shape2d shape = shape_;
@@ -115,7 +114,7 @@ class App : public solas::View {
     takram::nvg::moveTo(0.0, 0.0);
     takram::nvg::lineTo(0.0, height());
     takram::nvg::stroke();
-    const auto advance = glyph_.glyph().advance->width * scale_;
+    const auto advance = glyph__.advance->width * scale_;
     takram::nvg::beginPath();
     takram::nvg::moveTo(advance, 0.0);
     takram::nvg::lineTo(advance, height());
@@ -251,6 +250,7 @@ class App : public solas::View {
     }
     auto glyph = glyphs_.find(name);
     if (glyph) {
+      glyph__ = *glyph;
       glyph_ = token::GlyphOutline(*glyph);
       needs_stroking_ = true;
     }
@@ -275,6 +275,7 @@ class App : public solas::View {
  private:
   token::ufo::Glyphs glyphs_;
   token::GlyphOutline glyph_;
+  token::ufo::Glyph glyph__;
   takram::Shape2d shape_;
   takram::nvg::Context context_;
   takram::Vec2d translation_;

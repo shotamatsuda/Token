@@ -11,11 +11,11 @@
 	<key>descender</key>
 	<integer>-250</integer>
 	<key>familyName</key>
-	<string>T Type</string>
+	<string>Token</string>
 	<key>macintoshFONDFamilyID</key>
 	<integer>128</integer>
 	<key>macintoshFONDName</key>
-	<string>T Type</string>
+	<string>Token</string>
 	<key>openTypeHeadCreated</key>
 	<string>2014/07/21 20:42:28</string>
 	<key>openTypeHeadFlags</key>
@@ -28,7 +28,7 @@
 	<key>openTypeHheaLineGap</key>
 	<integer>200</integer>
 	<key>openTypeNameCompatibleFullName</key>
-	<string>T Type</string>
+	<string>Token</string>
 	<key>openTypeNameDescription</key>
 	<string>Copyright © 2014-2015 takram design engineering. www.takram.com All rights reserved.</string>
 	<key>openTypeNameDesigner</key>
@@ -44,13 +44,13 @@
 	<key>openTypeNameManufacturerURL</key>
 	<string>http://www.takram.com</string>
 	<key>openTypeNamePreferredFamilyName</key>
-	<string>T Type</string>
+	<string>Token</string>
 	<key>openTypeNamePreferredSubfamilyName</key>
 	<string>Regular</string>
 	<key>openTypeNameSampleText</key>
 	<string></string>
 	<key>openTypeNameUniqueID</key>
-	<string>1.000;TKRM;TType-Regular</string>
+	<string>1.000;TKRM;Token-Regular</string>
 	<key>openTypeNameVersion</key>
 	<string>Version 1.000</string>
 	<key>openTypeOS2CodePageRanges</key>
@@ -138,11 +138,11 @@
 		<integer>690</integer>
 	</array>
 	<key>postscriptFontName</key>
-	<string>TType-Regular</string>
+	<string>Token-Regular</string>
 	<key>postscriptForceBold</key>
 	<false/>
 	<key>postscriptFullName</key>
-	<string>T Type Regular</string>
+	<string>Token Regular</string>
 	<key>postscriptIsFixedPitch</key>
 	<false/>
 	<key>postscriptOtherBlues</key>
@@ -155,7 +155,7 @@
 	<key>postscriptUniqueID</key>
 	<integer>-1</integer>
 	<key>styleMapFamilyName</key>
-	<string>T Type</string>
+	<string>Token</string>
 	<key>styleMapStyleName</key>
 	<string>regular</string>
 	<key>styleName</key>

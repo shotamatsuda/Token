@@ -82,6 +82,9 @@ class GlyphStroker final {
   void set_tolerance(double value) { tolerance_ = value; }
 
  private:
+  takram::Shape2d merge(const takram::Shape2d& shape) const;
+
+ private:
   double width_;
   double miter_;
   mutable Cap cap_;

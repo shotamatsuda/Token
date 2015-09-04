@@ -39,6 +39,7 @@
 #include "token/ufo/anchor.h"
 #include "token/ufo/guideline.h"
 #include "token/ufo/image.h"
+#include "token/ufo/lib.h"
 #include "token/ufo/optional.h"
 #include "token/ufo/outline.h"
 #include "token/ufo/unicode.h"
@@ -73,6 +74,7 @@ class Glyph final {
   std::vector<Guideline> guidelines;
   std::vector<Anchor> anchors;
   Optional<Outline> outline;
+  Optional<Lib> lib;
 };
 
 #pragma mark -
@@ -90,7 +92,8 @@ inline bool Glyph::operator==(const Glyph& other) const {
           image == other.image &&
           guidelines == other.guidelines &&
           anchors == other.anchors &&
-          outline == other.outline);
+          outline == other.outline &&
+          lib == other.lib);
 }
 
 inline bool Glyph::operator!=(const Glyph& other) const {

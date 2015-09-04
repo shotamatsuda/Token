@@ -42,4 +42,8 @@
       <point x="460.195" y="588.505" type="curve" name="butt"/>
     </contour>
   </outline>
+  <lib>
+    <key>com.takram.numberOfContours</key>
+    <integer>2</integer>
+  </lib>
 </glyph>

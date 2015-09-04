@@ -20,4 +20,8 @@
       <point x="592" y="680" type="line" name="butt"/>
     </contour>
   </outline>
+  <lib>
+    <key>com.takram.numberOfContours</key>
+    <integer>5</integer>
+  </lib>
 </glyph>

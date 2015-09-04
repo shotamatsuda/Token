@@ -18,4 +18,8 @@
       <point x="521.365" y="340" type="curve" smooth="yes"/>
     </contour>
   </outline>
+  <lib>
+    <key>com.takram.numberOfContours</key>
+    <integer>2</integer>
+  </lib>
 </glyph>

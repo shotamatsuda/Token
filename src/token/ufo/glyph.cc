@@ -64,6 +64,7 @@ bool Glyph::open(std::istream *stream) {
   xml::read_children(glyph, "guideline", &guidelines);
   xml::read_children(glyph, "anchor", &anchors);
   xml::read_child(glyph, "outline", &outline);
+  xml::read_child(glyph, "lib", &lib);
   return true;
 }
 
@@ -88,6 +89,7 @@ bool Glyph::save(std::ostream *stream) const {
   xml::write_children(&glyph, "guideline", guidelines);
   xml::write_children(&glyph, "anchor", anchors);
   xml::write_child(&glyph, "outline", outline);
+  xml::write_child(&glyph, "lib", lib);
   boost::property_tree::ptree tree;
   tree.add_child("glyph", glyph);
   boost::property_tree::xml_writer_settings<std::string> settings(' ', 2);

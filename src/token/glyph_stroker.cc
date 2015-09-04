@@ -232,6 +232,7 @@ takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
 }
 
 takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
+  // Convert points that are closer than the tolerance parameter
   auto simplified_shape = shape;
   for (auto& command : simplified_shape) {
     for (auto& other : simplified_shape) {
@@ -246,10 +247,14 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
       }
     }
   }
+
+  // Simplification
   SkPath sk_path(convertShape(simplified_shape));
   SkPath sk_result;
   Simplify(sk_path, &sk_result);
   auto result = convertShape(sk_result);
+
+  // Fix winding rule
   std::unordered_map<takram::Path2d *, int> depths;
   auto& paths = result.paths();
   for (auto itr = std::begin(paths); itr != std::end(paths);) {

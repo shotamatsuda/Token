@@ -42,6 +42,7 @@ extern "C" {
 #include <vector>
 
 #include "token/ufo/optional.h"
+#include "token/ufo/property_list.h"
 
 namespace token {
 namespace ufo {
