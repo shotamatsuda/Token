@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceCustomView.mm
+//  TKNPopUpButtonCell.h
 //
 //  The MIT License
 //
@@ -24,13 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypefaceCustomView.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNTypefaceCustomView
-
-- (void)drawRect:(NSRect)rect {
-  [[NSColor whiteColor] setFill];
-  NSRectFill(rect);
-}
+@interface TKNPopUpButtonCell : NSPopUpButtonCell
 
 @end

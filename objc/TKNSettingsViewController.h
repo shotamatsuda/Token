@@ -26,17 +26,10 @@
 
 #import <AppKit/AppKit.h>
 
-#import "TKNTypefaceUnit.h"
+#import "TKNTypeface.h"
 
 @interface TKNSettingsViewController : NSViewController
 
-#pragma mark Parameters
-
-@property (nonatomic, assign) double ascent;
-@property (nonatomic, assign) double width;
-@property (nonatomic, assign) TKNTypefaceUnit ascentUnit;
-@property (nonatomic, assign) TKNTypefaceUnit widthUnit;
-@property (nonatomic, strong, nonnull) NSString *familyName;
-@property (nonatomic, strong, nonnull) NSString *styleName;
+@property (nonatomic, strong, nonnull) TKNTypeface *typeface;
 
 @end

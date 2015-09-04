@@ -27,7 +27,7 @@
             </connections>
             <point key="canvasLocation" x="-42" y="584"/>
         </window>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="2d5-oW-Awo">
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="2d5-oW-Awo" customClass="TKNControlView">
             <rect key="frame" x="0.0" y="0.0" width="800" height="25"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="JJe-pM-PTE">

@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceCustomView.h
+//  TKNControlView.h
 //
 //  The MIT License
 //
@@ -26,6 +26,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNTypefaceCustomView : NSView
+@interface TKNControlView : NSView
 
 @end

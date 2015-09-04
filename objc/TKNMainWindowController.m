@@ -53,6 +53,7 @@
     NSString *Path = [bundle pathForResource:@"Token" ofType:@"ufo"];
     _typeface = [[TKNTypeface alloc] initWithFileAtPath:Path];
     _typefaceViewController.typeface = _typeface;
+    _settingsViewController.typeface = _typeface;
   }
   return self;
 }
@@ -135,8 +136,15 @@
 #pragma mark Actions
 
 - (IBAction)exportFont:(id)sender {
-  _typeface.width = 50.0;
-  [_typeface saveToFile:@"/Users/sgss/Desktop/T.ufo"];
+  NSSavePanel *panel = [NSSavePanel savePanel];
+  panel.nameFieldStringValue = [_typeface.postscriptFontName
+      stringByAppendingPathExtension:@"ufo"];
+  [panel beginSheetModalForWindow:self.window
+                completionHandler:^(NSInteger result) {
+    if (result == NSFileHandlingPanelOKButton) {
+      [_typeface saveToFile:panel.URL.path];
+    }
+  }];
 }
 
 - (IBAction)installFont:(id)sender {

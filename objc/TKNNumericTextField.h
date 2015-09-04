@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceRepertoireView.h
+//  TKNNumericTextField.h
 //
 //  The MIT License
 //
@@ -26,6 +26,8 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNTypefaceRepertoireView : NSView
+@interface TKNNumericTextField : NSTextField
+
+@property (nonatomic, assign) IBInspectable double step;
 
 @end

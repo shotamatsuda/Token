@@ -28,6 +28,8 @@
 
 @interface TKNTypefaceSampleView ()
 
+@property (nonatomic, strong) NSArray *lines;
+
 - (CGSize)sizeForLines:(NSArray *)lines;
 - (void)drawLine:(NSArray *)glyphNames
         position:(CGPoint)position
@@ -44,20 +46,24 @@
   self = [super initWithFrame:frame];
   if (self) {
     _scale = 0.085;
+    _lines = @[
+      @[@"A", @"B", @"C", @"D", @"E", @"F", @"G",
+        @"H", @"I", @"J", @"K", @"L", @"M"],
+      @[@"N", @"O", @"P", @"Q", @"R", @"S", @"T",
+        @"U", @"V", @"W", @"X", @"Y", @"Z"],
+      @[@"one", @"two", @"three", @"four", @"five",
+        @"six", @"seven", @"eight", @"nine", @"zero"]
+    ];
   }
   return self;
 }
 
+- (BOOL)acceptsFirstResponder {
+  return YES;
+}
+
 - (void)drawRect:(NSRect)rect {
-  NSArray *lines = @[
-    @[@"A", @"B", @"C", @"D", @"E", @"F", @"G",
-      @"H", @"I", @"J", @"K", @"L", @"M"],
-    @[@"N", @"O", @"P", @"Q", @"R", @"S", @"T",
-      @"U", @"V", @"W", @"X", @"Y", @"Z"],
-    @[@"one", @"two", @"three", @"four", @"five",
-      @"six", @"seven", @"eight", @"nine", @"zero"]
-  ];
-  CGSize size = [self sizeForLines:lines];
+  CGSize size = [self sizeForLines:_lines];
   CGRect frame = self.frame;
   frame.size = size;
   self.frame = frame;
@@ -70,7 +76,7 @@
   [transform concat];
   CGPoint position = CGPointZero;
   position.y -= _typeface.ascender - _typeface.descender;
-  for (NSArray *line in lines) {
+  for (NSArray *line in _lines) {
     [self drawLine:line position:position control:NO];
     position.x = 0.0;
     position.y -= _typeface.ascender - _typeface.descender;

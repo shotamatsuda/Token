@@ -30,6 +30,7 @@
 
 #include "takram/graphics.h"
 #include "token/glyph_outline.h"
+#include "token/ufo.h"
 
 #endif  // __cplusplus
 
@@ -49,17 +50,23 @@
 
 #pragma mark Parameters
 
-@property (nonatomic, assign) double ascent;
+@property (nonatomic, assign) double capHeight;
 @property (nonatomic, assign) double width;
-@property (nonatomic, assign) BOOL ascentEqualsUPEM;
-@property (nonatomic, assign) TKNTypefaceUnit ascentUnit;
+@property (nonatomic, assign) BOOL capHeightEqualsUnitsPerEM;
+@property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
 @property (nonatomic, assign) TKNTypefaceUnit widthUnit;
 
-#pragma mark Glyphs
+#pragma mark Typographic Properties
 
+@property (nonatomic, strong, nonnull) NSString *familyName;
+@property (nonatomic, strong, nonnull) NSString *styleName;
+@property (nonatomic, strong, nonnull) NSNumber *proposedSize;
 @property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
 @property (nonatomic, assign, readonly) NSInteger ascender;
 @property (nonatomic, assign, readonly) NSInteger descender;
+@property (nonatomic, strong, nonnull) NSString *postscriptFontName;
+
+#pragma mark Glyphs
 
 - (nullable NSBezierPath *)glyphOutlineForName:(nonnull NSString *)name;
 - (double)advanceOfGlyphForName:(nonnull NSString *)name;

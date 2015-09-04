@@ -28,7 +28,9 @@
 
 #import "TKNTypeface.h"
 
+#include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <iterator>
 #include <string>
 #include <unordered_map>
@@ -43,15 +45,22 @@
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
 
+static const double kTKNTypefaceStrokingRetryShift = 0.001;
+static const double kTKNTypefaceStrokingRetryShiftLimit = 0.1;
+static const double kTKNTypefaceMinStrokeWidth = 10.0;
+static const double kTKNTypefaceMaxStrokeWidth = 120.0;
+
 @interface TKNTypeface () {
  @private
   token::ufo::FontInfo _fontInfo;
   token::ufo::Glyphs _glyphs;
   std::unordered_map<std::string, token::GlyphOutline> _glyphOutlines;
   std::unordered_map<std::string, takram::Shape2d> _glyphShapes;
+  double _strokeWidth;
 }
 
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
+@property (nonatomic, assign, readonly) double strokeWidth;
 
 @end
 
@@ -65,7 +74,8 @@
   self = [super init];
   if (self) {
     _glyphBezierPaths = [NSMutableDictionary dictionary];
-    _width = 50.0;
+    _capHeight = 2.0;
+    _width = 0.2;
     if (path) {
       [self openFile:path];
     }
@@ -100,15 +110,46 @@
 
 #pragma mark Parameters
 
-- (void)setWidth:(double)width {
-  if (width != _width) {
-    _width = width;
+- (void)setCapHeight:(double)capHeight {
+  if (capHeight != _capHeight) {
+    _capHeight = capHeight;
+    _strokeWidth = 0.0;
     _glyphShapes.clear();
     [_glyphBezierPaths removeAllObjects];
   }
 }
 
-#pragma mark Glyphs
+- (void)setWidth:(double)width {
+  if (width != _width) {
+    _width = width;
+    _strokeWidth = 0.0;
+    _glyphShapes.clear();
+    [_glyphBezierPaths removeAllObjects];
+  }
+}
+
+- (double)strokeWidth {
+  if (!_strokeWidth) {
+    _strokeWidth = takram::math::clamp(
+        std::round((_width * _fontInfo.cap_height) / _capHeight),
+        kTKNTypefaceMinStrokeWidth, kTKNTypefaceMaxStrokeWidth);
+  }
+  return _strokeWidth;
+}
+
+#pragma mark Typographic Properties
+
+- (NSString *)familyName {
+  return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
+}
+
+- (NSString *)styleName {
+  return [NSString stringWithUTF8String:_fontInfo.style_name.c_str()];
+}
+
+- (NSNumber *)proposedSize {
+  return nil;
+}
 
 - (NSUInteger)unitsPerEM {
   return _fontInfo.units_per_em;
@@ -121,6 +162,12 @@
 - (NSInteger)descender {
   return _fontInfo.descender;
 }
+
+- (NSString *)postscriptFontName {
+  return [NSString stringWithUTF8String:_fontInfo.postscript_font_name.c_str()];
+}
+
+#pragma mark Glyphs
 
 - (NSBezierPath *)glyphOutlineForName:(NSString *)name {
   const auto glyph = _glyphs.find(name.UTF8String);
@@ -135,8 +182,9 @@
   assert(_glyphShapes.find(name.UTF8String) == std::end(_glyphShapes));
   auto outline = _glyphOutlines.at(name.UTF8String);
   auto shape = [self strokeGlyph:*glyph outline:outline];
+  path = [self bezierPathWithShape:shape];
   _glyphShapes.emplace(name.UTF8String, std::move(shape));
-  _glyphBezierPaths[name] = [self bezierPathWithShape:shape];
+  _glyphBezierPaths[name] = path;
   return path;
 }
 
@@ -176,10 +224,10 @@
 
 - (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
                        outline:(const token::GlyphOutline&)outline {
-  const auto advance = glyph.advance->width;
-  const auto ascender = _fontInfo.ascender;
-  const auto scale = (ascender - _width) / ascender;
-  const takram::Vec2d center(advance / 2.0, ascender / 2.0);
+  const auto width = self.strokeWidth;
+  const auto scale = (_fontInfo.cap_height - width) / _fontInfo.cap_height;
+  const takram::Vec2d center(glyph.advance->width / 2.0,
+                             _fontInfo.cap_height / 2.0);
   auto stroked = outline;
   for (auto& command : stroked.shape()) {
     command.point() = center + (command.point() - center) * scale;
@@ -189,12 +237,28 @@
 
   // Stroking and path simplification
   token::GlyphStroker stroker;
-  stroker.set_width(_width);
-  takram::Shape2d shape = stroker.stroke(stroked);
-  shape = stroker.simplify(shape);
-  shape.convertConicsToQuadratics();
-  shape.convertQuadraticsToCubics();
-  shape.removeDuplicates(1.0);
+  stroker.set_width(width);
+  takram::Shape2d shape;
+  // Because the path simplification occationally fails
+  bool success{};
+  for (double shift{};
+       shift < kTKNTypefaceStrokingRetryShiftLimit;
+       shift += kTKNTypefaceStrokingRetryShift) {
+    stroker.set_width(width + shift);
+    shape = stroker.stroke(stroked);
+    shape = stroker.simplify(shape);
+    if (shape.size() == glyph.lib->number_of_contours) {
+      success = true;
+      break;
+    }
+  }
+  if (success) {
+    shape.convertConicsToQuadratics();
+    shape.convertQuadraticsToCubics();
+    shape.removeDuplicates(1.0);
+  } else {
+    shape.reset();
+  }
   return std::move(shape);
 }
 

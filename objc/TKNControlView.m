@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceRepertoireView.mm
+//  TKNControlView.m
 //
 //  The MIT License
 //
@@ -24,13 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypefaceRepertoireView.h"
+#import "TKNControlView.h"
 
-@implementation TKNTypefaceRepertoireView
+@implementation TKNControlView
 
-- (void)drawRect:(NSRect)rect {
-  [[NSColor whiteColor] setFill];
-  NSRectFill(rect);
+- (BOOL)acceptsFirstResponder {
+  return YES;
 }
 
 @end

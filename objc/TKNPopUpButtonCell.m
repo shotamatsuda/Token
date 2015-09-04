@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundTextField.m
+//  TKNPopUpButtonCell.m
 //
 //  The MIT License
 //
@@ -24,20 +24,14 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNBackgroundTextField.h"
+#import "TKNPopUpButtonCell.h"
 
-@implementation TKNBackgroundTextField
+@implementation TKNPopUpButtonCell
 
-- (void)mouseDown:(NSEvent *)event {
-  [self.window makeFirstResponder:nil];
-}
-
-- (BOOL)acceptsFirstResponder {
-  return NO;
-}
-
-- (BOOL)mouseDownCanMoveWindow {
-  return YES;
+- (CGRect)titleRectForBounds:(CGRect)cellFrame {
+  CGRect bounds = [super titleRectForBounds:cellFrame];
+  bounds.origin.y -= 1.0;
+  return bounds;
 }
 
 @end

@@ -28,6 +28,8 @@
 
 #import "TKNTypefaceSampleView.h"
 
+static char TKNTypefaceViewControllerKVOContext;
+
 @implementation TKNTypefaceViewController
 
 - (instancetype)init {
@@ -35,16 +37,57 @@
                         bundle:[NSBundle mainBundle]];
 }
 
+- (void)dealloc {
+  NSArray *keyPaths = @[@"capHeight", @"width",
+                        @"capHeightEqualsUnitsPerEM",
+                        @"capHeightUnit", @"widthUnit"];
+  for (NSString *keyPath in keyPaths) {
+    [_typeface removeObserver:self
+                   forKeyPath:keyPath
+                      context:&TKNTypefaceViewControllerKVOContext];
+  }
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _sampleView = [[TKNTypefaceSampleView alloc]
-      initWithFrame:NSMakeRect(0.0, 0.0, 1.0, 1.0)];
+  _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:self.view.frame];
   _sampleView.typeface = _typeface;
   NSScrollView *scrollView = (NSScrollView *)self.view;
   scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   scrollView.hasHorizontalScroller = YES;
   scrollView.hasVerticalScroller = YES;
   scrollView.documentView = _sampleView;
+}
+
+- (void)setTypeface:(TKNTypeface *)typeface {
+  if (typeface != _typeface) {
+    _typeface = typeface;
+    NSArray *keyPaths = @[@"capHeight", @"width",
+                          @"capHeightEqualsUnitsPerEM",
+                          @"capHeightUnit", @"widthUnit"];
+    for (NSString *keyPath in keyPaths) {
+      [_typeface addObserver:self
+                  forKeyPath:keyPath
+                     options:NSKeyValueObservingOptionNew
+                     context:&TKNTypefaceViewControllerKVOContext];
+    }
+  }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+  if (context == &TKNTypefaceViewControllerKVOContext) {
+    if (object == _typeface) {
+      _sampleView.needsDisplay = YES;
+    }
+  } else {
+    [super observeValueForKeyPath:keyPath
+                         ofObject:object
+                           change:change
+                          context:context];
+  }
 }
 
 @end
