@@ -257,28 +257,32 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   // Fix winding rule
   std::unordered_map<takram::Path2d *, int> depths;
   auto& paths = result.paths();
-  for (auto itr = std::begin(paths); itr != std::end(paths);) {
-    if (itr->direction() == takram::PathDirection::UNDEFINED) {
-      itr = paths.erase(itr);
-    } else {
-      for (auto& other : result.paths()) {
-        if (&*itr != &other) {
-          depths[&*itr] += other.bounds().contains(itr->bounds());
+  if (paths.size() == 1) {
+    depths[&paths.front()] = 0;
+  } else {
+    for (auto itr = std::begin(paths); itr != std::end(paths);) {
+      if (itr->direction() == takram::PathDirection::UNDEFINED) {
+        itr = paths.erase(itr);
+      } else {
+        for (auto& other : result.paths()) {
+          if (&*itr != &other) {
+            depths[&*itr] += other.bounds().contains(itr->bounds());
+          }
         }
+        ++itr;
       }
-      ++itr;
     }
   }
   for (const auto& pair : depths) {
     auto& path = *pair.first;
     if (pair.second % 2) {
-      if (path.direction() != takram::PathDirection::CLOCKWISE) {
+      if (path.direction() != takram::PathDirection::COUNTER_CLOCKWISE) {
         path.reverse();
-        assert(path.direction() == takram::PathDirection::CLOCKWISE);
+        assert(path.direction() == takram::PathDirection::COUNTER_CLOCKWISE);
       }
-    } else if (path.direction() != takram::PathDirection::COUNTER_CLOCKWISE) {
+    } else if (path.direction() != takram::PathDirection::CLOCKWISE) {
       path.reverse();
-      assert(path.direction() == takram::PathDirection::COUNTER_CLOCKWISE);
+      assert(path.direction() == takram::PathDirection::CLOCKWISE);
     }
   }
   return std::move(result);
