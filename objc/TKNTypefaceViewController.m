@@ -38,7 +38,6 @@ static char TKNTypefaceViewControllerKVOContext;
 
 #pragma mark Zooming
 
-@property (nonatomic, strong) NSArray *magnifications;
 @property (nonatomic, strong) NSMutableArray *magnificationQueue;
 
 - (void)animateMagnificationInQueue;
@@ -57,9 +56,6 @@ static char TKNTypefaceViewControllerKVOContext;
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     _magnification = 1.0;
-    _magnifications = @[@0.05, @0.10, @0.15, @0.20, @0.30, @0.40, @0.50, @0.75,
-                      @1.00, @1.50, @2.00, @3.00, @4.00, @6.00, @8.00,
-                      @10.00, @15.00, @20.00, @30.00];
     _magnificationQueue = [NSMutableArray array];
   }
   return self;
@@ -85,8 +81,8 @@ static char TKNTypefaceViewControllerKVOContext;
   _scrollView.hasVerticalScroller = YES;
   _scrollView.documentView = _sampleView;
   _scrollView.allowsMagnification = YES;
-  _scrollView.minMagnification = [_magnifications.firstObject doubleValue];
-  _scrollView.maxMagnification = [_magnifications.lastObject doubleValue];
+  _scrollView.minMagnification = 0.03125;
+  _scrollView.maxMagnification = 64.0;
 
   // Inject self to the responder chain
   self.nextResponder = _scrollView.contentView.nextResponder;
@@ -176,9 +172,9 @@ static char TKNTypefaceViewControllerKVOContext;
 - (IBAction)zoomIn:(id)sender {
   double magnification = _magnification;
   double result = magnification;
-  NSEnumerator *enumerator = _magnifications.objectEnumerator;
-  for (NSNumber *number; number = [enumerator nextObject];) {
-    double proposed = number.doubleValue;
+  double proposed = _scrollView.minMagnification;
+  for (int i = 0;; ++i) {
+    proposed /= i % 2 ? 3.0 / 4.0 : 2.0 / 3.0;
     if (magnification >= proposed) {
       continue;
     }
@@ -194,9 +190,9 @@ static char TKNTypefaceViewControllerKVOContext;
 - (IBAction)zoomOut:(id)sender {
   double magnification = _magnification;
   double result = magnification;
-  NSEnumerator *enumerator = _magnifications.reverseObjectEnumerator;
-  for (NSNumber *number; number = [enumerator nextObject];) {
-    double proposed = number.doubleValue;
+  double proposed = _scrollView.maxMagnification;
+  for (int i = 0;; ++i) {
+    proposed *= i % 2 ? 2.0 / 3.0 : 3.0 / 4.0;
     if (magnification <= proposed) {
       continue;
     }

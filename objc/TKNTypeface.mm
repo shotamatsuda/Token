@@ -47,8 +47,8 @@
 
 static const double kTKNTypefaceStrokingRetryShift = 0.001;
 static const double kTKNTypefaceStrokingRetryShiftLimit = 0.1;
-static const double kTKNTypefaceMinStrokeWidth = 10.0;
-static const double kTKNTypefaceMaxStrokeWidth = 120.0;
+static const double kTKNTypefaceMinStrokeWidthInEM = 10.0;
+static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
 @interface TKNTypeface () {
  @private
@@ -56,17 +56,19 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
   token::ufo::Glyphs _glyphs;
   std::unordered_map<std::string, token::GlyphOutline> _glyphOutlines;
   std::unordered_map<std::string, takram::Shape2d> _glyphShapes;
-  double _strokeWidth;
+  double _strokeWidthInEM;
 }
 
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
-@property (nonatomic, assign, readonly) double strokeWidth;
+@property (nonatomic, assign, readonly) double strokeWidthInEM;
 
 #pragma mark Opening and Saving
 
 - (NSString *)createUnifiedFontObject:(NSString *)directory;
 - (void)updateGlyphsInUnifiedFontObject:(NSString *)path;
 - (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path;
+- (NSString *)createFontMenuNameDB:(NSString *)directory;
+- (NSString *)createGlyphOrderAndAliasDB:(NSString *)directory;
 
 @end
 
@@ -153,7 +155,7 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
   const std::string format = R"(
     export PATH=${PATH}:"%1%"
     export FDK_EXE="%1%"
-    "%2%" -f "%3%" -o "%4%"
+    "%2%" -r -f "%3%" -o "%4%"
   )";
   std::system((boost::format(format) %
                toolsPath %
@@ -163,13 +165,23 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
   return otfPath;
 }
 
+- (NSString *)createFontMenuNameDB:(NSString *)directory {
+  // TODO(shotamatsuda):
+  return nil;
+}
+
+- (NSString *)createGlyphOrderAndAliasDB:(NSString *)directory {
+  // TODO(shotamatsuda):
+  return nil;
+}
+
 #pragma mark Parameters
 
 - (void)setCapHeight:(double)capHeight {
   capHeight = MAX(capHeight, _width);
   if (capHeight != _capHeight) {
     _capHeight = capHeight;
-    _strokeWidth = 0.0;
+    _strokeWidthInEM = 0.0;
     _glyphShapes.clear();
     [_glyphBezierPaths removeAllObjects];
   }
@@ -178,22 +190,30 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
 - (void)setWidth:(double)width {
   if (width != _width) {
     _width = width;
-    _strokeWidth = 0.0;
+    _strokeWidthInEM = 0.0;
     _glyphShapes.clear();
     [_glyphBezierPaths removeAllObjects];
   }
 }
 
-- (double)strokeWidth {
-  if (!_strokeWidth) {
-    _strokeWidth = takram::math::clamp(
+- (double)strokeWidthInEM {
+  if (!_strokeWidthInEM) {
+    _strokeWidthInEM = takram::math::clamp(
         std::round((_width * _fontInfo.cap_height) / _capHeight),
-        kTKNTypefaceMinStrokeWidth, kTKNTypefaceMaxStrokeWidth);
+        kTKNTypefaceMinStrokeWidthInEM, kTKNTypefaceMaxStrokeWidthInEM);
   }
-  return _strokeWidth;
+  return _strokeWidthInEM;
 }
 
 #pragma mark Typographic Properties
+
+@dynamic familyName;
+@dynamic styleName;
+@dynamic proposedSize;
+@dynamic unitsPerEM;
+@dynamic ascender;
+@dynamic descender;
+@dynamic postscriptFontName;
 
 - (NSString *)familyName {
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
@@ -280,7 +300,7 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
 
 - (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
                        outline:(const token::GlyphOutline&)outline {
-  const auto width = self.strokeWidth;
+  const auto width = self.strokeWidthInEM;
   const auto scale = (_fontInfo.cap_height - width) / _fontInfo.cap_height;
   const takram::Vec2d center(glyph.advance->width / 2.0,
                              _fontInfo.cap_height / 2.0);
