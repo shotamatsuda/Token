@@ -1,5 +1,5 @@
 //
-//  TKNSettingsView.h
+//  TKNNumberToPercentageTransformer.m
 //
 //  The MIT License
 //
@@ -24,10 +24,20 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNNumberToPercentageTransformer.h"
 
-@interface TKNSettingsView : NSVisualEffectView
+@implementation TKNNumberToPercentageTransformer
 
-@property (nonatomic, assign) BOOL rounded;
++ (Class)transformedValueClass {
+  return [NSString class];
+}
+
+- (id)transformedValue:(id)value {
+  if ([value isKindOfClass:[NSNumber class]]) {
+    NSInteger percentage = round([value doubleValue] * 100.0);
+    return [NSString stringWithFormat:@"%ld%%", percentage];
+  }
+  return nil;
+}
 
 @end

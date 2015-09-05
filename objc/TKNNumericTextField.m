@@ -84,7 +84,7 @@
 
 - (void)mouseDragged:(NSEvent *)event {
   [super mouseDragged:event];
-  CGFloat delta = round(event.locationInWindow.y - _initialLocation.y) * _step;
+  CGFloat delta = round(event.locationInWindow.x - _initialLocation.x) * _step;
   self.doubleValue = _initialValue + delta;
 
   // Propagate the change through binding
@@ -111,7 +111,8 @@
 
 - (void)resetCursorRects {
   if (!self.editable) {
-    [self addCursorRect:self.actualBounds cursor:[NSCursor resizeUpDownCursor]];
+    [self addCursorRect:self.actualBounds
+                 cursor:[NSCursor resizeLeftRightCursor]];
   } else {
     [super resetCursorRects];
   }

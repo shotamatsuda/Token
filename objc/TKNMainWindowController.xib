@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="15A279b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TKNMainWindowController">
             <connections>
-                <outlet property="controlView" destination="2d5-oW-Awo" id="y12-UC-TTF"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="600"/>
@@ -27,61 +26,5 @@
             </connections>
             <point key="canvasLocation" x="-42" y="584"/>
         </window>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="2d5-oW-Awo" customClass="TKNControlView">
-            <rect key="frame" x="0.0" y="0.0" width="800" height="25"/>
-            <subviews>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="JJe-pM-PTE">
-                    <rect key="frame" x="765" y="0.0" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="25" id="Z0c-ZK-sj9"/>
-                        <constraint firstAttribute="height" constant="25" id="gcT-L9-4xW"/>
-                    </constraints>
-                    <animations/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="ZgH-EE-hV2">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G0n-S0-JZz">
-                    <rect key="frame" x="703" y="5" width="64" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="3wB-a0-h0r"/>
-                    </constraints>
-                    <animations/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="Sop-xt-4GZ">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="Mqe-5h-HE1">
-                    <rect key="frame" x="680" y="0.0" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="25" id="RZ2-Le-WGa"/>
-                        <constraint firstAttribute="height" constant="25" id="ZxL-ZS-KXq"/>
-                    </constraints>
-                    <animations/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="EmW-8p-3wa">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="centerY" secondItem="Mqe-5h-HE1" secondAttribute="centerY" id="AyQ-xl-beM"/>
-                <constraint firstAttribute="height" constant="25" id="B6z-aU-5RC"/>
-                <constraint firstAttribute="centerY" secondItem="JJe-pM-PTE" secondAttribute="centerY" id="SKU-lF-TXf"/>
-                <constraint firstItem="JJe-pM-PTE" firstAttribute="leading" secondItem="G0n-S0-JZz" secondAttribute="trailing" id="TBW-nO-ZOs"/>
-                <constraint firstItem="G0n-S0-JZz" firstAttribute="leading" secondItem="Mqe-5h-HE1" secondAttribute="trailing" id="acD-oH-VGT"/>
-                <constraint firstAttribute="trailing" secondItem="JJe-pM-PTE" secondAttribute="trailing" constant="10" id="f5n-6x-zEM"/>
-                <constraint firstAttribute="centerY" secondItem="G0n-S0-JZz" secondAttribute="centerY" id="qL7-cq-99Z"/>
-            </constraints>
-            <animations/>
-            <point key="canvasLocation" x="-42" y="143.5"/>
-        </customView>
     </objects>
-    <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
-    </resources>
 </document>

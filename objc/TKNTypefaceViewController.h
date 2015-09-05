@@ -34,4 +34,12 @@
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
 @property (nonatomic, strong, nonnull) TKNTypefaceSampleView *sampleView;
 
+#pragma mark Zooming
+
+@property (nonatomic, assign) double magnification;
+
+- (void)setMagnification:(double)magnification animated:(BOOL)animated;
+- (IBAction)zoomIn:(nullable id)sender;
+- (IBAction)zoomOut:(nullable id)sender;
+
 @end

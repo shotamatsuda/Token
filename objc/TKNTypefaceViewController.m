@@ -26,15 +26,43 @@
 
 #import "TKNTypefaceViewController.h"
 
+#import "TKNControlView.h"
 #import "TKNTypefaceSampleView.h"
 
 static char TKNTypefaceViewControllerKVOContext;
+
+@interface TKNTypefaceViewController ()
+
+@property (nonatomic, strong) IBOutlet NSScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet TKNControlView *controlView;
+
+#pragma mark Zooming
+
+@property (nonatomic, strong) NSArray *magnifications;
+@property (nonatomic, strong) NSMutableArray *magnificationQueue;
+
+- (void)animateMagnificationInQueue;
+
+@end
 
 @implementation TKNTypefaceViewController
 
 - (instancetype)init {
   return [self initWithNibName:@"TKNTypefaceViewController"
                         bundle:[NSBundle mainBundle]];
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    _magnification = 1.0;
+    _magnifications = @[@0.05, @0.10, @0.15, @0.20, @0.30, @0.40, @0.50, @0.75,
+                      @1.00, @1.50, @2.00, @3.00, @4.00, @6.00, @8.00,
+                      @10.00, @15.00, @20.00, @30.00];
+    _magnificationQueue = [NSMutableArray array];
+  }
+  return self;
 }
 
 - (void)dealloc {
@@ -50,27 +78,26 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:self.view.frame];
+  _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:_scrollView.frame];
   _sampleView.typeface = _typeface;
-  NSScrollView *scrollView = (NSScrollView *)self.view;
-  scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-  scrollView.hasHorizontalScroller = YES;
-  scrollView.hasVerticalScroller = YES;
-  scrollView.documentView = _sampleView;
+  _scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  _scrollView.hasHorizontalScroller = YES;
+  _scrollView.hasVerticalScroller = YES;
+  _scrollView.documentView = _sampleView;
+  _scrollView.allowsMagnification = YES;
+  _scrollView.minMagnification = [_magnifications.firstObject doubleValue];
+  _scrollView.maxMagnification = [_magnifications.lastObject doubleValue];
+
+  // Inject self to the responder chain
+  self.nextResponder = _scrollView.contentView.nextResponder;
+   _scrollView.contentView.nextResponder = self;
 }
 
-- (void)setTypeface:(TKNTypeface *)typeface {
-  if (typeface != _typeface) {
-    _typeface = typeface;
-    NSArray *keyPaths = @[@"capHeight", @"width",
-                          @"capHeightEqualsUnitsPerEM",
-                          @"capHeightUnit", @"widthUnit"];
-    for (NSString *keyPath in keyPaths) {
-      [_typeface addObserver:self
-                  forKeyPath:keyPath
-                     options:NSKeyValueObservingOptionNew
-                     context:&TKNTypefaceViewControllerKVOContext];
-    }
+- (void)scrollWheel:(NSEvent *)event {
+  if (event.modifierFlags & NSAlternateKeyMask) {
+    self.magnification *= event.deltaY < 0.0 ? 0.9 : 1.0 / 0.9;
+  } else {
+    [_scrollView scrollWheel:event];
   }
 }
 
@@ -88,6 +115,98 @@ static char TKNTypefaceViewControllerKVOContext;
                            change:change
                           context:context];
   }
+}
+
+- (void)setTypeface:(TKNTypeface *)typeface {
+  if (typeface != _typeface) {
+    _typeface = typeface;
+    NSArray *keyPaths = @[@"capHeight", @"width",
+                          @"capHeightEqualsUnitsPerEM",
+                          @"capHeightUnit", @"widthUnit"];
+    for (NSString *keyPath in keyPaths) {
+      [_typeface addObserver:self
+                  forKeyPath:keyPath
+                     options:NSKeyValueObservingOptionNew
+                     context:&TKNTypefaceViewControllerKVOContext];
+    }
+  }
+}
+
+#pragma mark Zooming
+
+- (void)setMagnification:(double)magnification {
+  [self setMagnification:magnification animated:NO];
+}
+
+- (void)setMagnification:(double)magnification animated:(BOOL)animated {
+  magnification = MIN(MAX(
+      magnification,
+      _scrollView.minMagnification),
+      _scrollView.maxMagnification);
+  if (magnification == _magnification) {
+    return;
+  }
+  [self willChangeValueForKey:@"magnification"];
+  _magnification = magnification;
+  [self didChangeValueForKey:@"magnification"];
+  if (animated) {
+    [_magnificationQueue addObject:[NSNumber numberWithDouble:magnification]];
+    if (_magnificationQueue.count == 1) {
+      [self animateMagnificationInQueue];
+    }
+    return;
+  } else {
+    _scrollView.magnification = magnification;
+  }
+}
+
+- (void)animateMagnificationInQueue {
+  __weak typeof(self) wself = self;
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+    _scrollView.animator.magnification =
+        [_magnificationQueue.firstObject doubleValue];
+    [_magnificationQueue removeObjectAtIndex:0];
+  } completionHandler:^{
+    if (_magnificationQueue.count) {
+      [wself animateMagnificationInQueue];
+    }
+  }];
+}
+
+- (IBAction)zoomIn:(id)sender {
+  double magnification = _magnification;
+  double result = magnification;
+  NSEnumerator *enumerator = _magnifications.objectEnumerator;
+  for (NSNumber *number; number = [enumerator nextObject];) {
+    double proposed = number.doubleValue;
+    if (magnification >= proposed) {
+      continue;
+    }
+    if (result <= magnification && magnification < proposed) {
+      result = proposed;
+      break;
+    }
+    result = proposed;
+  }
+  [self setMagnification:result animated:YES];
+}
+
+- (IBAction)zoomOut:(id)sender {
+  double magnification = _magnification;
+  double result = magnification;
+  NSEnumerator *enumerator = _magnifications.reverseObjectEnumerator;
+  for (NSNumber *number; number = [enumerator nextObject];) {
+    double proposed = number.doubleValue;
+    if (magnification <= proposed) {
+      continue;
+    }
+    if (result >= magnification && magnification > proposed) {
+      result = proposed;
+      break;
+    }
+    result = proposed;
+  }
+  [self setMagnification:result animated:YES];
 }
 
 @end

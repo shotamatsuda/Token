@@ -31,6 +31,6 @@
 @interface TKNTypefaceSampleView : NSView
 
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
-@property (nonatomic, assign) double scale;
+@property (nonatomic, assign, readonly) CGSize preferredSize;
 
 @end

@@ -1,38 +1,128 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="15A279b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TKNTypefaceViewController">
             <connections>
-                <outlet property="view" destination="F1b-Li-q3i" id="7Ob-1q-wX8"/>
+                <outlet property="controlView" destination="h10-2w-HUc" id="8tn-6N-5dC"/>
+                <outlet property="scrollView" destination="F1b-Li-q3i" id="Cni-vf-o73"/>
+                <outlet property="view" destination="0lg-DE-xZo" id="XQu-MF-E8D"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="F1b-Li-q3i">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+        <customView id="0lg-DE-xZo">
+            <rect key="frame" x="0.0" y="1" width="300" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <clipView key="contentView" id="JCv-bs-eF3" customClass="TKNCenteredClipView">
-                <rect key="frame" x="1" y="1" width="181" height="94"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-xk-Nsy">
-                        <rect key="frame" x="0.0" y="0.0" width="181" height="94"/>
-                    </view>
-                </subviews>
-                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </clipView>
-            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="0Nb-Jd-Sqg">
-                <rect key="frame" x="1" y="79" width="181" height="16"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </scroller>
-            <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="tPS-OV-3vX">
-                <rect key="frame" x="166" y="1" width="16" height="94"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </scroller>
-            <point key="canvasLocation" x="131" y="832"/>
-        </scrollView>
+            <subviews>
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1b-Li-q3i">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                    <clipView key="contentView" id="JCv-bs-eF3" customClass="TKNCenteredClipView">
+                        <rect key="frame" x="1" y="1" width="181" height="94"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-xk-Nsy">
+                                <rect key="frame" x="0.0" y="0.0" width="181" height="94"/>
+                                <animations/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </clipView>
+                    <animations/>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="0Nb-Jd-Sqg">
+                        <rect key="frame" x="1" y="79" width="181" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </scroller>
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="tPS-OV-3vX">
+                        <rect key="frame" x="166" y="1" width="16" height="94"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </scroller>
+                </scrollView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="h10-2w-HUc" customClass="TKNControlView">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
+                    <subviews>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-fa-Jdp">
+                            <rect key="frame" x="265" y="0.0" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="5S3-Te-hep"/>
+                                <constraint firstAttribute="height" constant="25" id="Q3d-r9-bNT"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5kW-OY-CIj">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="zoomIn:" target="-2" id="uxw-7K-2mg"/>
+                            </connections>
+                        </button>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehm-eu-cMu">
+                            <rect key="frame" x="203" y="6" width="64" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="KzX-m8-DZr"/>
+                            </constraints>
+                            <animations/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="18k-yW-wI7">
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.magnification" id="W5s-dL-aaa">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">TKNNumberToPercentageTransformer</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </textField>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="46j-Pl-tkn">
+                            <rect key="frame" x="180" y="0.0" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="Ae5-AS-C2b"/>
+                                <constraint firstAttribute="width" constant="25" id="YKg-g1-NJh"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="vR6-w8-Zeg">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="zoomOut:" target="-2" id="4g7-qQ-FkA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ZZZ-fa-Jdp" secondAttribute="trailing" constant="10" id="5dQ-je-LeW"/>
+                        <constraint firstAttribute="height" constant="25" id="APx-7e-Saa"/>
+                        <constraint firstAttribute="centerY" secondItem="ehm-eu-cMu" secondAttribute="centerY" id="FAP-yX-zYv"/>
+                        <constraint firstItem="ZZZ-fa-Jdp" firstAttribute="leading" secondItem="ehm-eu-cMu" secondAttribute="trailing" id="PEM-si-Gu9"/>
+                        <constraint firstItem="ehm-eu-cMu" firstAttribute="leading" secondItem="46j-Pl-tkn" secondAttribute="trailing" id="WWN-Rc-2c4"/>
+                        <constraint firstAttribute="centerY" secondItem="46j-Pl-tkn" secondAttribute="centerY" id="Yo2-Q2-XVH"/>
+                        <constraint firstAttribute="centerY" secondItem="ZZZ-fa-Jdp" secondAttribute="centerY" id="dp9-Iv-DlG"/>
+                    </constraints>
+                    <animations/>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="F1b-Li-q3i" secondAttribute="trailing" id="0BA-hW-AWE"/>
+                <constraint firstAttribute="bottom" secondItem="F1b-Li-q3i" secondAttribute="bottom" id="b5q-M7-2Yw"/>
+                <constraint firstItem="F1b-Li-q3i" firstAttribute="leading" secondItem="0lg-DE-xZo" secondAttribute="leading" id="bMS-AM-YRX"/>
+                <constraint firstItem="F1b-Li-q3i" firstAttribute="top" secondItem="0lg-DE-xZo" secondAttribute="top" id="sx8-jy-ISe"/>
+                <constraint firstItem="h10-2w-HUc" firstAttribute="leading" secondItem="0lg-DE-xZo" secondAttribute="leading" id="xea-cp-mPY"/>
+                <constraint firstAttribute="bottom" secondItem="h10-2w-HUc" secondAttribute="bottom" id="yiw-Lc-xMR"/>
+                <constraint firstAttribute="trailing" secondItem="h10-2w-HUc" secondAttribute="trailing" id="zZA-ec-cOn"/>
+            </constraints>
+            <animations/>
+            <point key="canvasLocation" x="-27" y="755"/>
+        </customView>
     </objects>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
+    </resources>
 </document>

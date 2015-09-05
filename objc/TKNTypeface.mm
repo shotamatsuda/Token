@@ -28,7 +28,6 @@
 
 #import "TKNTypeface.h"
 
-#include <algorithm>
 #include <cassert>
 #include <cmath>
 #include <cstdlib>
@@ -36,9 +35,9 @@
 #include <string>
 #include <unordered_map>
 #include <utility>
-#include <vector>
 
 #include <boost/filesystem/path.hpp>
+#include <boost/format.hpp>
 
 #include "takram/graphics.h"
 #include "takram/math.h"
@@ -78,11 +77,15 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
 }
 
 - (instancetype)initWithFileAtPath:(NSString *)path {
+  if (!path) {
+    return nil;
+  }
   self = [super init];
   if (self) {
     _glyphBezierPaths = [NSMutableDictionary dictionary];
     _capHeight = 2.0;
     _width = 0.2;
+    _capHeightEqualsUnitsPerEM = YES;
     if (path) {
       [self openFile:path];
     }
@@ -109,6 +112,7 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
   [self updateGlyphsInUnifiedFontObject:ufoPath];
   NSString *otfPath = [self createOpenTypeWithUnifiedFontObject:ufoPath];
   NSFileManager *fileManager = [NSFileManager defaultManager];
+  [fileManager removeItemAtPath:path error:NULL];
   [fileManager copyItemAtPath:otfPath toPath:path error:NULL];
   [fileManager removeItemAtPath:workingDirectoryPath error:NULL];
 }
@@ -145,19 +149,24 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
   const auto sharedSupportPath = boost::filesystem::path(
       [NSBundle mainBundle].sharedSupportPath.UTF8String);
   const auto toolsPath = sharedSupportPath / "FDK" / "Tools" / "osx";
-  const std::string makeotf = (toolsPath / "makeotf").string();
-  std::system(("FDK_EXE=\"" + toolsPath.string() + "\";"
-               "PATH=${PATH}:\"" + toolsPath.string() + "\";"
-               "export PATH;"
-               "export FDK_EXE;" +
-               makeotf + " -f \"" + path.UTF8String + "\"" +
-               " -o \"" + otfPath.UTF8String + "\"").c_str());
+  const std::string command = (toolsPath / "makeotf").string();
+  const std::string format = R"(
+    export PATH=${PATH}:"%1%"
+    export FDK_EXE="%1%"
+    "%2%" -f "%3%" -o "%4%"
+  )";
+  std::system((boost::format(format) %
+               toolsPath %
+               command %
+               path.UTF8String %
+               otfPath.UTF8String).str().c_str());
   return otfPath;
 }
 
 #pragma mark Parameters
 
 - (void)setCapHeight:(double)capHeight {
+  capHeight = MAX(capHeight, _width);
   if (capHeight != _capHeight) {
     _capHeight = capHeight;
     _strokeWidth = 0.0;

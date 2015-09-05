@@ -28,6 +28,7 @@
 
 @interface TKNTypefaceSampleView ()
 
+@property (nonatomic, assign) double scale;
 @property (nonatomic, strong) NSArray *lines;
 
 - (CGSize)sizeForLines:(NSArray *)lines;
@@ -65,7 +66,8 @@
 - (void)drawRect:(NSRect)rect {
   CGSize size = [self sizeForLines:_lines];
   CGRect frame = self.frame;
-  frame.size = size;
+  frame.size.width = ceil(size.width);
+  frame.size.height = ceil(size.height);
   self.frame = frame;
   [NSGraphicsContext saveGraphicsState];
   [[NSColor whiteColor] setFill];
@@ -102,7 +104,7 @@
   [NSGraphicsContext restoreGraphicsState];
   if (self.frame.size.width < position.x * _scale) {
     CGRect frame = self.frame;
-    frame.size.width = position.x * _scale;
+    frame.size.width = ceil(position.x * _scale);
     self.frame = frame;
   }
 }
@@ -147,6 +149,10 @@
     [[_typeface glyphOutlineForName:name] fill];
   }
   [NSGraphicsContext restoreGraphicsState];
+}
+
+- (CGSize)preferredSize {
+  return [self sizeForLines:_lines];
 }
 
 - (CGSize)sizeForLines:(NSArray *)lines {

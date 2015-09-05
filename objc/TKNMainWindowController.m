@@ -26,15 +26,13 @@
 
 #import "TKNMainWindowController.h"
 
-#import "TKNSettingsView.h"
 #import "TKNSettingsViewController.h"
 #import "TKNTypefaceViewController.h"
 
 @interface TKNMainWindowController ()
 
-@property (nonatomic, strong) IBOutlet NSView *controlView;
 @property (nonatomic, strong) NSView *typefaceView;
-@property (nonatomic, strong) TKNSettingsView *settingsView;
+@property (nonatomic, strong) NSView *settingsView;
 @property (nonatomic, assign) CGRect windowFrame;
 
 @end
@@ -87,7 +85,7 @@
       views:NSDictionaryOfVariableBindings(_typefaceView)]];
 
   // Settings
-  _settingsView = (TKNSettingsView *)_settingsViewController.view;
+  _settingsView = _settingsViewController.view;
   _settingsView.appearance = [NSAppearance appearanceNamed:darkAppearance];
   _settingsView.translatesAutoresizingMaskIntoConstraints = NO;
   [view addSubview:_settingsView];
@@ -106,31 +104,6 @@
       options:0
       metrics:nil
       views:NSDictionaryOfVariableBindings(_typefaceView, _settingsView)]];
-
-  // Control
-  _controlView.translatesAutoresizingMaskIntoConstraints = NO;
-  [view addSubview:_controlView];
-  [view addConstraints:[NSLayoutConstraint
-      constraintsWithVisualFormat:@"V:[_controlView][_settingsView]"
-      options:0
-      metrics:nil
-      views:NSDictionaryOfVariableBindings(_controlView, _settingsView)]];
-  [view addConstraint:[NSLayoutConstraint
-      constraintWithItem:_controlView
-      attribute:NSLayoutAttributeLeading
-      relatedBy:NSLayoutRelationEqual
-      toItem:_settingsView
-      attribute:NSLayoutAttributeLeading
-      multiplier:1.0
-      constant:0.0]];
-  [view addConstraint:[NSLayoutConstraint
-      constraintWithItem:_controlView
-      attribute:NSLayoutAttributeTrailing
-      relatedBy:NSLayoutRelationEqual
-      toItem:_settingsView
-      attribute:NSLayoutAttributeTrailing
-      multiplier:1.0
-      constant:0.0]];
 }
 
 #pragma mark Actions

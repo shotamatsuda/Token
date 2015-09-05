@@ -49,9 +49,13 @@
       initWithAttributedString:super.attributedTitle];
   NSRange range = NSMakeRange(0, title.length);
   [title beginEditing];
-  [title addAttribute:NSBaselineOffsetAttributeName
-                value:@2.0
-                range:range];
+  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+  NSOperatingSystemVersion version = processInfo.operatingSystemVersion;
+  if (version.majorVersion < 10 && version.minorVersion < 11) {
+    [title addAttribute:NSBaselineOffsetAttributeName
+                  value:@2.0
+                  range:range];
+  }
   if (self.enabled) {
     if (self.highlighted) {
       [title addAttribute:NSForegroundColorAttributeName

@@ -1,5 +1,5 @@
 //
-//  TKNSettingsView.m
+//  TKNNumberToPercentageTransformer.h
 //
 //  The MIT License
 //
@@ -24,54 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNSettingsView.h"
+#import <Foundation/Foundation.h>
 
-#import "TKNNSBezierPath+RoundedRect.h"
-
-@implementation TKNSettingsView
-
-- (void)setFrame:(NSRect)frame {
-  BOOL changed = !CGRectEqualToRect(frame, self.bounds);
-  [super setFrame:frame];
-  if (changed) {
-    self.maskImage = self.maskImage;
-  }
-}
-
-- (NSImage *)maskImage {
-  NSImage *image;
-  if (_rounded) {
-    image = [NSImage
-        imageWithSize:self.bounds.size
-        flipped:NO
-        drawingHandler:^BOOL(NSRect rect) {
-      NSBezierPath *path = [NSBezierPath
-          bezierPathWithRoundedRect:rect
-          byRoundingCorners:TKNRectCornerTopLeft
-          cornerRadius:5.0];
-      [[NSColor blackColor] setFill];
-      [path fill];
-      return YES;
-    }];
-  } else {
-    image = [NSImage
-        imageWithSize:self.bounds.size
-        flipped:NO
-        drawingHandler:^BOOL(NSRect rect) {
-      NSBezierPath *path = [NSBezierPath bezierPathWithRect:rect];
-      [[NSColor blackColor] setFill];
-      [path fill];
-      return YES;
-    }];
-  }
-  return image;
-}
-
-- (void)setRounded:(BOOL)rounded {
-  if (rounded != _rounded) {
-    _rounded = rounded;
-    self.maskImage = self.maskImage;
-  }
-}
+@interface TKNNumberToPercentageTransformer : NSValueTransformer
 
 @end

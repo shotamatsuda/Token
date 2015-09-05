@@ -43,7 +43,7 @@
 
 #pragma mark Opening and Saving
 
-@property (nonatomic, copy, nullable) NSString *path;
+@property (nonatomic, copy, readonly, nonnull) NSString *path;
 
 - (void)openFile:(nonnull NSString *)path;
 - (void)saveToFile:(nonnull NSString *)path;
