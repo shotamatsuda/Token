@@ -28,6 +28,8 @@
 
 @interface TKNTypefaceSampleView ()
 
+#pragma mark Drawing
+
 @property (nonatomic, assign) double scale;
 @property (nonatomic, strong) NSArray *lines;
 
@@ -63,6 +65,17 @@
   return YES;
 }
 
+#pragma mark Parameters
+
+- (void)setInverted:(BOOL)inverted {
+  if (inverted != _inverted) {
+    _inverted = inverted;
+    self.needsDisplay = YES;
+  }
+}
+
+#pragma mark Drawing
+
 - (void)drawRect:(NSRect)rect {
   CGSize size = [self sizeForLines:_lines];
   CGRect frame = self.frame;
@@ -70,7 +83,13 @@
   frame.size.height = ceil(size.height);
   self.frame = frame;
   [NSGraphicsContext saveGraphicsState];
-  [[NSColor whiteColor] setFill];
+  NSColor *backgroundColor;
+  if (_inverted) {
+    backgroundColor = [NSColor blackColor];
+  } else {
+    backgroundColor = [NSColor whiteColor];
+  }
+  [backgroundColor setFill];
   NSRectFill(rect);
   NSAffineTransform *transform = [NSAffineTransform transform];
   [transform translateXBy:size.width / 2.0 yBy:size.height];
@@ -113,6 +132,12 @@
          position:(CGPoint)position
           control:(BOOL)control {
   [NSGraphicsContext saveGraphicsState];
+  NSColor *foregroundColor;
+  if (_inverted) {
+    foregroundColor = [NSColor whiteColor];
+  } else {
+    foregroundColor = [NSColor blackColor];
+  }
   NSAffineTransform *transform = [NSAffineTransform transform];
   [transform translateXBy:position.x yBy:position.y];
   [transform concat];
@@ -142,17 +167,13 @@
           break;
       }
     }
-    [[NSColor blackColor] set];
+    [foregroundColor set];
     [outline stroke];
   } else {
-    [[NSColor blackColor] setFill];
+    [foregroundColor setFill];
     [[_typeface glyphOutlineForName:name] fill];
   }
   [NSGraphicsContext restoreGraphicsState];
-}
-
-- (CGSize)preferredSize {
-  return [self sizeForLines:_lines];
 }
 
 - (CGSize)sizeForLines:(NSArray *)lines {

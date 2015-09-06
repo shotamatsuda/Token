@@ -57,7 +57,7 @@
                                 <constraint firstAttribute="height" constant="25" id="Q3d-r9-bNT"/>
                             </constraints>
                             <animations/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5kW-OY-CIj">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNZoomIn" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5kW-OY-CIj">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -73,7 +73,7 @@
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="18k-yW-wI7">
                                 <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
@@ -91,7 +91,7 @@
                                 <constraint firstAttribute="width" constant="25" id="YKg-g1-NJh"/>
                             </constraints>
                             <animations/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="vR6-w8-Zeg">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNZoomOut" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="vR6-w8-Zeg">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -126,7 +126,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="TKNZoomIn" width="23" height="23"/>
+        <image name="TKNZoomOut" width="23" height="23"/>
     </resources>
 </document>

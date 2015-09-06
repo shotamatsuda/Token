@@ -34,6 +34,10 @@
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
 @property (nonatomic, strong, nonnull) TKNTypefaceSampleView *sampleView;
 
+#pragma mark Parameters
+
+@property (nonatomic, assign) BOOL inverted;
+
 #pragma mark Zooming
 
 @property (nonatomic, assign) CGFloat magnification;

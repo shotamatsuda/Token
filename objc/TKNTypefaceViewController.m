@@ -86,7 +86,7 @@ static char TKNTypefaceViewControllerKVOContext;
 
   // Inject self to the responder chain
   self.nextResponder = _scrollView.contentView.nextResponder;
-   _scrollView.contentView.nextResponder = self;
+  _scrollView.contentView.nextResponder = self;
 }
 
 - (void)scrollWheel:(NSEvent *)event {
@@ -146,6 +146,20 @@ static char TKNTypefaceViewControllerKVOContext;
                   forKeyPath:keyPath
                      options:NSKeyValueObservingOptionNew
                      context:&TKNTypefaceViewControllerKVOContext];
+    }
+  }
+}
+
+#pragma mark Parameters
+
+- (void)setInverted:(BOOL)inverted {
+  if (inverted != _inverted) {
+    _inverted = inverted;
+    _sampleView.inverted = inverted;
+    if (_inverted) {
+      _scrollView.backgroundColor = [NSColor blackColor];
+    } else {
+      _scrollView.backgroundColor = [NSColor whiteColor];
     }
   }
 }

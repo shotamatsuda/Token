@@ -30,7 +30,9 @@
 
 @interface TKNTypefaceSampleView : NSView
 
+#pragma mark Parameters
+
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
-@property (nonatomic, assign, readonly) CGSize preferredSize;
+@property (nonatomic, assign) BOOL inverted;
 
 @end
