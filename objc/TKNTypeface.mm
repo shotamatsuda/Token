@@ -231,6 +231,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   const std::string style = _styleName.UTF8String;
   const std::string postscriptName = _postscriptName.UTF8String;
   const std::string fullName = fontInfo.family_name + " " + style;
+  // TODO(shotamatsuda): Adjust x-height
   fontInfo.style_name = style;
   fontInfo.style_map_style_name = style;
   fontInfo.macintosh_fond_name = fullName;
@@ -242,10 +243,15 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
       fontInfo.open_type_name_version + ";" +
       fontInfo.open_type_os2_vendor_id + ";" +
       fontInfo.postscript_font_name;
+  fontInfo.open_type_os2_strikeout_size = _strokeWidthInEM;
+  fontInfo.open_type_os2_strikeout_position =
+      std::round((fontInfo.x_height + _strokeWidthInEM) / 2.0);
   fontInfo.postscript_stem_snap_h.clear();
   fontInfo.postscript_stem_snap_h.emplace_back(self.strokeWidthInEM);
   fontInfo.postscript_stem_snap_v.clear();
   fontInfo.postscript_stem_snap_v.emplace_back(self.strokeWidthInEM);
+  fontInfo.postscript_underline_thickness = _strokeWidthInEM;
+  fontInfo.postscript_underline_position = -std::round(_strokeWidthInEM * 2.5);
   fontInfo.save(path.UTF8String);
 }
 
