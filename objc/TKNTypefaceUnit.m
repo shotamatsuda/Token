@@ -26,6 +26,21 @@
 
 #import "TKNTypefaceUnit.h"
 
+NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit) {
+  switch (unit) {
+    case kTKNTypefaceUnitMillimeter:
+      return @"mm";
+    case kTKNTypefaceUnitPoint:
+      return @"pt";
+    case kTKNTypefaceUnitInch:
+      return @"in";
+    default:
+      NSAssert(NO, @"");
+      break;
+  }
+  return nil;
+}
+
 double TKNTypefaceUnitConvert(double value,
                               TKNTypefaceUnit from,
                               TKNTypefaceUnit to) {
@@ -71,19 +86,4 @@ double TKNTypefaceUnitConvert(double value,
       break;
   }
   return value;
-}
-
-NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit) {
-  switch (unit) {
-    case kTKNTypefaceUnitMillimeter:
-      return @"mm";
-    case kTKNTypefaceUnitPoint:
-      return @"pt";
-    case kTKNTypefaceUnitInch:
-      return @"in";
-    default:
-      NSAssert(NO, @"");
-      break;
-  }
-  return nil;
 }
