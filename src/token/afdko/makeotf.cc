@@ -149,11 +149,12 @@ void createFontMenuNameDB(const ufo::FontInfo& font_info,
   const auto path = boost::filesystem::path(directory) / "FontMenuNameDB";
   std::ofstream stream(path.string());
   assert(stream.good());
+  const auto full_name = font_info.family_name + " " + font_info.style_name;
   stream << "[" << font_info.postscript_font_name << "]" << std::endl;
   stream << "f=" << font_info.family_name << std::endl;
   stream << "s=" << font_info.style_name << std::endl;
-  stream << "l=" << font_info.postscript_full_name << std::endl;
-  stream << "m=1," << font_info.postscript_full_name << std::endl;
+  stream << "l=" << full_name << std::endl;
+  stream << "m=1," << full_name << std::endl;
   stream.close();
 }
 
