@@ -122,9 +122,11 @@
 	<integer>7</integer>
 	<key>postscriptBlueValues</key>
 	<array>
-		<integer>-10</integer>
+		<integer>0</integer>
 		<integer>0</integer>
 		<integer>450</integer>
+		<integer>450</integer>
+		<integer>680</integer>
 		<integer>680</integer>
 	</array>
 	<key>postscriptFontName</key>
