@@ -28,8 +28,10 @@
 
 @interface TKNSettingsViewController ()
 
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *capsHeightConstraint;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *strokeWidthConstraint;
+@property (nonatomic, strong)
+    IBOutlet NSLayoutConstraint *capsHeightConstraint;
+@property (nonatomic, strong)
+    IBOutlet NSLayoutConstraint *strokeWidthConstraint;
 
 @end
 

@@ -125,9 +125,7 @@
 		<integer>-10</integer>
 		<integer>0</integer>
 		<integer>450</integer>
-		<integer>460</integer>
 		<integer>680</integer>
-		<integer>690</integer>
 	</array>
 	<key>postscriptFontName</key>
 	<string>Token-Regular</string>
