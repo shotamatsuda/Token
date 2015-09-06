@@ -76,8 +76,6 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 - (void)updateFontInfoInUnifiedFontObject:(NSString *)path;
 - (void)updateGlyphsInUnifiedFontObject:(NSString *)path;
 - (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path;
-- (NSString *)createFontMenuNameDB:(NSString *)directory;
-- (NSString *)createGlyphOrderAndAliasDB:(NSString *)directory;
 
 @end
 
@@ -231,20 +229,12 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   return otfPath;
 }
 
-- (NSString *)createFontMenuNameDB:(NSString *)directory {
-  // TODO(shotamatsuda):
-  return nil;
-}
-
-- (NSString *)createGlyphOrderAndAliasDB:(NSString *)directory {
-  // TODO(shotamatsuda):
-  return nil;
-}
-
 #pragma mark Parameters
 
 - (void)setCapHeight:(double)capHeight {
-  const double numerator = _fontInfo.cap_height * _strokeWidth;
+  const double strokeWidth = TKNTypefaceUnitConvert(
+      _strokeWidth, _strokeWidthUnit, _capHeightUnit);
+  const double numerator = _fontInfo.cap_height * strokeWidth;
   double min = numerator / kTKNTypefaceMaxStrokeWidthInEM;
   double max = numerator / kTKNTypefaceMinStrokeWidthInEM;
   min = std::ceil(min * 100.0) / 100.0;
@@ -257,7 +247,9 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 }
 
 - (void)setStrokeWidth:(double)strokeWidth {
-  const double coeff = _capHeight / _fontInfo.cap_height;
+  const double capHeight = TKNTypefaceUnitConvert(
+      _capHeight, _capHeightUnit, _strokeWidthUnit);
+  const double coeff = capHeight / _fontInfo.cap_height;
   double min = coeff * kTKNTypefaceMinStrokeWidthInEM;
   double max = coeff * kTKNTypefaceMaxStrokeWidthInEM;
   min = std::ceil(min * 100.0) / 100.0;
@@ -269,10 +261,32 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   }
 }
 
+- (void)setCapHeightUnit:(TKNTypefaceUnit)capHeightUnit {
+  if (capHeightUnit != _capHeightUnit) {
+    TKNTypefaceUnit oldValue = _capHeightUnit;
+    _capHeightUnit = capHeightUnit;
+    self.capHeight = TKNTypefaceUnitConvert(
+        _capHeight, oldValue, capHeightUnit);
+  }
+}
+
+- (void)setStrokeWidthUnit:(TKNTypefaceUnit)strokeWidthUnit {
+  if (strokeWidthUnit != _strokeWidthUnit) {
+    TKNTypefaceUnit oldValue = _strokeWidthUnit;
+    _strokeWidthUnit = strokeWidthUnit;
+    self.strokeWidth = TKNTypefaceUnitConvert(
+        _strokeWidthUnit, oldValue, strokeWidthUnit);
+  }
+}
+
 - (double)strokeWidthInEM {
   if (!_strokeWidthInEM) {
+    const double strokeWidth = TKNTypefaceUnitConvert(
+        _strokeWidth, _strokeWidthUnit, kTKNTypefaceUnitPoint);
+    const double capHeight = TKNTypefaceUnitConvert(
+        _capHeight, _capHeightUnit, kTKNTypefaceUnitPoint);
     _strokeWidthInEM = takram::math::clamp(
-        std::round((_strokeWidth * _fontInfo.cap_height) / _capHeight),
+        std::round((strokeWidth * _fontInfo.cap_height) / capHeight),
         kTKNTypefaceMinStrokeWidthInEM, kTKNTypefaceMaxStrokeWidthInEM);
   }
   return _strokeWidthInEM;

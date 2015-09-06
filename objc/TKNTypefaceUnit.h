@@ -36,6 +36,9 @@ typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
 extern "C" {
 #endif
 
+double TKNTypefaceUnitConvert(double value,
+                              TKNTypefaceUnit from,
+                              TKNTypefaceUnit to);
 NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit);
 
 #ifdef __cplusplus

@@ -126,6 +126,10 @@
 }
 
 - (void)controlTextDidEndEditing:(NSNotification *)notification {
+  NSDictionary *bindingInfo = [self infoForBinding:NSValueBinding];
+  id observedObject = [bindingInfo valueForKey:NSObservedObjectKey];
+  NSString *keyPath = [bindingInfo valueForKey:NSObservedKeyPathKey];
+  self.doubleValue = [[observedObject valueForKeyPath:keyPath] doubleValue];
   self.editable = NO;
   self.selectable = NO;
   [self resetCursorRects];
