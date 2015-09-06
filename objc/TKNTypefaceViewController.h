@@ -36,9 +36,9 @@
 
 #pragma mark Zooming
 
-@property (nonatomic, assign) double magnification;
+@property (nonatomic, assign) CGFloat magnification;
 
-- (void)setMagnification:(double)magnification animated:(BOOL)animated;
+- (void)setMagnification:(CGFloat)magnification animated:(BOOL)animated;
 - (IBAction)zoomIn:(nullable id)sender;
 - (IBAction)zoomOut:(nullable id)sender;
 

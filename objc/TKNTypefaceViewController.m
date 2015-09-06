@@ -91,7 +91,16 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)scrollWheel:(NSEvent *)event {
   if (event.modifierFlags & NSAlternateKeyMask) {
-    self.magnification *= event.deltaY < 0.0 ? 0.9 : 1.0 / 0.9;
+    CGPoint center = [_scrollView.contentView
+        convertPoint:event.locationInWindow
+        fromView:self.view.window.contentView];
+    [self willChangeValueForKey:@"magnification"];
+    _magnification = MIN(MAX(
+        _magnification * (event.deltaY < 0.0 ? 0.9 : 1.0 / 0.9),
+        _scrollView.minMagnification),
+        _scrollView.maxMagnification);
+    [self didChangeValueForKey:@"magnification"];
+    [_scrollView setMagnification:_magnification centeredAtPoint:center];
   } else {
     [_scrollView scrollWheel:event];
   }
@@ -130,11 +139,11 @@ static char TKNTypefaceViewControllerKVOContext;
 
 #pragma mark Zooming
 
-- (void)setMagnification:(double)magnification {
+- (void)setMagnification:(CGFloat)magnification {
   [self setMagnification:magnification animated:NO];
 }
 
-- (void)setMagnification:(double)magnification animated:(BOOL)animated {
+- (void)setMagnification:(CGFloat)magnification animated:(BOOL)animated {
   magnification = MIN(MAX(
       magnification,
       _scrollView.minMagnification),
@@ -170,9 +179,9 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (IBAction)zoomIn:(id)sender {
-  double magnification = _magnification;
-  double result = magnification;
-  double proposed = _scrollView.minMagnification;
+  CGFloat magnification = _magnification;
+  CGFloat result = magnification;
+  CGFloat proposed = _scrollView.minMagnification;
   for (int i = 0;; ++i) {
     proposed /= i % 2 ? 3.0 / 4.0 : 2.0 / 3.0;
     if (magnification >= proposed) {
@@ -188,9 +197,9 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (IBAction)zoomOut:(id)sender {
-  double magnification = _magnification;
-  double result = magnification;
-  double proposed = _scrollView.maxMagnification;
+  CGFloat magnification = _magnification;
+  CGFloat result = magnification;
+  CGFloat proposed = _scrollView.maxMagnification;
   for (int i = 0;; ++i) {
     proposed *= i % 2 ? 2.0 / 3.0 : 3.0 / 4.0;
     if (magnification <= proposed) {

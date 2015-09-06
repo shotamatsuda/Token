@@ -143,6 +143,62 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = Sparkle;
 		};
+		93C257851B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
+			remoteInfo = algorithm_shared;
+		};
+		93C257871B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
+			remoteInfo = algorithm_static;
+		};
+		93C257891B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9397F58D1B647CAA00DFEDC9;
+			remoteInfo = algorithm_ios;
+		};
+		93C2578B1B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
+			remoteInfo = algorithm_test;
+		};
+		93C257911B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
+			remoteInfo = math_shared;
+		};
+		93C257931B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
+			remoteInfo = math_static;
+		};
+		93C257951B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93F858331B564DB200C32E8D;
+			remoteInfo = math_ios;
+		};
+		93C257971B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
+			remoteInfo = math_test;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -265,6 +321,8 @@
 		93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNAscentTemplate.pdf; sourceTree = "<group>"; };
 		93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNWidthTemplate.pdf; sourceTree = "<group>"; };
 		93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceUnit.m; sourceTree = "<group>"; };
+		93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = algorithm.xcodeproj; path = "lib/takram-algorithm/algorithm.xcodeproj"; sourceTree = "<group>"; };
+		93C2577E1B9BCCDB00134399 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = "lib/takram-math/math.xcodeproj"; sourceTree = "<group>"; };
 		93C771A51B95482100914AD9 /* TKNTypefaceSampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypefaceSampleView.h; sourceTree = "<group>"; };
 		93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceSampleView.m; sourceTree = "<group>"; };
 		93D268511B95491D008AB659 /* TKNSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNSettingsViewController.h; sourceTree = "<group>"; };
@@ -475,6 +533,28 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		93C2577C1B9BCCDB00134399 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93C257861B9BCCDB00134399 /* libtakram_algorithm.dylib */,
+				93C257881B9BCCDB00134399 /* libtakram_algorithm.a */,
+				93C2578A1B9BCCDB00134399 /* libtakram_algorithm.a */,
+				93C2578C1B9BCCDB00134399 /* takram_algorithm_test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93C2577F1B9BCCDB00134399 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93C257921B9BCCDB00134399 /* libtakram_math.dylib */,
+				93C257941B9BCCDB00134399 /* libtakram_math.a */,
+				93C257961B9BCCDB00134399 /* libtakram_math.a */,
+				93C257981B9BCCDB00134399 /* takram_math_test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		93FEF9451AD97263009D0646 = {
 			isa = PBXGroup;
 			children = (
@@ -484,8 +564,10 @@
 				93C18FEE1B951C430044AAEB /* resource */,
 				93FEF9751AD972AA009D0646 /* config */,
 				93FEF94F1AD97263009D0646 /* products */,
-				9390CB901B952F2A0088153C /* Sparkle.xcodeproj */,
+				93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */,
 				93563AAB1B674487004C47E4 /* graphics.xcodeproj */,
+				93C2577E1B9BCCDB00134399 /* math.xcodeproj */,
+				9390CB901B952F2A0088153C /* Sparkle.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -576,8 +658,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 93C2577C1B9BCCDB00134399 /* Products */;
+					ProjectRef = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+				},
+				{
 					ProductGroup = 93563AAC1B674487004C47E4 /* Products */;
 					ProjectRef = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+				},
+				{
+					ProductGroup = 93C2577F1B9BCCDB00134399 /* Products */;
+					ProjectRef = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 				},
 				{
 					ProductGroup = 9390CB911B952F2A0088153C /* Products */;
@@ -655,6 +745,62 @@
 			remoteRef = 9390CBA31B952F2A0088153C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		93C257861B9BCCDB00134399 /* libtakram_algorithm.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libtakram_algorithm.dylib;
+			remoteRef = 93C257851B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C257881B9BCCDB00134399 /* libtakram_algorithm.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtakram_algorithm.a;
+			remoteRef = 93C257871B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C2578A1B9BCCDB00134399 /* libtakram_algorithm.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtakram_algorithm.a;
+			remoteRef = 93C257891B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C2578C1B9BCCDB00134399 /* takram_algorithm_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = takram_algorithm_test;
+			remoteRef = 93C2578B1B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C257921B9BCCDB00134399 /* libtakram_math.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libtakram_math.dylib;
+			remoteRef = 93C257911B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C257941B9BCCDB00134399 /* libtakram_math.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtakram_math.a;
+			remoteRef = 93C257931B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C257961B9BCCDB00134399 /* libtakram_math.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtakram_math.a;
+			remoteRef = 93C257951B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93C257981B9BCCDB00134399 /* takram_math_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = takram_math_test;
+			remoteRef = 93C257971B9BCCDB00134399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -687,7 +833,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"\n";
+			shellScript = "#\"${PROJECT_DIR}/script/afdko.sh\"\n#\"${PROJECT_DIR}/script/bundle.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
