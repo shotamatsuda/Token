@@ -833,7 +833,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${PROJECT_DIR}/script/afdko.sh\"\n#\"${PROJECT_DIR}/script/bundle.sh\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

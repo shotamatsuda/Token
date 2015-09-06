@@ -28,6 +28,7 @@
 readonly BUILD_DIR="${PROJECT_DIR}/build"
 readonly AFDKO_DIR="${BUILD_DIR}/afdko"
 readonly AFDKO_ARCHIVE="${BUILD_DIR}/afdko.zip"
+readonly INSTALL_DIR="${BUILT_PRODUCTS_DIR}/${SHARED_SUPPORT_FOLDER_PATH}";
 
 download_afdko() {
   if [[ ! -d "${BUILD_DIR}" ]]; then
@@ -56,8 +57,15 @@ extract_afdko() {
   fi
 }
 
+install_afdko() {
+  if [[ ! -d "${INSTALL_DIR}/FDK" ]]; then
+    if [[ ! -d "${INSTALL_DIR}" ]]; then
+      mkdir -p "${INSTALL_DIR}"
+    fi
+    cp -r "${AFDKO_DIR}/FDK" "${INSTALL_DIR}/FDK"
+  fi
+}
+
 download_afdko
 extract_afdko
-
-ditto "${AFDKO_DIR}/FDK/Tools" \
-    "${BUILT_PRODUCTS_DIR}/${SHARED_SUPPORT_FOLDER_PATH}/FDK/Tools"
+install_afdko
