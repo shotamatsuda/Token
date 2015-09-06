@@ -62,9 +62,9 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (void)dealloc {
-  NSArray *keyPaths = @[@"capHeight", @"width",
+  NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
                         @"capHeightEqualsUnitsPerEM",
-                        @"capHeightUnit", @"widthUnit"];
+                        @"capHeightUnit", @"strokeWidthUnit"];
   for (NSString *keyPath in keyPaths) {
     [_typeface removeObserver:self
                    forKeyPath:keyPath
@@ -125,9 +125,9 @@ static char TKNTypefaceViewControllerKVOContext;
 - (void)setTypeface:(TKNTypeface *)typeface {
   if (typeface != _typeface) {
     _typeface = typeface;
-    NSArray *keyPaths = @[@"capHeight", @"width",
+    NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
                           @"capHeightEqualsUnitsPerEM",
-                          @"capHeightUnit", @"widthUnit"];
+                          @"capHeightUnit", @"strokeWidthUnit"];
     for (NSString *keyPath in keyPaths) {
       [_typeface addObserver:self
                   forKeyPath:keyPath

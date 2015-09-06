@@ -90,13 +90,15 @@
   [super mouseDragged:event];
   CGPoint location = event.locationInWindow;
   CGFloat delta = round((location.x - _initialLocation.x) / 2.0) * _step;
-  self.doubleValue = _initialValue + delta;
+  CGFloat result = _initialValue + delta;
 
   // Propagate the change through binding
   NSDictionary *bindingInfo = [self infoForBinding:NSValueBinding];
-  [[bindingInfo valueForKey:NSObservedObjectKey]
-      setValue:[NSNumber numberWithDouble:self.doubleValue]
-      forKeyPath:[bindingInfo valueForKey:NSObservedKeyPathKey]];
+  id observedObject = [bindingInfo valueForKey:NSObservedObjectKey];
+  NSString *keyPath = [bindingInfo valueForKey:NSObservedKeyPathKey];
+  [observedObject setValue:[NSNumber numberWithDouble:result]
+                forKeyPath:keyPath];
+  self.doubleValue = [[observedObject valueForKeyPath:keyPath] doubleValue];
 }
 
 - (void)mouseUp:(NSEvent *)event {

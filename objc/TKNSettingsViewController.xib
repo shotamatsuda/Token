@@ -7,8 +7,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TKNSettingsViewController">
             <connections>
                 <outlet property="capsHeightConstraint" destination="dhS-vL-Quh" id="Dt0-MK-86Y"/>
+                <outlet property="strokeWidthConstraint" destination="aMH-L8-nGc" id="sOu-4Y-j6g"/>
                 <outlet property="view" destination="NGS-Gu-dto" id="0tJ-T9-LZz"/>
-                <outlet property="widthConstraint" destination="aMH-L8-nGc" id="sOu-4Y-j6g"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -125,7 +125,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.typeface.width" id="fhT-9G-tUk"/>
+                                        <binding destination="-2" name="value" keyPath="self.typeface.strokeWidth" id="fhT-9G-tUk"/>
                                     </connections>
                                 </textField>
                             </subviews>
@@ -157,7 +157,7 @@
                                 </menu>
                             </popUpButtonCell>
                             <connections>
-                                <binding destination="-2" name="selectedTag" keyPath="self.typeface.widthUnit" id="vuh-ka-b5O"/>
+                                <binding destination="-2" name="selectedTag" keyPath="self.typeface.strokeWidthUnit" id="vuh-ka-b5O"/>
                             </connections>
                         </popUpButton>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
@@ -343,7 +343,7 @@
                 <constraint firstItem="Krq-UN-elN" firstAttribute="leading" secondItem="iH7-Cb-6Xa" secondAttribute="trailing" id="uE3-zR-qqE"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="723" y="228.5"/>
+            <point key="canvasLocation" x="417" y="363.5"/>
         </customView>
     </objects>
     <resources>

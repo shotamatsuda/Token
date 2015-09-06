@@ -68,7 +68,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
 @property (nonatomic, assign, readonly) double strokeWidthInEM;
 
-- (void)update;
+- (void)parameterDidChange;
 
 #pragma mark Opening and Saving
 
@@ -97,37 +97,40 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     if (path) {
       [self openFile:path];
     }
-    self.capHeight = 2.5;
-    self.width = 0.2;
-    self.capHeightEqualsUnitsPerEM = YES;
+    _capHeight = 2.5;
+    _strokeWidth = 0.2;
+    _capHeightEqualsUnitsPerEM = YES;
   }
   return self;
 }
 
-- (void)update {
+- (void)parameterDidChange {
+  // Invalidate existing glyph shapes and bezier paths
   _strokeWidthInEM = 0.0;
   _glyphShapes.clear();
   [_glyphBezierPaths removeAllObjects];
+
+  // Update style names
   NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
   formatter.numberStyle = NSNumberFormatterDecimalStyle;
   formatter.minimumFractionDigits = 2;
   formatter.maximumFractionDigits = 2;
   std::string style;
   style += [formatter stringFromNumber:
-      [NSNumber numberWithDouble:_width]].UTF8String;
-  style += TKNTypefaceUnitAbbreviatedName(_widthUnit).UTF8String;
+      [NSNumber numberWithDouble:_strokeWidth]].UTF8String;
+  style += TKNTypefaceUnitGetShortName(_strokeWidthUnit).UTF8String;
   style += " / ";
   style += [formatter stringFromNumber:
       [NSNumber numberWithDouble:_capHeight]].UTF8String;
-  style += TKNTypefaceUnitAbbreviatedName(_capHeightUnit).UTF8String;
+  style += TKNTypefaceUnitGetShortName(_capHeightUnit).UTF8String;
   std::string postscriptStyle;
   postscriptStyle += [formatter stringFromNumber:
-      [NSNumber numberWithDouble:_width]].UTF8String;
-  postscriptStyle += TKNTypefaceUnitAbbreviatedName(_widthUnit).UTF8String;
+      [NSNumber numberWithDouble:_strokeWidth]].UTF8String;
+  postscriptStyle += TKNTypefaceUnitGetShortName(_strokeWidthUnit).UTF8String;
   postscriptStyle += "-";
   postscriptStyle += [formatter stringFromNumber:
       [NSNumber numberWithDouble:_capHeight]].UTF8String;
-  postscriptStyle += TKNTypefaceUnitAbbreviatedName(_capHeightUnit).UTF8String;
+  postscriptStyle += TKNTypefaceUnitGetShortName(_capHeightUnit).UTF8String;
   self.styleName = [NSString stringWithUTF8String:style.c_str()];
   self.postscriptFontName = [[self.familyName stringByAppendingString:@"-"]
       stringByAppendingString:
@@ -241,24 +244,35 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 #pragma mark Parameters
 
 - (void)setCapHeight:(double)capHeight {
-  capHeight = MAX(capHeight, _width);
+  const double numerator = _fontInfo.cap_height * _strokeWidth;
+  double min = numerator / kTKNTypefaceMaxStrokeWidthInEM;
+  double max = numerator / kTKNTypefaceMinStrokeWidthInEM;
+  min = std::ceil(min * 100.0) / 100.0;
+  max = std::floor(max * 100.0) / 100.0;
+  capHeight = takram::math::clamp(capHeight, min, max);
   if (capHeight != _capHeight) {
     _capHeight = capHeight;
-    [self update];
+    [self parameterDidChange];
   }
 }
 
-- (void)setWidth:(double)width {
-  if (width != _width) {
-    _width = width;
-    [self update];
+- (void)setStrokeWidth:(double)strokeWidth {
+  const double coeff = _capHeight / _fontInfo.cap_height;
+  double min = coeff * kTKNTypefaceMinStrokeWidthInEM;
+  double max = coeff * kTKNTypefaceMaxStrokeWidthInEM;
+  min = std::ceil(min * 100.0) / 100.0;
+  max = std::floor(max * 100.0) / 100.0;
+  strokeWidth = takram::math::clamp(strokeWidth, min, max);
+  if (strokeWidth != _strokeWidth) {
+    _strokeWidth = strokeWidth;
+    [self parameterDidChange];
   }
 }
 
 - (double)strokeWidthInEM {
   if (!_strokeWidthInEM) {
     _strokeWidthInEM = takram::math::clamp(
-        std::round((_width * _fontInfo.cap_height) / _capHeight),
+        std::round((_strokeWidth * _fontInfo.cap_height) / _capHeight),
         kTKNTypefaceMinStrokeWidthInEM, kTKNTypefaceMaxStrokeWidthInEM);
   }
   return _strokeWidthInEM;
@@ -349,8 +363,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
 - (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
                        outline:(const token::GlyphOutline&)outline {
-  const auto width = self.strokeWidthInEM;
-  const auto scale = (_fontInfo.cap_height - width) / _fontInfo.cap_height;
+  const auto strokeWidth = self.strokeWidthInEM;
+  const auto scale = (_fontInfo.cap_height - strokeWidth) / _fontInfo.cap_height;
   const takram::Vec2d center(glyph.advance->width / 2.0,
                              _fontInfo.cap_height / 2.0);
   auto stroked = outline;
@@ -362,14 +376,14 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
   // Stroking and path simplification
   token::GlyphStroker stroker;
-  stroker.set_width(width);
+  stroker.set_width(strokeWidth);
   takram::Shape2d shape;
   // Because the path simplification occationally fails
   bool success{};
   for (double shift{};
        shift < kTKNTypefaceStrokingRetryShiftLimit;
        shift += kTKNTypefaceStrokingRetryShift) {
-    stroker.set_width(width + shift);
+    stroker.set_width(strokeWidth + shift);
     shape = stroker.stroke(stroked);
     shape = stroker.simplify(shape);
     if (shape.size() == glyph.lib->number_of_contours) {

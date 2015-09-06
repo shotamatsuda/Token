@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
 extern "C" {
 #endif
 
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit);
+NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit);
 
 #ifdef __cplusplus
 };  // extern "C"

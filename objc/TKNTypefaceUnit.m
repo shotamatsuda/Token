@@ -26,7 +26,7 @@
 
 #import "TKNTypefaceUnit.h"
 
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit) {
+NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit) {
   switch (unit) {
     case kTKNTypefaceUnitMillimeter:
       return @"mm";
