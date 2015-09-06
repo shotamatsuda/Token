@@ -121,6 +121,16 @@
 }
 
 - (IBAction)installFont:(id)sender {
+  NSString *fontName = [_typeface.postscriptName
+      stringByAppendingPathExtension:@"otf"];
+  NSString *installPath = [[[NSSearchPathForDirectoriesInDomains(
+      NSLibraryDirectory, NSUserDomainMask, YES).firstObject
+          stringByAppendingPathComponent:@"Fonts"]
+              stringByAppendingPathComponent:_typeface.familyName]
+                  stringByAppendingPathComponent:fontName];
+  [_typeface saveToFile:installPath];
+  [[NSWorkspace sharedWorkspace] openFile:
+      installPath.stringByDeletingLastPathComponent];
 }
 
 @end

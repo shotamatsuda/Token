@@ -62,9 +62,6 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   double _strokeWidthInEM;
 }
 
-@property (nonatomic, strong, nonnull) NSString *styleName;
-@property (nonatomic, strong, nonnull) NSString *postscriptName;
-
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
 @property (nonatomic, assign, readonly) double strokeWidthInEM;
 
@@ -76,6 +73,11 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 - (void)updateFontInfoInUnifiedFontObject:(NSString *)path;
 - (void)updateGlyphsInUnifiedFontObject:(NSString *)path;
 - (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path;
+
+#pragma mark Typographic Properties
+
+@property (nonatomic, strong, nonnull) NSString *styleName;
+@property (nonatomic, strong, nonnull) NSString *postscriptName;
 
 @end
 
@@ -99,6 +101,19 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     [self parameterDidChange];
   }
   return self;
+}
+
+- (double)strokeWidthInEM {
+  if (!_strokeWidthInEM) {
+    const double strokeWidth = TKNTypefaceUnitConvert(
+        _strokeWidth, _strokeWidthUnit, kTKNTypefaceUnitPoint);
+    const double capHeight = TKNTypefaceUnitConvert(
+        _capHeight, _capHeightUnit, kTKNTypefaceUnitPoint);
+    _strokeWidthInEM = takram::math::clamp(
+        std::round((strokeWidth * _fontInfo.cap_height) / capHeight),
+        kTKNTypefaceMinStrokeWidthInEM, kTKNTypefaceMaxStrokeWidthInEM);
+  }
+  return _strokeWidthInEM;
 }
 
 - (void)parameterDidChange {
@@ -154,21 +169,56 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   [self updateGlyphsInUnifiedFontObject:ufoPath];
   NSString *otfPath = [self createOpenTypeWithUnifiedFontObject:ufoPath];
   NSFileManager *fileManager = [NSFileManager defaultManager];
-  [fileManager removeItemAtPath:path error:NULL];
-  [fileManager copyItemAtPath:otfPath toPath:path error:NULL];
-  [fileManager removeItemAtPath:workingDirectoryPath error:NULL];
+  NSError *error = nil;
+  if ([fileManager fileExistsAtPath:path]) {
+    if (![fileManager removeItemAtPath:path error:&error]) {
+      [[NSAlert alertWithError:error]
+          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          completionHandler:nil];
+    }
+  };
+  NSString *directory = path.stringByDeletingLastPathComponent;
+  if (![fileManager fileExistsAtPath:directory]) {
+    if (![fileManager createDirectoryAtPath:directory
+                withIntermediateDirectories:YES
+                                 attributes:nil
+                                      error:&error]) {
+      [[NSAlert alertWithError:error]
+          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          completionHandler:nil];
+    }
+  };
+  if (![fileManager copyItemAtPath:otfPath toPath:path error:&error]) {
+    [[NSAlert alertWithError:error]
+        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        completionHandler:nil];
+  }
+  if (![fileManager removeItemAtPath:workingDirectoryPath error:&error]) {
+    [[NSAlert alertWithError:error]
+        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        completionHandler:nil];
+  }
 }
 
 - (NSString *)createUnifiedFontObject:(NSString *)directory {
   NSString *ufoPath = [directory stringByAppendingPathComponent:
-      [[_path.lastPathComponent stringByDeletingPathExtension]
+      [_path.lastPathComponent.stringByDeletingPathExtension
           stringByAppendingPathExtension:@"ufo"]];
   NSFileManager *fileManager = [NSFileManager defaultManager];
-  [fileManager createDirectoryAtPath:directory
-         withIntermediateDirectories:YES
-                          attributes:nil
-                               error:NULL];
-  [fileManager copyItemAtPath:_path toPath:ufoPath error:NULL];
+  NSError *error = nil;
+  if (![fileManager createDirectoryAtPath:directory
+              withIntermediateDirectories:YES
+                               attributes:nil
+                                    error:&error]) {
+    [[NSAlert alertWithError:error]
+        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        completionHandler:nil];
+  };
+  if (![fileManager copyItemAtPath:_path toPath:ufoPath error:&error]) {
+    [[NSAlert alertWithError:error]
+        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        completionHandler:nil];
+  };
   return ufoPath;
 }
 
@@ -210,9 +260,9 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 - (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path {
   const token::ufo::FontInfo font_info(path.UTF8String);
   const token::ufo::Glyphs glyphs(path.UTF8String);
-  NSString *directory = [path stringByDeletingLastPathComponent];
+  NSString *directory = path.stringByDeletingLastPathComponent;
   NSString *otfPath = [directory stringByAppendingPathComponent:
-      [[_path.lastPathComponent stringByDeletingPathExtension]
+      [_path.lastPathComponent.stringByDeletingPathExtension
           stringByAppendingPathExtension:@"otf"]];
   const auto sharedSupportPath = boost::filesystem::path(
       [NSBundle mainBundle].sharedSupportPath.UTF8String);
@@ -276,19 +326,6 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     self.strokeWidth = TKNTypefaceUnitConvert(
         _strokeWidthUnit, oldValue, strokeWidthUnit);
   }
-}
-
-- (double)strokeWidthInEM {
-  if (!_strokeWidthInEM) {
-    const double strokeWidth = TKNTypefaceUnitConvert(
-        _strokeWidth, _strokeWidthUnit, kTKNTypefaceUnitPoint);
-    const double capHeight = TKNTypefaceUnitConvert(
-        _capHeight, _capHeightUnit, kTKNTypefaceUnitPoint);
-    _strokeWidthInEM = takram::math::clamp(
-        std::round((strokeWidth * _fontInfo.cap_height) / capHeight),
-        kTKNTypefaceMinStrokeWidthInEM, kTKNTypefaceMaxStrokeWidthInEM);
-  }
-  return _strokeWidthInEM;
 }
 
 #pragma mark Typographic Properties
@@ -377,9 +414,9 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 - (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
                        outline:(const token::GlyphOutline&)outline {
   const auto strokeWidth = self.strokeWidthInEM;
-  const auto scale = (_fontInfo.cap_height - strokeWidth) / _fontInfo.cap_height;
-  const takram::Vec2d center(glyph.advance->width / 2.0,
-                             _fontInfo.cap_height / 2.0);
+  const auto typoCapHeight = _fontInfo.cap_height;
+  const auto scale = (typoCapHeight - strokeWidth) / typoCapHeight;
+  const takram::Vec2d center(glyph.advance->width / 2.0, typoCapHeight / 2.0);
   auto stroked = outline;
   for (auto& command : stroked.shape()) {
     command.point() = center + (command.point() - center) * scale;
@@ -391,7 +428,9 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   token::GlyphStroker stroker;
   stroker.set_width(strokeWidth);
   takram::Shape2d shape;
-  // Because the path simplification occationally fails
+  // Check for the number of contours of the resulting shape and retry if that
+  // differs from the expected value, because the path simplification
+  // occationally fails.
   bool success{};
   for (double shift{};
        shift < kTKNTypefaceStrokingRetryShiftLimit;
