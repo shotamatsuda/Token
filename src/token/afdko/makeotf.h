@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceUnit.h
+//  token/afdko/makeotf.h
 //
 //  The MIT License
 //
@@ -24,20 +24,30 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#pragma once
+#ifndef TOKEN_AFDKO_MAKEOTF_H_
+#define TOKEN_AFDKO_MAKEOTF_H_
 
-typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
-  kTKNTypefaceUnitMillimeter = 0,
-  kTKNTypefaceUnitPoint = 1,
-  kTKNTypefaceUnitInch = 2
-};
+#include <string>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "token/ufo.h"
 
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit);
+namespace token {
+namespace afdko {
 
-#ifdef __cplusplus
-};  // extern "C"
-#endif
+bool makeotf(const std::string& tools,
+             const std::string& input,
+             const std::string& output,
+             bool release = true);
+
+void createFeatures(const ufo::FontInfo& font_info,
+                    const std::string& directory);
+void createFontMenuNameDB(const ufo::FontInfo& font_info,
+                          const std::string& directory);
+void createGlyphOrderAndAliasDB(const ufo::Glyphs& glyphs,
+                                const std::string& directory);
+
+}  // namespace afdko
+}  // namespace token
+
+#endif  // TOKEN_AFDKO_MAKEOTF_H_

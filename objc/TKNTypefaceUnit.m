@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceUnit.h
+//  TKNTypefaceUnit.m
 //
 //  The MIT License
 //
@@ -24,20 +24,19 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "TKNTypefaceUnit.h"
 
-typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
-  kTKNTypefaceUnitMillimeter = 0,
-  kTKNTypefaceUnitPoint = 1,
-  kTKNTypefaceUnitInch = 2
-};
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit);
-
-#ifdef __cplusplus
-};  // extern "C"
-#endif
+NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit) {
+  switch (unit) {
+    case kTKNTypefaceUnitMillimeter:
+      return @"mm";
+    case kTKNTypefaceUnitPoint:
+      return @"pt";
+    case kTKNTypefaceUnitInch:
+      return @"in";
+    default:
+      NSAssert(false, @"");
+      break;
+  }
+  return nil;
+}

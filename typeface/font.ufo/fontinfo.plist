@@ -7,7 +7,7 @@
 	<key>capHeight</key>
 	<integer>680</integer>
 	<key>copyright</key>
-	<string>Copyright © 2014-2015 takram design engineering. www.takram.com.</string>
+	<string>Copyright (C) 2014-2015 takram design engineering. www.takram.com.</string>
 	<key>descender</key>
 	<integer>-250</integer>
 	<key>familyName</key>
@@ -18,9 +18,6 @@
 	<string>Token</string>
 	<key>openTypeHeadCreated</key>
 	<string>2014/07/21 20:42:28</string>
-	<key>openTypeHeadFlags</key>
-	<array>
-	</array>
 	<key>openTypeHheaAscender</key>
 	<integer>750</integer>
 	<key>openTypeHheaDescender</key>
@@ -30,7 +27,7 @@
 	<key>openTypeNameCompatibleFullName</key>
 	<string>Token</string>
 	<key>openTypeNameDescription</key>
-	<string>Copyright © 2014-2015 takram design engineering. www.takram.com All rights reserved.</string>
+	<string>Copyright (C) 2014-2015 takram design engineering. www.takram.com. All rights reserved.</string>
 	<key>openTypeNameDesigner</key>
 	<string>Ken Okamoto</string>
 	<key>openTypeNameDesignerURL</key>
@@ -47,12 +44,10 @@
 	<string>Token</string>
 	<key>openTypeNamePreferredSubfamilyName</key>
 	<string>Regular</string>
-	<key>openTypeNameSampleText</key>
-	<string></string>
 	<key>openTypeNameUniqueID</key>
 	<string>1.000;TKRM;Token-Regular</string>
 	<key>openTypeNameVersion</key>
-	<string>Version 1.000</string>
+	<string>1.000</string>
 	<key>openTypeOS2CodePageRanges</key>
 	<array>
 		<integer>0</integer>
@@ -74,9 +69,6 @@
 		<integer>6</integer>
 		<integer>2</integer>
 		<integer>3</integer>
-	</array>
-	<key>openTypeOS2Selection</key>
-	<array>
 	</array>
 	<key>openTypeOS2StrikeoutPosition</key>
 	<integer>250</integer>
@@ -145,9 +137,6 @@
 	<string>Token Regular</string>
 	<key>postscriptIsFixedPitch</key>
 	<false/>
-	<key>postscriptOtherBlues</key>
-	<array>
-	</array>
 	<key>postscriptUnderlinePosition</key>
 	<integer>-75</integer>
 	<key>postscriptUnderlineThickness</key>

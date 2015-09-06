@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceUnit.h
+//  token/afdko.h
 //
 //  The MIT License
 //
@@ -24,20 +24,11 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#pragma once
+#ifndef TOKEN_AFDKO_H_
+#define TOKEN_AFDKO_H_
 
-typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
-  kTKNTypefaceUnitMillimeter = 0,
-  kTKNTypefaceUnitPoint = 1,
-  kTKNTypefaceUnitInch = 2
-};
+#include "token/afdko/autohint.h"
+#include "token/afdko/makeotf.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit);
-
-#ifdef __cplusplus
-};  // extern "C"
-#endif
+#endif  // TOKEN_AFDKO_H_

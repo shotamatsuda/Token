@@ -33,4 +33,4 @@ LIBRARY_SEARCH_PATHS = $(inerited) "/usr/local/lib" "$(PROJECT_DIR)/build/skia/l
 OTHER_LDFLAGS = $(inherited) -lboost_filesystem -lboost_system -lplist -lskia
 
 // Apple LLVM - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) TAKRAM_HAS_NANOVG=1 TAKRAM_HAS_BOOST=1
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) TAKRAM_HAS_BOOST=1

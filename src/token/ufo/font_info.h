@@ -50,13 +50,9 @@ class FontInfo final {
   explicit FontInfo(const std::string& ufo_path);
   explicit FontInfo(std::istream *stream);
 
-  // Disallow copy semantics
-  FontInfo(const FontInfo&) = delete;
-  FontInfo& operator=(const FontInfo&) = delete;
-
-  // Move semantics
-  FontInfo(FontInfo&&) = default;
-  FontInfo& operator=(FontInfo&&) = default;
+  // Copy semantics
+  FontInfo(const FontInfo&) = default;
+  FontInfo& operator=(const FontInfo&) = default;
 
   // Opening and saving
   bool open(const std::string& path);

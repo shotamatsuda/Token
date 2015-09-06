@@ -31,7 +31,8 @@
 #include <fstream>
 #include <string>
 #include <iterator>
-#include <unordered_map>
+#include <utility>
+#include <vector>
 
 #include "token/ufo/glyph.h"
 #include "token/ufo/glyph_iterator.h"
@@ -78,8 +79,8 @@ class Glyphs final {
 
  private:
   std::string path_;
-  std::unordered_map<std::string, std::string> contents_;
-  mutable std::unordered_map<std::string, Glyph> glyphs_;
+  std::vector<std::pair<std::string, std::string>> contents_;
+  mutable std::vector<std::pair<std::string, Glyph>> glyphs_;
 
  private:
   template <class T>

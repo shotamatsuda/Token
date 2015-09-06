@@ -32,6 +32,7 @@ extern "C" {
 
 }  // extern "C"
 
+#include <algorithm>
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
@@ -91,7 +92,7 @@ bool Glyphs::open(std::istream *stream) {
     assert(plist_get_node_type(item) == PLIST_STRING);
     char *value{};
     plist_get_string_val(item, &value);
-    contents_.emplace(key, value);
+    contents_.emplace_back(key, value);
     std::free(key);
     std::free(value);
   }
@@ -102,7 +103,11 @@ bool Glyphs::open(std::istream *stream) {
 #pragma mark Glyphs
 
 std::string Glyphs::filename(const std::string& name) const {
-  const auto value = contents_.find(name);
+  const auto value = std::find_if(
+      std::begin(contents_), std::end(contents_),
+      [&name](const auto& pair) {
+        return pair.first == name;
+      });
   if (value == std::end(contents_)) {
     return std::string();
   }
@@ -110,7 +115,11 @@ std::string Glyphs::filename(const std::string& name) const {
 }
 
 const Glyph * Glyphs::find(const std::string& name) const {
-  const auto itr = glyphs_.find(name);
+  const auto itr = std::find_if(
+      std::begin(glyphs_), std::end(glyphs_),
+      [&name](const auto& pair) {
+        return pair.first == name;
+      });
   if (itr != std::end(glyphs_)) {
     return &itr->second;
   }
@@ -123,9 +132,8 @@ const Glyph * Glyphs::find(const std::string& name) const {
   if (!glyph.open(path.string())) {
     return nullptr;
   }
-  const auto result = glyphs_.emplace(name, std::move(glyph));
-  assert(result.second);
-  return &result.first->second;
+  glyphs_.emplace_back(name, std::move(glyph));
+  return &glyphs_.back().second;
 }
 
 Glyph * Glyphs::find(const std::string& name) {
@@ -133,14 +141,23 @@ Glyph * Glyphs::find(const std::string& name) {
 }
 
 void Glyphs::set(const std::string& name, const Glyph& glyph) {
-  if (contents_.find(name) == std::end(contents_)) {
+  const auto content_itr = std::find_if(
+      std::begin(contents_), std::end(contents_),
+      [&name](const auto& pair) {
+        return pair.first == name;
+      });
+  if (content_itr == std::end(contents_)) {
     return;  // Setting a new glyph is not supported
   }
-  const auto itr = glyphs_.find(name);
-  if (itr != std::end(glyphs_)) {
-    itr->second = glyph;
+  const auto glyph_itr = std::find_if(
+      std::begin(glyphs_), std::end(glyphs_),
+      [&name](const auto& pair) {
+        return pair.first == name;
+      });
+  if (glyph_itr != std::end(glyphs_)) {
+    glyph_itr->second = glyph;
   } else {
-    glyphs_.emplace(name, glyph);
+    glyphs_.emplace_back(name, glyph);
   }
 }
 

@@ -30,20 +30,23 @@
 
 #include <cassert>
 #include <cmath>
-#include <cstdlib>
 #include <iterator>
 #include <string>
 #include <unordered_map>
 #include <utility>
 
+#include <boost/lexical_cast.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/format.hpp>
 
 #include "takram/graphics.h"
 #include "takram/math.h"
+#include "token/afdko.h"
 #include "token/glyph_outline.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
+
+#import "TKNTypefaceUnit.h"
 
 static const double kTKNTypefaceStrokingRetryShift = 0.001;
 static const double kTKNTypefaceStrokingRetryShiftLimit = 0.1;
@@ -59,12 +62,18 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   double _strokeWidthInEM;
 }
 
+@property (nonatomic, strong, nonnull) NSString *styleName;
+@property (nonatomic, strong, nonnull) NSString *postscriptFontName;
+
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
 @property (nonatomic, assign, readonly) double strokeWidthInEM;
+
+- (void)update;
 
 #pragma mark Opening and Saving
 
 - (NSString *)createUnifiedFontObject:(NSString *)directory;
+- (void)updateFontInfoInUnifiedFontObject:(NSString *)path;
 - (void)updateGlyphsInUnifiedFontObject:(NSString *)path;
 - (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path;
 - (NSString *)createFontMenuNameDB:(NSString *)directory;
@@ -85,14 +94,44 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   self = [super init];
   if (self) {
     _glyphBezierPaths = [NSMutableDictionary dictionary];
-    _capHeight = 2.0;
-    _width = 0.2;
-    _capHeightEqualsUnitsPerEM = YES;
     if (path) {
       [self openFile:path];
     }
+    self.capHeight = 2.5;
+    self.width = 0.2;
+    self.capHeightEqualsUnitsPerEM = YES;
   }
   return self;
+}
+
+- (void)update {
+  _strokeWidthInEM = 0.0;
+  _glyphShapes.clear();
+  [_glyphBezierPaths removeAllObjects];
+  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+  formatter.numberStyle = NSNumberFormatterDecimalStyle;
+  formatter.minimumFractionDigits = 2;
+  formatter.maximumFractionDigits = 2;
+  std::string style;
+  style += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_width]].UTF8String;
+  style += TKNTypefaceUnitAbbreviatedName(_widthUnit).UTF8String;
+  style += "/";
+  style += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_capHeight]].UTF8String;
+  style += TKNTypefaceUnitAbbreviatedName(_capHeightUnit).UTF8String;
+  std::string postscriptStyle;
+  postscriptStyle += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_width]].UTF8String;
+  postscriptStyle += TKNTypefaceUnitAbbreviatedName(_widthUnit).UTF8String;
+  postscriptStyle += "-";
+  postscriptStyle += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_capHeight]].UTF8String;
+  postscriptStyle += TKNTypefaceUnitAbbreviatedName(_capHeightUnit).UTF8String;
+  self.styleName = [NSString stringWithUTF8String:style.c_str()];
+  self.postscriptFontName = [[self.familyName stringByAppendingString:@"-"]
+      stringByAppendingString:
+          [NSString stringWithUTF8String:postscriptStyle.c_str()]];
 }
 
 #pragma mark Opening and Saving
@@ -111,6 +150,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   NSString *workingDirectoryPath = [NSTemporaryDirectory()
       stringByAppendingPathComponent:uniqueString];
   NSString *ufoPath = [self createUnifiedFontObject:workingDirectoryPath];
+  [self updateFontInfoInUnifiedFontObject:ufoPath];
   [self updateGlyphsInUnifiedFontObject:ufoPath];
   NSString *otfPath = [self createOpenTypeWithUnifiedFontObject:ufoPath];
   NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -132,6 +172,30 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   return ufoPath;
 }
 
+- (void)updateFontInfoInUnifiedFontObject:(NSString *)path {
+  token::ufo::FontInfo fontInfo = _fontInfo;
+  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+  formatter.numberStyle = NSNumberFormatterDecimalStyle;
+  formatter.minimumFractionDigits = 2;
+  formatter.maximumFractionDigits = 2;
+  const std::string style = _styleName.UTF8String;
+  const std::string postscriptFontName = _postscriptFontName.UTF8String;
+  fontInfo.style_name = style;
+  fontInfo.style_map_style_name = style;
+  fontInfo.postscript_font_name = postscriptFontName;
+  fontInfo.postscript_full_name = fontInfo.family_name + " " + style;
+  fontInfo.open_type_name_preferred_subfamily_name = style;
+  fontInfo.open_type_name_unique_id =
+      fontInfo.open_type_name_version + ";" +
+      fontInfo.open_type_os2_vendor_id + ";" +
+      fontInfo.postscript_font_name;
+  fontInfo.postscript_stem_snap_h.clear();
+  fontInfo.postscript_stem_snap_h.emplace_back(self.strokeWidthInEM);
+  fontInfo.postscript_stem_snap_v.clear();
+  fontInfo.postscript_stem_snap_v.emplace_back(self.strokeWidthInEM);
+  fontInfo.save(path.UTF8String);
+}
+
 - (void)updateGlyphsInUnifiedFontObject:(NSString *)path {
   const auto glyphsPath = boost::filesystem::path(path.UTF8String) / "glyphs";
   for (const auto& glyph : _glyphs) {
@@ -144,6 +208,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 }
 
 - (NSString *)createOpenTypeWithUnifiedFontObject:(NSString *)path {
+  const token::ufo::FontInfo font_info(path.UTF8String);
+  const token::ufo::Glyphs glyphs(path.UTF8String);
   NSString *directory = [path stringByDeletingLastPathComponent];
   NSString *otfPath = [directory stringByAppendingPathComponent:
       [[_path.lastPathComponent stringByDeletingPathExtension]
@@ -151,17 +217,14 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   const auto sharedSupportPath = boost::filesystem::path(
       [NSBundle mainBundle].sharedSupportPath.UTF8String);
   const auto toolsPath = sharedSupportPath / "FDK" / "Tools" / "osx";
-  const std::string command = (toolsPath / "makeotf").string();
-  const std::string format = R"(
-    export PATH=${PATH}:"%1%"
-    export FDK_EXE="%1%"
-    "%2%" -r -f "%3%" -o "%4%"
-  )";
-  std::system((boost::format(format) %
-               toolsPath %
-               command %
-               path.UTF8String %
-               otfPath.UTF8String).str().c_str());
+  token::afdko::autohint(toolsPath.string(), path.UTF8String, true);
+  token::afdko::createFeatures(font_info, directory.UTF8String);
+  token::afdko::createFontMenuNameDB(font_info, directory.UTF8String);
+  token::afdko::createGlyphOrderAndAliasDB(glyphs, directory.UTF8String);
+  token::afdko::makeotf(toolsPath.string(),
+                        path.UTF8String,
+                        otfPath.UTF8String,
+                        true);
   return otfPath;
 }
 
@@ -181,18 +244,14 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   capHeight = MAX(capHeight, _width);
   if (capHeight != _capHeight) {
     _capHeight = capHeight;
-    _strokeWidthInEM = 0.0;
-    _glyphShapes.clear();
-    [_glyphBezierPaths removeAllObjects];
+    [self update];
   }
 }
 
 - (void)setWidth:(double)width {
   if (width != _width) {
     _width = width;
-    _strokeWidthInEM = 0.0;
-    _glyphShapes.clear();
-    [_glyphBezierPaths removeAllObjects];
+    [self update];
   }
 }
 
@@ -208,19 +267,13 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 #pragma mark Typographic Properties
 
 @dynamic familyName;
-@dynamic styleName;
 @dynamic proposedSize;
 @dynamic unitsPerEM;
 @dynamic ascender;
 @dynamic descender;
-@dynamic postscriptFontName;
 
 - (NSString *)familyName {
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
-}
-
-- (NSString *)styleName {
-  return [NSString stringWithUTF8String:_fontInfo.style_name.c_str()];
 }
 
 - (NSNumber *)proposedSize {
@@ -237,10 +290,6 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
 - (NSInteger)descender {
   return _fontInfo.descender;
-}
-
-- (NSString *)postscriptFontName {
-  return [NSString stringWithUTF8String:_fontInfo.postscript_font_name.c_str()];
 }
 
 #pragma mark Glyphs

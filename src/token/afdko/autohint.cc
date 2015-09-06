@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceUnit.h
+//  token/afdko/autohint.cc
 //
 //  The MIT License
 //
@@ -24,20 +24,39 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#include "token/afdko/autohint.h"
 
-typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
-  kTKNTypefaceUnitMillimeter = 0,
-  kTKNTypefaceUnitPoint = 1,
-  kTKNTypefaceUnitInch = 2
-};
+#include <fstream>
+#include <string>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <boost/filesystem/path.hpp>
+#include <boost/format.hpp>
 
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit);
+#include "token/ufo.h"
 
-#ifdef __cplusplus
-};  // extern "C"
-#endif
+namespace token {
+namespace afdko {
+
+bool autohint(const std::string& tools,
+              const std::string& input,
+              bool decimal) {
+  const auto command = (boost::filesystem::path(tools) / "autohint").string();
+  std::string options;
+  if (decimal) {
+    options += " -decimal ";
+  }
+  const std::string format = R"(
+    export PATH=${PATH}:"%1%"
+    export FDK_EXE="%1%"
+    "%2%" %3% "%4%"
+  )";
+  return !std::system((
+      boost::format(format) %
+      tools %
+      command %
+      options %
+      input).str().c_str());
+}
+
+}  // namespace afdko
+}  // namespace token

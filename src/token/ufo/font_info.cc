@@ -52,11 +52,11 @@ namespace ufo {
 
 bool FontInfo::open(const std::string& path) {
   const boost::filesystem::path node(path);
-  std::string fontinfo = path;
+  std::string font_info = path;
   if (node.leaf().extension() == ".ufo") {
-    fontinfo = (node / "fontinfo.plist").string();
+    font_info = (node / "fontinfo.plist").string();
   }
-  std::ifstream stream(fontinfo);
+  std::ifstream stream(font_info);
   const auto result = open(&stream);
   stream.close();
   return result;
@@ -95,11 +95,11 @@ bool FontInfo::open(std::istream *stream) {
 
 bool FontInfo::save(const std::string& path) const {
   const boost::filesystem::path node(path);
-  std::string fontinfo = path;
+  std::string font_info = path;
   if (node.leaf().extension() == ".ufo") {
-    fontinfo = (node / "fontinfo.plist").string();
+    font_info = (node / "fontinfo.plist").string();
   }
-  std::ofstream stream(fontinfo);
+  std::ofstream stream(font_info);
   const auto result = save(&stream);
   stream.close();
   return result;

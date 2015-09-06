@@ -58,13 +58,13 @@
 
 #pragma mark Typographic Properties
 
-@property (nonatomic, strong, nonnull) NSString *familyName;
-@property (nonatomic, strong, nonnull) NSString *styleName;
-@property (nonatomic, strong, nonnull) NSNumber *proposedSize;
+@property (nonatomic, strong, readonly, nonnull) NSString *familyName;
+@property (nonatomic, strong, readonly, nonnull) NSString *styleName;
+@property (nonatomic, strong, readonly, nonnull) NSNumber *proposedSize;
 @property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
 @property (nonatomic, assign, readonly) NSInteger ascender;
 @property (nonatomic, assign, readonly) NSInteger descender;
-@property (nonatomic, strong, nonnull) NSString *postscriptFontName;
+@property (nonatomic, strong, readonly, nonnull) NSString *postscriptFontName;
 
 #pragma mark Glyphs
 

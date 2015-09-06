@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceUnit.h
+//  token/afdko/autohint.h
 //
 //  The MIT License
 //
@@ -24,20 +24,22 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#pragma once
+#ifndef TOKEN_AFDKO_AUTOHINT_H_
+#define TOKEN_AFDKO_AUTOHINT_H_
 
-typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
-  kTKNTypefaceUnitMillimeter = 0,
-  kTKNTypefaceUnitPoint = 1,
-  kTKNTypefaceUnitInch = 2
-};
+#include <string>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "token/ufo.h"
 
-NSString * TKNTypefaceUnitAbbreviatedName(TKNTypefaceUnit unit);
+namespace token {
+namespace afdko {
 
-#ifdef __cplusplus
-};  // extern "C"
-#endif
+bool autohint(const std::string& tools,
+              const std::string& input,
+              bool decimal = false);
+
+}  // namespace afdko
+}  // namespace token
+
+#endif  // TOKEN_AFDKO_AUTOHINT_H_

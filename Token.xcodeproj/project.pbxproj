@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		931043E61B93F47300DAC200 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
-		9321D6C11B963D370079E930 /* Token.ufo in Resources */ = {isa = PBXBuildFile; fileRef = 9321D6C01B963D370079E930 /* Token.ufo */; };
 		932FFF2A1B9A633000417561 /* TKNNumberToPercentageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FFF291B9A633000417561 /* TKNNumberToPercentageTransformer.m */; };
 		932FFF3E1B9A655700417561 /* TKNNSBezierPath+RoundedRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FFF3D1B9A655700417561 /* TKNNSBezierPath+RoundedRect.m */; };
 		933162D71B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
@@ -31,6 +30,9 @@
 		9390CC001B953F2C0088153C /* TKNRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CBFF1B953F2C0088153C /* TKNRoundedButtonCell.m */; };
 		9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC021B95450C0088153C /* TKNBackgroundTextField.m */; };
 		9390CC061B9545570088153C /* TKNBackgroundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC051B9545570088153C /* TKNBackgroundImageView.m */; };
+		93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */; };
+		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
+		93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* autohint.cc */; };
 		93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93AB947B1B91B1600038DCB4 /* MainMenu.xib */; };
 		93B7634E1B91B268009CA8B0 /* TKNMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7634C1B91B268009CA8B0 /* TKNMainWindowController.m */; };
 		93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */; };
@@ -54,6 +56,7 @@
 		93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
 		93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */; };
 		93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */; };
+		93C257491B9B9E4F00134399 /* TKNTypefaceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */; };
 		93C771A71B95482100914AD9 /* TKNTypefaceSampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */; };
 		93D268571B95491D008AB659 /* TKNSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D268521B95491D008AB659 /* TKNSettingsViewController.m */; };
 		93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D268531B95491D008AB659 /* TKNSettingsViewController.xib */; };
@@ -159,7 +162,6 @@
 /* Begin PBXFileReference section */
 		931043E51B93F47300DAC200 /* guideline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guideline.cc; sourceTree = "<group>"; };
 		931043F71B94184F00DAC200 /* glyph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph.cc; sourceTree = "<group>"; };
-		9321D6C01B963D370079E930 /* Token.ufo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Token.ufo; sourceTree = SOURCE_ROOT; };
 		932FFF281B9A633000417561 /* TKNNumberToPercentageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNNumberToPercentageTransformer.h; sourceTree = "<group>"; };
 		932FFF291B9A633000417561 /* TKNNumberToPercentageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNNumberToPercentageTransformer.m; sourceTree = "<group>"; };
 		932FFF3C1B9A655700417561 /* TKNNSBezierPath+RoundedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TKNNSBezierPath+RoundedRect.h"; sourceTree = "<group>"; };
@@ -218,6 +220,12 @@
 		9390CC021B95450C0088153C /* TKNBackgroundTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundTextField.m; sourceTree = "<group>"; };
 		9390CC041B9545570088153C /* TKNBackgroundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNBackgroundImageView.h; sourceTree = "<group>"; };
 		9390CC051B9545570088153C /* TKNBackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundImageView.m; sourceTree = "<group>"; };
+		93A05ADE1B9B8A4A002DDAD5 /* afdko.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afdko.h; sourceTree = "<group>"; };
+		93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeotf.cc; sourceTree = "<group>"; };
+		93A05AEA1B9B8A6B002DDAD5 /* makeotf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = makeotf.h; sourceTree = "<group>"; };
+		93A05AEE1B9B914A002DDAD5 /* typeface */ = {isa = PBXFileReference; lastKnownFileType = folder; path = typeface; sourceTree = SOURCE_ROOT; };
+		93A05AF01B9B9B98002DDAD5 /* autohint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = autohint.cc; sourceTree = "<group>"; };
+		93A05AF11B9B9B98002DDAD5 /* autohint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autohint.h; sourceTree = "<group>"; };
 		93A224941B7B1FD200CB1DBB /* advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = advance.h; sourceTree = "<group>"; };
 		93A224951B7B1FD200CB1DBB /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
 		93A224961B7B1FD200CB1DBB /* component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = component.h; sourceTree = "<group>"; };
@@ -256,6 +264,7 @@
 		93C18FCD1B93561B0044AAEB /* plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNAscentTemplate.pdf; sourceTree = "<group>"; };
 		93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNWidthTemplate.pdf; sourceTree = "<group>"; };
+		93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceUnit.m; sourceTree = "<group>"; };
 		93C771A51B95482100914AD9 /* TKNTypefaceSampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypefaceSampleView.h; sourceTree = "<group>"; };
 		93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceSampleView.m; sourceTree = "<group>"; };
 		93D268511B95491D008AB659 /* TKNSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNSettingsViewController.h; sourceTree = "<group>"; };
@@ -324,6 +333,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		93A05ADD1B9B8A4A002DDAD5 /* afdko */ = {
+			isa = PBXGroup;
+			children = (
+				93A05AEA1B9B8A6B002DDAD5 /* makeotf.h */,
+				93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */,
+				93A05AF11B9B9B98002DDAD5 /* autohint.h */,
+				93A05AF01B9B9B98002DDAD5 /* autohint.cc */,
+			);
+			path = afdko;
+			sourceTree = "<group>";
+		};
 		93A224921B7B1FD200CB1DBB /* ufo */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +394,7 @@
 				9383794A1B962D47003E6893 /* TKNTypeface.h */,
 				9383794B1B962D47003E6893 /* TKNTypeface.mm */,
 				93346DD81B95958200BDC3C9 /* TKNTypefaceUnit.h */,
+				93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */,
 				93D268541B95491D008AB659 /* TKNTypefaceViewController.h */,
 				93D268551B95491D008AB659 /* TKNTypefaceViewController.m */,
 				93D268561B95491D008AB659 /* TKNTypefaceViewController.xib */,
@@ -446,7 +467,7 @@
 		93C18FEE1B951C430044AAEB /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				9321D6C01B963D370079E930 /* Token.ufo */,
+				93A05AEE1B9B914A002DDAD5 /* typeface */,
 				93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */,
 				93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */,
 				9390CBF41B95328D0088153C /* Credits.rtf */,
@@ -483,6 +504,8 @@
 				93E5FF151B915970006E968A /* glyph_stroker.cc */,
 				9337DC441B8D671B0070814C /* glyph_outline.h */,
 				9337DC531B8D67F20070814C /* glyph_outline.cc */,
+				93A05ADE1B9B8A4A002DDAD5 /* afdko.h */,
+				93A05ADD1B9B8A4A002DDAD5 /* afdko */,
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
 				93A224921B7B1FD200CB1DBB /* ufo */,
 			);
@@ -640,10 +663,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */,
+				93A05AEF1B9B914A002DDAD5 /* typeface in Resources */,
 				93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */,
 				93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */,
 				93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */,
-				9321D6C11B963D370079E930 /* Token.ufo in Resources */,
 				93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */,
 				93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */,
 				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
@@ -664,7 +687,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${PROJECT_DIR}/script/afdko.sh\"\n#\"${PROJECT_DIR}/script/bundle.sh\"";
+			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -676,8 +699,10 @@
 				93C18F951B930D440044AAEB /* credit.cc in Sources */,
 				9390CB841B9523AF0088153C /* TKNDefaultRoundedButtonCell.m in Sources */,
 				932FFF2A1B9A633000417561 /* TKNNumberToPercentageTransformer.m in Sources */,
+				93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */,
 				9381EE581B91B20000807B1B /* TKNApplicationDelegate.m in Sources */,
 				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
+				93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */,
 				93C18FA11B930D440044AAEB /* extension_name.cc in Sources */,
 				93C18FA71B930D440044AAEB /* extension.cc in Sources */,
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
@@ -696,6 +721,7 @@
 				93C18F921B930D440044AAEB /* copyright.cc in Sources */,
 				93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */,
 				93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */,
+				93C257491B9B9E4F00134399 /* TKNTypefaceUnit.m in Sources */,
 				9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */,
 				9390CB8F1B9526DA0088153C /* TKNBackgroundView.m in Sources */,
 				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,

@@ -80,11 +80,16 @@
   [super mouseDown:event];
   _initialLocation = event.locationInWindow;
   _initialValue = self.doubleValue;
+  CGDirectDisplayID display;
+  CGDisplayCount displayCount;
+  CGRect frame = self.window.screen.frame;
+  CGGetDisplaysWithRect(frame, 1, &display, &displayCount);
 }
 
 - (void)mouseDragged:(NSEvent *)event {
   [super mouseDragged:event];
-  CGFloat delta = round(event.locationInWindow.x - _initialLocation.x) * _step;
+  CGPoint location = event.locationInWindow;
+  CGFloat delta = round((location.x - _initialLocation.x) / 2.0) * _step;
   self.doubleValue = _initialValue + delta;
 
   // Propagate the change through binding

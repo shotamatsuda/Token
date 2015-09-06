@@ -48,8 +48,8 @@
     _typefaceViewController = [[TKNTypefaceViewController alloc] init];
     _settingsViewController = [[TKNSettingsViewController alloc] init];
     NSBundle *bundle = [NSBundle mainBundle];
-    NSString *Path = [bundle pathForResource:@"Token" ofType:@"ufo"];
-    _typeface = [[TKNTypeface alloc] initWithFileAtPath:Path];
+    NSString *path = [bundle pathForResource:@"typeface/font" ofType:@"ufo"];
+    _typeface = [[TKNTypeface alloc] initWithFileAtPath:path];
     _typefaceViewController.typeface = _typeface;
     _settingsViewController.typeface = _typeface;
   }
