@@ -230,9 +230,13 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   formatter.maximumFractionDigits = 2;
   const std::string style = _styleName.UTF8String;
   const std::string postscriptName = _postscriptName.UTF8String;
+  const std::string fullName = fontInfo.family_name + " " + style;
   fontInfo.style_name = style;
   fontInfo.style_map_style_name = style;
+  fontInfo.macintosh_fond_name = fullName;
   fontInfo.postscript_font_name = postscriptName;
+  fontInfo.postscript_full_name = fullName;
+  fontInfo.open_type_name_compatible_full_name = fullName;
   fontInfo.open_type_name_preferred_subfamily_name = style;
   fontInfo.open_type_name_unique_id =
       fontInfo.open_type_name_version + ";" +

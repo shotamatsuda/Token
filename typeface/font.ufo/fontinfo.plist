@@ -15,7 +15,7 @@
 	<key>macintoshFONDFamilyID</key>
 	<integer>128</integer>
 	<key>macintoshFONDName</key>
-	<string>Token</string>
+	<string>Token Regular</string>
 	<key>openTypeHeadCreated</key>
 	<string>2014/07/21 20:42:28</string>
 	<key>openTypeHheaAscender</key>
@@ -25,7 +25,7 @@
 	<key>openTypeHheaLineGap</key>
 	<integer>200</integer>
 	<key>openTypeNameCompatibleFullName</key>
-	<string>Token</string>
+	<string>Token Regular</string>
 	<key>openTypeNameDescription</key>
 	<string>Copyright (C) 2014-2015 takram design engineering. www.takram.com. All rights reserved.</string>
 	<key>openTypeNameDesigner</key>
@@ -132,7 +132,7 @@
 	<key>postscriptForceBold</key>
 	<false/>
 	<key>postscriptFullName</key>
-	<string>Token</string>
+	<string>Token Regular</string>
 	<key>postscriptIsFixedPitch</key>
 	<false/>
 	<key>postscriptUnderlinePosition</key>
