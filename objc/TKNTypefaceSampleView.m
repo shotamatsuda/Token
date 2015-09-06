@@ -34,12 +34,8 @@
 @property (nonatomic, strong) NSArray *lines;
 
 - (CGSize)sizeForLines:(NSArray *)lines;
-- (void)drawLine:(NSArray *)glyphNames
-        position:(CGPoint)position
-         control:(BOOL)control;
-- (void)drawGlyph:(NSString *)glyphName
-         position:(CGPoint)position
-          control:(BOOL)control;
+- (void)drawLine:(NSArray *)glyphNames position:(CGPoint)position;
+- (void)drawGlyph:(NSString *)glyphName position:(CGPoint)position;
 
 @end
 
@@ -74,9 +70,18 @@
   }
 }
 
+- (void)setOutlined:(BOOL)outlined {
+  if (outlined != _outlined) {
+    _outlined = outlined;
+    self.needsDisplay = YES;
+  }
+}
+
 #pragma mark Drawing
 
 - (void)drawRect:(NSRect)rect {
+  NSAssert([self.superview isKindOfClass:[NSClipView class]], @"");
+  NSAssert([self.superview.superview isKindOfClass:[NSScrollView class]], @"");
   CGSize size = [self sizeForLines:_lines];
   CGRect frame = self.frame;
   frame.size.width = ceil(size.width);
@@ -98,16 +103,14 @@
   CGPoint position = CGPointZero;
   position.y -= _typeface.ascender - _typeface.descender;
   for (NSArray *line in _lines) {
-    [self drawLine:line position:position control:NO];
+    [self drawLine:line position:position];
     position.x = 0.0;
     position.y -= _typeface.ascender - _typeface.descender;
   }
   [NSGraphicsContext restoreGraphicsState];
 }
 
-- (void)drawLine:(NSArray *)line
-        position:(CGPoint)position
-         control:(BOOL)control {
+- (void)drawLine:(NSArray *)line position:(CGPoint)position {
   CGFloat advances = 0.0;
   for (NSString *name in line) {
     advances += [_typeface advanceOfGlyphForName:name];
@@ -117,7 +120,7 @@
   [transform translateXBy:-advances / 2.0 yBy:0.0];
   [transform concat];
   for (NSString *name in line) {
-    [self drawGlyph:name position:position control:control];
+    [self drawGlyph:name position:position];
     position.x += [_typeface advanceOfGlyphForName:name];
   }
   [NSGraphicsContext restoreGraphicsState];
@@ -128,24 +131,16 @@
   }
 }
 
-- (void)drawGlyph:(NSString *)name
-         position:(CGPoint)position
-          control:(BOOL)control {
+- (void)drawGlyph:(NSString *)name position:(CGPoint)position {
   [NSGraphicsContext saveGraphicsState];
-  NSColor *foregroundColor;
-  if (_inverted) {
-    foregroundColor = [NSColor whiteColor];
-  } else {
-    foregroundColor = [NSColor blackColor];
-  }
   NSAffineTransform *transform = [NSAffineTransform transform];
   [transform translateXBy:position.x yBy:position.y];
   [transform concat];
-  if (control) {
+  if (_outlined) {
     NSBezierPath *path = [_typeface glyphOutlineForName:name];
     NSBezierPath *outline = [NSBezierPath bezierPath];
+    CGPoint points[3];
     for (NSInteger index = 0; index < path.elementCount; ++index) {
-      CGPoint points[3];
       NSBezierPathElement type = [path elementAtIndex:index
                                      associatedPoints:points];
       switch (type) {
@@ -167,9 +162,75 @@
           break;
       }
     }
-    [foregroundColor set];
+    [[NSColor grayColor] set];
+    NSScrollView *scrollView = (NSScrollView *)self.superview.superview;
+    CGFloat scale = 1.0 / (_scale * scrollView.magnification);
+    outline.lineWidth = scale;
     [outline stroke];
+    [[[NSColor grayColor] colorWithAlphaComponent:0.5] setStroke];
+    CGSize anchorSize = CGSizeMake(3.0 * scale, 3.0 * scale);
+    CGPoint previous[3];
+    CGPoint current[3];
+    for (NSInteger index = 0; index < path.elementCount; ++index) {
+      NSBezierPathElement previousType =
+          [path elementAtIndex:index
+              associatedPoints:previous];
+      NSBezierPathElement currentType =
+          [path elementAtIndex:(index + 1) % path.elementCount
+              associatedPoints:current];
+      switch (currentType) {
+        case NSLineToBezierPathElement:
+        case NSMoveToBezierPathElement:
+          NSRectFill(CGRectMake(
+              current[0].x - anchorSize.width / 2.0,
+              current[0].y - anchorSize.height / 2.0,
+              anchorSize.width,
+              anchorSize.height));
+          break;
+        case NSCurveToBezierPathElement: {
+          NSRectFill(CGRectMake(
+              current[2].x - anchorSize.width / 2.0,
+              current[2].y - anchorSize.height / 2.0,
+              anchorSize.width,
+              anchorSize.height));
+          NSBezierPath *path;
+          path = [NSBezierPath bezierPath];
+          if (previousType == NSCurveToBezierPathElement) {
+            [path moveToPoint:previous[2]];
+          } else {
+            [path moveToPoint:previous[0]];
+          }
+          [path lineToPoint:current[0]];
+          path.lineWidth = scale;
+          [path stroke];
+          path = [NSBezierPath bezierPath];
+          [path moveToPoint:current[1]];
+          [path lineToPoint:current[2]];
+          path.lineWidth = scale;
+          [path stroke];
+          NSRectFill(CGRectMake(
+              current[0].x - anchorSize.width / 2.0,
+              current[0].y - anchorSize.height / 2.0,
+              anchorSize.width,
+              anchorSize.height));
+          NSRectFill(CGRectMake(
+              current[1].x - anchorSize.width / 2.0,
+              current[1].y - anchorSize.height / 2.0,
+              anchorSize.width,
+              anchorSize.height));
+          break;
+        }
+        default:
+          break;
+      }
+    }
   } else {
+    NSColor *foregroundColor;
+    if (_inverted) {
+      foregroundColor = [NSColor whiteColor];
+    } else {
+      foregroundColor = [NSColor blackColor];
+    }
     [foregroundColor setFill];
     [[_typeface glyphOutlineForName:name] fill];
   }

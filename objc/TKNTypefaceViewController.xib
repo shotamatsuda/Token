@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-xk-Nsy">
-                                <rect key="frame" x="0.0" y="0.0" width="181" height="94"/>
+                                <rect key="frame" x="4" y="58" width="23" height="92"/>
                                 <animations/>
                             </view>
                         </subviews>
@@ -51,7 +51,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
                     <subviews>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-fa-Jdp">
-                            <rect key="frame" x="265" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="270" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="5S3-Te-hep"/>
                                 <constraint firstAttribute="height" constant="25" id="Q3d-r9-bNT"/>
@@ -66,9 +66,9 @@
                             </connections>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehm-eu-cMu">
-                            <rect key="frame" x="203" y="6" width="64" height="14"/>
+                            <rect key="frame" x="218" y="6" width="54" height="14"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="KzX-m8-DZr"/>
+                                <constraint firstAttribute="width" constant="50" id="KzX-m8-DZr"/>
                             </constraints>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="18k-yW-wI7">
@@ -85,7 +85,7 @@
                             </connections>
                         </textField>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="46j-Pl-tkn">
-                            <rect key="frame" x="180" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="195" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Ae5-AS-C2b"/>
                                 <constraint firstAttribute="width" constant="25" id="YKg-g1-NJh"/>
@@ -99,15 +99,49 @@
                                 <action selector="zoomOut:" target="-2" id="4g7-qQ-FkA"/>
                             </connections>
                         </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="of5-dm-Xbc">
+                            <rect key="frame" x="5" y="0.0" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="QdA-f3-Fjq"/>
+                                <constraint firstAttribute="height" constant="25" id="gvd-Y9-rxW"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNInvert" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="xvI-7d-sCc">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="toggleInverted:" target="-2" id="JDr-p2-CM5"/>
+                            </connections>
+                        </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="otf-EB-md7">
+                            <rect key="frame" x="30" y="0.0" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="6sd-0T-GBF"/>
+                                <constraint firstAttribute="height" constant="25" id="fyw-aC-bso"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNOutline" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="i4E-FM-Nql">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="toggleOutlined:" target="-2" id="Ps3-mr-yS9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="ZZZ-fa-Jdp" secondAttribute="trailing" constant="10" id="5dQ-je-LeW"/>
+                        <constraint firstAttribute="trailing" secondItem="ZZZ-fa-Jdp" secondAttribute="trailing" constant="5" id="5dQ-je-LeW"/>
+                        <constraint firstItem="of5-dm-Xbc" firstAttribute="leading" secondItem="h10-2w-HUc" secondAttribute="leading" constant="5" id="APp-qN-MKD"/>
                         <constraint firstAttribute="height" constant="25" id="APx-7e-Saa"/>
                         <constraint firstAttribute="centerY" secondItem="ehm-eu-cMu" secondAttribute="centerY" id="FAP-yX-zYv"/>
                         <constraint firstItem="ZZZ-fa-Jdp" firstAttribute="leading" secondItem="ehm-eu-cMu" secondAttribute="trailing" id="PEM-si-Gu9"/>
+                        <constraint firstItem="otf-EB-md7" firstAttribute="leading" secondItem="of5-dm-Xbc" secondAttribute="trailing" id="TjM-1J-UIX"/>
                         <constraint firstItem="ehm-eu-cMu" firstAttribute="leading" secondItem="46j-Pl-tkn" secondAttribute="trailing" id="WWN-Rc-2c4"/>
                         <constraint firstAttribute="centerY" secondItem="46j-Pl-tkn" secondAttribute="centerY" id="Yo2-Q2-XVH"/>
                         <constraint firstAttribute="centerY" secondItem="ZZZ-fa-Jdp" secondAttribute="centerY" id="dp9-Iv-DlG"/>
+                        <constraint firstAttribute="centerY" secondItem="of5-dm-Xbc" secondAttribute="centerY" id="izN-rB-eYO"/>
+                        <constraint firstAttribute="centerY" secondItem="otf-EB-md7" secondAttribute="centerY" id="uAv-lX-URt"/>
                     </constraints>
                     <animations/>
                 </customView>
@@ -126,6 +160,8 @@
         </customView>
     </objects>
     <resources>
+        <image name="TKNInvert" width="23" height="23"/>
+        <image name="TKNOutline" width="23" height="23"/>
         <image name="TKNZoomIn" width="23" height="23"/>
         <image name="TKNZoomOut" width="23" height="23"/>
     </resources>

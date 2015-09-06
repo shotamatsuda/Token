@@ -59,6 +59,8 @@
 		93C257491B9B9E4F00134399 /* TKNTypefaceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */; };
 		93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AD1B9C5AB700134399 /* TKNZoomIn.pdf */; };
 		93C257B01B9C5AB700134399 /* TKNZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */; };
+		93C257C41B9C96D900134399 /* TKNInvert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C31B9C96D900134399 /* TKNInvert.pdf */; };
+		93C257C61B9C99F700134399 /* TKNOutline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C51B9C99F700134399 /* TKNOutline.pdf */; };
 		93C771A71B95482100914AD9 /* TKNTypefaceSampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */; };
 		93D268571B95491D008AB659 /* TKNSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D268521B95491D008AB659 /* TKNSettingsViewController.m */; };
 		93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D268531B95491D008AB659 /* TKNSettingsViewController.xib */; };
@@ -327,6 +329,8 @@
 		93C2577E1B9BCCDB00134399 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = "lib/takram-math/math.xcodeproj"; sourceTree = "<group>"; };
 		93C257AD1B9C5AB700134399 /* TKNZoomIn.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNZoomIn.pdf; sourceTree = "<group>"; };
 		93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNZoomOut.pdf; sourceTree = "<group>"; };
+		93C257C31B9C96D900134399 /* TKNInvert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNInvert.pdf; sourceTree = "<group>"; };
+		93C257C51B9C99F700134399 /* TKNOutline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNOutline.pdf; sourceTree = "<group>"; };
 		93C771A51B95482100914AD9 /* TKNTypefaceSampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypefaceSampleView.h; sourceTree = "<group>"; };
 		93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceSampleView.m; sourceTree = "<group>"; };
 		93D268511B95491D008AB659 /* TKNSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNSettingsViewController.h; sourceTree = "<group>"; };
@@ -534,6 +538,8 @@
 				93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */,
 				93C257AD1B9C5AB700134399 /* TKNZoomIn.pdf */,
 				93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */,
+				93C257C31B9C96D900134399 /* TKNInvert.pdf */,
+				93C257C51B9C99F700134399 /* TKNOutline.pdf */,
 				9390CBF41B95328D0088153C /* Credits.rtf */,
 			);
 			path = resource;
@@ -823,7 +829,9 @@
 				93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */,
 				93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */,
 				93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */,
+				93C257C41B9C96D900134399 /* TKNInvert.pdf in Resources */,
 				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
+				93C257C61B9C99F700134399 /* TKNOutline.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,7 +840,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		93714B651B998F3B0077B273 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -940,6 +948,7 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = config/osx.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
@@ -957,6 +966,7 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				ENABLE_NS_ASSERTIONS = NO;
 				INFOPLIST_FILE = config/osx.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_LDFLAGS = (

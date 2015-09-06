@@ -82,7 +82,7 @@ static char TKNTypefaceViewControllerKVOContext;
   _scrollView.documentView = _sampleView;
   _scrollView.allowsMagnification = YES;
   _scrollView.minMagnification = 0.03125;
-  _scrollView.maxMagnification = 64.0;
+  _scrollView.maxMagnification = 640.0;
 
   // Inject self to the responder chain
   self.nextResponder = _scrollView.contentView.nextResponder;
@@ -162,6 +162,21 @@ static char TKNTypefaceViewControllerKVOContext;
       _scrollView.backgroundColor = [NSColor whiteColor];
     }
   }
+}
+
+- (void)setOutlined:(BOOL)outlined {
+  if (outlined != _outlined) {
+    _outlined = outlined;
+    _sampleView.outlined = outlined;
+  }
+}
+
+- (void)toggleInverted:(id)sender {
+  self.inverted = !self.inverted;
+}
+
+- (void)toggleOutlined:(id)sender {
+  self.outlined = !self.outlined;
 }
 
 #pragma mark Zooming

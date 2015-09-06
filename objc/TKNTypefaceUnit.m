@@ -35,7 +35,7 @@ NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit) {
     case kTKNTypefaceUnitInch:
       return @"in";
     default:
-      NSAssert(NO, @"");
+      NSCAssert(NO, @"");
       break;
   }
   return nil;
@@ -55,7 +55,7 @@ double TKNTypefaceUnitConvert(double value,
         case kTKNTypefaceUnitInch:
           return value / 25.4;
         default:
-          NSAssert(NO, @"");
+          NSCAssert(NO, @"");
           break;
       }
       break;
@@ -66,7 +66,7 @@ double TKNTypefaceUnitConvert(double value,
         case kTKNTypefaceUnitInch:
           return value / 72.0;
         default:
-          NSAssert(NO, @"");
+          NSCAssert(NO, @"");
           break;
       }
       break;
@@ -77,12 +77,12 @@ double TKNTypefaceUnitConvert(double value,
         case kTKNTypefaceUnitPoint:
           return value * 72.0;
         default:
-          NSAssert(NO, @"");
+          NSCAssert(NO, @"");
           break;
       }
       break;
     default:
-      NSAssert(NO, @"");
+      NSCAssert(NO, @"");
       break;
   }
   return value;

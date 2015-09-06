@@ -34,5 +34,6 @@
 
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
 @property (nonatomic, assign) BOOL inverted;
+@property (nonatomic, assign) BOOL outlined;
 
 @end

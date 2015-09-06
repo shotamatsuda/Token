@@ -39,12 +39,12 @@
   CGRect bounds = [super constrainBoundsRect:proposedBounds];
   CGRect documentFrame = [self.documentView frame];
   if (proposedBounds.size.width >= documentFrame.size.width) {
-    bounds.origin.x = round((proposedBounds.size.width -
-                             documentFrame.size.width) / -2.0);
+    bounds.origin.x = (proposedBounds.size.width -
+                       documentFrame.size.width) / -2.0;
   }
   if (proposedBounds.size.height >= documentFrame.size.height) {
-    bounds.origin.y = round((proposedBounds.size.height -
-                             documentFrame.size.height) / -2.0);
+    bounds.origin.y = (proposedBounds.size.height -
+                       documentFrame.size.height) / -2.0;
   }
   return bounds;
 }

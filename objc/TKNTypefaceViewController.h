@@ -37,6 +37,10 @@
 #pragma mark Parameters
 
 @property (nonatomic, assign) BOOL inverted;
+@property (nonatomic, assign) BOOL outlined;
+
+- (IBAction)toggleInverted:(nullable id)sender;
+- (IBAction)toggleOutlined:(nullable id)sender;
 
 #pragma mark Zooming
 

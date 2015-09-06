@@ -100,7 +100,7 @@ inline GlyphStroker::GlyphStroker()
       miter_(),
       cap_(Cap::ROUND),
       join_(Join::ROUND),
-      precision_(0.5),
+      precision_(0.25),
       tolerance_(0.02) {}
 
 #pragma mark Comparison
