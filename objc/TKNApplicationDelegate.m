@@ -47,6 +47,6 @@
   return YES;
 }
 
-- (IBAction)checkForUpdates:(nullable id)sender {}
+- (IBAction)checkForUpdates:(id)sender {}
 
 @end

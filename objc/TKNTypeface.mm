@@ -76,8 +76,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
 #pragma mark Typographic Properties
 
-@property (nonatomic, strong, nonnull) NSString *styleName;
-@property (nonatomic, strong, nonnull) NSString *postscriptName;
+@property (nonatomic, strong) NSString *styleName;
+@property (nonatomic, strong) NSString *postscriptName;
 
 @end
 

@@ -90,13 +90,13 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (void)scrollWheel:(NSEvent *)event {
-  if (event.modifierFlags & NSAlternateKeyMask) {
+  if (event.type == NSScrollWheel && event.modifierFlags & NSAlternateKeyMask) {
     CGPoint center = [_scrollView.contentView
         convertPoint:event.locationInWindow
         fromView:self.view.window.contentView];
     [self willChangeValueForKey:@"magnification"];
     _magnification = MIN(MAX(
-        _magnification * (event.deltaY < 0.0 ? 0.9 : 1.0 / 0.9),
+        _magnification * (event.scrollingDeltaY < 0.0 ? 0.9 : 1.0 / 0.9),
         _scrollView.minMagnification),
         _scrollView.maxMagnification);
     [self didChangeValueForKey:@"magnification"];
@@ -104,6 +104,19 @@ static char TKNTypefaceViewControllerKVOContext;
   } else {
     [_scrollView scrollWheel:event];
   }
+}
+
+- (void)magnifyWithEvent:(NSEvent *)event {
+  CGPoint center = [_scrollView.contentView
+      convertPoint:event.locationInWindow
+      fromView:self.view.window.contentView];
+  [self willChangeValueForKey:@"magnification"];
+  _magnification = MIN(MAX(
+      _magnification * (1.0 + event.magnification),
+      _scrollView.minMagnification),
+      _scrollView.maxMagnification);
+  [self didChangeValueForKey:@"magnification"];
+  [_scrollView setMagnification:_magnification centeredAtPoint:center];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
