@@ -1,3 +1,4 @@
+
 The MIT License
 
 Copyright (C) 2015 Shota Matsuda
@@ -22,6 +23,7 @@ DEALINGS IN THE SOFTWARE.
 
 ================================================================================
 Skia
+================================================================================
 
 Copyright (c) 2011 Google Inc. All rights reserved.
 
@@ -53,6 +55,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ================================================================================
 Sparkle
+================================================================================
 
 Copyright (c) 2006-2013 Andy Matuschak.
 Copyright (c) 2009-2013 Elgato Systems GmbH.
@@ -117,6 +120,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ================================================================================
 libplist
+================================================================================
 
 Copyright (c) 2007-2015 by the contributors of libimobiledevice.
 All rights reserved.
@@ -984,6 +988,7 @@ Public License instead of this License.
 
 ================================================================================
 libxml2
+================================================================================
 
 Except where otherwise noted in the source code (e.g. the files hash.c,
 list.c and the trio files, which are covered by a similar licence but
@@ -1011,6 +1016,7 @@ THE SOFTWARE.
 
 ================================================================================
 boost
+================================================================================
 
 Boost Software License - Version 1.0 - August 17th, 2003
 
@@ -1038,6 +1044,7 @@ DEALINGS IN THE SOFTWARE.
 
 ================================================================================
 Adobe Font Development Kit for OpenType
+================================================================================
 
 Copyright 2014 Adobe Systems Incorporated. All rights reserved.
 

@@ -116,7 +116,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   style += [formatter stringFromNumber:
       [NSNumber numberWithDouble:_width]].UTF8String;
   style += TKNTypefaceUnitAbbreviatedName(_widthUnit).UTF8String;
-  style += "/";
+  style += " / ";
   style += [formatter stringFromNumber:
       [NSNumber numberWithDouble:_capHeight]].UTF8String;
   style += TKNTypefaceUnitAbbreviatedName(_capHeightUnit).UTF8String;
