@@ -101,6 +101,7 @@ void createFeatures(const ufo::FontInfo& font_info,
 
   // OS/2
   stream << "table OS/2 {" << std::endl;
+  stream << "FSType 0" << endl;
   stream << "Panose " << boost::algorithm::join(font_info.open_type_os2_panose |
       boost::adaptors::transformed(
           static_cast<std::string (*)(unsigned int)>(

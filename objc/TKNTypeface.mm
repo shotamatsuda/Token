@@ -233,7 +233,6 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   fontInfo.style_name = style;
   fontInfo.style_map_style_name = style;
   fontInfo.postscript_font_name = postscriptName;
-  fontInfo.postscript_full_name = fontInfo.family_name + " " + style;
   fontInfo.open_type_name_preferred_subfamily_name = style;
   fontInfo.open_type_name_unique_id =
       fontInfo.open_type_name_version + ";" +
