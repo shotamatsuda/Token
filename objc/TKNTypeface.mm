@@ -63,7 +63,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 }
 
 @property (nonatomic, strong, nonnull) NSString *styleName;
-@property (nonatomic, strong, nonnull) NSString *postscriptFontName;
+@property (nonatomic, strong, nonnull) NSString *postscriptName;
 
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
 @property (nonatomic, assign, readonly) double strokeWidthInEM;
@@ -91,13 +91,12 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   }
   self = [super init];
   if (self) {
+    [self openFile:path];
     _glyphBezierPaths = [NSMutableDictionary dictionary];
-    if (path) {
-      [self openFile:path];
-    }
     _capHeight = 2.5;
     _strokeWidth = 0.2;
     _capHeightEqualsUnitsPerEM = YES;
+    [self parameterDidChange];
   }
   return self;
 }
@@ -130,7 +129,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
       [NSNumber numberWithDouble:_capHeight]].UTF8String;
   postscriptStyle += TKNTypefaceUnitGetShortName(_capHeightUnit).UTF8String;
   self.styleName = [NSString stringWithUTF8String:style.c_str()];
-  self.postscriptFontName = [[self.familyName stringByAppendingString:@"-"]
+  self.postscriptName = [[self.familyName stringByAppendingString:@"-"]
       stringByAppendingString:
           [NSString stringWithUTF8String:postscriptStyle.c_str()]];
 }
@@ -180,10 +179,10 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   formatter.minimumFractionDigits = 2;
   formatter.maximumFractionDigits = 2;
   const std::string style = _styleName.UTF8String;
-  const std::string postscriptFontName = _postscriptFontName.UTF8String;
+  const std::string postscriptName = _postscriptName.UTF8String;
   fontInfo.style_name = style;
   fontInfo.style_map_style_name = style;
-  fontInfo.postscript_font_name = postscriptFontName;
+  fontInfo.postscript_font_name = postscriptName;
   fontInfo.postscript_full_name = fontInfo.family_name + " " + style;
   fontInfo.open_type_name_preferred_subfamily_name = style;
   fontInfo.open_type_name_unique_id =

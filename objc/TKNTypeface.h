@@ -64,7 +64,7 @@
 @property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
 @property (nonatomic, assign, readonly) NSInteger ascender;
 @property (nonatomic, assign, readonly) NSInteger descender;
-@property (nonatomic, strong, readonly, nonnull) NSString *postscriptFontName;
+@property (nonatomic, strong, readonly, nonnull) NSString *postscriptName;
 
 #pragma mark Glyphs
 

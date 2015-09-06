@@ -222,7 +222,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="98" y="196" width="81" height="17"/>
+                            <rect key="frame" x="111" y="196" width="81" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name" id="p4l-1c-YpC">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -243,7 +243,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="98" y="175" width="73" height="17"/>
+                            <rect key="frame" x="111" y="175" width="73" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name" id="gZs-gj-10W">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -255,24 +255,24 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="154" width="94" height="17"/>
+                            <rect key="frame" x="0.0" y="154" width="107" height="17"/>
                             <animations/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Proposed Size:" id="A5R-Zz-lbC">
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name:" id="A5R-Zz-lbC">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="98" y="154" width="90" height="17"/>
+                            <rect key="frame" x="111" y="154" width="103" height="17"/>
                             <animations/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Proposed Size" id="fUI-xh-T6V">
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name" id="fUI-xh-T6V">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.typeface.proposedSize" id="fRu-XY-qca"/>
+                                <binding destination="-2" name="value" keyPath="self.typeface.postscriptName" id="oC7-OO-onz"/>
                             </connections>
                         </textField>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="npS-hh-VDh">
@@ -343,7 +343,7 @@
                 <constraint firstItem="Krq-UN-elN" firstAttribute="leading" secondItem="iH7-Cb-6Xa" secondAttribute="trailing" id="uE3-zR-qqE"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="417" y="363.5"/>
+            <point key="canvasLocation" x="41" y="363.5"/>
         </customView>
     </objects>
     <resources>

@@ -110,7 +110,7 @@
 
 - (IBAction)exportFont:(id)sender {
   NSSavePanel *panel = [NSSavePanel savePanel];
-  panel.nameFieldStringValue = [_typeface.postscriptFontName
+  panel.nameFieldStringValue = [_typeface.postscriptName
       stringByAppendingPathExtension:@"otf"];
   [panel beginSheetModalForWindow:self.window
                 completionHandler:^(NSInteger result) {
