@@ -172,11 +172,11 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (void)toggleInverted:(id)sender {
-  self.inverted = !self.inverted;
+  self.inverted = !_inverted;
 }
 
 - (void)toggleOutlined:(id)sender {
-  self.outlined = !self.outlined;
+  self.outlined = !_outlined;
 }
 
 #pragma mark Zooming

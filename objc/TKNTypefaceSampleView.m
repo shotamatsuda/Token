@@ -32,10 +32,21 @@
 
 @property (nonatomic, assign) double scale;
 @property (nonatomic, strong) NSArray *lines;
+@property (nonatomic, assign) CGAffineTransform transform;
 
+- (void)drawLine:(NSArray *)glyphNames
+        position:(CGPoint)position
+       dirtyRect:(CGRect)dirtyRect;
+- (void)drawGlyph:(NSString *)glyphName
+         position:(CGPoint)position
+        dirtyRect:(CGRect)dirtyRect;
+- (void)drawSolidGlyph:(NSBezierPath *)outline;
+- (void)drawOutlineGlyph:(NSBezierPath *)outline;
+
+#pragma mark Resizing
+
+- (void)resizeToFitLines;
 - (CGSize)sizeForLines:(NSArray *)lines;
-- (void)drawLine:(NSArray *)glyphNames position:(CGPoint)position;
-- (void)drawGlyph:(NSString *)glyphName position:(CGPoint)position;
 
 @end
 
@@ -79,14 +90,14 @@
 
 #pragma mark Drawing
 
-- (void)drawRect:(NSRect)rect {
-  NSAssert([self.superview isKindOfClass:[NSClipView class]], @"");
-  NSAssert([self.superview.superview isKindOfClass:[NSScrollView class]], @"");
-  CGSize size = [self sizeForLines:_lines];
-  CGRect frame = self.frame;
-  frame.size.width = ceil(size.width);
-  frame.size.height = ceil(size.height);
-  self.frame = frame;
+- (void)drawRect:(NSRect)dirtyRect {
+  [self resizeToFitLines];
+
+  // Remember this view's current transformation matrix because it's not
+  // identity matrix. We'll use this later for intersection tests.
+  _transform = CGContextGetCTM([NSGraphicsContext currentContext].CGContext);
+
+  // Background color
   [NSGraphicsContext saveGraphicsState];
   NSColor *backgroundColor;
   if (_inverted) {
@@ -95,146 +106,163 @@
     backgroundColor = [NSColor whiteColor];
   }
   [backgroundColor setFill];
-  NSRectFill(rect);
+  NSRectFill(dirtyRect);
+
+  // Move the origin to horizontal center and vertical top.
   NSAffineTransform *transform = [NSAffineTransform transform];
+  CGSize size = self.frame.size;
   [transform translateXBy:size.width / 2.0 yBy:size.height];
   [transform scaleBy:_scale];
   [transform concat];
+
+  // Draw every lines, moving down by ascender + descender per line.
   CGPoint position = CGPointZero;
   position.y -= _typeface.ascender - _typeface.descender;
   for (NSArray *line in _lines) {
-    [self drawLine:line position:position];
+    [self drawLine:line position:position dirtyRect:dirtyRect];
     position.x = 0.0;
     position.y -= _typeface.ascender - _typeface.descender;
   }
   [NSGraphicsContext restoreGraphicsState];
 }
 
-- (void)drawLine:(NSArray *)line position:(CGPoint)position {
-  CGFloat advances = 0.0;
+- (void)drawLine:(NSArray *)line
+        position:(CGPoint)position
+       dirtyRect:(CGRect)dirtyRect {
+  // Derive the sum of advances in this line for centering.
+  CGFloat lineWidth = 0.0;
   for (NSString *name in line) {
-    advances += [_typeface advanceOfGlyphForName:name];
+    lineWidth += [_typeface advanceOfGlyphForName:name];
   }
   [NSGraphicsContext saveGraphicsState];
   NSAffineTransform *transform = [NSAffineTransform transform];
-  [transform translateXBy:-advances / 2.0 yBy:0.0];
+  [transform translateXBy:-lineWidth / 2.0 yBy:0.0];
   [transform concat];
+
+  // Draw every glyphs, moving right by the advance of each glyph.
   for (NSString *name in line) {
-    [self drawGlyph:name position:position];
+    [self drawGlyph:name position:position dirtyRect:dirtyRect];
     position.x += [_typeface advanceOfGlyphForName:name];
   }
   [NSGraphicsContext restoreGraphicsState];
-  if (self.frame.size.width < position.x * _scale) {
-    CGRect frame = self.frame;
-    frame.size.width = ceil(position.x * _scale);
-    self.frame = frame;
-  }
 }
 
-- (void)drawGlyph:(NSString *)name position:(CGPoint)position {
+- (void)drawGlyph:(NSString *)name
+         position:(CGPoint)position
+        dirtyRect:(CGRect)dirtyRect {
   [NSGraphicsContext saveGraphicsState];
   NSAffineTransform *transform = [NSAffineTransform transform];
   [transform translateXBy:position.x yBy:position.y];
   [transform concat];
-  if (_outlined) {
-    NSBezierPath *path = [_typeface glyphOutlineForName:name];
-    NSBezierPath *outline = [NSBezierPath bezierPath];
-    CGPoint points[3];
-    for (NSInteger index = 0; index < path.elementCount; ++index) {
-      NSBezierPathElement type = [path elementAtIndex:index
-                                     associatedPoints:points];
-      switch (type) {
-        case NSMoveToBezierPathElement:
-          [outline moveToPoint:points[0]];
-          break;
-        case NSLineToBezierPathElement:
-          [outline lineToPoint:points[0]];
-          break;
-        case NSCurveToBezierPathElement:
-          [outline curveToPoint:points[2]
-                  controlPoint1:points[0]
-                  controlPoint2:points[1]];
-          break;
-        case NSClosePathBezierPathElement:
-          [outline closePath];
-          break;
-        default:
-          break;
-      }
-    }
-    [[NSColor grayColor] set];
-    NSScrollView *scrollView = (NSScrollView *)self.superview.superview;
-    CGFloat scale = 1.0 / (_scale * scrollView.magnification);
-    outline.lineWidth = scale;
-    [outline stroke];
-    [[[NSColor grayColor] colorWithAlphaComponent:0.5] setStroke];
-    CGSize anchorSize = CGSizeMake(3.0 * scale, 3.0 * scale);
-    CGPoint previous[3];
-    CGPoint current[3];
-    for (NSInteger index = 0; index < path.elementCount; ++index) {
-      NSBezierPathElement previousType =
-          [path elementAtIndex:index
-              associatedPoints:previous];
-      NSBezierPathElement currentType =
-          [path elementAtIndex:(index + 1) % path.elementCount
-              associatedPoints:current];
-      switch (currentType) {
-        case NSLineToBezierPathElement:
-        case NSMoveToBezierPathElement:
-          NSRectFill(CGRectMake(
-              current[0].x - anchorSize.width / 2.0,
-              current[0].y - anchorSize.height / 2.0,
-              anchorSize.width,
-              anchorSize.height));
-          break;
-        case NSCurveToBezierPathElement: {
-          NSRectFill(CGRectMake(
-              current[2].x - anchorSize.width / 2.0,
-              current[2].y - anchorSize.height / 2.0,
-              anchorSize.width,
-              anchorSize.height));
-          NSBezierPath *path;
-          path = [NSBezierPath bezierPath];
-          if (previousType == NSCurveToBezierPathElement) {
-            [path moveToPoint:previous[2]];
-          } else {
-            [path moveToPoint:previous[0]];
-          }
-          [path lineToPoint:current[0]];
-          path.lineWidth = scale;
-          [path stroke];
-          path = [NSBezierPath bezierPath];
-          [path moveToPoint:current[1]];
-          [path lineToPoint:current[2]];
-          path.lineWidth = scale;
-          [path stroke];
-          NSRectFill(CGRectMake(
-              current[0].x - anchorSize.width / 2.0,
-              current[0].y - anchorSize.height / 2.0,
-              anchorSize.width,
-              anchorSize.height));
-          NSRectFill(CGRectMake(
-              current[1].x - anchorSize.width / 2.0,
-              current[1].y - anchorSize.height / 2.0,
-              anchorSize.width,
-              anchorSize.height));
-          break;
-        }
-        default:
-          break;
-      }
-    }
-  } else {
-    NSColor *foregroundColor;
-    if (_inverted) {
-      foregroundColor = [NSColor whiteColor];
+
+  // Intersection test with a dirty rect and the bounds of this glyph outline.
+  NSBezierPath *outline = [_typeface glyphOutlineForName:name];
+  CGContextRef context = [NSGraphicsContext currentContext].CGContext;
+  CGAffineTransform currentTransform = CGContextGetCTM(context);
+  CGRect rect1 = CGRectApplyAffineTransform(dirtyRect, _transform);
+  CGRect rect2 = CGRectApplyAffineTransform(outline.bounds, currentTransform);
+  if (CGRectIntersectsRect(rect1, rect2)) {
+    if (_outlined) {
+      [self drawOutlineGlyph:outline];
     } else {
-      foregroundColor = [NSColor blackColor];
+      [self drawSolidGlyph:outline];
     }
-    [foregroundColor setFill];
-    [[_typeface glyphOutlineForName:name] fill];
   }
   [NSGraphicsContext restoreGraphicsState];
+}
+
+- (void)drawSolidGlyph:(NSBezierPath *)outline {
+  NSColor *foregroundColor;
+  if (_inverted) {
+    foregroundColor = [NSColor whiteColor];
+  } else {
+    foregroundColor = [NSColor blackColor];
+  }
+  [foregroundColor setFill];
+  [outline fill];
+}
+
+- (void)drawOutlineGlyph:(NSBezierPath *)outline {
+  // Scale line width by inverse of scroll view's magnification to get
+  // consistent line width.
+  NSAssert([self.superview.superview isKindOfClass:[NSScrollView class]], @"");
+  NSScrollView *scrollView = (NSScrollView *)self.superview.superview;
+  CGFloat scale = 1.0 / (_scale * scrollView.magnification);
+  outline.lineWidth = scale;
+
+  // Outline
+  [[NSColor grayColor] setStroke];
+  [outline stroke];
+
+  // Control lines and points
+  [[[NSColor grayColor] colorWithAlphaComponent:0.5] setStroke];
+  [[NSColor grayColor] setFill];
+  CGSize anchorSize = CGSizeMake(3.0 * scale, 3.0 * scale);
+  CGPoint previous[3];
+  CGPoint current[3];
+  for (NSInteger index = 0; index < outline.elementCount; ++index) {
+    NSBezierPathElement previousType =
+        [outline elementAtIndex:index
+               associatedPoints:previous];
+    NSBezierPathElement currentType =
+        [outline elementAtIndex:(index + 1) % outline.elementCount
+               associatedPoints:current];
+    switch (currentType) {
+      case NSLineToBezierPathElement:
+      case NSMoveToBezierPathElement:
+        NSRectFill(CGRectMake(
+            current[0].x - anchorSize.width / 2.0,
+            current[0].y - anchorSize.height / 2.0,
+            anchorSize.width,
+            anchorSize.height));
+        break;
+      case NSCurveToBezierPathElement: {
+        NSRectFill(CGRectMake(
+            current[2].x - anchorSize.width / 2.0,
+            current[2].y - anchorSize.height / 2.0,
+            anchorSize.width,
+            anchorSize.height));
+        NSBezierPath *path;
+        path = [NSBezierPath bezierPath];
+        if (previousType == NSCurveToBezierPathElement) {
+          [path moveToPoint:previous[2]];
+        } else {
+          [path moveToPoint:previous[0]];
+        }
+        [path lineToPoint:current[0]];
+        path.lineWidth = scale;
+        [path stroke];
+        path = [NSBezierPath bezierPath];
+        [path moveToPoint:current[1]];
+        [path lineToPoint:current[2]];
+        path.lineWidth = scale;
+        [path stroke];
+        NSRectFill(CGRectMake(
+            current[0].x - anchorSize.width / 2.0,
+            current[0].y - anchorSize.height / 2.0,
+            anchorSize.width,
+            anchorSize.height));
+        NSRectFill(CGRectMake(
+            current[1].x - anchorSize.width / 2.0,
+            current[1].y - anchorSize.height / 2.0,
+            anchorSize.width,
+            anchorSize.height));
+        break;
+      }
+      default:
+        break;
+    }
+  }
+}
+
+#pragma mark Resizing
+
+- (void)resizeToFitLines {
+  CGSize size = [self sizeForLines:_lines];
+  CGRect frame = self.frame;
+  frame.size.width = ceil(size.width);
+  frame.size.height = ceil(size.height);
+  self.frame = frame;
 }
 
 - (CGSize)sizeForLines:(NSArray *)lines {
