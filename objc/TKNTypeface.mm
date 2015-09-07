@@ -319,6 +319,13 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   }
 }
 
+- (void)setCapHeightEqualsUnitsPerEM:(BOOL)capHeightEqualsUnitsPerEM {
+  if (capHeightEqualsUnitsPerEM != _capHeightEqualsUnitsPerEM) {
+    _capHeightEqualsUnitsPerEM = capHeightEqualsUnitsPerEM;
+    [self parameterDidChange];
+  }
+}
+
 - (void)setCapHeightUnit:(TKNTypefaceUnit)capHeightUnit {
   if (capHeightUnit != _capHeightUnit) {
     TKNTypefaceUnit oldValue = _capHeightUnit;
@@ -426,8 +433,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   const auto typoCapHeight = _fontInfo.cap_height;
   const auto scale = (typoCapHeight - strokeWidth) / typoCapHeight;
   const takram::Vec2d center(glyph.advance->width / 2.0, typoCapHeight / 2.0);
-  auto stroked = outline;
-  for (auto& command : stroked.shape()) {
+  auto scaledOutline = outline;
+  for (auto& command : scaledOutline.shape()) {
     command.point() = center + (command.point() - center) * scale;
     command.control1() = center + (command.control1() - center) * scale;
     command.control2() = center + (command.control2() - center) * scale;
@@ -445,7 +452,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
        shift < kTKNTypefaceStrokingRetryShiftLimit;
        shift += kTKNTypefaceStrokingRetryShift) {
     stroker.set_width(strokeWidth + shift);
-    shape = stroker.stroke(stroked);
+    shape = stroker.stroke(scaledOutline);
     shape = stroker.simplify(shape);
     if (shape.size() == glyph.lib->number_of_contours) {
       success = true;
