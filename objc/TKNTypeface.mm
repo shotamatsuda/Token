@@ -176,7 +176,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
           beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
           completionHandler:nil];
     }
-  };
+  }
   NSString *directory = path.stringByDeletingLastPathComponent;
   if (![fileManager fileExistsAtPath:directory]) {
     if (![fileManager createDirectoryAtPath:directory
@@ -187,7 +187,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
           beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
           completionHandler:nil];
     }
-  };
+  }
   if (![fileManager copyItemAtPath:otfPath toPath:path error:&error]) {
     [[NSAlert alertWithError:error]
         beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
@@ -213,12 +213,12 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     [[NSAlert alertWithError:error]
         beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
         completionHandler:nil];
-  };
+  }
   if (![fileManager copyItemAtPath:_path toPath:ufoPath error:&error]) {
     [[NSAlert alertWithError:error]
         beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
         completionHandler:nil];
-  };
+  }
   return ufoPath;
 }
 

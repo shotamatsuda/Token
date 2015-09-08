@@ -15,11 +15,36 @@
 		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
 		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
+		9368398D1B9E7B4400E21EF7 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
+		9368398F1B9E7B6500E21EF7 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
+		936839901B9E7B6500E21EF7 /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
+		936839911B9E7B6500E21EF7 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
+		936839921B9E7B6500E21EF7 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
+		936839931B9E7B6500E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043E51B93F47300DAC200 /* guideline.cc */; };
+		936839941B9E7B6500E21EF7 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
+		936839951B9E7B6500E21EF7 /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
+		936839961B9E7B6500E21EF7 /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
+		936839971B9E7B6500E21EF7 /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
+		936839981B9E7B6500E21EF7 /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
+		936839991B9E7B6500E21EF7 /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
+		9368399A1B9E7B6500E21EF7 /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
+		9368399B1B9E7B6500E21EF7 /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
+		9368399C1B9E7B6500E21EF7 /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
+		9368399D1B9E7B6500E21EF7 /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
+		9368399E1B9E7B6500E21EF7 /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
+		9368399F1B9E7B6500E21EF7 /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
+		936839A01B9E7B6500E21EF7 /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
+		936839A11B9E7B6500E21EF7 /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
+		936839A21B9E7B6500E21EF7 /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
+		936839A31B9E7B6500E21EF7 /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
+		936839A41B9E7B6500E21EF7 /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
+		936839A51B9E7B6500E21EF7 /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
 		93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B311B9856BA0077B273 /* TKNCenteredClipView.m */; };
 		93714B351B991FB40077B273 /* TKNPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B341B991FB40077B273 /* TKNPopUpButtonCell.m */; };
 		93714B381B9930EC0077B273 /* TKNNumericTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B371B9930EC0077B273 /* TKNNumericTextField.m */; };
 		93714B3E1B99403F0077B273 /* TKNControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B3D1B99403F0077B273 /* TKNControlView.m */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
+		9375FA551B9DDCD900559480 /* scaler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9375FA541B9DDCD900559480 /* scaler.mm */; };
 		9381EE581B91B20000807B1B /* TKNApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */; };
 		9383794C1B962D47003E6893 /* TKNTypeface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9383794B1B962D47003E6893 /* TKNTypeface.mm */; };
 		9390CB841B9523AF0088153C /* TKNDefaultRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CB811B9523AF0088153C /* TKNDefaultRoundedButtonCell.m */; };
@@ -104,6 +129,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
 			remoteInfo = graphics_static;
+		};
+		936839791B9E7B3B00E21EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = graphics_static;
+		};
+		936839A61B9E8D4300E21EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93FEF9461AD97263009D0646 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C257E21B9DDC7A00134399;
+			remoteInfo = scaler;
 		};
 		9390CB9B1B952F2A0088153C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -206,6 +245,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		93C257E11B9DDC7A00134399 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		93EBABCB1AD980EE00BF8959 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +312,7 @@
 		93714B3D1B99403F0077B273 /* TKNControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNControlView.m; sourceTree = "<group>"; };
 		93714B491B996C7E0077B273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		93714B5F1B996EA70077B273 /* lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib.cc; sourceTree = "<group>"; };
+		9375FA541B9DDCD900559480 /* scaler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = scaler.mm; path = objc/scaler.mm; sourceTree = SOURCE_ROOT; };
 		9381EE561B91B20000807B1B /* TKNApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNApplicationDelegate.h; sourceTree = "<group>"; };
 		9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNApplicationDelegate.m; sourceTree = "<group>"; };
 		9383794A1B962D47003E6893 /* TKNTypeface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypeface.h; sourceTree = "<group>"; };
@@ -331,6 +380,7 @@
 		93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNZoomOut.pdf; sourceTree = "<group>"; };
 		93C257C31B9C96D900134399 /* TKNInvert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNInvert.pdf; sourceTree = "<group>"; };
 		93C257C51B9C99F700134399 /* TKNOutline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNOutline.pdf; sourceTree = "<group>"; };
+		93C257E31B9DDC7A00134399 /* scaler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scaler; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C771A51B95482100914AD9 /* TKNTypefaceSampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypefaceSampleView.h; sourceTree = "<group>"; };
 		93C771A61B95482100914AD9 /* TKNTypefaceSampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceSampleView.m; sourceTree = "<group>"; };
 		93D268511B95491D008AB659 /* TKNSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNSettingsViewController.h; sourceTree = "<group>"; };
@@ -349,6 +399,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		93C257E01B9DDC7A00134399 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9368398D1B9E7B4400E21EF7 /* libtakram_graphics.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93FEF94B1AD97263009D0646 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,6 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				93B7635E1B91B332009CA8B0 /* main.m */,
+				9375FA541B9DDCD900559480 /* scaler.mm */,
 				93AB947B1B91B1600038DCB4 /* MainMenu.xib */,
 				9381EE561B91B20000807B1B /* TKNApplicationDelegate.h */,
 				9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */,
@@ -587,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				93FEF94E1AD97263009D0646 /* Token.app */,
+				93C257E31B9DDC7A00134399 /* scaler */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -622,6 +682,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		93C257E21B9DDC7A00134399 /* scaler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93C257FB1B9DDC7A00134399 /* Build configuration list for PBXNativeTarget "scaler" */;
+			buildPhases = (
+				93C257DF1B9DDC7A00134399 /* Sources */,
+				93C257E01B9DDC7A00134399 /* Frameworks */,
+				93C257E11B9DDC7A00134399 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9368397A1B9E7B3B00E21EF7 /* PBXTargetDependency */,
+			);
+			name = scaler;
+			productName = scale_cap_height_to_units_per_em;
+			productReference = 93C257E31B9DDC7A00134399 /* scaler */;
+			productType = "com.apple.product-type.tool";
+		};
 		93FEF94D1AD97263009D0646 /* Token */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93FEF96B1AD97263009D0646 /* Build configuration list for PBXNativeTarget "Token" */;
@@ -635,6 +713,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				936839A71B9E8D4300E21EF7 /* PBXTargetDependency */,
 				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
 				9390CBA61B952F6C0088153C /* PBXTargetDependency */,
 			);
@@ -652,6 +731,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "takram design engineering";
 				TargetAttributes = {
+					93C257E21B9DDC7A00134399 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -689,6 +771,7 @@
 			projectRoot = "";
 			targets = (
 				93FEF94D1AD97263009D0646 /* Token */,
+				93C257E21B9DDC7A00134399 /* scaler */,
 			);
 		};
 /* End PBXProject section */
@@ -849,11 +932,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/scaled.ufo\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		93C257DF1B9DDC7A00134399 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9368399B1B9E7B6500E21EF7 /* text.cc in Sources */,
+				936839911B9E7B6500E21EF7 /* glyphs.cc in Sources */,
+				936839941B9E7B6500E21EF7 /* lib.cc in Sources */,
+				9375FA551B9DDCD900559480 /* scaler.mm in Sources */,
+				936839991B9E7B6500E21EF7 /* credit.cc in Sources */,
+				936839971B9E7B6500E21EF7 /* unique_id.cc in Sources */,
+				9368399C1B9E7B6500E21EF7 /* description.cc in Sources */,
+				936839961B9E7B6500E21EF7 /* name_record.cc in Sources */,
+				936839A51B9E7B6500E21EF7 /* property_list.cc in Sources */,
+				9368399F1B9E7B6500E21EF7 /* trademark.cc in Sources */,
+				9368399A1B9E7B6500E21EF7 /* credits.cc in Sources */,
+				936839921B9E7B6500E21EF7 /* glyph.cc in Sources */,
+				936839A11B9E7B6500E21EF7 /* extension_name.cc in Sources */,
+				9368399D1B9E7B6500E21EF7 /* license.cc in Sources */,
+				936839981B9E7B6500E21EF7 /* vendor.cc in Sources */,
+				936839951B9E7B6500E21EF7 /* gasp_range_record.cc in Sources */,
+				936839A01B9E7B6500E21EF7 /* licensee.cc in Sources */,
+				936839A21B9E7B6500E21EF7 /* extension_value.cc in Sources */,
+				936839A31B9E7B6500E21EF7 /* extension_item.cc in Sources */,
+				936839901B9E7B6500E21EF7 /* font_info.cc in Sources */,
+				936839931B9E7B6500E21EF7 /* guideline.cc in Sources */,
+				936839A41B9E7B6500E21EF7 /* extension.cc in Sources */,
+				9368398F1B9E7B6500E21EF7 /* glyph_outline.cc in Sources */,
+				9368399E1B9E7B6500E21EF7 /* copyright.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93FEF94A1AD97263009D0646 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -914,6 +1028,16 @@
 			name = graphics_static;
 			targetProxy = 93563AC81B6744C1004C47E4 /* PBXContainerItemProxy */;
 		};
+		9368397A1B9E7B3B00E21EF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = graphics_static;
+			targetProxy = 936839791B9E7B3B00E21EF7 /* PBXContainerItemProxy */;
+		};
+		936839A71B9E8D4300E21EF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93C257E21B9DDC7A00134399 /* scaler */;
+			targetProxy = 936839A61B9E8D4300E21EF7 /* PBXContainerItemProxy */;
+		};
 		9390CBA61B952F6C0088153C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Sparkle;
@@ -922,6 +1046,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		93C257E71B9DDC7A00134399 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		93C257E81B9DDC7A00134399 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		93FEF9691AD97263009D0646 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93F859271B575DCC00C32E8D /* project_debug.xcconfig */;
@@ -951,11 +1095,7 @@
 				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = config/osx.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					OpenGL,
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 			};
@@ -969,11 +1109,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				INFOPLIST_FILE = config/osx.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					OpenGL,
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 			};
@@ -982,6 +1118,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		93C257FB1B9DDC7A00134399 /* Build configuration list for PBXNativeTarget "scaler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93C257E71B9DDC7A00134399 /* Debug */,
+				93C257E81B9DDC7A00134399 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		93FEF9491AD97263009D0646 /* Build configuration list for PBXProject "Token" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

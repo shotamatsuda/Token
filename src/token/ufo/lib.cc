@@ -50,8 +50,10 @@ Lib Lib::read(const boost::property_tree::ptree& tree) {
 }
 
 boost::property_tree::ptree Lib::ptree() const {
-  // TODO(shotamatsuda): Implementation
-  return boost::property_tree::ptree();
+  boost::property_tree::ptree tree;
+  tree.put("key", "com.takram.numberOfContours");
+  tree.put("integer", number_of_contours);
+  return std::move(tree);
 }
 
 PropertyList Lib::convertToPropertyList(
