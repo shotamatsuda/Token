@@ -36,22 +36,22 @@
 
 namespace {
 
-template <class T>
-inline void round(T *value) {
-  *value = std::round(*value);
+template <class T, class U>
+inline void write(T *value, U scale) {
+  *value = std::round(*value * scale);
 }
 
-template <class T>
-inline void round(token::ufo::Optional<T> *value) {
+template <class T, class U>
+inline void write(token::ufo::Optional<T> *value, U scale) {
   if (value->exists()) {
-    *value = std::round(**value);
+    *value = std::round(**value * scale);
   }
 }
 
-template <class T>
-inline void round(std::vector<T> *values) {
+template <class T, class U>
+inline void write(std::vector<T> *values, U scale) {
   for (auto& value : *values) {
-    round(&value);
+    write(&value, scale);
   }
 }
 
@@ -68,8 +68,8 @@ static void scaleCapHeightToUnitsPerEM(const std::string& path) {
   // recommended to be units per em, the goal here is to make font size to
   // match cap height. Both ascender and descender will exceed em box.
   const auto ascender = std::ceil(info.ascender * scale);
-  const auto cap_height = std::ceil(info.cap_height * scale);
-  const auto x_height = std::ceil(info.x_height * scale);
+  const auto cap_height = std::round(info.cap_height * scale);
+  const auto x_height = std::round(info.x_height * scale);
   const auto descender = std::floor(info.descender * scale);
   const auto line_gap = std::ceil(info.open_type_hhea_line_gap * scale);
 
@@ -90,33 +90,33 @@ static void scaleCapHeightToUnitsPerEM(const std::string& path) {
   info.open_type_os2_typo_line_gap = line_gap;
   info.open_type_os2_win_ascent = ascender;
   info.open_type_os2_win_descent = -descender;
-  round(&info.open_type_os2_subscript_x_size);
-  round(&info.open_type_os2_subscript_y_size);
-  round(&info.open_type_os2_subscript_x_offset);
-  round(&info.open_type_os2_subscript_y_offset);
-  round(&info.open_type_os2_superscript_x_size);
-  round(&info.open_type_os2_superscript_y_size);
-  round(&info.open_type_os2_superscript_x_offset);
-  round(&info.open_type_os2_superscript_y_offset);
-  round(&info.open_type_os2_strikeout_size);
-  round(&info.open_type_os2_strikeout_position);
+  write(&info.open_type_os2_subscript_x_size, scale);
+  write(&info.open_type_os2_subscript_y_size, scale);
+  write(&info.open_type_os2_subscript_x_offset, scale);
+  write(&info.open_type_os2_subscript_y_offset, scale);
+  write(&info.open_type_os2_superscript_x_size, scale);
+  write(&info.open_type_os2_superscript_y_size, scale);
+  write(&info.open_type_os2_superscript_x_offset, scale);
+  write(&info.open_type_os2_superscript_y_offset, scale);
+  write(&info.open_type_os2_strikeout_size, scale);
+  write(&info.open_type_os2_strikeout_position, scale);
 
   // OpenType vhea Table Fields
-  round(&info.open_type_vhea_vert_typo_ascender);
-  round(&info.open_type_vhea_vert_typo_descender);
-  round(&info.open_type_vhea_vert_typo_line_gap);
+  write(&info.open_type_vhea_vert_typo_ascender, scale);
+  write(&info.open_type_vhea_vert_typo_descender, scale);
+  write(&info.open_type_vhea_vert_typo_line_gap, scale);
 
   // PostScript Specific Data
-  round(&info.postscript_underline_thickness);
-  round(&info.postscript_underline_position);
-  round(&info.postscript_blue_values);
-  round(&info.postscript_other_blues);
-  round(&info.postscript_family_blues);
-  round(&info.postscript_family_other_blues);
-  round(&info.postscript_stem_snap_h);
-  round(&info.postscript_stem_snap_v);
-  round(&info.postscript_default_width_x);
-  round(&info.postscript_nominal_width_x);
+  write(&info.postscript_underline_thickness, scale);
+  write(&info.postscript_underline_position, scale);
+  write(&info.postscript_blue_values, scale);
+  write(&info.postscript_other_blues, scale);
+  write(&info.postscript_family_blues, scale);
+  write(&info.postscript_family_other_blues, scale);
+  write(&info.postscript_stem_snap_h, scale);
+  write(&info.postscript_stem_snap_v, scale);
+  write(&info.postscript_default_width_x, scale);
+  write(&info.postscript_nominal_width_x, scale);
   info.save(path);
 
   // Glyphs

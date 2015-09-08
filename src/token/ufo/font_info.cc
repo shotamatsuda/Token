@@ -278,17 +278,17 @@ void FontInfo::readOpenTypeOS2TableFields(const PropertyList& plist) {
 }
 
 void FontInfo::readOpenTypeVHEATableFields(const PropertyList& plist) {
-  plist::read_number(plist, "openTypeHheaAscender",
+  plist::read_number(plist, "openTypeVheaVertTypoAscender",
                      &open_type_vhea_vert_typo_ascender);
-  plist::read_number(plist, "openTypeHheaDescender",
+  plist::read_number(plist, "openTypeVheaVertTypoDescender",
                      &open_type_vhea_vert_typo_descender);
-  plist::read_number(plist, "openTypeHheaLineGap",
+  plist::read_number(plist, "openTypeVheaVertTypoLineGap",
                      &open_type_vhea_vert_typo_line_gap);
-  plist::read_number(plist, "openTypeHheaCaretSlopeRise",
+  plist::read_number(plist, "openTypeVheaCaretSlopeRise",
                      &open_type_vhea_caret_slope_rise);
-  plist::read_number(plist, "openTypeHheaCaretSlopeRun",
+  plist::read_number(plist, "openTypeVheaCaretSlopeRun",
                      &open_type_vhea_caret_slope_run);
-  plist::read_number(plist, "openTypeHheaCaretOffset",
+  plist::read_number(plist, "openTypeVheaCaretOffset",
                      &open_type_vhea_caret_offset);
 }
 
@@ -517,17 +517,17 @@ void FontInfo::writeOpenTypeOS2TableFields(const PropertyList& plist) const {
 }
 
 void FontInfo::writeOpenTypeVHEATableFields(const PropertyList& plist) const {
-  plist::write_number(plist, "openTypeHheaAscender",
+  plist::write_number(plist, "openTypeVheaVertTypoAscender",
                       open_type_vhea_vert_typo_ascender);
-  plist::write_number(plist, "openTypeHheaDescender",
+  plist::write_number(plist, "openTypeVheaVertTypoDescender",
                       open_type_vhea_vert_typo_descender);
-  plist::write_number(plist, "openTypeHheaLineGap",
+  plist::write_number(plist, "openTypeVheaVertTypoLineGap",
                       open_type_vhea_vert_typo_line_gap);
-  plist::write_number(plist, "openTypeHheaCaretSlopeRise",
+  plist::write_number(plist, "openTypeVheaCaretSlopeRise",
                       open_type_vhea_caret_slope_rise);
-  plist::write_number(plist, "openTypeHheaCaretSlopeRun",
+  plist::write_number(plist, "openTypeVheaCaretSlopeRun",
                       open_type_vhea_caret_slope_run);
-  plist::write_number(plist, "openTypeHheaCaretOffset",
+  plist::write_number(plist, "openTypeVheaCaretOffset",
                       open_type_vhea_caret_offset);
 }
 

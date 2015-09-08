@@ -272,7 +272,8 @@
 
 - (CGSize)sizeForLines:(NSArray *)lines {
   CGSize size = CGSizeZero;
-  size.height = _typeface.unitsPerEM * lines.count - _typeface.descender;
+  double lineHeight = _typeface.ascender - _typeface.descender;
+  size.height = lineHeight * lines.count - _typeface.descender;
   CGFloat width;
   for (NSArray *line in lines) {
     width = 0.0;

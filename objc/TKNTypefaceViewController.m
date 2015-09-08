@@ -137,10 +137,15 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)setTypeface:(TKNTypeface *)typeface {
   if (typeface != _typeface) {
-    _typeface = typeface;
     NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
                           @"capHeightEqualsUnitsPerEM",
                           @"capHeightUnit", @"strokeWidthUnit"];
+    for (NSString *keyPath in keyPaths) {
+      [_typeface removeObserver:self
+                     forKeyPath:keyPath
+                        context:&TKNTypefaceViewControllerKVOContext];
+    }
+    _typeface = typeface;
     for (NSString *keyPath in keyPaths) {
       [_typeface addObserver:self
                   forKeyPath:keyPath
