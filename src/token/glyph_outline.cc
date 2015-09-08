@@ -33,9 +33,8 @@
 
 #include "takram/graphics.h"
 #include "token/glyph_stroker.h"
-#include "token/ufo/contour.h"
+#include "token/ufo/glif.h"
 #include "token/ufo/glyph.h"
-#include "token/ufo/point.h"
 
 namespace token {
 
@@ -66,22 +65,22 @@ ufo::Glyph GlyphOutline::glyph(const ufo::Glyph& prototype) const {
   return std::move(result);
 }
 
-void GlyphOutline::processContour(const ufo::Contour& contour) {
+void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
   const auto begin = std::begin(contour.points);
   const auto end = std::end(contour.points);
   assert(begin != end);
   auto itr = begin;
 
   // When a contour starts with a move point, it signifies an open contour.
-  const bool open = (itr->type == ufo::Point::Type::MOVE);
+  const bool open = (itr->type == ufo::glif::Point::Type::MOVE);
   auto close = begin;
   auto offcurve1 = end;
   auto offcurve2 = end;
-  if (itr->type == ufo::Point::Type::MOVE) {
+  if (itr->type == ufo::glif::Point::Type::MOVE) {
     shape_.moveTo(itr->x, itr->y);
     ++itr;
   } else {
-    while (itr->type == ufo::Point::Type::OFFCURVE && itr != end) {
+    while (itr->type == ufo::glif::Point::Type::OFFCURVE && itr != end) {
       ++itr;
     }
     if (itr != end) {
@@ -97,14 +96,14 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
       itr = begin;
     }
     switch (itr->type) {
-      case ufo::Point::Type::MOVE:
+      case ufo::glif::Point::Type::MOVE:
         assert(false);  // A move point must appear the first
         break;
-      case ufo::Point::Type::LINE:
+      case ufo::glif::Point::Type::LINE:
         shape_.lineTo(itr->x, itr->y);
         offcurve1 = offcurve2 = end;
         break;
-      case ufo::Point::Type::OFFCURVE:
+      case ufo::glif::Point::Type::OFFCURVE:
         if (offcurve1 == end) {
           offcurve1 = itr;
         } else if (offcurve2 == end) {
@@ -113,7 +112,7 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
           assert(false);
         }
         break;
-      case ufo::Point::Type::CURVE:
+      case ufo::glif::Point::Type::CURVE:
         if (offcurve1 == end) {
           shape_.lineTo(itr->x, itr->y);
         } else if (offcurve2 == end) {
@@ -125,7 +124,7 @@ void GlyphOutline::processContour(const ufo::Contour& contour) {
         }
         offcurve1 = offcurve2 = end;
         break;
-      case ufo::Point::Type::QCURVE:
+      case ufo::glif::Point::Type::QCURVE:
         assert(false);  // Not supported
         break;
       default:
@@ -153,18 +152,18 @@ void GlyphOutline::processPath(const takram::Path2d& path,
                                ufo::Glyph *glyph) const {
   assert(!path.empty());
   assert(glyph);
-  std::deque<ufo::Point> points;
+  std::deque<ufo::glif::Point> points;
   for (const auto& command : path) {
     switch (command.type()) {
       case takram::graphics::CommandType::MOVE:
         points.emplace_back(command.point().x,
                             command.point().y,
-                            ufo::Point::Type::MOVE);
+                            ufo::glif::Point::Type::MOVE);
         break;
       case takram::graphics::CommandType::LINE:
         points.emplace_back(command.point().x,
                             command.point().y,
-                            ufo::Point::Type::LINE);
+                            ufo::glif::Point::Type::LINE);
         break;
       case takram::graphics::CommandType::QUADRATIC:
         assert(false);  // Not supported
@@ -179,7 +178,7 @@ void GlyphOutline::processPath(const takram::Path2d& path,
                             command.control2().y);
         points.emplace_back(command.point().x,
                             command.point().y,
-                            ufo::Point::Type::CURVE);
+                            ufo::glif::Point::Type::CURVE);
         break;
       case takram::graphics::CommandType::CLOSE:
         break;  // We'll check this later

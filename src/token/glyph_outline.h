@@ -35,7 +35,7 @@
 #include "takram/graphics.h"
 #include "takram/math.h"
 #include "token/glyph_stroker.h"
-#include "token/ufo/contour.h"
+#include "token/ufo/glif.h"
 #include "token/ufo/glyph.h"
 
 namespace token {
@@ -58,7 +58,7 @@ class GlyphOutline final {
   ufo::Glyph glyph(const ufo::Glyph& prototype) const;
 
  private:
-  void processContour(const ufo::Contour& contour);
+  void processContour(const ufo::glif::Contour& contour);
   void processPath(const takram::Path2d& path, ufo::Glyph *glyph) const;
 
  public:

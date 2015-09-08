@@ -1,5 +1,5 @@
 //
-//  token/ufo/lib.cc
+//  token/ufo/glif/lib.cc
 //
 //  The MIT License
 //
@@ -24,7 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/ufo/lib.h"
+#include "token/ufo/glif/lib.h"
 
 #include <string>
 #include <sstream>
@@ -38,6 +38,7 @@
 
 namespace token {
 namespace ufo {
+namespace glif {
 
 #pragma mark Property tree
 
@@ -84,5 +85,6 @@ PropertyList Lib::convertToPropertyList(
   return PropertyList(node);
 }
 
+}  // namespace glif
 }  // namespace ufo
 }  // namespace token

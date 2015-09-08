@@ -1,5 +1,5 @@
 //
-//  token/ufo/anchor.h
+//  token/ufo/glif/anchor.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_ANCHOR_H_
-#define TOKEN_UFO_ANCHOR_H_
+#ifndef TOKEN_UFO_GLIF_ANCHOR_H_
+#define TOKEN_UFO_GLIF_ANCHOR_H_
 
 #include <string>
 #include <utility>
@@ -37,6 +37,7 @@
 
 namespace token {
 namespace ufo {
+namespace glif {
 
 class Anchor final {
  public:
@@ -116,7 +117,8 @@ inline boost::property_tree::ptree Anchor::ptree() const {
   return std::move(tree);
 }
 
+}  // namespace glif
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_ANCHOR_H_
+#endif  // TOKEN_UFO_GLIF_ANCHOR_H_

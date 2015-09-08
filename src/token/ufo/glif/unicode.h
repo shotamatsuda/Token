@@ -1,5 +1,5 @@
 //
-//  token/ufo/outline.h
+//  token/ufo/glif/unicode.h
 //
 //  The MIT License
 //
@@ -25,78 +25,71 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_OUTLINE_H_
-#define TOKEN_UFO_OUTLINE_H_
+#ifndef TOKEN_UFO_GLIF_UNICODE_H_
+#define TOKEN_UFO_GLIF_UNICODE_H_
 
+#include <string>
 #include <utility>
-#include <vector>
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/component.h"
-#include "token/ufo/contour.h"
 #include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
+namespace glif {
 
-class Outline final {
+class Unicode final {
  public:
-  Outline() = default;
-  Outline(const std::vector<Component>& components,
-          const std::vector<Contour>& contours);
+  Unicode() = default;
+  explicit Unicode(const std::string& hex);
 
   // Copy semantics
-  Outline(const Outline&) = default;
-  Outline& operator=(const Outline&) = default;
+  Unicode(const Unicode&) = default;
+  Unicode& operator=(const Unicode&) = default;
 
   // Comparison
-  bool operator==(const Outline& other) const;
-  bool operator!=(const Outline& other) const;
+  bool operator==(const Unicode& other) const;
+  bool operator!=(const Unicode& other) const;
 
   // Property tree
-  static Outline read(const boost::property_tree::ptree& tree);
+  static Unicode read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
-  std::vector<Component> components;
-  std::vector<Contour> contours;
+  std::string hex;
 };
 
 #pragma mark -
 
-inline Outline::Outline(const std::vector<Component>& components,
-                        const std::vector<Contour>& contours)
-    : components(components),
-      contours(contours) {}
+inline Unicode::Unicode(const std::string& hex) : hex(hex) {}
 
 #pragma mark Comparison
 
-inline bool Outline::operator==(const Outline& other) const {
-  return (components == other.components && contours == other.contours);
+inline bool Unicode::operator==(const Unicode& other) const {
+  return hex == other.hex;
 }
 
-inline bool Outline::operator!=(const Outline& other) const {
+inline bool Unicode::operator!=(const Unicode& other) const {
   return !operator==(other);
 }
 
 #pragma mark Property tree
 
-inline Outline Outline::read(const boost::property_tree::ptree& tree) {
-  Outline result;
-  xml::read_children(tree, "component", &result.components);
-  xml::read_children(tree, "contour", &result.contours);
+inline Unicode Unicode::read(const boost::property_tree::ptree& tree) {
+  Unicode result;
+  xml::read_attr(tree, "hex", &result.hex);
   return std::move(result);
 }
 
-inline boost::property_tree::ptree Outline::ptree() const {
+inline boost::property_tree::ptree Unicode::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_children(&tree, "component", components);
-  xml::write_children(&tree, "contour", contours);
+  xml::write_attr(&tree, "hex", hex);
   return std::move(tree);
 }
 
+}  // namespace glif
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_OUTLINE_H_
+#endif  // TOKEN_UFO_GLIF_UNICODE_H_

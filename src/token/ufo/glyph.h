@@ -35,14 +35,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/advance.h"
-#include "token/ufo/anchor.h"
-#include "token/ufo/guideline.h"
-#include "token/ufo/image.h"
-#include "token/ufo/lib.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/outline.h"
-#include "token/ufo/unicode.h"
+#include "token/ufo/glif.h"
 
 namespace token {
 namespace ufo {
@@ -68,13 +61,13 @@ class Glyph final {
 
  public:
   std::string name;
-  Optional<Advance> advance;
-  std::vector<Unicode> unicodes;
-  Optional<Image> image;
-  std::vector<Guideline> guidelines;
-  std::vector<Anchor> anchors;
-  Optional<Outline> outline;
-  Optional<Lib> lib;
+  Optional<glif::Advance> advance;
+  std::vector<glif::Unicode> unicodes;
+  Optional<glif::Image> image;
+  std::vector<glif::Guideline> guidelines;
+  std::vector<glif::Anchor> anchors;
+  Optional<glif::Outline> outline;
+  Optional<glif::Lib> lib;
 };
 
 #pragma mark -

@@ -1,5 +1,5 @@
 //
-//  token/ufo/guideline.h
+//  token/ufo/glif/guideline.h
 //
 //  The MIT License
 //
@@ -25,15 +25,19 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_GUIDELINE_H_
-#define TOKEN_UFO_GUIDELINE_H_
+#ifndef TOKEN_UFO_GLIF_GUIDELINE_H_
+#define TOKEN_UFO_GLIF_GUIDELINE_H_
 
 #include <string>
+#include <utility>
 
-#include "token/ufo/property_list.h"
+#include <boost/property_tree/ptree.hpp>
+
+#include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
+namespace glif {
 
 class Guideline final {
  public:
@@ -53,9 +57,9 @@ class Guideline final {
   bool operator==(const Guideline& other) const;
   bool operator!=(const Guideline& other) const;
 
-  // Property list
-  static Guideline read(const PropertyList& plist);
-  PropertyList plist() const;
+  // Property tree
+  static Guideline read(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree ptree() const;
 
  public:
   double x;
@@ -96,7 +100,32 @@ inline bool Guideline::operator!=(const Guideline& other) const {
   return !operator==(other);
 }
 
+#pragma mark Property tree
+
+inline Guideline Guideline::read(const boost::property_tree::ptree& tree) {
+  Guideline result;
+  xml::read_attr(tree, "x", &result.x);
+  xml::read_attr(tree, "y", &result.y);
+  xml::read_attr(tree, "angle", &result.angle);
+  xml::read_attr(tree, "name", &result.name);
+  xml::read_attr(tree, "color", &result.color);
+  xml::read_attr(tree, "identifier", &result.identifier);
+  return std::move(result);
+}
+
+inline boost::property_tree::ptree Guideline::ptree() const {
+  boost::property_tree::ptree tree;
+  xml::write_attr(&tree, "x", x);
+  xml::write_attr(&tree, "y", y);
+  xml::write_attr(&tree, "angle", angle);
+  xml::write_attr(&tree, "name", name, "");
+  xml::write_attr(&tree, "color", color, "");
+  xml::write_attr(&tree, "identifier", identifier, "");
+  return std::move(tree);
+}
+
+}  // namespace glif
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_GUIDELINE_H_
+#endif  // TOKEN_UFO_GLIF_GUIDELINE_H_

@@ -1,5 +1,5 @@
 //
-//  token/ufo/contour.h
+//  token/ufo/glif/lib.h
 //
 //  The MIT License
 //
@@ -25,78 +25,64 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_CONTOUR_H_
-#define TOKEN_UFO_CONTOUR_H_
+#ifndef TOKEN_UFO_GLIF_LIB_H_
+#define TOKEN_UFO_GLIF_LIB_H_
 
-#include <string>
 #include <utility>
-#include <vector>
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "token/ufo/point.h"
+#include "token/ufo/property_list.h"
 #include "token/ufo/xml.h"
 
 namespace token {
 namespace ufo {
+namespace glif {
 
-class Contour final {
+class Lib final {
  public:
-  Contour() = default;
-  Contour(const std::string& identifier,
-          const std::vector<Point>& points);
+  Lib();
+  explicit Lib(unsigned int number_of_contours);
 
   // Copy semantics
-  Contour(const Contour&) = default;
-  Contour& operator=(const Contour&) = default;
+  Lib(const Lib&) = default;
+  Lib& operator=(const Lib&) = default;
 
   // Comparison
-  bool operator==(const Contour& other) const;
-  bool operator!=(const Contour& other) const;
+  bool operator==(const Lib& other) const;
+  bool operator!=(const Lib& other) const;
 
   // Property tree
-  static Contour read(const boost::property_tree::ptree& tree);
+  static Lib read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
+ private:
+  static PropertyList convertToPropertyList(
+      const boost::property_tree::ptree& tree);
+
  public:
-  std::string identifier;
-  std::vector<Point> points;
+  unsigned int number_of_contours;
 };
 
 #pragma mark -
 
-inline Contour::Contour(const std::string& identifier,
-                        const std::vector<Point>& points)
-    : identifier(identifier),
-      points(points) {}
+inline Lib::Lib() : number_of_contours() {}
+
+inline Lib::Lib(unsigned int number_of_contours)
+    : number_of_contours(number_of_contours) {}
 
 #pragma mark Comparison
 
-inline bool Contour::operator==(const Contour& other) const {
-  return (identifier == other.identifier && points == other.points);
+inline bool Lib::operator==(const Lib& other) const {
+  return number_of_contours == other.number_of_contours;
 }
 
-inline bool Contour::operator!=(const Contour& other) const {
+inline bool Lib::operator!=(const Lib& other) const {
   return !operator==(other);
 }
 
-#pragma mark Property tree
-
-inline Contour Contour::read(const boost::property_tree::ptree& tree) {
-  Contour result;
-  xml::read_attr(tree, "identifier", &result.identifier);
-  xml::read_children(tree, "point", &result.points);
-  return std::move(result);
-}
-
-inline boost::property_tree::ptree Contour::ptree() const {
-  boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "identifier", identifier, "");
-  xml::write_children(&tree, "point", points);
-  return std::move(tree);
-}
-
+}  // namespace glif
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_CONTOUR_H_
+#endif  // TOKEN_UFO_GLIF_LIB_H_

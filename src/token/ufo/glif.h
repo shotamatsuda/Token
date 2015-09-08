@@ -1,5 +1,5 @@
 //
-//  token/ufo.h
+//  token/ufo/glif.h
 //
 //  The MIT License
 //
@@ -25,16 +25,18 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_H_
-#define TOKEN_UFO_H_
+#ifndef TOKEN_UFO_GLIF_H_
+#define TOKEN_UFO_GLIF_H_
 
-#include "token/ufo/font_info.h"
-#include "token/ufo/glif.h"
-#include "token/ufo/glyph.h"
-#include "token/ufo/glyph_iterator.h"
-#include "token/ufo/glyphs.h"
-#include "token/ufo/optional.h"
-#include "token/ufo/woff.h"
-#include "token/ufo/xml.h"
+#include "token/ufo/glif/advance.h"
+#include "token/ufo/glif/anchor.h"
+#include "token/ufo/glif/component.h"
+#include "token/ufo/glif/contour.h"
+#include "token/ufo/glif/guideline.h"
+#include "token/ufo/glif/image.h"
+#include "token/ufo/glif/lib.h"
+#include "token/ufo/glif/outline.h"
+#include "token/ufo/glif/point.h"
+#include "token/ufo/glif/unicode.h"
 
-#endif  // TOKEN_UFO_H_
+#endif  // TOKEN_UFO_GLIF_H_

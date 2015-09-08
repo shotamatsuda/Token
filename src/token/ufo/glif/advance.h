@@ -1,5 +1,5 @@
 //
-//  token/ufo/advance.h
+//  token/ufo/glif/advance.h
 //
 //  The MIT License
 //
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TOKEN_UFO_ADVANCE_H_
-#define TOKEN_UFO_ADVANCE_H_
+#ifndef TOKEN_UFO_GLIF_ADVANCE_H_
+#define TOKEN_UFO_GLIF_ADVANCE_H_
 
 #include <utility>
 
@@ -36,6 +36,7 @@
 
 namespace token {
 namespace ufo {
+namespace glif {
 
 class Advance final {
  public:
@@ -93,7 +94,8 @@ inline boost::property_tree::ptree Advance::ptree() const {
   return std::move(tree);
 }
 
+}  // namespace glif
 }  // namespace ufo
 }  // namespace token
 
-#endif  // TOKEN_UFO_ADVANCE_H_
+#endif  // TOKEN_UFO_GLIF_ADVANCE_H_
