@@ -60,10 +60,10 @@
 
 @property (nonatomic, strong, readonly, nonnull) NSString *familyName;
 @property (nonatomic, strong, readonly, nonnull) NSString *styleName;
-@property (nonatomic, strong, readonly, nonnull) NSNumber *proposedSize;
 @property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
 @property (nonatomic, assign, readonly) NSInteger ascender;
 @property (nonatomic, assign, readonly) NSInteger descender;
+@property (nonatomic, assign, readonly) NSInteger lineGap;
 @property (nonatomic, strong, readonly, nonnull) NSString *postscriptName;
 
 #pragma mark Glyphs

@@ -51,7 +51,7 @@
   [title beginEditing];
   NSProcessInfo *processInfo = [NSProcessInfo processInfo];
   NSOperatingSystemVersion version = processInfo.operatingSystemVersion;
-  if (version.majorVersion < 10 && version.minorVersion < 11) {
+  if (version.majorVersion <= 10 && version.minorVersion < 11) {
     [title addAttribute:NSBaselineOffsetAttributeName
                   value:@2.0
                   range:range];

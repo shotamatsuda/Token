@@ -34,8 +34,10 @@
 
 - (id)transformedValue:(id)value {
   if ([value isKindOfClass:[NSNumber class]]) {
-    NSInteger percentage = round([value doubleValue] * 100.0);
-    return [NSString stringWithFormat:@"%ld%%", percentage];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterPercentStyle;
+    formatter.maximumSignificantDigits = 4;
+    return [formatter stringFromNumber:value];
   }
   return nil;
 }

@@ -74,15 +74,19 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  // Sample view
   _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:_scrollView.frame];
   _sampleView.typeface = _typeface;
+
+  // Scroll view
   _scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   _scrollView.hasHorizontalScroller = YES;
   _scrollView.hasVerticalScroller = YES;
   _scrollView.documentView = _sampleView;
   _scrollView.allowsMagnification = YES;
   _scrollView.minMagnification = 0.03125;
-  _scrollView.maxMagnification = 640.0;
+  _scrollView.maxMagnification = 64.0;
 
   // Inject self to the responder chain
   self.nextResponder = _scrollView.contentView.nextResponder;
@@ -95,8 +99,9 @@ static char TKNTypefaceViewControllerKVOContext;
         convertPoint:event.locationInWindow
         fromView:self.view.window.contentView];
     [self willChangeValueForKey:@"magnification"];
+    CGFloat scale = (event.scrollingDeltaY < 0.0 ? 0.9 : 1.0 / 0.9);
     _magnification = MIN(MAX(
-        _magnification * (event.scrollingDeltaY < 0.0 ? 0.9 : 1.0 / 0.9),
+        _magnification * scale,
         _scrollView.minMagnification),
         _scrollView.maxMagnification);
     [self didChangeValueForKey:@"magnification"];
@@ -230,7 +235,11 @@ static char TKNTypefaceViewControllerKVOContext;
   CGFloat result = magnification;
   CGFloat proposed = _scrollView.minMagnification;
   for (int i = 0;; ++i) {
-    proposed /= i % 2 ? 3.0 / 4.0 : 2.0 / 3.0;
+    if (proposed >= 1.0) {
+      proposed /= i % 2 ? 3.0 / 4.0 : 2.0 / 3.0;
+    } else {
+      proposed /= i % 2 ? 2.0 / 3.0 : 3.0 / 4.0;
+    }
     if (magnification >= proposed) {
       continue;
     }
@@ -248,7 +257,11 @@ static char TKNTypefaceViewControllerKVOContext;
   CGFloat result = magnification;
   CGFloat proposed = _scrollView.maxMagnification;
   for (int i = 0;; ++i) {
-    proposed *= i % 2 ? 2.0 / 3.0 : 3.0 / 4.0;
+    if (proposed <= 1.0) {
+      proposed *= i % 2 ? 3.0 / 4.0 : 2.0 / 3.0;
+    } else {
+      proposed *= i % 2 ? 2.0 / 3.0 : 3.0 / 4.0;
+    }
     if (magnification <= proposed) {
       continue;
     }

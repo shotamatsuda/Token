@@ -28,12 +28,31 @@
 
 @interface TKNCenteredClipView ()
 
-@property (nonatomic, assign) CGPoint center;
 @property (nonatomic, assign) CGSize documentSize;
 
 @end
 
 @implementation TKNCenteredClipView
+
+-(void)viewFrameChanged:(NSNotification *)notification {
+  CGRect bounds = self.bounds;
+  [super viewFrameChanged:notification];
+  CGSize documentSize = [self.documentView frame].size;
+  CGPoint point = bounds.origin;
+  if (_documentSize.width && bounds.size.width < documentSize.width) {
+    CGFloat scale = documentSize.width / _documentSize.width;
+    point.x = round(CGRectGetMidX(bounds) * scale - bounds.size.width / 2.0);
+  }
+  if (_documentSize.height && bounds.size.height < documentSize.height) {
+    CGFloat scale = documentSize.height / _documentSize.height;
+    point.y = round(CGRectGetMidY(bounds) * scale - bounds.size.height / 2.0);
+  }
+  if (!CGPointEqualToPoint(point, bounds.origin)) {
+    bounds.origin = point;
+    self.bounds = bounds;
+  }
+  _documentSize = documentSize;
+}
 
 - (CGRect)constrainBoundsRect:(CGRect)proposedBounds {
   CGRect bounds = [super constrainBoundsRect:proposedBounds];

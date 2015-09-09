@@ -37,21 +37,21 @@
 namespace {
 
 template <class T, class U>
-inline void write(T *value, U scale) {
+inline void scale_if_exists(T *value, U scale) {
   *value = std::round(*value * scale);
 }
 
 template <class T, class U>
-inline void write(token::ufo::Optional<T> *value, U scale) {
+inline void scale_if_exists(token::ufo::Optional<T> *value, U scale) {
   if (value->exists()) {
     *value = std::round(**value * scale);
   }
 }
 
 template <class T, class U>
-inline void write(std::vector<T> *values, U scale) {
+inline void scale_if_exists(std::vector<T> *values, U scale) {
   for (auto& value : *values) {
-    write(&value, scale);
+    scale_if_exists(&value, scale);
   }
 }
 
@@ -90,33 +90,33 @@ static void scaleCapHeightToUnitsPerEM(const std::string& path) {
   info.open_type_os2_typo_line_gap = line_gap;
   info.open_type_os2_win_ascent = ascender;
   info.open_type_os2_win_descent = -descender;
-  write(&info.open_type_os2_subscript_x_size, scale);
-  write(&info.open_type_os2_subscript_y_size, scale);
-  write(&info.open_type_os2_subscript_x_offset, scale);
-  write(&info.open_type_os2_subscript_y_offset, scale);
-  write(&info.open_type_os2_superscript_x_size, scale);
-  write(&info.open_type_os2_superscript_y_size, scale);
-  write(&info.open_type_os2_superscript_x_offset, scale);
-  write(&info.open_type_os2_superscript_y_offset, scale);
-  write(&info.open_type_os2_strikeout_size, scale);
-  write(&info.open_type_os2_strikeout_position, scale);
+  scale_if_exists(&info.open_type_os2_subscript_x_size, scale);
+  scale_if_exists(&info.open_type_os2_subscript_y_size, scale);
+  scale_if_exists(&info.open_type_os2_subscript_x_offset, scale);
+  scale_if_exists(&info.open_type_os2_subscript_y_offset, scale);
+  scale_if_exists(&info.open_type_os2_superscript_x_size, scale);
+  scale_if_exists(&info.open_type_os2_superscript_y_size, scale);
+  scale_if_exists(&info.open_type_os2_superscript_x_offset, scale);
+  scale_if_exists(&info.open_type_os2_superscript_y_offset, scale);
+  scale_if_exists(&info.open_type_os2_strikeout_size, scale);
+  scale_if_exists(&info.open_type_os2_strikeout_position, scale);
 
   // OpenType vhea Table Fields
-  write(&info.open_type_vhea_vert_typo_ascender, scale);
-  write(&info.open_type_vhea_vert_typo_descender, scale);
-  write(&info.open_type_vhea_vert_typo_line_gap, scale);
+  scale_if_exists(&info.open_type_vhea_vert_typo_ascender, scale);
+  scale_if_exists(&info.open_type_vhea_vert_typo_descender, scale);
+  scale_if_exists(&info.open_type_vhea_vert_typo_line_gap, scale);
 
   // PostScript Specific Data
-  write(&info.postscript_underline_thickness, scale);
-  write(&info.postscript_underline_position, scale);
-  write(&info.postscript_blue_values, scale);
-  write(&info.postscript_other_blues, scale);
-  write(&info.postscript_family_blues, scale);
-  write(&info.postscript_family_other_blues, scale);
-  write(&info.postscript_stem_snap_h, scale);
-  write(&info.postscript_stem_snap_v, scale);
-  write(&info.postscript_default_width_x, scale);
-  write(&info.postscript_nominal_width_x, scale);
+  scale_if_exists(&info.postscript_underline_thickness, scale);
+  scale_if_exists(&info.postscript_underline_position, scale);
+  scale_if_exists(&info.postscript_blue_values, scale);
+  scale_if_exists(&info.postscript_other_blues, scale);
+  scale_if_exists(&info.postscript_family_blues, scale);
+  scale_if_exists(&info.postscript_family_other_blues, scale);
+  scale_if_exists(&info.postscript_stem_snap_h, scale);
+  scale_if_exists(&info.postscript_stem_snap_v, scale);
+  scale_if_exists(&info.postscript_default_width_x, scale);
+  scale_if_exists(&info.postscript_nominal_width_x, scale);
   info.save(path);
 
   // Glyphs

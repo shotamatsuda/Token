@@ -92,7 +92,8 @@
   CGFloat delta = round((location.x - _initialLocation.x) / 2.0) * _step;
   CGFloat result = _initialValue + delta;
 
-  // Propagate the change through binding
+  // Propagate the change through binding, and store the value after
+  // propagation back to the double value of the text field.
   NSDictionary *bindingInfo = [self infoForBinding:NSValueBinding];
   id observedObject = [bindingInfo valueForKey:NSObservedObjectKey];
   NSString *keyPath = [bindingInfo valueForKey:NSObservedKeyPathKey];

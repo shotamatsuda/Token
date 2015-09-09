@@ -97,7 +97,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     _glyphBezierPaths = [NSMutableDictionary dictionary];
     _capHeight = 2.5;
     _strokeWidth = 0.2;
-    _capHeightEqualsUnitsPerEM = YES;
+    _capHeightEqualsUnitsPerEM = NO;
     [self parameterDidChange];
   }
   return self;
@@ -152,12 +152,16 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 #pragma mark Opening and Saving
 
 - (void)openFile:(NSString *)path {
-  _path = path;
-  _fontInfo.open(_path.UTF8String);
-  _glyphs.open(_path.UTF8String);
+  _fontInfo = token::ufo::FontInfo(path.UTF8String);
+  _glyphs = token::ufo::Glyphs(path.UTF8String);
+  _glyphOutlines.clear();
   for (auto& glyph : _glyphs) {
     _glyphOutlines.emplace(glyph.name, token::GlyphOutline(glyph));
   }
+  [self parameterDidChange];
+  [self willChangeValueForKey:@"path"];
+  _path = path;
+  [self didChangeValueForKey:@"path"];
 }
 
 - (void)saveToFile:(NSString *)path {
@@ -322,6 +326,10 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 - (void)setCapHeightEqualsUnitsPerEM:(BOOL)capHeightEqualsUnitsPerEM {
   if (capHeightEqualsUnitsPerEM != _capHeightEqualsUnitsPerEM) {
     _capHeightEqualsUnitsPerEM = capHeightEqualsUnitsPerEM;
+    NSString *fileName = _capHeightEqualsUnitsPerEM ? @"scaled" : @"default";
+    [self openFile:[_path.stringByDeletingLastPathComponent
+        stringByAppendingPathComponent:
+            [fileName stringByAppendingPathExtension:_path.pathExtension]]];
     [self parameterDidChange];
   }
 }
@@ -347,17 +355,13 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 #pragma mark Typographic Properties
 
 @dynamic familyName;
-@dynamic proposedSize;
 @dynamic unitsPerEM;
 @dynamic ascender;
 @dynamic descender;
+@dynamic lineGap;
 
 - (NSString *)familyName {
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
-}
-
-- (NSNumber *)proposedSize {
-  return nil;
 }
 
 - (NSUInteger)unitsPerEM {
@@ -368,8 +372,24 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   return _fontInfo.ascender;
 }
 
++ (NSSet *)keyPathsForValuesAffectingAscender {
+  return [NSSet setWithObjects:@"path", nil];
+}
+
 - (NSInteger)descender {
   return _fontInfo.descender;
+}
+
++ (NSSet *)keyPathsForValuesAffectingDescender {
+  return [NSSet setWithObjects:@"path", nil];
+}
+
+- (NSInteger)lineGap {
+  return _fontInfo.open_type_hhea_line_gap;
+}
+
++ (NSSet *)keyPathsForValuesAffectingLineGap {
+  return [NSSet setWithObjects:@"path", nil];
 }
 
 #pragma mark Glyphs
@@ -448,8 +468,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   // differs from the expected value, because the path simplification
   // occationally fails.
   bool success{};
-  for (double shift{};
-       shift < kTKNTypefaceStrokingRetryShiftLimit;
+  double shift{};
+  for (; shift < kTKNTypefaceStrokingRetryShiftLimit;
        shift += kTKNTypefaceStrokingRetryShift) {
     stroker.set_width(strokeWidth + shift);
     shape = stroker.stroke(scaledOutline);
@@ -460,10 +480,14 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     }
   }
   if (success) {
+    if (shift) {
+      NSLog(@"Stroking succeeded with retrials: %f", shift);
+    }
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();
     shape.removeDuplicates(1.0);
   } else {
+    NSLog(@"Stroking failed with retrials: %f", shift);
     shape.reset();
   }
   return std::move(shape);
