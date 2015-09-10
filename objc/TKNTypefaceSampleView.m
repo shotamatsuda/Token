@@ -284,6 +284,7 @@
       }
     }
   }
+  size.width += lineHeight / 2.0;
   size.width *= _scale;
   size.height *= _scale;
   return size;

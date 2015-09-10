@@ -301,6 +301,28 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="View" id="dpf-eX-OjD">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="View" systemMenu="window" id="VNf-GV-Tgd">
+                        <items>
+                            <menuItem title="Zoom to Fit" keyEquivalent="9" id="Rzx-Qe-ZRy">
+                                <connections>
+                                    <binding destination="hFd-Tm-jcw" name="value" keyPath="selection.shouldZoomToFit" id="jgu-XX-bZO"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom In" keyEquivalent="+" id="xSI-Oj-Qjm">
+                                <connections>
+                                    <action selector="zoomIn:" target="-1" id="5AW-Bb-BGA"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom Out" keyEquivalent="-" id="SVe-sf-1gE">
+                                <connections>
+                                    <action selector="zoomOut:" target="-1" id="j2D-8X-zru"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="aUF-d1-5bR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -340,5 +362,13 @@
                 </menuItem>
             </items>
         </menu>
+        <objectController id="hFd-Tm-jcw" userLabel="Typeface View Controller Controller">
+            <declaredKeys>
+                <string>shouldZoomToFit</string>
+            </declaredKeys>
+            <connections>
+                <binding destination="YLy-65-1bz" name="contentObject" keyPath="self.windowController.typefaceViewController" id="vkM-mT-E5c"/>
+            </connections>
+        </objectController>
     </objects>
 </document>

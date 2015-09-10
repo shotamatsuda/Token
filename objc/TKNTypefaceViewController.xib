@@ -156,7 +156,7 @@
                 <constraint firstAttribute="trailing" secondItem="h10-2w-HUc" secondAttribute="trailing" id="zZA-ec-cOn"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="-27" y="755"/>
+            <point key="canvasLocation" x="-51" y="539"/>
         </customView>
     </objects>
     <resources>

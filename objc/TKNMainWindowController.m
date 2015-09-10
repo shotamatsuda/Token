@@ -51,6 +51,7 @@
     NSString *path = [bundle pathForResource:@"typeface" ofType:nil];
     _typeface = [[TKNTypeface alloc] initWithFileAtPath:path];
     _typefaceViewController.typeface = _typeface;
+    _typefaceViewController.shouldZoomToFit = YES;
     _settingsViewController.typeface = _typeface;
   }
   return self;
@@ -131,6 +132,14 @@
   [_typeface saveToFile:installPath];
   [[NSWorkspace sharedWorkspace] openFile:
       installPath.stringByDeletingLastPathComponent];
+}
+
+- (void)zoomIn:(id)sender {
+  [_typefaceViewController zoomIn:sender];
+}
+
+- (void)zoomOut:(id)sender {
+  [_typefaceViewController zoomOut:sender];
 }
 
 @end

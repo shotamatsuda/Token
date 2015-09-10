@@ -45,8 +45,11 @@
 #pragma mark Zooming
 
 @property (nonatomic, assign) CGFloat magnification;
+@property (nonatomic, assign) BOOL shouldZoomToFit;
 
 - (void)setMagnification:(CGFloat)magnification animated:(BOOL)animated;
+- (void)zoomToFitAnimated:(BOOL)animated;
+- (IBAction)zoomToFit:(nullable id)sender;
 - (IBAction)zoomIn:(nullable id)sender;
 - (IBAction)zoomOut:(nullable id)sender;
 

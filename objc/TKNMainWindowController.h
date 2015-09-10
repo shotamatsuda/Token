@@ -45,5 +45,7 @@
 
 - (IBAction)exportFont:(nullable id)sender;
 - (IBAction)installFont:(nullable id)sender;
+- (IBAction)zoomIn:(nullable id)sender;
+- (IBAction)zoomOut:(nullable id)sender;
 
 @end

@@ -62,6 +62,12 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (void)dealloc {
+  [_sampleView removeObserver:self
+                   forKeyPath:@"frame"
+                      context:&TKNTypefaceViewControllerKVOContext];
+  [_scrollView removeObserver:self
+                   forKeyPath:@"frame"
+                      context:&TKNTypefaceViewControllerKVOContext];
   NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
                         @"capHeightEqualsUnitsPerEM",
                         @"capHeightUnit", @"strokeWidthUnit"];
@@ -78,6 +84,10 @@ static char TKNTypefaceViewControllerKVOContext;
   // Sample view
   _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:_scrollView.frame];
   _sampleView.typeface = _typeface;
+  [_sampleView addObserver:self
+                forKeyPath:@"frame"
+                   options:0
+                   context:&TKNTypefaceViewControllerKVOContext];
 
   // Scroll view
   _scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -87,6 +97,10 @@ static char TKNTypefaceViewControllerKVOContext;
   _scrollView.allowsMagnification = YES;
   _scrollView.minMagnification = 0.03125;
   _scrollView.maxMagnification = 64.0;
+  [_scrollView addObserver:self
+                forKeyPath:@"frame"
+                   options:0
+                   context:&TKNTypefaceViewControllerKVOContext];
 
   // Inject self to the responder chain
   self.nextResponder = _scrollView.contentView.nextResponder;
@@ -106,6 +120,7 @@ static char TKNTypefaceViewControllerKVOContext;
         _scrollView.maxMagnification);
     [self didChangeValueForKey:@"magnification"];
     [_scrollView setMagnification:_magnification centeredAtPoint:center];
+    self.shouldZoomToFit = NO;
   } else {
     [_scrollView scrollWheel:event];
   }
@@ -122,6 +137,7 @@ static char TKNTypefaceViewControllerKVOContext;
       _scrollView.maxMagnification);
   [self didChangeValueForKey:@"magnification"];
   [_scrollView setMagnification:_magnification centeredAtPoint:center];
+  self.shouldZoomToFit = NO;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -131,6 +147,10 @@ static char TKNTypefaceViewControllerKVOContext;
   if (context == &TKNTypefaceViewControllerKVOContext) {
     if (object == _typeface) {
       _sampleView.needsDisplay = YES;
+    } else if (object == _sampleView || object == _scrollView) {
+      if (_shouldZoomToFit) {
+        [self zoomToFitAnimated:NO];
+      }
     }
   } else {
     [super observeValueForKeyPath:keyPath
@@ -230,6 +250,28 @@ static char TKNTypefaceViewControllerKVOContext;
   }];
 }
 
+- (void)setShouldZoomToFit:(BOOL)shouldZoomToFit {
+  if (shouldZoomToFit != _shouldZoomToFit) {
+    _shouldZoomToFit = shouldZoomToFit;
+    [self zoomToFitAnimated:YES];
+  }
+}
+
+- (void)zoomToFitAnimated:(BOOL)animated {
+  CGRect bounds = _scrollView.bounds;
+  CGRect frame = [_scrollView.documentView frame];
+  CGFloat magnification = MIN(
+      bounds.size.width / frame.size.width,
+      bounds.size.height / frame.size.height);
+  CGPoint center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+  center = [_scrollView.contentView convertPoint:center fromView:_scrollView];
+  [self setMagnification:magnification animated:animated];
+}
+
+- (void)zoomToFit:(id)sender {
+  [self zoomToFitAnimated:YES];
+}
+
 - (IBAction)zoomIn:(id)sender {
   CGFloat magnification = _magnification;
   CGFloat result = magnification;
@@ -250,6 +292,7 @@ static char TKNTypefaceViewControllerKVOContext;
     result = proposed;
   }
   [self setMagnification:result animated:YES];
+  self.shouldZoomToFit = NO;
 }
 
 - (IBAction)zoomOut:(id)sender {
@@ -272,6 +315,7 @@ static char TKNTypefaceViewControllerKVOContext;
     result = proposed;
   }
   [self setMagnification:result animated:YES];
+  self.shouldZoomToFit = NO;
 }
 
 @end
