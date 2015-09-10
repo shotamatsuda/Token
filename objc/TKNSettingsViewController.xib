@@ -161,12 +161,12 @@
                             </connections>
                         </popUpButton>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
-                            <rect key="frame" x="28" y="32" width="209" height="18"/>
+                            <rect key="frame" x="28" y="32" width="181" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="pd5-j6-9pJ"/>
                             </constraints>
                             <animations/>
-                            <buttonCell key="cell" type="check" title="Cap height equals units per em" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ACg-Bx-10t">
+                            <buttonCell key="cell" type="check" title="Set font size by cap height" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ACg-Bx-10t">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
                             </buttonCell>

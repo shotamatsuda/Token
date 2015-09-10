@@ -93,11 +93,11 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   }
   self = [super init];
   if (self) {
-    [self openFile:path];
     _glyphBezierPaths = [NSMutableDictionary dictionary];
     _capHeight = 2.5;
     _strokeWidth = 0.2;
-    _capHeightEqualsUnitsPerEM = NO;
+    _capHeightEqualsUnitsPerEM = YES;
+    [self openFile:path];
     [self parameterDidChange];
   }
   return self;
@@ -152,6 +152,9 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 #pragma mark Opening and Saving
 
 - (void)openFile:(NSString *)path {
+  path = [path stringByAppendingPathComponent:
+      [(_capHeightEqualsUnitsPerEM ? @"scaled" : @"default")
+          stringByAppendingPathExtension:@"ufo"]];
   _fontInfo = token::ufo::FontInfo(path.UTF8String);
   _glyphs = token::ufo::Glyphs(path.UTF8String);
   _glyphOutlines.clear();
@@ -326,10 +329,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 - (void)setCapHeightEqualsUnitsPerEM:(BOOL)capHeightEqualsUnitsPerEM {
   if (capHeightEqualsUnitsPerEM != _capHeightEqualsUnitsPerEM) {
     _capHeightEqualsUnitsPerEM = capHeightEqualsUnitsPerEM;
-    NSString *fileName = _capHeightEqualsUnitsPerEM ? @"scaled" : @"default";
-    [self openFile:[_path.stringByDeletingLastPathComponent
-        stringByAppendingPathComponent:
-            [fileName stringByAppendingPathExtension:_path.pathExtension]]];
+    [self openFile:_path.stringByDeletingLastPathComponent];
     [self parameterDidChange];
   }
 }
@@ -452,7 +452,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   const auto strokeWidth = self.strokeWidthInEM;
   const auto typoCapHeight = _fontInfo.cap_height;
   const auto scale = (typoCapHeight - strokeWidth) / typoCapHeight;
-  const takram::Vec2d center(glyph.advance->width / 2.0, typoCapHeight / 2.0);
+  const auto bounds = outline.shape().bounds(true);
+  const takram::Vec2d center(bounds.midX(), typoCapHeight / 2.0);
   auto scaledOutline = outline;
   for (auto& command : scaledOutline.shape()) {
     command.point() = center + (command.point() - center) * scale;
