@@ -41,6 +41,7 @@ static char TKNTypefaceViewControllerKVOContext;
 @property (nonatomic, strong) NSMutableArray *magnificationQueue;
 
 - (void)animateMagnificationInQueue;
+- (void)contentViewFrameDidChange:(NSNotification *)notification;
 
 @end
 
@@ -62,12 +63,13 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (void)dealloc {
-  [_sampleView removeObserver:self
-                   forKeyPath:@"frame"
-                      context:&TKNTypefaceViewControllerKVOContext];
-  [_scrollView removeObserver:self
-                   forKeyPath:@"frame"
-                      context:&TKNTypefaceViewControllerKVOContext];
+  NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+  [defaultCenter removeObserver:self
+                           name:NSViewFrameDidChangeNotification
+                         object:_sampleView];
+  [defaultCenter removeObserver:self
+                           name:NSViewFrameDidChangeNotification
+                         object:_scrollView];
   NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
                         @"capHeightEqualsUnitsPerEM",
                         @"capHeightUnit", @"strokeWidthUnit"];
@@ -84,10 +86,6 @@ static char TKNTypefaceViewControllerKVOContext;
   // Sample view
   _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:_scrollView.frame];
   _sampleView.typeface = _typeface;
-  [_sampleView addObserver:self
-                forKeyPath:@"frame"
-                   options:0
-                   context:&TKNTypefaceViewControllerKVOContext];
 
   // Scroll view
   _scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -97,10 +95,17 @@ static char TKNTypefaceViewControllerKVOContext;
   _scrollView.allowsMagnification = YES;
   _scrollView.minMagnification = 0.03125;
   _scrollView.maxMagnification = 64.0;
-  [_scrollView addObserver:self
-                forKeyPath:@"frame"
-                   options:0
-                   context:&TKNTypefaceViewControllerKVOContext];
+
+  // Observe for the frames' changes for zooming to fit
+  NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+  [defaultCenter addObserver:self
+                    selector:@selector(contentViewFrameDidChange:)
+                        name:NSViewFrameDidChangeNotification
+                      object:_sampleView];
+  [defaultCenter addObserver:self
+                    selector:@selector(contentViewFrameDidChange:)
+                        name:NSViewFrameDidChangeNotification
+                      object:_scrollView];
 
   // Inject self to the responder chain
   self.nextResponder = _scrollView.contentView.nextResponder;
@@ -147,10 +152,6 @@ static char TKNTypefaceViewControllerKVOContext;
   if (context == &TKNTypefaceViewControllerKVOContext) {
     if (object == _typeface) {
       _sampleView.needsDisplay = YES;
-    } else if (object == _sampleView || object == _scrollView) {
-      if (_shouldZoomToFit) {
-        [self zoomToFitAnimated:NO];
-      }
     }
   } else {
     [super observeValueForKeyPath:keyPath
@@ -248,6 +249,12 @@ static char TKNTypefaceViewControllerKVOContext;
       [wself animateMagnificationInQueue];
     }
   }];
+}
+
+- (void)contentViewFrameDidChange:(NSNotification *)notification {
+  if (_shouldZoomToFit) {
+    [self zoomToFitAnimated:NO];
+  }
 }
 
 - (void)setShouldZoomToFit:(BOOL)shouldZoomToFit {
