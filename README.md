@@ -3,6 +3,9 @@ Token
 
 A typography project for product design.
 
+[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
+)](http://mit-license.org)
+
 ## License
 
 The MIT License

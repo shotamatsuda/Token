@@ -30,7 +30,7 @@
 #import "TKNTypeface.h"
 #import "TKNTypefaceViewController.h"
 
-@interface TKNMainWindowController : NSWindowController
+@interface TKNMainWindowController : NSWindowController <NSWindowDelegate>
 
 @property (nonatomic, strong, nonnull)
     TKNTypefaceViewController *typefaceViewController;

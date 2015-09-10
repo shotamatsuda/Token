@@ -39,6 +39,7 @@
 		936839A51B9E7B6500E21EF7 /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
 		936839AC1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
 		936839AD1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
+		936D38051BA1CEDA0058F7B1 /* TKNWelcomeSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 936D38041BA1CEDA0058F7B1 /* TKNWelcomeSheet.m */; };
 		93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B311B9856BA0077B273 /* TKNCenteredClipView.m */; };
 		93714B351B991FB40077B273 /* TKNPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B341B991FB40077B273 /* TKNPopUpButtonCell.m */; };
 		93714B381B9930EC0077B273 /* TKNNumericTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B371B9930EC0077B273 /* TKNNumericTextField.m */; };
@@ -55,6 +56,8 @@
 		9390CC001B953F2C0088153C /* TKNRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CBFF1B953F2C0088153C /* TKNRoundedButtonCell.m */; };
 		9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC021B95450C0088153C /* TKNBackgroundTextField.m */; };
 		9390CC061B9545570088153C /* TKNBackgroundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC051B9545570088153C /* TKNBackgroundImageView.m */; };
+		9399180B1BA1734100061130 /* TKNWelcomeSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939918091BA1734100061130 /* TKNWelcomeSheetController.m */; };
+		9399180C1BA1734100061130 /* TKNWelcomeSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */; };
 		93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */; };
 		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
 		93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* autohint.cc */; };
@@ -304,6 +307,8 @@
 		936839A91B9E925200E21EF7 /* glif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glif.h; sourceTree = "<group>"; };
 		936839AA1B9E931D00E21EF7 /* guideline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guideline.cc; sourceTree = "<group>"; };
 		936839AB1B9E931D00E21EF7 /* guideline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideline.h; sourceTree = "<group>"; };
+		936D38031BA1CEDA0058F7B1 /* TKNWelcomeSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNWelcomeSheet.h; sourceTree = "<group>"; };
+		936D38041BA1CEDA0058F7B1 /* TKNWelcomeSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNWelcomeSheet.m; sourceTree = "<group>"; };
 		93714B301B9856BA0077B273 /* TKNCenteredClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNCenteredClipView.h; sourceTree = "<group>"; };
 		93714B311B9856BA0077B273 /* TKNCenteredClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNCenteredClipView.m; sourceTree = "<group>"; };
 		93714B331B991FB40077B273 /* TKNPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNPopUpButtonCell.h; sourceTree = "<group>"; };
@@ -331,6 +336,9 @@
 		9390CC021B95450C0088153C /* TKNBackgroundTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundTextField.m; sourceTree = "<group>"; };
 		9390CC041B9545570088153C /* TKNBackgroundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNBackgroundImageView.h; sourceTree = "<group>"; };
 		9390CC051B9545570088153C /* TKNBackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundImageView.m; sourceTree = "<group>"; };
+		939918081BA1734100061130 /* TKNWelcomeSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNWelcomeSheetController.h; sourceTree = "<group>"; };
+		939918091BA1734100061130 /* TKNWelcomeSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNWelcomeSheetController.m; sourceTree = "<group>"; };
+		9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKNWelcomeSheetController.xib; sourceTree = "<group>"; };
 		93A05ADE1B9B8A4A002DDAD5 /* afdko.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afdko.h; sourceTree = "<group>"; };
 		93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeotf.cc; sourceTree = "<group>"; };
 		93A05AEA1B9B8A6B002DDAD5 /* makeotf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = makeotf.h; sourceTree = "<group>"; };
@@ -528,6 +536,11 @@
 				93B7634B1B91B268009CA8B0 /* TKNMainWindowController.h */,
 				93B7634C1B91B268009CA8B0 /* TKNMainWindowController.m */,
 				93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */,
+				939918081BA1734100061130 /* TKNWelcomeSheetController.h */,
+				939918091BA1734100061130 /* TKNWelcomeSheetController.m */,
+				9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */,
+				936D38031BA1CEDA0058F7B1 /* TKNWelcomeSheet.h */,
+				936D38041BA1CEDA0058F7B1 /* TKNWelcomeSheet.m */,
 				9383794A1B962D47003E6893 /* TKNTypeface.h */,
 				9383794B1B962D47003E6893 /* TKNTypeface.mm */,
 				93346DD81B95958200BDC3C9 /* TKNTypefaceUnit.h */,
@@ -919,6 +932,7 @@
 				93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */,
 				93A05AEF1B9B914A002DDAD5 /* typeface in Resources */,
 				93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */,
+				9399180C1BA1734100061130 /* TKNWelcomeSheetController.xib in Resources */,
 				93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */,
 				93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */,
 				93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */,
@@ -1011,6 +1025,7 @@
 				93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */,
 				93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */,
 				93C257491B9B9E4F00134399 /* TKNTypefaceUnit.m in Sources */,
+				9399180B1BA1734100061130 /* TKNWelcomeSheetController.m in Sources */,
 				9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */,
 				9390CB8F1B9526DA0088153C /* TKNBackgroundView.m in Sources */,
 				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
@@ -1029,6 +1044,7 @@
 				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
 				9390CC061B9545570088153C /* TKNBackgroundImageView.m in Sources */,
 				93B7635F1B91B332009CA8B0 /* main.m in Sources */,
+				936D38051BA1CEDA0058F7B1 /* TKNWelcomeSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

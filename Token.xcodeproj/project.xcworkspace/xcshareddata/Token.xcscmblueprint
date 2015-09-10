@@ -4,22 +4,24 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "E672BC7728955D2B67B7D9E1AAA4DE29251BDDD5" : 0,
-    "54A35B5F7E6CF0D37C23A7F208F4533C7D784BFD" : 0,
-    "8A4B832C137D1E3D3E3E9314E4E2F858C1866FAC" : 0,
     "58B6EBA1F8262F3B015D2616B601962F3369BF97" : 0,
+    "E672BC7728955D2B67B7D9E1AAA4DE29251BDDD5" : 0,
+    "8A4B832C137D1E3D3E3E9314E4E2F858C1866FAC" : 0,
+    "54A35B5F7E6CF0D37C23A7F208F4533C7D784BFD" : 0,
     "5CC3662DE7B154BFBD52EC7DD2FAEF03F2CD148F" : 0,
+    "EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402" : 0,
     "CFB1223F851B83C1269392827FDD37DF4BF4CB37" : 0,
     "0E180D4A7DA089B2C41C00CB11D29580D0FBB809" : 0,
     "5C8CF0A138265198B677E8F60B5F554B06CAF05A" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "12BB40E5-A1B7-47C1-B9A1-B1F551F75D22",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "E672BC7728955D2B67B7D9E1AAA4DE29251BDDD5" : "tokenlib\/takram-algorithm",
-    "54A35B5F7E6CF0D37C23A7F208F4533C7D784BFD" : "tokenlib\/takram-math",
-    "8A4B832C137D1E3D3E3E9314E4E2F858C1866FAC" : "tokenlib\/takram-nanovg",
     "58B6EBA1F8262F3B015D2616B601962F3369BF97" : "tokenlib\/solas",
+    "E672BC7728955D2B67B7D9E1AAA4DE29251BDDD5" : "tokenlib\/takram-algorithm",
+    "8A4B832C137D1E3D3E3E9314E4E2F858C1866FAC" : "tokenlib\/takram-nanovg",
+    "54A35B5F7E6CF0D37C23A7F208F4533C7D784BFD" : "tokenlib\/takram-math",
     "5CC3662DE7B154BFBD52EC7DD2FAEF03F2CD148F" : "tokenlib\/takram-nanovg\/lib\/nanovg",
+    "EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402" : "token\/lib\/sparkle\/",
     "CFB1223F851B83C1269392827FDD37DF4BF4CB37" : "tokenlib\/takram-graphics",
     "0E180D4A7DA089B2C41C00CB11D29580D0FBB809" : "token",
     "5C8CF0A138265198B677E8F60B5F554B06CAF05A" : "tokenlib\/takram-tween"
@@ -67,6 +69,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:takram-design-engineering\/takram-algorithm.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E672BC7728955D2B67B7D9E1AAA4DE29251BDDD5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:sparkle-project\/Sparkle.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402"
     }
   ]
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TKNTypefaceViewController">
@@ -14,7 +14,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="0lg-DE-xZo">
-            <rect key="frame" x="0.0" y="1" width="300" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1b-Li-q3i">
@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-xk-Nsy">
-                                <rect key="frame" x="4" y="58" width="23" height="92"/>
+                                <rect key="frame" x="42" y="83" width="57" height="131"/>
                                 <animations/>
                             </view>
                         </subviews>
@@ -129,16 +129,33 @@
                                 <action selector="toggleOutlined:" target="-2" id="Ps3-mr-yS9"/>
                             </connections>
                         </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="ooV-Uy-by8">
+                            <rect key="frame" x="220" y="0.0" width="50" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="xg4-Uq-ijT"/>
+                            </constraints>
+                            <animations/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="c83-8f-Nll">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="zoomToFit:" target="-2" id="Ti2-kH-gi3"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ZZZ-fa-Jdp" secondAttribute="trailing" constant="5" id="5dQ-je-LeW"/>
                         <constraint firstItem="of5-dm-Xbc" firstAttribute="leading" secondItem="h10-2w-HUc" secondAttribute="leading" constant="5" id="APp-qN-MKD"/>
                         <constraint firstAttribute="height" constant="25" id="APx-7e-Saa"/>
+                        <constraint firstItem="ooV-Uy-by8" firstAttribute="leading" secondItem="46j-Pl-tkn" secondAttribute="trailing" id="E44-tB-Yoc"/>
                         <constraint firstAttribute="centerY" secondItem="ehm-eu-cMu" secondAttribute="centerY" id="FAP-yX-zYv"/>
                         <constraint firstItem="ZZZ-fa-Jdp" firstAttribute="leading" secondItem="ehm-eu-cMu" secondAttribute="trailing" id="PEM-si-Gu9"/>
+                        <constraint firstItem="ooV-Uy-by8" firstAttribute="centerY" secondItem="h10-2w-HUc" secondAttribute="centerY" id="Qu2-Wo-enU"/>
                         <constraint firstItem="otf-EB-md7" firstAttribute="leading" secondItem="of5-dm-Xbc" secondAttribute="trailing" id="TjM-1J-UIX"/>
                         <constraint firstItem="ehm-eu-cMu" firstAttribute="leading" secondItem="46j-Pl-tkn" secondAttribute="trailing" id="WWN-Rc-2c4"/>
                         <constraint firstAttribute="centerY" secondItem="46j-Pl-tkn" secondAttribute="centerY" id="Yo2-Q2-XVH"/>
+                        <constraint firstItem="ZZZ-fa-Jdp" firstAttribute="leading" secondItem="ooV-Uy-by8" secondAttribute="trailing" id="YuA-aj-Uqp"/>
                         <constraint firstAttribute="centerY" secondItem="ZZZ-fa-Jdp" secondAttribute="centerY" id="dp9-Iv-DlG"/>
                         <constraint firstAttribute="centerY" secondItem="of5-dm-Xbc" secondAttribute="centerY" id="izN-rB-eYO"/>
                         <constraint firstAttribute="centerY" secondItem="otf-EB-md7" secondAttribute="centerY" id="uAv-lX-URt"/>

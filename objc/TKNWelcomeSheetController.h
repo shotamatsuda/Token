@@ -1,5 +1,5 @@
 //
-//  product.xcconfig
+//  TKNAFDKOSheetController.h
 //
 //  The MIT License
 //
@@ -24,13 +24,14 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Search Paths
-HEADER_SEARCH_PATHS = $(inherited) $(BOOST_HEADER_SEARCH_PATHS) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**"
-USER_HEADER_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/src" "$(PROJECT_DIR)/lib/ssziparchive"
-LIBRARY_SEARCH_PATHS = $(inerited) "/usr/local/lib" "$(PROJECT_DIR)/build/skia/lib"
+#import <AppKit/AppKit.h>
 
-// Linking
-OTHER_LDFLAGS = $(inherited) -lboost_filesystem -lboost_system -lplist -lskia -lz
+@interface TKNWelcomeSheetController : NSWindowController <
+    NSURLDownloadDelegate>
 
-// Apple LLVM - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) TAKRAM_HAS_BOOST=1
+@property (nonatomic, assign, readonly) double progress;
+
+- (IBAction)begin:(nullable id)sender;
+- (IBAction)cancel:(nullable id)sender;
+
+@end

@@ -28,12 +28,14 @@
 
 #import "TKNSettingsViewController.h"
 #import "TKNTypefaceViewController.h"
+#import "TKNWelcomeSheetController.h"
 
 @interface TKNMainWindowController ()
 
 @property (nonatomic, strong) NSView *typefaceView;
 @property (nonatomic, strong) NSView *settingsView;
 @property (nonatomic, assign) CGRect windowFrame;
+@property (nonatomic, strong) TKNWelcomeSheetController *welcomeSheetController;
 
 @end
 
@@ -59,17 +61,18 @@
 
 - (void)windowDidLoad {
   [super windowDidLoad];
-  self.window.movableByWindowBackground = YES;
-  self.window.titleVisibility = NSWindowTitleHidden;
-  self.window.titlebarAppearsTransparent = YES;
-  self.window.styleMask |= NSFullSizeContentViewWindowMask;
-  NSView *view = self.window.contentView;
+  NSWindow *window = self.window;
+  window.movableByWindowBackground = YES;
+  window.titleVisibility = NSWindowTitleHidden;
+  window.titlebarAppearsTransparent = YES;
+  window.styleMask |= NSFullSizeContentViewWindowMask;
 
   // Appearances
   NSString *darkAppearance = NSAppearanceNameVibrantDark;
   NSString *defaultAppearance = NSAppearanceNameAqua;
 
   // Typeface
+  NSView *view = window.contentView;
   _typefaceView = _typefaceViewController.view;
   _typefaceView.translatesAutoresizingMaskIntoConstraints = NO;
   _typefaceView.appearance = [NSAppearance appearanceNamed:defaultAppearance];
@@ -105,6 +108,13 @@
       options:0
       metrics:nil
       views:NSDictionaryOfVariableBindings(_typefaceView, _settingsView)]];
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    _welcomeSheetController = [[TKNWelcomeSheetController alloc] init];
+    [self.window beginSheet:_welcomeSheetController.window
+          completionHandler:^(NSModalResponse returnCode) {
+          }];
+  });
 }
 
 #pragma mark Actions

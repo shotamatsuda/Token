@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TKNWelcomeSheetController">
+            <connections>
+                <outlet property="progressIndicator" destination="dRu-qz-UeM" id="r6j-uw-Inm"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" customClass="TKNWelcomeSheet">
+            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <rect key="contentRect" x="196" y="240" width="402" height="214"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="214"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tq5-bZ-VZO">
+                        <rect key="frame" x="133" y="145" width="138" height="39"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome" id="Zga-c4-dBu">
+                            <font key="font" metaFont="systemLight" size="32"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EOv-T2-lv9">
+                        <rect key="frame" x="18" y="91" width="366" height="34"/>
+                        <animations/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Token needs to install Adobe Font Development Kit (FDK) before it can create fonts." allowsEditingTextAttributes="YES" id="oEK-Yr-4w9">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-uQ-com">
+                        <rect key="frame" x="200" y="9" width="192" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="180" id="Qyv-SN-ZX6"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Download &amp; Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C3e-xM-Zok">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="begin:" target="-2" id="k4P-zn-ZfA"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wTL-vX-glp">
+                        <rect key="frame" x="18" y="67" width="366" height="14"/>
+                        <animations/>
+                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="FDK will be installed in the user's application support folder." id="IT3-gI-jow">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w81-cz-uUd">
+                        <rect key="frame" x="10" y="9" width="192" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="180" id="hAi-wC-BmN"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Later" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bwe-bN-Kiq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancel:" target="-2" id="qWK-LB-rH4"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wTL-vX-glp" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="BIG-p8-Q7H"/>
+                    <constraint firstAttribute="bottom" secondItem="V3v-uQ-com" secondAttribute="bottom" constant="16" id="FhK-c3-vCn"/>
+                    <constraint firstAttribute="trailing" secondItem="V3v-uQ-com" secondAttribute="trailing" constant="16" id="H2g-ua-eje"/>
+                    <constraint firstItem="V3v-uQ-com" firstAttribute="top" secondItem="wTL-vX-glp" secondAttribute="bottom" constant="30" id="HRr-aB-wkv"/>
+                    <constraint firstAttribute="trailing" secondItem="EOv-T2-lv9" secondAttribute="trailing" constant="20" id="LS3-to-ivy"/>
+                    <constraint firstItem="EOv-T2-lv9" firstAttribute="top" secondItem="tq5-bZ-VZO" secondAttribute="bottom" constant="20" id="Tqg-eE-sdJ"/>
+                    <constraint firstAttribute="bottom" secondItem="w81-cz-uUd" secondAttribute="bottom" constant="16" id="UFe-Y3-ot8"/>
+                    <constraint firstAttribute="trailing" secondItem="wTL-vX-glp" secondAttribute="trailing" constant="20" id="XO9-CQ-HhJ"/>
+                    <constraint firstItem="wTL-vX-glp" firstAttribute="top" secondItem="EOv-T2-lv9" secondAttribute="bottom" constant="10" id="Xb4-xf-ihC"/>
+                    <constraint firstItem="EOv-T2-lv9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="aui-Lm-qzF"/>
+                    <constraint firstItem="w81-cz-uUd" firstAttribute="top" secondItem="wTL-vX-glp" secondAttribute="bottom" constant="30" id="crm-sp-LhA"/>
+                    <constraint firstAttribute="centerX" secondItem="tq5-bZ-VZO" secondAttribute="centerX" id="eSA-Rz-9Ih"/>
+                    <constraint firstAttribute="centerX" secondItem="EOv-T2-lv9" secondAttribute="centerX" id="fpg-BL-nSg"/>
+                    <constraint firstItem="w81-cz-uUd" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="16" id="gEw-Q8-Eee"/>
+                    <constraint firstItem="tq5-bZ-VZO" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="30" id="m9K-iP-Tae"/>
+                    <constraint firstItem="V3v-uQ-com" firstAttribute="leading" secondItem="w81-cz-uUd" secondAttribute="trailing" constant="10" id="wsj-m5-r3e"/>
+                </constraints>
+                <animations/>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="268" y="431"/>
+        </window>
+        <progressIndicator wantsLayer="YES" maxValue="1" style="bar" id="dRu-qz-UeM">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <animations/>
+            <connections>
+                <binding destination="-2" name="value" keyPath="self.progress" id="rQR-RU-vaA"/>
+            </connections>
+            <point key="canvasLocation" x="32" y="671"/>
+        </progressIndicator>
+    </objects>
+</document>

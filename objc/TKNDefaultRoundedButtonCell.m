@@ -34,11 +34,22 @@
   [NSGraphicsContext saveGraphicsState];
   NSBezierPath *path = [NSBezierPath
       bezierPathWithRoundedRect:frame
-      cornerRadius:5.0];
-  if (self.highlighted) {
-    [[NSColor whiteColor] setFill];
+      cornerRadius:4.0];
+  NSColor *color;
+  NSColor *highlightedColor;
+  NSAppearance *appearance = self.controlView.effectiveAppearance;
+  if ([appearance.name isEqualToString:NSAppearanceNameVibrantDark]) {
+    color = [[NSColor whiteColor] colorWithAlphaComponent:0.8];
+    highlightedColor = [NSColor whiteColor];
   } else {
-    [[[NSColor whiteColor] colorWithAlphaComponent:0.8] setFill];
+    color = [[NSColor alternateSelectedControlColor]
+        colorWithAlphaComponent:0.75];
+    highlightedColor = [NSColor alternateSelectedControlColor];
+  }
+  if (self.highlighted) {
+    [highlightedColor setFill];
+  } else {
+    [color setFill];
   }
   [path fill];
   [NSGraphicsContext restoreGraphicsState];
@@ -56,14 +67,24 @@
                   value:@2.0
                   range:range];
   }
+  NSColor *color;
+  NSColor *highlightedColor;
+  NSAppearance *appearance = self.controlView.effectiveAppearance;
+  if ([appearance.name isEqualToString:NSAppearanceNameVibrantDark]) {
+    color = [[NSColor blackColor] colorWithAlphaComponent:0.75];
+    highlightedColor = [NSColor blackColor];
+  } else {
+    color = [[NSColor whiteColor] colorWithAlphaComponent:0.75];
+    highlightedColor = [NSColor whiteColor];
+  }
   if (self.enabled) {
     if (self.highlighted) {
       [title addAttribute:NSForegroundColorAttributeName
-                    value:[NSColor blackColor]
+                    value:color
                     range:range];
     } else {
       [title addAttribute:NSForegroundColorAttributeName
-                    value:[[NSColor blackColor] colorWithAlphaComponent:0.75]
+                    value:highlightedColor
                     range:range];
     }
   }
