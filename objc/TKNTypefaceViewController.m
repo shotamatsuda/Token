@@ -114,6 +114,7 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)scrollWheel:(NSEvent *)event {
   if (event.type == NSScrollWheel && event.modifierFlags & NSAlternateKeyMask) {
+    self.shouldZoomToFit = NO;
     CGPoint center = [_scrollView.contentView
         convertPoint:event.locationInWindow
         fromView:self.view.window.contentView];
@@ -125,13 +126,13 @@ static char TKNTypefaceViewControllerKVOContext;
         _scrollView.maxMagnification);
     [self didChangeValueForKey:@"magnification"];
     [_scrollView setMagnification:_magnification centeredAtPoint:center];
-    self.shouldZoomToFit = NO;
   } else {
     [_scrollView scrollWheel:event];
   }
 }
 
 - (void)magnifyWithEvent:(NSEvent *)event {
+  self.shouldZoomToFit = NO;
   CGPoint center = [_scrollView.contentView
       convertPoint:event.locationInWindow
       fromView:self.view.window.contentView];
@@ -142,7 +143,6 @@ static char TKNTypefaceViewControllerKVOContext;
       _scrollView.maxMagnification);
   [self didChangeValueForKey:@"magnification"];
   [_scrollView setMagnification:_magnification centeredAtPoint:center];
-  self.shouldZoomToFit = NO;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -245,6 +245,7 @@ static char TKNTypefaceViewControllerKVOContext;
         [_magnificationQueue.firstObject doubleValue];
     [_magnificationQueue removeObjectAtIndex:0];
   } completionHandler:^{
+    _sampleView.needsDisplay = YES;
     if (_magnificationQueue.count) {
       [wself animateMagnificationInQueue];
     }
@@ -280,6 +281,7 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (IBAction)zoomIn:(id)sender {
+  self.shouldZoomToFit = NO;
   CGFloat magnification = _magnification;
   CGFloat result = magnification;
   CGFloat proposed = _scrollView.minMagnification;
@@ -299,10 +301,10 @@ static char TKNTypefaceViewControllerKVOContext;
     result = proposed;
   }
   [self setMagnification:result animated:YES];
-  self.shouldZoomToFit = NO;
 }
 
 - (IBAction)zoomOut:(id)sender {
+  self.shouldZoomToFit = NO;
   CGFloat magnification = _magnification;
   CGFloat result = magnification;
   CGFloat proposed = _scrollView.maxMagnification;
@@ -322,7 +324,6 @@ static char TKNTypefaceViewControllerKVOContext;
     result = proposed;
   }
   [self setMagnification:result animated:YES];
-  self.shouldZoomToFit = NO;
 }
 
 @end
