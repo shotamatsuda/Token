@@ -7,6 +7,3 @@
 [submodule "lib/takram-algorithm"]
 	path = lib/takram-algorithm
 	url = git@github.com:takram-design-engineering/takram-algorithm.git
-[submodule "lib/sparkle"]
-	path = lib/sparkle
-	url = git@github.com:sparkle-project/Sparkle.git

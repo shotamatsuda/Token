@@ -20,8 +20,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="402" height="214"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tq5-bZ-VZO">
-                        <rect key="frame" x="133" y="145" width="138" height="39"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tq5-bZ-VZO">
+                        <rect key="frame" x="132" y="145" width="138" height="39"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome" id="Zga-c4-dBu">
                             <font key="font" metaFont="systemLight" size="32"/>
