@@ -41,11 +41,11 @@
   CGPoint point = bounds.origin;
   if (_documentSize.width && bounds.size.width < documentSize.width) {
     CGFloat scale = documentSize.width / _documentSize.width;
-    point.x = round(CGRectGetMidX(bounds) * scale - bounds.size.width / 2.0);
+    point.x = CGRectGetMidX(bounds) * scale - bounds.size.width / 2.0;
   }
   if (_documentSize.height && bounds.size.height < documentSize.height) {
     CGFloat scale = documentSize.height / _documentSize.height;
-    point.y = round(CGRectGetMidY(bounds) * scale - bounds.size.height / 2.0);
+    point.y = CGRectGetMidY(bounds) * scale - bounds.size.height / 2.0;
   }
   if (!CGPointEqualToPoint(point, bounds.origin)) {
     bounds.origin = point;
