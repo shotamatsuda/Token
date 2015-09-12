@@ -198,11 +198,9 @@
   // Control lines and points
   [[NSColor grayColor] setFill];
   CGRect pointRect;
-  CGRect controlRect;
   pointRect.origin.x = pointRect.origin.y = -2.0 * scale;
   pointRect.size.width = pointRect.size.height = 4.0 * scale;
-  controlRect.origin.x = controlRect.origin.y = -1.5 * scale;
-  controlRect.size.width = controlRect.size.height = 3.0 * scale;
+  NSBezierPath *path;
   CGPoint previous[3];
   CGPoint current[3];
   for (NSInteger index = 0; index < outline.elementCount; ++index) {
@@ -215,19 +213,18 @@
     switch (currentType) {
       case NSLineToBezierPathElement:
       case NSMoveToBezierPathElement:
-        [[NSBezierPath bezierPathWithOvalInRect:CGRectMake(
+        NSRectFill(CGRectMake(
             current[0].x + pointRect.origin.x,
             current[0].y + pointRect.origin.y,
             pointRect.size.width,
-            pointRect.size.height)] fill];
+            pointRect.size.height));
         break;
       case NSCurveToBezierPathElement: {
-        [[NSBezierPath bezierPathWithOvalInRect:CGRectMake(
+        NSRectFill(CGRectMake(
             current[2].x + pointRect.origin.x,
             current[2].y + pointRect.origin.y,
             pointRect.size.width,
-            pointRect.size.height)] fill];
-        NSBezierPath *path;
+            pointRect.size.height));
         path = [NSBezierPath bezierPath];
         if (previousType == NSCurveToBezierPathElement) {
           [path moveToPoint:previous[2]];
@@ -242,16 +239,20 @@
         [path lineToPoint:current[2]];
         path.lineWidth = scale;
         [path stroke];
-        NSRectFill(CGRectMake(
-            current[0].x + controlRect.origin.x,
-            current[0].y + controlRect.origin.y,
-            controlRect.size.width,
-            controlRect.size.height));
-        NSRectFill(CGRectMake(
-            current[1].x + controlRect.origin.x,
-            current[1].y + controlRect.origin.y,
-            controlRect.size.width,
-            controlRect.size.height));
+        path = [NSBezierPath bezierPathWithOvalInRect:CGRectMake(
+            current[0].x + pointRect.origin.x,
+            current[0].y + pointRect.origin.y,
+            pointRect.size.width,
+            pointRect.size.height)];
+        path.lineWidth = scale;
+        [path stroke];
+        path = [NSBezierPath bezierPathWithOvalInRect:CGRectMake(
+            current[1].x + pointRect.origin.x,
+            current[1].y + pointRect.origin.y,
+            pointRect.size.width,
+            pointRect.size.height)];
+        path.lineWidth = scale;
+        [path stroke];
         break;
       }
       default:

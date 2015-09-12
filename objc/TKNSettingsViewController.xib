@@ -24,8 +24,8 @@
                             <animations/>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNAscentTemplate" id="AwD-Re-cPc"/>
                         </imageView>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yii-1p-DNU" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="87" y="176" width="72" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yii-1p-DNU" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="87" y="178" width="72" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cap Height" id="gpp-Q6-rzA">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -98,8 +98,8 @@
                             <animations/>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNWidthTemplate" id="Cd8-1f-5Yn"/>
                         </imageView>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u09-l7-1EI" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="88" y="93" width="82" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u09-l7-1EI" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="88" y="95" width="82" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="fpo-aj-CIq">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -160,8 +160,8 @@
                                 <binding destination="-2" name="selectedTag" keyPath="self.typeface.strokeWidthUnit" id="vuh-ka-b5O"/>
                             </connections>
                         </popUpButton>
-                        <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
-                            <rect key="frame" x="28" y="32" width="180" height="18"/>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
+                            <rect key="frame" x="28" y="32" width="181" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="pd5-j6-9pJ"/>
                             </constraints>
@@ -212,8 +212,8 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="kve-Rx-3K7" customClass="TKNBackgroundView">
                     <rect key="frame" x="410" y="0.0" width="390" height="237"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="193" width="85" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="0.0" y="196" width="84" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="nHG-1H-oux">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -221,8 +221,8 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="111" y="193" width="81" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="111" y="196" width="81" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name" id="p4l-1c-YpC">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -233,8 +233,8 @@
                                 <binding destination="-2" name="value" keyPath="self.typeface.familyName" id="usW-eI-ava"/>
                             </connections>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="169" width="76" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="0.0" y="175" width="76" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -242,8 +242,8 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="111" y="169" width="72" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="111" y="175" width="73" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name" id="gZs-gj-10W">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -254,8 +254,8 @@
                                 <binding destination="-2" name="value" keyPath="self.typeface.styleName" id="ixI-gR-WSw"/>
                             </connections>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="145" width="107" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="0.0" y="154" width="107" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name:" id="A5R-Zz-lbC">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
@@ -263,8 +263,8 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="111" y="145" width="103" height="20"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="TKNBackgroundTextField">
+                            <rect key="frame" x="111" y="154" width="103" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name" id="fUI-xh-T6V">
                                 <font key="font" size="13" name=".AppleSystemUIFontLight"/>
