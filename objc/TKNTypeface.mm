@@ -437,6 +437,15 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   return glyph->advance->width;
 }
 
+- (CGRect)boundingRectOfGlyphForName:(NSString *)name {
+  const auto glyph = _glyphs.find(name.UTF8String);
+  if (!glyph) {
+    return CGRectZero;
+  }
+  [self glyphOutlineForName:name];
+  return _glyphShapes.at(name.UTF8String).bounds(true);
+}
+
 - (NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape {
   NSBezierPath *path = [NSBezierPath bezierPath];
   for (const auto& command : shape) {

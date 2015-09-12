@@ -70,6 +70,7 @@
 
 - (nullable NSBezierPath *)glyphOutlineForName:(nonnull NSString *)name;
 - (double)advanceOfGlyphForName:(nonnull NSString *)name;
+- (CGRect)boundingRectOfGlyphForName:(nonnull NSString *)name;
 
 #ifdef __cplusplus
 

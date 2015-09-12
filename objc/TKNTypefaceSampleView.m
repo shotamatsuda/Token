@@ -156,13 +156,14 @@
   [transform concat];
 
   // Intersection test with a dirty rect and the bounds of this glyph outline.
-  NSBezierPath *outline = [_typeface glyphOutlineForName:name];
+  CGRect bounds = [_typeface boundingRectOfGlyphForName:name];
   CGContextRef context = [NSGraphicsContext currentContext].CGContext;
   CGAffineTransform currentTransform = CGContextGetCTM(context);
   CGRect rect1 = CGRectApplyAffineTransform(dirtyRect, _transform);
-  CGRect rect2 = CGRectApplyAffineTransform(outline.bounds, currentTransform);
-  rect2 = CGRectInset(rect2, -5.0, -5.0);
+  CGRect rect2 = CGRectApplyAffineTransform(bounds, currentTransform);
+  rect2 = CGRectInset(rect2, -4.0, -4.0);
   if (CGRectIntersectsRect(rect1, rect2)) {
+    NSBezierPath *outline = [_typeface glyphOutlineForName:name];
     if (_outlined) {
       [self drawOutlineGlyph:outline];
     } else {
