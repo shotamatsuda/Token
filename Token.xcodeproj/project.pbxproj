@@ -54,6 +54,10 @@
 		9390CC001B953F2C0088153C /* TKNRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CBFF1B953F2C0088153C /* TKNRoundedButtonCell.m */; };
 		9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC021B95450C0088153C /* TKNBackgroundTextField.m */; };
 		9390CC061B9545570088153C /* TKNBackgroundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC051B9545570088153C /* TKNBackgroundImageView.m */; };
+		93982FAC1BA3C35500438BDA /* TKNLayerBackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */; settings = {ASSET_TAGS = (); }; };
+		93982FBA1BA3C8D300438BDA /* TKNMultilineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */; settings = {ASSET_TAGS = (); }; };
+		93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */; settings = {ASSET_TAGS = (); }; };
+		93982FBF1BA4104500438BDA /* TKNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FBE1BA4104500438BDA /* TKNConstants.m */; settings = {ASSET_TAGS = (); }; };
 		9399180B1BA1734100061130 /* TKNWelcomeSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939918091BA1734100061130 /* TKNWelcomeSheetController.m */; };
 		9399180C1BA1734100061130 /* TKNWelcomeSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */; };
 		93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */; };
@@ -290,6 +294,13 @@
 		9390CC021B95450C0088153C /* TKNBackgroundTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundTextField.m; sourceTree = "<group>"; };
 		9390CC041B9545570088153C /* TKNBackgroundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNBackgroundImageView.h; sourceTree = "<group>"; };
 		9390CC051B9545570088153C /* TKNBackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundImageView.m; sourceTree = "<group>"; };
+		93982FAA1BA3C35500438BDA /* TKNLayerBackedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNLayerBackedView.h; sourceTree = "<group>"; };
+		93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNLayerBackedView.m; sourceTree = "<group>"; };
+		93982FB81BA3C8D300438BDA /* TKNMultilineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNMultilineTextField.h; sourceTree = "<group>"; };
+		93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNMultilineTextField.m; sourceTree = "<group>"; };
+		93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = AdobeFDKLicense.rtf; sourceTree = "<group>"; };
+		93982FBD1BA4104500438BDA /* TKNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNConstants.h; sourceTree = "<group>"; };
+		93982FBE1BA4104500438BDA /* TKNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNConstants.m; sourceTree = "<group>"; };
 		939918081BA1734100061130 /* TKNWelcomeSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNWelcomeSheetController.h; sourceTree = "<group>"; };
 		939918091BA1734100061130 /* TKNWelcomeSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNWelcomeSheetController.m; sourceTree = "<group>"; };
 		9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKNWelcomeSheetController.xib; sourceTree = "<group>"; };
@@ -472,6 +483,8 @@
 				93B7635E1B91B332009CA8B0 /* main.m */,
 				9375FA541B9DDCD900559480 /* scaler.mm */,
 				93AB947B1B91B1600038DCB4 /* MainMenu.xib */,
+				93982FBD1BA4104500438BDA /* TKNConstants.h */,
+				93982FBE1BA4104500438BDA /* TKNConstants.m */,
 				9381EE561B91B20000807B1B /* TKNApplicationDelegate.h */,
 				9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */,
 				93B7634B1B91B268009CA8B0 /* TKNMainWindowController.h */,
@@ -498,6 +511,10 @@
 				93D268531B95491D008AB659 /* TKNSettingsViewController.xib */,
 				93714B301B9856BA0077B273 /* TKNCenteredClipView.h */,
 				93714B311B9856BA0077B273 /* TKNCenteredClipView.m */,
+				93982FAA1BA3C35500438BDA /* TKNLayerBackedView.h */,
+				93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */,
+				93982FB81BA3C8D300438BDA /* TKNMultilineTextField.h */,
+				93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */,
 				9390CB8D1B9526CB0088153C /* TKNBackgroundView.h */,
 				9390CB8E1B9526DA0088153C /* TKNBackgroundView.m */,
 				9390CC011B95450C0088153C /* TKNBackgroundTextField.h */,
@@ -566,6 +583,7 @@
 				93C257C31B9C96D900134399 /* TKNInvert.pdf */,
 				93C257C51B9C99F700134399 /* TKNOutline.pdf */,
 				9390CBF41B95328D0088153C /* Credits.rtf */,
+				93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -836,6 +854,7 @@
 				93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */,
 				93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */,
 				93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */,
+				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
 				93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */,
 				93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */,
 				93C257C41B9C96D900134399 /* TKNInvert.pdf in Resources */,
@@ -858,7 +877,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/afdko.sh\"\n\"${PROJECT_DIR}/script/bundle.sh\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/scaled.ufo\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/scaled.ufo\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -928,8 +947,10 @@
 				9399180B1BA1734100061130 /* TKNWelcomeSheetController.m in Sources */,
 				9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */,
 				9390CB8F1B9526DA0088153C /* TKNBackgroundView.m in Sources */,
+				93982FAC1BA3C35500438BDA /* TKNLayerBackedView.m in Sources */,
 				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,
+				93982FBF1BA4104500438BDA /* TKNConstants.m in Sources */,
 				93D268571B95491D008AB659 /* TKNSettingsViewController.m in Sources */,
 				93C18FB61B930D440044AAEB /* unique_id.cc in Sources */,
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
@@ -942,6 +963,7 @@
 				9383794C1B962D47003E6893 /* TKNTypeface.mm in Sources */,
 				93C18FA41B930D440044AAEB /* extension_value.cc in Sources */,
 				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
+				93982FBA1BA3C8D300438BDA /* TKNMultilineTextField.m in Sources */,
 				9390CC061B9545570088153C /* TKNBackgroundImageView.m in Sources */,
 				93B7635F1B91B332009CA8B0 /* main.m in Sources */,
 				936D38051BA1CEDA0058F7B1 /* TKNWelcomeSheet.m in Sources */,

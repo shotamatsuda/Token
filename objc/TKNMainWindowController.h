@@ -47,5 +47,7 @@
 - (IBAction)installFont:(nullable id)sender;
 - (IBAction)zoomIn:(nullable id)sender;
 - (IBAction)zoomOut:(nullable id)sender;
+- (IBAction)installFDK:(nullable id)sender;
+- (IBAction)uninstallFDK:(nullable id)sender;
 
 @end

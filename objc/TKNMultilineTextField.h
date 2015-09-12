@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.h
+//  TKNMultilineTextField.h
 //
 //  The MIT License
 //
@@ -26,18 +26,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNWelcomeSheetController : NSWindowController <
-    NSURLDownloadDelegate>
-
-#pragma mark Progress
-
-@property (nonatomic, assign, readonly) double progress;
-
-#pragma mark Actions
-
-- (IBAction)begin:(nullable id)sender;
-- (IBAction)acceptLicenseAgreement:(nullable id)sender;
-- (IBAction)declineLicenseAgreement:(nullable id)sender;
-- (IBAction)cancel:(nullable id)sender;
+@interface TKNMultilineTextField : NSTextField
 
 @end

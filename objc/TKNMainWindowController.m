@@ -26,6 +26,7 @@
 
 #import "TKNMainWindowController.h"
 
+#import "TKNConstants.h"
 #import "TKNSettingsViewController.h"
 #import "TKNTypefaceViewController.h"
 #import "TKNWelcomeSheetController.h"
@@ -109,11 +110,15 @@
       metrics:nil
       views:NSDictionaryOfVariableBindings(_typefaceView, _settingsView)]];
 
+  // Check for FDK
   dispatch_async(dispatch_get_main_queue(), ^{
-    _welcomeSheetController = [[TKNWelcomeSheetController alloc] init];
-    [self.window beginSheet:_welcomeSheetController.window
-          completionHandler:^(NSModalResponse returnCode) {
-          }];
+    NSString *path = TKNAdobeFDKPath();
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:path]) {
+      _welcomeSheetController = [[TKNWelcomeSheetController alloc] init];
+      [self.window beginSheet:_welcomeSheetController.window
+            completionHandler:nil];
+    }
   });
 }
 
@@ -150,6 +155,15 @@
 
 - (void)zoomOut:(id)sender {
   [_typefaceViewController zoomOut:sender];
+}
+
+- (void)installFDK:(id)sender {
+  _welcomeSheetController = [[TKNWelcomeSheetController alloc] init];
+  [self.window beginSheet:_welcomeSheetController.window
+        completionHandler:^(NSModalResponse returnCode) {}];
+}
+
+- (void)uninstallFDK:(id)sender {
 }
 
 @end

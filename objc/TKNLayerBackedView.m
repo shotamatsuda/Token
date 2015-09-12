@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.h
+//  TKNLayerBackedView.m
 //
 //  The MIT License
 //
@@ -24,20 +24,32 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNLayerBackedView.h"
 
-@interface TKNWelcomeSheetController : NSWindowController <
-    NSURLDownloadDelegate>
+@implementation TKNLayerBackedView
 
-#pragma mark Progress
+- (instancetype)initWithFrame:(NSRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    self.wantsLayer = YES;
+  }
+  return self;
+}
 
-@property (nonatomic, assign, readonly) double progress;
+- (instancetype)initWithCoder:(NSCoder *)coder {
+  self = [super initWithCoder:coder];
+  if (self) {
+    self.wantsLayer = YES;
+  }
+  return self;
+}
 
-#pragma mark Actions
+- (CALayer *)makeBackingLayer {
+  return [CALayer layer];
+}
 
-- (IBAction)begin:(nullable id)sender;
-- (IBAction)acceptLicenseAgreement:(nullable id)sender;
-- (IBAction)declineLicenseAgreement:(nullable id)sender;
-- (IBAction)cancel:(nullable id)sender;
+- (BOOL)opaque {
+  return NO;
+}
 
 @end

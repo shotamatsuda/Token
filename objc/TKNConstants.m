@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.h
+//  TKNConstants.m
 //
 //  The MIT License
 //
@@ -24,20 +24,13 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNConstants.h"
 
-@interface TKNWelcomeSheetController : NSWindowController <
-    NSURLDownloadDelegate>
-
-#pragma mark Progress
-
-@property (nonatomic, assign, readonly) double progress;
-
-#pragma mark Actions
-
-- (IBAction)begin:(nullable id)sender;
-- (IBAction)acceptLicenseAgreement:(nullable id)sender;
-- (IBAction)declineLicenseAgreement:(nullable id)sender;
-- (IBAction)cancel:(nullable id)sender;
-
-@end
+NSString * TKNAdobeFDKPath(void) {
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *directory = [NSSearchPathForDirectoriesInDomains(
+      NSLibraryDirectory, NSUserDomainMask, YES).firstObject
+          stringByAppendingPathComponent:
+              [@"." stringByAppendingString:bundle.bundleIdentifier]];
+  return [directory stringByAppendingPathComponent:@"FDK"];
+}

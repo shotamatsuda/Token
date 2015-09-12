@@ -46,6 +46,7 @@
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
 
+#import "TKNConstants.h"
 #import "TKNTypefaceUnit.h"
 
 static const double kTKNTypefaceStrokingRetryShift = 0.001;
@@ -280,9 +281,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   NSString *otfPath = [directory stringByAppendingPathComponent:
       [_path.lastPathComponent.stringByDeletingPathExtension
           stringByAppendingPathExtension:@"otf"]];
-  const auto sharedSupportPath = boost::filesystem::path(
-      [NSBundle mainBundle].sharedSupportPath.UTF8String);
-  const auto toolsPath = sharedSupportPath / "FDK" / "Tools" / "osx";
+  const auto fdkPath = boost::filesystem::path(TKNAdobeFDKPath().UTF8String);
+  const auto toolsPath = fdkPath / "Tools" / "osx";
   token::afdko::autohint(toolsPath.string(), path.UTF8String, true);
   token::afdko::createFeatures(font_info, directory.UTF8String);
   token::afdko::createFontMenuNameDB(font_info, directory.UTF8String);

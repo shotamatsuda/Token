@@ -26,19 +26,46 @@
 
 #import "TKNWelcomeSheetController.h"
 
-static NSString *TKNAFDKOURL =
+#import "TKNConstants.h"
+
+static NSString * const TKNAdobeFDKURL =
     @"https://download.macromedia.com/pub/developer/opentype/FDK-25-MAC.zip";
 
 @interface TKNWelcomeSheetController ()
 
-@property (nonatomic, strong) IBOutlet NSProgressIndicator *progressIndicator;
+@property (nonatomic, strong) IBOutlet NSView *welcomeView;
+@property (nonatomic, strong) IBOutlet NSView *licenseView;
+@property (nonatomic, strong) IBOutlet NSTextView *licenseTextView;
+@property (nonatomic, strong) IBOutlet NSView *progressView;
+
+- (void)transitionToView:(NSView *)view
+               resizable:(BOOL)resizable
+       completionHandler:(dispatch_block_t)completionHandler;
+- (void)install;
+- (void)cleanUp;
+
+#pragma mark Progress
+
 @property (nonatomic, assign) double progress;
+@property (nonatomic, strong) IBOutlet NSProgressIndicator *progressIndicator;
+@property (nonatomic, copy) NSString *progressMessage;
+
+#pragma mark Downloading
+
 @property (nonatomic, strong) NSURLDownload *download;
-@property (nonatomic, strong) NSTask *unzip;
 @property (nonatomic, strong) NSURLResponse *downloadResponse;
 @property (nonatomic, assign) long long downloadedDataLength;
+
+- (void)downloadArchive;
+
+#pragma mark Extracting
+
+@property (nonatomic, strong) NSTask *unzip;
 @property (nonatomic, strong) NSString *archiveDirectory;
 @property (nonatomic, strong) NSString *archivePath;
+
+- (void)extractArchive;
+- (void)didExtractArchive;
 
 @end
 
@@ -54,14 +81,141 @@ static NSString *TKNAFDKOURL =
   return self;
 }
 
+- (void)windowDidLoad {
+  [super windowDidLoad];
+
+  // Appearances
+  NSString *lightAppearance = NSAppearanceNameVibrantLight;
+
+  // Welcome view
+  NSWindow *window = self.window;
+  NSView *view = window.contentView;
+  CGRect frame = window.frame;
+  frame.size = _welcomeView.frame.size;
+  [window setFrame:frame display:NO];
+  window.styleMask = window.styleMask & ~NSResizableWindowMask;
+  _welcomeView.frame = view.bounds;
+  _welcomeView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  _welcomeView.appearance = [NSAppearance appearanceNamed:lightAppearance];
+  [view addSubview:_welcomeView];
+}
+
+- (void)transitionToView:(NSView *)view
+               resizable:(BOOL)resizable
+       completionHandler:(dispatch_block_t)completionHandler {
+  NSWindow *window = self.window;
+  if (resizable) {
+    window.styleMask = window.styleMask | NSResizableWindowMask;
+  } else {
+    window.styleMask = window.styleMask & ~NSResizableWindowMask;
+  }
+  [window.contentView addSubview:view];
+  CGRect windowFrame = window.frame;
+  windowFrame.size = view.frame.size;
+  view.autoresizingMask = (NSViewMinXMargin | NSViewMaxXMargin |
+                           NSViewMinYMargin);
+  CGRect viewFrame = window.contentView.bounds;
+  viewFrame.origin.x = (window.frame.size.width - view.frame.size.width) / 2.0;
+  viewFrame.origin.y = (window.frame.size.height - view.frame.size.height);
+  viewFrame.size = view.frame.size;
+  view.frame = viewFrame;
+  view.alphaValue = 0.0;
+  view.animator.alphaValue = 1.0;
+  NSView *currentView = window.contentView.subviews.firstObject;
+  currentView.autoresizingMask = (NSViewMinXMargin | NSViewMaxXMargin |
+                                  NSViewMinYMargin);
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+    currentView.animator.alphaValue = 0.0;
+    [window setFrame:windowFrame display:YES animate:YES];
+  } completionHandler:^{
+    [currentView removeFromSuperview];
+    view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    if (completionHandler) {
+      completionHandler();
+    }
+  }];
+}
+
+- (void)install {
+  self.progressMessage = NSLocalizedString(@"Installing...", @"");
+  NSString *linkPath = TKNAdobeFDKPath();
+  NSString *linkDirectory = linkPath.stringByDeletingLastPathComponent;
+  NSString *path = [_archiveDirectory stringByAppendingPathComponent:@"FDK"];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSError *error = nil;
+  if (![fileManager fileExistsAtPath:linkDirectory]) {
+    if (![fileManager createDirectoryAtPath:linkDirectory
+                withIntermediateDirectories:YES
+                                 attributes:nil
+                                      error:&error]) {
+      [[NSAlert alertWithError:error]
+          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          completionHandler:nil];
+    }
+  } else if ([fileManager fileExistsAtPath:linkPath]) {
+    if (![fileManager removeItemAtPath:linkPath error:&error]) {
+      [[NSAlert alertWithError:error]
+          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          completionHandler:nil];
+    }
+  }
+  if (![fileManager createSymbolicLinkAtPath:linkPath
+                         withDestinationPath:path
+                                       error:&error]) {
+    [[NSAlert alertWithError:error]
+        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        completionHandler:nil];
+  }
+}
+
+- (void)cleanUp {
+  self.progressMessage = NSLocalizedString(@"Cleaning up...", @"");
+  NSString *garbagePath = [_archiveDirectory
+      stringByAppendingPathComponent:@"__MACOSX"];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSError *error = nil;
+  if ([fileManager fileExistsAtPath:garbagePath]) {
+    if (![fileManager removeItemAtPath:garbagePath error:&error]) {
+      [[NSAlert alertWithError:error]
+          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          completionHandler:nil];
+    }
+  }
+  if ([fileManager fileExistsAtPath:_archivePath]) {
+    if (![fileManager removeItemAtPath:_archivePath error:&error]) {
+      [[NSAlert alertWithError:error]
+          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          completionHandler:nil];
+    }
+  }
+}
+
 #pragma mark Actions
 
 - (void)begin:(id)sender {
-  _progressIndicator.indeterminate = YES;
-  [_progressIndicator startAnimation:self];
-  NSURL *url = [NSURL URLWithString:TKNAFDKOURL];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  _download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+  _licenseTextView.enclosingScrollView.hidden = YES;
+  [self transitionToView:_licenseView resizable:YES completionHandler:^{
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSData *data = [NSData dataWithContentsOfFile:
+        [bundle pathForResource:@"AdobeFDKLicense" ofType:@"rtf"]];
+    NSAttributedString *contents = [[NSAttributedString alloc]
+        initWithRTF:data
+        documentAttributes:NULL];
+    _licenseTextView.textStorage.attributedString = contents;
+    _licenseTextView.textContainerInset = CGSizeMake(0.0, 8.0);
+    _licenseTextView.enclosingScrollView.hidden = NO;
+  }];
+}
+
+- (void)acceptLicenseAgreement:(id)sender {
+  [self transitionToView:_progressView resizable:NO completionHandler:^{
+    [_progressIndicator startAnimation:self];
+    [self downloadArchive];
+  }];
+}
+
+- (void)declineLicenseAgreement:(id)sender {
+  [self cancel:sender];
 }
 
 - (void)cancel:(id)sender {
@@ -71,27 +225,13 @@ static NSString *TKNAFDKOURL =
   [window.sheetParent endSheet:window returnCode:NSModalResponseCancel];
 }
 
-#pragma mark Extracting Archive
+#pragma mark Downloading
 
-- (void)extractArchive {
-  _progressIndicator.indeterminate = YES;
-  [_progressIndicator startAnimation:self];
-  __weak typeof(self) wself = self;
-  _unzip = [[NSTask alloc] init];
-  _unzip.launchPath = @"/usr/bin/unzip";
-  _unzip.currentDirectoryPath = _archiveDirectory;
-  _unzip.arguments = @[@"-qo", _archivePath];
-  _unzip.terminationHandler = ^(NSTask * task) {
-    [wself didExtractArchive];
-  };
-  [_unzip launch];
+- (void)downloadArchive {
+  NSURL *url = [NSURL URLWithString:TKNAdobeFDKURL];
+  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  _download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 }
-
-- (void)didExtractArchive {
-  [_progressIndicator stopAnimation:self];
-}
-
-#pragma mark NSURLDownloadDelegate
 
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error {
   [[NSAlert alertWithError:error]
@@ -100,11 +240,11 @@ static NSString *TKNAFDKOURL =
 }
 
 - (void)downloadDidBegin:(NSURLDownload *)download {
-  NSLog(@"downloadDidBegin");
+  _progressIndicator.indeterminate = NO;
+  self.progressMessage = NSLocalizedString(@"Downloading...", @"");
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)download {
-  NSLog(@"downloadDidFinish");
   [self extractArchive];
 }
 
@@ -136,7 +276,6 @@ static NSString *TKNAFDKOURL =
     didReceiveResponse:(NSURLResponse *)response {
   _downloadResponse = response;
   _downloadedDataLength = 0;
-  _progressIndicator.indeterminate = NO;
 }
 
 - (void)download:(NSURLDownload *)download
@@ -146,6 +285,31 @@ static NSString *TKNAFDKOURL =
   if (expectedLength != NSURLResponseUnknownLength) {
     self.progress = (double)_downloadedDataLength / expectedLength;
   }
+}
+
+#pragma mark Extracting
+
+- (void)extractArchive {
+  self.progressMessage = NSLocalizedString(@"Extracting...", @"");
+  _progressIndicator.indeterminate = YES;
+  [_progressIndicator startAnimation:self];
+  _unzip = [[NSTask alloc] init];
+  _unzip.launchPath = @"/usr/bin/unzip";
+  _unzip.currentDirectoryPath = _archiveDirectory;
+  _unzip.arguments = @[@"-qo", _archivePath];
+  __weak typeof(self) wself = self;
+  _unzip.terminationHandler = ^(NSTask * task) {
+    [wself didExtractArchive];
+  };
+  [_unzip launch];
+}
+
+- (void)didExtractArchive {
+  [self install];
+  [self cleanUp];
+  [_progressIndicator stopAnimation:self];
+  NSWindow *window = self.window;
+  [window.sheetParent endSheet:window returnCode:NSModalResponseOK];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.h
+//  TKNMultilineTextField.m
 //
 //  The MIT License
 //
@@ -24,20 +24,39 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import "TKNMultilineTextField.h"
 
-@interface TKNWelcomeSheetController : NSWindowController <
-    NSURLDownloadDelegate>
+@interface TKNMultilineTextField ()
 
-#pragma mark Progress
+@property (nonatomic, assign) CGSize previousIntrinsicContentSize;
 
-@property (nonatomic, assign, readonly) double progress;
+@end
 
-#pragma mark Actions
+@implementation TKNMultilineTextField
 
-- (IBAction)begin:(nullable id)sender;
-- (IBAction)acceptLicenseAgreement:(nullable id)sender;
-- (IBAction)declineLicenseAgreement:(nullable id)sender;
-- (IBAction)cancel:(nullable id)sender;
+- (NSSize)intrinsicContentSize {
+  if (self.cell.wraps && self.frame.size.height > 1.0) {
+    return [self.cell cellSizeForBounds:
+        NSMakeRect(0, 0, self.bounds.size.width, CGFLOAT_MAX)];
+  }
+  return super.intrinsicContentSize;
+}
 
+- (void) layout {
+  [super layout];
+  [self invalidateWordWrappedContentSizeIfNeeded];
+}
+
+- (void)setFrameSize:(NSSize)size {
+  [super setFrameSize:size];
+  [self invalidateWordWrappedContentSizeIfNeeded];
+}
+
+- (void)invalidateWordWrappedContentSizeIfNeeded {
+  CGSize intrinsicContentSize = self.intrinsicContentSize;
+  if (!CGSizeEqualToSize(_previousIntrinsicContentSize, intrinsicContentSize)) {
+    [self invalidateIntrinsicContentSize];
+  }
+  _previousIntrinsicContentSize = intrinsicContentSize;
+}
 @end

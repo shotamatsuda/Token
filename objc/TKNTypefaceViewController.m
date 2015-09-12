@@ -245,8 +245,8 @@ static char TKNTypefaceViewControllerKVOContext;
         [_magnificationQueue.firstObject doubleValue];
     [_magnificationQueue removeObjectAtIndex:0];
   } completionHandler:^{
-    _sampleView.needsDisplay = YES;
-    if (_magnificationQueue.count) {
+    wself.sampleView.needsDisplay = YES;
+    if (wself.magnificationQueue.count) {
       [wself animateMagnificationInQueue];
     }
   }];

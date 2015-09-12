@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.h
+//  TKNConstants.h
 //
 //  The MIT License
 //
@@ -24,20 +24,14 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
 
-@interface TKNWelcomeSheetController : NSWindowController <
-    NSURLDownloadDelegate>
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#pragma mark Progress
+NSString * TKNAdobeFDKPath(void);
 
-@property (nonatomic, assign, readonly) double progress;
-
-#pragma mark Actions
-
-- (IBAction)begin:(nullable id)sender;
-- (IBAction)acceptLicenseAgreement:(nullable id)sender;
-- (IBAction)declineLicenseAgreement:(nullable id)sender;
-- (IBAction)cancel:(nullable id)sender;
-
-@end
+#ifdef __cplusplus
+};  // extern "C"
+#endif
