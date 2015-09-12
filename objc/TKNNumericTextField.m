@@ -26,6 +26,8 @@
 
 #import "TKNNumericTextField.h"
 
+#import <CoreImage/CoreImage.h>
+
 @interface TKNNumericTextField ()
 
 @property (nonatomic, assign) double initialValue;
@@ -45,6 +47,15 @@
     [self setUpTrackingArea];
     self.editable = NO;
     self.selectable = NO;
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self
+                      selector:@selector(controlTextDidEndEditing:)
+                          name:NSControlTextDidEndEditingNotification
+                        object:self];
+    // Workaround for subpixel antialiasing on transparent background
+    self.wantsLayer = YES;
+    self.layer.compositingFilter =
+        [CIFilter filterWithName:@"CIMultiplyCompositing"];
   }
   return self;
 }
@@ -60,6 +71,10 @@
                       selector:@selector(controlTextDidEndEditing:)
                           name:NSControlTextDidEndEditingNotification
                         object:self];
+    // Workaround for subpixel antialiasing on transparent background
+    self.wantsLayer = YES;
+    self.layer.compositingFilter =
+        [CIFilter filterWithName:@"CIMultiplyCompositing"];
   }
   return self;
 }
