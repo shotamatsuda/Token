@@ -182,8 +182,8 @@ DQ
                         <action selector="acceptLicenseAgreement:" target="-2" id="K8z-RV-Df9"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-0b-YXe" customClass="TKNMultilineTextField">
-                    <rect key="frame" x="14" y="333" width="482" height="34"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-0b-YXe" customClass="TKNMultilineTextField">
+                    <rect key="frame" x="14" y="333" width="490" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="Y43-S4-jkF"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="34" id="uQG-D2-TpA"/>
