@@ -27,18 +27,24 @@
 #import "TKNFilePaths.h"
 
 NSString * TKNApplicationSupportPath(void) {
-  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *identifier = [NSBundle mainBundle].bundleIdentifier;
+  if (!identifier) {
+    abort();
+  }
   return [NSSearchPathForDirectoriesInDomains(
       NSApplicationSupportDirectory, NSUserDomainMask, YES).firstObject
-          stringByAppendingPathComponent:bundle.bundleIdentifier];
+          stringByAppendingPathComponent:identifier];
 }
 
 NSString * TKNPrivateLibraryPath(void) {
-  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *identifier = [NSBundle mainBundle].bundleIdentifier;
+  if (!identifier) {
+    abort();
+  }
   return [NSSearchPathForDirectoriesInDomains(
       NSLibraryDirectory, NSUserDomainMask, YES).firstObject
           stringByAppendingPathComponent:
-              [@"." stringByAppendingString:bundle.bundleIdentifier]];
+              [@"." stringByAppendingString:identifier]];
 }
 
 NSString * TKNAdobeFDKPath(void) {
