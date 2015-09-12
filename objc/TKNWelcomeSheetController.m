@@ -255,7 +255,7 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)download:(NSURLDownload *)download
     decideDestinationWithSuggestedFilename:(NSString *)filename {
-  NSString *directory = TKNApplicationSupportPath();
+  NSString *directory = TKNPrivateApplicationSupportPath();
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSError *error = nil;
   if (![fileManager fileExistsAtPath:directory]) {

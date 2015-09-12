@@ -30,7 +30,7 @@
 extern "C" {
 #endif
 
-NSString * TKNApplicationSupportPath(void);
+NSString * TKNPrivateApplicationSupportPath(void);
 NSString * TKNPrivateLibraryPath(void);
 NSString * TKNAdobeFDKPath(void);
 

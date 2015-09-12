@@ -176,7 +176,7 @@
     }
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSString *applicationSupportPath = TKNApplicationSupportPath();
+    NSString *applicationSupportPath = TKNPrivateApplicationSupportPath();
     if ([fileManager fileExistsAtPath:applicationSupportPath]) {
       if (![fileManager removeItemAtPath:applicationSupportPath error:&error]) {
         [[NSAlert alertWithError:error]

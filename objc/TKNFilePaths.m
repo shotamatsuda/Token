@@ -26,7 +26,7 @@
 
 #import "TKNFilePaths.h"
 
-NSString * TKNApplicationSupportPath(void) {
+NSString * TKNPrivateApplicationSupportPath(void) {
   NSString *identifier = [NSBundle mainBundle].bundleIdentifier;
   if (!identifier) {
     abort();
