@@ -261,7 +261,9 @@ static char TKNTypefaceViewControllerKVOContext;
 - (void)setShouldZoomToFit:(BOOL)shouldZoomToFit {
   if (shouldZoomToFit != _shouldZoomToFit) {
     _shouldZoomToFit = shouldZoomToFit;
-    [self zoomToFitAnimated:YES];
+    if (_shouldZoomToFit) {
+      [self zoomToFitAnimated:YES];
+    }
   }
 }
 
@@ -274,6 +276,7 @@ static char TKNTypefaceViewControllerKVOContext;
   CGPoint center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
   center = [_scrollView.contentView convertPoint:center fromView:_scrollView];
   [self setMagnification:magnification animated:animated];
+  _shouldZoomToFit = YES;
 }
 
 - (void)zoomToFit:(id)sender {
