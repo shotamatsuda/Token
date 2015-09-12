@@ -26,7 +26,7 @@
 
 #import "TKNWelcomeSheetController.h"
 
-#import "TKNConstants.h"
+#import "TKNFilePaths.h"
 
 static NSString * const TKNAdobeFDKURL =
     @"https://download.macromedia.com/pub/developer/opentype/FDK-25-MAC.zip";
@@ -138,33 +138,36 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)install {
   self.progressMessage = NSLocalizedString(@"Installing...", @"");
+  NSString *libraryPath = TKNPrivateLibraryPath();
   NSString *linkPath = TKNAdobeFDKPath();
-  NSString *linkDirectory = linkPath.stringByDeletingLastPathComponent;
   NSString *path = [_archiveDirectory stringByAppendingPathComponent:@"FDK"];
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSError *error = nil;
-  if (![fileManager fileExistsAtPath:linkDirectory]) {
-    if (![fileManager createDirectoryAtPath:linkDirectory
+  if (![fileManager fileExistsAtPath:libraryPath]) {
+    if (![fileManager createDirectoryAtPath:libraryPath
                 withIntermediateDirectories:YES
                                  attributes:nil
                                       error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return;
     }
   } else if ([fileManager fileExistsAtPath:linkPath]) {
     if (![fileManager removeItemAtPath:linkPath error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return;
     }
   }
   if (![fileManager createSymbolicLinkAtPath:linkPath
                          withDestinationPath:path
                                        error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
+    return;
   }
 }
 
@@ -177,15 +180,17 @@ static NSString * const TKNAdobeFDKURL =
   if ([fileManager fileExistsAtPath:garbagePath]) {
     if (![fileManager removeItemAtPath:garbagePath error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return;
     }
   }
   if ([fileManager fileExistsAtPath:_archivePath]) {
     if (![fileManager removeItemAtPath:_archivePath error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return;
     }
   }
 }
@@ -235,7 +240,7 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error {
   [[NSAlert alertWithError:error]
-      beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+      beginSheetModalForWindow:NSApp.mainWindow
       completionHandler:nil];
 }
 
@@ -250,10 +255,7 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)download:(NSURLDownload *)download
     decideDestinationWithSuggestedFilename:(NSString *)filename {
-  NSBundle *bundle = [NSBundle mainBundle];
-  NSString *directory = [NSSearchPathForDirectoriesInDomains(
-      NSApplicationSupportDirectory, NSUserDomainMask, YES).firstObject
-          stringByAppendingPathComponent:bundle.bundleIdentifier];
+  NSString *directory = TKNApplicationSupportPath();
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSError *error = nil;
   if (![fileManager fileExistsAtPath:directory]) {
@@ -262,8 +264,9 @@ static NSString * const TKNAdobeFDKURL =
                                  attributes:nil
                                       error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return;
     }
   }
   NSString *path = [directory stringByAppendingPathComponent:filename];

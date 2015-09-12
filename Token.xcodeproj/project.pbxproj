@@ -57,7 +57,7 @@
 		93982FAC1BA3C35500438BDA /* TKNLayerBackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */; settings = {ASSET_TAGS = (); }; };
 		93982FBA1BA3C8D300438BDA /* TKNMultilineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */; settings = {ASSET_TAGS = (); }; };
 		93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */; settings = {ASSET_TAGS = (); }; };
-		93982FBF1BA4104500438BDA /* TKNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FBE1BA4104500438BDA /* TKNConstants.m */; settings = {ASSET_TAGS = (); }; };
+		93982FBF1BA4104500438BDA /* TKNFilePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FBE1BA4104500438BDA /* TKNFilePaths.m */; settings = {ASSET_TAGS = (); }; };
 		9399180B1BA1734100061130 /* TKNWelcomeSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939918091BA1734100061130 /* TKNWelcomeSheetController.m */; };
 		9399180C1BA1734100061130 /* TKNWelcomeSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */; };
 		93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */; };
@@ -299,8 +299,8 @@
 		93982FB81BA3C8D300438BDA /* TKNMultilineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNMultilineTextField.h; sourceTree = "<group>"; };
 		93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNMultilineTextField.m; sourceTree = "<group>"; };
 		93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = AdobeFDKLicense.rtf; sourceTree = "<group>"; };
-		93982FBD1BA4104500438BDA /* TKNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNConstants.h; sourceTree = "<group>"; };
-		93982FBE1BA4104500438BDA /* TKNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNConstants.m; sourceTree = "<group>"; };
+		93982FBD1BA4104500438BDA /* TKNFilePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNFilePaths.h; sourceTree = "<group>"; };
+		93982FBE1BA4104500438BDA /* TKNFilePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNFilePaths.m; sourceTree = "<group>"; };
 		939918081BA1734100061130 /* TKNWelcomeSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNWelcomeSheetController.h; sourceTree = "<group>"; };
 		939918091BA1734100061130 /* TKNWelcomeSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNWelcomeSheetController.m; sourceTree = "<group>"; };
 		9399180A1BA1734100061130 /* TKNWelcomeSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKNWelcomeSheetController.xib; sourceTree = "<group>"; };
@@ -483,8 +483,8 @@
 				93B7635E1B91B332009CA8B0 /* main.m */,
 				9375FA541B9DDCD900559480 /* scaler.mm */,
 				93AB947B1B91B1600038DCB4 /* MainMenu.xib */,
-				93982FBD1BA4104500438BDA /* TKNConstants.h */,
-				93982FBE1BA4104500438BDA /* TKNConstants.m */,
+				93982FBD1BA4104500438BDA /* TKNFilePaths.h */,
+				93982FBE1BA4104500438BDA /* TKNFilePaths.m */,
 				9381EE561B91B20000807B1B /* TKNApplicationDelegate.h */,
 				9381EE571B91B20000807B1B /* TKNApplicationDelegate.m */,
 				93B7634B1B91B268009CA8B0 /* TKNMainWindowController.h */,
@@ -950,7 +950,7 @@
 				93982FAC1BA3C35500438BDA /* TKNLayerBackedView.m in Sources */,
 				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,
-				93982FBF1BA4104500438BDA /* TKNConstants.m in Sources */,
+				93982FBF1BA4104500438BDA /* TKNFilePaths.m in Sources */,
 				93D268571B95491D008AB659 /* TKNSettingsViewController.m in Sources */,
 				93C18FB61B930D440044AAEB /* unique_id.cc in Sources */,
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,

@@ -36,7 +36,7 @@
 #include <utility>
 
 #include <boost/lexical_cast.hpp>
-#include <boost/filesystem/path.hpp>
+#include <boost/filesystem.hpp>
 #include <boost/format.hpp>
 
 #include "takram/graphics.h"
@@ -46,7 +46,8 @@
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
 
-#import "TKNConstants.h"
+#import "TKNFilePaths.h"
+#import "TKNMainWindowController.h"
 #import "TKNTypefaceUnit.h"
 
 static const double kTKNTypefaceStrokingRetryShift = 0.001;
@@ -152,7 +153,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
 #pragma mark Opening and Saving
 
-- (void)openFile:(NSString *)path {
+- (BOOL)openFile:(NSString *)path {
   path = [path stringByAppendingPathComponent:
       [(_capHeightEqualsUnitsPerEM ? @"scaled" : @"default")
           stringByAppendingPathExtension:@"ufo"]];
@@ -166,9 +167,10 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   [self willChangeValueForKey:@"path"];
   _path = path;
   [self didChangeValueForKey:@"path"];
+  return YES;
 }
 
-- (void)saveToFile:(NSString *)path {
+- (BOOL)saveToFile:(NSString *)path {
   NSString *uniqueString = [NSProcessInfo processInfo].globallyUniqueString;
   NSString *workingDirectoryPath = [NSTemporaryDirectory()
       stringByAppendingPathComponent:uniqueString];
@@ -176,13 +178,17 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   [self updateFontInfoInUnifiedFontObject:ufoPath];
   [self updateGlyphsInUnifiedFontObject:ufoPath];
   NSString *otfPath = [self createOpenTypeWithUnifiedFontObject:ufoPath];
+  if (!otfPath) {
+    return NO;
+  }
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSError *error = nil;
   if ([fileManager fileExistsAtPath:path]) {
     if (![fileManager removeItemAtPath:path error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return NO;
     }
   }
   NSString *directory = path.stringByDeletingLastPathComponent;
@@ -192,20 +198,24 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
                                  attributes:nil
                                       error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
+      return NO;
     }
   }
   if (![fileManager copyItemAtPath:otfPath toPath:path error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
+    return NO;
   }
   if (![fileManager removeItemAtPath:workingDirectoryPath error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
+    return NO;
   }
+  return YES;
 }
 
 - (NSString *)createUnifiedFontObject:(NSString *)directory {
@@ -219,13 +229,15 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
                                attributes:nil
                                     error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
+    return nil;
   }
   if (![fileManager copyItemAtPath:_path toPath:ufoPath error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
+    return nil;
   }
   return ufoPath;
 }
@@ -283,6 +295,10 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
           stringByAppendingPathExtension:@"otf"]];
   const auto fdkPath = boost::filesystem::path(TKNAdobeFDKPath().UTF8String);
   const auto toolsPath = fdkPath / "Tools" / "osx";
+  if (!boost::filesystem::exists(toolsPath)) {
+    [NSApp sendAction:@selector(installAdobeFDK:) to:nil from:self];
+    return nil;
+  }
   token::afdko::autohint(toolsPath.string(), path.UTF8String, true);
   token::afdko::createFeatures(font_info, directory.UTF8String);
   token::afdko::createFontMenuNameDB(font_info, directory.UTF8String);

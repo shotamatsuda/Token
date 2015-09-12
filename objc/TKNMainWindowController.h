@@ -47,7 +47,7 @@
 - (IBAction)installFont:(nullable id)sender;
 - (IBAction)zoomIn:(nullable id)sender;
 - (IBAction)zoomOut:(nullable id)sender;
-- (IBAction)installFDK:(nullable id)sender;
-- (IBAction)uninstallFDK:(nullable id)sender;
+- (IBAction)installAdobeFDK:(nullable id)sender;
+- (IBAction)uninstallAdobeFDK:(nullable id)sender;
 
 @end

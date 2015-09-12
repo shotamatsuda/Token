@@ -25,16 +25,16 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="6RQ-QE-W7P"/>
-                            <menuItem title="Install FDK..." id="Zgx-TU-pnu">
+                            <menuItem title="Install Adobe FDK..." id="Zgx-TU-pnu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="installFDK:" target="-1" id="Mh1-DM-7fq"/>
+                                    <action selector="installAdobeFDK:" target="-1" id="Mh1-DM-7fq"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Uninstall FDK..." id="azw-ZK-hDw">
+                            <menuItem title="Uninstall Adobe FDK..." id="azw-ZK-hDw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="uninstallFDK:" target="-1" id="B5A-Zh-ZFh"/>
+                                    <action selector="uninstallAdobeFDK:" target="-1" id="B5A-Zh-ZFh"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>

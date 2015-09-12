@@ -31,11 +31,11 @@
             <point key="canvasLocation" x="376" y="513.5"/>
         </window>
         <view id="cbn-mQ-PQn" customClass="TKNLayerBackedView">
-            <rect key="frame" x="0.0" y="0.0" width="402" height="214"/>
+            <rect key="frame" x="0.0" y="0.0" width="402" height="180"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lkP-Lp-VKF">
-                    <rect key="frame" x="132" y="145" width="138" height="39"/>
+                    <rect key="frame" x="132" y="121" width="138" height="39"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome" id="QqN-Wp-qJl">
                         <font key="font" size="32" name=".AppleSystemUIFontLight"/>
@@ -44,19 +44,12 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JsH-Zp-KTV">
-                    <rect key="frame" x="18" y="91" width="366" height="34"/>
+                    <rect key="frame" x="18" y="67" width="366" height="34"/>
                     <animations/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Token needs to install Adobe Font Development Kit (FDK) before it can create fonts." allowsEditingTextAttributes="YES" id="43n-Ef-pah">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" allowsEditingTextAttributes="YES" id="43n-Ef-pah">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yx2-Uo-MIw">
-                    <rect key="frame" x="18" y="67" width="366" height="14"/>
-                    <animations/>
-                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="FDK will be installed in the user's application support folder." id="hjj-OH-X09">
-                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">Token needs to install Adobe Font Development Kit
+(Adobe FDK) before it can create fonts.</string>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -101,21 +94,18 @@ DQ
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fAv-8a-vPV" secondAttribute="bottom" constant="16" id="4bN-Fe-Cn4"/>
                 <constraint firstAttribute="centerX" secondItem="lkP-Lp-VKF" secondAttribute="centerX" id="7W7-i5-iDj"/>
                 <constraint firstAttribute="trailing" secondItem="fAv-8a-vPV" secondAttribute="trailing" constant="16" id="7eE-7Y-kiz"/>
+                <constraint firstItem="fAv-8a-vPV" firstAttribute="top" secondItem="JsH-Zp-KTV" secondAttribute="bottom" constant="30" id="8yE-1x-JfX"/>
                 <constraint firstAttribute="centerX" secondItem="JsH-Zp-KTV" secondAttribute="centerX" id="DJ7-LR-lK9"/>
+                <constraint firstItem="fuv-Sc-lAx" firstAttribute="top" secondItem="JsH-Zp-KTV" secondAttribute="bottom" constant="30" id="DV2-Ii-ea2"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fuv-Sc-lAx" secondAttribute="bottom" constant="16" id="QAs-fW-FwI"/>
-                <constraint firstItem="fAv-8a-vPV" firstAttribute="top" secondItem="yx2-Uo-MIw" secondAttribute="bottom" constant="30" id="VdJ-OB-g3g"/>
-                <constraint firstAttribute="trailing" secondItem="yx2-Uo-MIw" secondAttribute="trailing" constant="20" id="ZjQ-bd-jGd"/>
                 <constraint firstItem="fuv-Sc-lAx" firstAttribute="leading" secondItem="cbn-mQ-PQn" secondAttribute="leading" constant="16" id="eCD-F3-Z0N"/>
-                <constraint firstItem="lkP-Lp-VKF" firstAttribute="top" secondItem="cbn-mQ-PQn" secondAttribute="top" constant="30" id="hXK-Is-fDV"/>
-                <constraint firstItem="fuv-Sc-lAx" firstAttribute="top" secondItem="yx2-Uo-MIw" secondAttribute="bottom" constant="30" id="k1x-nT-kUw"/>
+                <constraint firstItem="lkP-Lp-VKF" firstAttribute="top" secondItem="cbn-mQ-PQn" secondAttribute="top" constant="20" id="hXK-Is-fDV"/>
                 <constraint firstItem="JsH-Zp-KTV" firstAttribute="leading" secondItem="cbn-mQ-PQn" secondAttribute="leading" constant="20" id="poC-JT-BxW"/>
-                <constraint firstItem="yx2-Uo-MIw" firstAttribute="top" secondItem="JsH-Zp-KTV" secondAttribute="bottom" constant="10" id="ryF-hg-Azi"/>
-                <constraint firstItem="yx2-Uo-MIw" firstAttribute="leading" secondItem="cbn-mQ-PQn" secondAttribute="leading" constant="20" id="unO-w8-Cjm"/>
                 <constraint firstAttribute="trailing" secondItem="JsH-Zp-KTV" secondAttribute="trailing" constant="20" id="uw8-XS-6fD"/>
                 <constraint firstItem="fAv-8a-vPV" firstAttribute="leading" secondItem="fuv-Sc-lAx" secondAttribute="trailing" constant="10" id="y2B-vk-ulK"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="376" y="842.5"/>
+            <point key="canvasLocation" x="-87" y="588"/>
         </view>
         <view id="VWa-KP-o8W" customClass="TKNLayerBackedView">
             <rect key="frame" x="0.0" y="0.0" width="518" height="383"/>
@@ -192,14 +182,14 @@ DQ
                         <action selector="acceptLicenseAgreement:" target="-2" id="K8z-RV-Df9"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-0b-YXe" customClass="TKNMultilineTextField">
-                    <rect key="frame" x="14" y="333" width="490" height="34"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-0b-YXe" customClass="TKNMultilineTextField">
+                    <rect key="frame" x="14" y="333" width="482" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="Y43-S4-jkF"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="34" id="uQG-D2-TpA"/>
                     </constraints>
                     <animations/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="To continue installing FDK you must accept the terms and conditions of the FDK end-user license agreement." id="2SN-id-H2e">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="To continue installing Adobe FDK you must accept the terms and conditions of the FDK end-user license agreement." id="2SN-id-H2e">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

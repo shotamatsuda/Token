@@ -1,5 +1,5 @@
 //
-//  TKNConstants.m
+//  TKNFilePaths.h
 //
 //  The MIT License
 //
@@ -24,13 +24,16 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNConstants.h"
+#import <Foundation/Foundation.h>
 
-NSString * TKNAdobeFDKPath(void) {
-  NSBundle *bundle = [NSBundle mainBundle];
-  NSString *directory = [NSSearchPathForDirectoriesInDomains(
-      NSLibraryDirectory, NSUserDomainMask, YES).firstObject
-          stringByAppendingPathComponent:
-              [@"." stringByAppendingString:bundle.bundleIdentifier]];
-  return [directory stringByAppendingPathComponent:@"FDK"];
-}
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+NSString * TKNApplicationSupportPath(void);
+NSString * TKNPrivateLibraryPath(void);
+NSString * TKNAdobeFDKPath(void);
+
+#ifdef __cplusplus
+};  // extern "C"
+#endif

@@ -26,7 +26,7 @@
 
 #import "TKNMainWindowController.h"
 
-#import "TKNConstants.h"
+#import "TKNFilePaths.h"
 #import "TKNSettingsViewController.h"
 #import "TKNTypefaceViewController.h"
 #import "TKNWelcomeSheetController.h"
@@ -112,12 +112,9 @@
 
   // Check for FDK
   dispatch_async(dispatch_get_main_queue(), ^{
-    NSString *path = TKNAdobeFDKPath();
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:path]) {
-      _welcomeSheetController = [[TKNWelcomeSheetController alloc] init];
-      [self.window beginSheet:_welcomeSheetController.window
-            completionHandler:nil];
+    if (![fileManager fileExistsAtPath:TKNAdobeFDKPath()]) {
+      [self installAdobeFDK:self];
     }
   });
 }
@@ -144,9 +141,10 @@
           stringByAppendingPathComponent:@"Fonts"]
               stringByAppendingPathComponent:_typeface.familyName]
                   stringByAppendingPathComponent:fontName];
-  [_typeface saveToFile:installPath];
-  [[NSWorkspace sharedWorkspace] openFile:
-      installPath.stringByDeletingLastPathComponent];
+  if ([_typeface saveToFile:installPath]) {
+    [[NSWorkspace sharedWorkspace] openFile:
+        installPath.stringByDeletingLastPathComponent];
+  }
 }
 
 - (void)zoomIn:(id)sender {
@@ -157,13 +155,47 @@
   [_typefaceViewController zoomOut:sender];
 }
 
-- (void)installFDK:(id)sender {
+- (void)installAdobeFDK:(id)sender {
   _welcomeSheetController = [[TKNWelcomeSheetController alloc] init];
   [self.window beginSheet:_welcomeSheetController.window
         completionHandler:^(NSModalResponse returnCode) {}];
 }
 
-- (void)uninstallFDK:(id)sender {
+- (void)uninstallAdobeFDK:(id)sender {
+  NSAlert *alert = [[NSAlert alloc] init];
+  alert.alertStyle = NSWarningAlertStyle;
+  alert.messageText = NSLocalizedString(
+      @"Are you sure you want to permanently erase Adobe FDK?", @"");
+  alert.informativeText = NSLocalizedString(
+      @"You can’t undo this action.", @"");
+  [alert addButtonWithTitle:NSLocalizedString(@"Uninstall", @"")];
+  [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"")];
+  void (^handler)(NSModalResponse) = ^(NSModalResponse returnCode) {
+    if (returnCode != NSAlertFirstButtonReturn) {
+      return;
+    }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSString *applicationSupportPath = TKNApplicationSupportPath();
+    if ([fileManager fileExistsAtPath:applicationSupportPath]) {
+      if (![fileManager removeItemAtPath:applicationSupportPath error:&error]) {
+        [[NSAlert alertWithError:error]
+            beginSheetModalForWindow:NSApp.mainWindow
+            completionHandler:nil];
+        return;
+      }
+    }
+    NSString *libraryPath = TKNPrivateLibraryPath();
+    if ([fileManager fileExistsAtPath:libraryPath]) {
+      if (![fileManager removeItemAtPath:libraryPath error:&error]) {
+        [[NSAlert alertWithError:error]
+            beginSheetModalForWindow:NSApp.mainWindow
+            completionHandler:nil];
+        return;
+      }
+    }
+  };
+  [alert beginSheetModalForWindow:self.window completionHandler:handler];
 }
 
 @end

@@ -45,8 +45,8 @@
 
 @property (nonatomic, copy, readonly, nonnull) NSString *path;
 
-- (void)openFile:(nonnull NSString *)path;
-- (void)saveToFile:(nonnull NSString *)path;
+- (BOOL)openFile:(nonnull NSString *)path;
+- (BOOL)saveToFile:(nonnull NSString *)path;
 
 #pragma mark Parameters
 
