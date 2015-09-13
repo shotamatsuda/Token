@@ -239,8 +239,7 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
       if (&command == &other) {
         continue;
       }
-      if (std::abs(command.point().x - other.point().x) < tolerance_ &&
-          std::abs(command.point().y - other.point().y) < tolerance_) {
+      if (command.point().equals(other.point(), tolerance_)) {
         const auto mid = (command.point() + other.point()) / 2;
         command.point() = mid;
         other.point() = mid;
@@ -249,7 +248,7 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   }
 
   // Simplification
-  SkPath sk_path(convertShape(simplified_shape));
+  SkPath sk_path(convertShape(shape));
   SkPath sk_result;
   Simplify(sk_path, &sk_result);
   auto result = convertShape(sk_result);
@@ -276,11 +275,11 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   for (const auto& pair : depths) {
     auto& path = *pair.first;
     if (pair.second % 2) {
-      if (path.direction() != takram::PathDirection::COUNTER_CLOCKWISE) {
+      if (path.direction() == takram::PathDirection::CLOCKWISE) {
         path.reverse();
         assert(path.direction() == takram::PathDirection::COUNTER_CLOCKWISE);
       }
-    } else if (path.direction() != takram::PathDirection::CLOCKWISE) {
+    } else if (path.direction() == takram::PathDirection::COUNTER_CLOCKWISE) {
       path.reverse();
       assert(path.direction() == takram::PathDirection::CLOCKWISE);
     }
