@@ -47,6 +47,4 @@
   return YES;
 }
 
-- (IBAction)checkForUpdates:(id)sender {}
-
 @end

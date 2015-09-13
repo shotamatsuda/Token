@@ -33,6 +33,4 @@
 @property (nonatomic, strong, readonly, nonnull)
     TKNMainWindowController *windowController;
 
-- (IBAction)checkForUpdates:(nullable id)sender;
-
 @end

@@ -120,11 +120,11 @@ static NSString * const TKNAdobeFDKURL =
   viewFrame.size = view.frame.size;
   view.frame = viewFrame;
   view.alphaValue = 0.0;
-  view.animator.alphaValue = 1.0;
   NSView *currentView = window.contentView.subviews.firstObject;
   currentView.autoresizingMask = (NSViewMinXMargin | NSViewMaxXMargin |
                                   NSViewMinYMargin);
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+    view.animator.alphaValue = 1.0;
     currentView.animator.alphaValue = 0.0;
     [window setFrame:windowFrame display:YES animate:YES];
   } completionHandler:^{
@@ -308,11 +308,14 @@ static NSString * const TKNAdobeFDKURL =
 }
 
 - (void)didExtractArchive {
-  [self install];
-  [self cleanUp];
-  [_progressIndicator stopAnimation:self];
-  NSWindow *window = self.window;
-  [window.sheetParent endSheet:window returnCode:NSModalResponseOK];
+  // Will be invoked in a background thread
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self install];
+    [self cleanUp];
+    [_progressIndicator stopAnimation:self];
+    NSWindow *window = self.window;
+    [window.sheetParent endSheet:window returnCode:NSModalResponseOK];
+  });
 }
 
 @end
