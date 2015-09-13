@@ -1,5 +1,5 @@
 //
-//  token/afdko.h
+//  token/afdko/check_outlines.cc
 //
 //  The MIT License
 //
@@ -24,12 +24,34 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_AFDKO_H_
-#define TOKEN_AFDKO_H_
-
-#include "token/afdko/autohint.h"
 #include "token/afdko/check_outlines.h"
-#include "token/afdko/makeotf.h"
 
-#endif  // TOKEN_AFDKO_H_
+#include <fstream>
+#include <string>
+
+#include <boost/filesystem/path.hpp>
+#include <boost/format.hpp>
+
+#include "token/ufo.h"
+
+namespace token {
+namespace afdko {
+
+bool checkOutlines(const std::string& tools, const std::string& input) {
+  const auto name = "checkOutlinesUFO";
+  const auto command = (boost::filesystem::path(tools) / name).string();
+  std::string options;
+  const std::string format = R"(
+    export PATH=${PATH}:"%1%"
+    export FDK_EXE="%1%"
+    "%2%" -e -all -decimal "%3%"
+  )";
+  return !std::system((
+      boost::format(format) %
+      tools %
+      command %
+      input).str().c_str());
+}
+
+}  // namespace afdko
+}  // namespace token

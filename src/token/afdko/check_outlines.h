@@ -1,5 +1,5 @@
 //
-//  token/afdko.h
+//  token/afdko/check_outlines.h
 //
 //  The MIT License
 //
@@ -25,11 +25,20 @@
 //
 
 #pragma once
-#ifndef TOKEN_AFDKO_H_
-#define TOKEN_AFDKO_H_
+#ifndef TOKEN_AFDKO_CHECK_OUTLINES_H_
+#define TOKEN_AFDKO_CHECK_OUTLINES_H_
 
-#include "token/afdko/autohint.h"
-#include "token/afdko/check_outlines.h"
-#include "token/afdko/makeotf.h"
+#include <string>
 
-#endif  // TOKEN_AFDKO_H_
+#include "token/ufo.h"
+
+namespace token {
+namespace afdko {
+
+bool checkOutlines(const std::string& tools,
+                   const std::string& input);
+
+}  // namespace afdko
+}  // namespace token
+
+#endif  // TOKEN_AFDKO_CHECK_OUTLINES_H_
