@@ -40,7 +40,8 @@ namespace afdko {
 bool autohint(const std::string& tools,
               const std::string& input,
               bool decimal) {
-  const auto command = (boost::filesystem::path(tools) / "autohint").string();
+  const auto name = "autohint";
+  const auto command = (boost::filesystem::path(tools) / name).string();
   std::string options;
   if (decimal) {
     options += " -decimal ";

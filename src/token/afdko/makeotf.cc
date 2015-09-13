@@ -60,7 +60,8 @@ bool makeotf(const std::string& tools,
              const std::string& input,
              const std::string& output,
              bool release) {
-  const auto command = (boost::filesystem::path(tools) / "makeotf").string();
+  const auto name = "makeotf";
+  const auto command = (boost::filesystem::path(tools) / name).string();
   std::string options;
   if (release) {
     options += " -r ";

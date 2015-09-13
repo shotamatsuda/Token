@@ -51,9 +51,11 @@ Lib Lib::read(const boost::property_tree::ptree& tree) {
 }
 
 boost::property_tree::ptree Lib::ptree() const {
+  boost::property_tree::ptree dict;
+  dict.put("key", "com.takram.numberOfContours");
+  dict.put("integer", number_of_contours);
   boost::property_tree::ptree tree;
-  tree.put("key", "com.takram.numberOfContours");
-  tree.put("integer", number_of_contours);
+  tree.add_child("dict", dict);
   return std::move(tree);
 }
 
@@ -78,7 +80,7 @@ PropertyList Lib::convertToPropertyList(
       "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
       "<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" "
       "\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"
-      "<plist version=\"1.0\"><dict>" + contents + "</dict></plist>";
+      "<plist version=\"1.0\">" + contents + "</plist>";
   plist_t node{};
   plist_from_xml(plist_contents.c_str(), plist_contents.size(), &node);
   assert(plist_get_node_type(node) == PLIST_DICT);

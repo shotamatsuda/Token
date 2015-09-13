@@ -71,6 +71,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 
 #pragma mark Opening and Saving
 
+@property (nonatomic, copy, nonnull) NSString *path;
+
 - (NSString *)createUnifiedFontObject:(NSString *)directory;
 - (void)updateFontInfoInUnifiedFontObject:(NSString *)path;
 - (void)updateGlyphsInUnifiedFontObject:(NSString *)path;
@@ -164,9 +166,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     _glyphOutlines.emplace(glyph.name, token::GlyphOutline(glyph));
   }
   [self parameterDidChange];
-  [self willChangeValueForKey:@"path"];
-  _path = path;
-  [self didChangeValueForKey:@"path"];
+  self.path = path;
   return YES;
 }
 
@@ -299,6 +299,7 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
     [NSApp sendAction:@selector(installAdobeFDK:) to:nil from:self];
     return nil;
   }
+  token::afdko::checkOutlines(toolsPath.string(), path.UTF8String);
   token::afdko::autohint(toolsPath.string(), path.UTF8String, true);
   token::afdko::createFeatures(font_info, directory.UTF8String);
   token::afdko::createFontMenuNameDB(font_info, directory.UTF8String);
@@ -380,8 +381,16 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
 }
 
++ (NSSet *)keyPathsForValuesAffectingFamilyName {
+  return [NSSet setWithObjects:@"path", nil];
+}
+
 - (NSUInteger)unitsPerEM {
   return _fontInfo.units_per_em;
+}
+
++ (NSSet *)keyPathsForValuesAffectingUnitsPerEM {
+  return [NSSet setWithObjects:@"path", nil];
 }
 
 - (NSInteger)ascender {
