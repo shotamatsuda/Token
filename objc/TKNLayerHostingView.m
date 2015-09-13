@@ -1,5 +1,5 @@
 //
-//  TKNLayerBackedView.m
+//  TKNLayerHostingView.m
 //
 //  The MIT License
 //
@@ -24,13 +24,14 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNLayerBackedView.h"
+#import "TKNLayerHostingView.h"
 
-@implementation TKNLayerBackedView
+@implementation TKNLayerHostingView
 
 - (instancetype)initWithFrame:(NSRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
+    self.layer = [CALayer layer];
     self.wantsLayer = YES;
   }
   return self;
@@ -39,6 +40,7 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
   if (self) {
+    self.layer = [CALayer layer];
     self.wantsLayer = YES;
   }
   return self;

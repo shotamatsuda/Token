@@ -232,22 +232,6 @@ takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
 }
 
 takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
-  // Convert points that are closer than the tolerance parameter
-  auto simplified_shape = shape;
-  for (auto& command : simplified_shape) {
-    for (auto& other : simplified_shape) {
-      if (&command == &other) {
-        continue;
-      }
-      if (command.point().equals(other.point(), tolerance_)) {
-        const auto mid = (command.point() + other.point()) / 2;
-        command.point() = mid;
-        other.point() = mid;
-      }
-    }
-  }
-
-  // Simplification
   SkPath sk_path(convertShape(shape));
   SkPath sk_result;
   Simplify(sk_path, &sk_result);
