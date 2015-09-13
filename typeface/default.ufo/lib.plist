@@ -2,69 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.fontlab.v2.tth</key>
-	<dict>
-		<key>stems</key>
-		<dict>
-			<key>X: 66</key>
-			<dict>
-				<key>horizontal</key>
-				<integer>0</integer>
-				<key>round</key>
-				<dict>
-					<key>0</key>
-					<integer>1</integer>
-					<key>23</key>
-					<integer>2</integer>
-					<key>38</key>
-					<integer>3</integer>
-					<key>54</key>
-					<integer>4</integer>
-					<key>69</key>
-					<integer>5</integer>
-					<key>84</key>
-					<integer>6</integer>
-				</dict>
-				<key>width</key>
-				<integer>66</integer>
-			</dict>
-		</dict>
-	</dict>
-	<key>com.schriftgestaltung.fontMasterID</key>
-	<string>41BB716C-5B3C-4C51-8DB8-E40F7B189794</string>
-	<key>com.schriftgestaltung.glyphOrder</key>
-	<array>
-		<string>A</string>
-		<string>B</string>
-		<string>C</string>
-		<string>D</string>
-		<string>E</string>
-		<string>F</string>
-		<string>G</string>
-		<string>H</string>
-		<string>I</string>
-		<string>J</string>
-		<string>K</string>
-		<string>L</string>
-		<string>M</string>
-		<string>N</string>
-		<string>O</string>
-		<string>P</string>
-		<string>Q</string>
-		<string>R</string>
-		<string>S</string>
-		<string>T</string>
-		<string>U</string>
-		<string>V</string>
-		<string>W</string>
-		<string>X</string>
-		<string>Y</string>
-		<string>Z</string>
-	</array>
-	<key>com.schriftgestaltung.gridSize</key>
-	<integer>0</integer>
-	<key>com.schriftgestaltung.useNiceNames</key>
-	<integer>0</integer>
 	<key>public.glyphOrder</key>
 	<array>
 		<string>A</string>
@@ -104,6 +41,8 @@
 		<string>eight</string>
 		<string>nine</string>
 		<string>.notdef</string>
+		<string>.null</string>
+		<string>space</string>
 	</array>
 </dict>
 </plist>
