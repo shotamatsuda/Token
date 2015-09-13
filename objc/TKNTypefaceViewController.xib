@@ -50,7 +50,7 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="h10-2w-HUc" customClass="TKNControlView">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
                     <subviews>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-fa-Jdp">
+                        <button toolTip="Zoom In" translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-fa-Jdp">
                             <rect key="frame" x="270" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="5S3-Te-hep"/>
@@ -84,7 +84,7 @@
                                 </binding>
                             </connections>
                         </textField>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="46j-Pl-tkn">
+                        <button toolTip="Zoom Out" translatesAutoresizingMaskIntoConstraints="NO" id="46j-Pl-tkn">
                             <rect key="frame" x="195" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Ae5-AS-C2b"/>
@@ -99,7 +99,7 @@
                                 <action selector="zoomOut:" target="-2" id="4g7-qQ-FkA"/>
                             </connections>
                         </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="of5-dm-Xbc">
+                        <button toolTip="Toggle Background Color" translatesAutoresizingMaskIntoConstraints="NO" id="of5-dm-Xbc">
                             <rect key="frame" x="5" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="QdA-f3-Fjq"/>
@@ -114,7 +114,7 @@
                                 <action selector="toggleInverted:" target="-2" id="JDr-p2-CM5"/>
                             </connections>
                         </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="otf-EB-md7">
+                        <button toolTip="Toggle Path Outline" translatesAutoresizingMaskIntoConstraints="NO" id="otf-EB-md7">
                             <rect key="frame" x="30" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="6sd-0T-GBF"/>
@@ -129,7 +129,7 @@
                                 <action selector="toggleOutlined:" target="-2" id="Ps3-mr-yS9"/>
                             </connections>
                         </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="ooV-Uy-by8">
+                        <button toolTip="Zoom to Fit" translatesAutoresizingMaskIntoConstraints="NO" id="ooV-Uy-by8">
                             <rect key="frame" x="220" y="0.0" width="50" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="xg4-Uq-ijT"/>
