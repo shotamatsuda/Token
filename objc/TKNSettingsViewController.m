@@ -42,14 +42,4 @@
                         bundle:[NSBundle mainBundle]];
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
-  NSOperatingSystemVersion version = processInfo.operatingSystemVersion;
-  if (version.majorVersion >= 10 && version.minorVersion >= 11) {
-    _capsHeightConstraint.constant = -4.0;
-    _strokeWidthConstraint.constant = -4.0;
-  }
-}
-
 @end

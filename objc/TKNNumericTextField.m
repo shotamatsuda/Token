@@ -52,10 +52,6 @@
                       selector:@selector(controlTextDidEndEditing:)
                           name:NSControlTextDidEndEditingNotification
                         object:self];
-    // Workaround for subpixel antialiasing on transparent background
-    self.wantsLayer = YES;
-    self.layer.compositingFilter =
-        [CIFilter filterWithName:@"CIMultiplyCompositing"];
   }
   return self;
 }
@@ -71,10 +67,6 @@
                       selector:@selector(controlTextDidEndEditing:)
                           name:NSControlTextDidEndEditingNotification
                         object:self];
-    // Workaround for subpixel antialiasing on transparent background
-    self.wantsLayer = YES;
-    self.layer.compositingFilter =
-        [CIFilter filterWithName:@"CIMultiplyCompositing"];
   }
   return self;
 }
@@ -84,6 +76,10 @@
   [defaultCenter removeObserver:self
                            name:NSControlTextDidEndEditingNotification
                          object:self];
+}
+
+- (BOOL)mouseDownCanMoveWindow {
+  return NO;
 }
 
 - (void)setFrameSize:(CGSize)size {

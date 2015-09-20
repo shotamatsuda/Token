@@ -35,7 +35,7 @@
 @implementation TKNMultilineTextField
 
 - (NSSize)intrinsicContentSize {
-  if (self.cell.wraps && self.frame.size.height > 1.0) {
+  if ([self.cell wraps] && self.frame.size.height > 1.0) {
     return [self.cell cellSizeForBounds:
         NSMakeRect(0, 0, self.bounds.size.width, CGFLOAT_MAX)];
   }
