@@ -50,7 +50,7 @@
 #import "TKNMainWindowController.h"
 #import "TKNTypefaceUnit.h"
 
-static const double kTKNTypefaceStrokingRetryShift = 0.001;
+static const double kTKNTypefaceStrokingRetryShift = 0.0001;
 static const double kTKNTypefaceStrokingRetryShiftLimit = 0.1;
 static const double kTKNTypefaceMinStrokeWidthInEM = 10.0;
 static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
@@ -504,25 +504,33 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   // occationally fails.
   bool success{};
   double shift{};
+  bool negative{};
   for (; shift < kTKNTypefaceStrokingRetryShiftLimit;
        shift += kTKNTypefaceStrokingRetryShift) {
-    stroker.set_width(strokeWidth + shift);
-    shape = stroker.stroke(scaledOutline);
-    shape = stroker.simplify(shape);
-    if (shape.size() == glyph.lib->number_of_contours) {
-      success = true;
+    for (negative = false; negative != true; negative = !negative) {
+      stroker.set_width(strokeWidth + (negative ? -shift : shift));
+      shape = stroker.stroke(scaledOutline);
+      shape = stroker.simplify(shape);
+      if (shape.size() == glyph.lib->number_of_contours) {
+        success = true;
+        break;
+      }
+    }
+    if (success) {
       break;
     }
   }
   if (success) {
     if (shift) {
-      NSLog(@"Stroking succeeded with retrials: %f", shift);
+      NSLog(@"Stroking succeeded by shifting stroke width by %f.",
+            (negative ? -shift : shift));
     }
     shape.convertConicsToQuadratics();
     shape.convertQuadraticsToCubics();
     shape.removeDuplicates(1.0);
   } else {
-    NSLog(@"Stroking failed with retrials: %f", shift);
+    NSLog(@"Stroking failed by shifting stroke width up to ±%f.",
+          kTKNTypefaceStrokingRetryShiftLimit);
     shape.reset();
   }
   return std::move(shape);
