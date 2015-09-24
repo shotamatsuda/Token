@@ -36,6 +36,8 @@
     <dict>
       <key>com.takram.numberOfContours</key>
       <integer>3</integer>
+      <key>com.takram.numberOfHoles</key>
+      <integer>2</integer>
     </dict>
   </lib>
 </glyph>

@@ -53,7 +53,7 @@
 static const double kTKNTypefaceStrokingRetryShift = 0.0001;
 static const double kTKNTypefaceStrokingRetryShiftLimit = 0.1;
 static const double kTKNTypefaceMinStrokeWidth = 10.0;
-static const double kTKNTypefaceMaxStrokeWidth = 120.0;
+static const double kTKNTypefaceMaxStrokeWidth = 130.0;
 
 @interface TKNTypeface () {
  @private
@@ -415,13 +415,26 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
 
 - (void)setTypographicStrokeWidth:(NSInteger)strokeWidth {
   strokeWidth = takram::math::clamp(
-      strokeWidth,
+      std::round(strokeWidth),
       kTKNTypefaceMinStrokeWidth,
       kTKNTypefaceMaxStrokeWidth);
   if (strokeWidth != _typographicStrokeWidth) {
     _typographicStrokeWidth = strokeWidth;
     [self parameterDidChange];
   }
+}
+
+- (NSInteger)minTypographicStrokeWidth {
+  return kTKNTypefaceMinStrokeWidth;
+}
+
+- (NSInteger)midTypographicStrokeWidth {
+  return kTKNTypefaceMinStrokeWidth +
+      (kTKNTypefaceMaxStrokeWidth - kTKNTypefaceMinStrokeWidth) / 2.0;
+}
+
+- (NSInteger)maxTypographicStrokeWidth {
+  return kTKNTypefaceMaxStrokeWidth;
 }
 
 #pragma mark Typographic Properties
@@ -546,7 +559,18 @@ static const double kTKNTypefaceMaxStrokeWidth = 120.0;
       stroker.set_width(strokeWidth + (negative ? -shift : shift));
       shape = stroker.stroke(scaledOutline);
       shape = stroker.simplify(shape);
-      if (shape.size() == glyph.lib->number_of_contours) {
+      std::size_t numberOfContours{};
+      std::size_t numberOfHoles{};
+      for (const auto& path : shape.paths()) {
+        if (path.direction() != takram::PathDirection::UNDEFINED) {
+          ++numberOfContours;
+        }
+        if (path.direction() == takram::PathDirection::COUNTER_CLOCKWISE) {
+          ++numberOfHoles;
+        }
+      }
+      if (numberOfContours == glyph.lib->number_of_contours &&
+          numberOfHoles == glyph.lib->number_of_holes) {
         success = true;
         break;
       }

@@ -47,13 +47,17 @@ Lib Lib::read(const boost::property_tree::ptree& tree) {
   auto plist = convertToPropertyList(tree);
   plist::read_number(plist, "com.takram.numberOfContours",
                      &result.number_of_contours);
+  plist::read_number(plist, "com.takram.numberOfHoles",
+                     &result.number_of_holes);
   return std::move(result);
 }
 
 boost::property_tree::ptree Lib::ptree() const {
   boost::property_tree::ptree dict;
-  dict.put("key", "com.takram.numberOfContours");
-  dict.put("integer", number_of_contours);
+  dict.add("key", "com.takram.numberOfContours");
+  dict.add("integer", number_of_contours);
+  dict.add("key", "com.takram.numberOfHoles");
+  dict.add("integer", number_of_holes);
   boost::property_tree::ptree tree;
   tree.add_child("dict", dict);
   return std::move(tree);

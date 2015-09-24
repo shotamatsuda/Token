@@ -24,6 +24,8 @@
     <dict>
       <key>com.takram.numberOfContours</key>
       <integer>5</integer>
+      <key>com.takram.numberOfHoles</key>
+      <integer>4</integer>
     </dict>
   </lib>
 </glyph>

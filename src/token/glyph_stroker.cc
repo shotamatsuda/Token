@@ -249,7 +249,7 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
       } else {
         for (auto& other : result.paths()) {
           if (&*itr != &other) {
-            depths[&*itr] += other.bounds().contains(itr->bounds());
+            depths[&*itr] += other.bounds(true).contains(itr->bounds());
           }
         }
         ++itr;

@@ -42,7 +42,8 @@ namespace glif {
 class Lib final {
  public:
   Lib();
-  explicit Lib(unsigned int number_of_contours);
+  Lib(unsigned int number_of_contours,
+      unsigned int number_of_holes);
 
   // Copy semantics
   Lib(const Lib&) = default;
@@ -62,19 +63,23 @@ class Lib final {
 
  public:
   unsigned int number_of_contours;
+  unsigned int number_of_holes;
 };
 
 #pragma mark -
 
-inline Lib::Lib() : number_of_contours() {}
+inline Lib::Lib() : number_of_contours(), number_of_holes() {}
 
-inline Lib::Lib(unsigned int number_of_contours)
-    : number_of_contours(number_of_contours) {}
+inline Lib::Lib(unsigned int number_of_contours,
+                unsigned int number_of_holes)
+    : number_of_contours(number_of_contours),
+      number_of_holes(number_of_holes) {}
 
 #pragma mark Comparison
 
 inline bool Lib::operator==(const Lib& other) const {
-  return number_of_contours == other.number_of_contours;
+  return (number_of_contours == other.number_of_contours &&
+          number_of_holes == other.number_of_holes);
 }
 
 inline bool Lib::operator!=(const Lib& other) const {
