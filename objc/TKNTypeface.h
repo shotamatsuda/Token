@@ -50,12 +50,12 @@
 
 #pragma mark Parameters
 
+@property (nonatomic, assign) double strokeWidthInEM;
 @property (nonatomic, assign) double capHeight;
 @property (nonatomic, assign) double strokeWidth;
 @property (nonatomic, assign) BOOL capHeightEqualsUnitsPerEM;
 @property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
 @property (nonatomic, assign) TKNTypefaceUnit strokeWidthUnit;
-@property (nonatomic, assign) double strokeWidthInEM;
 
 #pragma mark Typographic Properties
 

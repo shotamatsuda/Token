@@ -41,7 +41,6 @@
 		936839AD1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
 		936D38051BA1CEDA0058F7B1 /* TKNWelcomeSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 936D38041BA1CEDA0058F7B1 /* TKNWelcomeSheet.m */; };
 		93714B321B9856BA0077B273 /* TKNCenteredClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B311B9856BA0077B273 /* TKNCenteredClipView.m */; };
-		93714B351B991FB40077B273 /* TKNPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B341B991FB40077B273 /* TKNPopUpButtonCell.m */; };
 		93714B381B9930EC0077B273 /* TKNNumericTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B371B9930EC0077B273 /* TKNNumericTextField.m */; };
 		93714B3E1B99403F0077B273 /* TKNControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93714B3D1B99403F0077B273 /* TKNControlView.m */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
@@ -86,8 +85,6 @@
 		93C18FB91B930D440044AAEB /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
 		93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
 		93C18FC11B930E0D0044AAEB /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
-		93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */; };
-		93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */; };
 		93C257491B9B9E4F00134399 /* TKNTypefaceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */; };
 		93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AD1B9C5AB700134399 /* TKNZoomIn.pdf */; };
 		93C257B01B9C5AB700134399 /* TKNZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */; };
@@ -98,6 +95,8 @@
 		93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D268531B95491D008AB659 /* TKNSettingsViewController.xib */; };
 		93D268591B95491D008AB659 /* TKNTypefaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D268551B95491D008AB659 /* TKNTypefaceViewController.m */; };
 		93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D268561B95491D008AB659 /* TKNTypefaceViewController.xib */; };
+		93E209681BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf */; settings = {ASSET_TAGS = (); }; };
+		93E209691BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf */; settings = {ASSET_TAGS = (); }; };
 		93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
 /* End PBXBuildFile section */
 
@@ -272,8 +271,6 @@
 		936D38041BA1CEDA0058F7B1 /* TKNWelcomeSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNWelcomeSheet.m; sourceTree = "<group>"; };
 		93714B301B9856BA0077B273 /* TKNCenteredClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNCenteredClipView.h; sourceTree = "<group>"; };
 		93714B311B9856BA0077B273 /* TKNCenteredClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNCenteredClipView.m; sourceTree = "<group>"; };
-		93714B331B991FB40077B273 /* TKNPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNPopUpButtonCell.h; sourceTree = "<group>"; };
-		93714B341B991FB40077B273 /* TKNPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNPopUpButtonCell.m; sourceTree = "<group>"; };
 		93714B361B9930EC0077B273 /* TKNNumericTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNNumericTextField.h; sourceTree = "<group>"; };
 		93714B371B9930EC0077B273 /* TKNNumericTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNNumericTextField.m; sourceTree = "<group>"; };
 		93714B3C1B99403F0077B273 /* TKNControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNControlView.h; sourceTree = "<group>"; };
@@ -352,8 +349,6 @@
 		93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gasp_range_record.cc; sourceTree = "<group>"; };
 		93C18FBD1B930E0D0044AAEB /* name_record.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = name_record.cc; sourceTree = "<group>"; };
 		93C18FCD1B93561B0044AAEB /* plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
-		93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNAscentTemplate.pdf; sourceTree = "<group>"; };
-		93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNWidthTemplate.pdf; sourceTree = "<group>"; };
 		93C257481B9B9E4F00134399 /* TKNTypefaceUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceUnit.m; sourceTree = "<group>"; };
 		93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = algorithm.xcodeproj; path = "lib/takram-algorithm/algorithm.xcodeproj"; sourceTree = "<group>"; };
 		93C2577E1B9BCCDB00134399 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = "lib/takram-math/math.xcodeproj"; sourceTree = "<group>"; };
@@ -370,6 +365,8 @@
 		93D268541B95491D008AB659 /* TKNTypefaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypefaceViewController.h; sourceTree = "<group>"; };
 		93D268551B95491D008AB659 /* TKNTypefaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNTypefaceViewController.m; sourceTree = "<group>"; };
 		93D268561B95491D008AB659 /* TKNTypefaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKNTypefaceViewController.xib; sourceTree = "<group>"; };
+		93E209661BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNCapHeightTemplate.pdf; sourceTree = "<group>"; };
+		93E209671BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNStrokeWidthTemplate.pdf; sourceTree = "<group>"; };
 		93E5FF151B915970006E968A /* glyph_stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_stroker.cc; sourceTree = "<group>"; };
 		93E5FF161B915970006E968A /* glyph_stroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glyph_stroker.h; sourceTree = "<group>"; };
 		93F859251B575DCC00C32E8D /* osx.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = osx.plist; path = config/osx.plist; sourceTree = SOURCE_ROOT; };
@@ -535,8 +532,6 @@
 				9390CBFF1B953F2C0088153C /* TKNRoundedButtonCell.m */,
 				9390CB801B9523AF0088153C /* TKNDefaultRoundedButtonCell.h */,
 				9390CB811B9523AF0088153C /* TKNDefaultRoundedButtonCell.m */,
-				93714B331B991FB40077B273 /* TKNPopUpButtonCell.h */,
-				93714B341B991FB40077B273 /* TKNPopUpButtonCell.m */,
 				93714B361B9930EC0077B273 /* TKNNumericTextField.h */,
 				93714B371B9930EC0077B273 /* TKNNumericTextField.m */,
 				932FFF281B9A633000417561 /* TKNNumberToPercentageTransformer.h */,
@@ -586,8 +581,8 @@
 			isa = PBXGroup;
 			children = (
 				93A05AEE1B9B914A002DDAD5 /* typeface */,
-				93C18FEF1B951C430044AAEB /* TKNAscentTemplate.pdf */,
-				93C18FF01B951C430044AAEB /* TKNWidthTemplate.pdf */,
+				93E209661BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf */,
+				93E209671BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf */,
 				93C257AD1B9C5AB700134399 /* TKNZoomIn.pdf */,
 				93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */,
 				93C257C31B9C96D900134399 /* TKNInvert.pdf */,
@@ -859,17 +854,17 @@
 				93C257B01B9C5AB700134399 /* TKNZoomOut.pdf in Resources */,
 				93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */,
 				93A05AEF1B9B914A002DDAD5 /* typeface in Resources */,
+				93E209691BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf in Resources */,
 				93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */,
 				9399180C1BA1734100061130 /* TKNWelcomeSheetController.xib in Resources */,
 				93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */,
 				93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */,
 				93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */,
 				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
-				93C18FF11B951C430044AAEB /* TKNAscentTemplate.pdf in Resources */,
-				93C18FF21B951C430044AAEB /* TKNWidthTemplate.pdf in Resources */,
 				93C257C41B9C96D900134399 /* TKNInvert.pdf in Resources */,
 				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
 				93C257C61B9C99F700134399 /* TKNOutline.pdf in Resources */,
+				93E209681BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,7 +934,6 @@
 				93C18FA71B930D440044AAEB /* extension.cc in Sources */,
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
 				9390CC001B953F2C0088153C /* TKNRoundedButtonCell.m in Sources */,
-				93714B351B991FB40077B273 /* TKNPopUpButtonCell.m in Sources */,
 				9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */,
 				93714B3E1B99403F0077B273 /* TKNControlView.m in Sources */,
 				93C771A71B95482100914AD9 /* TKNTypefaceSampleView.m in Sources */,

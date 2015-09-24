@@ -28,8 +28,14 @@
 
 #import "TKNTypeface.h"
 
+typedef NS_ENUM(NSInteger, TKNSettingsMode) {
+  kTKNSettingsModeForProduct = 0,
+  kTKNSettingsModeForText = 1
+};
+
 @interface TKNSettingsViewController : NSViewController
 
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
+@property (nonatomic, assign) TKNSettingsMode mode;
 
 @end

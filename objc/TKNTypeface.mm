@@ -67,6 +67,8 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
 
 - (void)parameterDidChange;
+- (void)physicalParameterDidChange;
+- (void)typographicParameterDidChange;
 
 #pragma mark Opening and Saving
 
@@ -150,6 +152,43 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   self.postscriptName = [[self.familyName stringByAppendingString:@"-"]
       stringByAppendingString:
           [NSString stringWithUTF8String:postscriptStyle.c_str()]];
+}
+
+- (void)physicalParameterDidChange {
+  // Invalidate existing glyph shapes and bezier paths
+  _strokeWidthInEM = 0.0;
+  _glyphShapes.clear();
+  [_glyphBezierPaths removeAllObjects];
+
+  // Update style names
+  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+  formatter.numberStyle = NSNumberFormatterDecimalStyle;
+  formatter.minimumFractionDigits = 2;
+  formatter.maximumFractionDigits = 2;
+  std::string style;
+  style += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_strokeWidth]].UTF8String;
+  style += TKNTypefaceUnitGetShortName(_strokeWidthUnit).UTF8String;
+  style += " / ";
+  style += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_capHeight]].UTF8String;
+  style += TKNTypefaceUnitGetShortName(_capHeightUnit).UTF8String;
+  std::string postscriptStyle;
+  postscriptStyle += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_strokeWidth]].UTF8String;
+  postscriptStyle += TKNTypefaceUnitGetShortName(_strokeWidthUnit).UTF8String;
+  postscriptStyle += "-";
+  postscriptStyle += [formatter stringFromNumber:
+      [NSNumber numberWithDouble:_capHeight]].UTF8String;
+  postscriptStyle += TKNTypefaceUnitGetShortName(_capHeightUnit).UTF8String;
+  self.styleName = [NSString stringWithUTF8String:style.c_str()];
+  self.postscriptName = [[self.familyName stringByAppendingString:@"-"]
+      stringByAppendingString:
+          [NSString stringWithUTF8String:postscriptStyle.c_str()]];
+}
+
+- (void)typographicParameterDidChange {
+
 }
 
 #pragma mark Opening and Saving
@@ -380,40 +419,21 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingFamilyName {
-  return [NSSet setWithObjects:@"path", nil];
-}
-
 - (NSUInteger)unitsPerEM {
   return _fontInfo.units_per_em;
-}
-
-+ (NSSet *)keyPathsForValuesAffectingUnitsPerEM {
-  return [NSSet setWithObjects:@"path", nil];
 }
 
 - (NSInteger)ascender {
   return _fontInfo.ascender;
 }
 
-+ (NSSet *)keyPathsForValuesAffectingAscender {
-  return [NSSet setWithObjects:@"path", nil];
-}
 
 - (NSInteger)descender {
   return _fontInfo.descender;
 }
 
-+ (NSSet *)keyPathsForValuesAffectingDescender {
-  return [NSSet setWithObjects:@"path", nil];
-}
-
 - (NSInteger)lineGap {
   return _fontInfo.open_type_hhea_line_gap;
-}
-
-+ (NSSet *)keyPathsForValuesAffectingLineGap {
-  return [NSSet setWithObjects:@"path", nil];
 }
 
 #pragma mark Glyphs
