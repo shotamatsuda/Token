@@ -70,9 +70,10 @@ static char TKNTypefaceViewControllerKVOContext;
   [defaultCenter removeObserver:self
                            name:NSViewFrameDidChangeNotification
                          object:_scrollView];
-  NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
-                        @"capHeightEqualsUnitsPerEM",
-                        @"capHeightUnit", @"strokeWidthUnit"];
+  NSArray *keyPaths = @[@"metricsType",
+                        @"physicalStrokeWidth", @"physicalCapHeight",
+                        @"strokeWidthUnit", @"capHeightUnit",
+                        @"typographicStrokeWidth"];
   for (NSString *keyPath in keyPaths) {
     [_typeface removeObserver:self
                    forKeyPath:keyPath
@@ -163,9 +164,10 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)setTypeface:(TKNTypeface *)typeface {
   if (typeface != _typeface) {
-    NSArray *keyPaths = @[@"capHeight", @"strokeWidth",
-                          @"capHeightEqualsUnitsPerEM",
-                          @"capHeightUnit", @"strokeWidthUnit"];
+    NSArray *keyPaths = @[@"metricsType",
+                          @"physicalStrokeWidth", @"physicalCapHeight",
+                          @"strokeWidthUnit", @"capHeightUnit",
+                          @"typographicStrokeWidth"];
     for (NSString *keyPath in keyPaths) {
       [_typeface removeObserver:self
                      forKeyPath:keyPath

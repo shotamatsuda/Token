@@ -94,7 +94,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <binding destination="-2" name="value" keyPath="self.typeface.strokeWidth" id="soQ-WX-RDn"/>
+                                                            <binding destination="-2" name="value" keyPath="self.typeface.physicalStrokeWidth" id="iqt-WO-56o"/>
                                                         </connections>
                                                     </textField>
                                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="TKNNumericTextField">
@@ -115,7 +115,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <binding destination="-2" name="value" keyPath="self.typeface.capHeight" id="rQc-xk-kBA"/>
+                                                            <binding destination="-2" name="value" keyPath="self.typeface.physicalCapHeight" id="3VO-1N-HIq"/>
                                                         </connections>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="TKNBackgroundTextField">
@@ -229,7 +229,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <binding destination="-2" name="value" keyPath="self.typeface.strokeWidthInEM" id="7gl-oH-SiY"/>
+                                                            <binding destination="-2" name="value" keyPath="self.typeface.typographicStrokeWidth" id="MAn-Vu-NIo"/>
                                                         </connections>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="TKNBackgroundTextField">
@@ -279,7 +279,7 @@
                                 </tabViewItem>
                             </tabViewItems>
                             <connections>
-                                <binding destination="-2" name="selectedIndex" keyPath="mode" id="FFZ-eW-C1A"/>
+                                <binding destination="-2" name="selectedIndex" keyPath="typeface.metricsType" id="C4p-c6-o3a"/>
                             </connections>
                         </tabView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GVd-Xi-Ezs">
@@ -306,7 +306,7 @@
                                 </menu>
                             </popUpButtonCell>
                             <connections>
-                                <binding destination="-2" name="selectedTag" keyPath="mode" id="GpY-dS-HZe"/>
+                                <binding destination="-2" name="selectedTag" keyPath="typeface.metricsType" id="ahL-Uj-b4D"/>
                             </connections>
                         </popUpButton>
                     </subviews>

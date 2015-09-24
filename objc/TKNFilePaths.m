@@ -26,7 +26,7 @@
 
 #import "TKNFilePaths.h"
 
-NSString * TKNPrivateApplicationSupportPath(void) {
+NSString * TKNPrivateApplicationSupportPath() {
   NSString *identifier = [NSBundle mainBundle].bundleIdentifier;
   if (!identifier) {
     abort();
@@ -36,7 +36,7 @@ NSString * TKNPrivateApplicationSupportPath(void) {
           stringByAppendingPathComponent:identifier];
 }
 
-NSString * TKNPrivateLibraryPath(void) {
+NSString * TKNPrivateLibraryPath() {
   NSString *identifier = [NSBundle mainBundle].bundleIdentifier;
   if (!identifier) {
     abort();
@@ -47,6 +47,6 @@ NSString * TKNPrivateLibraryPath(void) {
               [@"." stringByAppendingString:identifier]];
 }
 
-NSString * TKNAdobeFDKPath(void) {
+NSString * TKNAdobeFDKPath() {
   return [TKNPrivateLibraryPath() stringByAppendingPathComponent:@"FDK"];
 }

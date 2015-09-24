@@ -36,6 +36,11 @@
 
 #import "TKNTypefaceUnit.h"
 
+typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
+  kTKNTypefaceMetricsTypePhysical = 0,
+  kTKNTypefaceMetricsTypeTypographic = 1
+};
+
 @interface TKNTypeface : NSObject
 
 - (nullable instancetype)initWithFileAtPath:(nullable NSString *)path
@@ -50,12 +55,12 @@
 
 #pragma mark Parameters
 
-@property (nonatomic, assign) double strokeWidthInEM;
-@property (nonatomic, assign) double capHeight;
-@property (nonatomic, assign) double strokeWidth;
-@property (nonatomic, assign) BOOL capHeightEqualsUnitsPerEM;
-@property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
+@property (nonatomic, assign) TKNTypefaceMetricsType metricsType;
+@property (nonatomic, assign) double physicalStrokeWidth;
+@property (nonatomic, assign) double physicalCapHeight;
 @property (nonatomic, assign) TKNTypefaceUnit strokeWidthUnit;
+@property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
+@property (nonatomic, assign) NSInteger typographicStrokeWidth;
 
 #pragma mark Typographic Properties
 
