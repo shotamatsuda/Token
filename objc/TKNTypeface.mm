@@ -65,7 +65,6 @@ static const double kTKNTypefaceMaxStrokeWidthInEM = 120.0;
 }
 
 @property (nonatomic, strong) NSMutableDictionary *glyphBezierPaths;
-@property (nonatomic, assign, readonly) double strokeWidthInEM;
 
 - (void)parameterDidChange;
 

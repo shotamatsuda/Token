@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
@@ -23,7 +23,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNAscentTemplate" id="AwD-Re-cPc"/>
                         </imageView>
                         <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Yiu-Cm-c0D">
-                            <rect key="frame" x="310" y="164" width="60" height="24"/>
+                            <rect key="frame" x="310" y="163.5" width="60" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="Gxg-3K-Hm5"/>
                                 <constraint firstAttribute="width" constant="60" id="xW3-mj-9Td"/>
@@ -31,7 +31,7 @@
                             <animations/>
                             <popUpButtonCell key="cell" type="bevel" title="mm" bezelStyle="regularSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="91j-1Y-gtK" id="MIH-2E-HL6" customClass="TKNPopUpButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="systemLight" size="16"/>
+                                <font key="font" metaFont="system" size="16"/>
                                 <menu key="menu" id="RJG-8N-s5P">
                                     <items>
                                         <menuItem title="mm" state="on" id="91j-1Y-gtK"/>
@@ -57,7 +57,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNWidthTemplate" id="Cd8-1f-5Yn"/>
                         </imageView>
                         <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="a9F-LY-pAb">
-                            <rect key="frame" x="310" y="81" width="60" height="24"/>
+                            <rect key="frame" x="310" y="80.5" width="60" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="TJW-6s-qFp"/>
                                 <constraint firstAttribute="width" constant="60" id="Y7a-gp-ETo"/>
@@ -65,7 +65,7 @@
                             <animations/>
                             <popUpButtonCell key="cell" type="square" title="mm" bezelStyle="shadowlessSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="Q4N-ly-8Vd" id="YxB-mj-teD" customClass="TKNPopUpButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="systemLight" size="16"/>
+                                <font key="font" metaFont="system" size="16"/>
                                 <menu key="menu" id="Rvc-Xr-fZG">
                                     <items>
                                         <menuItem title="mm" state="on" id="Q4N-ly-8Vd"/>
@@ -79,28 +79,28 @@
                             </connections>
                         </popUpButton>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="yvw-bm-p06">
-                            <rect key="frame" x="28" y="32" width="181" height="18"/>
+                            <rect key="frame" x="28" y="32" width="187" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="pd5-j6-9pJ"/>
                             </constraints>
                             <animations/>
                             <buttonCell key="cell" type="check" title="Set font size by cap height" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ACg-Bx-10t">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
                                 <binding destination="-2" name="value" keyPath="self.typeface.capHeightEqualsUnitsPerEM" id="yrq-BF-hcy"/>
                             </connections>
                         </button>
                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bZ6-2V-qBW" customClass="TKNNumericTextField">
-                            <rect key="frame" x="166" y="161" width="146" height="51"/>
+                            <rect key="frame" x="168" y="160.5" width="146" height="51"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="51" id="FgO-rw-lDv"/>
                             </constraints>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="2Qu-v0-bDC">
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="qv1-VQ-U3A"/>
-                                <font key="font" metaFont="systemUltraLight" size="42"/>
+                                <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -114,14 +114,14 @@
                             </connections>
                         </textField>
                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMv-fi-50k" customClass="TKNNumericTextField">
-                            <rect key="frame" x="166" y="78" width="146" height="51"/>
+                            <rect key="frame" x="168" y="77.5" width="146" height="51"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="51" id="StA-oX-NQt"/>
                             </constraints>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="2Br-LX-DYp">
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="3" id="ULg-ds-c0b"/>
-                                <font key="font" metaFont="systemUltraLight" size="42"/>
+                                <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -135,19 +135,19 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yii-1p-DNU" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="87" y="178" width="72" height="17"/>
+                            <rect key="frame" x="87" y="177.5" width="74" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cap Height" id="gpp-Q6-rzA">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u09-l7-1EI" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="88" y="95" width="82" height="17"/>
+                            <rect key="frame" x="88" y="94.5" width="84" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="fpo-aj-CIq">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -159,13 +159,13 @@
                         <constraint firstItem="yii-1p-DNU" firstAttribute="leading" secondItem="W34-4Z-H00" secondAttribute="trailing" constant="10" id="AYQ-Xx-xvG"/>
                         <constraint firstItem="W34-4Z-H00" firstAttribute="top" secondItem="iH7-Cb-6Xa" secondAttribute="top" constant="19" id="Bgf-Rp-7dU"/>
                         <constraint firstItem="kb7-Bh-fQ1" firstAttribute="leading" secondItem="iH7-Cb-6Xa" secondAttribute="leading" constant="10" id="C8c-Rc-ae1"/>
-                        <constraint firstItem="Yiu-Cm-c0D" firstAttribute="leading" secondItem="bZ6-2V-qBW" secondAttribute="trailing" id="Csa-eC-1AG"/>
+                        <constraint firstItem="Yiu-Cm-c0D" firstAttribute="leading" secondItem="bZ6-2V-qBW" secondAttribute="trailing" constant="-2" id="Csa-eC-1AG"/>
                         <constraint firstItem="u09-l7-1EI" firstAttribute="centerY" secondItem="Uh6-G7-axi" secondAttribute="centerY" id="Hgx-8m-vhu"/>
                         <constraint firstItem="uMv-fi-50k" firstAttribute="leading" secondItem="u09-l7-1EI" secondAttribute="trailing" id="JIj-GF-xKW"/>
                         <constraint firstAttribute="trailing" secondItem="a9F-LY-pAb" secondAttribute="trailing" constant="20" id="JOa-r7-NBF"/>
                         <constraint firstAttribute="bottom" secondItem="yvw-bm-p06" secondAttribute="bottom" constant="34" id="Lb5-mE-GgD"/>
                         <constraint firstAttribute="trailing" secondItem="Yiu-Cm-c0D" secondAttribute="trailing" constant="20" id="MQT-7O-EbP"/>
-                        <constraint firstItem="a9F-LY-pAb" firstAttribute="leading" secondItem="uMv-fi-50k" secondAttribute="trailing" id="SZA-AX-tFp"/>
+                        <constraint firstItem="a9F-LY-pAb" firstAttribute="leading" secondItem="uMv-fi-50k" secondAttribute="trailing" constant="-2" id="SZA-AX-tFp"/>
                         <constraint firstItem="bZ6-2V-qBW" firstAttribute="centerY" secondItem="W34-4Z-H00" secondAttribute="centerY" id="UQW-dV-O2B"/>
                         <constraint firstItem="W34-4Z-H00" firstAttribute="centerY" secondItem="yii-1p-DNU" secondAttribute="centerY" id="Ztm-vr-4eq"/>
                         <constraint firstItem="uMv-fi-50k" firstAttribute="centerY" secondItem="Uh6-G7-axi" secondAttribute="centerY" id="dHN-JC-vsf"/>
@@ -191,19 +191,19 @@
                     <rect key="frame" x="410" y="0.0" width="390" height="237"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="196" width="84" height="17"/>
+                            <rect key="frame" x="0.0" y="196" width="88" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="nHG-1H-oux">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="111" y="196" width="81" height="17"/>
+                            <rect key="frame" x="115" y="196" width="84" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name" id="p4l-1c-YpC">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -212,19 +212,19 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="175" width="76" height="17"/>
+                            <rect key="frame" x="0.0" y="175" width="79" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="111" y="175" width="73" height="17"/>
+                            <rect key="frame" x="115" y="175" width="75" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name" id="gZs-gj-10W">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -233,19 +233,19 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="0.0" y="154" width="107" height="17"/>
+                            <rect key="frame" x="0.0" y="154" width="111" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name:" id="A5R-Zz-lbC">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="TKNBackgroundTextField">
-                            <rect key="frame" x="111" y="154" width="103" height="17"/>
+                            <rect key="frame" x="115" y="154" width="107" height="17"/>
                             <animations/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name" id="fUI-xh-T6V">
-                                <font key="font" metaFont="systemLight" size="13"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -261,7 +261,7 @@
                             <animations/>
                             <buttonCell key="cell" type="square" title="Export Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4k2-Z2-Wfm" customClass="TKNRoundedButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="systemLight" size="18"/>
+                                <font key="font" size="18" name=".HelveticaNeueDeskInterface-Light"/>
                             </buttonCell>
                             <connections>
                                 <action selector="exportFont:" target="-1" id="HVN-Ak-QA2"/>
@@ -275,7 +275,7 @@
                             <animations/>
                             <buttonCell key="cell" type="square" title="Install Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fd-ri-rXd" customClass="TKNDefaultRoundedButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="systemLight" size="18"/>
+                                <font key="font" size="18" name=".HelveticaNeueDeskInterface-Light"/>
                             </buttonCell>
                             <connections>
                                 <action selector="installFont:" target="-1" id="C2J-Hw-5Pj"/>
@@ -322,6 +322,240 @@
             </constraints>
             <animations/>
             <point key="canvasLocation" x="166" y="561.5"/>
+        </customView>
+        <customView id="q7a-mv-9XK" customClass="TKNBackgroundView">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-71-kMh" customClass="TKNBackgroundImageView">
+                    <rect key="frame" x="30" y="20" width="50" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="I9S-ya-1Cg"/>
+                        <constraint firstAttribute="width" constant="50" id="glJ-Tc-B6J"/>
+                    </constraints>
+                    <animations/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNWidthTemplate" id="R3x-J2-K2k"/>
+                </imageView>
+                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-tN-CEO" customClass="TKNNumericTextField">
+                    <rect key="frame" x="168" y="27" width="146" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="aaF-Vx-m86"/>
+                    </constraints>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0" id="Rwu-PY-cdL">
+                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="IZg-ah-2PA"/>
+                        <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="step">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.typeface.strokeWidthInEM" id="7gl-oH-SiY"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="TKNBackgroundTextField">
+                    <rect key="frame" x="88" y="44" width="84" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="131-DB-7ye">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nN0-um-pjU">
+                    <rect key="frame" x="318" y="32" width="54" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="0i6-BM-HSM"/>
+                    </constraints>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="upem" id="ia6-Ym-hjR">
+                        <font key="font" metaFont="system" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vek-sh-G83" firstAttribute="leading" secondItem="t1H-71-kMh" secondAttribute="trailing" constant="10" id="3rG-mu-44Q"/>
+                <constraint firstAttribute="trailing" secondItem="nN0-um-pjU" secondAttribute="trailing" constant="20" id="4fF-Xc-2Y0"/>
+                <constraint firstItem="OvN-tN-CEO" firstAttribute="leading" secondItem="vek-sh-G83" secondAttribute="trailing" id="EOY-4c-G8t"/>
+                <constraint firstItem="t1H-71-kMh" firstAttribute="top" secondItem="q7a-mv-9XK" secondAttribute="top" constant="20" id="Elr-TA-Bgl"/>
+                <constraint firstItem="OvN-tN-CEO" firstAttribute="centerY" secondItem="t1H-71-kMh" secondAttribute="centerY" id="JfQ-Pc-rpT"/>
+                <constraint firstItem="t1H-71-kMh" firstAttribute="leading" secondItem="q7a-mv-9XK" secondAttribute="leading" constant="30" id="Lid-uO-uIV"/>
+                <constraint firstItem="nN0-um-pjU" firstAttribute="leading" secondItem="OvN-tN-CEO" secondAttribute="trailing" constant="8" id="ZdU-gq-Wpi"/>
+                <constraint firstItem="nN0-um-pjU" firstAttribute="baseline" secondItem="OvN-tN-CEO" secondAttribute="baseline" id="hRq-Xo-jKN"/>
+                <constraint firstAttribute="bottom" secondItem="t1H-71-kMh" secondAttribute="bottom" constant="20" id="kSl-ey-tEz"/>
+                <constraint firstItem="vek-sh-G83" firstAttribute="centerY" secondItem="t1H-71-kMh" secondAttribute="centerY" id="kTE-Am-BXL"/>
+                <constraint firstItem="nN0-um-pjU" firstAttribute="baseline" secondItem="OvN-tN-CEO" secondAttribute="baseline" id="uOd-u7-Yq8"/>
+            </constraints>
+            <animations/>
+            <point key="canvasLocation" x="-39" y="838"/>
+        </customView>
+        <customView id="Mx8-gL-7GK" customClass="TKNBackgroundView">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="185"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-YC-rrz" customClass="TKNBackgroundImageView">
+                    <rect key="frame" x="30" y="101" width="49" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="49" id="fpf-nG-XAC"/>
+                        <constraint firstAttribute="height" constant="64" id="njI-08-KLh"/>
+                    </constraints>
+                    <animations/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNAscentTemplate" id="4YR-hR-PPk"/>
+                </imageView>
+                <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Ng3-B2-Ph8">
+                    <rect key="frame" x="310" y="111" width="60" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="3Oz-zR-aUw"/>
+                        <constraint firstAttribute="height" constant="24" id="qVb-u5-DHl"/>
+                    </constraints>
+                    <animations/>
+                    <popUpButtonCell key="cell" type="bevel" title="mm" bezelStyle="regularSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="XLJ-Km-nzZ" id="tt1-77-vK6" customClass="TKNPopUpButtonCell">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system" size="16"/>
+                        <menu key="menu" id="cSe-WL-Xaf">
+                            <items>
+                                <menuItem title="mm" state="on" id="XLJ-Km-nzZ"/>
+                                <menuItem title="pt" tag="1" id="QGU-al-Ncx"/>
+                                <menuItem title="in" tag="2" id="WKJ-fa-Y9R"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="selectedTag" keyPath="self.typeface.capHeightUnit" id="8Lz-JZ-cfr"/>
+                    </connections>
+                </popUpButton>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="iFw-ra-Rxr">
+                    <rect key="frame" x="10" y="90" width="380" height="5"/>
+                    <animations/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-cp-cEs" customClass="TKNBackgroundImageView">
+                    <rect key="frame" x="30" y="20" width="50" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="ovT-Uf-Kll"/>
+                        <constraint firstAttribute="height" constant="64" id="xHM-9i-1Pk"/>
+                    </constraints>
+                    <animations/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNWidthTemplate" id="Sea-qO-ETT"/>
+                </imageView>
+                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-Fb-6cs" customClass="TKNNumericTextField">
+                    <rect key="frame" x="168" y="108" width="146" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="zHU-kn-v6y"/>
+                    </constraints>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="TF7-6G-dAX">
+                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="KAh-hd-fSY"/>
+                        <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </textFieldCell>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="step">
+                            <real key="value" value="0.01"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.typeface.capHeight" id="OlE-5a-gjy"/>
+                    </connections>
+                </textField>
+                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="TKNNumericTextField">
+                    <rect key="frame" x="168" y="27" width="146" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="5L4-UW-sXb"/>
+                    </constraints>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="Gxk-6h-pcn">
+                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="3" id="03H-lK-cVw"/>
+                        <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="step">
+                            <real key="value" value="0.01"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.typeface.strokeWidth" id="EjQ-mq-gyV"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="TKNBackgroundTextField">
+                    <rect key="frame" x="87" y="125" width="74" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cap Height" id="cXb-I4-uQI">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG" customClass="TKNBackgroundTextField">
+                    <rect key="frame" x="88" y="44" width="84" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="gPW-0t-87g">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="4oG-1I-Q5P">
+                    <rect key="frame" x="310" y="30" width="60" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="fC3-un-dKB"/>
+                        <constraint firstAttribute="width" constant="60" id="lYK-4J-dH3"/>
+                    </constraints>
+                    <animations/>
+                    <popUpButtonCell key="cell" type="square" title="mm" bezelStyle="shadowlessSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="8a6-qH-DUe" id="qG1-Pq-fHd" customClass="TKNPopUpButtonCell">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system" size="16"/>
+                        <menu key="menu" id="Nz4-CW-vIu">
+                            <items>
+                                <menuItem title="mm" state="on" id="8a6-qH-DUe"/>
+                                <menuItem title="pt" tag="1" id="gfW-xC-m9N"/>
+                                <menuItem title="in" tag="2" id="CG2-sx-8VZ"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="selectedTag" keyPath="self.typeface.strokeWidthUnit" id="j6x-bD-bmD"/>
+                    </connections>
+                </popUpButton>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4oG-1I-Q5P" secondAttribute="trailing" constant="20" id="0GX-rp-iAH"/>
+                <constraint firstItem="Im6-Fb-6cs" firstAttribute="centerY" secondItem="qYP-YC-rrz" secondAttribute="centerY" id="0Sj-HL-OSg"/>
+                <constraint firstItem="qYP-YC-rrz" firstAttribute="leading" secondItem="Mx8-gL-7GK" secondAttribute="leading" constant="30" id="0wy-8v-dy4"/>
+                <constraint firstAttribute="trailing" secondItem="iFw-ra-Rxr" secondAttribute="trailing" id="1b5-tZ-40p"/>
+                <constraint firstItem="C0l-l3-5ya" firstAttribute="leading" secondItem="as9-53-5gG" secondAttribute="trailing" id="79E-No-ph3"/>
+                <constraint firstItem="4oG-1I-Q5P" firstAttribute="baseline" secondItem="C0l-l3-5ya" secondAttribute="baseline" id="9Th-ue-PNH"/>
+                <constraint firstItem="qYP-YC-rrz" firstAttribute="centerY" secondItem="kOP-2H-DrF" secondAttribute="centerY" id="9yh-hS-Zud"/>
+                <constraint firstItem="as9-53-5gG" firstAttribute="leading" secondItem="aOo-cp-cEs" secondAttribute="trailing" constant="10" id="Biu-4L-8sn"/>
+                <constraint firstItem="aOo-cp-cEs" firstAttribute="leading" secondItem="Mx8-gL-7GK" secondAttribute="leading" constant="30" id="DV0-Wt-Epd"/>
+                <constraint firstItem="iFw-ra-Rxr" firstAttribute="top" secondItem="Mx8-gL-7GK" secondAttribute="top" constant="92" id="EvO-t3-Ubf"/>
+                <constraint firstItem="iFw-ra-Rxr" firstAttribute="top" secondItem="qYP-YC-rrz" secondAttribute="bottom" constant="8" id="LYc-VZ-TWc"/>
+                <constraint firstItem="kOP-2H-DrF" firstAttribute="leading" secondItem="qYP-YC-rrz" secondAttribute="trailing" constant="10" id="MnA-RW-aUN"/>
+                <constraint firstItem="iFw-ra-Rxr" firstAttribute="leading" secondItem="Mx8-gL-7GK" secondAttribute="leading" constant="10" id="Mte-eJ-wNm"/>
+                <constraint firstItem="as9-53-5gG" firstAttribute="centerY" secondItem="aOo-cp-cEs" secondAttribute="centerY" id="SUb-KK-50v"/>
+                <constraint firstItem="4oG-1I-Q5P" firstAttribute="leading" secondItem="C0l-l3-5ya" secondAttribute="trailing" constant="-2" id="SpZ-kO-WMb"/>
+                <constraint firstItem="Ng3-B2-Ph8" firstAttribute="leading" secondItem="Im6-Fb-6cs" secondAttribute="trailing" constant="-2" id="Vlb-Y8-ZeP"/>
+                <constraint firstItem="C0l-l3-5ya" firstAttribute="leading" secondItem="Im6-Fb-6cs" secondAttribute="leading" id="cbS-1X-W50"/>
+                <constraint firstItem="qYP-YC-rrz" firstAttribute="top" secondItem="Mx8-gL-7GK" secondAttribute="top" constant="20" id="hCY-4l-jiK"/>
+                <constraint firstAttribute="trailing" secondItem="Ng3-B2-Ph8" secondAttribute="trailing" constant="20" id="iPB-KR-4JD"/>
+                <constraint firstItem="aOo-cp-cEs" firstAttribute="top" secondItem="iFw-ra-Rxr" secondAttribute="bottom" constant="8" id="pt7-Iw-Zna"/>
+                <constraint firstAttribute="bottom" secondItem="aOo-cp-cEs" secondAttribute="bottom" constant="20" id="qiP-Zo-uG8"/>
+                <constraint firstItem="Ng3-B2-Ph8" firstAttribute="baseline" secondItem="Im6-Fb-6cs" secondAttribute="baseline" id="urf-kr-epI"/>
+                <constraint firstItem="C0l-l3-5ya" firstAttribute="centerY" secondItem="aOo-cp-cEs" secondAttribute="centerY" id="zUt-5q-98I"/>
+            </constraints>
+            <animations/>
+            <point key="canvasLocation" x="-39" y="1092.5"/>
         </customView>
     </objects>
     <resources>

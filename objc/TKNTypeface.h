@@ -55,6 +55,7 @@
 @property (nonatomic, assign) BOOL capHeightEqualsUnitsPerEM;
 @property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
 @property (nonatomic, assign) TKNTypefaceUnit strokeWidthUnit;
+@property (nonatomic, assign) double strokeWidthInEM;
 
 #pragma mark Typographic Properties
 
