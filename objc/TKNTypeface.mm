@@ -181,10 +181,13 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
 
 - (void)typographicParameterDidChange {
   // Update style names
-  std::string style = std::to_string(_typographicStrokeWidth);
+  std::string style = "UPEM " + std::to_string(_typographicStrokeWidth);
+  std::string postscriptStyle = "UPEM-" +
+      std::to_string(_typographicStrokeWidth);
   self.styleName = [NSString stringWithUTF8String:style.c_str()];
   self.postscriptName = [[self.familyName stringByAppendingString:@"-"]
-      stringByAppendingString:[NSString stringWithUTF8String:style.c_str()]];
+      stringByAppendingString:
+          [NSString stringWithUTF8String:postscriptStyle.c_str()]];
 }
 
 #pragma mark Opening and Saving
