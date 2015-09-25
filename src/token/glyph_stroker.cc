@@ -238,6 +238,8 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   auto result = convertShape(sk_result);
 
   // Fix winding rule
+  const auto bounds_error = 1.0;
+  const auto bounds_insets = width_ - bounds_error;
   std::unordered_map<takram::Path2d *, int> depths;
   auto& paths = result.paths();
   if (paths.size() == 1) {
@@ -249,7 +251,15 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
       } else {
         for (auto& other : result.paths()) {
           if (&*itr != &other) {
-            depths[&*itr] += other.bounds(true).contains(itr->bounds());
+            // Because we assume the shape is stroked, every contour which
+            // contains another must have the bounding box that is larger by
+            // the stroke width with some amount of error.
+            auto bounds = other.bounds(true);
+            bounds.x += bounds_insets;
+            bounds.y += bounds_insets;
+            bounds.width -= bounds_insets + bounds_insets;
+            bounds.height -= bounds_insets + bounds_insets;
+            depths[&*itr] += bounds.contains(itr->bounds());
           }
         }
         ++itr;
