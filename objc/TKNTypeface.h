@@ -61,8 +61,10 @@ typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
 @property (nonatomic, assign) TKNTypefaceUnit strokeWidthUnit;
 @property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
 @property (nonatomic, assign) NSInteger typographicStrokeWidth;
+
+#pragma mark Attributes
+
 @property (nonatomic, assign, readonly) NSInteger minTypographicStrokeWidth;
-@property (nonatomic, assign, readonly) NSInteger midTypographicStrokeWidth;
 @property (nonatomic, assign, readonly) NSInteger maxTypographicStrokeWidth;
 
 #pragma mark Typographic Properties
@@ -70,6 +72,7 @@ typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
 @property (nonatomic, strong, readonly, nonnull) NSString *familyName;
 @property (nonatomic, strong, readonly, nonnull) NSString *styleName;
 @property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
+@property (nonatomic, assign, readonly) double scale;
 @property (nonatomic, assign, readonly) NSInteger ascender;
 @property (nonatomic, assign, readonly) NSInteger descender;
 @property (nonatomic, assign, readonly) NSInteger lineGap;

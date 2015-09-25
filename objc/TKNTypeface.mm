@@ -119,7 +119,8 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
             _physicalCapHeight, _capHeightUnit, kTKNTypefaceUnitPoint);
         _strokeWidth = takram::math::clamp(
             std::round((strokeWidth * _fontInfo.cap_height) / capHeight),
-            kTKNTypefaceMinStrokeWidth, kTKNTypefaceMaxStrokeWidth);
+            self.minTypographicStrokeWidth,
+            self.maxTypographicStrokeWidth);
         break;
       }
       case kTKNTypefaceMetricsTypeTypographic:
@@ -291,10 +292,6 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
 
 - (void)updateFontInfoInUnifiedFontObject:(NSString *)path {
   token::ufo::FontInfo fontInfo = _fontInfo;
-  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-  formatter.numberStyle = NSNumberFormatterDecimalStyle;
-  formatter.minimumFractionDigits = 2;
-  formatter.maximumFractionDigits = 2;
   const std::string style = _styleName.UTF8String;
   const std::string postscriptName = _postscriptName.UTF8String;
   const std::string fullName = fontInfo.family_name + " " + style;
@@ -372,8 +369,8 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
   const double capHeight = TKNTypefaceUnitConvert(
       _physicalCapHeight, _capHeightUnit, _strokeWidthUnit);
   const double coeff = capHeight / _fontInfo.cap_height;
-  double min = coeff * kTKNTypefaceMinStrokeWidth;
-  double max = coeff * kTKNTypefaceMaxStrokeWidth;
+  double min = coeff * self.minTypographicStrokeWidth;
+  double max = coeff * self.maxTypographicStrokeWidth;
   min = std::ceil(min * 100.0) / 100.0;
   max = std::floor(max * 100.0) / 100.0;
   strokeWidth = takram::math::clamp(strokeWidth, min, max);
@@ -387,8 +384,8 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
   const double strokeWidth = TKNTypefaceUnitConvert(
       _physicalStrokeWidth, _strokeWidthUnit, _capHeightUnit);
   const double numerator = _fontInfo.cap_height * strokeWidth;
-  double min = numerator / kTKNTypefaceMaxStrokeWidth;
-  double max = numerator / kTKNTypefaceMinStrokeWidth;
+  double min = numerator / self.maxTypographicStrokeWidth;
+  double max = numerator / self.minTypographicStrokeWidth;
   min = std::ceil(min * 100.0) / 100.0;
   max = std::floor(max * 100.0) / 100.0;
   capHeight = takram::math::clamp(capHeight, min, max);
@@ -419,25 +416,48 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
 - (void)setTypographicStrokeWidth:(NSInteger)strokeWidth {
   strokeWidth = takram::math::clamp(
       std::round(strokeWidth),
-      kTKNTypefaceMinStrokeWidth,
-      kTKNTypefaceMaxStrokeWidth);
+      self.minTypographicStrokeWidth,
+      self.maxTypographicStrokeWidth);
   if (strokeWidth != _typographicStrokeWidth) {
     _typographicStrokeWidth = strokeWidth;
     [self parameterDidChange];
   }
 }
 
+#pragma mark Attributes
+
 - (NSInteger)minTypographicStrokeWidth {
+  switch (_metricsType) {
+    case kTKNTypefaceMetricsTypePhysical:
+      return std::ceil(kTKNTypefaceMinStrokeWidth * self.scale);
+    case kTKNTypefaceMetricsTypeTypographic:
+      return kTKNTypefaceMinStrokeWidth;
+    default:
+      assert(false);
+      break;
+  }
   return kTKNTypefaceMinStrokeWidth;
 }
 
-- (NSInteger)midTypographicStrokeWidth {
-  return kTKNTypefaceMinStrokeWidth +
-      (kTKNTypefaceMaxStrokeWidth - kTKNTypefaceMinStrokeWidth) / 2.0;
++ (NSSet *)keyPathsForValuesAffectingMinTypographicStrokeWidth {
+  return [NSSet setWithObjects:@"metricsType", nil];
 }
 
 - (NSInteger)maxTypographicStrokeWidth {
+  switch (_metricsType) {
+    case kTKNTypefaceMetricsTypePhysical:
+      return std::floor(kTKNTypefaceMaxStrokeWidth * self.scale);
+    case kTKNTypefaceMetricsTypeTypographic:
+      return kTKNTypefaceMaxStrokeWidth;
+    default:
+      assert(false);
+      break;
+  }
   return kTKNTypefaceMaxStrokeWidth;
+}
+
++ (NSSet *)keyPathsForValuesAffectingMaxTypographicStrokeWidth {
+  return [NSSet setWithObjects:@"metricsType", nil];
 }
 
 #pragma mark Typographic Properties
@@ -452,20 +472,48 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
 }
 
++ (NSSet *)keyPathsForValuesAffectingFamilyName {
+  return [NSSet setWithObjects:@"metricsType", nil];
+}
+
 - (NSUInteger)unitsPerEM {
   return _fontInfo.units_per_em;
+}
+
++ (NSSet *)keyPathsForValuesAffectingUnitsPerEM {
+  return [NSSet setWithObjects:@"metricsType", nil];
+}
+
+- (double)scale {
+  return (_fontInfo.ascender - _fontInfo.descender) / _fontInfo.units_per_em;
+}
+
++ (NSSet *)keyPathsForValuesAffectingScale {
+  return [NSSet setWithObjects:@"metricsType", nil];
 }
 
 - (NSInteger)ascender {
   return _fontInfo.ascender;
 }
 
++ (NSSet *)keyPathsForValuesAffectingAscender {
+  return [NSSet setWithObjects:@"metricsType", nil];
+}
+
 - (NSInteger)descender {
   return _fontInfo.descender;
 }
 
++ (NSSet *)keyPathsForValuesAffectingDescender {
+  return [NSSet setWithObjects:@"metricsType", nil];
+}
+
 - (NSInteger)lineGap {
   return _fontInfo.open_type_hhea_line_gap;
+}
+
++ (NSSet *)keyPathsForValuesAffectingLineGap {
+  return [NSSet setWithObjects:@"metricsType", nil];
 }
 
 #pragma mark Glyphs

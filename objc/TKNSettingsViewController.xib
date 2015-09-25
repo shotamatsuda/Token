@@ -258,7 +258,7 @@
                                                         <animations/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00" id="4g1-rd-sJu">
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
@@ -270,23 +270,11 @@
                                                         <animations/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="00" id="cCY-bE-TOh">
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
                                                             <binding destination="-2" name="value" keyPath="typeface.maxTypographicStrokeWidth" id="WZ2-MJ-SCu"/>
-                                                        </connections>
-                                                    </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i0B-u6-YJu">
-                                                        <rect key="frame" x="194" y="38" width="22" height="14"/>
-                                                        <animations/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="00" id="7f7-Cj-aZz">
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                        <connections>
-                                                            <binding destination="-2" name="value" keyPath="typeface.midTypographicStrokeWidth" id="G7S-Yy-CFa"/>
                                                         </connections>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lIz-Lx-0gb">
@@ -294,7 +282,7 @@
                                                         <animations/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bolder" id="iKH-4B-zMh">
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -303,7 +291,7 @@
                                                         <animations/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Lighter" id="HUs-mF-jhK">
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -329,13 +317,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="VJG-HJ-fkU" secondAttribute="trailing" id="JnL-Ji-ieK"/>
                                                     <constraint firstItem="2nM-rL-lpb" firstAttribute="trailing" secondItem="VJG-HJ-fkU" secondAttribute="trailing" id="LY9-CO-Grq"/>
                                                     <constraint firstItem="t1H-71-kMh" firstAttribute="leading" secondItem="q7a-mv-9XK" secondAttribute="leading" constant="20" id="Lid-uO-uIV"/>
-                                                    <constraint firstItem="i0B-u6-YJu" firstAttribute="top" secondItem="VJG-HJ-fkU" secondAttribute="bottom" constant="4" id="MVu-8K-Xri"/>
                                                     <constraint firstItem="VJG-HJ-fkU" firstAttribute="leading" secondItem="q7a-mv-9XK" secondAttribute="leading" constant="20" id="Y0A-mJ-VJI"/>
                                                     <constraint firstAttribute="bottom" secondItem="j03-go-eSx" secondAttribute="bottom" constant="20" id="YFr-CN-rWx"/>
                                                     <constraint firstAttribute="bottom" secondItem="lIz-Lx-0gb" secondAttribute="bottom" constant="20" id="ZGP-0S-dT4"/>
                                                     <constraint firstItem="nN0-um-pjU" firstAttribute="leading" secondItem="OvN-tN-CEO" secondAttribute="trailing" constant="8" id="ZdU-gq-Wpi"/>
                                                     <constraint firstItem="2nM-rL-lpb" firstAttribute="top" secondItem="VJG-HJ-fkU" secondAttribute="bottom" constant="4" id="bgg-nI-qw4"/>
-                                                    <constraint firstItem="i0B-u6-YJu" firstAttribute="centerX" secondItem="VJG-HJ-fkU" secondAttribute="centerX" id="eqs-T0-Jzr"/>
                                                     <constraint firstItem="j03-go-eSx" firstAttribute="top" secondItem="gN0-cB-50w" secondAttribute="bottom" constant="4" id="fae-HI-VuV"/>
                                                     <constraint firstItem="nN0-um-pjU" firstAttribute="baseline" secondItem="OvN-tN-CEO" secondAttribute="baseline" id="hRq-Xo-jKN"/>
                                                     <constraint firstItem="vek-sh-G83" firstAttribute="centerY" secondItem="t1H-71-kMh" secondAttribute="centerY" id="kTE-Am-BXL"/>
