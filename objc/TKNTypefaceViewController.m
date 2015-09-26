@@ -38,7 +38,7 @@ static char TKNTypefaceViewControllerKVOContext;
 
 #pragma mark Zooming
 
-@property (nonatomic, strong) NSMutableArray *magnificationQueue;
+@property (nonatomic, strong) NSMutableArray<NSNumber *> *magnificationQueue;
 
 - (void)animateMagnificationInQueue;
 - (void)contentViewFrameDidChange:(NSNotification *)notification;
@@ -70,10 +70,9 @@ static char TKNTypefaceViewControllerKVOContext;
   [defaultCenter removeObserver:self
                            name:NSViewFrameDidChangeNotification
                          object:_scrollView];
-  NSArray *keyPaths = @[@"metricsType",
-                        @"physicalStrokeWidth", @"physicalCapHeight",
-                        @"strokeWidthUnit", @"capHeightUnit",
-                        @"typographicStrokeWidth"];
+  NSArray<NSString *> *keyPaths = @[
+      @"metricsType", @"physicalStrokeWidth", @"physicalCapHeight",
+      @"strokeWidthUnit", @"capHeightUnit", @"typographicStrokeWidth"];
   for (NSString *keyPath in keyPaths) {
     [_typeface removeObserver:self
                    forKeyPath:keyPath
@@ -164,10 +163,9 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)setTypeface:(TKNTypeface *)typeface {
   if (typeface != _typeface) {
-    NSArray *keyPaths = @[@"metricsType",
-                          @"physicalStrokeWidth", @"physicalCapHeight",
-                          @"strokeWidthUnit", @"capHeightUnit",
-                          @"typographicStrokeWidth"];
+    NSArray<NSString *> *keyPaths = @[
+        @"metricsType", @"physicalStrokeWidth", @"physicalCapHeight",
+        @"strokeWidthUnit", @"capHeightUnit", @"typographicStrokeWidth"];
     for (NSString *keyPath in keyPaths) {
       [_typeface removeObserver:self
                      forKeyPath:keyPath

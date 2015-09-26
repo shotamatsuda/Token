@@ -31,10 +31,10 @@
 #pragma mark Drawing
 
 @property (nonatomic, assign) double scale;
-@property (nonatomic, strong) NSArray *lines;
+@property (nonatomic, strong) NSArray<NSArray<NSString *> *> *lines;
 @property (nonatomic, assign) CGAffineTransform transform;
 
-- (void)drawLine:(NSArray *)glyphNames
+- (void)drawLine:(NSArray<NSString *> *)glyphNames
         position:(CGPoint)position
        dirtyRect:(CGRect)dirtyRect;
 - (void)drawGlyph:(NSString *)glyphName
@@ -46,7 +46,7 @@
 #pragma mark Resizing
 
 - (void)resizeToFitLines;
-- (CGSize)sizeForLines:(NSArray *)lines;
+- (CGSize)sizeForLines:(NSArray<NSArray<NSString *> *> *)lines;
 
 @end
 
@@ -118,7 +118,7 @@
   // Draw every lines, moving down by ascender + descender per line.
   CGPoint position = CGPointZero;
   position.y -= _typeface.ascender - _typeface.descender;
-  for (NSArray *line in _lines) {
+  for (NSArray<NSString *> *line in _lines) {
     [self drawLine:line position:position dirtyRect:dirtyRect];
     position.x = 0.0;
     position.y -= _typeface.ascender - _typeface.descender;
@@ -126,7 +126,7 @@
   [NSGraphicsContext restoreGraphicsState];
 }
 
-- (void)drawLine:(NSArray *)line
+- (void)drawLine:(NSArray<NSString *> *)line
         position:(CGPoint)position
        dirtyRect:(CGRect)dirtyRect {
   // Derive the sum of advances in this line for centering.
@@ -272,12 +272,12 @@
   self.frame = frame;
 }
 
-- (CGSize)sizeForLines:(NSArray *)lines {
+- (CGSize)sizeForLines:(NSArray<NSArray<NSString *> *> *)lines {
   CGSize size = CGSizeZero;
   double lineHeight = _typeface.ascender - _typeface.descender;
   size.height = lineHeight * lines.count - _typeface.descender;
   CGFloat width;
-  for (NSArray *line in lines) {
+  for (NSArray<NSString *> *line in lines) {
     width = 0.0;
     for (NSString *name in line) {
       width += [_typeface advanceOfGlyphForName:name];

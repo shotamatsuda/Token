@@ -96,6 +96,7 @@
 		93E209681BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf */; settings = {ASSET_TAGS = (); }; };
 		93E209691BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf */; settings = {ASSET_TAGS = (); }; };
 		93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E5FF151B915970006E968A /* glyph_stroker.cc */; };
+		93F7D6EC1BB681A500B0F186 /* TKNLayerBackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F7D6EB1BB681A500B0F186 /* TKNLayerBackedView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +354,8 @@
 		93E209671BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TKNStrokeWidthTemplate.pdf; sourceTree = "<group>"; };
 		93E5FF151B915970006E968A /* glyph_stroker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_stroker.cc; sourceTree = "<group>"; };
 		93E5FF161B915970006E968A /* glyph_stroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glyph_stroker.h; sourceTree = "<group>"; };
+		93F7D6EA1BB681A500B0F186 /* TKNLayerBackedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNLayerBackedView.h; sourceTree = "<group>"; };
+		93F7D6EB1BB681A500B0F186 /* TKNLayerBackedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNLayerBackedView.m; sourceTree = "<group>"; };
 		93F859251B575DCC00C32E8D /* osx.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = osx.plist; path = config/osx.plist; sourceTree = SOURCE_ROOT; };
 		93F859271B575DCC00C32E8D /* project_debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = project_debug.xcconfig; path = config/project_debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		93F859281B575DCC00C32E8D /* project_release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = project_release.xcconfig; path = config/project_release.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -498,6 +501,8 @@
 				93D268511B95491D008AB659 /* TKNSettingsViewController.h */,
 				93D268521B95491D008AB659 /* TKNSettingsViewController.m */,
 				93D268531B95491D008AB659 /* TKNSettingsViewController.xib */,
+				93F7D6EA1BB681A500B0F186 /* TKNLayerBackedView.h */,
+				93F7D6EB1BB681A500B0F186 /* TKNLayerBackedView.m */,
 				93714B301B9856BA0077B273 /* TKNCenteredClipView.h */,
 				93714B311B9856BA0077B273 /* TKNCenteredClipView.m */,
 				93982FB81BA3C8D300438BDA /* TKNMultilineTextField.h */,
@@ -905,6 +910,7 @@
 				9390CB841B9523AF0088153C /* TKNDefaultRoundedButtonCell.m in Sources */,
 				932FFF2A1B9A633000417561 /* TKNNumberToPercentageTransformer.m in Sources */,
 				93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */,
+				93F7D6EC1BB681A500B0F186 /* TKNLayerBackedView.m in Sources */,
 				9381EE581B91B20000807B1B /* TKNApplicationDelegate.m in Sources */,
 				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
 				93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */,
