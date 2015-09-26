@@ -53,7 +53,6 @@
 		9390CC001B953F2C0088153C /* TKNRoundedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CBFF1B953F2C0088153C /* TKNRoundedButtonCell.m */; };
 		9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC021B95450C0088153C /* TKNBackgroundTextField.m */; };
 		9390CC061B9545570088153C /* TKNBackgroundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9390CC051B9545570088153C /* TKNBackgroundImageView.m */; };
-		93982FAC1BA3C35500438BDA /* TKNLayerBackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */; settings = {ASSET_TAGS = (); }; };
 		93982FBA1BA3C8D300438BDA /* TKNMultilineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */; settings = {ASSET_TAGS = (); }; };
 		93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */; settings = {ASSET_TAGS = (); }; };
 		93982FBF1BA4104500438BDA /* TKNFilePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 93982FBE1BA4104500438BDA /* TKNFilePaths.m */; settings = {ASSET_TAGS = (); }; };
@@ -63,7 +62,6 @@
 		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
 		93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* autohint.cc */; };
 		93AB70431BA5D9FA004EB3C8 /* check_outlines.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */; settings = {ASSET_TAGS = (); }; };
-		93AB70511BA5F6D2004EB3C8 /* TKNLayerHostingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB70501BA5F6D2004EB3C8 /* TKNLayerHostingView.m */; settings = {ASSET_TAGS = (); }; };
 		93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93AB947B1B91B1600038DCB4 /* MainMenu.xib */; };
 		93B7634E1B91B268009CA8B0 /* TKNMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7634C1B91B268009CA8B0 /* TKNMainWindowController.m */; };
 		93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B7634D1B91B268009CA8B0 /* TKNMainWindowController.xib */; };
@@ -218,16 +216,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		93EBABCB1AD980EE00BF8959 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -293,8 +281,6 @@
 		9390CC021B95450C0088153C /* TKNBackgroundTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundTextField.m; sourceTree = "<group>"; };
 		9390CC041B9545570088153C /* TKNBackgroundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNBackgroundImageView.h; sourceTree = "<group>"; };
 		9390CC051B9545570088153C /* TKNBackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNBackgroundImageView.m; sourceTree = "<group>"; };
-		93982FAA1BA3C35500438BDA /* TKNLayerBackedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNLayerBackedView.h; sourceTree = "<group>"; };
-		93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNLayerBackedView.m; sourceTree = "<group>"; };
 		93982FB81BA3C8D300438BDA /* TKNMultilineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNMultilineTextField.h; sourceTree = "<group>"; };
 		93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNMultilineTextField.m; sourceTree = "<group>"; };
 		93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = AdobeFDKLicense.rtf; sourceTree = "<group>"; };
@@ -322,8 +308,6 @@
 		93A224A31B7B1FD200CB1DBB /* ufo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufo.h; sourceTree = "<group>"; };
 		93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = check_outlines.cc; sourceTree = "<group>"; };
 		93AB70421BA5D9FA004EB3C8 /* check_outlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = check_outlines.h; sourceTree = "<group>"; };
-		93AB704F1BA5F6D2004EB3C8 /* TKNLayerHostingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNLayerHostingView.h; sourceTree = "<group>"; };
-		93AB70501BA5F6D2004EB3C8 /* TKNLayerHostingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNLayerHostingView.m; sourceTree = "<group>"; };
 		93AB947B1B91B1600038DCB4 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		93B4749E1B64CF8800613FB6 /* product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = product.xcconfig; path = config/product.xcconfig; sourceTree = SOURCE_ROOT; };
 		93B7634B1B91B268009CA8B0 /* TKNMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNMainWindowController.h; sourceTree = "<group>"; };
@@ -516,10 +500,6 @@
 				93D268531B95491D008AB659 /* TKNSettingsViewController.xib */,
 				93714B301B9856BA0077B273 /* TKNCenteredClipView.h */,
 				93714B311B9856BA0077B273 /* TKNCenteredClipView.m */,
-				93982FAA1BA3C35500438BDA /* TKNLayerBackedView.h */,
-				93982FAB1BA3C35500438BDA /* TKNLayerBackedView.m */,
-				93AB704F1BA5F6D2004EB3C8 /* TKNLayerHostingView.h */,
-				93AB70501BA5F6D2004EB3C8 /* TKNLayerHostingView.m */,
 				93982FB81BA3C8D300438BDA /* TKNMultilineTextField.h */,
 				93982FB91BA3C8D300438BDA /* TKNMultilineTextField.m */,
 				9390CB8D1B9526CB0088153C /* TKNBackgroundView.h */,
@@ -587,8 +567,8 @@
 				93C257AE1B9C5AB700134399 /* TKNZoomOut.pdf */,
 				93C257C31B9C96D900134399 /* TKNInvert.pdf */,
 				93C257C51B9C99F700134399 /* TKNOutline.pdf */,
-				9390CBF41B95328D0088153C /* Credits.rtf */,
 				93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */,
+				9390CBF41B95328D0088153C /* Credits.rtf */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -695,7 +675,6 @@
 				93FEF94A1AD97263009D0646 /* Sources */,
 				93FEF94B1AD97263009D0646 /* Frameworks */,
 				93FEF94C1AD97263009D0646 /* Resources */,
-				93EBABCB1AD980EE00BF8959 /* Embed Frameworks */,
 				93714B651B998F3B0077B273 /* ShellScript */,
 			);
 			buildRules = (
@@ -851,20 +830,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93C257B01B9C5AB700134399 /* TKNZoomOut.pdf in Resources */,
 				93AB947C1B91B1600038DCB4 /* MainMenu.xib in Resources */,
-				93A05AEF1B9B914A002DDAD5 /* typeface in Resources */,
-				93E209691BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf in Resources */,
 				93B7634F1B91B268009CA8B0 /* TKNMainWindowController.xib in Resources */,
 				9399180C1BA1734100061130 /* TKNWelcomeSheetController.xib in Resources */,
 				93D2685A1B95491D008AB659 /* TKNTypefaceViewController.xib in Resources */,
 				93D268581B95491D008AB659 /* TKNSettingsViewController.xib in Resources */,
-				93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */,
-				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
-				93C257C41B9C96D900134399 /* TKNInvert.pdf in Resources */,
-				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
-				93C257C61B9C99F700134399 /* TKNOutline.pdf in Resources */,
+				93A05AEF1B9B914A002DDAD5 /* typeface in Resources */,
 				93E209681BB3AAC100C76B70 /* TKNCapHeightTemplate.pdf in Resources */,
+				93E209691BB3AAC100C76B70 /* TKNStrokeWidthTemplate.pdf in Resources */,
+				93C257AF1B9C5AB700134399 /* TKNZoomIn.pdf in Resources */,
+				93C257B01B9C5AB700134399 /* TKNZoomOut.pdf in Resources */,
+				93C257C41B9C96D900134399 /* TKNInvert.pdf in Resources */,
+				93C257C61B9C99F700134399 /* TKNOutline.pdf in Resources */,
+				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
+				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +931,6 @@
 				9399180B1BA1734100061130 /* TKNWelcomeSheetController.m in Sources */,
 				9390CC031B95450C0088153C /* TKNBackgroundTextField.m in Sources */,
 				9390CB8F1B9526DA0088153C /* TKNBackgroundView.m in Sources */,
-				93982FAC1BA3C35500438BDA /* TKNLayerBackedView.m in Sources */,
 				93C18FBE1B930E0D0044AAEB /* gasp_range_record.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,
 				93982FBF1BA4104500438BDA /* TKNFilePaths.m in Sources */,
@@ -966,7 +944,6 @@
 				931043F81B94184F00DAC200 /* glyph.cc in Sources */,
 				93714B381B9930EC0077B273 /* TKNNumericTextField.m in Sources */,
 				9383794C1B962D47003E6893 /* TKNTypeface.mm in Sources */,
-				93AB70511BA5F6D2004EB3C8 /* TKNLayerHostingView.m in Sources */,
 				93C18FA41B930D440044AAEB /* extension_value.cc in Sources */,
 				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
 				93982FBA1BA3C8D300438BDA /* TKNMultilineTextField.m in Sources */,
