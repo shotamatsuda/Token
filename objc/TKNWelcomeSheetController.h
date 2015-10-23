@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.h
+//  TKNWelcomeSheetController.h
 //
 //  The MIT License
 //
@@ -26,8 +26,8 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNWelcomeSheetController : NSWindowController <
-    NSURLDownloadDelegate>
+@interface TKNWelcomeSheetController :
+    NSWindowController <NSURLDownloadDelegate>
 
 #pragma mark Progress
 

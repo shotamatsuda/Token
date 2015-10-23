@@ -1066,6 +1066,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = config/osx.plist;
@@ -1073,6 +1074,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
+				SWIFT_OBJC_BRIDGING_HEADER = "objc/Token-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1080,6 +1083,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				INFOPLIST_FILE = config/osx.plist;
@@ -1087,6 +1091,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
+				SWIFT_OBJC_BRIDGING_HEADER = "objc/Token-Bridging-Header.h";
 			};
 			name = Release;
 		};

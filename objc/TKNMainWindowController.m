@@ -141,7 +141,7 @@
     if ([fileManager fileExistsAtPath:applicationSupportPath]) {
       if (![fileManager removeItemAtPath:applicationSupportPath error:&error]) {
         [[NSAlert alertWithError:error]
-            beginSheetModalForWindow:[NSApp mainWindow]
+            beginSheetModalForWindow:NSApp.mainWindow
             completionHandler:nil];
         return;
       }
@@ -150,7 +150,7 @@
     if ([fileManager fileExistsAtPath:libraryPath]) {
       if (![fileManager removeItemAtPath:libraryPath error:&error]) {
         [[NSAlert alertWithError:error]
-            beginSheetModalForWindow:[NSApp mainWindow]
+            beginSheetModalForWindow:NSApp.mainWindow
             completionHandler:nil];
         return;
       }

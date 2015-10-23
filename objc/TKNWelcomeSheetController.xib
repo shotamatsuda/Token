@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TKNWelcomeSheetController">
@@ -28,14 +28,14 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="376" y="513.5"/>
+            <point key="canvasLocation" x="376" y="509.5"/>
         </window>
         <view id="cbn-mQ-PQn" customClass="TKNLayerBackedView">
-            <rect key="frame" x="0.0" y="0.0" width="402" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="402" height="188"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lkP-Lp-VKF">
-                    <rect key="frame" x="132" y="121" width="138" height="39"/>
+                    <rect key="frame" x="133" y="121" width="136" height="47"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome" id="QqN-Wp-qJl">
                         <font key="font" size="32" name=".AppleSystemUIFontLight"/>
@@ -105,7 +105,7 @@ DQ
                 <constraint firstItem="fAv-8a-vPV" firstAttribute="leading" secondItem="fuv-Sc-lAx" secondAttribute="trailing" constant="10" id="y2B-vk-ulK"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="-87" y="588"/>
+            <point key="canvasLocation" x="376" y="830"/>
         </view>
         <view id="VWa-KP-o8W" customClass="TKNLayerBackedView">
             <rect key="frame" x="0.0" y="0.0" width="518" height="383"/>
@@ -182,7 +182,7 @@ DQ
                         <action selector="acceptLicenseAgreement:" target="-2" id="K8z-RV-Df9"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-0b-YXe" customClass="TKNMultilineTextField">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="486" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-0b-YXe" customClass="TKNMultilineTextField">
                     <rect key="frame" x="14" y="333" width="490" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="Y43-S4-jkF"/>
@@ -218,7 +218,7 @@ DQ
             <rect key="frame" x="0.0" y="0.0" width="402" height="95"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <progressIndicator wantsLayer="YES" maxValue="1" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-ns-gTt">
+                <progressIndicator maxValue="1" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-ns-gTt">
                     <rect key="frame" x="16" y="44" width="370" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="3zk-tj-Nza"/>
@@ -271,7 +271,7 @@ Gw
                 <constraint firstItem="buY-La-azL" firstAttribute="top" secondItem="8QO-ns-gTt" secondAttribute="bottom" constant="8" id="z57-T5-jKC"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="1458" y="785.5"/>
+            <point key="canvasLocation" x="1452" y="783.5"/>
         </view>
     </objects>
 </document>

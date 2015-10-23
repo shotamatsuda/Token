@@ -214,7 +214,7 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
   if ([fileManager fileExistsAtPath:path]) {
     if (![fileManager removeItemAtPath:path error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return NO;
     }
@@ -226,20 +226,20 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
                                  attributes:nil
                                       error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return NO;
     }
   }
   if (![fileManager copyItemAtPath:otfPath toPath:path error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApp mainWindow]
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
     return NO;
   }
   if (![fileManager removeItemAtPath:workingDirectoryPath error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApp mainWindow]
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
     return NO;
   }
@@ -257,13 +257,13 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
                                attributes:nil
                                     error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApp mainWindow]
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
     return nil;
   }
   if (![fileManager copyItemAtPath:_path toPath:ufoPath error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApp mainWindow]
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
     return nil;
   }

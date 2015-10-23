@@ -1,5 +1,5 @@
 //
-//  TKNAFDKOSheetController.m
+//  TKNWelcomeSheetController.m
 //
 //  The MIT License
 //
@@ -110,7 +110,7 @@ static NSString * const TKNAdobeFDKURL =
   windowFrame.size = view.frame.size;
   view.autoresizingMask = (NSViewMinXMargin | NSViewMaxXMargin |
                            NSViewMinYMargin);
-  CGRect viewFrame = [window.contentView bounds];
+  CGRect viewFrame = window.contentView.bounds;
   viewFrame.origin.x = (window.frame.size.width - view.frame.size.width) / 2.0;
   viewFrame.origin.y = (window.frame.size.height - view.frame.size.height);
   viewFrame.size = view.frame.size;
@@ -123,7 +123,6 @@ static NSString * const TKNAdobeFDKURL =
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
     view.animator.alphaValue = 1.0;
     currentView.animator.alphaValue = 0.0;
-    [window setFrame:windowFrame display:YES animate:YES];
   } completionHandler:^{
     [currentView removeFromSuperview];
     view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -131,6 +130,7 @@ static NSString * const TKNAdobeFDKURL =
       completionHandler();
     }
   }];
+  [window setFrame:windowFrame display:YES animate:YES];
 }
 
 - (void)install {
@@ -146,14 +146,14 @@ static NSString * const TKNAdobeFDKURL =
                                  attributes:nil
                                       error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return;
     }
   } else if ([fileManager fileExistsAtPath:linkPath]) {
     if (![fileManager removeItemAtPath:linkPath error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return;
     }
@@ -162,7 +162,7 @@ static NSString * const TKNAdobeFDKURL =
                          withDestinationPath:path
                                        error:&error]) {
     [[NSAlert alertWithError:error]
-        beginSheetModalForWindow:[NSApp mainWindow]
+        beginSheetModalForWindow:NSApp.mainWindow
         completionHandler:nil];
     return;
   }
@@ -177,7 +177,7 @@ static NSString * const TKNAdobeFDKURL =
   if ([fileManager fileExistsAtPath:garbagePath]) {
     if (![fileManager removeItemAtPath:garbagePath error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return;
     }
@@ -185,7 +185,7 @@ static NSString * const TKNAdobeFDKURL =
   if ([fileManager fileExistsAtPath:_archivePath]) {
     if (![fileManager removeItemAtPath:_archivePath error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return;
     }
@@ -237,7 +237,7 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error {
   [[NSAlert alertWithError:error]
-      beginSheetModalForWindow:[NSApp mainWindow]
+      beginSheetModalForWindow:NSApp.mainWindow
       completionHandler:nil];
 }
 
@@ -261,7 +261,7 @@ static NSString * const TKNAdobeFDKURL =
                                  attributes:nil
                                       error:&error]) {
       [[NSAlert alertWithError:error]
-          beginSheetModalForWindow:[NSApp mainWindow]
+          beginSheetModalForWindow:NSApp.mainWindow
           completionHandler:nil];
       return;
     }
