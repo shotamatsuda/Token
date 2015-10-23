@@ -32,26 +32,19 @@
 
 @property (nonatomic, assign) double initialValue;
 @property (nonatomic, assign) CGPoint initialLocation;
-@property (nonatomic, assign, readonly) CGRect actualBounds;
-@property (nonatomic, strong) NSTrackingArea *trackingArea;
+@property (nonatomic, strong, nonnull) NSTrackingArea *trackingArea;
 
+- (void)setUpNumericTextField;
 - (void)setUpTrackingArea;
 
 @end
 
 @implementation TKNNumericTextField
 
-- (instancetype)initWithFrame:(NSRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    [self setUpTrackingArea];
-    self.editable = NO;
-    self.selectable = NO;
-    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    [defaultCenter addObserver:self
-                      selector:@selector(controlTextDidEndEditing:)
-                          name:NSControlTextDidEndEditingNotification
-                        object:self];
+    [self setUpNumericTextField];
   }
   return self;
 }
@@ -59,16 +52,34 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
   if (self) {
-    [self setUpTrackingArea];
-    self.editable = NO;
-    self.selectable = NO;
-    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    [defaultCenter addObserver:self
-                      selector:@selector(controlTextDidEndEditing:)
-                          name:NSControlTextDidEndEditingNotification
-                        object:self];
+    [self setUpNumericTextField];
   }
   return self;
+}
+
+- (void)setUpNumericTextField {
+  [self setUpTrackingArea];
+  self.editable = NO;
+  self.selectable = NO;
+  NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+  [defaultCenter addObserver:self
+                    selector:@selector(controlTextDidEndEditing:)
+                        name:NSControlTextDidEndEditingNotification
+                      object:self];
+}
+
+- (void)setUpTrackingArea {
+  if (_trackingArea) {
+    [self removeTrackingArea:_trackingArea];
+  }
+  self.trackingArea = [[NSTrackingArea alloc]
+      initWithRect:self.bounds
+           options:(NSTrackingMouseEnteredAndExited |
+                    NSTrackingMouseMoved |
+                    NSTrackingActiveInKeyWindow)
+             owner:self
+          userInfo:nil];
+  [self addTrackingArea:_trackingArea];
 }
 
 - (void)dealloc {
@@ -89,12 +100,8 @@
 
 - (void)mouseDown:(NSEvent *)event {
   [super mouseDown:event];
-  _initialLocation = event.locationInWindow;
-  _initialValue = self.doubleValue;
-  CGDirectDisplayID display;
-  CGDisplayCount displayCount;
-  CGRect frame = self.window.screen.frame;
-  CGGetDisplaysWithRect(frame, 1, &display, &displayCount);
+  self.initialLocation = event.locationInWindow;
+  self.initialValue = self.doubleValue;
 }
 
 - (void)mouseDragged:(NSEvent *)event {
@@ -106,8 +113,8 @@
   // Propagate the change through binding, and store the value after
   // propagation back to the double value of the text field.
   NSDictionary *bindingInfo = [self infoForBinding:NSValueBinding];
-  id observedObject = [bindingInfo valueForKey:NSObservedObjectKey];
-  NSString *keyPath = [bindingInfo valueForKey:NSObservedKeyPathKey];
+  id observedObject = bindingInfo[NSObservedObjectKey];
+  NSString *keyPath = bindingInfo[NSObservedKeyPathKey];
   [observedObject setValue:[NSNumber numberWithDouble:result]
                 forKeyPath:keyPath];
   self.doubleValue = [[observedObject valueForKeyPath:keyPath] doubleValue];
@@ -120,7 +127,7 @@
   }
   CGPoint location = [self convertPoint:event.locationInWindow
                                fromView:self.window.contentView];
-  if (CGRectContainsPoint(self.actualBounds, location)) {
+  if (CGRectContainsPoint(self.bounds, location)) {
     self.editable = YES;
     self.selectable = YES;
     [self selectText:self];
@@ -130,8 +137,7 @@
 
 - (void)resetCursorRects {
   if (!self.editable) {
-    [self addCursorRect:self.actualBounds
-                 cursor:[NSCursor resizeLeftRightCursor]];
+    [self addCursorRect:self.bounds cursor:[NSCursor resizeLeftRightCursor]];
   } else {
     [super resetCursorRects];
   }
@@ -139,35 +145,12 @@
 
 - (void)controlTextDidEndEditing:(NSNotification *)notification {
   NSDictionary *bindingInfo = [self infoForBinding:NSValueBinding];
-  id observedObject = [bindingInfo valueForKey:NSObservedObjectKey];
-  NSString *keyPath = [bindingInfo valueForKey:NSObservedKeyPathKey];
+  id observedObject = bindingInfo[NSObservedObjectKey];
+  NSString *keyPath = bindingInfo[NSObservedKeyPathKey];
   self.doubleValue = [[observedObject valueForKeyPath:keyPath] doubleValue];
   self.editable = NO;
   self.selectable = NO;
   [self resetCursorRects];
-}
-
-- (CGRect)actualBounds {
-  // Workaround for when enclosed by a clip view
-  if ([self.superview isKindOfClass:[NSClipView class]]) {
-    return [self convertRect:self.superview.frame
-                    fromView:self.superview.superview];
-  }
-  return self.bounds;
-}
-
-- (void)setUpTrackingArea {
-  if (_trackingArea) {
-    [self removeTrackingArea:_trackingArea];
-  }
-  _trackingArea = [[NSTrackingArea alloc]
-      initWithRect:self.bounds
-           options:(NSTrackingMouseEnteredAndExited |
-                    NSTrackingMouseMoved |
-                    NSTrackingActiveInKeyWindow)
-             owner:self
-          userInfo:nil];
-  [self addTrackingArea:_trackingArea];
 }
 
 @end

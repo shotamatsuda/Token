@@ -27,19 +27,19 @@
 #import <AppKit/AppKit.h>
 
 typedef NS_ENUM(NSUInteger, TKNRectCorner) {
-  TKNRectCornerTopLeft = 1 << 0,
-  TKNRectCornerBottomLeft = 1 << 1,
-  TKNRectCornerTopRight = 1 << 2,
-  TKNRectCornerBottomRight = 1 << 3,
-  TKNRectCornerAllCorners = (TKNRectCornerTopLeft |
-                             TKNRectCornerBottomLeft |
-                             TKNRectCornerTopRight |
-                             TKNRectCornerBottomRight)
+  kTKNRectCornerTopLeft = 1 << 0,
+  kTKNRectCornerBottomLeft = 1 << 1,
+  kTKNRectCornerTopRight = 1 << 2,
+  kTKNRectCornerBottomRight = 1 << 3,
+  kTKNRectCornerAllCorners = (kTKNRectCornerTopLeft |
+                              kTKNRectCornerBottomLeft |
+                              kTKNRectCornerTopRight |
+                              kTKNRectCornerBottomRight)
 };
 
 @interface NSBezierPath (TKNRoundedRect)
 
-+ (NSBezierPath *)bezierPathWithRoundedRect:(NSRect)rect
++ (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect
                           byRoundingCorners:(TKNRectCorner)corners
                                cornerRadius:(CGFloat)cornerRadius;
 + (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect

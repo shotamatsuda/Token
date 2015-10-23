@@ -26,24 +26,10 @@
 
 #import "TKNApplicationDelegate.h"
 
-#import "TKNMainWindowController.h"
-
 @implementation TKNApplicationDelegate
 
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    _windowController = [[TKNMainWindowController alloc] init];
-    [_windowController showWindow:self];
-  }
-  return self;
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)notification {
-  [_windowController showWindow:self];
-}
-
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app {
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:
+    (NSApplication *)application {
   return YES;
 }
 

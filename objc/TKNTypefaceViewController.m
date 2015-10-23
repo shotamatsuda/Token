@@ -27,14 +27,13 @@
 #import "TKNTypefaceViewController.h"
 
 #import "TKNControlView.h"
-#import "TKNTypefaceSampleView.h"
+#import "TKNTypefaceView.h"
 
 static char TKNTypefaceViewControllerKVOContext;
 
 @interface TKNTypefaceViewController ()
 
 @property (nonatomic, strong) IBOutlet NSScrollView *scrollView;
-@property (nonatomic, strong) IBOutlet TKNControlView *controlView;
 
 #pragma mark Zooming
 
@@ -47,32 +46,17 @@ static char TKNTypefaceViewControllerKVOContext;
 
 @implementation TKNTypefaceViewController
 
-- (instancetype)init {
-  return [self initWithNibName:@"TKNTypefaceViewController"
-                        bundle:[NSBundle mainBundle]];
-}
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil
-                         bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    _magnification = 1.0;
-    _magnificationQueue = [NSMutableArray array];
-  }
-  return self;
-}
-
 - (void)dealloc {
   NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
   [defaultCenter removeObserver:self
                            name:NSViewFrameDidChangeNotification
-                         object:_sampleView];
+                         object:_typefaceView];
   [defaultCenter removeObserver:self
                            name:NSViewFrameDidChangeNotification
                          object:_scrollView];
   NSArray<NSString *> *keyPaths = @[
       @"metricsType", @"physicalStrokeWidth", @"physicalCapHeight",
-      @"strokeWidthUnit", @"capHeightUnit", @"typographicStrokeWidth"];
+      @"strokeWidthUnit", @"capHeightUnit", @"strokeWidth"];
   for (NSString *keyPath in keyPaths) {
     [_typeface removeObserver:self
                    forKeyPath:keyPath
@@ -82,16 +66,17 @@ static char TKNTypefaceViewControllerKVOContext;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.magnification = 1.0;
+  self.magnificationQueue = [NSMutableArray array];
 
   // Sample view
-  _sampleView = [[TKNTypefaceSampleView alloc] initWithFrame:_scrollView.frame];
-  _sampleView.typeface = _typeface;
+  self.typefaceView = [[TKNTypefaceView alloc] initWithFrame:_scrollView.frame];
 
   // Scroll view
   _scrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   _scrollView.hasHorizontalScroller = YES;
   _scrollView.hasVerticalScroller = YES;
-  _scrollView.documentView = _sampleView;
+  _scrollView.documentView = _typefaceView;
   _scrollView.allowsMagnification = YES;
   _scrollView.minMagnification = 0.03125;
   _scrollView.maxMagnification = 64.0;
@@ -101,7 +86,7 @@ static char TKNTypefaceViewControllerKVOContext;
   [defaultCenter addObserver:self
                     selector:@selector(contentViewFrameDidChange:)
                         name:NSViewFrameDidChangeNotification
-                      object:_sampleView];
+                      object:_typefaceView];
   [defaultCenter addObserver:self
                     selector:@selector(contentViewFrameDidChange:)
                         name:NSViewFrameDidChangeNotification
@@ -151,7 +136,7 @@ static char TKNTypefaceViewControllerKVOContext;
                        context:(void *)context {
   if (context == &TKNTypefaceViewControllerKVOContext) {
     if (object == _typeface) {
-      _sampleView.needsDisplay = YES;
+      _typefaceView.needsDisplay = YES;
     }
   } else {
     [super observeValueForKeyPath:keyPath
@@ -165,13 +150,14 @@ static char TKNTypefaceViewControllerKVOContext;
   if (typeface != _typeface) {
     NSArray<NSString *> *keyPaths = @[
         @"metricsType", @"physicalStrokeWidth", @"physicalCapHeight",
-        @"strokeWidthUnit", @"capHeightUnit", @"typographicStrokeWidth"];
+        @"strokeWidthUnit", @"capHeightUnit", @"strokeWidth"];
     for (NSString *keyPath in keyPaths) {
       [_typeface removeObserver:self
                      forKeyPath:keyPath
                         context:&TKNTypefaceViewControllerKVOContext];
     }
     _typeface = typeface;
+    _typefaceView.typeface = _typeface;
     for (NSString *keyPath in keyPaths) {
       [_typeface addObserver:self
                   forKeyPath:keyPath
@@ -186,7 +172,7 @@ static char TKNTypefaceViewControllerKVOContext;
 - (void)setInverted:(BOOL)inverted {
   if (inverted != _inverted) {
     _inverted = inverted;
-    _sampleView.inverted = inverted;
+    _typefaceView.inverted = inverted;
     if (_inverted) {
       _scrollView.backgroundColor = [NSColor blackColor];
     } else {
@@ -198,7 +184,7 @@ static char TKNTypefaceViewControllerKVOContext;
 - (void)setOutlined:(BOOL)outlined {
   if (outlined != _outlined) {
     _outlined = outlined;
-    _sampleView.outlined = outlined;
+    _typefaceView.outlined = outlined;
   }
 }
 
@@ -239,15 +225,14 @@ static char TKNTypefaceViewControllerKVOContext;
 }
 
 - (void)animateMagnificationInQueue {
-  __weak typeof(self) wself = self;
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
     _scrollView.animator.magnification =
         [_magnificationQueue.firstObject doubleValue];
     [_magnificationQueue removeObjectAtIndex:0];
   } completionHandler:^{
-    wself.sampleView.needsDisplay = YES;
-    if (wself.magnificationQueue.count) {
-      [wself animateMagnificationInQueue];
+    _typefaceView.needsDisplay = YES;
+    if (_magnificationQueue.count) {
+      [self animateMagnificationInQueue];
     }
   }];
 }

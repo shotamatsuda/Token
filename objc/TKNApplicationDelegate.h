@@ -30,7 +30,4 @@
 
 @interface TKNApplicationDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, strong, readonly, nonnull)
-    TKNMainWindowController *windowController;
-
 @end

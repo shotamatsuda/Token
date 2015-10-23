@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceSampleView.h
+//  TKNMainViewController.h
 //
 //  The MIT License
 //
@@ -26,14 +26,14 @@
 
 #import <AppKit/AppKit.h>
 
-#import "TKNTypeface.h"
+#import "TKNSettingsViewController.h"
+#import "TKNTypefaceViewController.h"
 
-@interface TKNTypefaceSampleView : NSView
+@interface TKNMainViewController : NSViewController
 
-#pragma mark Parameters
-
-@property (nonatomic, strong, nonnull) TKNTypeface *typeface;
-@property (nonatomic, assign) BOOL inverted;
-@property (nonatomic, assign) BOOL outlined;
+@property (nonatomic, strong, readonly, nonnull)
+    TKNTypefaceViewController *typefaceViewController;
+@property (nonatomic, strong, readonly, nonnull)
+    TKNSettingsViewController *settingsViewController;
 
 @end

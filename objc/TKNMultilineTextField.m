@@ -34,10 +34,10 @@
 
 @implementation TKNMultilineTextField
 
-- (NSSize)intrinsicContentSize {
-  if ([self.cell wraps] && self.frame.size.height > 1.0) {
+- (CGSize)intrinsicContentSize {
+  if (self.cell.wraps && self.frame.size.height > 1.0) {
     return [self.cell cellSizeForBounds:
-        NSMakeRect(0.0, 0.0, self.bounds.size.width, CGFLOAT_MAX)];
+        CGRectMake(0.0, 0.0, self.bounds.size.width, CGFLOAT_MAX)];
   }
   return super.intrinsicContentSize;
 }
@@ -47,7 +47,7 @@
   [self invalidateWordWrappedContentSizeIfNeeded];
 }
 
-- (void)setFrameSize:(NSSize)size {
+- (void)setFrameSize:(CGSize)size {
   [super setFrameSize:size];
   [self invalidateWordWrappedContentSizeIfNeeded];
 }
@@ -57,6 +57,6 @@
   if (!CGSizeEqualToSize(_previousIntrinsicContentSize, intrinsicContentSize)) {
     [self invalidateIntrinsicContentSize];
   }
-  _previousIntrinsicContentSize = intrinsicContentSize;
+  self.previousIntrinsicContentSize = intrinsicContentSize;
 }
 @end

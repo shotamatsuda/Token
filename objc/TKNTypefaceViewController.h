@@ -27,12 +27,12 @@
 #import <AppKit/AppKit.h>
 
 #import "TKNTypeface.h"
-#import "TKNTypefaceSampleView.h"
+#import "TKNTypefaceView.h"
 
 @interface TKNTypefaceViewController : NSViewController
 
 @property (nonatomic, strong, nonnull) TKNTypeface *typeface;
-@property (nonatomic, strong, nonnull) TKNTypefaceSampleView *sampleView;
+@property (nonatomic, strong, nonnull) IBOutlet TKNTypefaceView *typefaceView;
 
 #pragma mark Parameters
 

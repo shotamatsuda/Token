@@ -28,67 +28,67 @@
 
 @implementation NSBezierPath (TKNRoundedRect)
 
-+ (NSBezierPath *)bezierPathWithRoundedRect:(NSRect)rect
++ (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect
                           byRoundingCorners:(TKNRectCorner)corners
                                cornerRadius:(CGFloat)cornerRadius {
   NSGraphicsContext *context = [NSGraphicsContext currentContext];
   NSBezierPath *bezierPath = [self bezierPath];
   cornerRadius = MIN(cornerRadius, 0.5 * MIN(NSWidth(rect), NSHeight(rect)));
-  NSRect insetRect = NSInsetRect(rect, cornerRadius, cornerRadius);
-  BOOL flipped = [context isFlipped];
-  NSPoint cornerPoint;
-  if ((!flipped && corners & TKNRectCornerBottomLeft) ||
-      (flipped && corners & TKNRectCornerTopLeft)) {
-    cornerPoint = NSMakePoint(NSMinX(insetRect), NSMinY(insetRect));
+  CGRect insetRect = NSInsetRect(rect, cornerRadius, cornerRadius);
+  BOOL flipped = context.flipped;
+  CGPoint cornerPoint;
+  if ((!flipped && corners & kTKNRectCornerBottomLeft) ||
+      (flipped && corners & kTKNRectCornerTopLeft)) {
+    cornerPoint = CGPointMake(NSMinX(insetRect), NSMinY(insetRect));
     [bezierPath appendBezierPathWithArcWithCenter:cornerPoint
                                            radius:cornerRadius
                                        startAngle:180.0
                                          endAngle:270.0];
   } else {
-    cornerPoint = NSMakePoint(NSMinX(rect), NSMinY(rect));
+    cornerPoint = CGPointMake(NSMinX(rect), NSMinY(rect));
     [bezierPath appendBezierPathWithPoints:&cornerPoint count:1];
   }
-  if ((!flipped && corners & TKNRectCornerBottomRight) ||
-      (flipped && corners & TKNRectCornerTopRight)) {
-    cornerPoint = NSMakePoint(NSMaxX(insetRect), NSMinY(insetRect));
+  if ((!flipped && corners & kTKNRectCornerBottomRight) ||
+      (flipped && corners & kTKNRectCornerTopRight)) {
+    cornerPoint = CGPointMake(NSMaxX(insetRect), NSMinY(insetRect));
     [bezierPath appendBezierPathWithArcWithCenter:cornerPoint
                                            radius:cornerRadius
                                        startAngle:270.0
                                          endAngle:360.0];
   } else {
-    cornerPoint = NSMakePoint(NSMaxX(rect), NSMinY(rect));
+    cornerPoint = CGPointMake(NSMaxX(rect), NSMinY(rect));
     [bezierPath appendBezierPathWithPoints:&cornerPoint count:1];
   }
-  if ((!flipped && corners & TKNRectCornerTopRight) ||
-      (flipped && corners & TKNRectCornerBottomRight)) {
-    cornerPoint = NSMakePoint(NSMaxX(insetRect), NSMaxY(insetRect));
+  if ((!flipped && corners & kTKNRectCornerTopRight) ||
+      (flipped && corners & kTKNRectCornerBottomRight)) {
+    cornerPoint = CGPointMake(NSMaxX(insetRect), NSMaxY(insetRect));
     [bezierPath appendBezierPathWithArcWithCenter:cornerPoint
                                            radius:cornerRadius
                                        startAngle:0.0
                                          endAngle:90.0];
   } else {
-    cornerPoint = NSMakePoint(NSMaxX(rect), NSMaxY(rect));
+    cornerPoint = CGPointMake(NSMaxX(rect), NSMaxY(rect));
     [bezierPath appendBezierPathWithPoints:&cornerPoint count:1];
   }
-  if ((!flipped && corners & TKNRectCornerTopLeft) ||
-      (flipped && corners & TKNRectCornerBottomLeft)) {
-    cornerPoint = NSMakePoint(NSMinX(insetRect), NSMaxY(insetRect));
+  if ((!flipped && corners & kTKNRectCornerTopLeft) ||
+      (flipped && corners & kTKNRectCornerBottomLeft)) {
+    cornerPoint = CGPointMake(NSMinX(insetRect), NSMaxY(insetRect));
     [bezierPath appendBezierPathWithArcWithCenter:cornerPoint
                                            radius:cornerRadius
                                        startAngle:90.0
                                          endAngle:180.0];
   } else {
-    cornerPoint = NSMakePoint(NSMinX(rect), NSMaxY(rect));
+    cornerPoint = CGPointMake(NSMinX(rect), NSMaxY(rect));
     [bezierPath appendBezierPathWithPoints:&cornerPoint count:1];
   }
   [bezierPath closePath];
   return bezierPath;
 }
 
-+ (NSBezierPath *)bezierPathWithRoundedRect:(NSRect)rect
++ (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect
                                cornerRadius:(CGFloat)cornerRadius {
   return [NSBezierPath bezierPathWithRoundedRect:rect
-                               byRoundingCorners:TKNRectCornerAllCorners
+                               byRoundingCorners:kTKNRectCornerAllCorners
                                     cornerRadius:cornerRadius];
 }
 

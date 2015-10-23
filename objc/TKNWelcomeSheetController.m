@@ -84,9 +84,6 @@ static NSString * const TKNAdobeFDKURL =
 - (void)windowDidLoad {
   [super windowDidLoad];
 
-  // Appearances
-  NSString *lightAppearance = NSAppearanceNameVibrantLight;
-
   // Welcome view
   NSWindow *window = self.window;
   NSView *view = window.contentView;
@@ -96,7 +93,6 @@ static NSString * const TKNAdobeFDKURL =
   window.styleMask = window.styleMask & ~NSResizableWindowMask;
   _welcomeView.frame = view.bounds;
   _welcomeView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-  _welcomeView.appearance = [NSAppearance appearanceNamed:lightAppearance];
   [view addSubview:_welcomeView];
 }
 
@@ -120,7 +116,8 @@ static NSString * const TKNAdobeFDKURL =
   viewFrame.size = view.frame.size;
   view.frame = viewFrame;
   view.alphaValue = 0.0;
-  NSView *currentView = [window.contentView subviews].firstObject;
+  NSView *contentView = window.contentView;
+  NSView *currentView = contentView.subviews.firstObject;
   currentView.autoresizingMask = (NSViewMinXMargin | NSViewMaxXMargin |
                                   NSViewMinYMargin);
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
@@ -235,7 +232,7 @@ static NSString * const TKNAdobeFDKURL =
 - (void)downloadArchive {
   NSURL *url = [NSURL URLWithString:TKNAdobeFDKURL];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  _download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+  self.download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 }
 
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error {
@@ -271,19 +268,19 @@ static NSString * const TKNAdobeFDKURL =
   }
   NSString *path = [directory stringByAppendingPathComponent:filename];
   [download setDestination:path allowOverwrite:YES];
-  _archiveDirectory = directory;
-  _archivePath = path;
+  self.archiveDirectory = directory;
+  self.archivePath = path;
 }
 
 - (void)download:(NSURLDownload *)download
     didReceiveResponse:(NSURLResponse *)response {
-  _downloadResponse = response;
-  _downloadedDataLength = 0;
+  self.downloadResponse = response;
+  self.downloadedDataLength = 0;
 }
 
 - (void)download:(NSURLDownload *)download
     didReceiveDataOfLength:(NSUInteger)length {
-  _downloadedDataLength += length;
+  self.downloadedDataLength += length;
   long long expectedLength = _downloadResponse.expectedContentLength;
   if (expectedLength != NSURLResponseUnknownLength) {
     self.progress = (double)_downloadedDataLength / expectedLength;
@@ -296,7 +293,7 @@ static NSString * const TKNAdobeFDKURL =
   self.progressMessage = NSLocalizedString(@"Extracting...", @"");
   _progressIndicator.indeterminate = YES;
   [_progressIndicator startAnimation:self];
-  _unzip = [[NSTask alloc] init];
+  self.unzip = [[NSTask alloc] init];
   _unzip.launchPath = @"/usr/bin/unzip";
   _unzip.currentDirectoryPath = _archiveDirectory;
   _unzip.arguments = @[@"-qo", _archivePath];

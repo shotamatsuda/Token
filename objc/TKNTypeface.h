@@ -60,12 +60,12 @@ typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
 @property (nonatomic, assign) double physicalCapHeight;
 @property (nonatomic, assign) TKNTypefaceUnit strokeWidthUnit;
 @property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
-@property (nonatomic, assign) NSInteger typographicStrokeWidth;
 
-#pragma mark Attributes
+#pragma mark Stroke Width
 
-@property (nonatomic, assign, readonly) NSInteger minTypographicStrokeWidth;
-@property (nonatomic, assign, readonly) NSInteger maxTypographicStrokeWidth;
+@property (nonatomic, assign) double strokeWidth;
+@property (nonatomic, assign, readonly) NSInteger minStrokeWidth;
+@property (nonatomic, assign, readonly) NSInteger maxStrokeWidth;
 
 #pragma mark Typographic Properties
 

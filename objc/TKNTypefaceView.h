@@ -1,5 +1,5 @@
 //
-//  TKNLayerBackedView.m
+//  TKNTypefaceView.h
 //
 //  The MIT License
 //
@@ -24,24 +24,16 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNLayerBackedView.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNLayerBackedView
+#import "TKNTypeface.h"
 
-- (instancetype)initWithFrame:(CGRect)frame {
-  self = [super initWithFrame:frame];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
-}
+@interface TKNTypefaceView : NSView
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-  self = [super initWithCoder:coder];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
-}
+#pragma mark Parameters
+
+@property (nonatomic, strong, nonnull) TKNTypeface *typeface;
+@property (nonatomic, assign) BOOL inverted;
+@property (nonatomic, assign) BOOL outlined;
 
 @end

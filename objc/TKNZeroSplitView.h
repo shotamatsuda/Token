@@ -1,5 +1,5 @@
 //
-//  TKNLayerBackedView.m
+//  TKNZeroSplitView.h
 //
 //  The MIT License
 //
@@ -24,24 +24,8 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNLayerBackedView.h"
+#import <AppKit/AppKit.h>
 
-@implementation TKNLayerBackedView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-  self = [super initWithFrame:frame];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-  self = [super initWithCoder:coder];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
-}
+@interface TKNZeroSplitView : NSSplitView
 
 @end

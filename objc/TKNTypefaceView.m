@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceSampleView.m
+//  TKNTypefaceView.m
 //
 //  The MIT License
 //
@@ -24,9 +24,9 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNTypefaceSampleView.h"
+#import "TKNTypefaceView.h"
 
-@interface TKNTypefaceSampleView ()
+@interface TKNTypefaceView ()
 
 #pragma mark Drawing
 
@@ -50,13 +50,13 @@
 
 @end
 
-@implementation TKNTypefaceSampleView
+@implementation TKNTypefaceView
 
-- (instancetype)initWithFrame:(NSRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    _scale = 0.085;
-    _lines = @[
+    self.scale = 0.085;
+    self.lines = @[
       @[@"A", @"B", @"C", @"D", @"E", @"F", @"G",
         @"H", @"I", @"J", @"K", @"L", @"M"],
       @[@"N", @"O", @"P", @"Q", @"R", @"S", @"T",
@@ -74,6 +74,13 @@
 
 #pragma mark Parameters
 
+- (void)setTypeface:(TKNTypeface *)typeface {
+  if (typeface != _typeface) {
+    _typeface = typeface;
+    self.needsDisplay = YES;
+  }
+}
+
 - (void)setInverted:(BOOL)inverted {
   if (inverted != _inverted) {
     _inverted = inverted;
@@ -90,12 +97,13 @@
 
 #pragma mark Drawing
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(CGRect)dirtyRect {
   [self resizeToFitLines];
 
   // Remember this view's current transformation matrix because it's not
   // identity matrix. We'll use this later for intersection tests.
-  _transform = CGContextGetCTM([NSGraphicsContext currentContext].CGContext);
+  self.transform = CGContextGetCTM(
+      [NSGraphicsContext currentContext].CGContext);
 
   // Background color
   [NSGraphicsContext saveGraphicsState];

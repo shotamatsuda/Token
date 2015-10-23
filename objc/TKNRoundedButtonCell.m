@@ -30,7 +30,7 @@
 
 @implementation TKNRoundedButtonCell
 
-- (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
+- (void)drawBezelWithFrame:(CGRect)frame inView:(NSView *)controlView {
   [NSGraphicsContext saveGraphicsState];
   NSBezierPath *path = [NSBezierPath
       bezierPathWithRoundedRect:frame
@@ -55,10 +55,6 @@
 }
 
 - (NSAttributedString *)attributedTitle {
-  NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
-      initWithAttributedString:super.attributedTitle];
-  NSRange range = NSMakeRange(0, title.length);
-  [title beginEditing];
   NSColor *color;
   NSColor *highlightedColor;
   NSAppearance *appearance = self.controlView.effectiveAppearance;
@@ -69,6 +65,10 @@
     color = [NSColor whiteColor];
     highlightedColor = [[NSColor whiteColor] colorWithAlphaComponent:0.8];
   }
+  NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
+      initWithAttributedString:super.attributedTitle];
+  NSRange range = NSMakeRange(0, title.length);
+  [title beginEditing];
   if (self.enabled) {
     if (self.highlighted) {
       [title addAttribute:NSForegroundColorAttributeName

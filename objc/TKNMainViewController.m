@@ -1,5 +1,5 @@
 //
-//  TKNLayerBackedView.m
+//  TKNMainViewController.m
 //
 //  The MIT License
 //
@@ -24,24 +24,36 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNLayerBackedView.h"
+#import "TKNMainViewController.h"
 
-@implementation TKNLayerBackedView
+@interface TKNMainViewController ()
 
-- (instancetype)initWithFrame:(CGRect)frame {
-  self = [super initWithFrame:frame];
-  if (self) {
-    self.wantsLayer = YES;
+@property (nonatomic, strong, nonnull)
+    TKNTypefaceViewController *typefaceViewController;
+@property (nonatomic, strong, nonnull)
+    TKNSettingsViewController *settingsViewController;
+
+@end
+
+@implementation TKNMainViewController
+
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
+  [super prepareForSegue:segue sender:sender];
+  if ([segue.identifier isEqualToString:@"Typeface"]) {
+    self.typefaceViewController = segue.destinationController;
+  } else if ([segue.identifier isEqualToString:@"Settings"]) {
+    self.settingsViewController = segue.destinationController;
   }
-  return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-  self = [super initWithCoder:coder];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  NSString *defaultAppearance = NSAppearanceNameAqua;
+  NSString *darkAppearance = NSAppearanceNameVibrantDark;
+  _typefaceViewController.view.appearance =
+      [NSAppearance appearanceNamed:defaultAppearance];
+  _settingsViewController.view.appearance =
+      [NSAppearance appearanceNamed:darkAppearance];
 }
 
 @end

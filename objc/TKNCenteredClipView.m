@@ -37,7 +37,8 @@
 -(void)viewFrameChanged:(NSNotification *)notification {
   CGRect bounds = self.bounds;
   [super viewFrameChanged:notification];
-  CGSize documentSize = [self.documentView frame].size;
+  NSView *documentView = self.documentView;
+  CGSize documentSize = documentView.frame.size;
   CGPoint point = bounds.origin;
   if (_documentSize.width && bounds.size.width < documentSize.width) {
     CGFloat scale = documentSize.width / _documentSize.width;
@@ -51,19 +52,18 @@
     bounds.origin = point;
     self.bounds = bounds;
   }
-  _documentSize = documentSize;
+  self.documentSize = documentSize;
 }
 
 - (CGRect)constrainBoundsRect:(CGRect)proposedBounds {
   CGRect bounds = [super constrainBoundsRect:proposedBounds];
-  CGRect documentFrame = [self.documentView frame];
-  if (proposedBounds.size.width >= documentFrame.size.width) {
-    bounds.origin.x = (proposedBounds.size.width -
-                       documentFrame.size.width) / -2.0;
+  NSView *documentView = self.documentView;
+  CGSize documentSize = documentView.frame.size;
+  if (proposedBounds.size.width >= documentSize.width) {
+    bounds.origin.x = (proposedBounds.size.width - documentSize.width) / -2.0;
   }
-  if (proposedBounds.size.height >= documentFrame.size.height) {
-    bounds.origin.y = (proposedBounds.size.height -
-                       documentFrame.size.height) / -2.0;
+  if (proposedBounds.size.height >= documentSize.height) {
+    bounds.origin.y = (proposedBounds.size.height - documentSize.height) / -2.0;
   }
   return bounds;
 }

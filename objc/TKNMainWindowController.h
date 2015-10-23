@@ -26,15 +26,20 @@
 
 #import <AppKit/AppKit.h>
 
+#import "TKNMainViewController.h"
 #import "TKNSettingsViewController.h"
 #import "TKNTypeface.h"
 #import "TKNTypefaceViewController.h"
 
 @interface TKNMainWindowController : NSWindowController <NSWindowDelegate>
 
-@property (nonatomic, strong, nonnull)
+#pragma mark View Controllers
+
+@property (nonatomic, strong, readonly, nonnull)
+    TKNMainViewController *mainViewController;
+@property (nonatomic, strong, readonly, nonnull)
     TKNTypefaceViewController *typefaceViewController;
-@property (nonatomic, strong, nonnull)
+@property (nonatomic, strong, readonly, nonnull)
     TKNSettingsViewController *settingsViewController;
 
 #pragma mark Parameters
