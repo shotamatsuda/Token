@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundView.m
+//  LayerBackedView.swift
 //
 //  The MIT License
 //
@@ -24,12 +24,16 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNBackgroundView.h"
+import AppKit
 
-@implementation TKNBackgroundView
+class LayerBackedView : NSView {
+  override init(frame frameRect: NSRect) {
+    super.init(frame: frameRect)
+    wantsLayer = true
+  }
 
-- (BOOL)acceptsFirstResponder {
-  return YES;
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    wantsLayer = true
+  }
 }
-
-@end

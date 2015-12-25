@@ -63,10 +63,6 @@ class Point final {
   Point(const Point&) = default;
   Point& operator=(const Point&) = default;
 
-  // Comparison
-  bool operator==(const Point& other) const;
-  bool operator!=(const Point& other) const;
-
   // Mutator
   void reset();
 
@@ -82,6 +78,10 @@ class Point final {
   std::string name;
   std::string identifier;
 };
+
+// Comparison
+bool operator==(const Point& lhs, const Point& rhs);
+bool operator!=(const Point& lhs, const Point& rhs);
 
 #pragma mark -
 
@@ -102,17 +102,17 @@ inline Point::Point(double x,
 
 #pragma mark Comparison
 
-inline bool Point::operator==(const Point& other) const {
-  return (x == other.x &&
-          y == other.y &&
-          type == other.type &&
-          smooth == other.smooth &&
-          name == other.name &&
-          identifier == other.identifier);
+inline bool operator==(const Point& lhs, const Point& rhs) {
+  return (lhs.x == rhs.x &&
+          lhs.y == rhs.y &&
+          lhs.type == rhs.type &&
+          lhs.smooth == rhs.smooth &&
+          lhs.name == rhs.name &&
+          lhs.identifier == rhs.identifier);
 }
 
-inline bool Point::operator!=(const Point& other) const {
-  return !operator==(other);
+inline bool operator!=(const Point& lhs, const Point& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

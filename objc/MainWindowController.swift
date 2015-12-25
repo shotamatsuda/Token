@@ -1,5 +1,5 @@
 //
-//  TKNZeroSplitView.h
+//  MainWindowController.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,4 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
-
-@interface TKNZeroSplitView : NSSplitView
-
-@end
+import AppKit

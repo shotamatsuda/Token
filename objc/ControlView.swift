@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundTextField.m
+//  ControlView.swift
 //
 //  The MIT License
 //
@@ -24,20 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNBackgroundTextField.h"
+import AppKit
 
-@implementation TKNBackgroundTextField
-
-- (void)mouseDown:(NSEvent *)event {
-  [self.window makeFirstResponder:nil];
+class ControlView : NSView {
+  override var acceptsFirstResponder: Bool {
+    get {
+      return true
+    }
+  }
 }
-
-- (BOOL)acceptsFirstResponder {
-  return NO;
-}
-
-- (BOOL)mouseDownCanMoveWindow {
-  return YES;
-}
-
-@end

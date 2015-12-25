@@ -45,10 +45,6 @@ class Licensee final {
   Licensee(const Licensee&) = default;
   Licensee& operator=(const Licensee&) = default;
 
-  // Comparison
-  bool operator==(const Licensee& other) const;
-  bool operator!=(const Licensee& other) const;
-
   // Property list
   static Licensee read(const PropertyList& plist);
   PropertyList plist() const;
@@ -59,16 +55,20 @@ class Licensee final {
   std::string klass;
 };
 
+// Comparison
+bool operator==(const Licensee& lhs, const Licensee& rhs);
+bool operator!=(const Licensee& lhs, const Licensee& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Licensee::operator==(const Licensee& other) const {
-  return name == other.name && dir == other.dir && klass == other.klass;
+inline bool operator==(const Licensee& lhs, const Licensee& rhs) {
+  return lhs.name == rhs.name && lhs.dir == rhs.dir && lhs.klass == rhs.klass;
 }
 
-inline bool Licensee::operator!=(const Licensee& other) const {
-  return operator==(other);
+inline bool operator!=(const Licensee& lhs, const Licensee& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

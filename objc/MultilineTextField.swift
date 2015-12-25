@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundTextField.h
+//  MultilineTextField.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,42 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-@interface TKNBackgroundTextField : NSTextField
+class MultilineTextField : NSTextField {
+  override var intrinsicContentSize: CGSize {
+    get {
+      guard let cell = cell else {
+        return super.intrinsicContentSize
+      }
+      if cell.wraps && frame.height > 1.0 {
+        return cell.cellSizeForBounds(CGRect(
+            x: 0.0,
+            y: 0.0,
+            width: bounds.width,
+            height: CGFloat.max))
+      }
+      return super.intrinsicContentSize
+    }
+  }
 
-@end
+  override func layout() {
+    super.layout()
+    invalidateWordWrappedContentSizeIfNeeded()
+  }
+
+  override func setFrameSize(size: NSSize) {
+    super.setFrameSize(size)
+    invalidateWordWrappedContentSizeIfNeeded()
+  }
+
+  private var previousContentSize = CGSize()
+
+  private func invalidateWordWrappedContentSizeIfNeeded() {
+    let contentSize = intrinsicContentSize
+    if previousContentSize != contentSize {
+      invalidateIntrinsicContentSize()
+    }
+    previousContentSize = contentSize
+  }
+}

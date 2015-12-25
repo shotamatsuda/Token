@@ -49,10 +49,6 @@ class Guideline final {
   Guideline(const Guideline&) = default;
   Guideline& operator=(const Guideline&) = default;
 
-  // Comparison
-  bool operator==(const Guideline& other) const;
-  bool operator!=(const Guideline& other) const;
-
   // Property list
   static Guideline read(const PropertyList& plist);
   PropertyList plist() const;
@@ -65,6 +61,10 @@ class Guideline final {
   std::string color;
   std::string identifier;
 };
+
+// Comparison
+bool operator==(const Guideline& lhs, const Guideline& rhs);
+bool operator!=(const Guideline& lhs, const Guideline& rhs);
 
 #pragma mark -
 
@@ -83,17 +83,17 @@ inline Guideline::Guideline(double x,
 
 #pragma mark Comparison
 
-inline bool Guideline::operator==(const Guideline& other) const {
-  return (x == other.x &&
-          y == other.y &&
-          angle == other.angle &&
-          name == other.name &&
-          color == other.color &&
-          identifier == other.identifier);
+inline bool operator==(const Guideline& lhs, const Guideline& rhs) {
+  return (lhs.x == rhs.x &&
+          lhs.y == rhs.y &&
+          lhs.angle == rhs.angle &&
+          lhs.name == rhs.name &&
+          lhs.color == rhs.color &&
+          lhs.identifier == rhs.identifier);
 }
 
-inline bool Guideline::operator!=(const Guideline& other) const {
-  return !operator==(other);
+inline bool operator!=(const Guideline& lhs, const Guideline& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace ufo

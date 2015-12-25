@@ -1,5 +1,5 @@
 //
-//  TKNNSBezierPath+RoundedRect.h
+//  BackgroundView.swift
 //
 //  The MIT License
 //
@@ -24,25 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-typedef NS_ENUM(NSUInteger, TKNRectCorner) {
-  kTKNRectCornerTopLeft = 1 << 0,
-  kTKNRectCornerBottomLeft = 1 << 1,
-  kTKNRectCornerTopRight = 1 << 2,
-  kTKNRectCornerBottomRight = 1 << 3,
-  kTKNRectCornerAllCorners = (kTKNRectCornerTopLeft |
-                              kTKNRectCornerBottomLeft |
-                              kTKNRectCornerTopRight |
-                              kTKNRectCornerBottomRight)
-};
-
-@interface NSBezierPath (TKNRoundedRect)
-
-+ (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect
-                          byRoundingCorners:(TKNRectCorner)corners
-                               cornerRadius:(CGFloat)cornerRadius;
-+ (NSBezierPath *)bezierPathWithRoundedRect:(CGRect)rect
-                               cornerRadius:(CGFloat)cornerRadius;
-
-@end
+class BackgroundView : NSView {
+  override var acceptsFirstResponder: Bool {
+    get {
+      return true
+    }
+  }
+}

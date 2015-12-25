@@ -45,10 +45,6 @@ class Vendor final {
   Vendor(const Vendor&) = default;
   Vendor& operator=(const Vendor&) = default;
 
-  // Comparison
-  bool operator==(const Vendor& other) const;
-  bool operator!=(const Vendor& other) const;
-
   // Property list
   static Vendor read(const PropertyList& plist);
   PropertyList plist() const;
@@ -60,19 +56,23 @@ class Vendor final {
   std::string klass;
 };
 
+// Comparison
+bool operator==(const Vendor& lhs, const Vendor& rhs);
+bool operator!=(const Vendor& lhs, const Vendor& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Vendor::operator==(const Vendor& other) const {
-  return (name == other.name &&
-          url == other.url &&
-          dir == other.dir &&
-          klass == other.klass);
+inline bool operator==(const Vendor& lhs, const Vendor& rhs) {
+  return (lhs.name == rhs.name &&
+          lhs.url == rhs.url &&
+          lhs.dir == rhs.dir &&
+          lhs.klass == rhs.klass);
 }
 
-inline bool Vendor::operator!=(const Vendor& other) const {
-  return operator==(other);
+inline bool operator!=(const Vendor& lhs, const Vendor& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

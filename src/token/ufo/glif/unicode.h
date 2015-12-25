@@ -48,10 +48,6 @@ class Unicode final {
   Unicode(const Unicode&) = default;
   Unicode& operator=(const Unicode&) = default;
 
-  // Comparison
-  bool operator==(const Unicode& other) const;
-  bool operator!=(const Unicode& other) const;
-
   // Property tree
   static Unicode read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -60,18 +56,22 @@ class Unicode final {
   std::string hex;
 };
 
+// Comparison
+bool operator==(const Unicode& lhs, const Unicode& rhs);
+bool operator!=(const Unicode& lhs, const Unicode& rhs);
+
 #pragma mark -
 
 inline Unicode::Unicode(const std::string& hex) : hex(hex) {}
 
 #pragma mark Comparison
 
-inline bool Unicode::operator==(const Unicode& other) const {
-  return hex == other.hex;
+inline bool operator==(const Unicode& lhs, const Unicode& rhs) {
+  return lhs.hex == rhs.hex;
 }
 
-inline bool Unicode::operator!=(const Unicode& other) const {
-  return !operator==(other);
+inline bool operator!=(const Unicode& lhs, const Unicode& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

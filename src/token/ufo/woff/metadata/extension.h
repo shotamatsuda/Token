@@ -48,10 +48,6 @@ class Extension final {
   Extension(const Extension&) = default;
   Extension& operator=(const Extension&) = default;
 
-  // Comparison
-  bool operator==(const Extension& other) const;
-  bool operator!=(const Extension& other) const;
-
   // Property list
   static Extension read(const PropertyList& plist);
   PropertyList plist() const;
@@ -62,18 +58,22 @@ class Extension final {
   std::vector<ExtensionItem> items;
 };
 
+// Comparison
+bool operator==(const Extension& lhs, const Extension& rhs);
+bool operator!=(const Extension& lhs, const Extension& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Extension::operator==(const Extension& other) const {
-  return (identifier == other.identifier &&
-          names == other.names &&
-          items == other.items);
+inline bool operator==(const Extension& lhs, const Extension& rhs) {
+  return (lhs.identifier == rhs.identifier &&
+          lhs.names == rhs.names &&
+          lhs.items == rhs.items);
 }
 
-inline bool Extension::operator!=(const Extension& other) const {
-  return operator==(other);
+inline bool operator!=(const Extension& lhs, const Extension& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

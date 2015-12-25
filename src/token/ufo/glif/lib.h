@@ -49,10 +49,6 @@ class Lib final {
   Lib(const Lib&) = default;
   Lib& operator=(const Lib&) = default;
 
-  // Comparison
-  bool operator==(const Lib& other) const;
-  bool operator!=(const Lib& other) const;
-
   // Property tree
   static Lib read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -66,6 +62,10 @@ class Lib final {
   unsigned int number_of_holes;
 };
 
+// Comparison
+bool operator==(const Lib& lhs, const Lib& rhs);
+bool operator!=(const Lib& lhs, const Lib& rhs);
+
 #pragma mark -
 
 inline Lib::Lib() : number_of_contours(), number_of_holes() {}
@@ -77,13 +77,13 @@ inline Lib::Lib(unsigned int number_of_contours,
 
 #pragma mark Comparison
 
-inline bool Lib::operator==(const Lib& other) const {
-  return (number_of_contours == other.number_of_contours &&
-          number_of_holes == other.number_of_holes);
+inline bool operator==(const Lib& lhs, const Lib& rhs) {
+  return (lhs.number_of_contours == rhs.number_of_contours &&
+          lhs.number_of_holes == rhs.number_of_holes);
 }
 
-inline bool Lib::operator!=(const Lib& other) const {
-  return !operator==(other);
+inline bool operator!=(const Lib& lhs, const Lib& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace glif

@@ -43,10 +43,6 @@ class NameRecord final {
   NameRecord(const NameRecord&) = default;
   NameRecord& operator=(const NameRecord&) = default;
 
-  // Comparison
-  bool operator==(const NameRecord& other) const;
-  bool operator!=(const NameRecord& other) const;
-
   // Property list
   static NameRecord read(const PropertyList& plist);
   PropertyList plist() const;
@@ -59,6 +55,10 @@ class NameRecord final {
   std::string string;
 };
 
+// Comparison
+bool operator==(const NameRecord& lhs, const NameRecord& rhs);
+bool operator!=(const NameRecord& lhs, const NameRecord& rhs);
+
 #pragma mark -
 
 inline NameRecord::NameRecord()
@@ -69,16 +69,16 @@ inline NameRecord::NameRecord()
 
 #pragma mark Comparison
 
-inline bool NameRecord::operator==(const NameRecord& other) const {
-  return (name_id == other.name_id &&
-          platform_id == other.platform_id &&
-          encoding_id == other.encoding_id &&
-          language_id == other.language_id &&
-          string == other.string);
+inline bool operator==(const NameRecord& lhs, const NameRecord& rhs) {
+  return (lhs.name_id == rhs.name_id &&
+          lhs.platform_id == rhs.platform_id &&
+          lhs.encoding_id == rhs.encoding_id &&
+          lhs.language_id == rhs.language_id &&
+          lhs.string == rhs.string);
 }
 
-inline bool NameRecord::operator!=(const NameRecord& other) const {
-  return operator==(other);
+inline bool operator!=(const NameRecord& lhs, const NameRecord& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace ufo

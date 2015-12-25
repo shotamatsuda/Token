@@ -1,5 +1,5 @@
 //
-//  TKNLayerBackedView.h
+//  BackgroundImageView.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,18 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-@interface TKNLayerBackedView : NSView
-
-@end
+class BackgroundImageView : NSImageView {
+  override var acceptsFirstResponder: Bool {
+    get {
+      return false
+    }
+  }
+  
+  override var mouseDownCanMoveWindow: Bool {
+    get {
+      return true
+    }
+  }
+}

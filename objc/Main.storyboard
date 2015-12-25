@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -220,7 +220,6 @@
                         <subviews>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="e1g-LC-dx8">
                                 <rect key="frame" x="0.0" y="225" width="800" height="375"/>
-                                <animations/>
                                 <connections>
                                     <segue destination="laX-qJ-5ZH" kind="embed" identifier="Typeface" id="ulV-EN-UZ7"/>
                                 </connections>
@@ -230,7 +229,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="225" id="hoW-Ze-rsV"/>
                                 </constraints>
-                                <animations/>
                                 <connections>
                                     <segue destination="FnN-Dk-mc2" kind="embed" identifier="Settings" id="jkk-ER-G9q"/>
                                 </connections>
@@ -246,7 +244,6 @@
                             <constraint firstItem="e1g-LC-dx8" firstAttribute="leading" secondItem="kua-eo-iuQ" secondAttribute="leading" id="irq-9s-GEW"/>
                             <constraint firstAttribute="bottom" secondItem="fVg-It-Jx6" secondAttribute="bottom" id="xpJ-gg-IQJ"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="S4q-G7-ATl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -263,35 +260,30 @@
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1b-Li-q3i">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
-                                <clipView key="contentView" id="JCv-bs-eF3" customClass="TKNCenteredClipView">
+                                <clipView key="contentView" id="JCv-bs-eF3" customClass="CenteredClipView" customModule="Token" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-xk-Nsy">
                                             <rect key="frame" x="-96" y="-89" width="171" height="46"/>
-                                            <animations/>
                                         </view>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="oon-mL-DTw"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="sN5-e1-wjB"/>
                                 </constraints>
-                                <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="0Nb-Jd-Sqg">
                                     <rect key="frame" x="0.0" y="184" width="450" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="tPS-OV-3vX">
                                     <rect key="frame" x="166" y="1" width="16" height="94"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                             </scrollView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="h10-2w-HUc" customClass="TKNControlView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="h10-2w-HUc" customClass="ControlView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="25"/>
                                 <subviews>
                                     <button toolTip="Zoom In" translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-fa-Jdp">
@@ -300,7 +292,6 @@
                                             <constraint firstAttribute="width" constant="25" id="5S3-Te-hep"/>
                                             <constraint firstAttribute="height" constant="25" id="Q3d-r9-bNT"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNZoomIn" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5kW-OY-CIj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -314,7 +305,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="KzX-m8-DZr"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="18k-yW-wI7">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -323,7 +313,7 @@
                                         <connections>
                                             <binding destination="laX-qJ-5ZH" name="value" keyPath="self.magnification" id="W5s-dL-aaa">
                                                 <dictionary key="options">
-                                                    <string key="NSValueTransformerName">TKNNumberToPercentageTransformer</string>
+                                                    <string key="NSValueTransformerName">NumberToPercentageTransformer</string>
                                                 </dictionary>
                                             </binding>
                                         </connections>
@@ -334,7 +324,6 @@
                                             <constraint firstAttribute="height" constant="25" id="Ae5-AS-C2b"/>
                                             <constraint firstAttribute="width" constant="25" id="YKg-g1-NJh"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNZoomOut" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="vR6-w8-Zeg">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -349,7 +338,6 @@
                                             <constraint firstAttribute="width" constant="25" id="QdA-f3-Fjq"/>
                                             <constraint firstAttribute="height" constant="25" id="gvd-Y9-rxW"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNInvert" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="xvI-7d-sCc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -364,7 +352,6 @@
                                             <constraint firstAttribute="width" constant="25" id="6sd-0T-GBF"/>
                                             <constraint firstAttribute="height" constant="25" id="fyw-aC-bso"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNOutline" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="i4E-FM-Nql">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -378,7 +365,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="xg4-Uq-ijT"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="c83-8f-Nll">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -404,7 +390,6 @@
                                     <constraint firstAttribute="centerY" secondItem="of5-dm-Xbc" secondAttribute="centerY" id="izN-rB-eYO"/>
                                     <constraint firstAttribute="centerY" secondItem="otf-EB-md7" secondAttribute="centerY" id="uAv-lX-URt"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -416,7 +401,6 @@
                             <constraint firstAttribute="bottom" secondItem="h10-2w-HUc" secondAttribute="bottom" id="yiw-Lc-xMR"/>
                             <constraint firstAttribute="trailing" secondItem="h10-2w-HUc" secondAttribute="trailing" id="zZA-ec-cOn"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="F1b-Li-q3i" id="XEm-VD-mW6"/>
@@ -433,15 +417,14 @@
                     <view key="view" id="JTP-jm-MIM" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                         <subviews>
-                            <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-qo-Slp" customClass="TKNZeroSplitView">
+                            <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-qo-Slp" customClass="ZeroSplitView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                                 <subviews>
-                                    <customView id="iH7-Cb-6Xa" customClass="TKNBackgroundView">
+                                    <customView id="iH7-Cb-6Xa" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GVd-Xi-Ezs">
                                                 <rect key="frame" x="18" y="184" width="112" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Define Weight by:" id="S1A-10-VB9">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -453,7 +436,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="zdh-SV-kJg"/>
                                                 </constraints>
-                                                <animations/>
                                                 <popUpButtonCell key="cell" type="bevel" title="Physical Dimensions" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="oCj-Dk-k0o" id="6H1-Lu-RhZ">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
@@ -470,7 +452,6 @@
                                             </popUpButton>
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="V6r-aJ-L8X">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
-                                                <animations/>
                                                 <connections>
                                                     <segue destination="dIo-Lf-VBb" kind="embed" id="bHM-Zx-DMc"/>
                                                 </connections>
@@ -486,23 +467,20 @@
                                             <constraint firstItem="NWi-2f-MGV" firstAttribute="baseline" secondItem="GVd-Xi-Ezs" secondAttribute="baseline" id="pn5-jS-7lo"/>
                                             <constraint firstAttribute="bottom" secondItem="V6r-aJ-L8X" secondAttribute="bottom" id="qbo-3r-DqN"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
-                                    <customView id="kve-Rx-3K7" customClass="TKNBackgroundView">
+                                    <customView id="kve-Rx-3K7" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="401" y="0.0" width="399" height="225"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="TKNBackgroundTextField">
-                                                <rect key="frame" x="8" y="184" width="88" height="17"/>
-                                                <animations/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="184" width="86" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="nHG-1H-oux">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="TKNBackgroundTextField">
-                                                <rect key="frame" x="123" y="184" width="84" height="17"/>
-                                                <animations/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                                <rect key="frame" x="120" y="184" width="82" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name" id="p4l-1c-YpC">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -512,18 +490,16 @@
                                                     <binding destination="FnN-Dk-mc2" name="value" keyPath="self.typeface.familyName" id="usW-eI-ava"/>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="TKNBackgroundTextField">
-                                                <rect key="frame" x="8" y="163" width="79" height="17"/>
-                                                <animations/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="163" width="78" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="TKNBackgroundTextField">
-                                                <rect key="frame" x="123" y="163" width="75" height="17"/>
-                                                <animations/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                                <rect key="frame" x="120" y="163" width="74" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name" id="gZs-gj-10W">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -533,18 +509,16 @@
                                                     <binding destination="FnN-Dk-mc2" name="value" keyPath="self.typeface.styleName" id="ixI-gR-WSw"/>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="TKNBackgroundTextField">
-                                                <rect key="frame" x="8" y="142" width="111" height="17"/>
-                                                <animations/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="142" width="108" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name:" id="A5R-Zz-lbC">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="TKNBackgroundTextField">
-                                                <rect key="frame" x="123" y="142" width="107" height="17"/>
-                                                <animations/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                                <rect key="frame" x="120" y="142" width="105" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name" id="fUI-xh-T6V">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -559,8 +533,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Tkh-hT-IMy"/>
                                                 </constraints>
-                                                <animations/>
-                                                <buttonCell key="cell" type="square" title="Export Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4k2-Z2-Wfm" customClass="TKNRoundedButtonCell">
+                                                <buttonCell key="cell" type="square" title="Export Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4k2-Z2-Wfm" customClass="RoundedButtonCell" customModule="Token" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" size="18" name=".HelveticaNeueDeskInterface-Light"/>
                                                 </buttonCell>
@@ -573,8 +546,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="WqN-Pk-Snq"/>
                                                 </constraints>
-                                                <animations/>
-                                                <buttonCell key="cell" type="square" title="Install Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fd-ri-rXd" customClass="TKNDefaultRoundedButtonCell">
+                                                <buttonCell key="cell" type="square" title="Install Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fd-ri-rXd" customClass="DefaultRoundedButtonCell" customModule="Token" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" size="18" name=".HelveticaNeueDeskInterface-Light"/>
                                                 </buttonCell>
@@ -606,10 +578,8 @@
                                             <constraint firstItem="hcw-bi-Ehw" firstAttribute="leading" secondItem="pf5-pF-nlK" secondAttribute="leading" id="qN2-3u-3Ff"/>
                                             <constraint firstItem="pf5-pF-nlK" firstAttribute="leading" secondItem="oWC-WL-JGO" secondAttribute="leading" id="tzi-WK-ubh"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                 </subviews>
-                                <animations/>
                                 <holdingPriorities>
                                     <real value="250"/>
                                     <real value="250"/>
@@ -622,7 +592,6 @@
                             <constraint firstAttribute="trailing" secondItem="RCb-qo-Slp" secondAttribute="trailing" id="eq1-HA-cya"/>
                             <constraint firstItem="RCb-qo-Slp" firstAttribute="top" secondItem="JTP-jm-MIM" secondAttribute="top" id="uar-Uc-Gd3"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="oHV-Ur-LzN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -640,7 +609,6 @@
                     <tabView key="tabView" drawsBackground="NO" type="noTabsNoBorder" id="srw-iA-pVw">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                         <connections>
@@ -665,20 +633,19 @@
         <scene sceneID="JLu-1w-Sst">
             <objects>
                 <viewController id="lpu-sv-CBv" sceneMemberID="viewController">
-                    <view key="view" id="7Zy-xs-iro" customClass="TKNBackgroundView">
+                    <view key="view" id="7Zy-xs-iro" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Mx8-gL-7GK" customClass="TKNBackgroundView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Mx8-gL-7GK" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-YC-rrz" customClass="TKNBackgroundImageView">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-YC-rrz" customClass="BackgroundImageView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="20" y="101" width="50" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="fpf-nG-XAC"/>
                                             <constraint firstAttribute="height" constant="64" id="njI-08-KLh"/>
                                         </constraints>
-                                        <animations/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNStrokeWidthTemplate" id="4YR-hR-PPk"/>
                                     </imageView>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Ng3-B2-Ph8">
@@ -687,7 +654,6 @@
                                             <constraint firstAttribute="width" constant="68" id="3Oz-zR-aUw"/>
                                             <constraint firstAttribute="height" constant="24" id="qVb-u5-DHl"/>
                                         </constraints>
-                                        <animations/>
                                         <popUpButtonCell key="cell" type="bevel" title="mm" bezelStyle="regularSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="XLJ-Km-nzZ" id="tt1-77-vK6">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="16" name=".HelveticaNeueDeskInterface-Light"/>
@@ -705,26 +671,23 @@
                                     </popUpButton>
                                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="iFw-ra-Rxr">
                                         <rect key="frame" x="0.0" y="90" width="390" height="5"/>
-                                        <animations/>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-cp-cEs" customClass="TKNBackgroundImageView">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-cp-cEs" customClass="BackgroundImageView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="50" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="ovT-Uf-Kll"/>
                                             <constraint firstAttribute="height" constant="64" id="xHM-9i-1Pk"/>
                                         </constraints>
-                                        <animations/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNCapHeightTemplate" id="Sea-qO-ETT"/>
                                     </imageView>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-Fb-6cs" customClass="TKNNumericTextField">
-                                        <rect key="frame" x="178" y="108" width="146" height="51"/>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-Fb-6cs" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
+                                        <rect key="frame" x="177" y="108" width="147" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="zHU-kn-v6y"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="TF7-6G-dAX">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="KAh-hd-fSY"/>
                                             <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
@@ -740,12 +703,11 @@
                                             <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalStrokeWidth" id="aIg-G7-1IH"/>
                                         </connections>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="TKNNumericTextField">
-                                        <rect key="frame" x="178" y="27" width="146" height="51"/>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
+                                        <rect key="frame" x="177" y="27" width="147" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="5L4-UW-sXb"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="Gxk-6h-pcn">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="3" id="03H-lK-cVw"/>
                                             <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
@@ -761,18 +723,16 @@
                                             <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalCapHeight" id="Txh-AV-BOM"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="TKNBackgroundTextField">
-                                        <rect key="frame" x="78" y="125" width="84" height="17"/>
-                                        <animations/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                        <rect key="frame" x="78" y="125" width="83" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="cXb-I4-uQI">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG" customClass="TKNBackgroundTextField">
-                                        <rect key="frame" x="78" y="44" width="74" height="17"/>
-                                        <animations/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                        <rect key="frame" x="78" y="44" width="72" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cap Height" id="gPW-0t-87g">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -785,7 +745,6 @@
                                             <constraint firstAttribute="height" constant="24" id="fC3-un-dKB"/>
                                             <constraint firstAttribute="width" constant="68" id="lYK-4J-dH3"/>
                                         </constraints>
-                                        <animations/>
                                         <popUpButtonCell key="cell" type="bevel" title="mm" bezelStyle="regularSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="8a6-qH-DUe" id="qG1-Pq-fHd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="16" name=".HelveticaNeueDeskInterface-Light"/>
@@ -827,7 +786,6 @@
                                     <constraint firstItem="Ng3-B2-Ph8" firstAttribute="baseline" secondItem="Im6-Fb-6cs" secondAttribute="baseline" id="urf-kr-epI"/>
                                     <constraint firstItem="C0l-l3-5ya" firstAttribute="centerY" secondItem="aOo-cp-cEs" secondAttribute="centerY" id="zUt-5q-98I"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -835,7 +793,6 @@
                             <constraint firstItem="Mx8-gL-7GK" firstAttribute="leading" secondItem="7Zy-xs-iro" secondAttribute="leading" id="TRc-RE-NAx"/>
                             <constraint firstAttribute="trailing" secondItem="Mx8-gL-7GK" secondAttribute="trailing" id="b9e-UA-TZ6"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="qpz-79-qlf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -851,28 +808,26 @@
         <scene sceneID="nVC-yF-m9m">
             <objects>
                 <viewController id="zzj-yh-0K9" sceneMemberID="viewController">
-                    <view key="view" id="Tod-cc-qZN" customClass="TKNBackgroundView">
+                    <view key="view" id="Tod-cc-qZN" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="q7a-mv-9XK" customClass="TKNBackgroundView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="q7a-mv-9XK" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="8" width="400" height="170"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-71-kMh" customClass="TKNBackgroundImageView">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-71-kMh" customClass="BackgroundImageView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="20" y="86" width="50" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="I9S-ya-1Cg"/>
                                             <constraint firstAttribute="width" constant="50" id="glJ-Tc-B6J"/>
                                         </constraints>
-                                        <animations/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNStrokeWidthTemplate" id="R3x-J2-K2k"/>
                                     </imageView>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-tN-CEO" customClass="TKNNumericTextField">
-                                        <rect key="frame" x="178" y="93" width="165" height="51"/>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-tN-CEO" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
+                                        <rect key="frame" x="177" y="93" width="166" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="aaF-Vx-m86"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0" id="Rwu-PY-cdL">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="IZg-ah-2PA"/>
                                             <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
@@ -890,7 +845,6 @@
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nN0-um-pjU">
                                         <rect key="frame" x="347" y="98" width="45" height="19"/>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="upem" id="ia6-Ym-hjR">
                                             <font key="font" size="16" name=".HelveticaNeueDeskInterface-Light"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -899,7 +853,6 @@
                                     </textField>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VJG-HJ-fkU">
                                         <rect key="frame" x="18" y="55" width="374" height="25"/>
-                                        <animations/>
                                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="below" numberOfTickMarks="13" sliderType="linear" id="Hyu-nn-Yzv"/>
                                         <connections>
                                             <binding destination="Qae-5e-aHV" name="maxValue" keyPath="selection.self.typeface.maxStrokeWidth" id="6k6-b3-9Gc"/>
@@ -909,7 +862,6 @@
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-cB-50w">
                                         <rect key="frame" x="18" y="38" width="18" height="14"/>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00" id="4g1-rd-sJu">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -921,7 +873,6 @@
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2nM-rL-lpb">
                                         <rect key="frame" x="374" y="38" width="18" height="14"/>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="00" id="cCY-bE-TOh">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -933,7 +884,6 @@
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lIz-Lx-0gb">
                                         <rect key="frame" x="353" y="20" width="39" height="14"/>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bolder" id="iKH-4B-zMh">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -941,17 +891,15 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j03-go-eSx">
-                                        <rect key="frame" x="18" y="20" width="41" height="14"/>
-                                        <animations/>
+                                        <rect key="frame" x="18" y="20" width="42" height="14"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Lighter" id="HUs-mF-jhK">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="TKNBackgroundTextField">
-                                        <rect key="frame" x="78" y="110" width="84" height="17"/>
-                                        <animations/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                        <rect key="frame" x="78" y="110" width="83" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="131-DB-7ye">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -985,7 +933,6 @@
                                     <constraint firstItem="nN0-um-pjU" firstAttribute="baseline" secondItem="OvN-tN-CEO" secondAttribute="baseline" id="uOd-u7-Yq8"/>
                                     <constraint firstItem="gN0-cB-50w" firstAttribute="top" secondItem="VJG-HJ-fkU" secondAttribute="bottom" constant="4" id="zcV-e7-dwu"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -993,7 +940,6 @@
                             <constraint firstAttribute="trailing" secondItem="q7a-mv-9XK" secondAttribute="trailing" id="9eY-oi-JDy"/>
                             <constraint firstItem="q7a-mv-9XK" firstAttribute="leading" secondItem="Tod-cc-qZN" secondAttribute="leading" id="nyA-bV-NHZ"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="fVt-so-ch2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

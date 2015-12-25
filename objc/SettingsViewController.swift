@@ -1,5 +1,5 @@
 //
-//  TKNSettingsViewController.h
+//  SettingsViewController.swift
 //
 //  The MIT License
 //
@@ -24,12 +24,9 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-#import "TKNTypeface.h"
-
-@interface TKNSettingsViewController : NSViewController
-
-@property (nonatomic, strong, nonnull) TKNTypeface *typeface;
-
-@end
+@objc(TKNSettingsViewController)
+class SettingsViewController : NSViewController {
+  var typeface: TKNTypeface?
+}

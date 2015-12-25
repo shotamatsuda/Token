@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundImageView.h
+//  BackgroundTextField.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,22 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-@interface TKNBackgroundImageView : NSImageView
+class BackgroundTextField : NSTextField {
+  override var acceptsFirstResponder: Bool {
+    get {
+      return false
+    }
+  }
+  
+  override var mouseDownCanMoveWindow: Bool {
+    get {
+      return true
+    }
+  }
 
-@end
+  override func mouseDown(event: NSEvent) {
+    window?.makeFirstResponder(nil)
+  }
+}

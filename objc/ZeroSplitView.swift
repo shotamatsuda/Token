@@ -1,5 +1,5 @@
 //
-//  TKNCenteredClipView.h
+//  ZeroSplitView.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-@interface TKNCenteredClipView : NSClipView
-
-@end
+class ZeroSplitView : NSSplitView {
+  override var dividerThickness: CGFloat {
+    get {
+      return 0.0
+    }
+  }
+}

@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundImageView.m
+//  NumberToPercentageTransformer.swift
 //
 //  The MIT License
 //
@@ -24,16 +24,20 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNBackgroundImageView.h"
+import Foundation
 
-@implementation TKNBackgroundImageView
+class NumberToPercentageTransformer : NSValueTransformer {
+  override class func transformedValueClass() -> AnyClass {
+    return NSString.self
+  }
 
-- (BOOL)acceptsFirstResponder {
-  return NO;
+  override func transformedValue(value: AnyObject?) -> AnyObject? {
+    guard let value = value as? NSNumber else {
+      return nil
+    }
+    let formatter = NSNumberFormatter()
+    formatter.numberStyle = .PercentStyle
+    formatter.maximumSignificantDigits = 4
+    return formatter.stringFromNumber(value)
+  }
 }
-
-- (BOOL)mouseDownCanMoveWindow {
-  return YES;
-}
-
-@end

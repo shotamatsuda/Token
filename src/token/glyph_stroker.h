@@ -57,15 +57,15 @@ class GlyphStroker final {
   GlyphStroker(const GlyphStroker&) = default;
   GlyphStroker& operator=(const GlyphStroker&) = default;
 
+  // Comparison
+  friend bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs);
+  friend bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs);
+
   // Stroking
   takram::Shape2d stroke(const GlyphOutline& outline) const;
   takram::Shape2d stroke(const takram::Shape2d& shape) const;
   takram::Shape2d stroke(const takram::Path2d& path) const;
   takram::Shape2d simplify(const takram::Shape2d& shape) const;
-
-  // Comparison
-  bool operator==(const GlyphStroker& other) const;
-  bool operator!=(const GlyphStroker& other) const;
 
   // Parameters
   double width() const { return width_; }
@@ -105,17 +105,17 @@ inline GlyphStroker::GlyphStroker()
 
 #pragma mark Comparison
 
-inline bool GlyphStroker::operator==(const GlyphStroker& other) const {
-  return (width_ == other.width_ &&
-          miter_ == other.miter_ &&
-          cap_ == other.cap_ &&
-          join_ == other.join_ &&
-          precision_ == other.precision_ &&
-          tolerance_ == other.tolerance_);
+inline bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs) {
+  return (lhs.width_ == rhs.width_ &&
+          lhs.miter_ == rhs.miter_ &&
+          lhs.cap_ == rhs.cap_ &&
+          lhs.join_ == rhs.join_ &&
+          lhs.precision_ == rhs.precision_ &&
+          lhs.tolerance_ == rhs.tolerance_);
 }
 
-inline bool GlyphStroker::operator!=(const GlyphStroker& other) const {
-  return !operator==(other);
+inline bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace token

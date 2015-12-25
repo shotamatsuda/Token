@@ -1,5 +1,5 @@
 //
-//  TKNDefaultRoundedButtonCell.h
+//  WelcomeSheet.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-@interface TKNDefaultRoundedButtonCell : NSButtonCell
-
-@end
+class WelcomeSheet : NSWindow {
+  override var canBecomeKeyWindow: Bool {
+    get {
+      return true
+    }
+  }
+}

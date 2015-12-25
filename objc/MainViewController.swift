@@ -1,5 +1,5 @@
 //
-//  TKNControlView.h
+//  MainViewController.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,4 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
-
-@interface TKNControlView : NSView
-
-@end
+import AppKit

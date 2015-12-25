@@ -30,7 +30,7 @@
             </connections>
             <point key="canvasLocation" x="376" y="509.5"/>
         </window>
-        <view id="cbn-mQ-PQn" customClass="TKNLayerBackedView">
+        <view id="cbn-mQ-PQn" customClass="LayerBackedView" customModule="Token" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="402" height="188"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -107,7 +107,7 @@ DQ
             <animations/>
             <point key="canvasLocation" x="376" y="830"/>
         </view>
-        <view id="VWa-KP-o8W" customClass="TKNLayerBackedView">
+        <view id="VWa-KP-o8W" customClass="LayerBackedView" customModule="Token" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="518" height="383"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -214,7 +214,7 @@ DQ
             <animations/>
             <point key="canvasLocation" x="916" y="927.5"/>
         </view>
-        <view id="Re4-px-BNP" customClass="TKNLayerBackedView">
+        <view id="Re4-px-BNP" customClass="LayerBackedView" customModule="Token" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="402" height="95"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>

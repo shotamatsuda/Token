@@ -46,10 +46,6 @@ class Trademark final {
   Trademark(const Trademark&) = default;
   Trademark& operator=(const Trademark&) = default;
 
-  // Comparison
-  bool operator==(const Trademark& other) const;
-  bool operator!=(const Trademark& other) const;
-
   // Property list
   static Trademark read(const PropertyList& plist);
   PropertyList plist() const;
@@ -58,16 +54,20 @@ class Trademark final {
   std::vector<Text> text;
 };
 
+// Comparison
+bool operator==(const Trademark& lhs, const Trademark& rhs);
+bool operator!=(const Trademark& lhs, const Trademark& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Trademark::operator==(const Trademark& other) const {
-  return text == other.text;
+inline bool operator==(const Trademark& lhs, const Trademark& rhs) {
+  return lhs.text == rhs.text;
 }
 
-inline bool Trademark::operator!=(const Trademark& other) const {
-  return operator==(other);
+inline bool operator!=(const Trademark& lhs, const Trademark& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

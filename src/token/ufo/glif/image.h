@@ -55,10 +55,6 @@ class Image final {
   Image(const Image&) = default;
   Image& operator=(const Image&) = default;
 
-  // Comparison
-  bool operator==(const Image& other) const;
-  bool operator!=(const Image& other) const;
-
   // Property tree
   static Image read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -73,6 +69,10 @@ class Image final {
   double y_offset;
   std::string color;
 };
+
+// Comparison
+bool operator==(const Image& lhs, const Image& rhs);
+bool operator!=(const Image& lhs, const Image& rhs);
 
 #pragma mark -
 
@@ -103,19 +103,19 @@ inline Image::Image(const std::string& file_name,
 
 #pragma mark Comparison
 
-inline bool Image::operator==(const Image& other) const {
-  return (file_name == other.file_name &&
-          x_scale == other.x_scale &&
-          xy_scale == other.xy_scale &&
-          yx_scale == other.yx_scale &&
-          y_scale == other.y_scale &&
-          x_offset == other.x_offset &&
-          y_offset == other.y_offset &&
-          color == other.color);
+inline bool operator==(const Image& lhs, const Image& rhs) {
+  return (lhs.file_name == rhs.file_name &&
+          lhs.x_scale == rhs.x_scale &&
+          lhs.xy_scale == rhs.xy_scale &&
+          lhs.yx_scale == rhs.yx_scale &&
+          lhs.y_scale == rhs.y_scale &&
+          lhs.x_offset == rhs.x_offset &&
+          lhs.y_offset == rhs.y_offset &&
+          lhs.color == rhs.color);
 }
 
-inline bool Image::operator!=(const Image& other) const {
-  return !operator==(other);
+inline bool operator!=(const Image& lhs, const Image& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

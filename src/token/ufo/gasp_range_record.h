@@ -43,10 +43,6 @@ class GASPRangeRecord final {
   GASPRangeRecord(const GASPRangeRecord&) = default;
   GASPRangeRecord& operator=(const GASPRangeRecord&) = default;
 
-  // Comparison
-  bool operator==(const GASPRangeRecord& other) const;
-  bool operator!=(const GASPRangeRecord& other) const;
-
   // Property list
   static GASPRangeRecord read(const PropertyList& plist);
   PropertyList plist() const;
@@ -56,6 +52,10 @@ class GASPRangeRecord final {
   std::vector<unsigned int> range_gasp_behavior;
 };
 
+// Comparison
+bool operator==(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs);
+bool operator!=(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs);
+
 #pragma mark -
 
 inline GASPRangeRecord::GASPRangeRecord()
@@ -63,13 +63,13 @@ inline GASPRangeRecord::GASPRangeRecord()
 
 #pragma mark Comparison
 
-inline bool GASPRangeRecord::operator==(const GASPRangeRecord& other) const {
-  return (range_max_ppem == other.range_max_ppem &&
-          range_gasp_behavior == other.range_gasp_behavior);
+inline bool operator==(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs) {
+  return (lhs.range_max_ppem == rhs.range_max_ppem &&
+          lhs.range_gasp_behavior == rhs.range_gasp_behavior);
 }
 
-inline bool GASPRangeRecord::operator!=(const GASPRangeRecord& other) const {
-  return operator==(other);
+inline bool operator!=(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace ufo

@@ -45,10 +45,6 @@ class UniqueID final {
   UniqueID(const UniqueID&) = default;
   UniqueID& operator=(const UniqueID&) = default;
 
-  // Comparison
-  bool operator==(const UniqueID& other) const;
-  bool operator!=(const UniqueID& other) const;
-
   // Property list
   static UniqueID read(const PropertyList& plist);
   PropertyList plist() const;
@@ -57,16 +53,20 @@ class UniqueID final {
   std::string identifier;
 };
 
+// Comparison
+bool operator==(const UniqueID& lhs, const UniqueID& rhs);
+bool operator!=(const UniqueID& lhs, const UniqueID& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool UniqueID::operator==(const UniqueID& other) const {
-  return identifier == other.identifier;
+inline bool operator==(const UniqueID& lhs, const UniqueID& rhs) {
+  return lhs.identifier == rhs.identifier;
 }
 
-inline bool UniqueID::operator!=(const UniqueID& other) const {
-  return operator==(other);
+inline bool operator!=(const UniqueID& lhs, const UniqueID& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

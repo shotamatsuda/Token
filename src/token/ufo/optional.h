@@ -51,10 +51,18 @@ class Optional final {
   Optional& operator=(T&& other);
 
   // Comparison
-  bool operator==(const Optional& other) const;
-  bool operator!=(const Optional& other) const;
-  bool operator==(const T& other) const;
-  bool operator!=(const T& other) const;
+  template <class U>
+  friend bool operator==(const Optional<U>& lhs, const Optional<U>& rhs);
+  template <class U>
+  friend bool operator!=(const Optional<U>& lhs, const Optional<U>& rhs);
+  template <class U>
+  friend bool operator==(const Optional<U>& lhs, const U& rhs);
+  template <class U>
+  friend bool operator!=(const Optional<U>& lhs, const U& rhs);
+  template <class U>
+  friend bool operator==(const U& lhs, const Optional<U>& rhs);
+  template <class U>
+  friend bool operator!=(const U& lhs, const Optional<U>& rhs);
 
   // Modifiers
   bool exists() const { return exists_; }
@@ -106,23 +114,33 @@ inline Optional<T>& Optional<T>::operator=(T&& other) {
 #pragma mark Comparison
 
 template <class T>
-inline bool Optional<T>::operator==(const Optional& other) const {
-  return exists_ == other.exists_ && value_ == other.value_;
+inline bool operator==(const Optional<T>& lhs, const Optional<T>& rhs) {
+  return lhs.exists_ == rhs.exists_ && lhs.value_ == rhs.value_;
 }
 
 template <class T>
-inline bool Optional<T>::operator!=(const Optional& other) const {
-  return !operator==(other);
+inline bool operator!=(const Optional<T>& lhs, const Optional<T>& rhs) {
+  return !(lhs == rhs);
 }
 
 template <class T>
-inline bool Optional<T>::operator==(const T& other) const {
-  return !exists_ && value_ == other;
+inline bool operator==(const Optional<T>& lhs, const T& rhs) {
+  return !lhs.exists_ && lhs.value_ == rhs.other;
 }
 
 template <class T>
-inline bool Optional<T>::operator!=(const T& other) const {
-  return !operator==(other);
+inline bool operator!=(const Optional<T>& lhs, const T& rhs) {
+  return !(lhs == rhs);
+}
+
+template <class T>
+inline bool operator==(const T& lhs, const Optional<T>& rhs) {
+  return rhs == lhs;
+}
+
+template <class T>
+inline bool operator!=(const T& lhs, const Optional<T>& rhs) {
+  return rhs != lhs;
 }
 
 #pragma mark Modifiers

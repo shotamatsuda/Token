@@ -52,10 +52,6 @@ class Anchor final {
   Anchor(const Anchor&) = default;
   Anchor& operator=(const Anchor&) = default;
 
-  // Comparison
-  bool operator==(const Anchor& other) const;
-  bool operator!=(const Anchor& other) const;
-
   // Property tree
   static Anchor read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -67,6 +63,10 @@ class Anchor final {
   std::string color;
   std::string identifier;
 };
+
+// Comparison
+bool operator==(const Anchor& lhs, const Anchor& rhs);
+bool operator!=(const Anchor& lhs, const Anchor& rhs);
 
 #pragma mark -
 
@@ -83,16 +83,16 @@ inline Anchor::Anchor(double x,
 
 #pragma mark Comparison
 
-inline bool Anchor::operator==(const Anchor& other) const {
-  return (x == other.x &&
-          y == other.y &&
-          name == other.name &&
-          color == other.color &&
-          identifier == other.identifier);
+inline bool operator==(const Anchor& lhs, const Anchor& rhs) {
+  return (lhs.x == rhs.x &&
+          lhs.y == rhs.y &&
+          lhs.name == rhs.name &&
+          lhs.color == rhs.color &&
+          lhs.identifier == rhs.identifier);
 }
 
-inline bool Anchor::operator!=(const Anchor& other) const {
-  return !operator==(other);
+inline bool operator!=(const Anchor& lhs, const Anchor& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

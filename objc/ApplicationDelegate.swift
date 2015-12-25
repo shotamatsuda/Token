@@ -1,5 +1,5 @@
 //
-//  TKNLayerBackedView.m
+//  ApplicationDelegate.swift
 //
 //  The MIT License
 //
@@ -24,24 +24,4 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNLayerBackedView.h"
-
-@implementation TKNLayerBackedView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-  self = [super initWithFrame:frame];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-  self = [super initWithCoder:coder];
-  if (self) {
-    self.wantsLayer = YES;
-  }
-  return self;
-}
-
-@end
+import AppKit

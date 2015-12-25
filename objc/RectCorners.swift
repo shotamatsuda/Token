@@ -1,5 +1,5 @@
 //
-//  TKNBackgroundView.h
+//  RectCorner.swift
 //
 //  The MIT License
 //
@@ -24,8 +24,13 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+struct RectCorners : OptionSetType {
+  let rawValue: Int
+  init(rawValue: Int) { self.rawValue = rawValue }
 
-@interface TKNBackgroundView : NSView
-
-@end
+  static let TopLeft = RectCorners(rawValue: 1 << 0)
+  static let BottomLeft = RectCorners(rawValue: 1 << 1)
+  static let TopRight = RectCorners(rawValue: 1 << 2)
+  static let BottomRight = RectCorners(rawValue: 1 << 3)
+  static let All: RectCorners = [TopLeft, BottomLeft, TopRight, BottomRight]
+}

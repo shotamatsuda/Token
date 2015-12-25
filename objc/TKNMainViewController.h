@@ -26,7 +26,7 @@
 
 #import <AppKit/AppKit.h>
 
-#import "TKNSettingsViewController.h"
+#import "Token-Swift.h"
 #import "TKNTypefaceViewController.h"
 
 @interface TKNMainViewController : NSViewController

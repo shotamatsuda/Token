@@ -26,8 +26,8 @@
 
 #import "TKNMainWindowController.h"
 
+#import "Token-Swift.h"
 #import "TKNFilePaths.h"
-#import "TKNSettingsViewController.h"
 #import "TKNTypefaceViewController.h"
 #import "TKNWelcomeSheetController.h"
 
