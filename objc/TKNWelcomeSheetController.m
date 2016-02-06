@@ -26,7 +26,7 @@
 
 #import "TKNWelcomeSheetController.h"
 
-#import "TKNFilePaths.h"
+#import "Token-Swift.h"
 
 static NSString * const TKNAdobeFDKURL =
     @"https://download.macromedia.com/pub/developer/opentype/FDK-25-MAC.zip";
@@ -135,8 +135,8 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)install {
   self.progressMessage = NSLocalizedString(@"Installing...", @"");
-  NSString *libraryPath = TKNPrivateLibraryPath();
-  NSString *linkPath = TKNAdobeFDKPath();
+  NSString *libraryPath = TKNFilePath.privateLibrary;
+  NSString *linkPath = TKNFilePath.adobeFDK;
   NSString *path = [_archiveDirectory stringByAppendingPathComponent:@"FDK"];
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSError *error = nil;
@@ -252,7 +252,7 @@ static NSString * const TKNAdobeFDKURL =
 
 - (void)download:(NSURLDownload *)download
     decideDestinationWithSuggestedFilename:(NSString *)filename {
-  NSString *directory = TKNPrivateApplicationSupportPath();
+  NSString *directory = TKNFilePath.privateApplicationSupport;
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSError *error = nil;
   if (![fileManager fileExistsAtPath:directory]) {

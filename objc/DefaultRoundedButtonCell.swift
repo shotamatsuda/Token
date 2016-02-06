@@ -73,6 +73,9 @@ class DefaultRoundedButtonCell : NSButtonCell {
       return
     }
     NSGraphicsContext.saveGraphicsState()
+    defer {
+      NSGraphicsContext.restoreGraphicsState()
+    }
     let path = NSBezierPath(roundedRect: frame, radius: 4.0)
     var color: NSColor
     var highlightedColor: NSColor;
@@ -89,6 +92,5 @@ class DefaultRoundedButtonCell : NSButtonCell {
       color.setFill()
     }
     path.fill()
-    NSGraphicsContext.restoreGraphicsState()
   }
 }

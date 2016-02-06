@@ -44,9 +44,9 @@ namespace afdko {
 
 namespace {
 
-inline void write_name(std::ostream *stream,
-                       unsigned int id,
-                       const std::string& value) {
+inline void writeName(std::ostream *stream,
+                      unsigned int id,
+                      const std::string& value) {
   if (!value.empty()) {
     assert(stream);
     *stream << "nameid " << id << " \"" << value << "\";\n";
@@ -103,7 +103,8 @@ void createFeatures(const ufo::FontInfo& font_info,
   // OS/2
   stream << "table OS/2 {" << std::endl;
   stream << "FSType 0" << endl;
-  stream << "Panose " << boost::algorithm::join(font_info.open_type_os2_panose |
+  stream << "Panose " << boost::algorithm::join(
+      font_info.open_type_os2_panose |
       boost::adaptors::transformed(
           static_cast<std::string (*)(unsigned int)>(
               &std::to_string)), " ") << endl;
@@ -121,26 +122,26 @@ void createFeatures(const ufo::FontInfo& font_info,
 
   // name
   stream << "table name {" << std::endl;
-  write_name(&stream, 0, font_info.copyright);
-  write_name(&stream, 1, font_info.style_map_family_name);
-  write_name(&stream, 2, font_info.style_map_style_name);
-  write_name(&stream, 3, font_info.open_type_name_unique_id);
-  write_name(&stream, 5, font_info.open_type_name_version);
-  write_name(&stream, 6, font_info.postscript_font_name);
-  write_name(&stream, 7, font_info.trademark);
-  write_name(&stream, 8, font_info.open_type_name_manufacturer);
-  write_name(&stream, 9, font_info.open_type_name_designer);
-  write_name(&stream, 10, font_info.open_type_name_description);
-  write_name(&stream, 11, font_info.open_type_name_manufacturer_url);
-  write_name(&stream, 12, font_info.open_type_name_designer_url);
-  write_name(&stream, 13, font_info.open_type_name_license);
-  write_name(&stream, 14, font_info.open_type_name_license_url);
-  write_name(&stream, 16, font_info.open_type_name_preferred_family_name);
-  write_name(&stream, 17, font_info.open_type_name_preferred_subfamily_name);
-  write_name(&stream, 18, font_info.open_type_name_compatible_full_name);
-  write_name(&stream, 19, font_info.open_type_name_sample_text);
-  write_name(&stream, 21, font_info.open_type_name_wws_family_name);
-  write_name(&stream, 22, font_info.open_type_name_wws_subfamily_name);
+  writeName(&stream, 0, font_info.copyright);
+  writeName(&stream, 1, font_info.style_map_family_name);
+  writeName(&stream, 2, font_info.style_map_style_name);
+  writeName(&stream, 3, font_info.open_type_name_unique_id);
+  writeName(&stream, 5, font_info.open_type_name_version);
+  writeName(&stream, 6, font_info.postscript_font_name);
+  writeName(&stream, 7, font_info.trademark);
+  writeName(&stream, 8, font_info.open_type_name_manufacturer);
+  writeName(&stream, 9, font_info.open_type_name_designer);
+  writeName(&stream, 10, font_info.open_type_name_description);
+  writeName(&stream, 11, font_info.open_type_name_manufacturer_url);
+  writeName(&stream, 12, font_info.open_type_name_designer_url);
+  writeName(&stream, 13, font_info.open_type_name_license);
+  writeName(&stream, 14, font_info.open_type_name_license_url);
+  writeName(&stream, 16, font_info.open_type_name_preferred_family_name);
+  writeName(&stream, 17, font_info.open_type_name_preferred_subfamily_name);
+  writeName(&stream, 18, font_info.open_type_name_compatible_full_name);
+  writeName(&stream, 19, font_info.open_type_name_sample_text);
+  writeName(&stream, 21, font_info.open_type_name_wws_family_name);
+  writeName(&stream, 22, font_info.open_type_name_wws_subfamily_name);
   stream << "} name;" << std::endl;
   stream.close();
 }

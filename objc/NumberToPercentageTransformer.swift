@@ -24,8 +24,9 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+import AppKit
 
+@objc(TKNNumberToPercentageTransformer)
 class NumberToPercentageTransformer : NSValueTransformer {
   override class func transformedValueClass() -> AnyClass {
     return NSString.self

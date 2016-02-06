@@ -27,7 +27,6 @@
 #import "TKNMainWindowController.h"
 
 #import "Token-Swift.h"
-#import "TKNFilePaths.h"
 #import "TKNTypefaceViewController.h"
 #import "TKNWelcomeSheetController.h"
 
@@ -60,7 +59,7 @@
   // Check for Adobe FDK and show the welcome sheet if necessary.
   dispatch_async(dispatch_get_main_queue(), ^{
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:TKNAdobeFDKPath()]) {
+    if (![fileManager fileExistsAtPath:TKNFilePath.adobeFDK]) {
       [self installAdobeFDK:self];
     }
   });
@@ -137,7 +136,7 @@
     }
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSString *applicationSupportPath = TKNPrivateApplicationSupportPath();
+    NSString *applicationSupportPath = TKNFilePath.privateApplicationSupport;
     if ([fileManager fileExistsAtPath:applicationSupportPath]) {
       if (![fileManager removeItemAtPath:applicationSupportPath error:&error]) {
         [[NSAlert alertWithError:error]
@@ -146,7 +145,7 @@
         return;
       }
     }
-    NSString *libraryPath = TKNPrivateLibraryPath();
+    NSString *libraryPath = TKNFilePath.privateLibrary;
     if ([fileManager fileExistsAtPath:libraryPath]) {
       if (![fileManager removeItemAtPath:libraryPath error:&error]) {
         [[NSAlert alertWithError:error]

@@ -26,8 +26,7 @@
 
 #import "TKNTypefaceViewController.h"
 
-#import "Token-Bridging-Header.h"
-#import "TKNTypefaceView.h"
+#import "Token-Swift.h"
 
 static char TKNTypefaceViewControllerKVOContext;
 

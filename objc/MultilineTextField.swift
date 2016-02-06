@@ -45,21 +45,6 @@ class MultilineTextField : NSTextField {
 
   override func layout() {
     super.layout()
-    invalidateWordWrappedContentSizeIfNeeded()
-  }
-
-  override func setFrameSize(size: NSSize) {
-    super.setFrameSize(size)
-    invalidateWordWrappedContentSizeIfNeeded()
-  }
-
-  private var previousContentSize = CGSize()
-
-  private func invalidateWordWrappedContentSizeIfNeeded() {
-    let contentSize = intrinsicContentSize
-    if previousContentSize != contentSize {
-      invalidateIntrinsicContentSize()
-    }
-    previousContentSize = contentSize
+    invalidateIntrinsicContentSize()
   }
 }

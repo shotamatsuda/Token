@@ -41,9 +41,8 @@ extension NSBezierPath {
     // Bottom left
     if (!context.flipped && corners.contains(.BottomLeft)) ||
         (context.flipped && corners.contains(.TopLeft)) {
-      let center = CGPoint(x: insetRect.minX, y: insetRect.minY)
       appendBezierPathWithArcWithCenter(
-          center,
+          CGPoint(x: insetRect.minX, y: insetRect.minY),
           radius: radius,
           startAngle: 180.0,
           endAngle: 270.0)
@@ -54,40 +53,38 @@ extension NSBezierPath {
     // Bottom right
     if (!context.flipped && corners.contains(.BottomRight)) ||
         (context.flipped && corners.contains(.TopRight)) {
-      let center = CGPoint(x: insetRect.maxX, y: insetRect.minY)
       appendBezierPathWithArcWithCenter(
-          center,
+          CGPoint(x: insetRect.maxX, y: insetRect.minY),
           radius: radius,
           startAngle: 270.0,
           endAngle: 360.0)
     } else {
       var points = [CGPoint(x: roundedRect.maxX, y: roundedRect.minY)]
-      appendBezierPathWithPoints(&points, count:1)
+      appendBezierPathWithPoints(&points, count: 1)
     }
     // Top right
     if (!context.flipped && corners.contains(.TopRight)) ||
         (context.flipped && corners.contains(.BottomRight)) {
-      let center = CGPoint(x: insetRect.maxX, y: insetRect.maxY)
-      appendBezierPathWithArcWithCenter(center,
+      appendBezierPathWithArcWithCenter(
+          CGPoint(x: insetRect.maxX, y: insetRect.maxY),
           radius: radius,
           startAngle: 0.0,
           endAngle: 90.0)
     } else {
       var points = [CGPoint(x: roundedRect.maxX, y: roundedRect.maxY)]
-      appendBezierPathWithPoints(&points, count:1)
+      appendBezierPathWithPoints(&points, count: 1)
     }
     // Top left
     if (!context.flipped && corners.contains(.TopLeft)) ||
         (context.flipped && corners.contains(.BottomLeft)) {
-      let center = CGPoint(x: insetRect.minX, y: insetRect.maxY)
       appendBezierPathWithArcWithCenter(
-          center,
+          CGPoint(x: insetRect.minX, y: insetRect.maxY),
           radius: radius,
           startAngle: 90.0,
           endAngle: 180.0)
     } else {
       var points = [CGPoint(x: roundedRect.minX, y: roundedRect.maxY)]
-      appendBezierPathWithPoints(&points, count:1)
+      appendBezierPathWithPoints(&points, count: 1)
     }
     closePath()
   }

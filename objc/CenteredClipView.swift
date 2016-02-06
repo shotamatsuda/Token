@@ -57,10 +57,10 @@ class CenteredClipView : NSClipView {
     }
     let documentFrame = documentView.frame
     if proposedBounds.width >= documentFrame.width {
-      bounds.origin.x = (proposedBounds.width - documentFrame.width) / -2.0;
+      bounds.origin.x = (proposedBounds.width - documentFrame.width) / -2.0
     }
-    if proposedBounds.size.height >= documentSize.height {
-      bounds.origin.y = (proposedBounds.height - documentFrame.height) / -2.0;
+    if proposedBounds.height >= documentFrame.height {
+      bounds.origin.y = (proposedBounds.height - documentFrame.height) / -2.0
     }
     return bounds
   }

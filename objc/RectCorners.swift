@@ -26,7 +26,10 @@
 
 struct RectCorners : OptionSetType {
   let rawValue: Int
-  init(rawValue: Int) { self.rawValue = rawValue }
+
+  init(rawValue: Int) {
+    self.rawValue = rawValue
+  }
 
   static let TopLeft = RectCorners(rawValue: 1 << 0)
   static let BottomLeft = RectCorners(rawValue: 1 << 1)

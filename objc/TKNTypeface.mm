@@ -46,7 +46,7 @@
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
 
-#import "TKNFilePaths.h"
+#import "Token-Swift.h"
 #import "TKNMainWindowController.h"
 #import "TKNTypefaceUnit.h"
 
@@ -317,7 +317,7 @@ static const double kTKNTypefaceMaxStrokeWidth = 130.0;
   NSString *otfPath = [directory stringByAppendingPathComponent:
       [_path.lastPathComponent.stringByDeletingPathExtension
           stringByAppendingPathExtension:@"otf"]];
-  const auto fdkPath = boost::filesystem::path(TKNAdobeFDKPath().UTF8String);
+  const auto fdkPath = boost::filesystem::path(TKNFilePath.adobeFDK.UTF8String);
   const auto toolsPath = fdkPath / "Tools" / "osx";
   if (!boost::filesystem::exists(toolsPath)) {
     [NSApp sendAction:@selector(installAdobeFDK:) to:nil from:self];

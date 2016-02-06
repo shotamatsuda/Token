@@ -27,7 +27,7 @@
 import AppKit
 
 class NumericTextField : NSTextField {
-  @IBInspectable var step: Double = Double()
+  @IBInspectable var step = Double()
 
   override init(frame frameRect: NSRect) {
     super.init(frame: frameRect)
@@ -70,19 +70,22 @@ class NumericTextField : NSTextField {
         userInfo: nil)
   }
 
+  override var frame: CGRect {
+    didSet {
+      if frame != oldValue {
+        setUpTrackingArea()
+      }
+    }
+  }
+
   override var mouseDownCanMoveWindow: Bool {
     get {
       return true
     }
   }
 
-  override func setFrameSize(newSize: NSSize) {
-    super.setFrameSize(newSize)
-    setUpTrackingArea()
-  }
-
-  var initialLocation: CGPoint?
-  var initialValue: Double?
+  private var initialLocation: CGPoint?
+  private var initialValue: Double?
 
   override func mouseDown(event: NSEvent) {
     super.mouseDown(event)
@@ -115,7 +118,7 @@ class NumericTextField : NSTextField {
 
   override func mouseUp(event: NSEvent) {
     super.mouseUp(event)
-    if event.clickCount == 0 {
+    guard event.clickCount != 0 else {
       return
     }
     guard let window = window else {
