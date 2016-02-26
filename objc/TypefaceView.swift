@@ -52,14 +52,14 @@ class TypefaceView : NSView {
     }
   }
 
-  private var lines = [
+  private var lines: [[String]] = [
     ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
     ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
     ["one", "two", "three", "four", "five",
      "six", "seven", "eight", "nine", "zero"]
   ]
   private var scale: CGFloat = 0.085
-  private var transform = CGAffineTransform()
+  private var transform: CGAffineTransform = CGAffineTransform()
 
   override var acceptsFirstResponder: Bool {
     get {

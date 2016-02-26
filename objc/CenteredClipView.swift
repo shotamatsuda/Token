@@ -27,7 +27,7 @@
 import AppKit
 
 class CenteredClipView : NSClipView {
-  private var documentSize = CGSize()
+  private var documentSize: CGSize = CGSize()
 
   override func viewFrameChanged(notification: NSNotification) {
     super.viewFrameChanged(notification)

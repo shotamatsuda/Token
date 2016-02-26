@@ -25,3 +25,34 @@
 //
 
 import AppKit
+
+@objc(TKNMainViewController)
+class MainViewController : NSViewController {
+  private(set) var typefaceViewController: TypefaceViewController?
+  private(set) var settingsViewController: SettingsViewController?
+
+  override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    super.prepareForSegue(segue, sender: sender)
+    guard let identifier = segue.identifier else {
+      return
+    }
+    switch identifier {
+    case "Typeface":
+      typefaceViewController =
+          segue.destinationController as? TypefaceViewController
+    case "Settings":
+      settingsViewController =
+          segue.destinationController as? SettingsViewController
+    default:
+      break
+    }
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    typefaceViewController?.view.appearance =
+        NSAppearance(named: NSAppearanceNameAqua)
+    settingsViewController?.view.appearance =
+        NSAppearance(named: NSAppearanceNameVibrantDark)
+  }
+}

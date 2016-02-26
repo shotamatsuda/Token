@@ -27,9 +27,7 @@
 #import <AppKit/AppKit.h>
 
 #import "Token-Swift.h"
-#import "TKNMainViewController.h"
 #import "TKNTypeface.h"
-#import "TKNTypefaceViewController.h"
 
 @interface TKNMainWindowController : NSWindowController <NSWindowDelegate>
 

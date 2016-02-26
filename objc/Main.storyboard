@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
@@ -471,7 +471,7 @@
                                     <customView id="kve-Rx-3K7" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="401" y="0.0" width="399" height="225"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="184" width="86" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="nHG-1H-oux">
                                                     <font key="font" metaFont="system"/>
@@ -479,7 +479,7 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="184" width="82" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name" id="p4l-1c-YpC">
                                                     <font key="font" metaFont="system"/>
@@ -490,7 +490,7 @@
                                                     <binding destination="FnN-Dk-mc2" name="value" keyPath="self.typeface.familyName" id="usW-eI-ava"/>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="163" width="78" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
                                                     <font key="font" metaFont="system"/>
@@ -498,7 +498,7 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="163" width="74" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name" id="gZs-gj-10W">
                                                     <font key="font" metaFont="system"/>
@@ -509,7 +509,7 @@
                                                     <binding destination="FnN-Dk-mc2" name="value" keyPath="self.typeface.styleName" id="ixI-gR-WSw"/>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="142" width="108" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name:" id="A5R-Zz-lbC">
                                                     <font key="font" metaFont="system"/>
@@ -517,7 +517,7 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="142" width="105" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name" id="fUI-xh-T6V">
                                                     <font key="font" metaFont="system"/>
@@ -683,7 +683,7 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNCapHeightTemplate" id="Sea-qO-ETT"/>
                                     </imageView>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-Fb-6cs" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-Fb-6cs" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="177" y="108" width="147" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="zHU-kn-v6y"/>
@@ -703,7 +703,7 @@
                                             <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalStrokeWidth" id="aIg-G7-1IH"/>
                                         </connections>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="177" y="27" width="147" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="5L4-UW-sXb"/>
@@ -723,7 +723,7 @@
                                             <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalCapHeight" id="Txh-AV-BOM"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="78" y="125" width="83" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="cXb-I4-uQI">
                                             <font key="font" metaFont="system"/>
@@ -731,7 +731,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="78" y="44" width="72" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cap Height" id="gPW-0t-87g">
                                             <font key="font" metaFont="system"/>
@@ -823,7 +823,7 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNStrokeWidthTemplate" id="R3x-J2-K2k"/>
                                     </imageView>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-tN-CEO" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-tN-CEO" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="177" y="93" width="166" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="aaF-Vx-m86"/>
@@ -890,7 +890,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j03-go-eSx">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j03-go-eSx">
                                         <rect key="frame" x="18" y="20" width="42" height="14"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Lighter" id="HUs-mF-jhK">
                                             <font key="font" metaFont="smallSystem"/>
@@ -898,7 +898,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="78" y="110" width="83" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="131-DB-7ye">
                                             <font key="font" metaFont="system"/>

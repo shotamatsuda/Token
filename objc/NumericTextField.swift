@@ -27,7 +27,7 @@
 import AppKit
 
 class NumericTextField : NSTextField {
-  @IBInspectable var step = Double()
+  @IBInspectable var step: Double = Double()
 
   override init(frame frameRect: NSRect) {
     super.init(frame: frameRect)
