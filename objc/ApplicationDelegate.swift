@@ -27,8 +27,6 @@
 import AppKit
 
 class ApplicationDelegate : NSObject, NSApplicationDelegate {
-  @IBOutlet var windowController: NSWindowController?
-
   func applicationShouldTerminateAfterLastWindowClosed(
       sender: NSApplication) -> Bool {
     return true

@@ -78,12 +78,6 @@ class NumericTextField : NSTextField {
     }
   }
 
-  override var mouseDownCanMoveWindow: Bool {
-    get {
-      return true
-    }
-  }
-
   private var initialLocation: CGPoint?
   private var initialValue: Double?
 

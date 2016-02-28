@@ -113,6 +113,10 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     typefaceViewController?.zoomOut(sender)
   }
 
+  @IBAction func zoomToFit(sender: AnyObject?) {
+    typefaceViewController?.zoomToFit(sender)
+  }
+
   // MARK: Adobe FDK
 
   @IBAction func installAdobeFDK(sender: AnyObject?) {

@@ -132,7 +132,11 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" systemMenu="window" id="VNf-GV-Tgd">
                                     <items>
-                                        <menuItem title="Zoom to Fit" keyEquivalent="9" id="Rzx-Qe-ZRy"/>
+                                        <menuItem title="Zoom to Fit" keyEquivalent="9" id="Rzx-Qe-ZRy">
+                                            <connections>
+                                                <action selector="zoomToFit:" target="UkH-Qk-Gn3" id="JP2-Zw-ou8"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Zoom In" keyEquivalent="+" id="xSI-Oj-Qjm">
                                             <connections>
                                                 <action selector="zoomIn:" target="UkH-Qk-Gn3" id="5AW-Bb-BGA"/>
@@ -421,7 +425,7 @@
                             <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-qo-Slp" customClass="ZeroSplitView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                                 <subviews>
-                                    <customView id="iH7-Cb-6Xa" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
+                                    <customView id="iH7-Cb-6Xa" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GVd-Xi-Ezs">
@@ -469,10 +473,10 @@
                                             <constraint firstAttribute="bottom" secondItem="V6r-aJ-L8X" secondAttribute="bottom" id="qbo-3r-DqN"/>
                                         </constraints>
                                     </customView>
-                                    <customView id="kve-Rx-3K7" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
+                                    <customView id="kve-Rx-3K7" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="401" y="0.0" width="399" height="225"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF">
                                                 <rect key="frame" x="8" y="184" width="86" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="nHG-1H-oux">
                                                     <font key="font" metaFont="system"/>
@@ -480,7 +484,7 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hcw-bi-Ehw">
                                                 <rect key="frame" x="120" y="184" width="82" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name" id="p4l-1c-YpC">
                                                     <font key="font" metaFont="system"/>
@@ -491,7 +495,7 @@
                                                     <binding destination="FnN-Dk-mc2" name="value" keyPath="self.typeface.familyName" id="usW-eI-ava"/>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VuL-IP-jDI">
                                                 <rect key="frame" x="8" y="163" width="78" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name:" id="ZyM-wm-9SS">
                                                     <font key="font" metaFont="system"/>
@@ -499,7 +503,7 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-WL-JGO">
                                                 <rect key="frame" x="120" y="163" width="74" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Style Name" id="gZs-gj-10W">
                                                     <font key="font" metaFont="system"/>
@@ -510,7 +514,7 @@
                                                     <binding destination="FnN-Dk-mc2" name="value" keyPath="self.typeface.styleName" id="ixI-gR-WSw"/>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-Xi-tdF">
                                                 <rect key="frame" x="8" y="142" width="108" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name:" id="A5R-Zz-lbC">
                                                     <font key="font" metaFont="system"/>
@@ -518,7 +522,7 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-pF-nlK">
                                                 <rect key="frame" x="120" y="142" width="105" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Postscript Name" id="fUI-xh-T6V">
                                                     <font key="font" metaFont="system"/>
@@ -634,14 +638,14 @@
         <scene sceneID="JLu-1w-Sst">
             <objects>
                 <viewController id="lpu-sv-CBv" sceneMemberID="viewController">
-                    <view key="view" id="7Zy-xs-iro" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
+                    <view key="view" id="7Zy-xs-iro" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Mx8-gL-7GK" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Mx8-gL-7GK" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-YC-rrz" customClass="BackgroundImageView" customModule="Token" customModuleProvider="target">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-YC-rrz">
                                         <rect key="frame" x="20" y="101" width="50" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="fpf-nG-XAC"/>
@@ -676,7 +680,7 @@
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-cp-cEs" customClass="BackgroundImageView" customModule="Token" customModuleProvider="target">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-cp-cEs">
                                         <rect key="frame" x="20" y="20" width="50" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="ovT-Uf-Kll"/>
@@ -724,7 +728,7 @@
                                             <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalCapHeight" id="Txh-AV-BOM"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF">
                                         <rect key="frame" x="78" y="125" width="83" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="cXb-I4-uQI">
                                             <font key="font" metaFont="system"/>
@@ -732,7 +736,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="as9-53-5gG">
                                         <rect key="frame" x="78" y="44" width="72" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cap Height" id="gPW-0t-87g">
                                             <font key="font" metaFont="system"/>
@@ -815,14 +819,14 @@
                 </objectController>
                 <customObject id="fVt-so-ch2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="zzj-yh-0K9" sceneMemberID="viewController">
-                    <view key="view" id="Tod-cc-qZN" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
+                    <view key="view" id="Tod-cc-qZN" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="q7a-mv-9XK" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="q7a-mv-9XK" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="8" width="400" height="170"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-71-kMh" customClass="BackgroundImageView" customModule="Token" customModuleProvider="target">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-71-kMh">
                                         <rect key="frame" x="20" y="86" width="50" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="I9S-ya-1Cg"/>
@@ -905,7 +909,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83" customClass="BackgroundTextField" customModule="Token" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vek-sh-G83">
                                         <rect key="frame" x="78" y="110" width="83" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stroke Width" id="131-DB-7ye">
                                             <font key="font" metaFont="system"/>

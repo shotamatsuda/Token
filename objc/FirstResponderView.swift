@@ -1,5 +1,5 @@
 //
-//  BackgroundView.swift
+//  FirstResponderView.swift
 //
 //  The MIT License
 //
@@ -26,7 +26,7 @@
 
 import AppKit
 
-class BackgroundView : NSView {
+class FirstResponderView : NSView {
   override var acceptsFirstResponder: Bool {
     get {
       return true

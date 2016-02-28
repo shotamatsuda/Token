@@ -27,7 +27,7 @@
 import AppKit
 
 class TypefaceControlView : NSView {
-  override var acceptsFirstResponder: Bool {
+  override var mouseDownCanMoveWindow: Bool {
     get {
       return true
     }

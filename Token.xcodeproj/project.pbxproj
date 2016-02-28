@@ -17,14 +17,11 @@
 		933A61501BC8C95000C600C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933A614F1BC8C95000C600C5 /* Main.storyboard */; };
 		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
-		935DDCDE1BEB0E7D0070F741 /* LayerBackedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCDD1BEB0E7D0070F741 /* LayerBackedView.swift */; };
 		935DDCEC1BEB102D0070F741 /* NumberToPercentageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */; };
 		935DDCEE1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */; };
 		935DDCF01BEB1A160070F741 /* RectCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCEF1BEB1A160070F741 /* RectCorners.swift */; };
 		935DDCF21BEB228F0070F741 /* ZeroSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCF11BEB228F0070F741 /* ZeroSplitView.swift */; };
-		935DDCF41BEB23460070F741 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCF31BEB23460070F741 /* BackgroundView.swift */; };
-		935DDCF61BEB23DC0070F741 /* BackgroundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCF51BEB23DC0070F741 /* BackgroundTextField.swift */; };
-		935DDCF81BEB24550070F741 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCF71BEB24550070F741 /* BackgroundImageView.swift */; };
+		935DDCF41BEB23460070F741 /* FirstResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCF31BEB23460070F741 /* FirstResponderView.swift */; };
 		935DDCFE1BEB2ACF0070F741 /* DefaultRoundedButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCFD1BEB2ACF0070F741 /* DefaultRoundedButtonCell.swift */; };
 		935DDD001BEB37BA0070F741 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCFF1BEB37BA0070F741 /* NumericTextField.swift */; };
 		9368398D1B9E7B4400E21EF7 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
@@ -260,15 +257,12 @@
 		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		9349563C1B8EEF0E000FD457 /* glyph_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = glyph_iterator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
-		935DDCDD1BEB0E7D0070F741 /* LayerBackedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerBackedView.swift; sourceTree = "<group>"; };
 		935DDCEA1BEB0F490070F741 /* Token-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Token-Bridging-Header.h"; sourceTree = "<group>"; };
 		935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberToPercentageTransformer.swift; sourceTree = "<group>"; };
 		935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+RoundedRect.swift"; sourceTree = "<group>"; };
 		935DDCEF1BEB1A160070F741 /* RectCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectCorners.swift; sourceTree = "<group>"; };
 		935DDCF11BEB228F0070F741 /* ZeroSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroSplitView.swift; sourceTree = "<group>"; };
-		935DDCF31BEB23460070F741 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		935DDCF51BEB23DC0070F741 /* BackgroundTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTextField.swift; sourceTree = "<group>"; };
-		935DDCF71BEB24550070F741 /* BackgroundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		935DDCF31BEB23460070F741 /* FirstResponderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstResponderView.swift; sourceTree = "<group>"; };
 		935DDCFD1BEB2ACF0070F741 /* DefaultRoundedButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRoundedButtonCell.swift; sourceTree = "<group>"; };
 		935DDCFF1BEB37BA0070F741 /* NumericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		936839A91B9E925200E21EF7 /* glif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glif.h; sourceTree = "<group>"; };
@@ -383,12 +377,13 @@
 		930125B01BC8E25B0004DE27 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				935DDCEF1BEB1A160070F741 /* RectCorners.swift */,
 				9308F4071C59E003005B31CC /* FilePath.swift */,
+				935DDCF31BEB23460070F741 /* FirstResponderView.swift */,
 				935DDCF11BEB228F0070F741 /* ZeroSplitView.swift */,
 				93D70ECF1C2DA7AF003C6F2B /* MultilineTextField.swift */,
-				935DDCDD1BEB0E7D0070F741 /* LayerBackedView.swift */,
+				9328FC1F1C8042EB003D8FB6 /* SheetContentSegue.swift */,
 				935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */,
-				935DDCEF1BEB1A160070F741 /* RectCorners.swift */,
 				935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */,
 			);
 			name = Utility;
@@ -418,7 +413,6 @@
 				93D334C21C80394000FF4567 /* WelcomeViewController.swift */,
 				937E19451C80588800090AEF /* WelcomeAgreementViewController.swift */,
 				93D334C61C80396200FF4567 /* WelcomeProgressViewController.swift */,
-				9328FC1F1C8042EB003D8FB6 /* SheetContentSegue.swift */,
 			);
 			name = Welcome;
 			sourceTree = "<group>";
@@ -428,8 +422,8 @@
 			children = (
 				930ECCD51C7D5F02004C9978 /* TypefaceViewController.swift */,
 				93D70EF61C2DAEE0003C6F2B /* TypefaceView.swift */,
-				93ACDAFD1C82A431009F1C8C /* TypefaceScrollView.swift */,
 				939FDF1C1C1F635800B0DECD /* TypefaceClipView.swift */,
+				93ACDAFD1C82A431009F1C8C /* TypefaceScrollView.swift */,
 				939FDF1A1C1F630D00B0DECD /* TypefaceControlView.swift */,
 			);
 			name = Typeface;
@@ -439,9 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				939FDF181C1F62CD00B0DECD /* SettingsViewController.swift */,
-				935DDCF31BEB23460070F741 /* BackgroundView.swift */,
-				935DDCF51BEB23DC0070F741 /* BackgroundTextField.swift */,
-				935DDCF71BEB24550070F741 /* BackgroundImageView.swift */,
 				93D70F081C2FA617003C6F2B /* RoundedButtonCell.swift */,
 				935DDCFD1BEB2ACF0070F741 /* DefaultRoundedButtonCell.swift */,
 				935DDCFF1BEB37BA0070F741 /* NumericTextField.swift */,
@@ -947,11 +938,8 @@
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
 				930ECCC61C7D5DBC004C9978 /* Typeface.swift in Sources */,
 				93D70EE51C2DAB1A003C6F2B /* MainViewController.swift in Sources */,
-				935DDCF81BEB24550070F741 /* BackgroundImageView.swift in Sources */,
 				9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */,
-				935DDCF61BEB23DC0070F741 /* BackgroundTextField.swift in Sources */,
 				933162D71B92C58F009FFC7C /* font_info.cc in Sources */,
-				935DDCDE1BEB0E7D0070F741 /* LayerBackedView.swift in Sources */,
 				93E5FF171B915970006E968A /* glyph_stroker.cc in Sources */,
 				93B1D9DC1C61B02800B8322B /* TKNTypefaceUnit.m in Sources */,
 				93C18FB31B930D440044AAEB /* trademark.cc in Sources */,
@@ -974,7 +962,7 @@
 				9308F4081C59E003005B31CC /* FilePath.swift in Sources */,
 				93C18FB91B930D440044AAEB /* vendor.cc in Sources */,
 				93714B601B996EA70077B273 /* lib.cc in Sources */,
-				935DDCF41BEB23460070F741 /* BackgroundView.swift in Sources */,
+				935DDCF41BEB23460070F741 /* FirstResponderView.swift in Sources */,
 				93D70EE31C2DAB0A003C6F2B /* MainWindowController.swift in Sources */,
 				93C18F981B930D440044AAEB /* credits.cc in Sources */,
 				9373E7821C64613D003A66B0 /* TypefaceUnit.swift in Sources */,
