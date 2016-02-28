@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  TKNTypefaceMetricsType.h
 //
 //  The MIT License
 //
@@ -24,16 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-import AppKit
-
-class SettingsViewController : NSViewController {
-  var typeface: TKNTypeface? {
-    willSet {
-      willChangeValueForKey("typeface")
-    }
-
-    didSet {
-      didChangeValueForKey("typeface")
-    }
-  }
-}
+typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
+  kTKNTypefaceMetricsTypePhysical = 0,
+  kTKNTypefaceMetricsTypeTypographic = 1
+};

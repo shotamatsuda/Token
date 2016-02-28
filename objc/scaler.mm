@@ -29,6 +29,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <string>
+#include <vector>
 
 #include <boost/filesystem/path.hpp>
 

@@ -1,5 +1,5 @@
 //
-//  CenteredClipView.swift
+//  TypefaceClipView.swift
 //
 //  The MIT License
 //
@@ -26,7 +26,13 @@
 
 import AppKit
 
-class CenteredClipView : NSClipView {
+class TypefaceClipView : NSClipView {
+  override var mouseDownCanMoveWindow: Bool {
+    get {
+      return true
+    }
+  }
+
   private var documentSize: CGSize = CGSize()
 
   override func viewFrameChanged(notification: NSNotification) {

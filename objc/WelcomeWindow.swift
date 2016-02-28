@@ -1,5 +1,5 @@
 //
-//  TKNMainWindowController.h
+//  WelcomeWindow.swift
 //
 //  The MIT License
 //
@@ -24,33 +24,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-#import "Token-Swift.h"
-#import "TKNTypeface.h"
-
-@interface TKNMainWindowController : NSWindowController <NSWindowDelegate>
-
-#pragma mark View Controllers
-
-@property (nonatomic, strong, readonly, nonnull)
-    TKNMainViewController *mainViewController;
-@property (nonatomic, strong, readonly, nonnull)
-    TKNTypefaceViewController *typefaceViewController;
-@property (nonatomic, strong, readonly, nonnull)
-    TKNSettingsViewController *settingsViewController;
-
-#pragma mark Parameters
-
-@property (nonatomic, strong, nonnull) TKNTypeface *typeface;
-
-#pragma mark Actions
-
-- (IBAction)exportFont:(nullable id)sender;
-- (IBAction)installFont:(nullable id)sender;
-- (IBAction)zoomIn:(nullable id)sender;
-- (IBAction)zoomOut:(nullable id)sender;
-- (IBAction)installAdobeFDK:(nullable id)sender;
-- (IBAction)uninstallAdobeFDK:(nullable id)sender;
-
-@end
+class WelcomeWindow : NSWindow {
+  override var canBecomeKeyWindow: Bool {
+    get {
+      return true
+    }
+  }
+}

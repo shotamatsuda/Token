@@ -1,5 +1,5 @@
 //
-//  ControlView.swift
+//  TypefaceControlView.swift
 //
 //  The MIT License
 //
@@ -26,7 +26,7 @@
 
 import AppKit
 
-class ControlView : NSView {
+class TypefaceControlView : NSView {
   override var acceptsFirstResponder: Bool {
     get {
       return true

@@ -26,7 +26,6 @@
 
 import AppKit
 
-@objc(TKNTypefaceViewController)
 class TypefaceViewController : NSViewController {
   private let KVOContext = UnsafeMutablePointer<()>()
 

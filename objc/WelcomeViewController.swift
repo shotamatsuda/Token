@@ -1,5 +1,5 @@
 //
-//  WelcomeSheet.swift
+//  WelcomeViewController.swift
 //
 //  The MIT License
 //
@@ -26,10 +26,11 @@
 
 import AppKit
 
-class WelcomeSheet : NSWindow {
-  override var canBecomeKeyWindow: Bool {
-    get {
-      return true
+class WelcomeViewController : NSViewController {
+  @IBAction func cancel(sender: AnyObject?) {
+    guard let window = view.window, sheetParent = window.sheetParent else {
+      return
     }
+    sheetParent.endSheet(window, returnCode:NSModalResponseCancel)
   }
 }

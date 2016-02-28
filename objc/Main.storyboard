@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <scenes>
@@ -196,7 +197,7 @@
         <!--Window Controller-->
         <scene sceneID="6qy-fh-DB1">
             <objects>
-                <windowController id="qw9-4F-FKp" customClass="TKNMainWindowController" sceneMemberID="viewController">
+                <windowController id="qw9-4F-FKp" customClass="MainWindowController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qcN-4n-DfN">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="800" height="600"/>
@@ -213,7 +214,7 @@
         <!--Main View Controller-->
         <scene sceneID="osD-f4-xi5">
             <objects>
-                <viewController id="QTk-2g-cua" customClass="TKNMainViewController" sceneMemberID="viewController">
+                <viewController id="QTk-2g-cua" customClass="MainViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kua-eo-iuQ">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -253,14 +254,14 @@
         <!--Typeface View Controller-->
         <scene sceneID="6zb-ud-q2i">
             <objects>
-                <viewController id="laX-qJ-5ZH" customClass="TKNTypefaceViewController" sceneMemberID="viewController">
+                <viewController id="laX-qJ-5ZH" customClass="TypefaceViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jin-6T-nrI">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1b-Li-q3i">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1b-Li-q3i" customClass="TypefaceScrollView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
-                                <clipView key="contentView" id="JCv-bs-eF3" customClass="CenteredClipView" customModule="Token" customModuleProvider="target">
+                                <clipView key="contentView" id="JCv-bs-eF3" customClass="TypefaceClipView" customModule="Token" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -283,7 +284,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="h10-2w-HUc" customClass="ControlView" customModule="Token" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="h10-2w-HUc" customClass="TypefaceControlView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="25"/>
                                 <subviews>
                                     <button toolTip="Zoom In" translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-fa-Jdp">
@@ -413,7 +414,7 @@
         <!--Settings View Controller-->
         <scene sceneID="2Mw-UA-nsy">
             <objects>
-                <viewController id="FnN-Dk-mc2" customClass="TKNSettingsViewController" sceneMemberID="viewController">
+                <viewController id="FnN-Dk-mc2" customClass="SettingsViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JTP-jm-MIM" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                         <subviews>
@@ -807,6 +808,12 @@
         <!--View Controller-->
         <scene sceneID="nVC-yF-m9m">
             <objects>
+                <objectController objectClassName="TKNSettingsViewController" id="Qae-5e-aHV" userLabel="Settings View Controller">
+                    <connections>
+                        <binding destination="zzj-yh-0K9" name="contentObject" keyPath="self.parentViewController.parentViewController" id="rtZ-EU-XlE"/>
+                    </connections>
+                </objectController>
+                <customObject id="fVt-so-ch2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="zzj-yh-0K9" sceneMemberID="viewController">
                     <view key="view" id="Tod-cc-qZN" customClass="BackgroundView" customModule="Token" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
@@ -942,12 +949,6 @@
                         </constraints>
                     </view>
                 </viewController>
-                <customObject id="fVt-so-ch2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="TKNSettingsViewController" id="Qae-5e-aHV" userLabel="Settings View Controller">
-                    <connections>
-                        <binding destination="zzj-yh-0K9" name="contentObject" keyPath="self.parentViewController.parentViewController" id="rtZ-EU-XlE"/>
-                    </connections>
-                </objectController>
             </objects>
             <point key="canvasLocation" x="2163" y="1256.5"/>
         </scene>

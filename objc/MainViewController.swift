@@ -26,7 +26,6 @@
 
 import AppKit
 
-@objc(TKNMainViewController)
 class MainViewController : NSViewController {
   private(set) var typefaceViewController: TypefaceViewController?
   private(set) var settingsViewController: SettingsViewController?

@@ -47,7 +47,6 @@
 #include "token/ufo.h"
 
 #import "Token-Swift.h"
-#import "TKNMainWindowController.h"
 #import "TKNTypefaceUnit.h"
 
 static const double kTKNTypefaceStrokingRetryShift = 0.0001;

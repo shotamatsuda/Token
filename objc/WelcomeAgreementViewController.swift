@@ -1,5 +1,5 @@
 //
-//  TKNWelcomeSheetController.h
+//  WelcomeAgreementViewController.swift
 //
 //  The MIT License
 //
@@ -24,20 +24,27 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <AppKit/AppKit.h>
+import AppKit
 
-@interface TKNWelcomeSheetController :
-    NSWindowController <NSURLDownloadDelegate>
+class WelcomeAgreementViewController : NSViewController {
+  @IBOutlet var licenseTextView: NSTextView?
 
-#pragma mark Progress
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    guard let licenseTextView = licenseTextView else {
+      return
+    }
+    let bundle = NSBundle.mainBundle()
+    let path = bundle.pathForResource("AdobeFDKLicense", ofType: "rtf")!
+    let data = NSData(contentsOfFile: path)!
+    let contents = NSAttributedString(RTF: data, documentAttributes: nil)
+    licenseTextView.textStorage?.setAttributedString(contents!)
+  }
 
-@property (nonatomic, assign, readonly) double progress;
-
-#pragma mark Actions
-
-- (IBAction)begin:(nullable id)sender;
-- (IBAction)acceptLicenseAgreement:(nullable id)sender;
-- (IBAction)declineLicenseAgreement:(nullable id)sender;
-- (IBAction)cancel:(nullable id)sender;
-
-@end
+  @IBAction func cancel(sender: AnyObject?) {
+    guard let window = view.window, sheetParent = window.sheetParent else {
+      return
+    }
+    sheetParent.endSheet(window, returnCode:NSModalResponseCancel)
+  }
+}

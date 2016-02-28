@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  TypefaceScrollView.swift
 //
 //  The MIT License
 //
@@ -26,14 +26,10 @@
 
 import AppKit
 
-class SettingsViewController : NSViewController {
-  var typeface: TKNTypeface? {
-    willSet {
-      willChangeValueForKey("typeface")
-    }
-
-    didSet {
-      didChangeValueForKey("typeface")
+class TypefaceScrollView : NSScrollView {
+  override var mouseDownCanMoveWindow: Bool {
+    get {
+      return true
     }
   }
 }
