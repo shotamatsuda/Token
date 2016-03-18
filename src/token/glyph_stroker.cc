@@ -27,7 +27,8 @@
 #include "token/glyph_stroker.h"
 
 #include <cassert>
-#include <cmath>
+#include <cstddef>
+#include <iostream>
 #include <iterator>
 #include <unordered_map>
 #include <utility>
@@ -37,9 +38,9 @@
 #include "SkPath.h"
 #include "SkPathOps.h"
 
-#include "takram/math.h"
 #include "takram/graphics.h"
 #include "token/glyph_outline.h"
+#include "token/ufo/glyph.h"
 
 namespace token {
 
@@ -189,22 +190,75 @@ inline SkPath convertPath(const takram::Path2d& other) {
 
 }  // namespace
 
+takram::Shape2d GlyphStroker::operator()(const token::ufo::Glyph& glyph,
+                                         const GlyphOutline& outline) const {
+  GlyphStroker stroker(*this);
+  takram::Shape2d shape;
+  // Check for the number of contours of the resulting shape and retry if that
+  // differs from the expected value, because the path simplification
+  // occationally fails.
+  bool success{};
+  double shift{};
+  bool negative{};
+  for (; shift < shift_limit_; shift += shift_increment_) {
+    for (negative = false; !negative; negative = !negative) {
+      stroker.set_width(width_ + (negative ? -shift : shift));
+      shape = stroker.stroke(outline);
+      shape = stroker.simplify(shape);
+      std::size_t contour_count{};
+      std::size_t hole_count{};
+      for (const auto& path : shape.paths()) {
+        if (path.direction() != takram::PathDirection::UNDEFINED) {
+          ++contour_count;
+        }
+        if (path.direction() == takram::PathDirection::COUNTER_CLOCKWISE) {
+          ++hole_count;
+        }
+      }
+      if (contour_count == glyph.lib->number_of_contours &&
+          hole_count == glyph.lib->number_of_holes) {
+        success = true;
+        break;
+      }
+    }
+    if (success) {
+      break;
+    }
+  }
+  if (success) {
+    if (shift) {
+      std::cout << "Stroking succeeded by shifting stroke width by " <<
+          (negative ? -shift : shift) << std::endl;
+    }
+    // CFF Opentype accepts only lines and cubic bezier paths, so we need to
+    // convert conic curves to quadratic curves, which is approximation,
+    // and then convert losslessly quadratic curves to cubic curves.
+    shape.convertConicsToQuadratics();
+    shape.convertQuadraticsToCubics();
+    shape.removeDuplicates(1.0);
+  } else {
+    std::cout << "Stroking failed by shifting stroke width up to ±" <<
+          shift_limit_ << std::endl;
+    shape.reset();
+  }
+  return std::move(shape);
+}
+
 takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
+  GlyphStroker stroker(*this);
   takram::Shape2d result;
-  const auto initial_cap = cap_;
   for (const auto& path : outline.shape().paths()) {
     const auto cap = outline.cap(path);
     if (cap != Cap::UNDEFINED) {
-      cap_ = outline.cap(path);
+      stroker.set_cap(outline.cap(path));
     } else {
-      cap_ = initial_cap;
+      stroker.set_cap(cap_);
     }
-    const auto shape = stroke(path);
+    const auto shape = stroker.stroke(path);
     for (const auto& path : shape.paths()) {
       result.paths().emplace_back(path);
     }
   }
-  cap_ = initial_cap;
   return std::move(result);
 }
 
@@ -237,7 +291,7 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   Simplify(sk_path, &sk_result);
   auto result = convertShape(sk_result);
 
-  // Fix winding rule
+  // Fix up finding rules
   const auto bounds_error = 1.0;
   const auto bounds_insets = width_ - bounds_error;
   std::unordered_map<takram::Path2d *, int> depths;

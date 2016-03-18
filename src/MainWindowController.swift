@@ -27,7 +27,7 @@
 import AppKit
 
 class MainWindowController : NSWindowController, NSWindowDelegate {
-  var typeface: TKNTypeface?
+  var typeface: Typeface?
 
   var mainViewController: MainViewController? {
     get {
@@ -58,15 +58,15 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     window.styleMask |= NSFullSizeContentViewWindowMask
 
     // Prepare a typeface
-    let path = NSBundle.mainBundle().pathForResource("typeface", ofType: nil)
-    typeface = TKNTypeface(fileAtPath: path)
+    let bundle = NSBundle.mainBundle()
+    let url = bundle.URLForResource("typeface", withExtension: nil)
+    typeface = Typeface(directoryURL: url!)
     typefaceViewController?.typeface = typeface
     settingsViewController?.typeface = typeface
 
     // Check for Adobe FDK and show the welcome sheet if necessary.
     dispatch_async(dispatch_get_main_queue()) { () in
-      let fileManager = NSFileManager.defaultManager()
-      if !fileManager.fileExistsAtPath(FilePath.adobeFDK) {
+      if !FilePath.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
         self.installAdobeFDK(self)
       }
     }
@@ -82,7 +82,15 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     panel.nameFieldStringValue = typeface.postscriptName + ".otf"
     panel.beginSheetModalForWindow(window!) { (result: Int) in
       if result == NSFileHandlingPanelOKButton {
-        typeface.saveToFile(panel.URL!.path!)
+        do {
+          try typeface.createFontToURL(panel.URL!)
+        } catch let error {
+          let alert = NSAlert()
+          alert.messageText = "\(error)"
+          alert.beginSheetModalForWindow(
+              NSApp.mainWindow!,
+              completionHandler: nil)
+        }
       }
     }
   }
@@ -92,17 +100,25 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
       return
     }
     guard let searchPath = NSSearchPathForDirectoriesInDomains(
-      .LibraryDirectory, .UserDomainMask, true).first else {
-        fatalError("Could not retrieve user's library directory")
+        .LibraryDirectory, .UserDomainMask, true).first else {
+      fatalError("Could not retrieve user's library directory")
     }
     let fileName = typeface.postscriptName + ".otf"
-    let installPath = NSURL(fileURLWithPath: searchPath)
+    let installURL = NSURL(fileURLWithPath: searchPath)
         .URLByAppendingPathComponent(typeface.familyName)
             .URLByAppendingPathComponent(fileName)
-    if typeface.saveToFile(installPath.path!) {
-      NSWorkspace.sharedWorkspace().openFile(
-          installPath.URLByDeletingLastPathComponent!.path!)
+    do {
+      try typeface.createFontToURL(installURL)
+    } catch let error {
+      let alert = NSAlert()
+      alert.messageText = "\(error)"
+      alert.beginSheetModalForWindow(
+          NSApp.mainWindow!,
+          completionHandler: nil)
+      return
     }
+    NSWorkspace.sharedWorkspace().openURL(
+        installURL.URLByDeletingLastPathComponent!)
   }
 
   @IBAction func zoomIn(sender: AnyObject?) {
@@ -146,15 +162,15 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
       guard returnCode == NSAlertFirstButtonReturn else {
         return
       }
-      let applicationSupportPath = FilePath.privateApplicationSupport
+      let applicationSupportURL = FilePath.privateApplicationSupportURL
       let fileManager = NSFileManager.defaultManager()
       do {
-        if fileManager.fileExistsAtPath(applicationSupportPath) {
-          try fileManager.removeItemAtPath(applicationSupportPath)
+        if applicationSupportURL.checkResourceIsReachableAndReturnError(nil) {
+          try fileManager.removeItemAtURL(applicationSupportURL)
         }
-        let libraryPath = FilePath.privateLibrary
-        if fileManager.fileExistsAtPath(libraryPath) {
-          try fileManager.removeItemAtPath(libraryPath)
+        let libraryURL = FilePath.privateLibraryURL
+        if libraryURL.checkResourceIsReachableAndReturnError(nil) {
+          try fileManager.removeItemAtURL(libraryURL)
         }
       } catch let error {
         let alert = NSAlert()

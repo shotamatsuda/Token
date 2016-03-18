@@ -27,7 +27,7 @@
 import AppKit
 
 class TypefaceView : NSView {
-  var typeface: TKNTypeface? {
+  var typeface: Typeface? {
     didSet {
       if typeface != oldValue {
         needsDisplay = true
@@ -127,7 +127,7 @@ class TypefaceView : NSView {
     // Derive the sum of advances in this line for centering.
     var lineWidth = CGFloat()
     for name in line {
-      lineWidth += CGFloat(typeface.advanceOfGlyphForName(name))
+      lineWidth += CGFloat(typeface.glyphAdvanceForName(name))
     }
     NSGraphicsContext.saveGraphicsState()
     defer {
@@ -140,7 +140,7 @@ class TypefaceView : NSView {
     // Draw every glyphs, moving right by the advance of each glyph.
     for name in line {
       drawGlyph(name, position: position, dirtyRect: dirtyRect)
-      position.x += CGFloat(typeface.advanceOfGlyphForName(name))
+      position.x += CGFloat(typeface.glyphAdvanceForName(name))
     }
   }
 
@@ -158,7 +158,7 @@ class TypefaceView : NSView {
     transform.concat()
 
     // Intersection test with a dirty rect and the bounds of this glyph outline.
-    let bounds = typeface.boundingRectOfGlyphForName(name)
+    let bounds = typeface.glyphBoundsForName(name)
     let context = currentContext.CGContext
     let currentTransform = CGContextGetCTM(context)
     let rect1 = CGRectApplyAffineTransform(dirtyRect, self.transform)
@@ -168,7 +168,7 @@ class TypefaceView : NSView {
     guard rect1.intersects(rect2) else {
       return
     }
-    if let outline = typeface.glyphOutlineForName(name) {
+    if let outline = typeface.glyphBezierPathForName(name) {
       if outlined {
         drawOutlineGlyph(outline)
       } else {
@@ -277,11 +277,11 @@ class TypefaceView : NSView {
     }
     let lineHeight = typeface.ascender - typeface.descender
     var size = CGSize()
-    size.height = CGFloat(lineHeight * lines.count - typeface.descender)
+    size.height = CGFloat(lineHeight * Double(lines.count) - typeface.descender)
     for line in lines {
       var width = CGFloat()
       for name in line {
-        width += CGFloat(typeface.advanceOfGlyphForName(name))
+        width += CGFloat(typeface.glyphAdvanceForName(name))
         if size.width < width {
           size.width = width
         }

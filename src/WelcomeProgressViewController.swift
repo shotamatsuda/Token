@@ -86,22 +86,22 @@ class WelcomeProgressViewController : NSViewController,
       session: NSURLSession,
       downloadTask: NSURLSessionDownloadTask,
       didFinishDownloadingToURL location: NSURL) {
-    let directory = FilePath.privateApplicationSupport
-    let path = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent(
-        location.pathComponents!.last!).path!
+    let directoryURL = FilePath.privateApplicationSupportURL
+    let url = directoryURL.URLByAppendingPathComponent(
+        location.lastPathComponent!)
     let fileManager = NSFileManager.defaultManager()
     do {
-      if !fileManager.fileExistsAtPath(directory) {
-        try fileManager.createDirectoryAtPath(
-            directory,
+      if !directoryURL.checkResourceIsReachableAndReturnError(nil) {
+        try fileManager.createDirectoryAtURL(
+            directoryURL,
             withIntermediateDirectories: true,
             attributes: nil)
-        try fileManager.copyItemAtPath(location.path!, toPath: path)
+        try fileManager.copyItemAtURL(location, toURL: url)
       }
-      if fileManager.fileExistsAtPath(path) {
-        try fileManager.removeItemAtPath(path)
+      if url.checkResourceIsReachableAndReturnError(nil) {
+        try fileManager.removeItemAtURL(url)
       }
-      try fileManager.copyItemAtPath(location.path!, toPath: path)
+      try fileManager.copyItemAtURL(location, toURL: url)
     } catch let error {
       let alert = NSAlert()
       alert.messageText = "\(error)"
@@ -109,8 +109,8 @@ class WelcomeProgressViewController : NSViewController,
           NSApp.mainWindow!,
           completionHandler: nil)
     }
-    self.archiveDirectory = directory
-    self.archivePath = path
+    archiveDirectoryURL = directoryURL
+    archiveURL = url
   }
 
   func URLSession(
@@ -130,8 +130,8 @@ class WelcomeProgressViewController : NSViewController,
   // MARK: Extracting
 
   private var unzipTask: NSTask?
-  private var archiveDirectory: String?
-  private var archivePath: String?
+  private var archiveDirectoryURL: NSURL?
+  private var archiveURL: NSURL?
 
   private func extract() {
     progressIndicator?.indeterminate = true
@@ -141,8 +141,8 @@ class WelcomeProgressViewController : NSViewController,
         comment: "")
     unzipTask = NSTask()
     unzipTask!.launchPath = "/usr/bin/unzip"
-    unzipTask!.currentDirectoryPath = archiveDirectory!
-    unzipTask!.arguments = ["-qo", archivePath!]
+    unzipTask!.currentDirectoryPath = archiveDirectoryURL!.path!
+    unzipTask!.arguments = ["-qo", archiveURL!.path!]
     unzipTask!.terminationHandler = { (task: NSTask) in
       self.didExtract()
     }
@@ -169,22 +169,23 @@ class WelcomeProgressViewController : NSViewController,
     progressLabel?.stringValue = NSLocalizedString(
         "Installing...",
         comment: "")
-    let libraryPath = FilePath.privateLibrary
-    let linkPath = FilePath.adobeFDK
-    let path = NSURL(fileURLWithPath: archiveDirectory!)
-        .URLByAppendingPathComponent("FDK").path!
+    let libraryURL = FilePath.privateLibraryURL
+    let linkURL = FilePath.adobeFDKURL
+    let url = archiveDirectoryURL!.URLByAppendingPathComponent("FDK")
     let fileManager = NSFileManager.defaultManager()
     do {
-      if !fileManager.fileExistsAtPath(libraryPath) {
-        try fileManager.createDirectoryAtPath(
-            libraryPath,
+      if !libraryURL.checkResourceIsReachableAndReturnError(nil) {
+        try fileManager.createDirectoryAtURL(
+            libraryURL,
             withIntermediateDirectories: true,
             attributes: nil)
       }
-      try! fileManager.removeItemAtPath(linkPath)
-      try fileManager.createSymbolicLinkAtPath(
-          linkPath,
-          withDestinationPath: path)
+      do {
+        try fileManager.removeItemAtURL(linkURL)
+      } catch {}
+      try fileManager.createSymbolicLinkAtURL(
+          linkURL,
+          withDestinationURL: url)
     } catch let error {
       let alert = NSAlert()
       alert.messageText = "\(error)"
@@ -198,14 +199,15 @@ class WelcomeProgressViewController : NSViewController,
     progressLabel?.stringValue = NSLocalizedString(
         "Cleaning up...",
         comment: "")
-    let garbagePath = archiveDirectory! + "__MACOSX"
+    let garbageURL = archiveDirectoryURL!
+        .URLByAppendingPathComponent("__MACOSX")
     let fileManager = NSFileManager.defaultManager()
     do {
-      if fileManager.fileExistsAtPath(garbagePath) {
-        try fileManager.removeItemAtPath(garbagePath)
+      if garbageURL.checkResourceIsReachableAndReturnError(nil) {
+        try fileManager.removeItemAtURL(garbageURL)
       }
-      if fileManager.fileExistsAtPath(archivePath!) {
-        try fileManager.removeItemAtPath(archivePath!)
+      if archiveURL!.checkResourceIsReachableAndReturnError(nil) {
+        try fileManager.removeItemAtURL(archiveURL!)
       }
     } catch let error {
       let alert = NSAlert()

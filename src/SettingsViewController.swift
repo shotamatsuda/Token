@@ -27,7 +27,7 @@
 import AppKit
 
 class SettingsViewController : NSViewController {
-  var typeface: TKNTypeface? {
+  var typeface: Typeface? {
     willSet {
       willChangeValueForKey("typeface")
     }

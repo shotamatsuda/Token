@@ -27,22 +27,34 @@
 import AppKit
 
 class RoundedButtonCell : NSButtonCell {
+  var textColor: NSColor {
+    get {
+      return NSColor.whiteColor().colorWithAlphaComponent(0.9)
+    }
+  }
+
+  var highlightedTextColor: NSColor {
+    get {
+      return NSColor.whiteColor()
+    }
+  }
+
+  var frameColor: NSColor {
+    get {
+      return NSColor.whiteColor().colorWithAlphaComponent(0.1)
+    }
+  }
+
+  var highlightedFrameColor: NSColor {
+    get {
+      return NSColor.whiteColor().colorWithAlphaComponent(0.2)
+    }
+  }
+
   override var attributedTitle: NSAttributedString {
     get {
       if !enabled {
         return super.attributedTitle
-      }
-      guard let appearance = controlView?.effectiveAppearance else {
-        return super.attributedTitle
-      }
-      var color: NSColor
-      var highlightedColor: NSColor
-      if appearance.name == NSAppearanceNameVibrantDark {
-        highlightedColor = NSColor.whiteColor()
-        color = NSColor.whiteColor().colorWithAlphaComponent(0.9)
-      } else {
-        color = NSColor.whiteColor()
-        highlightedColor = NSColor.whiteColor().colorWithAlphaComponent(0.8)
       }
       let title = NSMutableAttributedString(
           attributedString: super.attributedTitle)
@@ -51,13 +63,13 @@ class RoundedButtonCell : NSButtonCell {
       if highlighted {
         title.addAttribute(
             NSForegroundColorAttributeName,
-            value:highlightedColor,
-            range:range)
+            value: highlightedTextColor,
+            range: range)
       } else {
         title.addAttribute(
             NSForegroundColorAttributeName,
-            value:color,
-            range:range)
+            value: textColor,
+            range: range)
       }
       title.endEditing()
       return title
@@ -69,27 +81,15 @@ class RoundedButtonCell : NSButtonCell {
   }
 
   override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
-    guard let appearance = self.controlView?.effectiveAppearance else {
-      return
-    }
     NSGraphicsContext.saveGraphicsState()
     defer {
       NSGraphicsContext.restoreGraphicsState()
     }
     let path = NSBezierPath(roundedRect: frame, radius: 4.0)
-    var color: NSColor
-    var highlightedColor: NSColor;
-    if appearance.name == NSAppearanceNameVibrantDark {
-      color = NSColor.whiteColor().colorWithAlphaComponent(0.1)
-      highlightedColor = NSColor.whiteColor().colorWithAlphaComponent(0.2)
-    } else {
-      color = NSColor.blackColor().colorWithAlphaComponent(0.2)
-      highlightedColor = NSColor.blackColor().colorWithAlphaComponent(0.3)
-    }
     if highlighted {
-      highlightedColor.setFill()
+      highlightedFrameColor.setFill()
     } else {
-      color.setFill()
+      frameColor.setFill()
     }
     path.fill()
   }

@@ -155,10 +155,10 @@ class TypefaceViewController : NSViewController {
   // MARK: Parameters
 
   private let typefaceKeyPaths = [
-      "metricsType", "physicalStrokeWidth", "physicalCapHeight",
-      "strokeWidthUnit", "capHeightUnit", "strokeWidth"]
+      "behavior", "strokeWidth", "capHeight",
+      "strokeWidthUnit", "capHeightUnit"]
 
-  var typeface: TKNTypeface? {
+  var typeface: Typeface? {
     willSet {
       guard let typeface = typeface else {
         return

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
@@ -441,18 +441,18 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="zdh-SV-kJg"/>
                                                 </constraints>
-                                                <popUpButtonCell key="cell" type="bevel" title="Physical Dimensions" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="oCj-Dk-k0o" id="6H1-Lu-RhZ">
+                                                <popUpButtonCell key="cell" type="bevel" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="6H1-Lu-RhZ">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="Ddt-M3-Azb">
                                                         <items>
-                                                            <menuItem title="Physical Dimensions" state="on" id="oCj-Dk-k0o"/>
-                                                            <menuItem title="Typographic Unit" tag="1" id="BEo-zm-rqI"/>
+                                                            <menuItem title="Physical Dimensions" tag="1" id="oCj-Dk-k0o"/>
+                                                            <menuItem title="Typographic Unit" id="BEo-zm-rqI"/>
                                                         </items>
                                                     </menu>
                                                 </popUpButtonCell>
                                                 <connections>
-                                                    <binding destination="FnN-Dk-mc2" name="selectedTag" keyPath="self.typeface.metricsType" id="ahL-Uj-b4D"/>
+                                                    <binding destination="FnN-Dk-mc2" name="selectedIndex" keyPath="self.typeface.behavior" id="yXe-M0-cjG"/>
                                                 </connections>
                                             </popUpButton>
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="V6r-aJ-L8X">
@@ -606,10 +606,10 @@
         <!--Tab View Controller-->
         <scene sceneID="DEE-Pp-Pjt">
             <objects>
-                <tabViewController tabStyle="unspecified" id="dIo-Lf-VBb" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="dIo-Lf-VBb" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem identifier="" id="Yp7-4M-4al"/>
-                        <tabViewItem identifier="" id="7dF-PP-4G7"/>
+                        <tabViewItem label="Physical Dimensions" identifier="" id="Yp7-4M-4al"/>
+                        <tabViewItem label="Typographic Unit" identifier="" id="7dF-PP-4G7"/>
                     </tabViewItems>
                     <tabView key="tabView" drawsBackground="NO" type="noTabsNoBorder" id="srw-iA-pVw">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="185"/>
@@ -617,7 +617,7 @@
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                         <connections>
-                            <binding destination="Ope-ZY-PwF" name="selectedIndex" keyPath="selection.self.typeface.metricsType" id="5tG-Dt-FdR"/>
+                            <binding destination="Ope-ZY-PwF" name="selectedIndex" keyPath="selection.self.typeface.behavior" id="QMq-XF-73s"/>
                         </connections>
                     </tabView>
                     <connections>
@@ -705,7 +705,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalStrokeWidth" id="aIg-G7-1IH"/>
+                                            <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.strokeWidth" id="aDe-bY-gQr"/>
                                         </connections>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-l3-5ya" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
@@ -725,7 +725,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.physicalCapHeight" id="Txh-AV-BOM"/>
+                                            <binding destination="WDW-0g-JKH" name="value" keyPath="selection.self.typeface.capHeight" id="BRV-61-tx0"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-2H-DrF">

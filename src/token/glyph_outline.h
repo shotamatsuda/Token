@@ -33,7 +33,6 @@
 #include <unordered_map>
 
 #include "takram/graphics.h"
-#include "takram/math.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo/glif.h"
 #include "token/ufo/glyph.h"

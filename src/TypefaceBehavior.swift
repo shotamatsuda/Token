@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceUnit.h
+//  TypefaceBehavior.swift
 //
 //  The MIT License
 //
@@ -24,23 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSUInteger, TKNTypefaceUnit) {
-  kTKNTypefaceUnitMillimeter = 0,
-  kTKNTypefaceUnitPoint = 1,
-  kTKNTypefaceUnitInch = 2
-};
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-NSString * TKNTypefaceUnitGetShortName(TKNTypefaceUnit unit);
-double TKNTypefaceUnitConvert(double value,
-                              TKNTypefaceUnit from,
-                              TKNTypefaceUnit to);
-
-#ifdef __cplusplus
-};  // extern "C"
-#endif
+@objc enum TypefaceBehavior : Int {
+  case Physical = 0
+  case Typographic = 1
+}

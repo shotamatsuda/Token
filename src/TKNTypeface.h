@@ -26,70 +26,11 @@
 
 #import <AppKit/AppKit.h>
 
-#ifdef __cplusplus
-
-#include "takram/graphics.h"
-#include "token/glyph_outline.h"
-#include "token/ufo.h"
-
-#endif  // __cplusplus
-
-#import "TKNTypefaceUnit.h"
-
-typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
-  kTKNTypefaceMetricsTypePhysical = 0,
-  kTKNTypefaceMetricsTypeTypographic = 1
-};
-
 @interface TKNTypeface : NSObject
 
-- (nullable instancetype)initWithFileAtPath:(nullable NSString *)path
-    NS_DESIGNATED_INITIALIZER;
-
-#pragma mark Opening and Saving
-
-@property (nonatomic, copy, readonly, nonnull) NSString *path;
-
-- (BOOL)openFile:(nonnull NSString *)path;
-- (BOOL)saveToFile:(nonnull NSString *)path;
-
-#pragma mark Parameters
-
-@property (nonatomic, assign) TKNTypefaceMetricsType metricsType;
-@property (nonatomic, assign) double physicalStrokeWidth;
-@property (nonatomic, assign) double physicalCapHeight;
-@property (nonatomic, assign) TKNTypefaceUnit strokeWidthUnit;
-@property (nonatomic, assign) TKNTypefaceUnit capHeightUnit;
-
-#pragma mark Stroke Width
-
-@property (nonatomic, assign) double strokeWidth;
-@property (nonatomic, assign, readonly) NSInteger minStrokeWidth;
-@property (nonatomic, assign, readonly) NSInteger maxStrokeWidth;
-
-#pragma mark Typographic Properties
-
-@property (nonatomic, strong, readonly, nonnull) NSString *familyName;
-@property (nonatomic, strong, readonly, nonnull) NSString *styleName;
-@property (nonatomic, assign, readonly) NSUInteger unitsPerEM;
-@property (nonatomic, assign, readonly) double scale;
-@property (nonatomic, assign, readonly) NSInteger ascender;
-@property (nonatomic, assign, readonly) NSInteger descender;
-@property (nonatomic, assign, readonly) NSInteger lineGap;
-@property (nonatomic, strong, readonly, nonnull) NSString *postscriptName;
-
-#pragma mark Glyphs
-
-- (nullable NSBezierPath *)glyphOutlineForName:(nonnull NSString *)name;
-- (double)advanceOfGlyphForName:(nonnull NSString *)name;
-- (CGRect)boundingRectOfGlyphForName:(nonnull NSString *)name;
-
-#ifdef __cplusplus
-
-- (nonnull NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape;
-- (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
-                       outline:(const token::GlyphOutline&)outline;
-
-#endif  // __cplusplus
+- (BOOL)createFontWithContentsOfURL:(nonnull NSURL *)contentsURL
+                              toURL:(nonnull NSURL *)fontURL
+                           toolsURL:(nonnull NSURL *)toolsURL
+                              error:(NSError * _Nullable * _Nullable)error;
 
 @end

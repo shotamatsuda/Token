@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceMetricsType.h
+//  TypefaceStroker.swift
 //
 //  The MIT License
 //
@@ -24,7 +24,21 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-typedef NS_ENUM(NSInteger, TKNTypefaceMetricsType) {
-  kTKNTypefaceMetricsTypePhysical = 0,
-  kTKNTypefaceMetricsTypeTypographic = 1
-};
+import AppKit
+
+class TypefaceStroker : TKNTypefaceStroker {
+  static private let MinStrokeWidth: Double = 10.0
+  static private let MaxStrokeWidth: Double = 130.0
+
+  var minStrokeWidth: Double {
+    get {
+      return ceil(self.dynamicType.MinStrokeWidth * scale)
+    }
+  }
+
+  var maxStrokeWidth: Double {
+    get {
+      return floor(self.dynamicType.MaxStrokeWidth * scale)
+    }
+  }
+}

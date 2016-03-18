@@ -26,9 +26,8 @@
 
 import AppKit
 
-@objc(TKNFilePath)
 class FilePath : NSObject {
-  class var privateApplicationSupport: String {
+  class var privateApplicationSupportURL: NSURL {
     get {
       guard let identifier = NSBundle.mainBundle().bundleIdentifier else {
         fatalError("Could not retrieve the main bundle identifier")
@@ -37,16 +36,12 @@ class FilePath : NSObject {
         .ApplicationSupportDirectory, .UserDomainMask, true).first else {
           fatalError("Could not retrieve user's application support directory")
       }
-      let directory = NSURL(fileURLWithPath: searchPath)
-      let url = directory.URLByAppendingPathComponent(identifier)
-      guard let path = url.path else {
-        fatalError("Could not retrieve path of file URL")
-      }
-      return path
+      return NSURL(fileURLWithPath: searchPath)
+          .URLByAppendingPathComponent(identifier)
     }
   }
 
-  class var privateLibrary: String {
+  class var privateLibraryURL: NSURL {
     get {
       guard let identifier = NSBundle.mainBundle().bundleIdentifier else {
         fatalError("Could not retrieve the main bundle identifier")
@@ -55,21 +50,12 @@ class FilePath : NSObject {
         .LibraryDirectory, .UserDomainMask, true).first else {
           fatalError("Could not retrieve user's library directory")
       }
-      let directory = NSURL(fileURLWithPath: searchPath)
-      let url = directory.URLByAppendingPathComponent("." + identifier)
-      guard let path = url.path else {
-        fatalError("Could not retrieve file path of URL")
-      }
-      return path
+      return NSURL(fileURLWithPath: searchPath)
+          .URLByAppendingPathComponent("." + identifier)
     }
   }
 
-  class var adobeFDK: String {
-    let directory = NSURL(fileURLWithPath: privateLibrary)
-    let url = directory.URLByAppendingPathComponent("FDK")
-    guard let path = url.path else {
-      fatalError("Could not retrieve file path of URL")
-    }
-    return path
+  class var adobeFDKURL: NSURL {
+    return privateLibraryURL.URLByAppendingPathComponent("FDK")
   }
 }

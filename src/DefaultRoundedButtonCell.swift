@@ -26,71 +26,28 @@
 
 import AppKit
 
-class DefaultRoundedButtonCell : NSButtonCell {
-  override var attributedTitle: NSAttributedString {
+class DefaultRoundedButtonCell : RoundedButtonCell {
+  override var textColor: NSColor {
     get {
-      if !enabled {
-        return super.attributedTitle
-      }
-      guard let appearance = controlView?.effectiveAppearance else {
-        return super.attributedTitle
-      }
-      var color: NSColor
-      var highlightedColor: NSColor
-      if appearance.name == NSAppearanceNameVibrantDark {
-        highlightedColor = NSColor.blackColor()
-        color = highlightedColor.colorWithAlphaComponent(0.75)
-      } else {
-        highlightedColor = NSColor.whiteColor()
-        color = highlightedColor.colorWithAlphaComponent(0.75)
-      }
-      let title = NSMutableAttributedString(
-          attributedString: super.attributedTitle)
-      let range = NSRange(location: 0, length: title.length)
-      title.beginEditing()
-      if highlighted {
-        title.addAttribute(
-            NSForegroundColorAttributeName,
-            value:highlightedColor,
-            range:range)
-      } else {
-        title.addAttribute(
-            NSForegroundColorAttributeName,
-            value:color,
-            range:range)
-      }
-      title.endEditing()
-      return title
-    }
-    
-    set(value) {
-      super.attributedTitle = value
+      return NSColor.blackColor().colorWithAlphaComponent(0.75)
     }
   }
 
-  override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
-    guard let appearance = self.controlView?.effectiveAppearance else {
-      return
+  override var highlightedTextColor: NSColor {
+    get {
+      return NSColor.blackColor()
     }
-    NSGraphicsContext.saveGraphicsState()
-    defer {
-      NSGraphicsContext.restoreGraphicsState()
+  }
+
+  override var frameColor: NSColor {
+    get {
+      return NSColor.whiteColor().colorWithAlphaComponent(0.75)
     }
-    let path = NSBezierPath(roundedRect: frame, radius: 4.0)
-    var color: NSColor
-    var highlightedColor: NSColor;
-    if appearance.name == NSAppearanceNameVibrantDark {
-      highlightedColor = NSColor.whiteColor()
-      color = highlightedColor.colorWithAlphaComponent(0.75)
-    } else {
-      highlightedColor = NSColor.alternateSelectedControlColor()
-      color = highlightedColor.colorWithAlphaComponent(0.75)
+  }
+
+  override var highlightedFrameColor: NSColor {
+    get {
+      return NSColor.whiteColor()
     }
-    if highlighted {
-      highlightedColor.setFill()
-    } else {
-      color.setFill()
-    }
-    path.fill()
   }
 }
