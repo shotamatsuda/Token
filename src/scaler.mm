@@ -176,18 +176,20 @@ int main(int argc, const char *argv[]) {
   if (argc < 3) {
     return EXIT_FAILURE;
   }
-  NSString *source = [NSString stringWithUTF8String:argv[1]];
-  NSString *destination = [NSString stringWithUTF8String:argv[2]];
+  NSURL *source = [NSURL fileURLWithPath:
+      [NSString stringWithUTF8String:argv[1]]];
+  NSURL *destination = [NSURL fileURLWithPath:
+      [NSString stringWithUTF8String:argv[2]]];
   NSFileManager *manager = [NSFileManager defaultManager];
   NSError *error = nil;
-  if ([manager fileExistsAtPath:destination]) {
-    if (![manager removeItemAtPath:destination error:&error]) {
+  if ([destination checkResourceIsReachableAndReturnError:nil]) {
+    if (![manager removeItemAtURL:destination error:&error]) {
       return EXIT_FAILURE;
     }
   }
-  if (![manager copyItemAtPath:source toPath:destination error:&error]) {
+  if (![manager copyItemAtURL:source toURL:destination error:&error]) {
     return EXIT_FAILURE;
   }
-  scaleCapHeightToUnitsPerEM(destination.UTF8String);
+  scaleCapHeightToUnitsPerEM(destination.path.UTF8String);
   return EXIT_SUCCESS;
 }
