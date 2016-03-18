@@ -29,11 +29,11 @@ import AppKit
 class Typeface : TKNTypeface {
   init(directoryURL: NSURL) {
     _strokeWidth = 0.2
-    _capHeight = 2.5
-    typographicStroker = TypefaceStroker(
+    _capHeight = 2.0
+    defaultStroker = Stroker(
         contentsOfURL: directoryURL.URLByAppendingPathComponent(
-            "typographic.ufo"))!
-    physicalStroker = TypefaceStroker(
+            "default.ufo"))!
+    physicalStroker = Stroker(
         contentsOfURL: directoryURL.URLByAppendingPathComponent(
             "physical.ufo"))!
     super.init()
@@ -42,30 +42,32 @@ class Typeface : TKNTypeface {
 
   // MARK: Stroker
 
-  var behavior: TypefaceBehavior = .Physical
+  var strokerBehavior: StrokerBehavior = .Physical {
+    didSet {
+    }
+  }
 
-  private var typographicStroker: TypefaceStroker
-  private var physicalStroker: TypefaceStroker
-
-  private var stroker: TypefaceStroker {
+  private var defaultStroker: Stroker
+  private var physicalStroker: Stroker
+  private var stroker: Stroker {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return defaultStroker
       case .Physical:
         return physicalStroker
-      case .Typographic:
-        return typographicStroker
       }
     }
   }
 
   private func updateStroker() {
-    switch behavior {
+    switch strokerBehavior {
+    case .Default:
+      stroker.strokeWidth = _strokeWidth
     case .Physical:
       let strokeWidth = strokeWidthUnit.convert(_strokeWidth, to: .Point)
       let capHeight = capHeightUnit.convert(_capHeight, to: .Point)
       stroker.strokeWidth = (strokeWidth * stroker.capHeight) / capHeight
-    case .Typographic:
-      stroker.strokeWidth = _strokeWidth
     }
   }
 
@@ -78,12 +80,14 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingFamilyName() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   var styleName: String {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return "UPEM " + String(Int(strokeWidth))
       case .Physical:
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle
@@ -91,14 +95,12 @@ class Typeface : TKNTypeface {
         formatter.maximumFractionDigits = 2
         return formatter.stringFromNumber(strokeWidth)! + strokeWidthUnit.name +
             " / " + formatter.stringFromNumber(capHeight)! + capHeightUnit.name
-      case .Typographic:
-        return "UPEM " + String(Int(strokeWidth))
       }
     }
   }
 
   class func keyPathsForValuesAffectingStyleName() -> NSSet {
-    return NSSet(objects: "behavior",
+    return NSSet(objects: "strokerBehavior",
         "strokeWidth", "strokeWidthUnit",
         "capHeight", "capHeightUnit")
   }
@@ -115,7 +117,9 @@ class Typeface : TKNTypeface {
 
   var postscriptName: String {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return familyName + "-UPEM-" + String(Int(strokeWidth))
       case .Physical:
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle
@@ -124,14 +128,12 @@ class Typeface : TKNTypeface {
         return familyName + "-" +
             formatter.stringFromNumber(strokeWidth)! + strokeWidthUnit.name +
             "-" + formatter.stringFromNumber(capHeight)! + capHeightUnit.name
-      case .Typographic:
-        return familyName + "-UPEM-" + String(Int(strokeWidth))
       }
     }
   }
 
   class func keyPathsForValuesAffectingPostscriptName() -> NSSet {
-    return NSSet(objects: "behavior", "familyName",
+    return NSSet(objects: "strokerBehavior", "familyName",
         "strokeWidth", "strokeWidthUnit",
         "capHeight", "capHeightUnit")
   }
@@ -143,7 +145,7 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingAscender() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   var descender: Double {
@@ -153,7 +155,7 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingDescender() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   var lineGap: Double {
@@ -163,7 +165,7 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingLineGap() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   // MARK: Stroke Width
@@ -175,21 +177,26 @@ class Typeface : TKNTypeface {
     }
 
     set(value) {
-      _strokeWidth = min(max(value, minStrokeWidth), maxStrokeWidth)
+      switch strokerBehavior {
+      case .Default:
+        _strokeWidth = round(min(max(value, minStrokeWidth), maxStrokeWidth))
+      case .Physical:
+        _strokeWidth = min(max(value, minStrokeWidth), maxStrokeWidth)
+      }
       updateStroker()
     }
   }
 
   var strokeWidthUnit: TypefaceUnit = .Millimeter {
     willSet {
-      if behavior != .Physical {
+      if strokerBehavior != .Physical {
         print("Changing this parameter has no effect " +
-              "when the stroker behavior is not physical.")
+              "when the stroker strokerBehavior is not physical.")
       }
     }
 
     didSet {
-      if behavior == .Physical && oldValue != strokeWidthUnit {
+      if strokerBehavior == .Physical && oldValue != strokeWidthUnit {
         strokeWidth = oldValue.convert(strokeWidth, to: strokeWidthUnit)
       }
     }
@@ -197,36 +204,36 @@ class Typeface : TKNTypeface {
 
   var minStrokeWidth: Double {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return stroker.minStrokeWidth
       case .Physical:
         let other = capHeightUnit.convert(capHeight, to: strokeWidthUnit)
         let coeff = other / stroker.capHeight
         return ceil(coeff * stroker.minStrokeWidth * 100.0) / 100.0
-      case .Typographic:
-        return stroker.minStrokeWidth
       }
     }
   }
 
   class func keyPathsForValuesAffectingMinStrokeWidth() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   var maxStrokeWidth: Double {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return stroker.maxStrokeWidth
       case .Physical:
         let other = capHeightUnit.convert(capHeight, to: strokeWidthUnit)
         let coeff = other / stroker.capHeight
         return floor(coeff * stroker.maxStrokeWidth * 100.0) / 100.0
-      case .Typographic:
-        return stroker.maxStrokeWidth
       }
     }
   }
 
   class func keyPathsForValuesAffectingMaxStrokeWidth() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   private var _capHeight: Double = Double()
@@ -236,9 +243,9 @@ class Typeface : TKNTypeface {
     }
 
     set(value) {
-      guard behavior == .Physical else {
+      guard strokerBehavior == .Physical else {
         print("Changing this parameter has no effect " +
-              "when the stroker behavior is not physical.")
+              "when the stroker strokerBehavior is not physical.")
         return
       }
       _capHeight = min(max(value, minCapHeight), maxCapHeight)
@@ -248,14 +255,14 @@ class Typeface : TKNTypeface {
 
   var capHeightUnit: TypefaceUnit = .Millimeter {
     willSet {
-      if behavior != .Physical {
+      if strokerBehavior != .Physical {
         print("Changing this parameter has no effect " +
-              "when the stroker behavior is not physical.")
+              "when the stroker strokerBehavior is not physical.")
       }
     }
 
     didSet {
-      if behavior == .Physical && oldValue != capHeightUnit {
+      if strokerBehavior == .Physical && oldValue != capHeightUnit {
         capHeight = oldValue.convert(capHeight, to: capHeightUnit)
       }
     }
@@ -263,36 +270,36 @@ class Typeface : TKNTypeface {
 
   var minCapHeight: Double {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return Double.NaN  // Not used
       case .Physical:
         let other = strokeWidthUnit.convert(strokeWidth, to: capHeightUnit)
         let numerator = stroker.capHeight * other
         return ceil(numerator / stroker.maxStrokeWidth * 100.0) / 100.0
-      case .Typographic:
-        return Double.NaN  // Not used
       }
     }
   }
 
   class func keyPathsForValuesAffectingMinCapHeight() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   var maxCapHeight: Double {
     get {
-      switch behavior {
+      switch strokerBehavior {
+      case .Default:
+        return Double.NaN  // Not used
       case .Physical:
         let other = strokeWidthUnit.convert(strokeWidth, to: capHeightUnit)
         let numerator = stroker.capHeight * other
         return floor(numerator / stroker.minStrokeWidth * 100.0) / 100.0
-      case .Typographic:
-        return Double.NaN  // Not used
       }
     }
   }
 
   class func keyPathsForValuesAffectingMaxCapHeight() -> NSSet {
-    return NSSet(object: "behavior")
+    return NSSet(object: "strokerBehavior")
   }
 
   // MARK: Glyphs
@@ -305,23 +312,23 @@ class Typeface : TKNTypeface {
     return stroker.glyphAdvanceForName(name)
   }
 
-  func glyphBoundsForName(name: String)  -> CGRect {
+  func glyphBoundsForName(name: String) -> CGRect {
     return stroker.glyphBoundsForName(name)
   }
 
   // MARK: Saving
 
-  func createFontToURL(url: NSURL) throws {
+  func createFontToURL(URL: NSURL) throws {
     let workingDirectoryURL = NSURL(
         fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(
             NSProcessInfo.processInfo().globallyUniqueString)
     let contentsURL = workingDirectoryURL.URLByAppendingPathComponent(
-        stroker.url.URLByDeletingPathExtension!
+        stroker.URL.URLByDeletingPathExtension!
             .URLByAppendingPathExtension("ufo").lastPathComponent!)
     let fontURL = workingDirectoryURL.URLByAppendingPathComponent(
-        stroker.url.URLByDeletingPathExtension!
+        stroker.URL.URLByDeletingPathExtension!
             .URLByAppendingPathExtension("otf").lastPathComponent!)
-    let toolsURL = FilePath.adobeFDKURL
+    let toolsURL = Location.adobeFDKURL
         .URLByAppendingPathComponent("Tools")
         .URLByAppendingPathComponent("osx")
     stroker.styleName = styleName
@@ -333,17 +340,17 @@ class Typeface : TKNTypeface {
         toURL: fontURL,
         toolsURL: toolsURL)
     let fileManager = NSFileManager.defaultManager()
-    if url.checkResourceIsReachableAndReturnError(nil) {
-      try fileManager.removeItemAtURL(url)
+    if URL.checkResourceIsReachableAndReturnError(nil) {
+      try fileManager.removeItemAtURL(URL)
     }
-    let directoryURL = url.URLByDeletingLastPathComponent!
+    let directoryURL = URL.URLByDeletingLastPathComponent!
     if !directoryURL.checkResourceIsReachableAndReturnError(nil) {
       try fileManager.createDirectoryAtURL(
           directoryURL,
           withIntermediateDirectories: true,
           attributes: nil)
     }
-    try fileManager.copyItemAtURL(fontURL, toURL: url)
+    try fileManager.copyItemAtURL(fontURL, toURL: URL)
     try fileManager.removeItemAtURL(workingDirectoryURL)
   }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
@@ -202,7 +202,7 @@
         <scene sceneID="6qy-fh-DB1">
             <objects>
                 <windowController id="qw9-4F-FKp" customClass="MainWindowController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qcN-4n-DfN">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Main Window" animationBehavior="default" id="qcN-4n-DfN">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="800" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -297,7 +297,7 @@
                                             <constraint firstAttribute="width" constant="25" id="5S3-Te-hep"/>
                                             <constraint firstAttribute="height" constant="25" id="Q3d-r9-bNT"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNZoomIn" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5kW-OY-CIj">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ZoomIn" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5kW-OY-CIj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -329,7 +329,7 @@
                                             <constraint firstAttribute="height" constant="25" id="Ae5-AS-C2b"/>
                                             <constraint firstAttribute="width" constant="25" id="YKg-g1-NJh"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNZoomOut" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="vR6-w8-Zeg">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ZoomOut" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="vR6-w8-Zeg">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -343,7 +343,7 @@
                                             <constraint firstAttribute="width" constant="25" id="QdA-f3-Fjq"/>
                                             <constraint firstAttribute="height" constant="25" id="gvd-Y9-rxW"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNInvert" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="xvI-7d-sCc">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Invert" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="xvI-7d-sCc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -357,7 +357,7 @@
                                             <constraint firstAttribute="width" constant="25" id="6sd-0T-GBF"/>
                                             <constraint firstAttribute="height" constant="25" id="fyw-aC-bso"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TKNOutline" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="i4E-FM-Nql">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Outline" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="i4E-FM-Nql">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -452,7 +452,7 @@
                                                     </menu>
                                                 </popUpButtonCell>
                                                 <connections>
-                                                    <binding destination="FnN-Dk-mc2" name="selectedIndex" keyPath="self.typeface.behavior" id="yXe-M0-cjG"/>
+                                                    <binding destination="FnN-Dk-mc2" name="selectedIndex" keyPath="self.typeface.strokerBehavior" id="Hyz-Lf-Zcl"/>
                                                 </connections>
                                             </popUpButton>
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="V6r-aJ-L8X">
@@ -617,7 +617,7 @@
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                         <connections>
-                            <binding destination="Ope-ZY-PwF" name="selectedIndex" keyPath="selection.self.typeface.behavior" id="QMq-XF-73s"/>
+                            <binding destination="Ope-ZY-PwF" name="selectedIndex" keyPath="selection.self.typeface.strokerBehavior" id="sUD-lc-Yj0"/>
                         </connections>
                     </tabView>
                     <connections>
@@ -651,7 +651,7 @@
                                             <constraint firstAttribute="width" constant="50" id="fpf-nG-XAC"/>
                                             <constraint firstAttribute="height" constant="64" id="njI-08-KLh"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNStrokeWidthTemplate" id="4YR-hR-PPk"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StrokeWidthTemplate" id="4YR-hR-PPk"/>
                                     </imageView>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Ng3-B2-Ph8">
                                         <rect key="frame" x="322" y="111" width="68" height="24"/>
@@ -686,7 +686,7 @@
                                             <constraint firstAttribute="width" constant="50" id="ovT-Uf-Kll"/>
                                             <constraint firstAttribute="height" constant="64" id="xHM-9i-1Pk"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNCapHeightTemplate" id="Sea-qO-ETT"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CapHeightTemplate" id="Sea-qO-ETT"/>
                                     </imageView>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-Fb-6cs" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="177" y="108" width="147" height="51"/>
@@ -832,7 +832,7 @@
                                             <constraint firstAttribute="height" constant="64" id="I9S-ya-1Cg"/>
                                             <constraint firstAttribute="width" constant="50" id="glJ-Tc-B6J"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TKNStrokeWidthTemplate" id="R3x-J2-K2k"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StrokeWidthTemplate" id="R3x-J2-K2k"/>
                                     </imageView>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-tN-CEO" customClass="NumericTextField" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="177" y="93" width="166" height="51"/>
@@ -958,11 +958,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TKNCapHeightTemplate" width="50" height="64"/>
-        <image name="TKNInvert" width="23" height="23"/>
-        <image name="TKNOutline" width="23" height="23"/>
-        <image name="TKNStrokeWidthTemplate" width="50" height="64"/>
-        <image name="TKNZoomIn" width="23" height="23"/>
-        <image name="TKNZoomOut" width="23" height="23"/>
+        <image name="CapHeightTemplate" width="50" height="64"/>
+        <image name="Invert" width="23" height="23"/>
+        <image name="Outline" width="23" height="23"/>
+        <image name="StrokeWidthTemplate" width="50" height="64"/>
+        <image name="ZoomIn" width="23" height="23"/>
+        <image name="ZoomOut" width="23" height="23"/>
     </resources>
 </document>

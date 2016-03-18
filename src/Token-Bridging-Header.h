@@ -1,2 +1,2 @@
-#import "TKNTypefaceStroker.h"
+#import "TKNStroker.h"
 #import "TKNTypeface.h"

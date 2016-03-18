@@ -1,5 +1,5 @@
 //
-//  TypefaceBehavior.swift
+//  StrokerBehavior.swift
 //
 //  The MIT License
 //
@@ -24,7 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-@objc enum TypefaceBehavior : Int {
+@objc enum StrokerBehavior : Int {
   case Physical = 0
-  case Typographic = 1
+  case Default = 1
 }

@@ -1,5 +1,5 @@
 //
-//  TypefaceStroker.swift
+//  Stroker.swift
 //
 //  The MIT License
 //
@@ -26,7 +26,7 @@
 
 import AppKit
 
-class TypefaceStroker : TKNTypefaceStroker {
+class Stroker : TKNStroker {
   static private let MinStrokeWidth: Double = 10.0
   static private let MaxStrokeWidth: Double = 130.0
 

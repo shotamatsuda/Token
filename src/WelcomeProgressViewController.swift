@@ -52,7 +52,7 @@ class WelcomeProgressViewController : NSViewController,
   private var downloadTask: NSURLSessionDownloadTask?
 
   private func download() {
-    guard let url = NSURL(
+    guard let URL = NSURL(
         string: "https://download.macromedia.com" +
                 "/pub/developer/opentype/FDK-25-MAC.zip") else {
       return
@@ -61,7 +61,7 @@ class WelcomeProgressViewController : NSViewController,
         configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
         delegate: self,
         delegateQueue: NSOperationQueue.mainQueue())
-    downloadTask = downloadSession!.downloadTaskWithURL(url)
+    downloadTask = downloadSession!.downloadTaskWithURL(URL)
     guard downloadTask != nil else {
       return
     }
@@ -86,8 +86,8 @@ class WelcomeProgressViewController : NSViewController,
       session: NSURLSession,
       downloadTask: NSURLSessionDownloadTask,
       didFinishDownloadingToURL location: NSURL) {
-    let directoryURL = FilePath.privateApplicationSupportURL
-    let url = directoryURL.URLByAppendingPathComponent(
+    let directoryURL = Location.privateApplicationSupportURL
+    let URL = directoryURL.URLByAppendingPathComponent(
         location.lastPathComponent!)
     let fileManager = NSFileManager.defaultManager()
     do {
@@ -96,12 +96,12 @@ class WelcomeProgressViewController : NSViewController,
             directoryURL,
             withIntermediateDirectories: true,
             attributes: nil)
-        try fileManager.copyItemAtURL(location, toURL: url)
+        try fileManager.copyItemAtURL(location, toURL: URL)
       }
-      if url.checkResourceIsReachableAndReturnError(nil) {
-        try fileManager.removeItemAtURL(url)
+      if URL.checkResourceIsReachableAndReturnError(nil) {
+        try fileManager.removeItemAtURL(URL)
       }
-      try fileManager.copyItemAtURL(location, toURL: url)
+      try fileManager.copyItemAtURL(location, toURL: URL)
     } catch let error {
       let alert = NSAlert()
       alert.messageText = "\(error)"
@@ -110,7 +110,7 @@ class WelcomeProgressViewController : NSViewController,
           completionHandler: nil)
     }
     archiveDirectoryURL = directoryURL
-    archiveURL = url
+    archiveURL = URL
   }
 
   func URLSession(
@@ -152,8 +152,16 @@ class WelcomeProgressViewController : NSViewController,
   private func didExtract() {
     // This function ill be invoked in a background thread
     dispatch_async(dispatch_get_main_queue()) { () in
-      self.install()
-      self.cleanUp()
+      do {
+        try self.install()
+        try self.cleanUp()
+      } catch let error {
+        let alert = NSAlert()
+        alert.messageText = "\(error)"
+        alert.beginSheetModalForWindow(
+            NSApp.mainWindow!,
+            completionHandler: nil)
+      }
       self.progressIndicator?.stopAnimation(self)
       guard let window = self.view.window,
           sheetParent = window.sheetParent else {
@@ -165,56 +173,40 @@ class WelcomeProgressViewController : NSViewController,
 
   // MARK: Install
 
-  private func install() {
+  private func install() throws {
     progressLabel?.stringValue = NSLocalizedString(
         "Installing...",
         comment: "")
-    let libraryURL = FilePath.privateLibraryURL
-    let linkURL = FilePath.adobeFDKURL
-    let url = archiveDirectoryURL!.URLByAppendingPathComponent("FDK")
+    let libraryURL = Location.privateLibraryURL
+    let linkURL = Location.adobeFDKURL
+    let URL = archiveDirectoryURL!.URLByAppendingPathComponent("FDK")
     let fileManager = NSFileManager.defaultManager()
-    do {
-      if !libraryURL.checkResourceIsReachableAndReturnError(nil) {
-        try fileManager.createDirectoryAtURL(
-            libraryURL,
-            withIntermediateDirectories: true,
-            attributes: nil)
-      }
-      do {
-        try fileManager.removeItemAtURL(linkURL)
-      } catch {}
-      try fileManager.createSymbolicLinkAtURL(
-          linkURL,
-          withDestinationURL: url)
-    } catch let error {
-      let alert = NSAlert()
-      alert.messageText = "\(error)"
-      alert.beginSheetModalForWindow(
-          NSApp.mainWindow!,
-          completionHandler: nil)
+    if !libraryURL.checkResourceIsReachableAndReturnError(nil) {
+      try fileManager.createDirectoryAtURL(
+          libraryURL,
+          withIntermediateDirectories: true,
+          attributes: nil)
     }
+    do {
+      try fileManager.removeItemAtURL(linkURL)
+    } catch {}
+    try fileManager.createSymbolicLinkAtURL(
+        linkURL,
+        withDestinationURL: URL)
   }
 
-  private func cleanUp() {
+  private func cleanUp() throws {
     progressLabel?.stringValue = NSLocalizedString(
         "Cleaning up...",
         comment: "")
     let garbageURL = archiveDirectoryURL!
         .URLByAppendingPathComponent("__MACOSX")
     let fileManager = NSFileManager.defaultManager()
-    do {
-      if garbageURL.checkResourceIsReachableAndReturnError(nil) {
-        try fileManager.removeItemAtURL(garbageURL)
-      }
-      if archiveURL!.checkResourceIsReachableAndReturnError(nil) {
-        try fileManager.removeItemAtURL(archiveURL!)
-      }
-    } catch let error {
-      let alert = NSAlert()
-      alert.messageText = "\(error)"
-      alert.beginSheetModalForWindow(
-          NSApp.mainWindow!,
-          completionHandler: nil)
+    if garbageURL.checkResourceIsReachableAndReturnError(nil) {
+      try fileManager.removeItemAtURL(garbageURL)
+    }
+    if archiveURL!.checkResourceIsReachableAndReturnError(nil) {
+      try fileManager.removeItemAtURL(archiveURL!)
     }
   }
 }

@@ -35,10 +35,10 @@ class WelcomeAgreementViewController : NSViewController {
       return
     }
     let bundle = NSBundle.mainBundle()
-    let url = bundle.URLForResource("AdobeFDKLicense", withExtension: "rtf")!
-    let data = NSData(contentsOfURL: url)!
+    let URL = bundle.URLForResource("AdobeFDKLicense", withExtension: "rtf")!
+    let data = NSData(contentsOfURL: URL)!
     let contents = NSAttributedString(RTF: data, documentAttributes: nil)
-    licenseTextView.textStorage?.setAttributedString(contents!)
+    licenseTextView.textStorage!.setAttributedString(contents!)
   }
 
   @IBAction func cancel(sender: AnyObject?) {

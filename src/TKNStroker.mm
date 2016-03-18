@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceStroker.m
+//  TKNStroker.m
 //
 //  The MIT License
 //
@@ -26,7 +26,7 @@
 
 #define TAKRAM_HAS_COREGRAPHICS 1
 
-#import "TKNTypefaceStroker.h"
+#import "TKNStroker.h"
 
 #include <cassert>
 #include <iterator>
@@ -43,7 +43,7 @@
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
 
-@interface TKNTypefaceStroker () {
+@interface TKNStroker () {
  @private
   token::ufo::FontInfo _fontInfo;
   token::ufo::Glyphs _glyphs;
@@ -65,16 +65,16 @@
 
 @end
 
-@implementation TKNTypefaceStroker
+@implementation TKNStroker
 
-- (instancetype)initWithContentsOfURL:(nonnull NSURL *)url {
+- (instancetype)initWithContentsOfURL:(nonnull NSURL *)URL {
   self = [super init];
   if (self) {
-    _url = url;
+    _URL = URL;
     _strokeShiftIncrement = 0.0001;
     _strokeShiftLimit = 0.1;
-    _fontInfo = token::ufo::FontInfo(url.path.UTF8String);
-    _glyphs = token::ufo::Glyphs(url.path.UTF8String);
+    _fontInfo = token::ufo::FontInfo(URL.path.UTF8String);
+    _glyphs = token::ufo::Glyphs(URL.path.UTF8String);
     for (auto& glyph : _glyphs) {
       _glyphOutlines.emplace(glyph.name, token::GlyphOutline(glyph));
     }
@@ -230,24 +230,24 @@
 
 #pragma mark Saving
 
-- (BOOL)saveToURL:(NSURL *)url error:(NSError **)error {
+- (BOOL)saveToURL:(NSURL *)URL error:(NSError **)error {
   NSFileManager *fileManager = [NSFileManager defaultManager];
-  if (![url.URLByDeletingLastPathComponent
+  if (![URL.URLByDeletingLastPathComponent
           checkResourceIsReachableAndReturnError:nil]) {
-    if (![fileManager createDirectoryAtURL:url.URLByDeletingLastPathComponent
+    if (![fileManager createDirectoryAtURL:URL.URLByDeletingLastPathComponent
                withIntermediateDirectories:YES
                                 attributes:nil
                                      error:error]) {
       return NO;
     }
   }
-  if (![fileManager copyItemAtURL:_url toURL:url error:error]) {
+  if (![fileManager copyItemAtURL:_URL toURL:URL error:error]) {
     return NO;
   }
-  if (![self updateFontInfoAtPath:url.path.UTF8String]) {
+  if (![self updateFontInfoAtPath:URL.path.UTF8String]) {
     return NO;
   }
-  if (![self updateGlyphsAtPath:url.path.UTF8String]) {
+  if (![self updateGlyphsAtPath:URL.path.UTF8String]) {
     return NO;
   }
   return YES;

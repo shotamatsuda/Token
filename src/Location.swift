@@ -1,5 +1,5 @@
 //
-//  FilePath.swift
+//  Location.swift
 //
 //  The MIT License
 //
@@ -26,7 +26,7 @@
 
 import AppKit
 
-class FilePath : NSObject {
+class Location : NSObject {
   class var privateApplicationSupportURL: NSURL {
     get {
       guard let identifier = NSBundle.mainBundle().bundleIdentifier else {

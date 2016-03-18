@@ -1,5 +1,5 @@
 //
-//  TKNTypefaceStroker.h
+//  TKNStroker.h
 //
 //  The MIT License
 //
@@ -26,13 +26,13 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNTypefaceStroker : NSObject
+@interface TKNStroker : NSObject
 
 #pragma mark Opening and Saving
 
-- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)url;
+- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)URL;
 
-@property (nonatomic, copy, readonly, nonnull) NSURL *url;
+@property (nonatomic, copy, readonly, nonnull) NSURL *URL;
 
 #pragma mark Stroking
 
@@ -60,7 +60,7 @@
 
 #pragma mark Saving
 
-- (BOOL)saveToURL:(nonnull NSURL *)url
+- (BOOL)saveToURL:(nonnull NSURL *)URL
             error:(NSError * _Nullable * _Nullable)error;
 
 @end

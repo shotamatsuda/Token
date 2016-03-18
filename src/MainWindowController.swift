@@ -59,14 +59,14 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
 
     // Prepare a typeface
     let bundle = NSBundle.mainBundle()
-    let url = bundle.URLForResource("typeface", withExtension: nil)
-    typeface = Typeface(directoryURL: url!)
+    let URL = bundle.URLForResource("typeface", withExtension: nil)
+    typeface = Typeface(directoryURL: URL!)
     typefaceViewController?.typeface = typeface
     settingsViewController?.typeface = typeface
 
     // Check for Adobe FDK and show the welcome sheet if necessary.
     dispatch_async(dispatch_get_main_queue()) { () in
-      if !FilePath.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
+      if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
         self.installAdobeFDK(self)
       }
     }
@@ -103,10 +103,11 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
         .LibraryDirectory, .UserDomainMask, true).first else {
       fatalError("Could not retrieve user's library directory")
     }
-    let fileName = typeface.postscriptName + ".otf"
     let installURL = NSURL(fileURLWithPath: searchPath)
+        .URLByAppendingPathComponent("Fonts")
         .URLByAppendingPathComponent(typeface.familyName)
-            .URLByAppendingPathComponent(fileName)
+        .URLByAppendingPathComponent(typeface.postscriptName)
+        .URLByAppendingPathExtension("otf")
     do {
       try typeface.createFontToURL(installURL)
     } catch let error {
@@ -162,13 +163,13 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
       guard returnCode == NSAlertFirstButtonReturn else {
         return
       }
-      let applicationSupportURL = FilePath.privateApplicationSupportURL
+      let applicationSupportURL = Location.privateApplicationSupportURL
       let fileManager = NSFileManager.defaultManager()
       do {
         if applicationSupportURL.checkResourceIsReachableAndReturnError(nil) {
           try fileManager.removeItemAtURL(applicationSupportURL)
         }
-        let libraryURL = FilePath.privateLibraryURL
+        let libraryURL = Location.privateLibraryURL
         if libraryURL.checkResourceIsReachableAndReturnError(nil) {
           try fileManager.removeItemAtURL(libraryURL)
         }

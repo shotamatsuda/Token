@@ -27,7 +27,7 @@
 import AppKit
 
 class TypefaceViewController : NSViewController {
-  private let KVOContext = UnsafeMutablePointer<()>()
+  private let KVOContext: UnsafeMutablePointer<()> = UnsafeMutablePointer<()>()
 
   @IBOutlet var typefaceView: TypefaceView?
   @IBOutlet var scrollView: NSScrollView?
@@ -155,7 +155,7 @@ class TypefaceViewController : NSViewController {
   // MARK: Parameters
 
   private let typefaceKeyPaths = [
-      "behavior", "strokeWidth", "capHeight",
+      "strokerBehavior", "strokeWidth", "capHeight",
       "strokeWidthUnit", "capHeightUnit"]
 
   var typeface: Typeface? {
