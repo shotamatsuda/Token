@@ -34,7 +34,7 @@ readonly DEPOT_TOOLS_DIR="${BUILD_DIR}/depot_tools"
 readonly SKIA_DIR="${BUILD_DIR}/skia"
 
 cleanup() {
-  echo "Cleaning everything before we start to build.."
+  echo "Cleaning everything before we start to build..."
   rm -rf "${SKIA_DIR}/out"
   rm -rf "${BUILD_DIR}/lib"
   rm -rf "${BUILD_DIR}/include"
@@ -54,9 +54,9 @@ download_skia() {
   cd "${SKIA_DIR}"
   export PATH="${DEPOT_TOOLS_DIR}":"${PATH}"
   echo 'Downloading skia...'
-  gclient config --name . --unmanaged "${SKIA_GIT}"
+  gclient config --name "${SKIA_DIR}" --unmanaged "${SKIA_GIT}"
   gclient sync
-  git checkout master
+  git checkout chrome/m50
 }
 
 build_skia() {
