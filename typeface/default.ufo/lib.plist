@@ -43,6 +43,7 @@
 		<string>.notdef</string>
 		<string>.null</string>
 		<string>space</string>
+		<string>slash</string>
 	</array>
 </dict>
 </plist>

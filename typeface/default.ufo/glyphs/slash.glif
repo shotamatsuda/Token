@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="slash" format="1">
+  <advance width="600"/>
+  <unicode hex="002F"/>
+  <outline>
+    <contour>
+      <point x="431.085" y="680" type="move"/>
+      <point x="0" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.takram.numberOfContours</key>
+      <integer>1</integer>
+      <key>com.takram.numberOfHoles</key>
+      <integer>0</integer>
+    </dict>
+  </lib>
+</glyph>

@@ -80,5 +80,7 @@
 	<string>eight.glif</string>
 	<key>nine</key>
 	<string>nine.glif</string>
+	<key>slash</key>
+	<string>slash.glif</string>
 </dict>
 </plist>
