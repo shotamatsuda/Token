@@ -82,5 +82,7 @@
 	<string>nine.glif</string>
 	<key>slash</key>
 	<string>slash.glif</string>
+	<key>hyphen</key>
+	<string>hyphen.glif</string>
 </dict>
 </plist>
