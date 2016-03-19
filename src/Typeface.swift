@@ -177,12 +177,7 @@ class Typeface : TKNTypeface {
     }
 
     set(value) {
-      switch strokerBehavior {
-      case .Default:
-        _strokeWidth = round(min(max(value, minStrokeWidth), maxStrokeWidth))
-      case .Physical:
-        _strokeWidth = min(max(value, minStrokeWidth), maxStrokeWidth)
-      }
+      _strokeWidth = min(max(value, minStrokeWidth), maxStrokeWidth)
       updateStroker()
     }
   }

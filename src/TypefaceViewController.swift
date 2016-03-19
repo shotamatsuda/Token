@@ -96,13 +96,13 @@ class TypefaceViewController : NSViewController {
           fromView: window.contentView)
       let scale = Double(event.scrollingDeltaY < 0.0 ? 0.9 : 1.0 / 0.9)
       willChangeValueForKey("magnification")
-      magnificationValue = min(max(
-          magnificationValue * scale,
+      _magnification = min(max(
+          _magnification * scale,
           Double(scrollView.minMagnification)),
           Double(scrollView.maxMagnification))
       didChangeValueForKey("magnification")
       scrollView.setMagnification(
-          CGFloat(magnificationValue),
+          CGFloat(_magnification),
           centeredAtPoint: center)
     } else {
       scrollView.scrollWheel(event)
@@ -118,13 +118,13 @@ class TypefaceViewController : NSViewController {
         event.locationInWindow,
         fromView: window.contentView)
     willChangeValueForKey("magnification")
-    magnificationValue = min(max(
-        magnificationValue * (1.0 + Double(event.magnification)),
+    _magnification = min(max(
+        _magnification * (1.0 + Double(event.magnification)),
         Double(scrollView.minMagnification)),
         Double(scrollView.maxMagnification))
     didChangeValueForKey("magnification")
     scrollView.setMagnification(
-        CGFloat(magnificationValue),
+        CGFloat(_magnification),
         centeredAtPoint: center)
   }
 
@@ -212,12 +212,12 @@ class TypefaceViewController : NSViewController {
 
   // MARK: Zooming
 
-  private var magnificationValue: Double = 1.0
   private var magnificationQueue: Array<Double> = Array<Double>()
 
+  private var _magnification: Double = 1.0
   var magnification: Double {
     get {
-      return magnificationValue
+      return _magnification
     }
 
     set(value) {
@@ -241,19 +241,19 @@ class TypefaceViewController : NSViewController {
         magnification,
         Double(scrollView.minMagnification)),
         Double(scrollView.maxMagnification))
-    if value == magnificationValue {
+    if value == _magnification {
       return
     }
     willChangeValueForKey("magnification")
-    magnificationValue = value
+    _magnification = value
     didChangeValueForKey("magnification")
     if animated {
-      magnificationQueue.append(magnificationValue)
+      magnificationQueue.append(_magnification)
       if magnificationQueue.count == 1 {
         animateQueuedMagnification()
       }
     } else {
-      scrollView.magnification = CGFloat(magnificationValue)
+      scrollView.magnification = CGFloat(_magnification)
     }
   }
 
@@ -299,7 +299,7 @@ class TypefaceViewController : NSViewController {
       return
     }
     alwaysZoomsToFit = false
-    var result = magnificationValue
+    var result = _magnification
     var proposed = Double(scrollView.minMagnification)
     for i in 0..<Int.max {
       if proposed >= 1.0 {
@@ -307,10 +307,10 @@ class TypefaceViewController : NSViewController {
       } else {
         proposed /= (i % 2 != 0) ? 2.0 / 3.0 : 3.0 / 4.0
       }
-      if (magnificationValue >= proposed) {
+      if (_magnification >= proposed) {
         continue
       }
-      if (result <= magnificationValue && magnificationValue < proposed) {
+      if (result <= _magnification && _magnification < proposed) {
         result = proposed
         break
       }
@@ -324,7 +324,7 @@ class TypefaceViewController : NSViewController {
       return
     }
     alwaysZoomsToFit = false
-    var result = magnificationValue
+    var result = _magnification
     var proposed = Double(scrollView.maxMagnification)
     for i in 0..<Int.max {
       if proposed <= 1.0 {
