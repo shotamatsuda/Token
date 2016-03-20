@@ -75,6 +75,8 @@ class GlyphStroker final {
   void set_cap(Cap value) { cap_ = value; }
   Join join() const { return join_; }
   void set_join(Join value) { join_ = value; }
+  bool filled() const { return filled_; }
+  void set_filled(bool value) { filled_ = value; }
   double precision() const { return precision_; }
   void set_precision(double value) { precision_ = value; }
   double shift_increment() const { return shift_increment_; }
@@ -93,6 +95,7 @@ class GlyphStroker final {
   double miter_;
   Cap cap_;
   Join join_;
+  bool filled_;
   double precision_;
   double shift_increment_;
   double shift_limit_;
@@ -105,6 +108,7 @@ inline GlyphStroker::GlyphStroker()
       miter_(),
       cap_(Cap::ROUND),
       join_(Join::ROUND),
+      filled_(),
       precision_(0.25),
       shift_increment_(0.0001),
       shift_limit_(0.1) {}
@@ -116,6 +120,7 @@ inline bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs) {
           lhs.miter_ == rhs.miter_ &&
           lhs.cap_ == rhs.cap_ &&
           lhs.join_ == rhs.join_ &&
+          lhs.filled_ == rhs.filled_ &&
           lhs.precision_ == rhs.precision_ &&
           lhs.shift_increment_ == rhs.shift_increment_ &&
           lhs.shift_limit_ == rhs.shift_limit_);

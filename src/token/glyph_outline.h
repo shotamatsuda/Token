@@ -52,6 +52,7 @@ class GlyphOutline final {
   const takram::Shape2d& shape() const { return shape_; }
   takram::Shape2d& shape() { return shape_; }
   GlyphStroker::Cap cap(const takram::Path2d& path) const;
+  bool filled(const takram::Path2d& path) const;
 
   // Conversion
   ufo::Glyph glyph(const ufo::Glyph& prototype) const;
@@ -63,6 +64,7 @@ class GlyphOutline final {
  public:
   takram::Shape2d shape_;
   std::unordered_map<std::size_t, GlyphStroker::Cap> caps_;
+  std::unordered_map<std::size_t, bool> filleds_;
 };
 
 #pragma mark -
@@ -77,6 +79,16 @@ inline GlyphStroker::Cap GlyphOutline::cap(const takram::Path2d& path) const {
   }
   const auto index = std::distance(std::begin(paths), itr);
   return caps_.at(index);
+}
+
+inline bool GlyphOutline::filled(const takram::Path2d& path) const {
+  const auto& paths = shape_.paths();
+  const auto itr = std::find(std::begin(paths), std::end(paths), path);
+  if (itr == std::end(paths)) {
+    return false;
+  }
+  const auto index = std::distance(std::begin(paths), itr);
+  return filleds_.at(index);
 }
 
 }  // namespace token

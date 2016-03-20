@@ -255,6 +255,8 @@ takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
     } else {
       stroker.set_cap(cap_);
     }
+    const auto filled = outline.filled(path);
+    stroker.set_filled(stroker.filled() || filled);
     const auto shape = stroker.stroke(path);
     for (const auto& path : shape.paths()) {
       result.paths().emplace_back(path);
@@ -276,14 +278,33 @@ takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
 
 takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
   SkPaint paint;
-  paint.setStyle(SkPaint::kStroke_Style);
+  if (filled_) {
+    paint.setStyle(SkPaint::kStrokeAndFill_Style);
+  } else {
+    paint.setStyle(SkPaint::kStroke_Style);
+  }
   paint.setStrokeWidth(width_);
   paint.setStrokeMiter(miter_);
   paint.setStrokeCap(convertCap(cap_));
   paint.setStrokeJoin(convertJoin(join_));
-  SkPath result;
-  paint.getFillPath(convertPath(path), &result, nullptr, precision_);
-  return convertShape(result);
+  SkPath sk_result;
+  paint.getFillPath(convertPath(path), &sk_result, nullptr, precision_);
+  auto result = convertShape(sk_result);
+  if (filled_ && result.size() > 1) {
+    // Take a path which has the largest bounding box when the path is filled.
+    auto& paths = result.paths();
+    auto max_path = std::begin(paths);
+    auto max_bounds = max_path->bounds(true);
+    for (auto itr = std::next(max_path); itr != std::end(paths); ++itr) {
+      const auto bounds = itr->bounds(true);
+      if (bounds.contains(max_bounds)) {
+        max_path = itr;
+        max_bounds = bounds;
+      }
+    }
+    result = takram::Shape2d(*max_path);
+  }
+  return std::move(result);
 }
 
 takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {

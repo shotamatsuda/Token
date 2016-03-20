@@ -136,6 +136,7 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
     }
   }
   auto cap = GlyphStroker::Cap::UNDEFINED;
+  bool filled{};
   if (open) {
     if (contour.points.back().name == "butt") {
       cap = GlyphStroker::Cap::BUTT;
@@ -144,8 +145,13 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
     } else if (contour.points.back().name == "project") {
       cap = GlyphStroker::Cap::PROJECT;
     }
+  } else {
+    if (contour.points.back().name == "filled") {
+      filled = true;
+    }
   }
   caps_.emplace(shape_.paths().size() - 1, cap);
+  filleds_.emplace(shape_.paths().size() - 1, filled);
 }
 
 void GlyphOutline::processPath(const takram::Path2d& path,
