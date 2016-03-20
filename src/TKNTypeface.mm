@@ -37,10 +37,10 @@
                               toURL:(NSURL *)fontURL
                            toolsURL:(NSURL *)toolsURL
                               error:(NSError **)error {
-  const std::string fontPath(fontURL.path.UTF8String);
   const std::string directoryPath(
       fontURL.URLByDeletingLastPathComponent.path.UTF8String);
   const std::string contentsPath(contentsURL.path.UTF8String);
+  const std::string fontPath(fontURL.path.UTF8String);
   const std::string toolsPath(toolsURL.path.UTF8String);
   const token::ufo::FontInfo fontInfo(contentsPath);
   const token::ufo::Glyphs glyphs(contentsPath);

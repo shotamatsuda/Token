@@ -196,7 +196,7 @@
                 <customObject id="UkH-Qk-Gn3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="YLy-65-1bz" customClass="ApplicationDelegate" customModule="Token" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="-189.5" y="-123"/>
+            <point key="canvasLocation" x="-603" y="-155"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="6qy-fh-DB1">
@@ -204,7 +204,7 @@
                 <windowController id="qw9-4F-FKp" customClass="MainWindowController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Main Window" animationBehavior="default" id="qcN-4n-DfN">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="800" height="600"/>
+                        <rect key="contentRect" x="196" y="240" width="960" height="680"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                     </window>
                     <connections>
@@ -213,24 +213,24 @@
                 </windowController>
                 <customObject id="LIA-EO-V2C" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37" y="312"/>
+            <point key="canvasLocation" x="-296" y="312"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="osD-f4-xi5">
             <objects>
                 <viewController id="QTk-2g-cua" customClass="MainViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kua-eo-iuQ">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="960" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="e1g-LC-dx8">
-                                <rect key="frame" x="0.0" y="225" width="800" height="375"/>
+                                <rect key="frame" x="0.0" y="225" width="960" height="415"/>
                                 <connections>
                                     <segue destination="laX-qJ-5ZH" kind="embed" identifier="Typeface" id="ulV-EN-UZ7"/>
                                 </connections>
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fVg-It-Jx6">
-                                <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
+                                <rect key="frame" x="0.0" y="0.0" width="960" height="225"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="225" id="hoW-Ze-rsV"/>
                                 </constraints>
@@ -253,7 +253,7 @@
                 </viewController>
                 <customObject id="S4q-G7-ATl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="312"/>
+            <point key="canvasLocation" x="825" y="312"/>
         </scene>
         <!--Typeface View Controller-->
         <scene sceneID="6zb-ud-q2i">
@@ -540,7 +540,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="square" title="Export Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4k2-Z2-Wfm" customClass="RoundedButtonCell" customModule="Token" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" size="18" name=".HelveticaNeueDeskInterface-Light"/>
+                                                    <font key="font" metaFont="systemLight" size="18"/>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="exportFont:" target="oHV-Ur-LzN" id="HVN-Ak-QA2"/>
@@ -553,7 +553,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="square" title="Install Font" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fd-ri-rXd" customClass="DefaultRoundedButtonCell" customModule="Token" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" size="18" name=".HelveticaNeueDeskInterface-Light"/>
+                                                    <font key="font" metaFont="systemLight" size="18"/>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="installFont:" target="oHV-Ur-LzN" id="C2J-Hw-5Pj"/>
@@ -661,7 +661,7 @@
                                         </constraints>
                                         <popUpButtonCell key="cell" type="bevel" title="mm" bezelStyle="regularSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="XLJ-Km-nzZ" id="tt1-77-vK6">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" size="16" name=".HelveticaNeueDeskInterface-Light"/>
+                                            <font key="font" metaFont="systemLight" size="16"/>
                                             <menu key="menu" id="cSe-WL-Xaf">
                                                 <items>
                                                     <menuItem title="mm" state="on" id="XLJ-Km-nzZ"/>
@@ -695,7 +695,7 @@
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="TF7-6G-dAX">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="KAh-hd-fSY"/>
-                                            <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                                            <font key="font" metaFont="systemUltraLight" size="42"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -714,8 +714,8 @@
                                             <constraint firstAttribute="height" constant="51" id="5L4-UW-sXb"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0.00" id="Gxk-6h-pcn">
-                                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="3" id="03H-lK-cVw"/>
-                                            <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0.00" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="03H-lK-cVw"/>
+                                            <font key="font" metaFont="systemUltraLight" size="42"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -752,7 +752,7 @@
                                         </constraints>
                                         <popUpButtonCell key="cell" type="bevel" title="mm" bezelStyle="regularSquare" alignment="left" scrollable="YES" lineBreakMode="clipping" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="8a6-qH-DUe" id="qG1-Pq-fHd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" size="16" name=".HelveticaNeueDeskInterface-Light"/>
+                                            <font key="font" metaFont="systemLight" size="16"/>
                                             <menu key="menu" id="Nz4-CW-vIu">
                                                 <items>
                                                     <menuItem title="mm" state="on" id="8a6-qH-DUe"/>
@@ -841,7 +841,7 @@
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="0" id="Rwu-PY-cdL">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="##0" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="IZg-ah-2PA"/>
-                                            <font key="font" size="42" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                                            <font key="font" metaFont="systemUltraLight" size="42"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -857,7 +857,7 @@
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nN0-um-pjU">
                                         <rect key="frame" x="347" y="98" width="45" height="19"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="upem" id="ia6-Ym-hjR">
-                                            <font key="font" size="16" name=".HelveticaNeueDeskInterface-Light"/>
+                                            <font key="font" metaFont="systemLight" size="16"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>

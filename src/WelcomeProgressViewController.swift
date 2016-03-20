@@ -78,7 +78,7 @@ class WelcomeProgressViewController : NSViewController,
       didWriteData bytesWritten: Int64,
       totalBytesWritten: Int64,
       totalBytesExpectedToWrite: Int64) {
-    self.progressIndicator?.doubleValue =
+    progressIndicator?.doubleValue =
         Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
   }
 
@@ -124,7 +124,7 @@ class WelcomeProgressViewController : NSViewController,
           completionHandler: nil)
       return
     }
-    self.extract()
+    extract()
   }
 
   // MARK: Extracting
