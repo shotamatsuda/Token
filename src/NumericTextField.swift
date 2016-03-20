@@ -79,23 +79,20 @@ class NumericTextField : NSTextField {
   }
 
   private var initialLocation: CGPoint?
-  private var initialValue: Double?
 
   override func mouseDown(event: NSEvent) {
     super.mouseDown(event)
-    initialLocation = event.locationInWindow
-    initialValue = doubleValue
+    initialLocation = CGEventGetLocation(event.CGEvent)
+    NSCursor.hide()
   }
 
   override func mouseDragged(event: NSEvent) {
     super.mouseDragged(event)
-    guard let initialLocation = initialLocation,
-        initialValue = initialValue else {
+    guard let initialLocation = initialLocation else {
       return
     }
-    let location = event.locationInWindow
-    let delta = round((location.x - initialLocation.x) / 2.0).native * step
-    let result = initialValue + delta
+    let result = doubleValue + Double(event.deltaX) * step
+    CGWarpMouseCursorPosition(initialLocation)
 
     // Propagate the change through binding, and store the value after
     // propagation back to the double value of the text field.
@@ -112,6 +109,7 @@ class NumericTextField : NSTextField {
 
   override func mouseUp(event: NSEvent) {
     super.mouseUp(event)
+    NSCursor.unhide()
     guard event.clickCount != 0 else {
       return
     }
