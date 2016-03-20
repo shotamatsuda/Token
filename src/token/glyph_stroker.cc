@@ -203,8 +203,12 @@ takram::Shape2d GlyphStroker::operator()(const token::ufo::Glyph& glyph,
   for (; shift < shift_limit_; shift += shift_increment_) {
     for (negative = false; !negative; negative = !negative) {
       stroker.set_width(width_ + (negative ? -shift : shift));
+      const auto bounds = outline.shape().bounds(true);
       shape = stroker.stroke(outline);
       shape = stroker.simplify(shape);
+      if (!shape.bounds(true).contains(bounds)) {
+        continue;
+      }
       std::size_t contour_count{};
       std::size_t hole_count{};
       for (const auto& path : shape.paths()) {
@@ -313,7 +317,7 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   Simplify(sk_path, &sk_result);
   auto result = convertShape(sk_result);
 
-  // Fix up finding rules
+  // Fix up winding rules
   const auto bounds_error = 1.0;
   const auto bounds_insets = width_ - bounds_error;
   std::unordered_map<takram::Path2d *, int> depths;
