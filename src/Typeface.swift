@@ -37,13 +37,37 @@ class Typeface : TKNTypeface {
         contentsOfURL: directoryURL.URLByAppendingPathComponent(
             "physical.ufo"))!
     super.init()
-    updateStroker()
+    applyPhysicalParameters()
   }
 
   // MARK: Stroker
 
-  var strokerBehavior: StrokerBehavior = .Physical {
-    didSet {
+  private var _strokerBehavior: StrokerBehavior = .Physical
+  var strokerBehavior: StrokerBehavior {
+    get {
+      return _strokerBehavior
+    }
+
+    set(value) {
+      guard value != _strokerBehavior else {
+        return
+      }
+      let oldStrokeWidth = stroker.strokeWidth
+      let oldScale = stroker.scale
+      _strokerBehavior = value
+
+      // Maintain parameters so that the stroker's stroke width doesn't change.
+      let strokeWidth = oldStrokeWidth * (stroker.scale / oldScale)
+      switch strokerBehavior {
+      case .Default:
+        self.strokeWidth = strokeWidth
+      case .Physical:
+        capHeight = physicalCapHeightWithUnit(
+            capHeightUnit,
+            relativeToStrokeWidth: (self.strokeWidth, strokeWidthUnit),
+            forStrokeWidth: strokeWidth,
+            usingStroker: stroker)
+      }
     }
   }
 
@@ -60,15 +84,29 @@ class Typeface : TKNTypeface {
     }
   }
 
-  private func updateStroker() {
-    switch strokerBehavior {
-    case .Default:
-      stroker.strokeWidth = _strokeWidth
-    case .Physical:
-      let strokeWidth = strokeWidthUnit.convert(_strokeWidth, to: .Point)
-      let capHeight = capHeightUnit.convert(_capHeight, to: .Point)
-      stroker.strokeWidth = (strokeWidth * stroker.capHeight) / capHeight
-    }
+  private func physicalStrokeWidthWithUnit(
+      unit: TypefaceUnit,
+      relativeToCapHeight relativeTo: (value: Double, unit: TypefaceUnit),
+      forStrokeWidth strokeWidth: Double,
+      usingStroker stroker: Stroker) -> Double {
+    let value = relativeTo.unit.convert(relativeTo.value, to: unit)
+    return (value / stroker.capHeight) * strokeWidth
+  }
+
+  private func physicalCapHeightWithUnit(
+      unit: TypefaceUnit,
+      relativeToStrokeWidth relativeTo: (value: Double, unit: TypefaceUnit),
+      forStrokeWidth strokeWidth: Double,
+      usingStroker stroker: Stroker) -> Double {
+    let value = relativeTo.unit.convert(relativeTo.value, to: unit)
+    return (value * stroker.capHeight) / strokeWidth
+  }
+
+  private func applyPhysicalParameters() {
+    assert(strokerBehavior == .Physical)
+    let strokeWidth = strokeWidthUnit.convert(_strokeWidth, to: .Point)
+    let capHeight = capHeightUnit.convert(_capHeight, to: .Point)
+    stroker.strokeWidth = (strokeWidth * stroker.capHeight) / capHeight
   }
 
   // MARK: Properties
@@ -173,13 +211,27 @@ class Typeface : TKNTypeface {
   private var _strokeWidth: Double = Double()
   var strokeWidth: Double {
     get {
-      return _strokeWidth
+      switch strokerBehavior {
+      case .Default:
+        return stroker.strokeWidth
+      case .Physical:
+        return _strokeWidth
+      }
     }
 
     set(value) {
-      _strokeWidth = min(max(value, minStrokeWidth), maxStrokeWidth)
-      updateStroker()
+      switch strokerBehavior {
+      case .Default:
+        stroker.strokeWidth = value
+      case .Physical:
+        _strokeWidth = min(max(value, minStrokeWidth), maxStrokeWidth)
+        applyPhysicalParameters()
+      }
     }
+  }
+
+  class func keyPathsForValuesAffectingStrokeWidth() -> NSSet {
+    return NSSet(object: "strokerBehavior")
   }
 
   var strokeWidthUnit: TypefaceUnit = .Millimeter {
@@ -203,9 +255,12 @@ class Typeface : TKNTypeface {
       case .Default:
         return stroker.minStrokeWidth
       case .Physical:
-        let other = capHeightUnit.convert(capHeight, to: strokeWidthUnit)
-        let coeff = other / stroker.capHeight
-        return ceil(coeff * stroker.minStrokeWidth * 100.0) / 100.0
+        let strokeWidth = physicalStrokeWidthWithUnit(
+            strokeWidthUnit,
+            relativeToCapHeight: (capHeight, capHeightUnit),
+            forStrokeWidth: stroker.minStrokeWidth,
+            usingStroker: stroker)
+        return ceil(strokeWidth * 100.0) / 100.0
       }
     }
   }
@@ -220,9 +275,12 @@ class Typeface : TKNTypeface {
       case .Default:
         return stroker.maxStrokeWidth
       case .Physical:
-        let other = capHeightUnit.convert(capHeight, to: strokeWidthUnit)
-        let coeff = other / stroker.capHeight
-        return floor(coeff * stroker.maxStrokeWidth * 100.0) / 100.0
+        let strokeWidth = physicalStrokeWidthWithUnit(
+            strokeWidthUnit,
+            relativeToCapHeight: (capHeight, capHeightUnit),
+            forStrokeWidth: stroker.maxStrokeWidth,
+            usingStroker: stroker)
+        return floor(strokeWidth * 100.0) / 100.0
       }
     }
   }
@@ -244,8 +302,12 @@ class Typeface : TKNTypeface {
         return
       }
       _capHeight = min(max(value, minCapHeight), maxCapHeight)
-      updateStroker()
+      applyPhysicalParameters()
     }
+  }
+
+  class func keyPathsForValuesAffectingCapHeight() -> NSSet {
+    return NSSet(object: "strokerBehavior")
   }
 
   var capHeightUnit: TypefaceUnit = .Millimeter {
@@ -269,9 +331,12 @@ class Typeface : TKNTypeface {
       case .Default:
         return Double.NaN  // Not used
       case .Physical:
-        let other = strokeWidthUnit.convert(strokeWidth, to: capHeightUnit)
-        let numerator = stroker.capHeight * other
-        return ceil(numerator / stroker.maxStrokeWidth * 100.0) / 100.0
+        let capHeight = physicalCapHeightWithUnit(
+            capHeightUnit,
+            relativeToStrokeWidth: (strokeWidth, strokeWidthUnit),
+            forStrokeWidth: stroker.maxStrokeWidth,
+            usingStroker: stroker)
+        return ceil(capHeight * 100.0) / 100.0
       }
     }
   }
@@ -286,9 +351,12 @@ class Typeface : TKNTypeface {
       case .Default:
         return Double.NaN  // Not used
       case .Physical:
-        let other = strokeWidthUnit.convert(strokeWidth, to: capHeightUnit)
-        let numerator = stroker.capHeight * other
-        return floor(numerator / stroker.minStrokeWidth * 100.0) / 100.0
+        let capHeight = physicalCapHeightWithUnit(
+            capHeightUnit,
+            relativeToStrokeWidth: (strokeWidth, strokeWidthUnit),
+            forStrokeWidth: stroker.minStrokeWidth,
+            usingStroker: stroker)
+        return floor(capHeight * 100.0) / 100.0
       }
     }
   }
