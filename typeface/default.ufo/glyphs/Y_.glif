@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="Y" format="1">
-  <advance width="624.01"/>
+  <advance width="530"/>
   <unicode hex="0059"/>
   <outline>
     <contour>
-      <point x="65.22" y="680" type="move"/>
-      <point x="312" y="325.86" type="line"/>
-      <point x="558.78" y="680" type="line"/>
+      <point x="18.22" y="680" type="move"/>
+      <point x="265" y="325.86" type="line"/>
+      <point x="511.78" y="680" type="line"/>
     </contour>
     <contour>
-      <point x="312" y="325.86" type="move"/>
-      <point x="312" y="0" type="line"/>
+      <point x="265" y="324.86" type="move" smooth="yes"/>
+      <point x="265" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
       <key>com.takram.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

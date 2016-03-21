@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="I" format="1">
-  <advance width="272"/>
+  <advance width="228"/>
   <unicode hex="0049"/>
   <outline>
     <contour>
-      <point x="136" y="680" type="move"/>
-      <point x="136" y="0" type="line"/>
+      <point x="114" y="680" type="move"/>
+      <point x="114" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
       <key>com.takram.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

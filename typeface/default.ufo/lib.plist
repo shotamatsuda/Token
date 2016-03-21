@@ -53,6 +53,10 @@
 	<integer>100</integer>
 	<key>com.schriftgestaltung.useNiceNames</key>
 	<integer>0</integer>
+	<key>com.schriftgestaltung.weightValue</key>
+	<integer>400</integer>
+	<key>com.schriftgestaltung.widthValue</key>
+	<integer>5</integer>
 	<key>public.glyphOrder</key>
 	<array>
 		<string>A</string>
