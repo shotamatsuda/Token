@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="period" format="1">
-  <advance width="201.8"/>
+  <advance width="201.6"/>
   <unicode hex="002E"/>
   <outline>
     <contour>
-      <point x="119.16" y="8.19"/>
-      <point x="111.05" y="0"/>
-      <point x="101" y="0" type="curve" smooth="yes"/>
-      <point x="90.83" y="0"/>
-      <point x="82.64" y="8.19"/>
-      <point x="82.64" y="18.26" type="curve" smooth="yes"/>
-      <point x="82.64" y="28.37"/>
-      <point x="90.83" y="36.56"/>
-      <point x="101" y="36.56" type="curve" smooth="yes"/>
-      <point x="111.05" y="36.56"/>
-      <point x="119.16" y="28.37"/>
-      <point x="119.16" y="18.26" type="curve" name="filled" smooth="yes"/>
+      <point x="110.88" y="0"/>
+      <point x="119.06" y="8.18"/>
+      <point x="119.06" y="18.28" type="curve" smooth="yes"/>
+      <point x="119.06" y="28.38"/>
+      <point x="110.88" y="36.56"/>
+      <point x="100.8" y="36.56" type="curve" smooth="yes"/>
+      <point x="90.72" y="36.56"/>
+      <point x="82.54" y="28.38"/>
+      <point x="82.54" y="18.28" type="curve" smooth="yes"/>
+      <point x="82.54" y="8.18"/>
+      <point x="90.72" y="0"/>
+      <point x="100.8" y="0" type="curve" name="filled" smooth="yes"/>
     </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
       <key>com.takram.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

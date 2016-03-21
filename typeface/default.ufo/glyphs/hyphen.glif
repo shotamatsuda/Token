@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="hyphen" format="1">
-  <advance width="418.48"/>
+  <advance width="418.35"/>
   <unicode hex="002D"/>
   <outline>
     <contour>
-      <point x="81.07" y="340" type="move"/>
-      <point x="337.41" y="340" type="line"/>
+      <point x="81" y="340" type="move"/>
+      <point x="337.35" y="340" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
       <key>com.takram.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>
