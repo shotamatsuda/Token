@@ -5,7 +5,7 @@
 	<key>com.schriftgestaltung.fontMasterID</key>
 	<string>E669B876-BB50-49B0-9E71-B3447DCE4605</string>
 	<key>com.schriftgestaltung.gridSubDivision</key>
-	<integer>200</integer>
+	<integer>100</integer>
 	<key>com.schriftgestaltung.useNiceNames</key>
 	<integer>0</integer>
 	<key>public.glyphOrder</key>
