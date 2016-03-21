@@ -58,8 +58,7 @@ bool operator!=(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs);
 
 #pragma mark -
 
-inline GASPRangeRecord::GASPRangeRecord()
-    : range_max_ppem() {}
+inline GASPRangeRecord::GASPRangeRecord() : range_max_ppem() {}
 
 #pragma mark Comparison
 

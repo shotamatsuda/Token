@@ -595,7 +595,7 @@
 		93D139861C82F49B008D8B5C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				93FEF9501AD97263009D0646 /* C++ */,
+				93FEF9501AD97263009D0646 /* Core */,
 				93D139921C82F504008D8B5C /* Application */,
 				930125B11BC8E2950004DE27 /* Model */,
 				931805A61BC8D2BA00E8A303 /* Welcome */,
@@ -642,7 +642,7 @@
 			name = products;
 			sourceTree = "<group>";
 		};
-		93FEF9501AD97263009D0646 /* C++ */ = {
+		93FEF9501AD97263009D0646 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				93E5FF161B915970006E968A /* glyph_stroker.h */,
@@ -654,7 +654,7 @@
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
 				93A224921B7B1FD200CB1DBB /* ufo */,
 			);
-			name = "C++";
+			name = Core;
 			path = token;
 			sourceTree = "<group>";
 		};
