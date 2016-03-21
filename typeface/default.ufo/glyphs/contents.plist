@@ -4,8 +4,6 @@
 <dict>
 	<key>.notdef</key>
 	<string>_notdef.glif</string>
-	<key>space</key>
-	<string>space.glif</string>
 	<key>.null</key>
 	<string>_null.glif</string>
 	<key>A</key>
@@ -60,31 +58,33 @@
 	<string>Y_.glif</string>
 	<key>Z</key>
 	<string>Z_.glif</string>
-	<key>zero</key>
-	<string>zero.glif</string>
-	<key>one</key>
-	<string>one.glif</string>
-	<key>two</key>
-	<string>two.glif</string>
-	<key>three</key>
-	<string>three.glif</string>
-	<key>four</key>
-	<string>four.glif</string>
-	<key>five</key>
-	<string>five.glif</string>
-	<key>six</key>
-	<string>six.glif</string>
-	<key>seven</key>
-	<string>seven.glif</string>
 	<key>eight</key>
 	<string>eight.glif</string>
-	<key>nine</key>
-	<string>nine.glif</string>
-	<key>period</key>
-	<string>period.glif</string>
-	<key>slash</key>
-	<string>slash.glif</string>
+	<key>five</key>
+	<string>five.glif</string>
+	<key>four</key>
+	<string>four.glif</string>
 	<key>hyphen</key>
 	<string>hyphen.glif</string>
+	<key>nine</key>
+	<string>nine.glif</string>
+	<key>one</key>
+	<string>one.glif</string>
+	<key>period</key>
+	<string>period.glif</string>
+	<key>seven</key>
+	<string>seven.glif</string>
+	<key>six</key>
+	<string>six.glif</string>
+	<key>slash</key>
+	<string>slash.glif</string>
+	<key>space</key>
+	<string>space.glif</string>
+	<key>three</key>
+	<string>three.glif</string>
+	<key>two</key>
+	<string>two.glif</string>
+	<key>zero</key>
+	<string>zero.glif</string>
 </dict>
 </plist>

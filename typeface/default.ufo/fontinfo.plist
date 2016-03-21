@@ -117,17 +117,13 @@
 	<key>postscriptBlueFuzz</key>
 	<integer>0</integer>
 	<key>postscriptBlueScale</key>
-	<real>0.039625</real>
+	<real>0.039600000000000003</real>
 	<key>postscriptBlueShift</key>
 	<integer>7</integer>
 	<key>postscriptBlueValues</key>
 	<array>
 		<integer>0</integer>
 		<integer>0</integer>
-		<integer>450</integer>
-		<integer>450</integer>
-		<integer>680</integer>
-		<integer>680</integer>
 	</array>
 	<key>postscriptFontName</key>
 	<string>Token-Regular</string>
@@ -137,6 +133,9 @@
 	<string>Token Regular</string>
 	<key>postscriptIsFixedPitch</key>
 	<false/>
+	<key>postscriptOtherBlues</key>
+	<array>
+	</array>
 	<key>postscriptUnderlinePosition</key>
 	<integer>-75</integer>
 	<key>postscriptUnderlineThickness</key>
