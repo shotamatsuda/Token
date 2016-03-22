@@ -54,6 +54,7 @@
 
 #pragma mark Glyphs
 
+- (BOOL)strokeGlyphForName:(nonnull NSString *)name;
 - (nullable NSBezierPath *)glyphBezierPathForName:(nonnull NSString *)name;
 - (double)glyphAdvanceForName:(nonnull NSString *)name;
 - (CGRect)glyphBoundsForName:(nonnull NSString *)name;

@@ -49,19 +49,20 @@
   token::ufo::Glyphs _glyphs;
   std::unordered_map<std::string, token::GlyphOutline> _glyphOutlines;
   std::unordered_map<std::string, takram::Shape2d> _glyphShapes;
+  std::unordered_map<std::string, takram::Rect2d> _glyphBounds;
+  std::unordered_map<std::string, token::ufo::glif::Advance> _glyphAdvances;
   NSMutableDictionary *_glyphBezierPaths;
 }
 
 #pragma mark Glyphs
 
+- (BOOL)strokeGlyph:(const token::ufo::Glyph&)glyph;
 - (NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape;
-- (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
-                      outline:(const token::GlyphOutline&)outline;
 
 #pragma mark Exporting
 
-- (BOOL)updateFontInfoAtPath:(const std::string&)path;
-- (BOOL)updateGlyphsAtPath:(const std::string&)path;
+- (BOOL)saveFontInfoAtPath:(const std::string&)path;
+- (BOOL)saveGlyphsAtPath:(const std::string&)path;
 
 @end
 
@@ -75,9 +76,6 @@
     _strokeShiftLimit = 0.1;
     _fontInfo = token::ufo::FontInfo(URL.path.UTF8String);
     _glyphs = token::ufo::Glyphs(URL.path.UTF8String);
-    for (auto& glyph : _glyphs) {
-      _glyphOutlines.emplace(glyph.name, token::GlyphOutline(glyph));
-    }
     _glyphBezierPaths = [NSMutableDictionary dictionary];
     _styleName = [NSString stringWithUTF8String:
         _fontInfo.style_name.c_str()];
@@ -94,9 +92,10 @@
 - (void)setStrokeWidth:(double)strokeWidth {
   if (strokeWidth != _strokeWidth) {
     _strokeWidth = strokeWidth;
-
-    // Invalidate existing glyph shapes and bezier paths
+    _glyphOutlines.clear();
     _glyphShapes.clear();
+    _glyphBounds.clear();
+    _glyphAdvances.clear();
     [_glyphBezierPaths removeAllObjects];
   }
 }
@@ -136,46 +135,51 @@
 #pragma mark Glyphs
 
 - (NSBezierPath *)glyphBezierPathForName:(NSString *)name {
-  const auto glyph = _glyphs.find(name.UTF8String);
-  if (!glyph) {
-    return nil;
-  }
-  NSBezierPath *path = _glyphBezierPaths[name];
-  if (path) {
-    return path;
-  }
-  if (!_strokeWidth) {
-    return nil;
-  }
-  assert(_glyphOutlines.find(name.UTF8String) != std::end(_glyphOutlines));
-  assert(_glyphShapes.find(name.UTF8String) == std::end(_glyphShapes));
-  auto outline = _glyphOutlines.at(name.UTF8String);
-  auto shape = [self strokeGlyph:*glyph outline:outline];
-  path = [self bezierPathWithShape:shape];
-  _glyphShapes.emplace(name.UTF8String, std::move(shape));
-  _glyphBezierPaths[name] = path;
-  return path;
+  [self strokeGlyphForName:name];
+  const auto shape = _glyphShapes.find(name.UTF8String);
+  assert(shape != std::end(_glyphShapes));
+  auto bezierPath = [self bezierPathWithShape:shape->second];
+  _glyphBezierPaths[name] = bezierPath;
+  return bezierPath;
 }
 
 - (double)glyphAdvanceForName:(NSString *)name {
-  const auto glyph = _glyphs.find(name.UTF8String);
-  if (!glyph) {
-    return double();
-  }
-  return glyph->advance->width;
+  [self strokeGlyphForName:name];
+  const auto advance = _glyphAdvances.find(name.UTF8String);
+  assert(advance != std::end(_glyphAdvances));
+  return advance->second.width;
 }
 
 - (CGRect)glyphBoundsForName:(NSString *)name {
-  const auto glyph = _glyphs.find(name.UTF8String);
-  if (!glyph) {
-    return CGRectZero;
+  [self strokeGlyphForName:name];
+  const auto bounds = _glyphBounds.find(name.UTF8String);
+  assert(bounds != std::end(_glyphBounds));
+  return bounds->second;
+}
+
+- (BOOL)strokeGlyphForName:(nonnull NSString *)name {
+  auto glyph = _glyphs.find(name.UTF8String);
+  assert(glyph);
+  return [self strokeGlyph:*glyph];
+}
+
+- (BOOL)strokeGlyph:(const token::ufo::Glyph&)glyph {
+  const auto found = _glyphOutlines.find(glyph.name);
+  if (found != std::end(_glyphOutlines)) {
+    return false;
   }
-  [self glyphBezierPathForName:name];
-  const auto shape = _glyphShapes.find(name.UTF8String);
-  if (shape == std::end(_glyphShapes)) {
-    return CGRectZero;
-  }
-  return shape->second.bounds(true);
+  const auto& outline = _glyphOutlines.emplace(
+      glyph.name,
+      token::GlyphOutline(glyph)).first->second;
+  token::GlyphStroker stroker;
+  stroker.set_width(_strokeWidth);
+  stroker.set_shift_increment(_strokeShiftIncrement);
+  stroker.set_shift_limit(_strokeShiftLimit);
+  auto pair = stroker(_fontInfo, glyph, outline);
+  _glyphShapes.emplace(glyph.name, pair.first);
+  _glyphBounds.emplace(glyph.name, pair.first.bounds(true));
+  _glyphAdvances.emplace(glyph.name, pair.second);
+  return true;
 }
 
 - (NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape {
@@ -204,30 +208,6 @@
   return path;
 }
 
-- (takram::Shape2d)strokeGlyph:(const token::ufo::Glyph&)glyph
-                       outline:(const token::GlyphOutline&)outline {
-  // Scale the glyph outline from the center of the glyph.
-  const auto strokeWidth = _strokeWidth;
-  const auto capHeight = _fontInfo.cap_height;
-  const auto scale = (capHeight - strokeWidth) / capHeight;
-  const auto bounds = outline.shape().bounds(true);
-  const takram::Vec2d center(bounds.midX(), capHeight / 2.0);
-  auto scaledOutline = outline;
-  for (auto& command : scaledOutline.shape()) {
-    command.point() = center + (command.point() - center) * scale;
-    command.control1() = center + (command.control1() - center) * scale;
-    command.control2() = center + (command.control2() - center) * scale;
-  }
-
-  // Stroking
-  token::GlyphStroker stroker;
-  stroker.set_width(strokeWidth);
-  stroker.set_shift_increment(_strokeShiftIncrement);
-  stroker.set_shift_limit(_strokeShiftLimit);
-  return stroker(glyph, scaledOutline);
-}
-
-
 #pragma mark Saving
 
 - (BOOL)saveToURL:(NSURL *)URL error:(NSError **)error {
@@ -244,16 +224,16 @@
   if (![fileManager copyItemAtURL:_URL toURL:URL error:error]) {
     return NO;
   }
-  if (![self updateFontInfoAtPath:URL.path.UTF8String]) {
+  if (![self saveFontInfoAtPath:URL.path.UTF8String]) {
     return NO;
   }
-  if (![self updateGlyphsAtPath:URL.path.UTF8String]) {
+  if (![self saveGlyphsAtPath:URL.path.UTF8String]) {
     return NO;
   }
   return YES;
 }
 
-- (BOOL)updateFontInfoAtPath:(const std::string&)path {
+- (BOOL)saveFontInfoAtPath:(const std::string&)path {
   // TODO(shotamatsuda): Adjust x-height
   token::ufo::FontInfo fontInfo = _fontInfo;
   fontInfo.style_name = _styleName.UTF8String;
@@ -279,12 +259,16 @@
   return fontInfo.save(path);
 }
 
-- (BOOL)updateGlyphsAtPath:(const std::string&)path {
+- (BOOL)saveGlyphsAtPath:(const std::string&)path {
   const auto glyphsPath = boost::filesystem::path(path) / "glyphs";
-  for (const auto& glyph : _glyphs) {
+  for (auto glyph : _glyphs) {
+    [self strokeGlyph:glyph];
     assert(_glyphOutlines.find(glyph.name) != std::end(_glyphOutlines));
+    assert(_glyphShapes.find(glyph.name) != std::end(_glyphShapes));
+    assert(_glyphAdvances.find(glyph.name) != std::end(_glyphAdvances));
     auto outline = _glyphOutlines.at(glyph.name);
-    outline.shape() = [self strokeGlyph:glyph outline:outline];
+    outline.shape() = _glyphShapes.at(glyph.name);
+    glyph.advance = _glyphAdvances.at(glyph.name);
     const auto glyphPath = glyphsPath / _glyphs.filename(glyph.name);
     if (!outline.glyph(glyph).save(glyphPath.string())) {
       return NO;

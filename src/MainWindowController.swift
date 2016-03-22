@@ -84,12 +84,17 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
       if result == NSFileHandlingPanelOKButton {
         do {
           try typeface.createFontToURL(panel.URL!)
-        } catch let error {
+        } catch let error as NSError {
           let alert = NSAlert()
-          alert.messageText = "\(error)"
+          alert.alertStyle = .WarningAlertStyle
+          alert.messageText = NSLocalizedString(
+              "Couldn’t export font “\(panel.URL!.lastPathComponent!)”.",
+              comment: "")
+          alert.informativeText = error.localizedDescription
           alert.beginSheetModalForWindow(
               NSApp.mainWindow!,
               completionHandler: nil)
+          return
         }
       }
     }
@@ -110,9 +115,13 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
         .URLByAppendingPathExtension("otf")
     do {
       try typeface.createFontToURL(installURL)
-    } catch let error {
+    } catch let error as NSError {
       let alert = NSAlert()
-      alert.messageText = "\(error)"
+      alert.alertStyle = .WarningAlertStyle
+      alert.messageText = NSLocalizedString(
+          "Couldn’t export font “\(installURL.lastPathComponent!)”.",
+          comment: "")
+      alert.informativeText = error.localizedDescription
       alert.beginSheetModalForWindow(
           NSApp.mainWindow!,
           completionHandler: nil)
@@ -173,13 +182,28 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
         if libraryURL.checkResourceIsReachableAndReturnError(nil) {
           try fileManager.removeItemAtURL(libraryURL)
         }
-      } catch let error {
+      } catch let error as NSError {
         let alert = NSAlert()
-        alert.messageText = "\(error)"
+        alert.alertStyle = .WarningAlertStyle
+        alert.messageText = NSLocalizedString(
+            "Couldn’t uninstall Adobe FDK.",
+            comment: "")
+        alert.informativeText = error.localizedDescription
         alert.beginSheetModalForWindow(
             NSApp.mainWindow!,
             completionHandler: nil)
+        return
       }
+      let alert = NSAlert()
+      alert.messageText = NSLocalizedString(
+          "The uninstallation was successful.",
+          comment: "")
+      alert.informativeText = NSLocalizedString(
+          "Adobe FDK was uninstalled.",
+          comment: "")
+      alert.beginSheetModalForWindow(
+          NSApp.mainWindow!,
+          completionHandler: nil)
     }
     alert.beginSheetModalForWindow(
         window!,

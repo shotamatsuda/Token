@@ -39,7 +39,10 @@
 #include "SkPathOps.h"
 
 #include "takram/graphics.h"
+#include "takram/math.h"
 #include "token/glyph_outline.h"
+#include "token/ufo/font_info.h"
+#include "token/ufo/glif/advance.h"
 #include "token/ufo/glyph.h"
 
 namespace token {
@@ -190,8 +193,35 @@ inline SkPath convertPath(const takram::Path2d& other) {
 
 }  // namespace
 
-takram::Shape2d GlyphStroker::operator()(const token::ufo::Glyph& glyph,
-                                         const GlyphOutline& outline) const {
+std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
+    const ufo::FontInfo& font_info,
+    const ufo::Glyph& glyph,
+    const GlyphOutline& outline) const {
+  const auto scale = (font_info.cap_height - width_) / font_info.cap_height;
+  const auto bounds = outline.shape().bounds(true);
+  const auto lsb = bounds.minX();
+  const auto rsb = glyph.advance->width - bounds.maxX();
+  const takram::Vec2d center(bounds.midX(), font_info.cap_height / 2.0);
+  auto scaled_outline = outline;
+  for (auto& command : scaled_outline.shape()) {
+    command.point() = center + (command.point() - center) * scale;
+    command.control1() = center + (command.control1() - center) * scale;
+    command.control2() = center + (command.control2() - center) * scale;
+  }
+  const auto scaled_bounds = scaled_outline.shape().bounds(true);
+  const auto offset = lsb - scaled_bounds.minX() + width_ / 2.0;
+  for (auto& command : scaled_outline.shape()) {
+    command.point().x += offset;
+    command.control1().x += offset;
+    command.control2().x += offset;
+  }
+  auto advance = *glyph.advance;
+  advance.width = offset + scaled_bounds.maxX() + width_ / 2.0 + rsb;
+  return std::make_pair(stroke(glyph, scaled_outline), advance);
+}
+
+takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
+                                     const GlyphOutline& outline) const {
   GlyphStroker stroker(*this);
   takram::Shape2d shape;
   // Check for the number of contours of the resulting shape and retry if that
@@ -262,17 +292,6 @@ takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
     const auto filled = outline.filled(path);
     stroker.set_filled(stroker.filled() || filled);
     const auto shape = stroker.stroke(path);
-    for (const auto& path : shape.paths()) {
-      result.paths().emplace_back(path);
-    }
-  }
-  return std::move(result);
-}
-
-takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
-  takram::Shape2d result;
-  for (const auto& path : shape.paths()) {
-    const auto shape = stroke(path);
     for (const auto& path : shape.paths()) {
       result.paths().emplace_back(path);
     }

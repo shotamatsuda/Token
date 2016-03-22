@@ -28,7 +28,11 @@
 #ifndef TOKEN_GLYPH_STROKER_H_
 #define TOKEN_GLYPH_STROKER_H_
 
+#include <utility>
+
 #include "takram/graphics.h"
+#include "token/ufo/font_info.h"
+#include "token/ufo/glif/advance.h"
 #include "token/ufo/glyph.h"
 
 namespace token {
@@ -63,8 +67,10 @@ class GlyphStroker final {
   friend bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs);
 
   // Stroking
-  takram::Shape2d operator()(const token::ufo::Glyph& glyph,
-                             const GlyphOutline& outline) const;
+  std::pair<takram::Shape2d, ufo::glif::Advance> operator()(
+      const ufo::FontInfo& font_info,
+      const ufo::Glyph& glyph,
+      const GlyphOutline& outline) const;
 
   // Parameters
   double width() const { return width_; }
@@ -85,8 +91,9 @@ class GlyphStroker final {
   void set_shift_limit(double value) { shift_limit_ = value; }
 
  private:
+  takram::Shape2d stroke(const ufo::Glyph& glyph,
+                         const GlyphOutline& outline) const;
   takram::Shape2d stroke(const GlyphOutline& outline) const;
-  takram::Shape2d stroke(const takram::Shape2d& shape) const;
   takram::Shape2d stroke(const takram::Path2d& path) const;
   takram::Shape2d simplify(const takram::Shape2d& shape) const;
 
