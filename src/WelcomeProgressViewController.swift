@@ -102,9 +102,13 @@ class WelcomeProgressViewController : NSViewController,
         try fileManager.removeItemAtURL(URL)
       }
       try fileManager.copyItemAtURL(location, toURL: URL)
-    } catch let error {
+    } catch let error as NSError {
       let alert = NSAlert()
-      alert.messageText = "\(error)"
+      alert.alertStyle = .WarningAlertStyle
+      alert.messageText = NSLocalizedString(
+          "Couldn’t finish downloading Adobe FDK.",
+          comment: "")
+      alert.informativeText = error.localizedDescription
       alert.beginSheetModalForWindow(
           NSApp.mainWindow!,
           completionHandler: nil)
@@ -118,7 +122,16 @@ class WelcomeProgressViewController : NSViewController,
       task: NSURLSessionTask,
       didCompleteWithError error: NSError?) {
     guard error == nil else {
-      let alert = NSAlert(error: error!)
+      if error!.domain == NSURLErrorDomain &&
+          error!.code == NSURLErrorCancelled {
+        return  // Cancelled
+      }
+      let alert = NSAlert()
+      alert.alertStyle = .WarningAlertStyle
+      alert.messageText = NSLocalizedString(
+          "Couldn’t download Adobe FDK.",
+          comment: "")
+      alert.informativeText = error!.localizedDescription
       alert.beginSheetModalForWindow(
           NSApp.mainWindow!,
           completionHandler: nil)
@@ -152,17 +165,23 @@ class WelcomeProgressViewController : NSViewController,
   private func didExtract() {
     // This function ill be invoked in a background thread
     dispatch_async(dispatch_get_main_queue()) { () in
+      defer {
+        self.progressIndicator?.stopAnimation(self)
+      }
       do {
         try self.install()
         try self.cleanUp()
-      } catch let error {
+      } catch let error as NSError {
         let alert = NSAlert()
-        alert.messageText = "\(error)"
+        alert.alertStyle = .WarningAlertStyle
+        alert.messageText = NSLocalizedString(
+            "Couldn’t install Adobe FDK.",
+            comment: "")
+        alert.informativeText = error.localizedDescription
         alert.beginSheetModalForWindow(
             NSApp.mainWindow!,
             completionHandler: nil)
       }
-      self.progressIndicator?.stopAnimation(self)
       guard let window = self.view.window,
           sheetParent = window.sheetParent else {
         return
@@ -187,9 +206,9 @@ class WelcomeProgressViewController : NSViewController,
           withIntermediateDirectories: true,
           attributes: nil)
     }
-    do {
+    if linkURL.checkResourceIsReachableAndReturnError(nil) {
       try fileManager.removeItemAtURL(linkURL)
-    } catch {}
+    }
     try fileManager.createSymbolicLinkAtURL(
         linkURL,
         withDestinationURL: URL)
