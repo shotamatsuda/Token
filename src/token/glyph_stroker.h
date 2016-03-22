@@ -67,9 +67,9 @@ class GlyphStroker final {
   friend bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs);
 
   // Stroking
-  std::pair<takram::Shape2d, token::ufo::glif::Advance> operator()(
-      const token::ufo::FontInfo& font_info,
-      const token::ufo::Glyph& glyph,
+  std::pair<takram::Shape2d, ufo::glif::Advance> operator()(
+      const ufo::FontInfo& font_info,
+      const ufo::Glyph& glyph,
       const GlyphOutline& outline) const;
 
   // Parameters
@@ -91,7 +91,7 @@ class GlyphStroker final {
   void set_shift_limit(double value) { shift_limit_ = value; }
 
  private:
-  takram::Shape2d stroke(const token::ufo::Glyph& glyph,
+  takram::Shape2d stroke(const ufo::Glyph& glyph,
                          const GlyphOutline& outline) const;
   takram::Shape2d stroke(const GlyphOutline& outline) const;
   takram::Shape2d stroke(const takram::Path2d& path) const;

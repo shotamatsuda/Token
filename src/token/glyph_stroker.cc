@@ -193,9 +193,9 @@ inline SkPath convertPath(const takram::Path2d& other) {
 
 }  // namespace
 
-std::pair<takram::Shape2d, token::ufo::glif::Advance> GlyphStroker::operator()(
-    const token::ufo::FontInfo& font_info,
-    const token::ufo::Glyph& glyph,
+std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
+    const ufo::FontInfo& font_info,
+    const ufo::Glyph& glyph,
     const GlyphOutline& outline) const {
   const auto scale = (font_info.cap_height - width_) / font_info.cap_height;
   const auto bounds = outline.shape().bounds(true);
@@ -209,8 +209,7 @@ std::pair<takram::Shape2d, token::ufo::glif::Advance> GlyphStroker::operator()(
     command.control2() = center + (command.control2() - center) * scale;
   }
   const auto scaled_bounds = scaled_outline.shape().bounds(true);
-  const auto scaled_lsb = scaled_bounds.minX() - width_ / 2.0;
-  const auto offset = lsb - scaled_lsb;
+  const auto offset = lsb - scaled_bounds.minX() + width_ / 2.0;
   for (auto& command : scaled_outline.shape()) {
     command.point().x += offset;
     command.control1().x += offset;
@@ -221,7 +220,7 @@ std::pair<takram::Shape2d, token::ufo::glif::Advance> GlyphStroker::operator()(
   return std::make_pair(stroke(glyph, scaled_outline), advance);
 }
 
-takram::Shape2d GlyphStroker::stroke(const token::ufo::Glyph& glyph,
+takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
                                      const GlyphOutline& outline) const {
   GlyphStroker stroker(*this);
   takram::Shape2d shape;
