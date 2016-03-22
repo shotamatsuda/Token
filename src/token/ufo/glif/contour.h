@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -51,10 +51,6 @@ class Contour final {
   Contour(const Contour&) = default;
   Contour& operator=(const Contour&) = default;
 
-  // Comparison
-  bool operator==(const Contour& other) const;
-  bool operator!=(const Contour& other) const;
-
   // Property tree
   static Contour read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -63,6 +59,10 @@ class Contour final {
   std::string identifier;
   std::vector<Point> points;
 };
+
+// Comparison
+bool operator==(const Contour& lhs, const Contour& rhs);
+bool operator!=(const Contour& lhs, const Contour& rhs);
 
 #pragma mark -
 
@@ -73,12 +73,12 @@ inline Contour::Contour(const std::string& identifier,
 
 #pragma mark Comparison
 
-inline bool Contour::operator==(const Contour& other) const {
-  return (identifier == other.identifier && points == other.points);
+inline bool operator==(const Contour& lhs, const Contour& rhs) {
+  return lhs.identifier == rhs.identifier && lhs.points == rhs.points;
 }
 
-inline bool Contour::operator!=(const Contour& other) const {
-  return !operator==(other);
+inline bool operator!=(const Contour& lhs, const Contour& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

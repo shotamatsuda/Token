@@ -3,7 +3,7 @@
 //
 //  MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -33,6 +33,7 @@ extern "C" {
 }  // extern "C"
 
 #include <cassert>
+#include <cstdlib>
 #include <fstream>
 #include <istream>
 #include <ostream>
@@ -129,6 +130,7 @@ bool FontInfo::save(std::ostream *stream) const {
   uint32_t length{};
   plist_to_xml(plist, &xml, &length);
   *stream << std::string(xml, length);
+  std::free(xml);
   return true;
 }
 

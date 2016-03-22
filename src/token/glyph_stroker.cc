@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -27,7 +27,8 @@
 #include "token/glyph_stroker.h"
 
 #include <cassert>
-#include <cmath>
+#include <cstddef>
+#include <iostream>
 #include <iterator>
 #include <unordered_map>
 #include <utility>
@@ -37,9 +38,12 @@
 #include "SkPath.h"
 #include "SkPathOps.h"
 
-#include "takram/math.h"
 #include "takram/graphics.h"
+#include "takram/math.h"
 #include "token/glyph_outline.h"
+#include "token/ufo/font_info.h"
+#include "token/ufo/glif/advance.h"
+#include "token/ufo/glyph.h"
 
 namespace token {
 
@@ -189,29 +193,105 @@ inline SkPath convertPath(const takram::Path2d& other) {
 
 }  // namespace
 
+std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
+    const ufo::FontInfo& font_info,
+    const ufo::Glyph& glyph,
+    const GlyphOutline& outline) const {
+  const auto scale = (font_info.cap_height - width_) / font_info.cap_height;
+  const auto bounds = outline.shape().bounds(true);
+  const auto lsb = bounds.minX();
+  const auto rsb = glyph.advance->width - bounds.maxX();
+  const takram::Vec2d center(bounds.midX(), font_info.cap_height / 2.0);
+  auto scaled_outline = outline;
+  for (auto& command : scaled_outline.shape()) {
+    command.point() = center + (command.point() - center) * scale;
+    command.control1() = center + (command.control1() - center) * scale;
+    command.control2() = center + (command.control2() - center) * scale;
+  }
+  const auto scaled_bounds = scaled_outline.shape().bounds(true);
+  const auto offset = lsb - scaled_bounds.minX() + width_ / 2.0;
+  for (auto& command : scaled_outline.shape()) {
+    command.point().x += offset;
+    command.control1().x += offset;
+    command.control2().x += offset;
+  }
+  auto advance = *glyph.advance;
+  advance.width = offset + scaled_bounds.maxX() + width_ / 2.0 + rsb;
+  return std::make_pair(stroke(glyph, scaled_outline), advance);
+}
+
+takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
+                                     const GlyphOutline& outline) const {
+  GlyphStroker stroker(*this);
+  takram::Shape2d shape;
+  // Check for the number of contours of the resulting shape and retry if that
+  // differs from the expected value, because the path simplification
+  // occationally fails.
+  bool success{};
+  double shift{};
+  bool negative{};
+  for (; shift < shift_limit_; shift += shift_increment_) {
+    for (negative = false; !negative; negative = !negative) {
+      stroker.set_width(width_ + (negative ? -shift : shift));
+      const auto bounds = outline.shape().bounds(true);
+      shape = stroker.stroke(outline);
+      shape = stroker.simplify(shape);
+      if (!shape.bounds(true).contains(bounds)) {
+        continue;
+      }
+      std::size_t contour_count{};
+      std::size_t hole_count{};
+      for (const auto& path : shape.paths()) {
+        if (path.direction() != takram::PathDirection::UNDEFINED) {
+          ++contour_count;
+        }
+        if (path.direction() == takram::PathDirection::COUNTER_CLOCKWISE) {
+          ++hole_count;
+        }
+      }
+      if (contour_count == glyph.lib->number_of_contours &&
+          hole_count == glyph.lib->number_of_holes) {
+        success = true;
+        break;
+      }
+    }
+    if (success) {
+      break;
+    }
+  }
+  if (success) {
+    if (shift) {
+      std::cerr << "Stroking succeeded by shifting stroke width by " <<
+          (negative ? -shift : shift) <<
+          " " << "(" << glyph.name << ")" << std::endl;
+    }
+    // CFF Opentype accepts only lines and cubic bezier paths, so we need to
+    // convert conic curves to quadratic curves, which is approximation,
+    // and then convert losslessly quadratic curves to cubic curves.
+    shape.convertConicsToQuadratics();
+    shape.convertQuadraticsToCubics();
+    shape.removeDuplicates(1.0);
+  } else {
+    std::cerr << "Stroking failed by shifting stroke width up to ±" <<
+        shift_limit_ << " " << "(" << glyph.name << ")" << std::endl;
+    shape.reset();
+  }
+  return std::move(shape);
+}
+
 takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
+  GlyphStroker stroker(*this);
   takram::Shape2d result;
-  const auto initial_cap = cap_;
   for (const auto& path : outline.shape().paths()) {
     const auto cap = outline.cap(path);
     if (cap != Cap::UNDEFINED) {
-      cap_ = outline.cap(path);
+      stroker.set_cap(outline.cap(path));
     } else {
-      cap_ = initial_cap;
+      stroker.set_cap(cap_);
     }
-    const auto shape = stroke(path);
-    for (const auto& path : shape.paths()) {
-      result.paths().emplace_back(path);
-    }
-  }
-  cap_ = initial_cap;
-  return std::move(result);
-}
-
-takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
-  takram::Shape2d result;
-  for (const auto& path : shape.paths()) {
-    const auto shape = stroke(path);
+    const auto filled = outline.filled(path);
+    stroker.set_filled(stroker.filled() || filled);
+    const auto shape = stroker.stroke(path);
     for (const auto& path : shape.paths()) {
       result.paths().emplace_back(path);
     }
@@ -221,14 +301,33 @@ takram::Shape2d GlyphStroker::stroke(const takram::Shape2d& shape) const {
 
 takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
   SkPaint paint;
-  paint.setStyle(SkPaint::kStroke_Style);
+  if (filled_) {
+    paint.setStyle(SkPaint::kStrokeAndFill_Style);
+  } else {
+    paint.setStyle(SkPaint::kStroke_Style);
+  }
   paint.setStrokeWidth(width_);
   paint.setStrokeMiter(miter_);
   paint.setStrokeCap(convertCap(cap_));
   paint.setStrokeJoin(convertJoin(join_));
-  SkPath result;
-  paint.getFillPath(convertPath(path), &result, nullptr, precision_);
-  return convertShape(result);
+  SkPath sk_result;
+  paint.getFillPath(convertPath(path), &sk_result, nullptr, precision_);
+  auto result = convertShape(sk_result);
+  if (filled_ && result.size() > 1) {
+    // Take a path which has the largest bounding box when the path is filled.
+    auto& paths = result.paths();
+    auto max_path = std::begin(paths);
+    auto max_bounds = max_path->bounds(true);
+    for (auto itr = std::next(max_path); itr != std::end(paths); ++itr) {
+      const auto bounds = itr->bounds(true);
+      if (bounds.contains(max_bounds)) {
+        max_path = itr;
+        max_bounds = bounds;
+      }
+    }
+    result = takram::Shape2d(*max_path);
+  }
+  return std::move(result);
 }
 
 takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
@@ -237,7 +336,7 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   Simplify(sk_path, &sk_result);
   auto result = convertShape(sk_result);
 
-  // Fix winding rule
+  // Fix up winding rules
   const auto bounds_error = 1.0;
   const auto bounds_insets = width_ - bounds_error;
   std::unordered_map<takram::Path2d *, int> depths;

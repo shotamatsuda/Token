@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -51,10 +51,6 @@ class Outline final {
   Outline(const Outline&) = default;
   Outline& operator=(const Outline&) = default;
 
-  // Comparison
-  bool operator==(const Outline& other) const;
-  bool operator!=(const Outline& other) const;
-
   // Property tree
   static Outline read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -63,6 +59,10 @@ class Outline final {
   std::vector<Component> components;
   std::vector<Contour> contours;
 };
+
+// Comparison
+bool operator==(const Outline& lhs, const Outline& rhs);
+bool operator!=(const Outline& lhs, const Outline& rhs);
 
 #pragma mark -
 
@@ -73,12 +73,12 @@ inline Outline::Outline(const std::vector<Component>& components,
 
 #pragma mark Comparison
 
-inline bool Outline::operator==(const Outline& other) const {
-  return (components == other.components && contours == other.contours);
+inline bool operator==(const Outline& lhs, const Outline& rhs) {
+  return lhs.components == rhs.components && lhs.contours == rhs.contours;
 }
 
-inline bool Outline::operator!=(const Outline& other) const {
-  return !operator==(other);
+inline bool operator!=(const Outline& lhs, const Outline& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

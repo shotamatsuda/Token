@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -47,10 +47,6 @@ class Advance final {
   Advance(const Advance&) = default;
   Advance& operator=(const Advance&) = default;
 
-  // Comparison
-  bool operator==(const Advance& other) const;
-  bool operator!=(const Advance& other) const;
-
   // Property tree
   static Advance read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -59,6 +55,10 @@ class Advance final {
   double width;
   double height;
 };
+
+// Comparison
+bool operator==(const Advance& lhs, const Advance& rhs);
+bool operator!=(const Advance& lhs, const Advance& rhs);
 
 #pragma mark -
 
@@ -70,12 +70,12 @@ inline Advance::Advance(double width, double height)
 
 #pragma mark Comparison
 
-inline bool Advance::operator==(const Advance& other) const {
-  return (width == other.width && height == other.height);
+inline bool operator==(const Advance& lhs, const Advance& rhs) {
+  return lhs.width == rhs.width && lhs.height == rhs.height;
 }
 
-inline bool Advance::operator!=(const Advance& other) const {
-  return !operator==(other);
+inline bool operator!=(const Advance& lhs, const Advance& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

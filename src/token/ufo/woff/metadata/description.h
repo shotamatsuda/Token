@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -47,10 +47,6 @@ class Description final {
   Description(const Description&) = default;
   Description& operator=(const Description&) = default;
 
-  // Comparison
-  bool operator==(const Description& other) const;
-  bool operator!=(const Description& other) const;
-
   // Property list
   static Description read(const PropertyList& plist);
   PropertyList plist() const;
@@ -60,16 +56,20 @@ class Description final {
   std::vector<Text> text;
 };
 
+// Comparison
+bool operator==(const Description& lhs, const Description& rhs);
+bool operator!=(const Description& lhs, const Description& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Description::operator==(const Description& other) const {
-  return url == other.url && text == other.text;
+inline bool operator==(const Description& lhs, const Description& rhs) {
+  return lhs.url == rhs.url && lhs.text == rhs.text;
 }
 
-inline bool Description::operator!=(const Description& other) const {
-  return operator==(other);
+inline bool operator!=(const Description& lhs, const Description& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

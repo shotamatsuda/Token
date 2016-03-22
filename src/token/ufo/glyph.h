@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -49,10 +49,6 @@ class Glyph final {
   Glyph(const Glyph&) = default;
   Glyph& operator=(const Glyph&) = default;
 
-  // Comparison
-  bool operator==(const Glyph& other) const;
-  bool operator!=(const Glyph& other) const;
-
   // Opening and saving
   bool open(const std::string& path);
   bool open(std::istream *stream);
@@ -70,6 +66,10 @@ class Glyph final {
   Optional<glif::Lib> lib;
 };
 
+// Comparison
+bool operator==(const Glyph& lhs, const Glyph& rhs);
+bool operator!=(const Glyph& lhs, const Glyph& rhs);
+
 #pragma mark -
 
 inline Glyph::Glyph(const std::string& path) {
@@ -78,19 +78,19 @@ inline Glyph::Glyph(const std::string& path) {
 
 #pragma mark Comparison
 
-inline bool Glyph::operator==(const Glyph& other) const {
-  return (name == other.name &&
-          advance == other.advance &&
-          unicodes == other.unicodes &&
-          image == other.image &&
-          guidelines == other.guidelines &&
-          anchors == other.anchors &&
-          outline == other.outline &&
-          lib == other.lib);
+inline bool operator==(const Glyph& lhs, const Glyph& rhs) {
+  return (lhs.name == rhs.name &&
+          lhs.advance == rhs.advance &&
+          lhs.unicodes == rhs.unicodes &&
+          lhs.image == rhs.image &&
+          lhs.guidelines == rhs.guidelines &&
+          lhs.anchors == rhs.anchors &&
+          lhs.outline == rhs.outline &&
+          lhs.lib == rhs.lib);
 }
 
-inline bool Glyph::operator!=(const Glyph& other) const {
-  return operator==(other);
+inline bool operator!=(const Glyph& lhs, const Glyph& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace ufo

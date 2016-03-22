@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -45,10 +45,6 @@ class Credit final {
   Credit(const Credit&) = default;
   Credit& operator=(const Credit&) = default;
 
-  // Comparison
-  bool operator==(const Credit& other) const;
-  bool operator!=(const Credit& other) const;
-
   // Property list
   static Credit read(const PropertyList& plist);
   PropertyList plist() const;
@@ -60,19 +56,23 @@ class Credit final {
   std::string klass;
 };
 
+// Comparison
+bool operator==(const Credit& lhs, const Credit& rhs);
+bool operator!=(const Credit& lhs, const Credit& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Credit::operator==(const Credit& other) const {
-  return (name == other.name &&
-          url == other.url &&
-          dir == other.dir &&
-          klass == other.klass);
+inline bool operator==(const Credit& lhs, const Credit& rhs) {
+  return (lhs.name == rhs.name &&
+          lhs.url == rhs.url &&
+          lhs.dir == rhs.dir &&
+          lhs.klass == rhs.klass);
 }
 
-inline bool Credit::operator!=(const Credit& other) const {
-  return operator==(other);
+inline bool operator!=(const Credit& lhs, const Credit& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

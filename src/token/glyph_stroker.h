@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -28,7 +28,12 @@
 #ifndef TOKEN_GLYPH_STROKER_H_
 #define TOKEN_GLYPH_STROKER_H_
 
+#include <utility>
+
 #include "takram/graphics.h"
+#include "token/ufo/font_info.h"
+#include "token/ufo/glif/advance.h"
+#include "token/ufo/glyph.h"
 
 namespace token {
 
@@ -57,15 +62,15 @@ class GlyphStroker final {
   GlyphStroker(const GlyphStroker&) = default;
   GlyphStroker& operator=(const GlyphStroker&) = default;
 
-  // Stroking
-  takram::Shape2d stroke(const GlyphOutline& outline) const;
-  takram::Shape2d stroke(const takram::Shape2d& shape) const;
-  takram::Shape2d stroke(const takram::Path2d& path) const;
-  takram::Shape2d simplify(const takram::Shape2d& shape) const;
-
   // Comparison
-  bool operator==(const GlyphStroker& other) const;
-  bool operator!=(const GlyphStroker& other) const;
+  friend bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs);
+  friend bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs);
+
+  // Stroking
+  std::pair<takram::Shape2d, ufo::glif::Advance> operator()(
+      const ufo::FontInfo& font_info,
+      const ufo::Glyph& glyph,
+      const GlyphOutline& outline) const;
 
   // Parameters
   double width() const { return width_; }
@@ -76,21 +81,31 @@ class GlyphStroker final {
   void set_cap(Cap value) { cap_ = value; }
   Join join() const { return join_; }
   void set_join(Join value) { join_ = value; }
+  bool filled() const { return filled_; }
+  void set_filled(bool value) { filled_ = value; }
   double precision() const { return precision_; }
   void set_precision(double value) { precision_ = value; }
-  double tolerance() const { return tolerance_; }
-  void set_tolerance(double value) { tolerance_ = value; }
+  double shift_increment() const { return shift_increment_; }
+  void set_shift_increment(double value) { shift_increment_ = value; }
+  double shift_limit() const { return shift_limit_; }
+  void set_shift_limit(double value) { shift_limit_ = value; }
 
  private:
-  takram::Shape2d merge(const takram::Shape2d& shape) const;
+  takram::Shape2d stroke(const ufo::Glyph& glyph,
+                         const GlyphOutline& outline) const;
+  takram::Shape2d stroke(const GlyphOutline& outline) const;
+  takram::Shape2d stroke(const takram::Path2d& path) const;
+  takram::Shape2d simplify(const takram::Shape2d& shape) const;
 
  private:
   double width_;
   double miter_;
-  mutable Cap cap_;
+  Cap cap_;
   Join join_;
+  bool filled_;
   double precision_;
-  double tolerance_;
+  double shift_increment_;
+  double shift_limit_;
 };
 
 #pragma mark -
@@ -100,22 +115,26 @@ inline GlyphStroker::GlyphStroker()
       miter_(),
       cap_(Cap::ROUND),
       join_(Join::ROUND),
+      filled_(),
       precision_(0.25),
-      tolerance_(0.02) {}
+      shift_increment_(0.0001),
+      shift_limit_(0.1) {}
 
 #pragma mark Comparison
 
-inline bool GlyphStroker::operator==(const GlyphStroker& other) const {
-  return (width_ == other.width_ &&
-          miter_ == other.miter_ &&
-          cap_ == other.cap_ &&
-          join_ == other.join_ &&
-          precision_ == other.precision_ &&
-          tolerance_ == other.tolerance_);
+inline bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs) {
+  return (lhs.width_ == rhs.width_ &&
+          lhs.miter_ == rhs.miter_ &&
+          lhs.cap_ == rhs.cap_ &&
+          lhs.join_ == rhs.join_ &&
+          lhs.filled_ == rhs.filled_ &&
+          lhs.precision_ == rhs.precision_ &&
+          lhs.shift_increment_ == rhs.shift_increment_ &&
+          lhs.shift_limit_ == rhs.shift_limit_);
 }
 
-inline bool GlyphStroker::operator!=(const GlyphStroker& other) const {
-  return !operator==(other);
+inline bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace token

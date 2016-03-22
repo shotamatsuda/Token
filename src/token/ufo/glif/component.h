@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -55,10 +55,6 @@ class Component final {
   Component(const Component&) = default;
   Component& operator=(const Component&) = default;
 
-  // Comparison
-  bool operator==(const Component& other) const;
-  bool operator!=(const Component& other) const;
-
   // Property tree
   static Component read(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
@@ -73,6 +69,10 @@ class Component final {
   double y_offset;
   std::string identifier;
 };
+
+// Comparison
+bool operator==(const Component& lhs, const Component& rhs);
+bool operator!=(const Component& lhs, const Component& rhs);
 
 #pragma mark -
 
@@ -103,19 +103,19 @@ inline Component::Component(const std::string& base,
 
 #pragma mark Comparison
 
-inline bool Component::operator==(const Component& other) const {
-  return (base == other.base &&
-          x_scale == other.x_scale &&
-          xy_scale == other.xy_scale &&
-          yx_scale == other.yx_scale &&
-          y_scale == other.y_scale &&
-          x_offset == other.x_offset &&
-          y_offset == other.y_offset &&
-          identifier == other.identifier);
+inline bool operator==(const Component& lhs, const Component& rhs) {
+  return (lhs.base == rhs.base &&
+          lhs.x_scale == rhs.x_scale &&
+          lhs.xy_scale == rhs.xy_scale &&
+          lhs.yx_scale == rhs.yx_scale &&
+          lhs.y_scale == rhs.y_scale &&
+          lhs.x_offset == rhs.x_offset &&
+          lhs.y_offset == rhs.y_offset &&
+          lhs.identifier == rhs.identifier);
 }
 
-inline bool Component::operator!=(const Component& other) const {
-  return !operator==(other);
+inline bool operator!=(const Component& lhs, const Component& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Property tree

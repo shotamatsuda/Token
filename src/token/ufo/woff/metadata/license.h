@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -47,10 +47,6 @@ class License final {
   License(const License&) = default;
   License& operator=(const License&) = default;
 
-  // Comparison
-  bool operator==(const License& other) const;
-  bool operator!=(const License& other) const;
-
   // Property list
   static License read(const PropertyList& plist);
   PropertyList plist() const;
@@ -61,18 +57,22 @@ class License final {
   std::vector<Text> text;
 };
 
+// Comparison
+bool operator==(const License& lhs, const License& rhs);
+bool operator!=(const License& lhs, const License& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool License::operator==(const License& other) const {
-  return (url == other.url &&
-          identifier == other.identifier &&
-          text == other.text);
+inline bool operator==(const License& lhs, const License& rhs) {
+  return (lhs.url == rhs.url &&
+          lhs.identifier == rhs.identifier &&
+          lhs.text == rhs.text);
 }
 
-inline bool License::operator!=(const License& other) const {
-  return operator==(other);
+inline bool operator!=(const License& lhs, const License& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -59,8 +59,12 @@ class GlyphIterator final : public std::iterator<std::forward_iterator_tag, T> {
   GlyphIterator& operator=(const GlyphIterator&) = default;
 
   // Comparison
-  bool operator==(const GlyphIterator& other) const;
-  bool operator!=(const GlyphIterator& other) const;
+  template <class U>
+  friend bool operator==(const GlyphIterator<U>& lhs,
+                         const GlyphIterator<U>& rhs);
+  template <class U>
+  friend bool operator!=(const GlyphIterator<U>& lhs,
+                         const GlyphIterator<U>& rhs);
 
   // Iterator
   T& operator*() const;
@@ -86,13 +90,15 @@ inline GlyphIterator<T>::GlyphIterator(Glyphs *glyphs, Iterator iterator)
 #pragma mark Comparison
 
 template <class T>
-inline bool GlyphIterator<T>::operator==(const GlyphIterator& other) const {
-  return glyphs_ == other.glyphs_ && iterator_ == other.iterator_;
+inline bool operator==(const GlyphIterator<T>& lhs,
+                       const GlyphIterator<T>& rhs) {
+  return lhs.glyphs_ == rhs.glyphs_ && lhs.iterator_ == rhs.iterator_;
 }
 
 template <class T>
-inline bool GlyphIterator<T>::operator!=(const GlyphIterator& other) const {
-  return !operator==(other);
+inline bool operator!=(const GlyphIterator<T>& lhs,
+                       const GlyphIterator<T>& rhs) {
+  return !(lhs == rhs);
 }
 
 #pragma mark Iterator

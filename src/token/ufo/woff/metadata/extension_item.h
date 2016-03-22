@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -48,10 +48,6 @@ class ExtensionItem final {
   ExtensionItem(const ExtensionItem&) = default;
   ExtensionItem& operator=(const ExtensionItem&) = default;
 
-  // Comparison
-  bool operator==(const ExtensionItem& other) const;
-  bool operator!=(const ExtensionItem& other) const;
-
   // Property list
   static ExtensionItem read(const PropertyList& plist);
   PropertyList plist() const;
@@ -62,18 +58,22 @@ class ExtensionItem final {
   std::vector<ExtensionValue> values;
 };
 
+// Comparison
+bool operator==(const ExtensionItem& lhs, const ExtensionItem& rhs);
+bool operator!=(const ExtensionItem& lhs, const ExtensionItem& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool ExtensionItem::operator==(const ExtensionItem& other) const {
-  return (identifier == other.identifier &&
-          names == other.names &&
-          values == other.values);
+inline bool operator==(const ExtensionItem& lhs, const ExtensionItem& rhs) {
+  return (lhs.identifier == rhs.identifier &&
+          lhs.names == rhs.names &&
+          lhs.values == rhs.values);
 }
 
-inline bool ExtensionItem::operator!=(const ExtensionItem& other) const {
-  return operator==(other);
+inline bool operator!=(const ExtensionItem& lhs, const ExtensionItem& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

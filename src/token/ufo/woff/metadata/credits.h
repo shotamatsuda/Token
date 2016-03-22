@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -46,10 +46,6 @@ class Credits final {
   Credits(const Credits&) = default;
   Credits& operator=(const Credits&) = default;
 
-  // Comparison
-  bool operator==(const Credits& other) const;
-  bool operator!=(const Credits& other) const;
-
   // Property list
   static Credits read(const PropertyList& plist);
   PropertyList plist() const;
@@ -58,16 +54,20 @@ class Credits final {
   std::vector<Credit> credits;
 };
 
+// Comparison
+bool operator==(const Credits& lhs, const Credits& rhs);
+bool operator!=(const Credits& lhs, const Credits& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Credits::operator==(const Credits& other) const {
-  return credits == other.credits;
+inline bool operator==(const Credits& lhs, const Credits& rhs) {
+  return lhs.credits == rhs.credits;
 }
 
-inline bool Credits::operator!=(const Credits& other) const {
-  return operator==(other);
+inline bool operator!=(const Credits& lhs, const Credits& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata

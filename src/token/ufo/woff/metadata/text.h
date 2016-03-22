@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -45,10 +45,6 @@ class Text final {
   Text(const Text&) = default;
   Text& operator=(const Text&) = default;
 
-  // Comparison
-  bool operator==(const Text& other) const;
-  bool operator!=(const Text& other) const;
-
   // Property list
   static Text read(const PropertyList& plist);
   PropertyList plist() const;
@@ -60,19 +56,23 @@ class Text final {
   std::string klass;
 };
 
+// Comparison
+bool operator==(const Text& lhs, const Text& rhs);
+bool operator!=(const Text& lhs, const Text& rhs);
+
 #pragma mark -
 
 #pragma mark Comparison
 
-inline bool Text::operator==(const Text& other) const {
-  return (text == other.text &&
-          language == other.language &&
-          dir == other.dir &&
-          klass == other.klass);
+inline bool operator==(const Text& lhs, const Text& rhs) {
+  return (lhs.text == rhs.text &&
+          lhs.language == rhs.language &&
+          lhs.dir == rhs.dir &&
+          lhs.klass == rhs.klass);
 }
 
-inline bool Text::operator!=(const Text& other) const {
-  return operator==(other);
+inline bool operator!=(const Text& lhs, const Text& rhs) {
+  return !(lhs == rhs);
 }
 
 }  // namespace metadata
