@@ -7,7 +7,7 @@
 	<key>capHeight</key>
 	<integer>680</integer>
 	<key>copyright</key>
-	<string>Copyright (C) 2014-2015 takram design engineering. www.takram.com.</string>
+	<string>Copyright (C) 2015-2016 takram design engineering. www.takram.com.</string>
 	<key>descender</key>
 	<integer>-250</integer>
 	<key>familyName</key>
@@ -27,11 +27,11 @@
 	<key>openTypeNameCompatibleFullName</key>
 	<string>Token Regular</string>
 	<key>openTypeNameDescription</key>
-	<string>Copyright (C) 2014-2015 takram design engineering. www.takram.com. All rights reserved.</string>
+	<string>Copyright (C) 2015-2016 takram design engineering. www.takram.com. All rights reserved.</string>
 	<key>openTypeNameDesigner</key>
-	<string>Ken Okamoto</string>
+	<string>Ken Okamoto, Shota Matsuda</string>
 	<key>openTypeNameDesignerURL</key>
-	<string>http://www.okamotoken.jp</string>
+	<string>http://www.okamotoken.jp, http://shotamatsuda.com</string>
 	<key>openTypeNameLicense</key>
 	<string>SIL Open Font License</string>
 	<key>openTypeNameLicenseURL</key>
@@ -117,17 +117,19 @@
 	<key>postscriptBlueFuzz</key>
 	<integer>0</integer>
 	<key>postscriptBlueScale</key>
-	<real>0.039625</real>
+	<real>0.039600000000000003</real>
 	<key>postscriptBlueShift</key>
 	<integer>7</integer>
 	<key>postscriptBlueValues</key>
 	<array>
+		<integer>-10</integer>
 		<integer>0</integer>
-		<integer>0</integer>
-		<integer>450</integer>
-		<integer>450</integer>
+		<integer>335</integer>
+		<integer>345</integer>
+		<integer>445</integer>
+		<integer>455</integer>
 		<integer>680</integer>
-		<integer>680</integer>
+		<integer>690</integer>
 	</array>
 	<key>postscriptFontName</key>
 	<string>Token-Regular</string>
@@ -137,6 +139,9 @@
 	<string>Token Regular</string>
 	<key>postscriptIsFixedPitch</key>
 	<false/>
+	<key>postscriptOtherBlues</key>
+	<array>
+	</array>
 	<key>postscriptUnderlinePosition</key>
 	<integer>-75</integer>
 	<key>postscriptUnderlineThickness</key>
@@ -160,6 +165,6 @@
 	<key>xHeight</key>
 	<integer>450</integer>
 	<key>year</key>
-	<integer>2015</integer>
+	<integer>2016</integer>
 </dict>
 </plist>

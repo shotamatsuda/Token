@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<glyph name=".notdef" format="2">
+<glyph name=".notdef" format="1">
   <advance width="728"/>
   <note>
 	.notdef
@@ -12,20 +12,24 @@
       <point x="136" y="680" type="line"/>
     </contour>
     <contour>
-      <point x="136" y="680" type="move"/>
-      <point x="592" y="0" type="line" name="butt"/>
+      <point x="137" y="679" type="move"/>
+      <point x="591" y="1" type="line" name="butt"/>
     </contour>
     <contour>
-      <point x="136" y="0" type="move"/>
-      <point x="592" y="680" type="line" name="butt"/>
+      <point x="137" y="1" type="move"/>
+      <point x="591" y="679" type="line" name="butt"/>
     </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
       <key>com.takram.numberOfContours</key>
       <integer>5</integer>
       <key>com.takram.numberOfHoles</key>
       <integer>4</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

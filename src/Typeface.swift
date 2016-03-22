@@ -73,7 +73,7 @@ class Typeface : TKNTypeface {
 
   private var defaultStroker: Stroker
   private var physicalStroker: Stroker
-  private var stroker: Stroker {
+  var stroker: Stroker {
     get {
       switch strokerBehavior {
       case .Default:

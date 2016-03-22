@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<glyph name="seven" format="2">
+<glyph name="seven" format="1">
   <advance width="604"/>
   <unicode hex="0037"/>
   <outline>
     <contour>
       <point x="100.92" y="680" type="move"/>
       <point x="503.08" y="680" type="line"/>
-      <point x="164.405" y="0" type="line"/>
+      <point x="164.4" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
       <key>com.takram.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>
