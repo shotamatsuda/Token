@@ -27,7 +27,7 @@
 import AppKit
 
 class TypefaceViewController : NSViewController {
-  private let KVOContext: UnsafeMutablePointer<()> = UnsafeMutablePointer<()>()
+  private let KVOContext: UnsafeMutablePointer<()> = UnsafeMutablePointer<()>(nil)
 
   @IBOutlet var typefaceView: TypefaceView?
   @IBOutlet var scrollView: NSScrollView?
@@ -67,12 +67,12 @@ class TypefaceViewController : NSViewController {
     let defaultCenter = NSNotificationCenter.defaultCenter()
     defaultCenter.addObserver(
         self,
-        selector: "contentViewFrameDidChange:",
+        selector: #selector(contentViewFrameDidChange(_:)),
         name: NSViewFrameDidChangeNotification,
         object: typefaceView)
     defaultCenter.addObserver(
         self,
-        selector: "contentViewFrameDidChange:",
+        selector: #selector(contentViewFrameDidChange(_:)),
         name: NSViewFrameDidChangeNotification,
         object: scrollView)
 

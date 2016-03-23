@@ -52,7 +52,7 @@ class NumericTextField : NSTextField {
     selectable = false
     NSNotificationCenter.defaultCenter().addObserver(
         self,
-        selector: "controlTextDidEndEditing:",
+        selector: #selector(controlTextDidEndEditing(_:)),
         name: NSControlTextDidEndEditingNotification,
         object: self)
   }

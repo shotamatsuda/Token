@@ -118,7 +118,7 @@ class TypefaceView : NSView {
 
   private func drawLine(
       line: Array<String>,
-      var position: CGPoint,
+      position: CGPoint,
       dirtyRect: CGRect) {
     guard let typeface = typeface else {
       return
@@ -137,9 +137,10 @@ class TypefaceView : NSView {
     transform.concat()
 
     // Draw every glyphs, moving right by the advance of each glyph.
+    var glyphPosition = position
     for name in line {
-      drawGlyph(name, position: position, dirtyRect: dirtyRect)
-      position.x += CGFloat(typeface.glyphAdvanceForName(name))
+      drawGlyph(name, position: glyphPosition, dirtyRect: dirtyRect)
+      glyphPosition.x += CGFloat(typeface.glyphAdvanceForName(name))
     }
   }
 
@@ -212,7 +213,7 @@ class TypefaceView : NSView {
           index,
           associatedPoints: &previous)
       let currentType = outline.elementAtIndex(
-          (index + 1) % outline.elementCount,
+          index.successor() % outline.elementCount,
           associatedPoints: &current)
       switch currentType {
       case .LineToBezierPathElement:
