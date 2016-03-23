@@ -24,12 +24,10 @@
     <dict>
       <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
       <integer>6</integer>
-      <key>com.takram.numberOfContours</key>
+      <key>com.takram.token.numberOfContours</key>
       <integer>5</integer>
-      <key>com.takram.numberOfHoles</key>
+      <key>com.takram.token.numberOfHoles</key>
       <integer>4</integer>
-      <key>public.markColor</key>
-      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

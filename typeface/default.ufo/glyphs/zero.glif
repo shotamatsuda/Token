@@ -22,12 +22,33 @@
     <dict>
       <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
       <integer>6</integer>
-      <key>com.takram.numberOfContours</key>
+      <key>com.takram.token.numberOfContours</key>
       <integer>2</integer>
-      <key>com.takram.numberOfHoles</key>
+      <key>com.takram.token.numberOfHoles</key>
       <integer>1</integer>
-      <key>public.markColor</key>
-      <string>0,0.67,0.91,1</string>
+      <key>com.typemytype.robofont.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>0</integer>
+          <key>y</key>
+          <real>-7.32</real>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>0</integer>
+          <key>y</key>
+          <real>687.32</real>
+        </dict>
+      </array>
     </dict>
   </lib>
 </glyph>

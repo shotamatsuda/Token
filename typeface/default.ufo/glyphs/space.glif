@@ -9,9 +9,9 @@
   </outline>
   <lib>
     <dict>
-      <key>com.takram.numberOfContours</key>
+      <key>com.takram.token.numberOfContours</key>
       <integer>0</integer>
-      <key>com.takram.numberOfHoles</key>
+      <key>com.takram.token.numberOfHoles</key>
       <integer>0</integer>
     </dict>
   </lib>

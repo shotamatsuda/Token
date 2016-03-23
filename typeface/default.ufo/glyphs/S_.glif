@@ -4,33 +4,58 @@
   <unicode hex="0053"/>
   <outline>
     <contour>
-      <point x="455.25" y="603.15" type="move"/>
-      <point x="409.86" y="658.28"/>
-      <point x="342.35" y="687.32"/>
+      <point x="455.24" y="603.14" type="move"/>
+      <point x="409.84" y="658.28"/>
+      <point x="342.34" y="687.32"/>
       <point x="259.88" y="687.32" type="curve" smooth="yes"/>
-      <point x="154.81" y="687.32"/>
-      <point x="75.18" y="628.11"/>
+      <point x="154.8" y="687.32"/>
+      <point x="75.18" y="628"/>
       <point x="75.18" y="534" type="curve" smooth="yes"/>
-      <point x="75.18" y="436.79"/>
-      <point x="149.07" y="392.86"/>
-      <point x="259.88" y="350.79" type="curve" smooth="yes"/>
-      <point x="360.24" y="312.68"/>
-      <point x="474.67" y="284.17"/>
-      <point x="474.67" y="156.18" type="curve" smooth="yes"/>
-      <point x="474.67" y="71.79"/>
+      <point x="75.18" y="436.8"/>
+      <point x="149.08" y="392.86"/>
+      <point x="259.88" y="350.8" type="curve" smooth="yes"/>
+      <point x="360.24" y="312.7"/>
+      <point x="474.66" y="284.18"/>
+      <point x="474.66" y="156.18" type="curve" smooth="yes"/>
+      <point x="474.66" y="71.8"/>
       <point x="415.96" y="-7.32"/>
       <point x="272.32" y="-7.32" type="curve" smooth="yes"/>
-      <point x="188.37" y="-7.32"/>
-      <point x="101.12" y="35"/>
-      <point x="59.33" y="101.87" type="curve"/>
+      <point x="188.36" y="-7.32"/>
+      <point x="101" y="35"/>
+      <point x="59.32" y="101.88" type="curve"/>
     </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.takram.numberOfContours</key>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
+      <key>com.takram.token.numberOfContours</key>
       <integer>1</integer>
-      <key>com.takram.numberOfHoles</key>
+      <key>com.takram.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>com.typemytype.robofont.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>0</integer>
+          <key>y</key>
+          <real>-7.32</real>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>0</integer>
+          <key>y</key>
+          <real>687.32</real>
+        </dict>
+      </array>
     </dict>
   </lib>
 </glyph>

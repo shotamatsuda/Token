@@ -4,45 +4,64 @@
   <unicode hex="0039"/>
   <outline>
     <contour>
-      <point x="460.2" y="588.51" type="move"/>
-      <point x="468.31" y="573.15"/>
-      <point x="474.55" y="556.47"/>
-      <point x="478.74" y="538.82" type="curve" smooth="yes"/>
-      <point x="482.83" y="521.57"/>
-      <point x="484.98" y="503.42"/>
-      <point x="484.98" y="484.65" type="curve" smooth="yes"/>
-      <point x="484.98" y="372.71"/>
-      <point x="408.89" y="282.01"/>
-      <point x="294" y="282.01" type="curve" smooth="yes"/>
-      <point x="179" y="282.01"/>
-      <point x="103" y="372.71"/>
-      <point x="103" y="484.65" type="curve" smooth="yes"/>
-      <point x="103" y="596.64"/>
-      <point x="179" y="687.32"/>
-      <point x="294" y="687.32" type="curve" smooth="yes"/>
-      <point x="355.61" y="687.32"/>
-      <point x="406.08" y="661.26"/>
-      <point x="439.6" y="619.82" type="curve" smooth="yes"/>
-      <point x="447.4" y="610.16"/>
-      <point x="454.3" y="599.68"/>
-      <point x="460.2" y="588.51" type="curve" smooth="yes"/>
-      <point x="511.01" y="492.28"/>
-      <point x="504.77" y="340.62"/>
-      <point x="493.2" y="237.03" type="curve"/>
-      <point x="474.12" y="65.93"/>
-      <point x="385.83" y="-7.32"/>
+      <point x="135" y="55" type="move"/>
+      <point x="174.74" y="13.24"/>
+      <point x="223.03" y="-7.32"/>
       <point x="288.07" y="-7.32" type="curve" smooth="yes"/>
-      <point x="223.02" y="-7.32"/>
-      <point x="174.74" y="13.25"/>
-      <point x="135" y="55" type="curve" smooth="yes"/>
+      <point x="385.83" y="-7.32"/>
+      <point x="474.13" y="65.92"/>
+      <point x="493.22" y="237.03" type="curve" smooth="yes"/>
+      <point x="504.77" y="340.62"/>
+      <point x="511.05" y="492.3"/>
+      <point x="460.24" y="588.52" type="curve"/>
+      <point x="428.98" y="647.71"/>
+      <point x="370.02" y="687.32"/>
+      <point x="294" y="687.32" type="curve"/>
+      <point x="179" y="687.32"/>
+      <point x="103" y="596.65"/>
+      <point x="103" y="484.65" type="curve" smooth="yes"/>
+      <point x="103" y="372.65"/>
+      <point x="179" y="281.98"/>
+      <point x="294" y="281.98" type="curve"/>
+      <point x="409" y="281.98"/>
+      <point x="485" y="372.68"/>
+      <point x="485" y="484.68" type="curve" smooth="yes"/>
+      <point x="485" y="522.65"/>
+      <point x="476.33" y="558.05"/>
+      <point x="460.24" y="588.52" type="curve"/>
     </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.takram.numberOfContours</key>
+      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+      <integer>6</integer>
+      <key>com.takram.token.numberOfContours</key>
       <integer>2</integer>
-      <key>com.takram.numberOfHoles</key>
+      <key>com.takram.token.numberOfHoles</key>
       <integer>1</integer>
+      <key>com.typemytype.robofont.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>0</integer>
+          <key>y</key>
+          <real>-7.32</real>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>0</integer>
+          <key>y</key>
+          <real>687.32</real>
+        </dict>
+      </array>
     </dict>
   </lib>
 </glyph>
