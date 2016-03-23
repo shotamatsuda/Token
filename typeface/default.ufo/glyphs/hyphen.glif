@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="hyphen" format="1">
-  <advance width="418.35"/>
+  <advance width="416"/>
   <unicode hex="002D"/>
   <outline>
     <contour>
-      <point x="81" y="340" type="move"/>
-      <point x="337.35" y="340" type="line"/>
+      <point x="80" y="340" type="move"/>
+      <point x="336" y="340" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -16,6 +16,8 @@
       <integer>1</integer>
       <key>com.takram.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

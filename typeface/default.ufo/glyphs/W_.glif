@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="W" format="1">
-  <advance width="722"/>
+  <advance width="718"/>
   <unicode hex="0057"/>
   <outline>
     <contour>
-      <point x="687.98" y="680" type="move"/>
-      <point x="533" y="0" type="line"/>
-      <point x="361" y="582" type="line"/>
-      <point x="189" y="0" type="line"/>
-      <point x="34.02" y="680" type="line"/>
+      <point x="686" y="680" type="move"/>
+      <point x="531" y="0" type="line"/>
+      <point x="359" y="582" type="line"/>
+      <point x="187" y="0" type="line"/>
+      <point x="32" y="680" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -19,6 +19,8 @@
       <integer>1</integer>
       <key>com.takram.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

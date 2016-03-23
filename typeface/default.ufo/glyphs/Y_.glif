@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="Y" format="1">
-  <advance width="530"/>
+  <advance width="542"/>
   <unicode hex="0059"/>
   <outline>
     <contour>
-      <point x="18.22" y="680" type="move"/>
-      <point x="265" y="325.86" type="line"/>
-      <point x="511.78" y="680" type="line"/>
+      <point x="24" y="680" type="move"/>
+      <point x="271" y="326" type="line"/>
+      <point x="518" y="680" type="line"/>
     </contour>
     <contour>
-      <point x="265" y="324.86" type="move" smooth="yes"/>
-      <point x="265" y="0" type="line"/>
+      <point x="271" y="325" type="move" smooth="yes"/>
+      <point x="271" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -21,6 +21,8 @@
       <integer>1</integer>
       <key>com.takram.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>public.markColor</key>
+      <string>0,0.67,0.91,1</string>
     </dict>
   </lib>
 </glyph>

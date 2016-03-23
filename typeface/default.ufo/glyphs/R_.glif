@@ -19,18 +19,33 @@
       <point x="534.36" y="0" type="move"/>
       <point x="428.58" y="257.86" type="line" smooth="yes"/>
       <point x="408.18" y="307.58"/>
-      <point x="376.67" y="340"/>
+      <point x="376.66" y="340"/>
       <point x="291.64" y="340" type="curve" smooth="yes"/>
     </contour>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
-      <integer>6</integer>
+      <integer>9</integer>
       <key>com.takram.token.numberOfContours</key>
       <integer>2</integer>
       <key>com.takram.token.numberOfHoles</key>
       <integer>1</integer>
+      <key>com.typemytype.robofont.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>90</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <integer>104</integer>
+          <key>y</key>
+          <integer>0</integer>
+        </dict>
+      </array>
+      <key>public.markColor</key>
+      <string>0.98,0.36,0.67,1</string>
     </dict>
   </lib>
 </glyph>

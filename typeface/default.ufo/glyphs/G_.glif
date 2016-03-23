@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="G" format="1">
-  <advance width="676"/>
+  <advance width="677"/>
   <unicode hex="0047"/>
   <outline>
     <contour>
-      <point x="547.83" y="607.02" type="move"/>
-      <point x="499.61" y="655.5"/>
-      <point x="433.43" y="687.32"/>
-      <point x="352.49" y="687.32" type="curve" smooth="yes"/>
-      <point x="177.65" y="687.32"/>
-      <point x="74.25" y="531.85"/>
-      <point x="74.25" y="340" type="curve" smooth="yes"/>
-      <point x="74.25" y="148.15"/>
-      <point x="171.75" y="-7.32"/>
-      <point x="346.59" y="-7.32" type="curve" smooth="yes"/>
-      <point x="521.43" y="-7.32"/>
-      <point x="603.74" y="120.85"/>
-      <point x="600.42" y="316.9" type="curve"/>
-      <point x="412.4" y="316.9" type="line"/>
+      <point x="548.82" y="607.02" type="move"/>
+      <point x="500.6" y="655.5"/>
+      <point x="434.42" y="687.32"/>
+      <point x="353.48" y="687.32" type="curve" smooth="yes"/>
+      <point x="178.64" y="687.32"/>
+      <point x="75.2" y="531.86"/>
+      <point x="75.2" y="340" type="curve" smooth="yes"/>
+      <point x="75.2" y="148.14"/>
+      <point x="172.7" y="-7.32"/>
+      <point x="347.54" y="-7.32" type="curve" smooth="yes"/>
+      <point x="522.38" y="-7.32"/>
+      <point x="601.42" y="120.84"/>
+      <point x="601.42" y="316.9" type="curve"/>
+      <point x="413.4" y="316.9" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
-      <integer>6</integer>
+      <integer>9</integer>
       <key>com.takram.token.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.token.numberOfHoles</key>
@@ -36,7 +36,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>0</integer>
+          <integer>1</integer>
           <key>y</key>
           <real>-7.32</real>
         </dict>
@@ -46,11 +46,23 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>0</integer>
+          <integer>1</integer>
           <key>y</key>
           <real>687.32</real>
         </dict>
+        <dict>
+          <key>angle</key>
+          <integer>90</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>x</key>
+          <real>75.2</real>
+          <key>y</key>
+          <integer>340</integer>
+        </dict>
       </array>
+      <key>public.markColor</key>
+      <string>0.98,0.36,0.67,1</string>
     </dict>
   </lib>
 </glyph>
