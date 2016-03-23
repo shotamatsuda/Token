@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="H" format="1">
-  <advance width="665"/>
+  <advance width="645"/>
   <unicode hex="0048"/>
   <outline>
     <contour>
-      <point x="104" y="680" type="move"/>
-      <point x="104" y="0" type="line"/>
+      <point x="94" y="680" type="move"/>
+      <point x="94" y="0" type="line"/>
     </contour>
     <contour>
-      <point x="561" y="0" type="move"/>
-      <point x="561" y="680" type="line"/>
+      <point x="551" y="0" type="move"/>
+      <point x="551" y="680" type="line"/>
     </contour>
     <contour>
-      <point x="105" y="340" type="move"/>
-      <point x="560" y="340" type="line"/>
+      <point x="95" y="340" type="move"/>
+      <point x="550" y="340" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -32,7 +32,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>104</integer>
+          <integer>94</integer>
           <key>y</key>
           <integer>0</integer>
         </dict>
