@@ -7,3 +7,12 @@
 [submodule "lib/takram-algorithm"]
 	path = lib/takram-algorithm
 	url = git@github.com:takram-design-engineering/takram-algorithm.git
+[submodule "lib/defcon"]
+	path = lib/defcon
+	url = git@github.com:typesupply/defcon.git
+[submodule "lib/python-modules"]
+	path = lib/python-modules
+	url = git@github.com:adobe-type-tools/python-modules.git
+[submodule "lib/python-scripts"]
+	path = lib/python-scripts
+	url = git@github.com:adobe-type-tools/python-scripts.git
