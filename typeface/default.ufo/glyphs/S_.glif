@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="S" format="1">
-  <advance width="532"/>
+  <advance width="542"/>
   <unicode hex="0053"/>
   <outline>
     <contour>
-      <point x="455.24" y="603.14" type="move"/>
-      <point x="409.84" y="658.28"/>
-      <point x="342.34" y="687.32"/>
-      <point x="259.88" y="687.32" type="curve" smooth="yes"/>
-      <point x="154.8" y="687.32"/>
-      <point x="75.18" y="628"/>
-      <point x="75.18" y="534" type="curve" smooth="yes"/>
-      <point x="75.18" y="436.8"/>
-      <point x="149.08" y="392.86"/>
-      <point x="259.88" y="350.8" type="curve" smooth="yes"/>
-      <point x="360.24" y="312.7"/>
-      <point x="474.68" y="284.18"/>
-      <point x="474.68" y="156.18" type="curve" smooth="yes"/>
-      <point x="474.68" y="71.8"/>
-      <point x="415.96" y="-7.32"/>
-      <point x="272.32" y="-7.32" type="curve" smooth="yes"/>
-      <point x="188.36" y="-7.32"/>
-      <point x="101" y="35"/>
-      <point x="59.32" y="101.88" type="curve"/>
+      <point x="460.24" y="603.14" type="move"/>
+      <point x="414.84" y="658.28"/>
+      <point x="347.34" y="687.32"/>
+      <point x="264.88" y="687.32" type="curve" smooth="yes"/>
+      <point x="159.8" y="687.32"/>
+      <point x="80.18" y="628"/>
+      <point x="80.18" y="534" type="curve" smooth="yes"/>
+      <point x="80.18" y="436.8"/>
+      <point x="154.08" y="392.86"/>
+      <point x="264.88" y="350.8" type="curve" smooth="yes"/>
+      <point x="365.24" y="312.7"/>
+      <point x="479.68" y="284.18"/>
+      <point x="479.68" y="156.18" type="curve" smooth="yes"/>
+      <point x="479.68" y="71.8"/>
+      <point x="420.96" y="-7.32"/>
+      <point x="277.32" y="-7.32" type="curve" smooth="yes"/>
+      <point x="193.36" y="-7.32"/>
+      <point x="106" y="35"/>
+      <point x="64.32" y="101.88" type="curve"/>
     </contour>
   </outline>
   <lib>
@@ -41,7 +41,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>0</integer>
+          <integer>5</integer>
           <key>y</key>
           <real>-7.32</real>
         </dict>
@@ -51,7 +51,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>0</integer>
+          <integer>5</integer>
           <key>y</key>
           <real>687.32</real>
         </dict>
