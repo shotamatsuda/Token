@@ -28,6 +28,8 @@
 #ifndef TOKEN_UFO_PROPERTY_LIST_H_
 #define TOKEN_UFO_PROPERTY_LIST_H_
 
+#include <istream>
+#include <ostream>
 #include <utility>
 
 namespace token {
@@ -36,6 +38,7 @@ namespace ufo {
 class PropertyList final {
  public:
   PropertyList();
+  explicit PropertyList(std::istream *stream);
   explicit PropertyList(void *plist, bool owner = true);
   ~PropertyList();
 
@@ -52,18 +55,15 @@ class PropertyList final {
   void * release();
   operator void *() const { return plist_; }
 
+  // Modifier
+  void save(std::ostream *stream) const;
+
  public:
   void *plist_;
   bool owner_;
 };
 
 #pragma mark -
-
-inline PropertyList::PropertyList() : plist_(), owner_() {}
-
-inline PropertyList::PropertyList(void *plist, bool owner)
-    : plist_(plist),
-      owner_(owner) {}
 
 #pragma mark Move semantics
 

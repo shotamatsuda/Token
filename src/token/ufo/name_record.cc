@@ -26,12 +26,6 @@
 
 #include "token/ufo/name_record.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -43,7 +37,6 @@ namespace ufo {
 #pragma mark Property list
 
 NameRecord NameRecord::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   NameRecord result;
   plist::read_number(plist, "nameID", &result.name_id);
   plist::read_number(plist, "platformID", &result.platform_id);
@@ -54,13 +47,13 @@ NameRecord NameRecord::read(const PropertyList& plist) {
 }
 
 PropertyList NameRecord::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_number(plist, "nameID", name_id);
   plist::write_number(plist, "platformID", platform_id);
   plist::write_number(plist, "encodingID", encoding_id);
   plist::write_number(plist, "languageID", language_id);
   plist::write_string(plist, "string", string);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace ufo

@@ -75,7 +75,7 @@ resolve_dependencies() {
 }
 
 if [[ ! -d "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}" ]]; then
-  mkdir "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+  mkdir -p "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 fi
 cd "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 resolve_dependencies "${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}" false

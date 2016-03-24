@@ -26,12 +26,6 @@
 
 #include "token/ufo/woff/metadata/unique_id.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -45,16 +39,15 @@ namespace metadata {
 #pragma mark Property list
 
 UniqueID UniqueID::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   UniqueID result;
   plist::read_string(plist, "identifier", &result.identifier);
   return std::move(result);
 }
 
 PropertyList UniqueID::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_string(plist, "identifier", identifier);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace metadata

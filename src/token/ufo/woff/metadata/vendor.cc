@@ -26,12 +26,6 @@
 
 #include "token/ufo/woff/metadata/vendor.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -45,7 +39,6 @@ namespace metadata {
 #pragma mark Property list
 
 Vendor Vendor::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   Vendor result;
   plist::read_string(plist, "name", &result.name);
   plist::read_string(plist, "url", &result.url);
@@ -55,12 +48,12 @@ Vendor Vendor::read(const PropertyList& plist) {
 }
 
 PropertyList Vendor::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_string(plist, "name", name);
   plist::write_string(plist, "url", url);
   plist::write_string(plist, "dir", dir);
   plist::write_string(plist, "class", klass);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace metadata

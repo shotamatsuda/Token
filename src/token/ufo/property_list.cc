@@ -32,8 +32,37 @@ extern "C" {
 
 }  // extern "C"
 
+#include <cassert>
+#include <cstdint>
+#include <cstdlib>
+#include <iterator>
+#include <ostream>
+#include <string>
+
 namespace token {
 namespace ufo {
+
+PropertyList::PropertyList() : plist_(plist_new_dict()), owner_(true) {}
+
+PropertyList::PropertyList(std::istream *stream) : plist_(), owner_() {
+  assert(stream);
+  assert(stream->good());
+  const std::istreambuf_iterator<char> first(*stream);
+  const std::string contents(first, std::istreambuf_iterator<char>());
+  plist_t node{};
+  plist_from_xml(contents.c_str(), contents.size(), &node);
+  assert(node);
+  assert(plist_get_node_type(node) == PLIST_DICT);
+  plist_ = node;
+  owner_ = true;
+}
+
+PropertyList::PropertyList(void *plist, bool owner)
+    : plist_(plist),
+      owner_(owner) {
+  assert(plist_);
+  assert(plist_get_node_type(plist_) == PLIST_DICT);
+}
 
 PropertyList::~PropertyList() {
   if (owner_ && plist_) {
@@ -41,6 +70,16 @@ PropertyList::~PropertyList() {
     plist_ = nullptr;
     owner_ = false;
   }
+}
+
+#pragma mark Modifier
+
+void PropertyList::save(std::ostream *stream) const {
+  char *xml{};
+  std::uint32_t length{};
+  plist_to_xml(plist_, &xml, &length);
+  *stream << std::string(xml, length);
+  std::free(xml);
 }
 
 }  // namespace ufo

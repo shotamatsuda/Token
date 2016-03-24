@@ -235,9 +235,9 @@
 
 - (BOOL)saveFontInfoAtPath:(const std::string&)path {
   // TODO(shotamatsuda): Adjust x-height
+  // TODO(shotamatsuda): Change style_map_style_name
   token::ufo::FontInfo fontInfo = _fontInfo;
   fontInfo.style_name = _styleName.UTF8String;
-  fontInfo.style_map_style_name = _styleName.UTF8String;
   fontInfo.macintosh_fond_name = _fullName.UTF8String;
   fontInfo.postscript_font_name = _postscriptName.UTF8String;
   fontInfo.postscript_full_name = _fullName.UTF8String;

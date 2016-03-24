@@ -1,5 +1,5 @@
 //
-//  token/ufo/woff/metadata/extension_value.cc
+//  token/afdko/extra.h
 //
 //  The MIT License
 //
@@ -24,39 +24,21 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/ufo/woff/metadata/extension_value.h"
+#pragma once
+#ifndef TOKEN_AFDKO_EXTRA_H_
+#define TOKEN_AFDKO_EXTRA_H_
 
-#include <utility>
+#include <string>
 
-#include "token/ufo/plist.h"
-#include "token/ufo/property_list.h"
+#include "token/ufo.h"
 
 namespace token {
-namespace ufo {
-namespace woff {
-namespace metadata {
+namespace afdko {
 
-#pragma mark Property list
+bool generateKernFile(const std::string& script, const std::string& input);
+bool generateMarkFile(const std::string& script, const std::string& input);
 
-ExtensionValue ExtensionValue::read(const PropertyList& plist) {
-  ExtensionValue result;
-  plist::read_string(plist, "text", &result.text);
-  plist::read_string(plist, "language", &result.language);
-  plist::read_string(plist, "dir", &result.dir);
-  plist::read_string(plist, "class", &result.klass);
-  return std::move(result);
-}
-
-PropertyList ExtensionValue::plist() const {
-  PropertyList plist;
-  plist::write_string(plist, "text", text);
-  plist::write_string(plist, "language", language);
-  plist::write_string(plist, "dir", dir);
-  plist::write_string(plist, "class", klass);
-  return std::move(plist);
-}
-
-}  // namespace metadata
-}  // namespace woff
-}  // namespace ufo
+}  // namespace afdko
 }  // namespace token
+
+#endif  // TOKEN_AFDKO_EXTRA_H_

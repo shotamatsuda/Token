@@ -42,6 +42,9 @@
   const std::string contentsPath(contentsURL.path.UTF8String);
   const std::string fontPath(fontURL.path.UTF8String);
   const std::string toolsPath(toolsURL.path.UTF8String);
+  NSBundle *bundle = [NSBundle mainBundle];
+  const std::string extraPath(
+      [bundle pathForResource:@"Scripts/fdk-extra" ofType:nil].UTF8String);
   const token::ufo::FontInfo fontInfo(contentsPath);
   const token::ufo::Glyphs glyphs(contentsPath);
   token::afdko::checkOutlines(toolsPath, contentsPath);
@@ -49,6 +52,7 @@
   token::afdko::createFeatures(fontInfo, directoryPath);
   token::afdko::createFontMenuNameDB(fontInfo, directoryPath);
   token::afdko::createGlyphOrderAndAliasDB(glyphs, directoryPath);
+  token::afdko::generateKernFile(extraPath, contentsPath);
   return token::afdko::makeotf(toolsPath, contentsPath, fontPath, true);
 }
 

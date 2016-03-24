@@ -26,12 +26,6 @@
 
 #include "token/ufo/guideline.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -43,7 +37,6 @@ namespace ufo {
 #pragma mark Property list
 
 Guideline Guideline::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   Guideline result;
   plist::read_number(plist, "x", &result.x);
   plist::read_number(plist, "y", &result.y);

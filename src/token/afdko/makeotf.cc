@@ -69,14 +69,13 @@ bool makeotf(const std::string& tools,
   const std::string format = R"(
     export PATH=${PATH}:"%1%"
     export FDK_EXE="%1%"
-    "%2%" %3% -ff "%4%" -f "%5%" -o "%6%"
+    "%2%" %3% -f "%4%" -o "%5%"
   )";
   return !std::system((
       boost::format(format) %
       tools %
       command %
       options %
-      (boost::filesystem::path(input).parent_path() / "features").string() %
       input %
       output).str().c_str());
 }
@@ -87,6 +86,12 @@ void createFeatures(const ufo::FontInfo& font_info,
   std::ofstream stream(path.string());
   assert(stream.good());
   const std::string endl = ";\n";
+  stream << "languagesystem latn dflt" << endl;
+
+  // kern
+  stream << "feature kern {" << std::endl;
+  stream << "include (kern.fea)" << std::endl;
+  stream << "} kern;" << std::endl;
 
   // head
   stream << "table head {" << std::endl;

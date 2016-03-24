@@ -69,21 +69,10 @@ bool Glyphs::open(const std::string& path) {
 
 bool Glyphs::open(std::istream *stream) {
   assert(stream);
-  if (!stream->good()) {
-    return false;
-  }
-  const std::istreambuf_iterator<char> first(*stream);
-  const std::string contents(first, std::istreambuf_iterator<char>());
-  plist_t node{};
-  plist_from_xml(contents.c_str(), contents.size(), &node);
-  if (!node) {
-    return false;
-  }
-  assert(plist_get_node_type(node) == PLIST_DICT);
-  PropertyList plist(node);
+  PropertyList plist(stream);
   plist_dict_iter itr{};
   plist_dict_new_iter(plist, &itr);
-  const auto size = plist_dict_get_size(node);
+  const auto size = plist_dict_get_size(plist);
   for (std::uint32_t i{}; i < size; ++i) {
     char *key{};
     plist_t item{};

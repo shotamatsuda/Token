@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9308C72F1CA29ACD004EDECA /* extra.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9308C72D1CA29ACD004EDECA /* extra.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
 		9321E9321C9CA1ED00D6FCEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
 		933162D71B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
@@ -225,6 +226,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9308C72D1CA29ACD004EDECA /* extra.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cc; sourceTree = "<group>"; };
+		9308C72E1CA29ACD004EDECA /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
 		9308F4071C59E003005B31CC /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		930ECCC51C7D5DBC004C9978 /* Typeface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typeface.swift; sourceTree = "<group>"; };
 		930ECCD51C7D5F02004C9978 /* TypefaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceViewController.swift; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				93A05AF01B9B9B98002DDAD5 /* autohint.cc */,
 				93AB70421BA5D9FA004EB3C8 /* check_outlines.h */,
 				93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */,
+				9308C72E1CA29ACD004EDECA /* extra.h */,
+				9308C72D1CA29ACD004EDECA /* extra.cc */,
 			);
 			path = afdko;
 			sourceTree = "<group>";
@@ -880,7 +885,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/physical.ufo\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/physical.ufo\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -957,6 +962,7 @@
 				9321E9321C9CA1ED00D6FCEA /* main.m in Sources */,
 				93654CC81C82F6C5004C3CC9 /* Typeface.swift in Sources */,
 				93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */,
+				9308C72F1CA29ACD004EDECA /* extra.cc in Sources */,
 				93C18FA11B930D440044AAEB /* extension_name.cc in Sources */,
 				937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */,
 				937E19751C9A628D00090AEF /* Stroker.swift in Sources */,

@@ -26,12 +26,6 @@
 
 #include "token/ufo/woff/metadata/license.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -45,7 +39,6 @@ namespace metadata {
 #pragma mark Property list
 
 License License::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   License result;
   plist::read_string(plist, "url", &result.url);
   plist::read_string(plist, "identifier", &result.identifier);
@@ -54,11 +47,11 @@ License License::read(const PropertyList& plist) {
 }
 
 PropertyList License::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_string(plist, "url", url);
   plist::write_string(plist, "identifier", identifier);
   plist::write_vector(plist, "text", text);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace metadata

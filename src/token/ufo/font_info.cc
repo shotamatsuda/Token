@@ -65,18 +65,7 @@ bool FontInfo::open(const std::string& path) {
 
 bool FontInfo::open(std::istream *stream) {
   assert(stream);
-  if (!stream->good()) {
-    return false;
-  }
-  const std::istreambuf_iterator<char> first(*stream);
-  const std::string contents(first, std::istreambuf_iterator<char>());
-  plist_t node{};
-  plist_from_xml(contents.c_str(), contents.size(), &node);
-  if (!node) {
-    return false;
-  }
-  assert(plist_get_node_type(node) == PLIST_DICT);
-  PropertyList plist(node);
+  PropertyList plist(stream);
   readIdentificationInformation(plist);
   readLegalInformation(plist);
   readDimensionInformation(plist);
@@ -108,10 +97,7 @@ bool FontInfo::save(const std::string& path) const {
 
 bool FontInfo::save(std::ostream *stream) const {
   assert(stream);
-  if (!stream->good()) {
-    return false;
-  }
-  PropertyList plist(plist_new_dict());
+  PropertyList plist;
   writeIdentificationInformation(plist);
   writeLegalInformation(plist);
   writeDimensionInformation(plist);
@@ -126,11 +112,7 @@ bool FontInfo::save(std::ostream *stream) const {
   writeMacintoshFONDResourceData(plist);
   writeWOFFData(plist);
   writeGuidelines(plist);
-  char *xml{};
-  uint32_t length{};
-  plist_to_xml(plist, &xml, &length);
-  *stream << std::string(xml, length);
-  std::free(xml);
+  plist.save(stream);
   return true;
 }
 
@@ -307,8 +289,8 @@ void FontInfo::readPostScriptSpecificData(const PropertyList& plist) {
                      &postscript_underline_thickness);
   plist::read_number(plist, "postscriptUnderlinePosition",
                      &postscript_underline_position);
-  plist::read_number(plist, "postscriptIsFixedPitch",
-                     &postscript_is_fixed_pitch);
+  plist::read_boolean(plist, "postscriptIsFixedPitch",
+                      &postscript_is_fixed_pitch);
   plist::read_vector(plist, "postscriptBlueValues",
                      &postscript_blue_values);
   plist::read_vector(plist, "postscriptOtherBlues",
@@ -327,8 +309,8 @@ void FontInfo::readPostScriptSpecificData(const PropertyList& plist) {
                      &postscript_blue_shift);
   plist::read_number(plist, "postscriptBlueScale",
                      &postscript_blue_scale);
-  plist::read_number(plist, "postscriptForceBold",
-                     &postscript_force_bold);
+  plist::read_boolean(plist, "postscriptForceBold",
+                      &postscript_force_bold);
   plist::read_number(plist, "postscriptDefaultWidthX",
                      &postscript_default_width_x);
   plist::read_number(plist, "postscriptNominalWidthX",
@@ -546,8 +528,8 @@ void FontInfo::writePostScriptSpecificData(const PropertyList& plist) const {
                       postscript_underline_thickness);
   plist::write_number(plist, "postscriptUnderlinePosition",
                       postscript_underline_position);
-  plist::write_number(plist, "postscriptIsFixedPitch",
-                      postscript_is_fixed_pitch);
+  plist::write_boolean(plist, "postscriptIsFixedPitch",
+                       postscript_is_fixed_pitch);
   plist::write_vector(plist, "postscriptBlueValues",
                       postscript_blue_values);
   plist::write_vector(plist, "postscriptOtherBlues",
@@ -566,8 +548,8 @@ void FontInfo::writePostScriptSpecificData(const PropertyList& plist) const {
                       postscript_blue_shift);
   plist::write_number(plist, "postscriptBlueScale",
                       postscript_blue_scale);
-  plist::write_number(plist, "postscriptForceBold",
-                      postscript_force_bold);
+  plist::write_boolean(plist, "postscriptForceBold",
+                       postscript_force_bold);
   plist::write_number(plist, "postscriptDefaultWidthX",
                       postscript_default_width_x);
   plist::write_number(plist, "postscriptNominalWidthX",

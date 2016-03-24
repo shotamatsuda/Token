@@ -26,12 +26,6 @@
 
 #include "token/ufo/woff/metadata/text.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -45,7 +39,6 @@ namespace metadata {
 #pragma mark Property list
 
 Text Text::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   Text result;
   plist::read_string(plist, "text", &result.text);
   plist::read_string(plist, "language", &result.language);
@@ -55,12 +48,12 @@ Text Text::read(const PropertyList& plist) {
 }
 
 PropertyList Text::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_string(plist, "text", text);
   plist::write_string(plist, "language", language);
   plist::write_string(plist, "dir", dir);
   plist::write_string(plist, "class", klass);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace metadata

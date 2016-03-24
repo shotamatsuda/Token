@@ -26,12 +26,6 @@
 
 #include "token/ufo/gasp_range_record.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -43,7 +37,6 @@ namespace ufo {
 #pragma mark Property list
 
 GASPRangeRecord GASPRangeRecord::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   GASPRangeRecord result;
   plist::read_number(plist, "rangeMaxPPEM", &result.range_max_ppem);
   plist::read_vector(plist, "rangeGaspBehavior", &result.range_gasp_behavior);
@@ -51,10 +44,10 @@ GASPRangeRecord GASPRangeRecord::read(const PropertyList& plist) {
 }
 
 PropertyList GASPRangeRecord::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_number(plist, "rangeMaxPPEM", range_max_ppem);
   plist::write_vector(plist, "rangeGaspBehavior", range_gasp_behavior);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace ufo

@@ -48,6 +48,32 @@ namespace token {
 namespace ufo {
 namespace plist {
 
+inline void read_boolean(plist_t plist, const std::string& name, bool *output) {
+  assert(output);
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_dict_get_item(plist, name.c_str());
+  if (node) {
+    assert(plist_get_node_type(node) == PLIST_BOOLEAN);
+    std::uint8_t value{};
+    plist_get_bool_val(node, &value);
+    *output = value;
+  }
+}
+
+inline void read_boolean(plist_t plist,
+                         const std::string& name,
+                         Optional<bool> *output) {
+  assert(output);
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_dict_get_item(plist, name.c_str());
+  if (node) {
+    assert(plist_get_node_type(node) == PLIST_BOOLEAN);
+    std::uint8_t value{};
+    plist_get_bool_val(node, &value);
+    *output = value;
+  }
+}
+
 template <class T>
 inline void read_number(plist_t plist, const std::string& name, T *output) {
   assert(output);
@@ -155,6 +181,22 @@ inline void read_vector(plist_t plist,
   if (node) {
     assert(plist_get_node_type(node) == PLIST_DICT);
     output->emplace_back(T::read(PropertyList(node, false)));
+  }
+}
+
+inline void write_boolean(plist_t plist, const std::string& name, bool value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  const auto node = plist_new_bool(value);
+  plist_dict_set_item(plist, name.c_str(), node);
+}
+
+inline void write_boolean(plist_t plist,
+                          const std::string& name,
+                          const Optional<bool>& value) {
+  assert(plist_get_node_type(plist) == PLIST_DICT);
+  if (value.exists()) {
+    const auto node = plist_new_bool(value);
+    plist_dict_set_item(plist, name.c_str(), node);
   }
 }
 

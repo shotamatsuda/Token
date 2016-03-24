@@ -26,12 +26,6 @@
 
 #include "token/ufo/woff/metadata/credits.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -45,16 +39,15 @@ namespace metadata {
 #pragma mark Property list
 
 Credits Credits::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   Credits result;
   plist::read_vector(plist, "credits", &result.credits);
   return std::move(result);
 }
 
 PropertyList Credits::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_vector(plist, "credits", credits);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace metadata

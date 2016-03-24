@@ -26,8 +26,15 @@
 
 #import <Foundation/Foundation.h>
 
+extern "C" {
+
+#include <plist/plist.h>
+
+}  // extern "C"
+
 #include <cmath>
 #include <cstdlib>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -58,69 +65,67 @@ inline void scale_if_exists(std::vector<T> *values, U scale) {
 
 }  // namespace
 
-static void scaleCapHeightToUnitsPerEM(const std::string& path) {
-  token::ufo::FontInfo info(path);
-  token::ufo::Glyphs glyphs(path);
-
-  // We are going to scale everything by this value
-  const auto scale = info.units_per_em / info.cap_height;
+static void scaleFontInfo(const std::string& path, double scale) {
+  token::ufo::FontInfo font_info(path);
 
   // Key metrices. Although the distance between ascender and descender is
   // recommended to be units per em, the goal here is to make font size to
   // match cap height. Both ascender and descender will exceed em box.
-  const auto ascender = std::ceil(info.ascender * scale);
-  const auto cap_height = std::round(info.cap_height * scale);
-  const auto x_height = std::round(info.x_height * scale);
-  const auto descender = std::floor(info.descender * scale);
-  const auto line_gap = std::ceil(info.open_type_hhea_line_gap * scale);
+  const auto ascender = std::ceil(font_info.ascender * scale);
+  const auto cap_height = std::round(font_info.cap_height * scale);
+  const auto x_height = std::round(font_info.x_height * scale);
+  const auto descender = std::floor(font_info.descender * scale);
+  const auto line_gap = std::ceil(font_info.open_type_hhea_line_gap * scale);
 
   // Dimension Information
-  info.ascender = ascender;
-  info.cap_height = cap_height;
-  info.x_height = x_height;
-  info.descender = descender;
+  font_info.ascender = ascender;
+  font_info.cap_height = cap_height;
+  font_info.x_height = x_height;
+  font_info.descender = descender;
 
   // OpenType hhea Table Fields
-  info.open_type_hhea_ascender = ascender;
-  info.open_type_hhea_descender = descender;
-  info.open_type_hhea_line_gap = line_gap;
+  font_info.open_type_hhea_ascender = ascender;
+  font_info.open_type_hhea_descender = descender;
+  font_info.open_type_hhea_line_gap = line_gap;
 
   // OpenType OS/2 Table Fields
-  info.open_type_os2_typo_ascender = ascender;
-  info.open_type_os2_typo_descender = descender;
-  info.open_type_os2_typo_line_gap = line_gap;
-  info.open_type_os2_win_ascent = ascender;
-  info.open_type_os2_win_descent = -descender;
-  scale_if_exists(&info.open_type_os2_subscript_x_size, scale);
-  scale_if_exists(&info.open_type_os2_subscript_y_size, scale);
-  scale_if_exists(&info.open_type_os2_subscript_x_offset, scale);
-  scale_if_exists(&info.open_type_os2_subscript_y_offset, scale);
-  scale_if_exists(&info.open_type_os2_superscript_x_size, scale);
-  scale_if_exists(&info.open_type_os2_superscript_y_size, scale);
-  scale_if_exists(&info.open_type_os2_superscript_x_offset, scale);
-  scale_if_exists(&info.open_type_os2_superscript_y_offset, scale);
-  scale_if_exists(&info.open_type_os2_strikeout_size, scale);
-  scale_if_exists(&info.open_type_os2_strikeout_position, scale);
+  font_info.open_type_os2_typo_ascender = ascender;
+  font_info.open_type_os2_typo_descender = descender;
+  font_info.open_type_os2_typo_line_gap = line_gap;
+  font_info.open_type_os2_win_ascent = ascender;
+  font_info.open_type_os2_win_descent = -descender;
+  scale_if_exists(&font_info.open_type_os2_subscript_x_size, scale);
+  scale_if_exists(&font_info.open_type_os2_subscript_y_size, scale);
+  scale_if_exists(&font_info.open_type_os2_subscript_x_offset, scale);
+  scale_if_exists(&font_info.open_type_os2_subscript_y_offset, scale);
+  scale_if_exists(&font_info.open_type_os2_superscript_x_size, scale);
+  scale_if_exists(&font_info.open_type_os2_superscript_y_size, scale);
+  scale_if_exists(&font_info.open_type_os2_superscript_x_offset, scale);
+  scale_if_exists(&font_info.open_type_os2_superscript_y_offset, scale);
+  scale_if_exists(&font_info.open_type_os2_strikeout_size, scale);
+  scale_if_exists(&font_info.open_type_os2_strikeout_position, scale);
 
   // OpenType vhea Table Fields
-  scale_if_exists(&info.open_type_vhea_vert_typo_ascender, scale);
-  scale_if_exists(&info.open_type_vhea_vert_typo_descender, scale);
-  scale_if_exists(&info.open_type_vhea_vert_typo_line_gap, scale);
+  scale_if_exists(&font_info.open_type_vhea_vert_typo_ascender, scale);
+  scale_if_exists(&font_info.open_type_vhea_vert_typo_descender, scale);
+  scale_if_exists(&font_info.open_type_vhea_vert_typo_line_gap, scale);
 
   // PostScript Specific Data
-  scale_if_exists(&info.postscript_underline_thickness, scale);
-  scale_if_exists(&info.postscript_underline_position, scale);
-  scale_if_exists(&info.postscript_blue_values, scale);
-  scale_if_exists(&info.postscript_other_blues, scale);
-  scale_if_exists(&info.postscript_family_blues, scale);
-  scale_if_exists(&info.postscript_family_other_blues, scale);
-  scale_if_exists(&info.postscript_stem_snap_h, scale);
-  scale_if_exists(&info.postscript_stem_snap_v, scale);
-  scale_if_exists(&info.postscript_default_width_x, scale);
-  scale_if_exists(&info.postscript_nominal_width_x, scale);
-  info.save(path);
+  scale_if_exists(&font_info.postscript_underline_thickness, scale);
+  scale_if_exists(&font_info.postscript_underline_position, scale);
+  scale_if_exists(&font_info.postscript_blue_values, scale);
+  scale_if_exists(&font_info.postscript_other_blues, scale);
+  scale_if_exists(&font_info.postscript_family_blues, scale);
+  scale_if_exists(&font_info.postscript_family_other_blues, scale);
+  scale_if_exists(&font_info.postscript_stem_snap_h, scale);
+  scale_if_exists(&font_info.postscript_stem_snap_v, scale);
+  scale_if_exists(&font_info.postscript_default_width_x, scale);
+  scale_if_exists(&font_info.postscript_nominal_width_x, scale);
+  font_info.save(path);
+}
 
-  // Glyphs
+static void scaleGlyphs(const std::string& path, double scale) {
+  token::ufo::Glyphs glyphs(path);
   const auto glyphs_path = boost::filesystem::path(path) / "glyphs";
   for (auto& glyph : glyphs) {
     double x_offset{};  // Compensate for rounding error
@@ -172,6 +177,43 @@ static void scaleCapHeightToUnitsPerEM(const std::string& path) {
   }
 }
 
+static void scaleKerning(const std::string& path, double scale) {
+  const auto kerning_path = boost::filesystem::path(path) / "kerning.plist";
+  std::ifstream stream(kerning_path.string());
+  token::ufo::PropertyList plist(&stream);
+  plist_dict_iter first_itr{};
+  plist_dict_new_iter(plist, &first_itr);
+  const auto first_size = plist_dict_get_size(plist);
+  for (std::uint32_t i{}; i < first_size; ++i) {
+    char *first_key{};
+    plist_t first_item{};
+    plist_dict_next_item(plist, first_itr, &first_key, &first_item);
+    assert(first_item);
+    assert(plist_get_node_type(first_item) == PLIST_DICT);
+    plist_dict_iter second_itr{};
+    plist_dict_new_iter(first_item, &second_itr);
+    const auto second_size = plist_dict_get_size(first_item);
+    for (std::uint32_t i{}; i < second_size; ++i) {
+      char *second_key{};
+      plist_t second_item{};
+      plist_dict_next_item(first_item, second_itr, &second_key, &second_item);
+      assert(second_item);
+      assert(plist_get_node_type(second_item) == PLIST_UINT);
+      std::uint64_t raw_value{};
+      plist_get_uint_val(second_item, &raw_value);
+      const auto value = *reinterpret_cast<std::int64_t *>(&raw_value);
+      const auto scaled_item = plist_new_uint(std::round(value * scale));
+      plist_dict_set_item(first_item, second_key, scaled_item);
+      std::free(second_key);
+    }
+    std::free(second_itr);
+    std::free(first_key);
+  }
+  std::free(first_itr);
+  std::ofstream ostream(kerning_path.string());
+  plist.save(&ostream);
+}
+
 int main(int argc, const char *argv[]) {
   if (argc < 3) {
     return EXIT_FAILURE;
@@ -190,6 +232,14 @@ int main(int argc, const char *argv[]) {
   if (![manager copyItemAtURL:source toURL:destination error:&error]) {
     return EXIT_FAILURE;
   }
-  scaleCapHeightToUnitsPerEM(destination.path.UTF8String);
+  const std::string source_font_path(source.path.UTF8String);
+  const std::string destination_font_path(destination.path.UTF8String);
+
+  // We are going to scale everything by this value
+  token::ufo::FontInfo font_info(source_font_path);
+  const auto scale = font_info.units_per_em / font_info.cap_height;
+  scaleFontInfo(destination_font_path, scale);
+  scaleGlyphs(destination_font_path, scale);
+  scaleKerning(destination_font_path, scale);
   return EXIT_SUCCESS;
 }

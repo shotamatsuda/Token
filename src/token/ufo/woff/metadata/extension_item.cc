@@ -26,12 +26,6 @@
 
 #include "token/ufo/woff/metadata/extension_item.h"
 
-extern "C" {
-
-#include <plist/plist.h>
-
-}  // extern "C"
-
 #include <utility>
 
 #include "token/ufo/plist.h"
@@ -45,7 +39,6 @@ namespace metadata {
 #pragma mark Property list
 
 ExtensionItem ExtensionItem::read(const PropertyList& plist) {
-  assert(plist_get_node_type(plist) == PLIST_DICT);
   ExtensionItem result;
   plist::read_string(plist, "identifier", &result.identifier);
   plist::read_vector(plist, "names", &result.names);
@@ -54,11 +47,11 @@ ExtensionItem ExtensionItem::read(const PropertyList& plist) {
 }
 
 PropertyList ExtensionItem::plist() const {
-  plist_t plist = plist_new_dict();
+  PropertyList plist;
   plist::write_string(plist, "identifier", identifier);
   plist::write_vector(plist, "names", names);
   plist::write_vector(plist, "values", values);
-  return PropertyList(plist);
+  return std::move(plist);
 }
 
 }  // namespace metadata
