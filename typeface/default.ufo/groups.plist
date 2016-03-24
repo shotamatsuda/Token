@@ -122,10 +122,6 @@
 	<array>
 		<string>hyphen</string>
 	</array>
-	<key>@MMK_L_nine</key>
-	<array>
-		<string>nine</string>
-	</array>
 	<key>@MMK_L_one</key>
 	<array>
 		<string>one</string>
@@ -161,6 +157,7 @@
 	<key>@MMK_L_zero</key>
 	<array>
 		<string>zero</string>
+		<string>nine</string>
 	</array>
 	<key>@MMK_R_.notdef</key>
 	<array>
@@ -268,10 +265,6 @@
 	<array>
 		<string>seven</string>
 	</array>
-	<key>@MMK_R_six</key>
-	<array>
-		<string>six</string>
-	</array>
 	<key>@MMK_R_slash</key>
 	<array>
 		<string>slash</string>
@@ -291,6 +284,7 @@
 	<key>@MMK_R_zero</key>
 	<array>
 		<string>zero</string>
+		<string>six</string>
 	</array>
 </dict>
 </plist>
