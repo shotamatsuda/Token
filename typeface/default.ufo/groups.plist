@@ -38,6 +38,7 @@
 	<array>
 		<string>H</string>
 		<string>I</string>
+		<string>M</string>
 		<string>N</string>
 	</array>
 	<key>@MMK_L_J</key>
@@ -52,19 +53,18 @@
 	<array>
 		<string>L</string>
 	</array>
-	<key>@MMK_L_M</key>
-	<array>
-		<string>M</string>
-	</array>
 	<key>@MMK_L_O</key>
 	<array>
 		<string>D</string>
 		<string>O</string>
-		<string>Q</string>
 	</array>
 	<key>@MMK_L_P</key>
 	<array>
 		<string>P</string>
+	</array>
+	<key>@MMK_L_Q</key>
+	<array>
+		<string>Q</string>
 	</array>
 	<key>@MMK_L_R</key>
 	<array>
@@ -184,6 +184,7 @@
 		<string>I</string>
 		<string>K</string>
 		<string>L</string>
+		<string>M</string>
 		<string>N</string>
 		<string>P</string>
 		<string>R</string>
@@ -191,10 +192,6 @@
 	<key>@MMK_R_J</key>
 	<array>
 		<string>J</string>
-	</array>
-	<key>@MMK_R_M</key>
-	<array>
-		<string>M</string>
 	</array>
 	<key>@MMK_R_O</key>
 	<array>

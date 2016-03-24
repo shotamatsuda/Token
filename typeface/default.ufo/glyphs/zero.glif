@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="zero" format="1">
-  <advance width="530"/>
+  <advance width="540"/>
   <unicode hex="0030"/>
   <outline>
     <contour>
-      <point x="265" y="687.32" type="move"/>
-      <point x="407.76" y="687.32"/>
-      <point x="484.36" y="531.86"/>
-      <point x="484.36" y="340" type="curve" smooth="yes"/>
-      <point x="484.36" y="148.14"/>
-      <point x="407.76" y="-7.32"/>
-      <point x="265" y="-7.32" type="curve" smooth="yes"/>
-      <point x="122.24" y="-7.32"/>
-      <point x="45.64" y="148.14"/>
-      <point x="45.64" y="340" type="curve" smooth="yes"/>
-      <point x="45.64" y="531.86"/>
-      <point x="122.24" y="687.32"/>
-      <point x="265" y="687.32" type="curve"/>
+      <point x="270" y="687.32" type="move"/>
+      <point x="412.76" y="687.32"/>
+      <point x="489.36" y="531.86"/>
+      <point x="489.36" y="340" type="curve" smooth="yes"/>
+      <point x="489.36" y="148.14"/>
+      <point x="412.76" y="-7.32"/>
+      <point x="270" y="-7.32" type="curve" smooth="yes"/>
+      <point x="127.24" y="-7.32"/>
+      <point x="50.64" y="148.14"/>
+      <point x="50.64" y="340" type="curve" smooth="yes"/>
+      <point x="50.64" y="531.86"/>
+      <point x="127.24" y="687.32"/>
+      <point x="270" y="687.32" type="curve"/>
     </contour>
   </outline>
   <lib>
@@ -35,7 +35,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-37</integer>
+          <integer>-32</integer>
           <key>y</key>
           <real>-7.32</real>
         </dict>
@@ -45,7 +45,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-37</integer>
+          <integer>-32</integer>
           <key>y</key>
           <real>687.32</real>
         </dict>

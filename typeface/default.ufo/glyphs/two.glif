@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="two" format="1">
-  <advance width="526"/>
+  <advance width="482"/>
   <unicode hex="0032"/>
   <outline>
     <contour>
-      <point x="80.18" y="591.78" type="move"/>
-      <point x="122.66" y="655.84"/>
-      <point x="185.72" y="687.32"/>
-      <point x="268.11" y="687.32" type="curve" smooth="yes"/>
-      <point x="327.65" y="687.32"/>
-      <point x="445.88" y="657.32"/>
-      <point x="445.88" y="526.44" type="curve" smooth="yes"/>
-      <point x="445.88" y="325.2"/>
-      <point x="74.5" y="206.92"/>
-      <point x="74.5" y="0" type="curve"/>
-      <point x="465.5" y="0" type="line"/>
+      <point x="61.18" y="591.78" type="move"/>
+      <point x="103.66" y="655.84"/>
+      <point x="166.72" y="687.32"/>
+      <point x="249.11" y="687.32" type="curve" smooth="yes"/>
+      <point x="308.65" y="687.32"/>
+      <point x="426.88" y="657.32"/>
+      <point x="426.88" y="526.44" type="curve" smooth="yes"/>
+      <point x="426.88" y="325.2"/>
+      <point x="55.5" y="206.92"/>
+      <point x="55.5" y="0" type="curve"/>
+      <point x="446.5" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -33,7 +33,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-32</integer>
+          <integer>-51</integer>
           <key>y</key>
           <real>687.32</real>
         </dict>

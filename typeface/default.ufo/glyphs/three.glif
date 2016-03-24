@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="three" format="1">
-  <advance width="490"/>
+  <advance width="472"/>
   <unicode hex="0033"/>
   <outline>
     <contour>
-      <point x="54.74" y="88.3" type="move"/>
-      <point x="97.2" y="24.18"/>
-      <point x="160.4" y="-7.32"/>
-      <point x="242.78" y="-7.32" type="curve" smooth="yes"/>
-      <point x="343.96" y="-7.32"/>
-      <point x="435.26" y="58.06"/>
-      <point x="435.26" y="174.42" type="curve" smooth="yes"/>
-      <point x="435.26" y="293.78"/>
-      <point x="348.44" y="364.1"/>
-      <point x="215.52" y="364.1" type="curve" smooth="yes"/>
-      <point x="213.3" y="364.1" type="line"/>
-      <point x="346.22" y="364.1"/>
-      <point x="418.42" y="434.18"/>
-      <point x="418.42" y="535.54" type="curve" smooth="yes"/>
-      <point x="418.42" y="636"/>
-      <point x="341.7" y="687.32"/>
-      <point x="240.52" y="687.32" type="curve" smooth="yes"/>
-      <point x="173.98" y="687.32"/>
-      <point x="120.02" y="666.76"/>
-      <point x="79.34" y="625" type="curve"/>
+      <point x="42.74" y="88.3" type="move"/>
+      <point x="85.2" y="24.18"/>
+      <point x="148.4" y="-7.32"/>
+      <point x="230.78" y="-7.32" type="curve" smooth="yes"/>
+      <point x="331.96" y="-7.32"/>
+      <point x="423.26" y="58.06"/>
+      <point x="423.26" y="174.42" type="curve" smooth="yes"/>
+      <point x="423.26" y="293.78"/>
+      <point x="336.44" y="364.1"/>
+      <point x="203.52" y="364.1" type="curve" smooth="yes"/>
+      <point x="201.3" y="364.1" type="line"/>
+      <point x="334.22" y="364.1"/>
+      <point x="406.42" y="434.18"/>
+      <point x="406.42" y="535.54" type="curve" smooth="yes"/>
+      <point x="406.42" y="636"/>
+      <point x="329.7" y="687.32"/>
+      <point x="228.52" y="687.32" type="curve" smooth="yes"/>
+      <point x="161.98" y="687.32"/>
+      <point x="108.02" y="666.76"/>
+      <point x="67.34" y="625" type="curve"/>
     </contour>
   </outline>
   <lib>
@@ -42,7 +42,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-57</integer>
+          <integer>-69</integer>
           <key>y</key>
           <real>-7.32</real>
         </dict>
@@ -52,7 +52,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-57</integer>
+          <integer>-69</integer>
           <key>y</key>
           <real>687.32</real>
         </dict>
