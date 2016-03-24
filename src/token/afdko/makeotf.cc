@@ -128,11 +128,11 @@ void createFeatures(const ufo::FontInfo& font_info,
   // name
   stream << "table name {" << std::endl;
   writeName(&stream, 0, font_info.copyright);
-  writeName(&stream, 1, font_info.style_map_family_name);
-  writeName(&stream, 2, font_info.style_map_style_name);
-  writeName(&stream, 3, font_info.open_type_name_unique_id);
-  writeName(&stream, 5, font_info.open_type_name_version);
-  writeName(&stream, 6, font_info.postscript_font_name);
+//  writeName(&stream, 1, font_info.style_map_family_name);
+//  writeName(&stream, 2, font_info.style_map_style_name);
+//  writeName(&stream, 3, font_info.open_type_name_unique_id);
+//  writeName(&stream, 5, font_info.open_type_name_version);
+//  writeName(&stream, 6, font_info.postscript_font_name);
   writeName(&stream, 7, font_info.trademark);
   writeName(&stream, 8, font_info.open_type_name_manufacturer);
   writeName(&stream, 9, font_info.open_type_name_designer);

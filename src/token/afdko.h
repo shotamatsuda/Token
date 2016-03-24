@@ -30,7 +30,7 @@
 
 #include "token/afdko/autohint.h"
 #include "token/afdko/check_outlines.h"
-#include "token/afdko/makeotf.h"
 #include "token/afdko/extra.h"
+#include "token/afdko/makeotf.h"
 
 #endif  // TOKEN_AFDKO_H_
