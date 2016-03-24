@@ -35,7 +35,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-32</integer>
+          <integer>0</integer>
           <key>y</key>
           <real>-7.32</real>
         </dict>
@@ -45,7 +45,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>-32</integer>
+          <integer>0</integer>
           <key>y</key>
           <real>687.32</real>
         </dict>
