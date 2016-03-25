@@ -150,13 +150,6 @@
 			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
 			remoteInfo = graphics_static;
 		};
-		936839A61B9E8D4300E21EF7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9461AD97263009D0646 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C257E21B9DDC7A00134399;
-			remoteInfo = scaler;
-		};
 		93C257851B9BCCDB00134399 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
@@ -711,7 +704,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				936839A71B9E8D4300E21EF7 /* PBXTargetDependency */,
 				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
 			);
 			name = Token;
@@ -890,7 +882,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/physical.ufo\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1004,11 +996,6 @@
 			isa = PBXTargetDependency;
 			name = graphics_static;
 			targetProxy = 936839791B9E7B3B00E21EF7 /* PBXContainerItemProxy */;
-		};
-		936839A71B9E8D4300E21EF7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 93C257E21B9DDC7A00134399 /* scaler */;
-			targetProxy = 936839A61B9E8D4300E21EF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
