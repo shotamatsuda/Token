@@ -65,8 +65,8 @@ build_skia() {
   export GYP_GENERATORS='ninja,xcode'
   echo 'Building for OS X...'
   GYP_DEFINES="skia_os='mac' skia_arch_width='64'" './gyp_skia'
-  ninja -C 'out/Debug' skia_lib tools
-  copy_libraries_in_place "${SKIA_DIR}/out/Debug"
+  ninja -C 'out/Release' skia_lib tools
+  copy_libraries_in_place "${SKIA_DIR}/out/Release"
 }
 
 copy_libraries_in_place() {
