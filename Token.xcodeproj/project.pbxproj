@@ -15,6 +15,8 @@
 		933A61501BC8C95000C600C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933A614F1BC8C95000C600C5 /* Main.storyboard */; };
 		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
 		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
+		9359E9F31CA4B45D00E57962 /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C257941B9BCCDB00134399 /* libtakram_math.a */; };
+		9359E9F41CA4B46000E57962 /* libtakram_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C257881B9BCCDB00134399 /* libtakram_algorithm.a */; };
 		93654CC31C82F6C5004C3CC9 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */; };
 		93654CC41C82F6C5004C3CC9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D70EE21C2DAB0A003C6F2B /* MainWindowController.swift */; };
 		93654CC51C82F6C5004C3CC9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D70EE41C2DAB1A003C6F2B /* MainViewController.swift */; };
@@ -370,7 +372,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9359E9F41CA4B46000E57962 /* libtakram_algorithm.a in Frameworks */,
 				93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */,
+				9359E9F31CA4B45D00E57962 /* libtakram_math.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +733,7 @@
 					};
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = CMMH8M4457;
 					};
 				};
 			};
@@ -1057,14 +1062,16 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "src/Token-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1075,14 +1082,16 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				ENABLE_NS_ASSERTIONS = NO;
 				INFOPLIST_FILE = resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "src/Token-Bridging-Header.h";
 			};
 			name = Release;

@@ -81,11 +81,7 @@ inline void read_number(plist_t plist, const std::string& name, T *output) {
   const auto node = plist_dict_get_item(plist, name.c_str());
   if (node) {
     const auto type = plist_get_node_type(node);
-    if (type == PLIST_BOOLEAN) {
-      std::uint8_t value{};
-      plist_get_bool_val(node, &value);
-      *output = value;
-    } else if (type == PLIST_UINT) {
+    if (type == PLIST_UINT) {
       std::uint64_t value{};
       plist_get_uint_val(node, &value);
       *output = *reinterpret_cast<std::int64_t *>(&value);
@@ -151,11 +147,7 @@ inline void read_vector(plist_t plist,
     for (std::uint32_t i{}; i < size; ++i) {
       const auto item = plist_array_get_item(node, i);
       const auto type = plist_get_node_type(item);
-      if (type == PLIST_BOOLEAN) {
-        std::uint8_t value{};
-        plist_get_bool_val(item, &value);
-        output->emplace_back(value);
-      } else if (type == PLIST_UINT) {
+      if (type == PLIST_UINT) {
         std::uint64_t value{};
         plist_get_uint_val(item, &value);
         output->emplace_back(*reinterpret_cast<std::int64_t *>(&value));
