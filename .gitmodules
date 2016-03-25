@@ -22,3 +22,6 @@
 [submodule "lib/robofab"]
 	path = lib/robofab
 	url = git@github.com:robofab-developers/robofab.git
+[submodule "lib/afdko"]
+	path = lib/afdko
+	url = git@github.com:adobe-type-tools/afdko.git
