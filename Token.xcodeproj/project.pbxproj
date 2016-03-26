@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9303A2C41CA6AE8C004F8E04 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
-		9303A2D61CA6AE99004F8E04 /* upem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9303A2D51CA6AE99004F8E04 /* upem.mm */; };
 		9303A2DB1CA6BDF1004F8E04 /* utility.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9303A2DA1CA6BDF1004F8E04 /* utility.cc */; };
 		9308C72F1CA29ACD004EDECA /* extra.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9308C72D1CA29ACD004EDECA /* extra.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
@@ -103,7 +101,6 @@
 		93C257B01B9C5AB700134399 /* ZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* ZoomOut.pdf */; };
 		93C257C41B9C96D900134399 /* Invert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C31B9C96D900134399 /* Invert.pdf */; };
 		93C257C61B9C99F700134399 /* Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C51B9C99F700134399 /* Outline.pdf */; };
-		93CDED591CA6C84500FB95E8 /* utility.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9303A2DA1CA6BDF1004F8E04 /* utility.cc */; };
 		93D334C11C80370C00FF4567 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D334C01C80370C00FF4567 /* Welcome.storyboard */; };
 		93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* CapHeightTemplate.pdf */; };
 		93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* StrokeWidthTemplate.pdf */; };
@@ -205,8 +202,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9303A2C91CA6AE8C004F8E04 /* upem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = upem; sourceTree = BUILT_PRODUCTS_DIR; };
-		9303A2D51CA6AE99004F8E04 /* upem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = upem.mm; sourceTree = "<group>"; };
 		9303A2D81CA6BDB1004F8E04 /* sfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfnt.h; sourceTree = "<group>"; };
 		9303A2D91CA6BDD5004F8E04 /* utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 		9303A2DA1CA6BDF1004F8E04 /* utility.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cc; sourceTree = "<group>"; };
@@ -342,14 +337,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9303A2C31CA6AE8C004F8E04 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9303A2C41CA6AE8C004F8E04 /* libtakram_graphics.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93C257E01B9DDC7A00134399 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -618,7 +605,6 @@
 			children = (
 				93B7635E1B91B332009CA8B0 /* main.m */,
 				9375FA541B9DDCD900559480 /* scaler.mm */,
-				9303A2D51CA6AE99004F8E04 /* upem.mm */,
 				935DDCEA1BEB0F490070F741 /* Token.h */,
 				933A614F1BC8C95000C600C5 /* Main.storyboard */,
 				93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */,
@@ -646,7 +632,6 @@
 			children = (
 				93FEF94E1AD97263009D0646 /* Token.app */,
 				93C257E31B9DDC7A00134399 /* scaler */,
-				9303A2C91CA6AE8C004F8E04 /* upem */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -683,22 +668,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9303A2A71CA6AE8C004F8E04 /* upem */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9303A2C61CA6AE8C004F8E04 /* Build configuration list for PBXNativeTarget "upem" */;
-			buildPhases = (
-				9303A2AA1CA6AE8C004F8E04 /* Sources */,
-				9303A2C31CA6AE8C004F8E04 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = upem;
-			productName = scale_cap_height_to_units_per_em;
-			productReference = 9303A2C91CA6AE8C004F8E04 /* upem */;
-			productType = "com.apple.product-type.tool";
-		};
 		93C257E21B9DDC7A00134399 /* scaler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93C257FB1B9DDC7A00134399 /* Build configuration list for PBXNativeTarget "scaler" */;
@@ -781,7 +750,6 @@
 			targets = (
 				93FEF94D1AD97263009D0646 /* Token */,
 				93C257E21B9DDC7A00134399 /* scaler */,
-				9303A2A71CA6AE8C004F8E04 /* upem */,
 			);
 		};
 /* End PBXProject section */
@@ -911,15 +879,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9303A2AA1CA6AE8C004F8E04 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93CDED591CA6C84500FB95E8 /* utility.cc in Sources */,
-				9303A2D61CA6AE99004F8E04 /* upem.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93C257DF1B9DDC7A00134399 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1029,24 +988,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9303A2C71CA6AE8C004F8E04 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		9303A2C81CA6AE8C004F8E04 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		93C257E71B9DDC7A00134399 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
@@ -1127,15 +1068,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9303A2C61CA6AE8C004F8E04 /* Build configuration list for PBXNativeTarget "upem" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9303A2C71CA6AE8C004F8E04 /* Debug */,
-				9303A2C81CA6AE8C004F8E04 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		93C257FB1B9DDC7A00134399 /* Build configuration list for PBXNativeTarget "scaler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
