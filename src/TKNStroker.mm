@@ -137,10 +137,6 @@
   return _fontInfo.open_type_hhea_line_gap;
 }
 
-- (double)scale {
-  return (_fontInfo.ascender - _fontInfo.descender) / _fontInfo.units_per_em;
-}
-
 #pragma mark Glyphs
 
 - (NSBezierPath *)glyphBezierPathForName:(NSString *)name {

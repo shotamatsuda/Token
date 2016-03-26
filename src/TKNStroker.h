@@ -51,7 +51,6 @@
 @property (nonatomic, assign, readonly) double descender;
 @property (nonatomic, assign, readonly) double capHeight;
 @property (nonatomic, assign, readonly) double lineGap;
-@property (nonatomic, assign, readonly) double scale;
 
 #pragma mark Glyphs
 

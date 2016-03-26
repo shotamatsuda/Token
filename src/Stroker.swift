@@ -32,13 +32,13 @@ class Stroker : TKNStroker {
 
   var minStrokeWidth: Double {
     get {
-      return ceil(self.dynamicType.MinStrokeWidth * scale)
+      return self.dynamicType.MinStrokeWidth
     }
   }
 
   var maxStrokeWidth: Double {
     get {
-      return floor(self.dynamicType.MaxStrokeWidth * scale)
+      return floor(self.dynamicType.MaxStrokeWidth * UPEM / 1000.0)
     }
   }
 }

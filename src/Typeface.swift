@@ -50,12 +50,10 @@ class Typeface : TKNTypeface {
       guard value != _strokerBehavior else {
         return
       }
-      let oldStrokeWidth = stroker.strokeWidth
-      let oldScale = stroker.scale
+      let strokeWidth = stroker.strokeWidth
       _strokerBehavior = value
 
       // Maintain parameters so that the stroker's stroke width doesn't change.
-      let strokeWidth = oldStrokeWidth * (stroker.scale / oldScale)
       switch strokerBehavior {
       case .Default:
         self.strokeWidth = strokeWidth
