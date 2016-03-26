@@ -372,7 +372,9 @@ class Typeface : TKNTypeface {
     stroker.styleName = styleName
     stroker.fullName = fullName
     stroker.postscriptName = postscriptName
-    stroker.UPEM = stroker.capHeight
+    if strokerBehavior == .Physical {
+      stroker.UPEM = stroker.capHeight
+    }
     try stroker.saveToURL(contentsURL)
     try createFontWithContentsOfURL(
         contentsURL,
