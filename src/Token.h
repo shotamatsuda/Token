@@ -1,5 +1,5 @@
 //
-//  Token-Bridging-Header.h
+//  Token.h
 //
 //  The MIT License
 //

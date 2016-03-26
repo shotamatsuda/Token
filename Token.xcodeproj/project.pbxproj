@@ -257,7 +257,7 @@
 		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		9349563C1B8EEF0E000FD457 /* glyph_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = glyph_iterator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
-		935DDCEA1BEB0F490070F741 /* Token-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Token-Bridging-Header.h"; sourceTree = "<group>"; };
+		935DDCEA1BEB0F490070F741 /* Token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
 		935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberToPercentageTransformer.swift; sourceTree = "<group>"; };
 		935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+RoundedRect.swift"; sourceTree = "<group>"; };
 		935DDCEF1BEB1A160070F741 /* RectCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectCorners.swift; sourceTree = "<group>"; };
@@ -613,7 +613,7 @@
 			children = (
 				93B7635E1B91B332009CA8B0 /* main.m */,
 				9375FA541B9DDCD900559480 /* scaler.mm */,
-				935DDCEA1BEB0F490070F741 /* Token-Bridging-Header.h */,
+				935DDCEA1BEB0F490070F741 /* Token.h */,
 				933A614F1BC8C95000C600C5 /* Main.storyboard */,
 				93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */,
 				93D70EE21C2DAB0A003C6F2B /* MainWindowController.swift */,
@@ -1058,7 +1058,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "src/Token-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1077,7 +1077,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "src/Token-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
 			};
 			name = Release;
 		};
