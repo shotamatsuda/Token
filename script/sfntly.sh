@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#  setup.sh
+#  sfntly.sh
 #
 #  The MIT License
 #
@@ -26,23 +26,30 @@
 #
 
 readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
-readonly TARGET_DIR="${PROJECT_DIR}/build/fdk-extra/src"
-readonly BUILD_DIR="${PROJECT_DIR}/build/fdk-extra"
-readonly INSTALL_DIR="$1"
+readonly TARGET_DIR="${PROJECT_DIR}/lib/sfntly/cpp"
+readonly BUILD_DIR="${PROJECT_DIR}/build/sfntly"
 
-# Collect all of the libraries into the target directory
-mkdir -p "${TARGET_DIR}"
-cp -r "${PROJECT_DIR}/lib/fonttools/Lib/" "${TARGET_DIR}"
-cp -r "${PROJECT_DIR}/lib/robofab/Lib/" "${TARGET_DIR}"
-cp -r "${PROJECT_DIR}/lib/defcon/Lib/" "${TARGET_DIR}"
-cp "${PROJECT_DIR}/lib/python-modules/"*.py "${TARGET_DIR}"
-cp "${PROJECT_DIR}/lib/python-scripts/FDK Extras/"*.py "${TARGET_DIR}"
+# System's ICU doesn't supply headers, so change the cmake lists to link
+# against Homebrew's installation.
+sed -i .backup '21i\
+include_directories(/usr/local/opt/icu4c/include)\
+link_directories(/usr/local/opt/icu4c/lib)\
+' "${TARGET_DIR}/CMakeLists.txt"
 
-# Zip the target directory as an executable
-cd "${TARGET_DIR}"
-zip -r "${BUILD_DIR}/fdk-extra" *
-if [[ ! -d "${INSTALL_DIR}" ]]; then
-  mkdir -p "${INSTALL_DIR}"
-fi
-mv "${BUILD_DIR}/fdk-extra.zip" "${INSTALL_DIR}/fdk-extra"
-chmod 0755 "${INSTALL_DIR}/fdk-extra"
+# Clone the newest google test framework, as the one sfntly provides is ancient
+# and doesn't build.
+cd "${TARGET_DIR}/ext"
+git clone git@github.com:google/googletest.git
+mv "googletest/googletest" "gtest"
+rm -rf "googletest"
+
+# Make
+mkdir -p "${BUILD_DIR}"
+cd "${BUILD_DIR}"
+cmake "${TARGET_DIR}"
+make
+
+# Clean up
+rm -rf "${TARGET_DIR}/ext/gtest"
+rm "${TARGET_DIR}/CMakeLists.txt"
+mv "${TARGET_DIR}/CMakeLists.txt.backup" "${TARGET_DIR}/CMakeLists.txt"

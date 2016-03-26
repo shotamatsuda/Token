@@ -172,13 +172,13 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
       guard returnCode == NSAlertFirstButtonReturn else {
         return
       }
-      let applicationSupportURL = Location.privateApplicationSupportURL
       let fileManager = NSFileManager.defaultManager()
+      let applicationSupportURL = Location.privateApplicationSupportURL
+      let libraryURL = Location.privateLibraryURL
       do {
         if applicationSupportURL.checkResourceIsReachableAndReturnError(nil) {
           try fileManager.removeItemAtURL(applicationSupportURL)
         }
-        let libraryURL = Location.privateLibraryURL
         if libraryURL.checkResourceIsReachableAndReturnError(nil) {
           try fileManager.removeItemAtURL(libraryURL)
         }
