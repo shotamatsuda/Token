@@ -37,6 +37,7 @@
 #pragma mark Stroking
 
 @property (nonatomic, assign) double strokeWidth;
+@property (nonatomic, assign) double strokePrecision;
 @property (nonatomic, assign) double strokeShiftIncrement;
 @property (nonatomic, assign) double strokeShiftLimit;
 
