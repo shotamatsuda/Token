@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9303A2DB1CA6BDF1004F8E04 /* utility.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9303A2DA1CA6BDF1004F8E04 /* utility.cc */; };
 		9308C72F1CA29ACD004EDECA /* extra.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9308C72D1CA29ACD004EDECA /* extra.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
 		9321E9321C9CA1ED00D6FCEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
@@ -202,9 +201,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9303A2D81CA6BDB1004F8E04 /* sfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfnt.h; sourceTree = "<group>"; };
-		9303A2D91CA6BDD5004F8E04 /* utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
-		9303A2DA1CA6BDF1004F8E04 /* utility.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cc; sourceTree = "<group>"; };
 		9308C72D1CA29ACD004EDECA /* extra.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cc; sourceTree = "<group>"; };
 		9308C72E1CA29ACD004EDECA /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
 		9308F4071C59E003005B31CC /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -385,15 +381,6 @@
 				9373E7811C64613D003A66B0 /* TypefaceUnit.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		9303A2D71CA6BDB1004F8E04 /* sfnt */ = {
-			isa = PBXGroup;
-			children = (
-				9303A2D91CA6BDD5004F8E04 /* utility.h */,
-				9303A2DA1CA6BDF1004F8E04 /* utility.cc */,
-			);
-			path = sfnt;
 			sourceTree = "<group>";
 		};
 		931805A61BC8D2BA00E8A303 /* Welcome */ = {
@@ -647,8 +634,6 @@
 				93A05ADD1B9B8A4A002DDAD5 /* afdko */,
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
 				93A224921B7B1FD200CB1DBB /* ufo */,
-				9303A2D81CA6BDB1004F8E04 /* sfnt.h */,
-				9303A2D71CA6BDB1004F8E04 /* sfnt */,
 			);
 			name = Core;
 			path = token;
@@ -944,7 +929,6 @@
 				93C18F951B930D440044AAEB /* credit.cc in Sources */,
 				93C18F981B930D440044AAEB /* credits.cc in Sources */,
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
-				9303A2DB1CA6BDF1004F8E04 /* utility.cc in Sources */,
 				93654CCE1C82F6C5004C3CC9 /* TypefaceViewController.swift in Sources */,
 				93654CC91C82F6C5004C3CC9 /* TypefaceUnit.swift in Sources */,
 				93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */,

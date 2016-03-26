@@ -36,7 +36,6 @@
 
 #include "token/afdko.h"
 #include "token/ufo.h"
-#include "token/sfnt.h"
 
 @implementation TKNTypeface
 
@@ -64,25 +63,6 @@
 }
 
 - (BOOL)correctUPEM:(double)UPEM forFontAtURL:(NSURL *)URL {
-  const std::string path(URL.path.UTF8String);
-  sfntly::FontBuilderPtr fontBuilder;
-  fontBuilder.Attach(token::sfnt::loadFontBuilder(path));
-  const auto tableBuilder = down_cast<sfntly::FontHeaderTable::Builder *>(
-      fontBuilder->GetTableBuilder(sfntly::Tag::head));
-  if (tableBuilder->UnitsPerEm() == UPEM) {
-    return YES;
-  }
-  tableBuilder->SetUnitsPerEm(UPEM);
-  if (!fontBuilder->ReadyToBuild()) {
-    return NO;
-  }
-  sfntly::FontPtr font;
-  font.Attach(fontBuilder->Build());
-  token::sfnt::serializeFont(path, font);
-  font.Attach(token::sfnt::loadFont(path));
-  const auto table = down_cast<sfntly::FontHeaderTable *>(
-      font->GetTable(sfntly::Tag::head));
-  return table->UnitsPerEm() == UPEM;
 }
 
 @end

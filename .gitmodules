@@ -25,6 +25,3 @@
 [submodule "lib/afdko"]
 	path = lib/afdko
 	url = git@github.com:adobe-type-tools/afdko.git
-[submodule "lib/sfntly"]
-	path = lib/sfntly
-	url = git@github.com:googlei18n/sfntly.git
