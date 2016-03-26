@@ -46,6 +46,7 @@
 @property (nonatomic, copy, nonnull) NSString *styleName;
 @property (nonatomic, copy, nonnull) NSString *fullName;
 @property (nonatomic, copy, nonnull) NSString *postscriptName;
+@property (nonatomic, assign) double UPEM;
 @property (nonatomic, assign, readonly) double ascender;
 @property (nonatomic, assign, readonly) double descender;
 @property (nonatomic, assign, readonly) double capHeight;

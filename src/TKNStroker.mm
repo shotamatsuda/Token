@@ -103,6 +103,7 @@
 #pragma mark Properties
 
 @dynamic familyName;
+@dynamic UPEM;
 @dynamic ascender;
 @dynamic descender;
 @dynamic capHeight;
@@ -110,6 +111,14 @@
 
 - (NSString *)familyName {
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
+}
+
+- (double)UPEM {
+  return _fontInfo.units_per_em;
+}
+
+- (void)setUPEM:(double)UPEM {
+  _fontInfo.units_per_em = UPEM;
 }
 
 - (double)ascender {
