@@ -71,9 +71,6 @@
 - (instancetype)initWithContentsOfURL:(nonnull NSURL *)URL {
   self = [super init];
   if (self) {
-    _URL = URL;
-    _strokeShiftIncrement = 0.0001;
-    _strokeShiftLimit = 0.1;
     _fontInfo = token::ufo::FontInfo(URL.path.UTF8String);
     _glyphs = token::ufo::Glyphs(URL.path.UTF8String);
     _glyphBezierPaths = [NSMutableDictionary dictionary];
@@ -83,13 +80,39 @@
         _fontInfo.postscript_font_name.c_str()];
     _fullName = [NSString stringWithUTF8String:
         _fontInfo.postscript_full_name.c_str()];
+    _URL = URL;
+    _strokePrecision = 250.0 / _fontInfo.units_per_em;
+    _strokeShiftIncrement = 0.0001;
+    _strokeShiftLimit = 0.1;
   }
   return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+  TKNStroker *copy = [[[self class] allocWithZone:zone] init];
+  copy->_fontInfo = _fontInfo;
+  copy->_glyphs = _glyphs;
+  copy->_glyphOutlines = _glyphOutlines;
+  copy->_glyphShapes = _glyphShapes;
+  copy->_glyphBounds = _glyphBounds;
+  copy->_glyphAdvances = _glyphAdvances;
+  copy->_glyphBezierPaths = [_glyphBezierPaths copy];
+  copy->_URL = [_URL copy];
+  copy->_strokeWidth = _strokeWidth;
+  copy->_strokePrecision = _strokePrecision;
+  copy->_strokeShiftIncrement = _strokeShiftIncrement;
+  copy->_strokeShiftLimit = _strokeShiftLimit;
+  copy.styleName = self.styleName;
+  copy.fullName = self.fullName;
+  copy.postscriptName = self.postscriptName;
+  copy.UPEM = self.UPEM;
+  return copy;
 }
 
 #pragma mark Stroke Width
 
 - (void)setStrokeWidth:(double)strokeWidth {
+  strokeWidth = std::round(strokeWidth);
   if (strokeWidth != _strokeWidth) {
     _strokeWidth = strokeWidth;
     _glyphOutlines.clear();
@@ -103,6 +126,7 @@
 #pragma mark Properties
 
 @dynamic familyName;
+@dynamic UPEM;
 @dynamic ascender;
 @dynamic descender;
 @dynamic capHeight;
@@ -110,6 +134,14 @@
 
 - (NSString *)familyName {
   return [NSString stringWithUTF8String:_fontInfo.family_name.c_str()];
+}
+
+- (double)UPEM {
+  return _fontInfo.units_per_em;
+}
+
+- (void)setUPEM:(double)UPEM {
+  _fontInfo.units_per_em = UPEM;
 }
 
 - (double)ascender {
@@ -126,10 +158,6 @@
 
 - (double)lineGap {
   return _fontInfo.open_type_hhea_line_gap;
-}
-
-- (double)scale {
-  return (_fontInfo.ascender - _fontInfo.descender) / _fontInfo.units_per_em;
 }
 
 #pragma mark Glyphs
@@ -173,6 +201,7 @@
       token::GlyphOutline(glyph)).first->second;
   token::GlyphStroker stroker;
   stroker.set_width(_strokeWidth);
+  stroker.set_precision(_strokePrecision);
   stroker.set_shift_increment(_strokeShiftIncrement);
   stroker.set_shift_limit(_strokeShiftLimit);
   auto pair = stroker(_fontInfo, glyph, outline);
@@ -221,13 +250,9 @@
       return NO;
     }
   }
-  if (![fileManager copyItemAtURL:_URL toURL:URL error:error]) {
-    return NO;
-  }
-  if (![self saveFontInfoAtPath:URL.path.UTF8String]) {
-    return NO;
-  }
-  if (![self saveGlyphsAtPath:URL.path.UTF8String]) {
+  if (![fileManager copyItemAtURL:_URL toURL:URL error:error] ||
+      ![self saveFontInfoAtPath:URL.path.UTF8String] ||
+      ![self saveGlyphsAtPath:URL.path.UTF8String]) {
     return NO;
   }
   return YES;

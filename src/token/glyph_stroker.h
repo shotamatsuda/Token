@@ -116,7 +116,7 @@ inline GlyphStroker::GlyphStroker()
       cap_(Cap::ROUND),
       join_(Join::ROUND),
       filled_(),
-      precision_(0.25),
+      precision_(1.0),
       shift_increment_(0.0001),
       shift_limit_(0.1) {}
 

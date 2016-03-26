@@ -26,7 +26,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNStroker : NSObject
+@interface TKNStroker : NSObject <NSCopying>
 
 #pragma mark Opening and Saving
 
@@ -37,6 +37,7 @@
 #pragma mark Stroking
 
 @property (nonatomic, assign) double strokeWidth;
+@property (nonatomic, assign) double strokePrecision;
 @property (nonatomic, assign) double strokeShiftIncrement;
 @property (nonatomic, assign) double strokeShiftLimit;
 
@@ -46,11 +47,11 @@
 @property (nonatomic, copy, nonnull) NSString *styleName;
 @property (nonatomic, copy, nonnull) NSString *fullName;
 @property (nonatomic, copy, nonnull) NSString *postscriptName;
+@property (nonatomic, assign) double UPEM;
 @property (nonatomic, assign, readonly) double ascender;
 @property (nonatomic, assign, readonly) double descender;
 @property (nonatomic, assign, readonly) double capHeight;
 @property (nonatomic, assign, readonly) double lineGap;
-@property (nonatomic, assign, readonly) double scale;
 
 #pragma mark Glyphs
 

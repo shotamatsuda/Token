@@ -26,13 +26,10 @@
 
 #include "token/afdko/autohint.h"
 
-#include <fstream>
 #include <string>
 
 #include <boost/filesystem/path.hpp>
 #include <boost/format.hpp>
-
-#include "token/ufo.h"
 
 namespace token {
 namespace afdko {

@@ -260,11 +260,13 @@ takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
     }
   }
   if (success) {
+#ifdef DEBUG
     if (shift) {
       std::cerr << "Stroking succeeded by shifting stroke width by " <<
           (negative ? -shift : shift) <<
           " " << "(" << glyph.name << ")" << std::endl;
     }
+#endif
     // CFF Opentype accepts only lines and cubic bezier paths, so we need to
     // convert conic curves to quadratic curves, which is approximation,
     // and then convert losslessly quadratic curves to cubic curves.
@@ -272,8 +274,10 @@ takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
     shape.convertQuadraticsToCubics();
     shape.removeDuplicates(1.0);
   } else {
+#ifdef DEBUG
     std::cerr << "Stroking failed by shifting stroke width up to ±" <<
         shift_limit_ << " " << "(" << glyph.name << ")" << std::endl;
+#endif
     shape.reset();
   }
   return std::move(shape);

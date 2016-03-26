@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="K" format="1">
-  <advance width="571"/>
+  <advance width="1142"/>
   <unicode hex="004B"/>
   <outline>
     <contour>
-      <point x="551" y="0" type="move"/>
+      <point x="1102" y="0" type="move"/>
     </contour>
     <contour>
-      <point x="94" y="680" type="move"/>
-      <point x="94" y="0" type="line"/>
+      <point x="188" y="1360" type="move"/>
+      <point x="188" y="0" type="line"/>
     </contour>
     <contour>
-      <point x="551" y="0" type="move"/>
-      <point x="243.38" y="399.34" type="line"/>
+      <point x="1102" y="0" type="move"/>
+      <point x="486.76" y="798.68" type="line"/>
     </contour>
     <contour>
-      <point x="524.5" y="680" type="move"/>
-      <point x="95" y="252.3" type="line"/>
+      <point x="1049" y="1360" type="move"/>
+      <point x="190" y="504.6" type="line"/>
     </contour>
     <contour>
-      <point x="524.5" y="680" type="move"/>
-      <point x="95" y="252.3" type="line"/>
+      <point x="1049" y="1360" type="move"/>
+      <point x="190" y="504.6" type="line"/>
     </contour>
     <contour>
-      <point x="551" y="0" type="move"/>
-      <point x="243.38" y="399.34" type="line"/>
+      <point x="1102" y="0" type="move"/>
+      <point x="486.76" y="798.68" type="line"/>
     </contour>
     <contour>
-      <point x="551" y="0" type="move"/>
-      <point x="243.38" y="399.34" type="line"/>
+      <point x="1102" y="0" type="move"/>
+      <point x="486.76" y="798.68" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -47,7 +47,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>94</integer>
+          <integer>188</integer>
           <key>y</key>
           <integer>0</integer>
         </dict>

@@ -43,7 +43,6 @@
 		93654CDC1C82F6C5004C3CC9 /* SheetContentSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328FC1F1C8042EB003D8FB6 /* SheetContentSegue.swift */; };
 		93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */; };
 		93654CDE1C82F6C5004C3CC9 /* NSBezierPath+RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */; };
-		9368398D1B9E7B4400E21EF7 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
 		9368398F1B9E7B6500E21EF7 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
 		936839901B9E7B6500E21EF7 /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
 		936839911B9E7B6500E21EF7 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
@@ -101,6 +100,7 @@
 		93C257B01B9C5AB700134399 /* ZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* ZoomOut.pdf */; };
 		93C257C41B9C96D900134399 /* Invert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C31B9C96D900134399 /* Invert.pdf */; };
 		93C257C61B9C99F700134399 /* Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C51B9C99F700134399 /* Outline.pdf */; };
+		93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93CDED651CA6DC9B00FB95E8 /* ttx.cc */; };
 		93D334C11C80370C00FF4567 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D334C01C80370C00FF4567 /* Welcome.storyboard */; };
 		93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* CapHeightTemplate.pdf */; };
 		93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* StrokeWidthTemplate.pdf */; };
@@ -142,20 +142,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
 			remoteInfo = graphics_static;
-		};
-		936839791B9E7B3B00E21EF7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = graphics_static;
-		};
-		936839A61B9E8D4300E21EF7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93FEF9461AD97263009D0646 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C257E21B9DDC7A00134399;
-			remoteInfo = scaler;
 		};
 		93C257851B9BCCDB00134399 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -215,18 +201,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		93C257E11B9DDC7A00134399 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		9308C72D1CA29ACD004EDECA /* extra.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cc; sourceTree = "<group>"; };
 		9308C72E1CA29ACD004EDECA /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
@@ -264,7 +238,7 @@
 		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		9349563C1B8EEF0E000FD457 /* glyph_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = glyph_iterator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
-		935DDCEA1BEB0F490070F741 /* Token-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Token-Bridging-Header.h"; sourceTree = "<group>"; };
+		935DDCEA1BEB0F490070F741 /* Token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
 		935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberToPercentageTransformer.swift; sourceTree = "<group>"; };
 		935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+RoundedRect.swift"; sourceTree = "<group>"; };
 		935DDCEF1BEB1A160070F741 /* RectCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectCorners.swift; sourceTree = "<group>"; };
@@ -337,6 +311,8 @@
 		93C257C31B9C96D900134399 /* Invert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Invert.pdf; sourceTree = "<group>"; };
 		93C257C51B9C99F700134399 /* Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Outline.pdf; sourceTree = "<group>"; };
 		93C257E31B9DDC7A00134399 /* scaler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scaler; sourceTree = BUILT_PRODUCTS_DIR; };
+		93CDED651CA6DC9B00FB95E8 /* ttx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ttx.cc; sourceTree = "<group>"; };
+		93CDED661CA6DC9B00FB95E8 /* ttx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttx.h; sourceTree = "<group>"; };
 		93D334BA1C8032AB00FF4567 /* TKNStroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNStroker.h; sourceTree = "<group>"; };
 		93D334BB1C8032AB00FF4567 /* TKNStroker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TKNStroker.mm; sourceTree = "<group>"; };
 		93D334C01C80370C00FF4567 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -364,7 +340,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9368398D1B9E7B4400E21EF7 /* libtakram_graphics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +469,8 @@
 				93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */,
 				9308C72E1CA29ACD004EDECA /* extra.h */,
 				9308C72D1CA29ACD004EDECA /* extra.cc */,
+				93CDED661CA6DC9B00FB95E8 /* ttx.h */,
+				93CDED651CA6DC9B00FB95E8 /* ttx.cc */,
 			);
 			path = afdko;
 			sourceTree = "<group>";
@@ -620,7 +597,7 @@
 			children = (
 				93B7635E1B91B332009CA8B0 /* main.m */,
 				9375FA541B9DDCD900559480 /* scaler.mm */,
-				935DDCEA1BEB0F490070F741 /* Token-Bridging-Header.h */,
+				935DDCEA1BEB0F490070F741 /* Token.h */,
 				933A614F1BC8C95000C600C5 /* Main.storyboard */,
 				93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */,
 				93D70EE21C2DAB0A003C6F2B /* MainWindowController.swift */,
@@ -687,12 +664,10 @@
 			buildPhases = (
 				93C257DF1B9DDC7A00134399 /* Sources */,
 				93C257E01B9DDC7A00134399 /* Frameworks */,
-				93C257E11B9DDC7A00134399 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9368397A1B9E7B3B00E21EF7 /* PBXTargetDependency */,
 			);
 			name = scaler;
 			productName = scale_cap_height_to_units_per_em;
@@ -711,7 +686,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				936839A71B9E8D4300E21EF7 /* PBXTargetDependency */,
 				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
 			);
 			name = Token;
@@ -890,7 +864,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n\"${BUILT_PRODUCTS_DIR}/scaler\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/default.ufo\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/typeface/physical.ufo\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -980,6 +954,7 @@
 				93654CC41C82F6C5004C3CC9 /* MainWindowController.swift in Sources */,
 				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
 				93654CD71C82F6C5004C3CC9 /* RectCorners.swift in Sources */,
+				93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */,
 				93654CD31C82F6C5004C3CC9 /* SettingsViewController.swift in Sources */,
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,
@@ -1000,16 +975,6 @@
 			name = graphics_static;
 			targetProxy = 93563AC81B6744C1004C47E4 /* PBXContainerItemProxy */;
 		};
-		9368397A1B9E7B3B00E21EF7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = graphics_static;
-			targetProxy = 936839791B9E7B3B00E21EF7 /* PBXContainerItemProxy */;
-		};
-		936839A71B9E8D4300E21EF7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 93C257E21B9DDC7A00134399 /* scaler */;
-			targetProxy = 936839A61B9E8D4300E21EF7 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1018,7 +983,6 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1028,7 +992,6 @@
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1039,10 +1002,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				ENABLE_TESTABILITY = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/src/Token-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -1051,9 +1013,8 @@
 			baseConfigurationReference = 93F859281B575DCC00C32E8D /* project_release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/src/Token-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -1071,7 +1032,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "src/Token-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1090,7 +1051,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "src/Token-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
 			};
 			name = Release;
 		};

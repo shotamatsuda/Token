@@ -1,5 +1,5 @@
 //
-//  token/afdko.h
+//  token/afdko/ttx.cc
 //
 //  The MIT License
 //
@@ -24,14 +24,30 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_AFDKO_H_
-#define TOKEN_AFDKO_H_
-
-#include "token/afdko/autohint.h"
-#include "token/afdko/check_outlines.h"
-#include "token/afdko/extra.h"
-#include "token/afdko/makeotf.h"
 #include "token/afdko/ttx.h"
 
-#endif  // TOKEN_AFDKO_H_
+#include <string>
+
+#include <boost/filesystem/path.hpp>
+#include <boost/format.hpp>
+
+namespace token {
+namespace afdko {
+
+bool ttx(const std::string& tools, const std::string& input) {
+  const auto name = "ttx";
+  const auto command = (boost::filesystem::path(tools) / name).string();
+  const std::string format = R"(
+    export PATH=${PATH}:"%1%"
+    export FDK_EXE="%1%"
+    "%2%" -f "%3%"
+  )";
+  return !std::system((
+      boost::format(format) %
+      tools %
+      command %
+      input).str().c_str());
+}
+
+}  // namespace afdko
+}  // namespace token

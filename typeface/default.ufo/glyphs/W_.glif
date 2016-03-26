@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="W" format="1">
-  <advance width="718"/>
+  <advance width="1436"/>
   <unicode hex="0057"/>
   <outline>
     <contour>
-      <point x="686" y="680" type="move"/>
-      <point x="531" y="0" type="line"/>
-      <point x="359" y="582" type="line"/>
-      <point x="187" y="0" type="line"/>
-      <point x="32" y="680" type="line"/>
+      <point x="1372" y="1360" type="move"/>
+      <point x="1062" y="0" type="line"/>
+      <point x="718" y="1164" type="line"/>
+      <point x="374" y="0" type="line"/>
+      <point x="64" y="1360" type="line"/>
     </contour>
   </outline>
   <lib>

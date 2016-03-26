@@ -53,8 +53,8 @@ class WelcomeProgressViewController : NSViewController,
 
   private func download() {
     guard let URL = NSURL(
-        string: "https://download.macromedia.com" +
-                "/pub/developer/opentype/FDK-25-MAC.zip") else {
+        string: "https://github.com/adobe-type-tools/afdko/releases/download/" +
+                "2.5.64958/FDK-25-MAC.b64958.zip") else {
       return
     }
     downloadSession = NSURLSession(
@@ -88,7 +88,7 @@ class WelcomeProgressViewController : NSViewController,
       didFinishDownloadingToURL location: NSURL) {
     let directoryURL = Location.privateApplicationSupportURL
     let URL = directoryURL.URLByAppendingPathComponent(
-        location.lastPathComponent!)
+        downloadTask.originalRequest!.URL!.lastPathComponent!)
     let fileManager = NSFileManager.defaultManager()
     do {
       if !directoryURL.checkResourceIsReachableAndReturnError(nil) {
@@ -198,7 +198,7 @@ class WelcomeProgressViewController : NSViewController,
         comment: "")
     let libraryURL = Location.privateLibraryURL
     let linkURL = Location.adobeFDKURL
-    let URL = archiveDirectoryURL!.URLByAppendingPathComponent("FDK")
+    let URL = archiveURL!.URLByDeletingPathExtension!
     let fileManager = NSFileManager.defaultManager()
     if !libraryURL.checkResourceIsReachableAndReturnError(nil) {
       try fileManager.createDirectoryAtURL(

@@ -28,19 +28,17 @@ import AppKit
 
 class Typeface : TKNTypeface {
   init(directoryURL: NSURL) {
+    let URL = directoryURL.URLByAppendingPathComponent("default.ufo")
     _strokeWidth = 0.2
     _capHeight = 2.0
-    defaultStroker = Stroker(
-        contentsOfURL: directoryURL.URLByAppendingPathComponent(
-            "default.ufo"))!
-    physicalStroker = Stroker(
-        contentsOfURL: directoryURL.URLByAppendingPathComponent(
-            "physical.ufo"))!
+    stroker = Stroker(contentsOfURL: URL)!
     super.init()
     applyPhysicalParameters()
   }
 
   // MARK: Stroker
+
+  var stroker: Stroker
 
   private var _strokerBehavior: StrokerBehavior = .Physical
   var strokerBehavior: StrokerBehavior {
@@ -52,12 +50,10 @@ class Typeface : TKNTypeface {
       guard value != _strokerBehavior else {
         return
       }
-      let oldStrokeWidth = stroker.strokeWidth
-      let oldScale = stroker.scale
+      let strokeWidth = stroker.strokeWidth
       _strokerBehavior = value
 
       // Maintain parameters so that the stroker's stroke width doesn't change.
-      let strokeWidth = oldStrokeWidth * (stroker.scale / oldScale)
       switch strokerBehavior {
       case .Default:
         self.strokeWidth = strokeWidth
@@ -67,19 +63,6 @@ class Typeface : TKNTypeface {
             relativeToStrokeWidth: (self.strokeWidth, strokeWidthUnit),
             forStrokeWidth: strokeWidth,
             usingStroker: stroker)
-      }
-    }
-  }
-
-  private var defaultStroker: Stroker
-  private var physicalStroker: Stroker
-  var stroker: Stroker {
-    get {
-      switch strokerBehavior {
-      case .Default:
-        return defaultStroker
-      case .Physical:
-        return physicalStroker
       }
     }
   }
@@ -182,28 +165,16 @@ class Typeface : TKNTypeface {
     }
   }
 
-  class func keyPathsForValuesAffectingAscender() -> NSSet {
-    return NSSet(object: "strokerBehavior")
-  }
-
   var descender: Double {
     get {
       return stroker.descender
     }
   }
 
-  class func keyPathsForValuesAffectingDescender() -> NSSet {
-    return NSSet(object: "strokerBehavior")
-  }
-
   var lineGap: Double {
     get {
       return stroker.lineGap
     }
-  }
-
-  class func keyPathsForValuesAffectingLineGap() -> NSSet {
-    return NSSet(object: "strokerBehavior")
   }
 
   // MARK: Stroke Width
@@ -382,6 +353,7 @@ class Typeface : TKNTypeface {
   // MARK: Saving
 
   func createFontToURL(URL: NSURL) throws {
+    let stroker = self.stroker.copy() as! Stroker
     let workingDirectoryURL = NSURL(
         fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(
             NSProcessInfo.processInfo().globallyUniqueString)
@@ -394,14 +366,20 @@ class Typeface : TKNTypeface {
     let toolsURL = Location.adobeFDKURL
         .URLByAppendingPathComponent("Tools")
         .URLByAppendingPathComponent("osx")
+    let extraURL = NSBundle.mainBundle().URLForResource(
+        "Scripts/fdk-extra",
+        withExtension: nil)!
     stroker.styleName = styleName
     stroker.fullName = fullName
     stroker.postscriptName = postscriptName
+    stroker.UPEM = stroker.capHeight
     try stroker.saveToURL(contentsURL)
     try createFontWithContentsOfURL(
         contentsURL,
         toURL: fontURL,
-        toolsURL: toolsURL)
+        toolsURL: toolsURL,
+        extraURL: extraURL)
+    correctUPEM(stroker.UPEM, forFontAtURL: fontURL, toolsURL: toolsURL)
     let fileManager = NSFileManager.defaultManager()
     if URL.checkResourceIsReachableAndReturnError(nil) {
       try fileManager.removeItemAtURL(URL)

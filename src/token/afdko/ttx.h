@@ -1,5 +1,5 @@
 //
-//  Token-Bridging-Header.h
+//  token/afdko/makeotf.h
 //
 //  The MIT License
 //
@@ -24,5 +24,20 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "TKNStroker.h"
-#import "TKNTypeface.h"
+#pragma once
+#ifndef TOKEN_AFDKO_TTX_H_
+#define TOKEN_AFDKO_TTX_H_
+
+#include <string>
+
+#include "token/ufo.h"
+
+namespace token {
+namespace afdko {
+
+bool ttx(const std::string& tools, const std::string& input);
+
+}  // namespace afdko
+}  // namespace token
+
+#endif  // TOKEN_AFDKO_TTX_H_

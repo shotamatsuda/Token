@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="N" format="1">
-  <advance width="645"/>
+  <advance width="1290"/>
   <unicode hex="004E"/>
   <outline>
     <contour>
-      <point x="551" y="680" type="move"/>
-      <point x="551" y="0" type="line"/>
-      <point x="94" y="680" type="line"/>
-      <point x="94" y="0" type="line"/>
+      <point x="1102" y="1360" type="move"/>
+      <point x="1102" y="0" type="line"/>
+      <point x="188" y="1360" type="line"/>
+      <point x="188" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -26,7 +26,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>94</integer>
+          <integer>188</integer>
           <key>y</key>
           <integer>0</integer>
         </dict>

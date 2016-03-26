@@ -49,9 +49,9 @@ class Glyphs final {
   Glyphs() = default;
   explicit Glyphs(const std::string& path);
 
-  // Disallow copy semantics
-  Glyphs(const Glyphs&) = delete;
-  Glyphs& operator=(const Glyphs&) = delete;
+  // Copy semantics
+  Glyphs(const Glyphs&) = default;
+  Glyphs& operator=(const Glyphs&) = default;
 
   // Move semantics
   Glyphs(Glyphs&& other) = default;

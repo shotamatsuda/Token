@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="slash" format="1">
-  <advance width="554"/>
+  <advance width="1108"/>
   <unicode hex="002F"/>
   <outline>
     <contour>
-      <point x="492" y="680" type="move"/>
-      <point x="62" y="0" type="line"/>
+      <point x="984" y="1360" type="move"/>
+      <point x="124" y="0" type="line"/>
     </contour>
   </outline>
   <lib>

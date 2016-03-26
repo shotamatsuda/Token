@@ -2,7 +2,7 @@
 #
 #  setup.sh
 #
-#  MIT License
+#  The MIT License
 #
 #  Copyright (C) 2015-2016 Shota Matsuda
 #
@@ -27,9 +27,10 @@
 
 readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
 readonly TARGET_DIR="${PROJECT_DIR}/build/fdk-extra/src"
-readonly TARGET_BUILD_DIR="${PROJECT_DIR}/build/fdk-extra"
+readonly BUILD_DIR="${PROJECT_DIR}/build/fdk-extra"
 readonly INSTALL_DIR="$1"
 
+# Collect all of the libraries into the target directory
 mkdir -p "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/fonttools/Lib/" "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/robofab/Lib/" "${TARGET_DIR}"
@@ -37,10 +38,11 @@ cp -r "${PROJECT_DIR}/lib/defcon/Lib/" "${TARGET_DIR}"
 cp "${PROJECT_DIR}/lib/python-modules/"*.py "${TARGET_DIR}"
 cp "${PROJECT_DIR}/lib/python-scripts/FDK Extras/"*.py "${TARGET_DIR}"
 
+# Zip the target directory as an executable
 cd "${TARGET_DIR}"
-zip -r "${TARGET_BUILD_DIR}/fdk-extra" *
+zip -r "${BUILD_DIR}/fdk-extra" *
 if [[ ! -d "${INSTALL_DIR}" ]]; then
   mkdir -p "${INSTALL_DIR}"
 fi
-mv "${TARGET_BUILD_DIR}/fdk-extra.zip" "${INSTALL_DIR}/fdk-extra"
+mv "${BUILD_DIR}/fdk-extra.zip" "${INSTALL_DIR}/fdk-extra"
 chmod 0755 "${INSTALL_DIR}/fdk-extra"
