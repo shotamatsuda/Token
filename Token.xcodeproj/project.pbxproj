@@ -68,7 +68,6 @@
 		936839AC1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
 		936839AD1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
-		9375FA551B9DDCD900559480 /* scaler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9375FA541B9DDCD900559480 /* scaler.mm */; };
 		937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93D334BB1C8032AB00FF4567 /* TKNStroker.mm */; };
 		937E19591C97D5A700090AEF /* StrokerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19581C97D5A600090AEF /* StrokerBehavior.swift */; };
 		937E19751C9A628D00090AEF /* Stroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19741C9A628D00090AEF /* Stroker.swift */; };
@@ -252,7 +251,6 @@
 		93714B491B996C7E0077B273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		93714B5F1B996EA70077B273 /* lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib.cc; sourceTree = "<group>"; };
 		9373E7811C64613D003A66B0 /* TypefaceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceUnit.swift; sourceTree = "<group>"; };
-		9375FA541B9DDCD900559480 /* scaler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = scaler.mm; sourceTree = "<group>"; };
 		937E19451C80588800090AEF /* WelcomeAgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeAgreementViewController.swift; sourceTree = "<group>"; };
 		937E19581C97D5A600090AEF /* StrokerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokerBehavior.swift; sourceTree = "<group>"; };
 		937E19741C9A628D00090AEF /* Stroker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stroker.swift; sourceTree = "<group>"; };
@@ -596,7 +594,6 @@
 			isa = PBXGroup;
 			children = (
 				93B7635E1B91B332009CA8B0 /* main.m */,
-				9375FA541B9DDCD900559480 /* scaler.mm */,
 				935DDCEA1BEB0F490070F741 /* Token.h */,
 				933A614F1BC8C95000C600C5 /* Main.storyboard */,
 				93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */,
@@ -896,7 +893,6 @@
 				936839A41B9E7B6500E21EF7 /* extension.cc in Sources */,
 				936839A51B9E7B6500E21EF7 /* property_list.cc in Sources */,
 				936839AD1B9E931D00E21EF7 /* guideline.cc in Sources */,
-				9375FA551B9DDCD900559480 /* scaler.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
