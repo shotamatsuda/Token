@@ -25,7 +25,7 @@
 //
 
 // Search Paths
-HEADER_SEARCH_PATHS = $(inherited) $(BOOST_HEADER_SEARCH_PATHS) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**"
+HEADER_SEARCH_PATHS = $(inherited) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**"
 USER_HEADER_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/src"
 LIBRARY_SEARCH_PATHS = $(inerited) "/usr/local/lib" "$(PROJECT_DIR)/build/skia/lib"
 

@@ -379,6 +379,7 @@ class Typeface : TKNTypeface {
         toURL: fontURL,
         toolsURL: toolsURL,
         extraURL: extraURL)
+    correctUPEM(stroker.UPEM, forFontAtURL: fontURL, toolsURL: toolsURL)
     let fileManager = NSFileManager.defaultManager()
     if URL.checkResourceIsReachableAndReturnError(nil) {
       try fileManager.removeItemAtURL(URL)

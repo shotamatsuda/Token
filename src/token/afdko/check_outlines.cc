@@ -26,13 +26,10 @@
 
 #include "token/afdko/check_outlines.h"
 
-#include <fstream>
 #include <string>
 
 #include <boost/filesystem/path.hpp>
 #include <boost/format.hpp>
-
-#include "token/ufo.h"
 
 namespace token {
 namespace afdko {
@@ -40,7 +37,6 @@ namespace afdko {
 bool checkOutlines(const std::string& tools, const std::string& input) {
   const auto name = "checkOutlinesUFO";
   const auto command = (boost::filesystem::path(tools) / name).string();
-  std::string options;
   const std::string format = R"(
     export PATH=${PATH}:"%1%"
     export FDK_EXE="%1%"

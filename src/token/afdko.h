@@ -32,5 +32,6 @@
 #include "token/afdko/check_outlines.h"
 #include "token/afdko/extra.h"
 #include "token/afdko/makeotf.h"
+#include "token/afdko/ttx.h"
 
 #endif  // TOKEN_AFDKO_H_
