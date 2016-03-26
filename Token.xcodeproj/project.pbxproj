@@ -43,30 +43,7 @@
 		93654CDC1C82F6C5004C3CC9 /* SheetContentSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328FC1F1C8042EB003D8FB6 /* SheetContentSegue.swift */; };
 		93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */; };
 		93654CDE1C82F6C5004C3CC9 /* NSBezierPath+RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */; };
-		9368398F1B9E7B6500E21EF7 /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
-		936839901B9E7B6500E21EF7 /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
-		936839911B9E7B6500E21EF7 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
-		936839921B9E7B6500E21EF7 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
-		936839941B9E7B6500E21EF7 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
-		936839951B9E7B6500E21EF7 /* gasp_range_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */; };
-		936839961B9E7B6500E21EF7 /* name_record.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18FBD1B930E0D0044AAEB /* name_record.cc */; };
-		936839971B9E7B6500E21EF7 /* unique_id.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F901B930D440044AAEB /* unique_id.cc */; };
-		936839981B9E7B6500E21EF7 /* vendor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F911B930D440044AAEB /* vendor.cc */; };
-		936839991B9E7B6500E21EF7 /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
-		9368399A1B9E7B6500E21EF7 /* credits.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F861B930D430044AAEB /* credits.cc */; };
-		9368399B1B9E7B6500E21EF7 /* text.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8E1B930D440044AAEB /* text.cc */; };
-		9368399C1B9E7B6500E21EF7 /* description.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F871B930D440044AAEB /* description.cc */; };
-		9368399D1B9E7B6500E21EF7 /* license.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8C1B930D440044AAEB /* license.cc */; };
-		9368399E1B9E7B6500E21EF7 /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
-		9368399F1B9E7B6500E21EF7 /* trademark.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8F1B930D440044AAEB /* trademark.cc */; };
-		936839A01B9E7B6500E21EF7 /* licensee.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8D1B930D440044AAEB /* licensee.cc */; };
-		936839A11B9E7B6500E21EF7 /* extension_name.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F891B930D440044AAEB /* extension_name.cc */; };
-		936839A21B9E7B6500E21EF7 /* extension_value.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8A1B930D440044AAEB /* extension_value.cc */; };
-		936839A31B9E7B6500E21EF7 /* extension_item.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F881B930D440044AAEB /* extension_item.cc */; };
-		936839A41B9E7B6500E21EF7 /* extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F8B1B930D440044AAEB /* extension.cc */; };
-		936839A51B9E7B6500E21EF7 /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
 		936839AC1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
-		936839AD1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
 		937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93D334BB1C8032AB00FF4567 /* TKNStroker.mm */; };
 		937E19591C97D5A700090AEF /* StrokerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19581C97D5A600090AEF /* StrokerBehavior.swift */; };
@@ -308,7 +285,6 @@
 		93C257AE1B9C5AB700134399 /* ZoomOut.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ZoomOut.pdf; sourceTree = "<group>"; };
 		93C257C31B9C96D900134399 /* Invert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Invert.pdf; sourceTree = "<group>"; };
 		93C257C51B9C99F700134399 /* Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Outline.pdf; sourceTree = "<group>"; };
-		93C257E31B9DDC7A00134399 /* scaler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scaler; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDED651CA6DC9B00FB95E8 /* ttx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ttx.cc; sourceTree = "<group>"; };
 		93CDED661CA6DC9B00FB95E8 /* ttx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttx.h; sourceTree = "<group>"; };
 		93D334BA1C8032AB00FF4567 /* TKNStroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNStroker.h; sourceTree = "<group>"; };
@@ -334,13 +310,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		93C257E01B9DDC7A00134399 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93FEF94B1AD97263009D0646 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -620,7 +589,6 @@
 			isa = PBXGroup;
 			children = (
 				93FEF94E1AD97263009D0646 /* Token.app */,
-				93C257E31B9DDC7A00134399 /* scaler */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -655,22 +623,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		93C257E21B9DDC7A00134399 /* scaler */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 93C257FB1B9DDC7A00134399 /* Build configuration list for PBXNativeTarget "scaler" */;
-			buildPhases = (
-				93C257DF1B9DDC7A00134399 /* Sources */,
-				93C257E01B9DDC7A00134399 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = scaler;
-			productName = scale_cap_height_to_units_per_em;
-			productReference = 93C257E31B9DDC7A00134399 /* scaler */;
-			productType = "com.apple.product-type.tool";
-		};
 		93FEF94D1AD97263009D0646 /* Token */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93FEF96B1AD97263009D0646 /* Build configuration list for PBXNativeTarget "Token" */;
@@ -699,9 +651,6 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "takram design engineering";
 				TargetAttributes = {
-					93C257E21B9DDC7A00134399 = {
-						CreatedOnToolsVersion = 6.4;
-					};
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = CMMH8M4457;
@@ -736,7 +685,6 @@
 			projectRoot = "";
 			targets = (
 				93FEF94D1AD97263009D0646 /* Token */,
-				93C257E21B9DDC7A00134399 /* scaler */,
 			);
 		};
 /* End PBXProject section */
@@ -866,36 +814,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		93C257DF1B9DDC7A00134399 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9368398F1B9E7B6500E21EF7 /* glyph_outline.cc in Sources */,
-				936839901B9E7B6500E21EF7 /* font_info.cc in Sources */,
-				936839911B9E7B6500E21EF7 /* glyphs.cc in Sources */,
-				936839921B9E7B6500E21EF7 /* glyph.cc in Sources */,
-				936839941B9E7B6500E21EF7 /* lib.cc in Sources */,
-				936839951B9E7B6500E21EF7 /* gasp_range_record.cc in Sources */,
-				936839961B9E7B6500E21EF7 /* name_record.cc in Sources */,
-				936839971B9E7B6500E21EF7 /* unique_id.cc in Sources */,
-				936839981B9E7B6500E21EF7 /* vendor.cc in Sources */,
-				936839991B9E7B6500E21EF7 /* credit.cc in Sources */,
-				9368399A1B9E7B6500E21EF7 /* credits.cc in Sources */,
-				9368399B1B9E7B6500E21EF7 /* text.cc in Sources */,
-				9368399C1B9E7B6500E21EF7 /* description.cc in Sources */,
-				9368399D1B9E7B6500E21EF7 /* license.cc in Sources */,
-				9368399E1B9E7B6500E21EF7 /* copyright.cc in Sources */,
-				9368399F1B9E7B6500E21EF7 /* trademark.cc in Sources */,
-				936839A01B9E7B6500E21EF7 /* licensee.cc in Sources */,
-				936839A11B9E7B6500E21EF7 /* extension_name.cc in Sources */,
-				936839A21B9E7B6500E21EF7 /* extension_value.cc in Sources */,
-				936839A31B9E7B6500E21EF7 /* extension_item.cc in Sources */,
-				936839A41B9E7B6500E21EF7 /* extension.cc in Sources */,
-				936839A51B9E7B6500E21EF7 /* property_list.cc in Sources */,
-				936839AD1B9E931D00E21EF7 /* guideline.cc in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93FEF94A1AD97263009D0646 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -974,24 +892,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		93C257E71B9DDC7A00134399 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		93C257E81B9DDC7A00134399 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		93FEF9691AD97263009D0646 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93F859271B575DCC00C32E8D /* project_debug.xcconfig */;
@@ -1054,15 +954,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		93C257FB1B9DDC7A00134399 /* Build configuration list for PBXNativeTarget "scaler" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				93C257E71B9DDC7A00134399 /* Debug */,
-				93C257E81B9DDC7A00134399 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		93FEF9491AD97263009D0646 /* Build configuration list for PBXProject "Token" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
