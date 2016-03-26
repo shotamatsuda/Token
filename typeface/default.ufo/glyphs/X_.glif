@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="X" format="1">
-  <advance width="541"/>
+  <advance width="1082"/>
   <unicode hex="0058"/>
   <outline>
     <contour>
-      <point x="42" y="680" type="move"/>
-      <point x="499" y="0" type="line"/>
+      <point x="84" y="1360" type="move"/>
+      <point x="998" y="0" type="line"/>
     </contour>
     <contour>
-      <point x="499" y="680" type="move"/>
-      <point x="42" y="0" type="line"/>
+      <point x="998" y="1360" type="move"/>
+      <point x="84" y="0" type="line"/>
     </contour>
   </outline>
   <lib>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="L" format="1">
-  <advance width="512"/>
+  <advance width="1024"/>
   <unicode hex="004C"/>
   <outline>
     <contour>
-      <point x="94" y="680" type="move"/>
-      <point x="94" y="0" type="line"/>
-      <point x="484" y="0" type="line"/>
+      <point x="188" y="1360" type="move"/>
+      <point x="188" y="0" type="line"/>
+      <point x="968" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -25,7 +25,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>94</integer>
+          <integer>188</integer>
           <key>y</key>
           <integer>0</integer>
         </dict>

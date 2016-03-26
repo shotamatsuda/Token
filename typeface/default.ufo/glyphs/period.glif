@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="period" format="1">
-  <advance width="90"/>
+  <advance width="180"/>
   <unicode hex="002E"/>
   <outline>
     <contour>
-      <point x="55.08" y="0"/>
-      <point x="63.26" y="8.18"/>
-      <point x="63.26" y="18.28" type="curve" smooth="yes"/>
-      <point x="63.26" y="28.38"/>
-      <point x="55.08" y="36.56"/>
-      <point x="45" y="36.56" type="curve" smooth="yes"/>
-      <point x="34.92" y="36.56"/>
-      <point x="26.74" y="28.38"/>
-      <point x="26.74" y="18.28" type="curve" smooth="yes"/>
-      <point x="26.74" y="8.18"/>
-      <point x="34.92" y="0"/>
-      <point x="45" y="0" type="curve" name="filled" smooth="yes"/>
+      <point x="110.16" y="0"/>
+      <point x="126.52" y="16.36"/>
+      <point x="126.52" y="36.56" type="curve" smooth="yes"/>
+      <point x="126.52" y="56.76"/>
+      <point x="110.16" y="73.12"/>
+      <point x="90" y="73.12" type="curve" smooth="yes"/>
+      <point x="69.84" y="73.12"/>
+      <point x="53.48" y="56.76"/>
+      <point x="53.48" y="36.56" type="curve" smooth="yes"/>
+      <point x="53.48" y="16.36"/>
+      <point x="69.84" y="0"/>
+      <point x="90" y="0" type="curve" name="filled" smooth="yes"/>
     </contour>
   </outline>
   <lib>

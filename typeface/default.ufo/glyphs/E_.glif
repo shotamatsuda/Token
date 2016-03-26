@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glyph name="E" format="1">
-  <advance width="543"/>
+  <advance width="1086"/>
   <unicode hex="0045"/>
   <outline>
     <contour>
-      <point x="95" y="340" type="move"/>
-      <point x="423.5" y="340" type="line"/>
+      <point x="190" y="680" type="move"/>
+      <point x="847" y="680" type="line"/>
     </contour>
     <contour>
-      <point x="484.5" y="680" type="move"/>
-      <point x="94" y="680" type="line"/>
-      <point x="94" y="0" type="line"/>
-      <point x="484.5" y="0" type="line"/>
+      <point x="969" y="1360" type="move"/>
+      <point x="188" y="1360" type="line"/>
+      <point x="188" y="0" type="line"/>
+      <point x="969" y="0" type="line"/>
     </contour>
   </outline>
   <lib>
@@ -30,7 +30,7 @@
           <key>isGlobal</key>
           <false/>
           <key>x</key>
-          <integer>94</integer>
+          <integer>188</integer>
           <key>y</key>
           <integer>0</integer>
         </dict>
