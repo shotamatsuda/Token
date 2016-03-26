@@ -31,6 +31,8 @@
 - (BOOL)createFontWithContentsOfURL:(nonnull NSURL *)contentsURL
                               toURL:(nonnull NSURL *)fontURL
                            toolsURL:(nonnull NSURL *)toolsURL
+                           extraURL:(nonnull NSURL *)extraURL
                               error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)correctUPEM:(double)UPEM forFontAtURL:(nonnull NSURL *)URL;
 
 @end

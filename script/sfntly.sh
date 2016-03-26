@@ -47,7 +47,7 @@ rm -rf "googletest"
 mkdir -p "${BUILD_DIR}"
 cd "${BUILD_DIR}"
 cmake "${TARGET_DIR}"
-make
+make -j8
 
 # Clean up
 rm -rf "${TARGET_DIR}/ext/gtest"

@@ -366,6 +366,9 @@ class Typeface : TKNTypeface {
     let toolsURL = Location.adobeFDKURL
         .URLByAppendingPathComponent("Tools")
         .URLByAppendingPathComponent("osx")
+    let extraURL = NSBundle.mainBundle().URLForResource(
+        "Scripts/fdk-extra",
+        withExtension: nil)!
     stroker.styleName = styleName
     stroker.fullName = fullName
     stroker.postscriptName = postscriptName
@@ -374,7 +377,8 @@ class Typeface : TKNTypeface {
     try createFontWithContentsOfURL(
         contentsURL,
         toURL: fontURL,
-        toolsURL: toolsURL)
+        toolsURL: toolsURL,
+        extraURL: extraURL)
     let fileManager = NSFileManager.defaultManager()
     if URL.checkResourceIsReachableAndReturnError(nil) {
       try fileManager.removeItemAtURL(URL)

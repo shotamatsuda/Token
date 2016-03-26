@@ -1,9 +1,9 @@
 //
-//  product.xcconfig
+//  token/sfnt.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2015-2016 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -24,13 +24,10 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Search Paths
-HEADER_SEARCH_PATHS = $(inherited) $(BOOST_HEADER_SEARCH_PATHS) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**" "$(PROJECT_DIR)/lib/sfntly/cpp/src"
-USER_HEADER_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/src"
-LIBRARY_SEARCH_PATHS = $(inerited) "/usr/local/lib" "$(PROJECT_DIR)/build/skia/lib" "$(PROJECT_DIR)/build/sfntly/lib"
+#pragma once
+#ifndef TOKEN_SFNT_H_
+#define TOKEN_SFNT_H_
 
-// Linking
-OTHER_LDFLAGS = $(inherited) -lboost_filesystem -lboost_system -lplist -lskia -lz -lsfntly
+#include "token/sfnt/utility.h"
 
-// Apple LLVM - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) TAKRAM_HAS_BOOST=1
+#endif  // TOKEN_SFNT_H_
