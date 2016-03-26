@@ -100,6 +100,7 @@
 		93C257B01B9C5AB700134399 /* ZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* ZoomOut.pdf */; };
 		93C257C41B9C96D900134399 /* Invert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C31B9C96D900134399 /* Invert.pdf */; };
 		93C257C61B9C99F700134399 /* Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C51B9C99F700134399 /* Outline.pdf */; };
+		93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93CDED651CA6DC9B00FB95E8 /* ttx.cc */; };
 		93D334C11C80370C00FF4567 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D334C01C80370C00FF4567 /* Welcome.storyboard */; };
 		93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* CapHeightTemplate.pdf */; };
 		93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* StrokeWidthTemplate.pdf */; };
@@ -310,6 +311,8 @@
 		93C257C31B9C96D900134399 /* Invert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Invert.pdf; sourceTree = "<group>"; };
 		93C257C51B9C99F700134399 /* Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Outline.pdf; sourceTree = "<group>"; };
 		93C257E31B9DDC7A00134399 /* scaler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scaler; sourceTree = BUILT_PRODUCTS_DIR; };
+		93CDED651CA6DC9B00FB95E8 /* ttx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ttx.cc; sourceTree = "<group>"; };
+		93CDED661CA6DC9B00FB95E8 /* ttx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttx.h; sourceTree = "<group>"; };
 		93D334BA1C8032AB00FF4567 /* TKNStroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNStroker.h; sourceTree = "<group>"; };
 		93D334BB1C8032AB00FF4567 /* TKNStroker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TKNStroker.mm; sourceTree = "<group>"; };
 		93D334C01C80370C00FF4567 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -466,6 +469,8 @@
 				93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */,
 				9308C72E1CA29ACD004EDECA /* extra.h */,
 				9308C72D1CA29ACD004EDECA /* extra.cc */,
+				93CDED661CA6DC9B00FB95E8 /* ttx.h */,
+				93CDED651CA6DC9B00FB95E8 /* ttx.cc */,
 			);
 			path = afdko;
 			sourceTree = "<group>";
@@ -949,6 +954,7 @@
 				93654CC41C82F6C5004C3CC9 /* MainWindowController.swift in Sources */,
 				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
 				93654CD71C82F6C5004C3CC9 /* RectCorners.swift in Sources */,
+				93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */,
 				93654CD31C82F6C5004C3CC9 /* SettingsViewController.swift in Sources */,
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,
