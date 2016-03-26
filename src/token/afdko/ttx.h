@@ -1,5 +1,5 @@
 //
-//  token/sfnt.h
+//  token/afdko/makeotf.h
 //
 //  The MIT License
 //
@@ -25,9 +25,19 @@
 //
 
 #pragma once
-#ifndef TOKEN_SFNT_H_
-#define TOKEN_SFNT_H_
+#ifndef TOKEN_AFDKO_TTX_H_
+#define TOKEN_AFDKO_TTX_H_
 
-#include "token/sfnt/utility.h"
+#include <string>
 
-#endif  // TOKEN_SFNT_H_
+#include "token/ufo.h"
+
+namespace token {
+namespace afdko {
+
+bool ttx(const std::string& tools, const std::string& input);
+
+}  // namespace afdko
+}  // namespace token
+
+#endif  // TOKEN_AFDKO_TTX_H_

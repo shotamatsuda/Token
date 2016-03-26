@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9303A2DB1CA6BDF1004F8E04 /* utility.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9303A2DA1CA6BDF1004F8E04 /* utility.cc */; };
 		9308C72F1CA29ACD004EDECA /* extra.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9308C72D1CA29ACD004EDECA /* extra.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
 		9321E9321C9CA1ED00D6FCEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
@@ -101,6 +100,7 @@
 		93C257B01B9C5AB700134399 /* ZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* ZoomOut.pdf */; };
 		93C257C41B9C96D900134399 /* Invert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C31B9C96D900134399 /* Invert.pdf */; };
 		93C257C61B9C99F700134399 /* Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C51B9C99F700134399 /* Outline.pdf */; };
+		93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93CDED651CA6DC9B00FB95E8 /* ttx.cc */; };
 		93D334C11C80370C00FF4567 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D334C01C80370C00FF4567 /* Welcome.storyboard */; };
 		93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* CapHeightTemplate.pdf */; };
 		93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* StrokeWidthTemplate.pdf */; };
@@ -202,9 +202,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9303A2D81CA6BDB1004F8E04 /* sfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfnt.h; sourceTree = "<group>"; };
-		9303A2D91CA6BDD5004F8E04 /* utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
-		9303A2DA1CA6BDF1004F8E04 /* utility.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cc; sourceTree = "<group>"; };
 		9308C72D1CA29ACD004EDECA /* extra.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cc; sourceTree = "<group>"; };
 		9308C72E1CA29ACD004EDECA /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
 		9308F4071C59E003005B31CC /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -314,6 +311,8 @@
 		93C257C31B9C96D900134399 /* Invert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Invert.pdf; sourceTree = "<group>"; };
 		93C257C51B9C99F700134399 /* Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Outline.pdf; sourceTree = "<group>"; };
 		93C257E31B9DDC7A00134399 /* scaler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scaler; sourceTree = BUILT_PRODUCTS_DIR; };
+		93CDED651CA6DC9B00FB95E8 /* ttx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ttx.cc; sourceTree = "<group>"; };
+		93CDED661CA6DC9B00FB95E8 /* ttx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttx.h; sourceTree = "<group>"; };
 		93D334BA1C8032AB00FF4567 /* TKNStroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNStroker.h; sourceTree = "<group>"; };
 		93D334BB1C8032AB00FF4567 /* TKNStroker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TKNStroker.mm; sourceTree = "<group>"; };
 		93D334C01C80370C00FF4567 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -385,15 +384,6 @@
 				9373E7811C64613D003A66B0 /* TypefaceUnit.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		9303A2D71CA6BDB1004F8E04 /* sfnt */ = {
-			isa = PBXGroup;
-			children = (
-				9303A2D91CA6BDD5004F8E04 /* utility.h */,
-				9303A2DA1CA6BDF1004F8E04 /* utility.cc */,
-			);
-			path = sfnt;
 			sourceTree = "<group>";
 		};
 		931805A61BC8D2BA00E8A303 /* Welcome */ = {
@@ -479,6 +469,8 @@
 				93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */,
 				9308C72E1CA29ACD004EDECA /* extra.h */,
 				9308C72D1CA29ACD004EDECA /* extra.cc */,
+				93CDED661CA6DC9B00FB95E8 /* ttx.h */,
+				93CDED651CA6DC9B00FB95E8 /* ttx.cc */,
 			);
 			path = afdko;
 			sourceTree = "<group>";
@@ -647,8 +639,6 @@
 				93A05ADD1B9B8A4A002DDAD5 /* afdko */,
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
 				93A224921B7B1FD200CB1DBB /* ufo */,
-				9303A2D81CA6BDB1004F8E04 /* sfnt.h */,
-				9303A2D71CA6BDB1004F8E04 /* sfnt */,
 			);
 			name = Core;
 			path = token;
@@ -944,7 +934,6 @@
 				93C18F951B930D440044AAEB /* credit.cc in Sources */,
 				93C18F981B930D440044AAEB /* credits.cc in Sources */,
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
-				9303A2DB1CA6BDF1004F8E04 /* utility.cc in Sources */,
 				93654CCE1C82F6C5004C3CC9 /* TypefaceViewController.swift in Sources */,
 				93654CC91C82F6C5004C3CC9 /* TypefaceUnit.swift in Sources */,
 				93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */,
@@ -965,6 +954,7 @@
 				93654CC41C82F6C5004C3CC9 /* MainWindowController.swift in Sources */,
 				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
 				93654CD71C82F6C5004C3CC9 /* RectCorners.swift in Sources */,
+				93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */,
 				93654CD31C82F6C5004C3CC9 /* SettingsViewController.swift in Sources */,
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,

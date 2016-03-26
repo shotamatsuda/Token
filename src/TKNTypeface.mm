@@ -26,17 +26,17 @@
 
 #import "TKNTypeface.h"
 
-#include <cassert>
+#include <fstream>
+#include <sstream>
 #include <string>
 
-#include "sfntly/font.h"
-#include "sfntly/port/type.h"
-#include "sfntly/table/core/font_header_table.h"
-#include "sfntly/tag.h"
+#include <boost/algorithm/string/replace.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 #include "token/afdko.h"
 #include "token/ufo.h"
-#include "token/sfnt.h"
 
 @implementation TKNTypeface
 
@@ -63,26 +63,33 @@
   return true;
 }
 
-- (BOOL)correctUPEM:(double)UPEM forFontAtURL:(NSURL *)URL {
-  const std::string path(URL.path.UTF8String);
-  sfntly::FontBuilderPtr fontBuilder;
-  fontBuilder.Attach(token::sfnt::loadFontBuilder(path));
-  const auto tableBuilder = down_cast<sfntly::FontHeaderTable::Builder *>(
-      fontBuilder->GetTableBuilder(sfntly::Tag::head));
-  if (tableBuilder->UnitsPerEm() == UPEM) {
-    return YES;
+- (BOOL)correctUPEM:(double)UPEM
+       forFontAtURL:(NSURL *)fontURL
+           toolsURL:(NSURL *)toolsURL {
+  const std::string fontPath(fontURL.path.UTF8String);
+  const std::string toolsPath(toolsURL.path.UTF8String);
+  if (!token::afdko::ttx(toolsPath, fontPath)) {
+    return false;
   }
-  tableBuilder->SetUnitsPerEm(UPEM);
-  if (!fontBuilder->ReadyToBuild()) {
-    return NO;
-  }
-  sfntly::FontPtr font;
-  font.Attach(fontBuilder->Build());
-  token::sfnt::serializeFont(path, font);
-  font.Attach(token::sfnt::loadFont(path));
-  const auto table = down_cast<sfntly::FontHeaderTable *>(
-      font->GetTable(sfntly::Tag::head));
-  return table->UnitsPerEm() == UPEM;
+  const std::string ttxPath([fontURL.URLByDeletingPathExtension
+      URLByAppendingPathExtension:@"ttx"].path.UTF8String);
+  boost::property_tree::ptree ptree;
+  boost::property_tree::xml_parser::read_xml(ttxPath, ptree);
+  ptree.put("ttFont.head.unitsPerEm.<xmlattr>.value", UPEM);
+  const auto scale = boost::lexical_cast<std::string>(1.0 / UPEM);
+  const auto fontMatrix = scale + " 0 0 " + scale + " 0 0";
+  ptree.put("ttFont.CFF.CFFFont.FontMatrix.<xmlattr>.value", fontMatrix);
+  std::ostringstream oss;
+  boost::property_tree::xml_writer_settings<std::string> settings(' ', 2);
+  boost::property_tree::xml_parser::write_xml(oss, ptree, settings);
+  // Manually replace line feeds then save to file because boost's xml parser
+  // doesn't encode them.
+  std::string xml = oss.str();
+  boost::replace_all(xml, "&#10;", "\x0a");
+  std::ofstream file(ttxPath, std::ios::binary | std::ios::trunc);
+  file << xml;
+  file.close();
+  return token::afdko::ttx(toolsPath, ttxPath);
 }
 
 @end

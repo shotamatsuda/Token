@@ -1,5 +1,5 @@
 //
-//  token/sfnt/utility.h
+//  token/afdko/ttx.cc
 //
 //  The MIT License
 //
@@ -24,22 +24,30 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_SFNT_UTILITY_H_
-#define TOKEN_SFNT_UTILITY_H_
+#include "token/afdko/ttx.h"
 
 #include <string>
 
-#include "sfntly/font.h"
+#include <boost/filesystem/path.hpp>
+#include <boost/format.hpp>
 
 namespace token {
-namespace sfnt {
+namespace afdko {
 
-CALLER_ATTACH sfntly::Font * loadFont(const std::string& path);
-CALLER_ATTACH sfntly::Font::Builder * loadFontBuilder(const std::string& path);
-void serializeFont(const std::string& path, sfntly::Font *font);
+bool ttx(const std::string& tools, const std::string& input) {
+  const auto name = "ttx";
+  const auto command = (boost::filesystem::path(tools) / name).string();
+  const std::string format = R"(
+    export PATH=${PATH}:"%1%"
+    export FDK_EXE="%1%"
+    "%2%" -f "%3%"
+  )";
+  return !std::system((
+      boost::format(format) %
+      tools %
+      command %
+      input).str().c_str());
+}
 
-}  // namespace sfnt
+}  // namespace afdko
 }  // namespace token
-
-#endif  // TOKEN_SFNT_UTILITY_H_
