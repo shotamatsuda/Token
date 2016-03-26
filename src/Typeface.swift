@@ -353,6 +353,7 @@ class Typeface : TKNTypeface {
   // MARK: Saving
 
   func createFontToURL(URL: NSURL) throws {
+    let stroker = self.stroker.copy() as! Stroker
     let workingDirectoryURL = NSURL(
         fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(
             NSProcessInfo.processInfo().globallyUniqueString)
@@ -368,6 +369,7 @@ class Typeface : TKNTypeface {
     stroker.styleName = styleName
     stroker.fullName = fullName
     stroker.postscriptName = postscriptName
+    stroker.UPEM = stroker.capHeight
     try stroker.saveToURL(contentsURL)
     try createFontWithContentsOfURL(
         contentsURL,

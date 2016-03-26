@@ -26,7 +26,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface TKNStroker : NSObject
+@interface TKNStroker : NSObject <NSCopying>
 
 #pragma mark Opening and Saving
 

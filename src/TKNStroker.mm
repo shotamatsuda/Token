@@ -88,6 +88,27 @@
   return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+  TKNStroker *copy = [[[self class] allocWithZone:zone] init];
+  copy->_fontInfo = _fontInfo;
+  copy->_glyphs = _glyphs;
+  copy->_glyphOutlines = _glyphOutlines;
+  copy->_glyphShapes = _glyphShapes;
+  copy->_glyphBounds = _glyphBounds;
+  copy->_glyphAdvances = _glyphAdvances;
+  copy->_glyphBezierPaths = [_glyphBezierPaths copy];
+  copy->_URL = [_URL copy];
+  copy->_strokeWidth = _strokeWidth;
+  copy->_strokePrecision = _strokePrecision;
+  copy->_strokeShiftIncrement = _strokeShiftIncrement;
+  copy->_strokeShiftLimit = _strokeShiftLimit;
+  copy.styleName = self.styleName;
+  copy.fullName = self.fullName;
+  copy.postscriptName = self.postscriptName;
+  copy.UPEM = self.UPEM;
+  return copy;
+}
+
 #pragma mark Stroke Width
 
 - (void)setStrokeWidth:(double)strokeWidth {
