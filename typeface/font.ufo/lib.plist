@@ -101,9 +101,14 @@
 		<string>period</string>
 		<string>slash</string>
 		<string>hyphen</string>
+		<string>m</string>
+		<string>n</string>
+		<string>o</string>
 		<string>backslash</string>
 		<string>colon</string>
 		<string>comma</string>
+		<string>quotedbl</string>
+		<string>quotesingle</string>
 		<string>semicolon</string>
 		<string>colon.decimal</string>
 	</array>
