@@ -22,4 +22,12 @@
       <point x="94" y="-160" type="line"/>
     </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.takram.token.numberOfContours</key>
+      <integer>2</integer>
+      <key>com.takram.token.numberOfHoles</key>
+      <integer>0</integer>
+    </dict>
+  </lib>
 </glyph>
