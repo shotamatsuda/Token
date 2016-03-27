@@ -101,6 +101,7 @@
 		<string>period</string>
 		<string>slash</string>
 		<string>hyphen</string>
+		<string>backslash</string>
 		<string>colon</string>
 		<string>comma</string>
 		<string>semicolon</string>

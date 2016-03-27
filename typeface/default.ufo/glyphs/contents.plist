@@ -58,6 +58,8 @@
 	<string>Y_.glif</string>
 	<key>Z</key>
 	<string>Z_.glif</string>
+	<key>backslash</key>
+	<string>backslash.glif</string>
 	<key>colon</key>
 	<string>colon.glif</string>
 	<key>colon.decimal</key>
