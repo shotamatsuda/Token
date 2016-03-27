@@ -18,8 +18,6 @@
       <integer>2</integer>
       <key>com.takram.token.numberOfHoles</key>
       <integer>1</integer>
-      <key>public.markColor</key>
-      <string>0.67,0.95,0.38,1</string>
     </dict>
   </lib>
 </glyph>

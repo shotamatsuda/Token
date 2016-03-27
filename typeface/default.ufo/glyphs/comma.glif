@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<glyph name="one" format="1">
-  <advance width="524"/>
-  <unicode hex="0031"/>
+<glyph name="comma" format="1">
+  <advance width="180"/>
+  <unicode hex="002C"/>
   <outline>
     <contour>
-      <point x="100" y="1245" type="move"/>
-      <point x="308" y="1360" type="line"/>
-      <point x="308" y="0" type="line"/>
+      <point x="128" y="155" type="move"/>
+      <point x="62" y="-128" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
-      <integer>4</integer>
+      <integer>6</integer>
       <key>com.takram.token.numberOfContours</key>
       <integer>1</integer>
       <key>com.takram.token.numberOfHoles</key>

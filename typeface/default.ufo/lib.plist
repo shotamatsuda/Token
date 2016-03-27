@@ -102,6 +102,7 @@
 		<string>slash</string>
 		<string>hyphen</string>
 		<string>colon</string>
+		<string>comma</string>
 	</array>
 </dict>
 </plist>

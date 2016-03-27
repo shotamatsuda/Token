@@ -117,7 +117,7 @@
 	<key>postscriptBlueFuzz</key>
 	<integer>0</integer>
 	<key>postscriptBlueScale</key>
-	<real>0.039625</real>
+	<real>0.039600000000000003</real>
 	<key>postscriptBlueShift</key>
 	<integer>7</integer>
 	<key>postscriptBlueValues</key>

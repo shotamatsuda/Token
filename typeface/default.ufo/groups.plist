@@ -129,6 +129,7 @@
 	<key>@MMK_L_period</key>
 	<array>
 		<string>period</string>
+		<string>comma</string>
 	</array>
 	<key>@MMK_L_seven</key>
 	<array>
@@ -260,6 +261,7 @@
 	<key>@MMK_R_period</key>
 	<array>
 		<string>period</string>
+		<string>comma</string>
 	</array>
 	<key>@MMK_R_seven</key>
 	<array>
