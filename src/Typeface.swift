@@ -28,7 +28,7 @@ import AppKit
 
 class Typeface : TKNTypeface {
   init(directoryURL: NSURL) {
-    let URL = directoryURL.URLByAppendingPathComponent("default.ufo")
+    let URL = directoryURL.URLByAppendingPathComponent("font.ufo")
     _strokeWidth = 0.2
     _capHeight = 2.0
     stroker = Stroker(contentsOfURL: URL)!
