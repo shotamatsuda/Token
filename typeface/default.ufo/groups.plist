@@ -105,6 +105,8 @@
 	<key>@MMK_L_colon</key>
 	<array>
 		<string>colon</string>
+		<string>semicolon</string>
+		<string>colon.decimal</string>
 	</array>
 	<key>@MMK_L_eight</key>
 	<array>
@@ -233,6 +235,8 @@
 	<key>@MMK_R_colon</key>
 	<array>
 		<string>colon</string>
+		<string>semicolon</string>
+		<string>colon.decimal</string>
 	</array>
 	<key>@MMK_R_eight</key>
 	<array>

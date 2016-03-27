@@ -60,6 +60,8 @@
 	<string>Z_.glif</string>
 	<key>colon</key>
 	<string>colon.glif</string>
+	<key>colon.decimal</key>
+	<string>colon.decimal.glif</string>
 	<key>comma</key>
 	<string>comma.glif</string>
 	<key>eight</key>
@@ -76,6 +78,8 @@
 	<string>one.glif</string>
 	<key>period</key>
 	<string>period.glif</string>
+	<key>semicolon</key>
+	<string>semicolon.glif</string>
 	<key>seven</key>
 	<string>seven.glif</string>
 	<key>six</key>

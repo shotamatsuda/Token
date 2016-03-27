@@ -103,6 +103,8 @@
 		<string>hyphen</string>
 		<string>colon</string>
 		<string>comma</string>
+		<string>semicolon</string>
+		<string>colon.decimal</string>
 	</array>
 </dict>
 </plist>

@@ -21,8 +21,6 @@
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
-      <integer>9</integer>
       <key>com.takram.token.numberOfContours</key>
       <integer>2</integer>
       <key>com.takram.token.numberOfHoles</key>
