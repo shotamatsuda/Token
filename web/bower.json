@@ -1,0 +1,7 @@
+{
+  "name": "token",
+  "private": true,
+  "devDependencies": {
+    "normalize.styl": "^3.0.3"
+  }
+}
