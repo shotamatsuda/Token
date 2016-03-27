@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="m" format="1">
+  <advance width="1200"/>
+  <unicode hex="006D"/>
+  <outline>
+    <contour>
+      <point x="0" y="0" type="move"/>
+      <point x="0" y="900" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="545.12" type="move"/>
+    </contour>
+    <contour>
+      <point x="0" y="545.12" type="move"/>
+      <point x="0" y="798.76"/>
+      <point x="156.24" y="900"/>
+      <point x="300" y="900" type="curve" smooth="yes"/>
+      <point x="443.76" y="900"/>
+      <point x="600" y="798.76"/>
+      <point x="600" y="545.12" type="curve" smooth="yes"/>
+      <point x="600" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="600" y="545.12" type="move"/>
+      <point x="600" y="798.76"/>
+      <point x="756.24" y="900"/>
+      <point x="900" y="900" type="curve" smooth="yes"/>
+      <point x="1043.76" y="900"/>
+      <point x="1200" y="798.76"/>
+      <point x="1200" y="545.12" type="curve" smooth="yes"/>
+      <point x="1200" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.takram.token.numberOfContours</key>
+      <integer>1</integer>
+      <key>com.takram.token.numberOfHoles</key>
+      <integer>0</integer>
+    </dict>
+  </lib>
+</glyph>

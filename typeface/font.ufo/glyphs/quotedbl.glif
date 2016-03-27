@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="quotedbl" format="1">
+  <advance width="445"/>
+  <unicode hex="0022"/>
+  <outline>
+    <contour>
+      <point x="99" y="1360" type="move"/>
+      <point x="99" y="900" type="line" name="align-right"/>
+    </contour>
+    <contour>
+      <point x="346" y="1360" type="move"/>
+      <point x="346" y="900" type="line" name="align-left"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.takram.token.numberOfContours</key>
+      <integer>2</integer>
+      <key>com.takram.token.numberOfHoles</key>
+      <integer>0</integer>
+    </dict>
+  </lib>
+</glyph>

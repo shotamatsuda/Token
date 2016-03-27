@@ -74,12 +74,22 @@
 	<string>four.glif</string>
 	<key>hyphen</key>
 	<string>hyphen.glif</string>
+	<key>m</key>
+	<string>m.glif</string>
+	<key>n</key>
+	<string>n.glif</string>
 	<key>nine</key>
 	<string>nine.glif</string>
+	<key>o</key>
+	<string>o.glif</string>
 	<key>one</key>
 	<string>one.glif</string>
 	<key>period</key>
 	<string>period.glif</string>
+	<key>quotedbl</key>
+	<string>quotedbl.glif</string>
+	<key>quotesingle</key>
+	<string>quotesingle.glif</string>
 	<key>semicolon</key>
 	<string>semicolon.glif</string>
 	<key>seven</key>
