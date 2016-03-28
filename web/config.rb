@@ -20,14 +20,15 @@ page '/*.txt', layout: false
 
 # General configuration
 
-# Ignore Stylus files as Gulp handles them
+# Ignore files as Gulp handles them
 ignore "*.coffee"
 ignore "*.styl"
 
-# External pipeline for gulp assets
+# External pipeline for Gulp assets
 activate :external_pipeline,
   name: :gulp,
-  command: build? ? './node_modules/gulp/bin/gulp.js default' : './node_modules/gulp/bin/gulp.js watch',
+  command: build? ? './node_modules/gulp/bin/gulp.js default'
+                  : './node_modules/gulp/bin/gulp.js watch',
   source: "./gulp_dist",
   latency: 1
 
@@ -43,7 +44,6 @@ activate :external_pipeline,
 # end
 
 # Build-specific configuration
-# Not necessary because we're using Gulp
 configure :build do
   # Minify CSS on build
   # activate :minify_css
