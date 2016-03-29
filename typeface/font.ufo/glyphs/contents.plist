@@ -62,8 +62,8 @@
 	<string>backslash.glif</string>
 	<key>colon</key>
 	<string>colon.glif</string>
-	<key>colon.decimal</key>
-	<string>colon.decimal.glif</string>
+	<key>colon.raised</key>
+	<string>colon.raised.glif</string>
 	<key>comma</key>
 	<string>comma.glif</string>
 	<key>eight</key>

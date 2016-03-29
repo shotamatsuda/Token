@@ -110,7 +110,7 @@
 		<string>quotedbl</string>
 		<string>quotesingle</string>
 		<string>semicolon</string>
-		<string>colon.decimal</string>
+		<string>colon.raised</string>
 	</array>
 </dict>
 </plist>

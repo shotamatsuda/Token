@@ -106,7 +106,7 @@
 	<array>
 		<string>colon</string>
 		<string>semicolon</string>
-		<string>colon.decimal</string>
+		<string>colon.raised</string>
 	</array>
 	<key>@MMK_L_eight</key>
 	<array>
@@ -236,7 +236,7 @@
 	<array>
 		<string>colon</string>
 		<string>semicolon</string>
-		<string>colon.decimal</string>
+		<string>colon.raised</string>
 	</array>
 	<key>@MMK_R_eight</key>
 	<array>
