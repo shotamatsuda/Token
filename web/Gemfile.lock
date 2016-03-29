@@ -113,6 +113,3 @@ PLATFORMS
 DEPENDENCIES
   middleman (>= 4.0.0)
   slim
-
-BUNDLED WITH
-   1.11.2
