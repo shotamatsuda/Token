@@ -1,5 +1,6 @@
 gulp = require 'gulp'
 gutil = require 'gulp-util'
+plumber = require 'gulp-plumber'
 uglify = require 'gulp-uglify'
 stylus = require 'gulp-stylus'
 cssnano = require 'gulp-cssnano'
@@ -18,7 +19,7 @@ paths =
   stylesheetsEntryPoint: 'source/stylesheets/site.styl'
   stylesheets: 'source/stylesheets/**/*.styl'
   views: 'source/**/*.slim'
-  bower: 'bower_components'
+  bower: 'bower_components/**/*'
   dist: 'gulp_dist'
 postCssPlugins = []
 
@@ -30,6 +31,7 @@ gulp.task 'javascripts', ->
       extensions: ['.coffee']
       transform: ['coffeeify']
     .bundle()
+    .pipe plumber()
     .pipe source('all.js') # to rename the resulting file
     .pipe buffer()  # to transform the browserify results into a stream
     .pipe sourcemaps.init()
@@ -43,6 +45,7 @@ gulp.task 'javascripts', ->
 gulp.task 'stylesheets', ->
   gulp.src paths.stylesheetsEntryPoint
     .pipe sourcemaps.init()
+    .pipe plumber()
     .pipe stylus
       use: [poststylus(postCssPlugins)]
       include: [paths.bower]

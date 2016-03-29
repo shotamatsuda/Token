@@ -2,6 +2,7 @@
   "name": "token",
   "private": true,
   "devDependencies": {
+    "nib": "^1.1.0",
     "normalize.styl": "^3.0.3"
   }
 }
