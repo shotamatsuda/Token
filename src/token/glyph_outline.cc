@@ -30,6 +30,10 @@
 #include <cassert>
 #include <deque>
 #include <iterator>
+#include <string>
+#include <unordered_set>
+
+#include <boost/algorithm/string.hpp>
 
 #include "takram/graphics.h"
 #include "token/glyph_stroker.h"
@@ -135,22 +139,41 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
       break;  // This is the end of a closed contour
     }
   }
+  processAttributes(contour.points.back());
+}
+
+void GlyphOutline::processAttributes(const ufo::glif::Point& point) {
+  std::unordered_set<std::string> attributes;
+  boost::algorithm::split(attributes, point.name, boost::is_any_of(" ,"));
   auto cap = GlyphStroker::Cap::UNDEFINED;
-  bool filled{};
-  if (open) {
-    if (contour.points.back().name == "butt") {
-      cap = GlyphStroker::Cap::BUTT;
-    } else if (contour.points.back().name == "round") {
-      cap = GlyphStroker::Cap::ROUND;
-    } else if (contour.points.back().name == "project") {
-      cap = GlyphStroker::Cap::PROJECT;
-    }
-  } else {
-    if (contour.points.back().name == "filled") {
-      filled = true;
-    }
+  if (attributes.count("cap-butt")) {
+    cap = GlyphStroker::Cap::BUTT;
+  } else if (attributes.count("cap-round")) {
+    cap = GlyphStroker::Cap::ROUND;
+  } else if (attributes.count("cap-project")) {
+    cap = GlyphStroker::Cap::PROJECT;
   }
   caps_.emplace(shape_.paths().size() - 1, cap);
+  auto join = GlyphStroker::Join::UNDEFINED;
+  if (attributes.count("join-miter")) {
+    join = GlyphStroker::Join::MITER;
+  } else if (attributes.count("join-round")) {
+    join = GlyphStroker::Join::ROUND;
+  } else if (attributes.count("join-bevel")) {
+    join = GlyphStroker::Join::BEVEL;
+  }
+  joins_.emplace(shape_.paths().size() - 1, join);
+  auto align = GlyphStroker::Align::UNDEFINED;
+  if (attributes.count("align-left")) {
+    align = GlyphStroker::Align::LEFT;
+  } else if (attributes.count("align-right")) {
+    align = GlyphStroker::Align::RIGHT;
+  }
+  aligns_.emplace(shape_.paths().size() - 1, align);
+  bool filled{};
+  if (attributes.count("filled")) {
+    filled = true;
+  }
   filleds_.emplace(shape_.paths().size() - 1, filled);
 }
 
