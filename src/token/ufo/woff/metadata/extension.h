@@ -48,8 +48,8 @@ class Extension final {
   Extension(const Extension&) = default;
   Extension& operator=(const Extension&) = default;
 
-  // Property list
-  static Extension read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Extension(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

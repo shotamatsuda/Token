@@ -38,13 +38,11 @@ namespace metadata {
 
 #pragma mark Property list
 
-ExtensionValue ExtensionValue::read(const PropertyList& plist) {
-  ExtensionValue result;
-  plist::read_string(plist, "text", &result.text);
-  plist::read_string(plist, "language", &result.language);
-  plist::read_string(plist, "dir", &result.dir);
-  plist::read_string(plist, "class", &result.klass);
-  return std::move(result);
+ExtensionValue::ExtensionValue(const PropertyList& plist) {
+  plist::read_string(plist, "text", &text);
+  plist::read_string(plist, "language", &language);
+  plist::read_string(plist, "dir", &dir);
+  plist::read_string(plist, "class", &klass);
 }
 
 PropertyList ExtensionValue::plist() const {

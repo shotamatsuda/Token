@@ -38,10 +38,8 @@ namespace metadata {
 
 #pragma mark Property list
 
-UniqueID UniqueID::read(const PropertyList& plist) {
-  UniqueID result;
-  plist::read_string(plist, "identifier", &result.identifier);
-  return std::move(result);
+UniqueID::UniqueID(const PropertyList& plist) {
+  plist::read_string(plist, "identifier", &identifier);
 }
 
 PropertyList UniqueID::plist() const {

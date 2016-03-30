@@ -6,6 +6,26 @@ A typography project for product design.
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
+## Concepts
+
+### Property Tree Representable
+
+```cpp
+struct T {
+  explicit T(const boost::property_tree::ptree& tree);
+  boost::property_tree::ptree ptree() const;
+};
+```
+
+### Property List Representable
+
+```cpp
+struct T {
+  explicit T(const token::ufo::PropertyList& plist);
+  token::ufo::PropertyList plist() const;
+};
+```
+
 ## License
 
 The MIT License

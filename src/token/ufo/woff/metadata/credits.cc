@@ -38,10 +38,8 @@ namespace metadata {
 
 #pragma mark Property list
 
-Credits Credits::read(const PropertyList& plist) {
-  Credits result;
-  plist::read_vector(plist, "credits", &result.credits);
-  return std::move(result);
+Credits::Credits(const PropertyList& plist) {
+  plist::read_vector(plist, "credits", &credits);
 }
 
 PropertyList Credits::plist() const {

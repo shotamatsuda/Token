@@ -45,8 +45,8 @@ class Vendor final {
   Vendor(const Vendor&) = default;
   Vendor& operator=(const Vendor&) = default;
 
-  // Property list
-  static Vendor read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Vendor(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

@@ -38,11 +38,9 @@ namespace metadata {
 
 #pragma mark Property list
 
-Description Description::read(const PropertyList& plist) {
-  Description result;
-  plist::read_string(plist, "url", &result.url);
-  plist::read_vector(plist, "text", &result.text);
-  return std::move(result);
+Description::Description(const PropertyList& plist) {
+  plist::read_string(plist, "url", &url);
+  plist::read_vector(plist, "text", &text);
 }
 
 PropertyList Description::plist() const {

@@ -45,8 +45,8 @@ class ExtensionName final {
   ExtensionName(const ExtensionName&) = default;
   ExtensionName& operator=(const ExtensionName&) = default;
 
-  // Property list
-  static ExtensionName read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit ExtensionName(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

@@ -38,12 +38,10 @@ namespace metadata {
 
 #pragma mark Property list
 
-Licensee Licensee::read(const PropertyList& plist) {
-  Licensee result;
-  plist::read_string(plist, "name", &result.name);
-  plist::read_string(plist, "dir", &result.dir);
-  plist::read_string(plist, "class", &result.klass);
-  return std::move(result);
+Licensee::Licensee(const PropertyList& plist) {
+  plist::read_string(plist, "name", &name);
+  plist::read_string(plist, "dir", &dir);
+  plist::read_string(plist, "class", &klass);
 }
 
 PropertyList Licensee::plist() const {

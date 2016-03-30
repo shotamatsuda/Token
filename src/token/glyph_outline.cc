@@ -144,7 +144,7 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
 
 void GlyphOutline::processAttributes(const ufo::glif::Point& point) {
   std::unordered_set<std::string> attributes;
-  boost::algorithm::split(attributes, point.name, boost::is_any_of(" ,"));
+  boost::algorithm::split(attributes, point.name, boost::is_any_of(", "));
   auto cap = GlyphStroker::Cap::UNDEFINED;
   if (attributes.count("cap-butt")) {
     cap = GlyphStroker::Cap::BUTT;

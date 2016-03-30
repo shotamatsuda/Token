@@ -55,8 +55,8 @@ class Image final {
   Image(const Image&) = default;
   Image& operator=(const Image&) = default;
 
-  // Property tree
-  static Image read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Image(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -120,29 +120,27 @@ inline bool operator!=(const Image& lhs, const Image& rhs) {
 
 #pragma mark Property tree
 
-inline Image Image::read(const boost::property_tree::ptree& tree) {
-  Image result;
-  xml::read_attr(tree, "fileName", &result.file_name);
-  xml::read_attr(tree, "xScale", &result.x_scale);
-  xml::read_attr(tree, "xyScale", &result.xy_scale);
-  xml::read_attr(tree, "yxScale", &result.yx_scale);
-  xml::read_attr(tree, "yScale", &result.y_scale);
-  xml::read_attr(tree, "xOffset", &result.x_offset);
-  xml::read_attr(tree, "yOffset", &result.y_offset);
-  xml::read_attr(tree, "color", &result.color);
-  return std::move(result);
+inline Image::Image(const boost::property_tree::ptree& tree) {
+  xml::read_attribute(tree, "fileName", &file_name);
+  xml::read_attribute(tree, "xScale", &x_scale);
+  xml::read_attribute(tree, "xyScale", &xy_scale);
+  xml::read_attribute(tree, "yxScale", &yx_scale);
+  xml::read_attribute(tree, "yScale", &y_scale);
+  xml::read_attribute(tree, "xOffset", &x_offset);
+  xml::read_attribute(tree, "yOffset", &y_offset);
+  xml::read_attribute(tree, "color", &color);
 }
 
 inline boost::property_tree::ptree Image::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "fileName", file_name);
-  xml::write_attr(&tree, "xScale", x_scale, 1.0);
-  xml::write_attr(&tree, "xyScale", xy_scale, 0.0);
-  xml::write_attr(&tree, "yxScale", yx_scale, 0.0);
-  xml::write_attr(&tree, "yScale", y_scale, 1.0);
-  xml::write_attr(&tree, "xOffset", x_offset, 0.0);
-  xml::write_attr(&tree, "yOffset", y_offset, 0.0);
-  xml::write_attr(&tree, "color", color, "");
+  xml::write_attribute(&tree, "fileName", file_name);
+  xml::write_attribute(&tree, "xScale", x_scale, 1.0);
+  xml::write_attribute(&tree, "xyScale", xy_scale, 0.0);
+  xml::write_attribute(&tree, "yxScale", yx_scale, 0.0);
+  xml::write_attribute(&tree, "yScale", y_scale, 1.0);
+  xml::write_attribute(&tree, "xOffset", x_offset, 0.0);
+  xml::write_attribute(&tree, "yOffset", y_offset, 0.0);
+  xml::write_attribute(&tree, "color", color, "");
   return std::move(tree);
 }
 

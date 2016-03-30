@@ -51,8 +51,8 @@ class Contour final {
   Contour(const Contour&) = default;
   Contour& operator=(const Contour&) = default;
 
-  // Property tree
-  static Contour read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Contour(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -83,16 +83,14 @@ inline bool operator!=(const Contour& lhs, const Contour& rhs) {
 
 #pragma mark Property tree
 
-inline Contour Contour::read(const boost::property_tree::ptree& tree) {
-  Contour result;
-  xml::read_attr(tree, "identifier", &result.identifier);
-  xml::read_children(tree, "point", &result.points);
-  return std::move(result);
+inline Contour::Contour(const boost::property_tree::ptree& tree) {
+  xml::read_attribute(tree, "identifier", &identifier);
+  xml::read_children(tree, "point", &points);
 }
 
 inline boost::property_tree::ptree Contour::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "identifier", identifier, "");
+  xml::write_attribute(&tree, "identifier", identifier, "");
   xml::write_children(&tree, "point", points);
   return std::move(tree);
 }

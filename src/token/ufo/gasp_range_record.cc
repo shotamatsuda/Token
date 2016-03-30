@@ -36,11 +36,9 @@ namespace ufo {
 
 #pragma mark Property list
 
-GASPRangeRecord GASPRangeRecord::read(const PropertyList& plist) {
-  GASPRangeRecord result;
-  plist::read_number(plist, "rangeMaxPPEM", &result.range_max_ppem);
-  plist::read_vector(plist, "rangeGaspBehavior", &result.range_gasp_behavior);
-  return std::move(result);
+GASPRangeRecord::GASPRangeRecord(const PropertyList& plist) {
+  plist::read_number(plist, "rangeMaxPPEM", &range_max_ppem);
+  plist::read_vector(plist, "rangeGaspBehavior", &range_gasp_behavior);
 }
 
 PropertyList GASPRangeRecord::plist() const {

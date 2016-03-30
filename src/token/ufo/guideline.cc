@@ -36,15 +36,13 @@ namespace ufo {
 
 #pragma mark Property list
 
-Guideline Guideline::read(const PropertyList& plist) {
-  Guideline result;
-  plist::read_number(plist, "x", &result.x);
-  plist::read_number(plist, "y", &result.y);
-  plist::read_number(plist, "angle", &result.angle);
-  plist::read_string(plist, "name", &result.name);
-  plist::read_string(plist, "color", &result.color);
-  plist::read_string(plist, "identifier", &result.identifier);
-  return std::move(result);
+Guideline::Guideline(const PropertyList& plist) {
+  plist::read_number(plist, "x", &x);
+  plist::read_number(plist, "y", &y);
+  plist::read_number(plist, "angle", &angle);
+  plist::read_string(plist, "name", &name);
+  plist::read_string(plist, "color", &color);
+  plist::read_string(plist, "identifier", &identifier);
 }
 
 PropertyList Guideline::plist() const {

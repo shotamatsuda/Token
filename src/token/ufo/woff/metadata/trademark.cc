@@ -38,10 +38,8 @@ namespace metadata {
 
 #pragma mark Property list
 
-Trademark Trademark::read(const PropertyList& plist) {
-  Trademark result;
-  plist::read_vector(plist, "text", &result.text);
-  return std::move(result);
+Trademark::Trademark(const PropertyList& plist) {
+  plist::read_vector(plist, "text", &text);
 }
 
 PropertyList Trademark::plist() const {

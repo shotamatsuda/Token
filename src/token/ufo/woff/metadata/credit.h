@@ -45,8 +45,8 @@ class Credit final {
   Credit(const Credit&) = default;
   Credit& operator=(const Credit&) = default;
 
-  // Property list
-  static Credit read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Credit(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

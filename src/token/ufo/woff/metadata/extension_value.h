@@ -45,8 +45,8 @@ class ExtensionValue final {
   ExtensionValue(const ExtensionValue&) = default;
   ExtensionValue& operator=(const ExtensionValue&) = default;
 
-  // Property list
-  static ExtensionValue read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit ExtensionValue(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

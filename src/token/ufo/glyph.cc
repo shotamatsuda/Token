@@ -57,7 +57,7 @@ bool Glyph::open(std::istream *stream) {
   boost::property_tree::ptree tree;
   boost::property_tree::xml_parser::read_xml(*stream, tree);
   const auto& glyph = tree.get_child("glyph");
-  xml::read_attr(glyph, "name", &name);
+  xml::read_attribute(glyph, "name", &name);
   xml::read_child(glyph, "advance", &advance);
   xml::read_children(glyph, "unicode", &unicodes);
   xml::read_child(glyph, "image", &image);
@@ -81,8 +81,8 @@ bool Glyph::save(std::ostream *stream) const {
     return false;
   }
   boost::property_tree::ptree glyph;
-  xml::write_attr(&glyph, "name", name);
-  xml::write_attr(&glyph, "format", 2);
+  xml::write_attribute(&glyph, "name", name);
+  xml::write_attribute(&glyph, "format", 2);
   xml::write_child(&glyph, "advance", advance);
   xml::write_children(&glyph, "unicode", unicodes);
   xml::write_child(&glyph, "image", image);

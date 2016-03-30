@@ -49,8 +49,8 @@ class Guideline final {
   Guideline(const Guideline&) = default;
   Guideline& operator=(const Guideline&) = default;
 
-  // Property list
-  static Guideline read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Guideline(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

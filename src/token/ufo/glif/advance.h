@@ -47,8 +47,8 @@ class Advance final {
   Advance(const Advance&) = default;
   Advance& operator=(const Advance&) = default;
 
-  // Property tree
-  static Advance read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Advance(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -80,17 +80,15 @@ inline bool operator!=(const Advance& lhs, const Advance& rhs) {
 
 #pragma mark Property tree
 
-inline Advance Advance::read(const boost::property_tree::ptree& tree) {
-  Advance result;
-  xml::read_attr(tree, "width", &result.width);
-  xml::read_attr(tree, "height", &result.height);
-  return std::move(result);
+inline Advance::Advance(const boost::property_tree::ptree& tree) {
+  xml::read_attribute(tree, "width", &width);
+  xml::read_attribute(tree, "height", &height);
 }
 
 inline boost::property_tree::ptree Advance::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "width", width, 0.0);
-  xml::write_attr(&tree, "height", height, 0.0);
+  xml::write_attribute(&tree, "width", width, 0.0);
+  xml::write_attribute(&tree, "height", height, 0.0);
   return std::move(tree);
 }
 
