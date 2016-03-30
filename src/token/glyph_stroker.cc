@@ -198,26 +198,46 @@ std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
     const ufo::Glyph& glyph,
     const GlyphOutline& outline) const {
   const auto scale = (font_info.cap_height - width_) / font_info.cap_height;
-  const auto bounds = outline.shape().bounds(true);
-  const auto lsb = bounds.minX();
-  const auto rsb = glyph.advance->width - bounds.maxX();
-  const takram::Vec2d center(bounds.midX(), font_info.cap_height / 2.0);
+  const auto stroke_bounds = outline.shape().bounds(true);
+  const auto lsb = stroke_bounds.minX();
+  const auto rsb = glyph.advance->width - stroke_bounds.maxX();
   auto scaled_outline = outline;
   for (auto& command : scaled_outline.shape()) {
-    command.point() = center + (command.point() - center) * scale;
-    command.control1() = center + (command.control1() - center) * scale;
-    command.control2() = center + (command.control2() - center) * scale;
+    command.point() *= scale;
+    command.control1() *= scale;
+    command.control2() *= scale;
   }
-  const auto scaled_bounds = scaled_outline.shape().bounds(true);
-  const auto offset = lsb - scaled_bounds.minX() + width_ / 2.0;
-  for (auto& command : scaled_outline.shape()) {
-    command.point().x += offset;
-    command.control1().x += offset;
-    command.control2().x += offset;
+
+  // CFF Opentype accepts only lines and cubic bezier paths, so we need to
+  // convert conic curves to quadratic curves, which is approximation,
+  // and then convert losslessly quadratic curves to cubic curves.
+  auto shape = stroke(glyph, scaled_outline);
+  shape.convertConicsToQuadratics();
+  shape.convertQuadraticsToCubics();
+  shape.removeDuplicates(1.0);
+
+  // Offset the resulting shape maintains LSB and RSB of the original shape.
+  // Because the advance must be integral, its rounding error should be added
+  // to both LSB and RSB proportionally.
+  const auto bounds = shape.bounds(true);
+  const auto advance = lsb + bounds.width + rsb;
+  const auto rounded_advance = std::round(advance);
+  const auto error = rounded_advance - advance;
+  double lsb_error{};
+  if (lsb + rsb) {
+    lsb_error = error * lsb / (lsb + rsb);
+  } else {
+    lsb_error = error / 2.0;
   }
-  auto advance = *glyph.advance;
-  advance.width = offset + scaled_bounds.maxX() + width_ / 2.0 + rsb;
-  return std::make_pair(stroke(glyph, scaled_outline), advance);
+  takram::Vec2d offset(lsb + lsb_error - bounds.minX(), width_ / 2.0);
+  for (auto& command : shape) {
+    command.point() += offset;
+    command.control1() += offset;
+    command.control2() += offset;
+  }
+  auto glyph_advance = *glyph.advance;
+  glyph_advance.width = rounded_advance;
+  return std::make_pair(shape, glyph_advance);
 }
 
 takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
@@ -267,12 +287,6 @@ takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
           " " << "(" << glyph.name << ")" << std::endl;
     }
 #endif
-    // CFF Opentype accepts only lines and cubic bezier paths, so we need to
-    // convert conic curves to quadratic curves, which is approximation,
-    // and then convert losslessly quadratic curves to cubic curves.
-    shape.convertConicsToQuadratics();
-    shape.convertQuadraticsToCubics();
-    shape.removeDuplicates(1.0);
   } else {
 #ifdef DEBUG
     std::cerr << "Stroking failed by shifting stroke width up to ±" <<
@@ -287,14 +301,22 @@ takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
   GlyphStroker stroker(*this);
   takram::Shape2d result;
   for (const auto& path : outline.shape().paths()) {
-    const auto cap = outline.cap(path);
-    if (cap != Cap::UNDEFINED) {
+    if (outline.cap(path) != Cap::UNDEFINED) {
       stroker.set_cap(outline.cap(path));
     } else {
       stroker.set_cap(cap_);
     }
-    const auto filled = outline.filled(path);
-    stroker.set_filled(stroker.filled() || filled);
+    if (outline.join(path) != Join::UNDEFINED) {
+      stroker.set_join(outline.join(path));
+    } else {
+      stroker.set_join(join_);
+    }
+    if (outline.align(path) != Align::UNDEFINED) {
+      stroker.set_align(outline.align(path));
+    } else {
+      stroker.set_align(align_);
+    }
+    stroker.set_filled(stroker.filled() || outline.filled(path));
     const auto shape = stroker.stroke(path);
     for (const auto& path : shape.paths()) {
       result.paths().emplace_back(path);
@@ -304,6 +326,25 @@ takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
 }
 
 takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
+  auto aligned_path = path;
+  takram::Vec2d offset;
+  switch (align_) {
+    case Align::LEFT:
+      offset.x = width_ / 2.0;
+      break;
+    case Align::RIGHT:
+      offset.x = -width_ / 2.0;
+      break;
+    default:
+      break;
+  }
+  if (!offset.empty()) {
+    for (auto& command : aligned_path) {
+      command.point() += offset;
+      command.control1() += offset;
+      command.control2() += offset;
+    }
+  }
   SkPaint paint;
   if (filled_) {
     paint.setStyle(SkPaint::kStrokeAndFill_Style);
@@ -315,7 +356,7 @@ takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
   paint.setStrokeCap(convertCap(cap_));
   paint.setStrokeJoin(convertJoin(join_));
   SkPath sk_result;
-  paint.getFillPath(convertPath(path), &sk_result, nullptr, precision_);
+  paint.getFillPath(convertPath(aligned_path), &sk_result, nullptr, precision_);
   auto result = convertShape(sk_result);
   if (filled_ && result.size() > 1) {
     // Take a path which has the largest bounding box when the path is filled.

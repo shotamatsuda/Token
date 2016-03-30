@@ -55,6 +55,12 @@ class GlyphStroker final {
     BEVEL
   };
 
+  enum class Align {
+    UNDEFINED,
+    LEFT,
+    RIGHT
+  };
+
  public:
   GlyphStroker();
 
@@ -81,6 +87,8 @@ class GlyphStroker final {
   void set_cap(Cap value) { cap_ = value; }
   Join join() const { return join_; }
   void set_join(Join value) { join_ = value; }
+  Align align() const { return align_; }
+  void set_align(Align value) { align_ = value; }
   bool filled() const { return filled_; }
   void set_filled(bool value) { filled_ = value; }
   double precision() const { return precision_; }
@@ -102,6 +110,7 @@ class GlyphStroker final {
   double miter_;
   Cap cap_;
   Join join_;
+  Align align_;
   bool filled_;
   double precision_;
   double shift_increment_;
@@ -115,6 +124,7 @@ inline GlyphStroker::GlyphStroker()
       miter_(),
       cap_(Cap::ROUND),
       join_(Join::ROUND),
+      align_(Align::UNDEFINED),
       filled_(),
       precision_(1.0),
       shift_increment_(0.0001),
@@ -127,6 +137,7 @@ inline bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs) {
           lhs.miter_ == rhs.miter_ &&
           lhs.cap_ == rhs.cap_ &&
           lhs.join_ == rhs.join_ &&
+          lhs.align_ == rhs.align_ &&
           lhs.filled_ == rhs.filled_ &&
           lhs.precision_ == rhs.precision_ &&
           lhs.shift_increment_ == rhs.shift_increment_ &&

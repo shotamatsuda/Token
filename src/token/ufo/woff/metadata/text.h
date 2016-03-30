@@ -45,8 +45,8 @@ class Text final {
   Text(const Text&) = default;
   Text& operator=(const Text&) = default;
 
-  // Property list
-  static Text read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Text(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

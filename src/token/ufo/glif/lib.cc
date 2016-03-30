@@ -42,14 +42,12 @@ namespace glif {
 
 #pragma mark Property tree
 
-Lib Lib::read(const boost::property_tree::ptree& tree) {
-  Lib result;
+Lib::Lib(const boost::property_tree::ptree& tree) {
   auto plist = convertToPropertyList(tree);
   plist::read_number(plist, "com.takram.token.numberOfContours",
-                     &result.number_of_contours);
+                     &number_of_contours);
   plist::read_number(plist, "com.takram.token.numberOfHoles",
-                     &result.number_of_holes);
-  return std::move(result);
+                     &number_of_holes);
 }
 
 boost::property_tree::ptree Lib::ptree() const {
@@ -72,7 +70,7 @@ PropertyList Lib::convertToPropertyList(
   // Erase the xml declaration
   contents.erase(0, contents.find("\n") + 1);
 
-  // Erase all of the xml escape sequences
+  // WORKAROUND: Erase all of the xml escape sequences
   const std::string line_feed = "&#10;";
   const auto line_feed_size = line_feed.size();
   for (auto i = contents.find(line_feed_size);

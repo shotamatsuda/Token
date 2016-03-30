@@ -43,8 +43,8 @@ class GASPRangeRecord final {
   GASPRangeRecord(const GASPRangeRecord&) = default;
   GASPRangeRecord& operator=(const GASPRangeRecord&) = default;
 
-  // Property list
-  static GASPRangeRecord read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit GASPRangeRecord(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

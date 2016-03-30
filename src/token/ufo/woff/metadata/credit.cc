@@ -38,13 +38,11 @@ namespace metadata {
 
 #pragma mark Property list
 
-Credit Credit::read(const PropertyList& plist) {
-  Credit result;
-  plist::read_string(plist, "name", &result.name);
-  plist::read_string(plist, "url", &result.url);
-  plist::read_string(plist, "dir", &result.dir);
-  plist::read_string(plist, "class", &result.klass);
-  return std::move(result);
+Credit::Credit(const PropertyList& plist) {
+  plist::read_string(plist, "name", &name);
+  plist::read_string(plist, "url", &url);
+  plist::read_string(plist, "dir", &dir);
+  plist::read_string(plist, "class", &klass);
 }
 
 PropertyList Credit::plist() const {

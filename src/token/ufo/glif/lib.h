@@ -49,8 +49,8 @@ class Lib final {
   Lib(const Lib&) = default;
   Lib& operator=(const Lib&) = default;
 
-  // Property tree
-  static Lib read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Lib(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  private:

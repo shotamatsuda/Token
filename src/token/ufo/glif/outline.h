@@ -51,8 +51,8 @@ class Outline final {
   Outline(const Outline&) = default;
   Outline& operator=(const Outline&) = default;
 
-  // Property tree
-  static Outline read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Outline(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -83,11 +83,9 @@ inline bool operator!=(const Outline& lhs, const Outline& rhs) {
 
 #pragma mark Property tree
 
-inline Outline Outline::read(const boost::property_tree::ptree& tree) {
-  Outline result;
-  xml::read_children(tree, "component", &result.components);
-  xml::read_children(tree, "contour", &result.contours);
-  return std::move(result);
+inline Outline::Outline(const boost::property_tree::ptree& tree) {
+  xml::read_children(tree, "component", &components);
+  xml::read_children(tree, "contour", &contours);
 }
 
 inline boost::property_tree::ptree Outline::ptree() const {

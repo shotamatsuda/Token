@@ -48,8 +48,8 @@ class Unicode final {
   Unicode(const Unicode&) = default;
   Unicode& operator=(const Unicode&) = default;
 
-  // Property tree
-  static Unicode read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Unicode(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -76,15 +76,13 @@ inline bool operator!=(const Unicode& lhs, const Unicode& rhs) {
 
 #pragma mark Property tree
 
-inline Unicode Unicode::read(const boost::property_tree::ptree& tree) {
-  Unicode result;
-  xml::read_attr(tree, "hex", &result.hex);
-  return std::move(result);
+inline Unicode::Unicode(const boost::property_tree::ptree& tree) {
+  xml::read_attribute(tree, "hex", &hex);
 }
 
 inline boost::property_tree::ptree Unicode::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "hex", hex);
+  xml::write_attribute(&tree, "hex", hex);
   return std::move(tree);
 }
 

@@ -45,8 +45,8 @@ class Licensee final {
   Licensee(const Licensee&) = default;
   Licensee& operator=(const Licensee&) = default;
 
-  // Property list
-  static Licensee read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Licensee(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

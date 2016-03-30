@@ -45,6 +45,10 @@ class Glyphs final {
   using Iterator = GlyphIterator<Glyph>;
   using ConstIterator = GlyphIterator<const Glyph>;
 
+ private:
+  template <class T>
+  friend class GlyphIterator;
+
  public:
   Glyphs() = default;
   explicit Glyphs(const std::string& path);
@@ -81,10 +85,6 @@ class Glyphs final {
   std::string path_;
   std::vector<std::pair<std::string, std::string>> contents_;
   mutable std::vector<std::pair<std::string, Glyph>> glyphs_;
-
- private:
-  template <class T>
-  friend class GlyphIterator;
 };
 
 #pragma mark -

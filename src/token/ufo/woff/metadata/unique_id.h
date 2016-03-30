@@ -45,8 +45,8 @@ class UniqueID final {
   UniqueID(const UniqueID&) = default;
   UniqueID& operator=(const UniqueID&) = default;
 
-  // Property list
-  static UniqueID read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit UniqueID(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

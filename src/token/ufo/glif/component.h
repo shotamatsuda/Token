@@ -55,8 +55,8 @@ class Component final {
   Component(const Component&) = default;
   Component& operator=(const Component&) = default;
 
-  // Property tree
-  static Component read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Component(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -120,29 +120,27 @@ inline bool operator!=(const Component& lhs, const Component& rhs) {
 
 #pragma mark Property tree
 
-inline Component Component::read(const boost::property_tree::ptree& tree) {
-  Component result;
-  xml::read_attr(tree, "base", &result.base);
-  xml::read_attr(tree, "xScale", &result.x_scale);
-  xml::read_attr(tree, "xyScale", &result.xy_scale);
-  xml::read_attr(tree, "yxScale", &result.yx_scale);
-  xml::read_attr(tree, "yScale", &result.y_scale);
-  xml::read_attr(tree, "xOffset", &result.x_offset);
-  xml::read_attr(tree, "yOffset", &result.y_offset);
-  xml::read_attr(tree, "identifier", &result.identifier);
-  return std::move(result);
+inline Component::Component(const boost::property_tree::ptree& tree) {
+  xml::read_attribute(tree, "base", &base);
+  xml::read_attribute(tree, "xScale", &x_scale);
+  xml::read_attribute(tree, "xyScale", &xy_scale);
+  xml::read_attribute(tree, "yxScale", &yx_scale);
+  xml::read_attribute(tree, "yScale", &y_scale);
+  xml::read_attribute(tree, "xOffset", &x_offset);
+  xml::read_attribute(tree, "yOffset", &y_offset);
+  xml::read_attribute(tree, "identifier", &identifier);
 }
 
 inline boost::property_tree::ptree Component::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "base", base);
-  xml::write_attr(&tree, "xScale", x_scale, 1.0);
-  xml::write_attr(&tree, "xyScale", xy_scale, 0.0);
-  xml::write_attr(&tree, "yxScale", yx_scale, 0.0);
-  xml::write_attr(&tree, "yScale", y_scale, 1.0);
-  xml::write_attr(&tree, "xOffset", x_offset, 0.0);
-  xml::write_attr(&tree, "yOffset", y_offset, 0.0);
-  xml::write_attr(&tree, "identifier", identifier, "");
+  xml::write_attribute(&tree, "base", base);
+  xml::write_attribute(&tree, "xScale", x_scale, 1.0);
+  xml::write_attribute(&tree, "xyScale", xy_scale, 0.0);
+  xml::write_attribute(&tree, "yxScale", yx_scale, 0.0);
+  xml::write_attribute(&tree, "yScale", y_scale, 1.0);
+  xml::write_attribute(&tree, "xOffset", x_offset, 0.0);
+  xml::write_attribute(&tree, "yOffset", y_offset, 0.0);
+  xml::write_attribute(&tree, "identifier", identifier, "");
   return std::move(tree);
 }
 

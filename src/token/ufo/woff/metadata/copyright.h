@@ -46,8 +46,8 @@ class Copyright final {
   Copyright(const Copyright&) = default;
   Copyright& operator=(const Copyright&) = default;
 
-  // Property list
-  static Copyright read(const PropertyList& plist);
+  // Concept: Property list representable
+  explicit Copyright(const PropertyList& plist);
   PropertyList plist() const;
 
  public:

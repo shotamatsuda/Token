@@ -52,6 +52,8 @@ class GlyphOutline final {
   const takram::Shape2d& shape() const { return shape_; }
   takram::Shape2d& shape() { return shape_; }
   GlyphStroker::Cap cap(const takram::Path2d& path) const;
+  GlyphStroker::Join join(const takram::Path2d& path) const;
+  GlyphStroker::Align align(const takram::Path2d& path) const;
   bool filled(const takram::Path2d& path) const;
 
   // Conversion
@@ -59,11 +61,14 @@ class GlyphOutline final {
 
  private:
   void processContour(const ufo::glif::Contour& contour);
+  void processAttributes(const ufo::glif::Point& point);
   void processPath(const takram::Path2d& path, ufo::Glyph *glyph) const;
 
  public:
   takram::Shape2d shape_;
   std::unordered_map<std::size_t, GlyphStroker::Cap> caps_;
+  std::unordered_map<std::size_t, GlyphStroker::Join> joins_;
+  std::unordered_map<std::size_t, GlyphStroker::Align> aligns_;
   std::unordered_map<std::size_t, bool> filleds_;
 };
 
@@ -79,6 +84,27 @@ inline GlyphStroker::Cap GlyphOutline::cap(const takram::Path2d& path) const {
   }
   const auto index = std::distance(std::begin(paths), itr);
   return caps_.at(index);
+}
+
+inline GlyphStroker::Join GlyphOutline::join(const takram::Path2d& path) const {
+  const auto& paths = shape_.paths();
+  const auto itr = std::find(std::begin(paths), std::end(paths), path);
+  if (itr == std::end(paths)) {
+    return GlyphStroker::Join::UNDEFINED;
+  }
+  const auto index = std::distance(std::begin(paths), itr);
+  return joins_.at(index);
+}
+
+inline GlyphStroker::Align GlyphOutline::align(
+    const takram::Path2d& path) const {
+  const auto& paths = shape_.paths();
+  const auto itr = std::find(std::begin(paths), std::end(paths), path);
+  if (itr == std::end(paths)) {
+    return GlyphStroker::Align::UNDEFINED;
+  }
+  const auto index = std::distance(std::begin(paths), itr);
+  return aligns_.at(index);
 }
 
 inline bool GlyphOutline::filled(const takram::Path2d& path) const {

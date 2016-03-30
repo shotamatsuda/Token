@@ -36,14 +36,12 @@ namespace ufo {
 
 #pragma mark Property list
 
-NameRecord NameRecord::read(const PropertyList& plist) {
-  NameRecord result;
-  plist::read_number(plist, "nameID", &result.name_id);
-  plist::read_number(plist, "platformID", &result.platform_id);
-  plist::read_number(plist, "encodingID", &result.encoding_id);
-  plist::read_number(plist, "languageID", &result.language_id);
-  plist::read_string(plist, "string", &result.string);
-  return std::move(result);
+NameRecord::NameRecord(const PropertyList& plist) {
+  plist::read_number(plist, "nameID", &name_id);
+  plist::read_number(plist, "platformID", &platform_id);
+  plist::read_number(plist, "encodingID", &encoding_id);
+  plist::read_number(plist, "languageID", &language_id);
+  plist::read_string(plist, "string", &string);
 }
 
 PropertyList NameRecord::plist() const {

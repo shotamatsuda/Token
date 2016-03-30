@@ -42,9 +42,9 @@ namespace ufo {
 namespace xml {
 
 template <class T>
-inline void read_attr(const boost::property_tree::ptree& tree,
-                      const std::string& name,
-                      T *output) {
+inline void read_attribute(const boost::property_tree::ptree& tree,
+                           const std::string& name,
+                           T *output) {
   assert(output);
   const auto attrs = tree.find("<xmlattr>");
   if (attrs != tree.not_found()) {
@@ -62,7 +62,7 @@ inline void read_child(const boost::property_tree::ptree& tree,
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
-    *output = T::read(itr->second);
+    *output = T(itr->second);
   }
 }
 
@@ -73,7 +73,7 @@ inline void read_child(const boost::property_tree::ptree& tree,
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
-    *output = T::read(itr->second);
+    *output = T(itr->second);
   }
 }
 
@@ -87,24 +87,24 @@ inline void read_children(const boost::property_tree::ptree& tree,
     auto end = values;
     std::advance(end, tree.count(name));
     for (auto itr = values; itr != end; ++itr) {
-      output->emplace_back(T::read(itr->second));
+      output->emplace_back(itr->second);
     }
   }
 }
 
 template <class T>
-inline void write_attr(boost::property_tree::ptree *tree,
-                       const std::string& name,
-                       const T& value) {
+inline void write_attribute(boost::property_tree::ptree *tree,
+                            const std::string& name,
+                            const T& value) {
   assert(tree);
   tree->put("<xmlattr>." + name, value);
 }
 
 template <class T, class U>
-inline void write_attr(boost::property_tree::ptree *tree,
-                       const std::string& name,
-                       const T& value,
-                       const U& default_value) {
+inline void write_attribute(boost::property_tree::ptree *tree,
+                            const std::string& name,
+                            const T& value,
+                            const U& default_value) {
   assert(tree);
   if (value != default_value) {
     tree->put("<xmlattr>." + name, value);

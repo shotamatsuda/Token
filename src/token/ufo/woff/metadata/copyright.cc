@@ -38,10 +38,8 @@ namespace metadata {
 
 #pragma mark Property list
 
-Copyright Copyright::read(const PropertyList& plist) {
-  Copyright result;
-  plist::read_vector(plist, "text", &result.text);
-  return std::move(result);
+Copyright::Copyright(const PropertyList& plist) {
+  plist::read_vector(plist, "text", &text);
 }
 
 PropertyList Copyright::plist() const {

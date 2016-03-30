@@ -66,8 +66,8 @@ class Point final {
   // Mutator
   void reset();
 
-  // Property tree
-  static Point read(const boost::property_tree::ptree& tree);
+  // Concept: Property tree representable
+  explicit Point(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 
  public:
@@ -117,31 +117,29 @@ inline bool operator!=(const Point& lhs, const Point& rhs) {
 
 #pragma mark Property tree
 
-inline Point Point::read(const boost::property_tree::ptree& tree) {
-  Point result;
-  xml::read_attr(tree, "x", &result.x);
-  xml::read_attr(tree, "y", &result.y);
-  std::string type;
-  xml::read_attr(tree, "type", &type);
-  if (type == "move") {
-    result.type = Type::MOVE;
-  } else if (type == "line") {
-    result.type = Type::LINE;
-  } else if (type == "offcurve") {
-    result.type = Type::OFFCURVE;
-  } else if (type == "curve") {
-    result.type = Type::CURVE;
-  } else if (type == "qcurve") {
-    result.type = Type::QCURVE;
+inline Point::Point(const boost::property_tree::ptree& tree) {
+  xml::read_attribute(tree, "x", &x);
+  xml::read_attribute(tree, "y", &y);
+  std::string type_string;
+  xml::read_attribute(tree, "type", &type_string);
+  if (type_string == "move") {
+    type = Type::MOVE;
+  } else if (type_string == "line") {
+    type = Type::LINE;
+  } else if (type_string == "offcurve") {
+    type = Type::OFFCURVE;
+  } else if (type_string == "curve") {
+    type = Type::CURVE;
+  } else if (type_string == "qcurve") {
+    type = Type::QCURVE;
   }
-  std::string smooth;
-  xml::read_attr(tree, "smooth", &smooth);
-  if (smooth == "yes") {
-    result.smooth = true;
+  std::string smooth_string;
+  xml::read_attribute(tree, "smooth", &smooth_string);
+  if (smooth_string == "yes") {
+    smooth = true;
   }
-  xml::read_attr(tree, "name", &result.name);
-  xml::read_attr(tree, "identifier", &result.identifier);
-  return std::move(result);
+  xml::read_attribute(tree, "name", &name);
+  xml::read_attribute(tree, "identifier", &identifier);
 }
 
 inline boost::property_tree::ptree Point::ptree() const {
@@ -157,12 +155,12 @@ inline boost::property_tree::ptree Point::ptree() const {
       break;
   }
   boost::property_tree::ptree tree;
-  xml::write_attr(&tree, "x", x);
-  xml::write_attr(&tree, "y", y);
-  xml::write_attr(&tree, "type", type, "offcurve");
-  xml::write_attr(&tree, "smooth", smooth ? "yes" : "no", "no");
-  xml::write_attr(&tree, "name", name, "");
-  xml::write_attr(&tree, "identifier", identifier, "");
+  xml::write_attribute(&tree, "x", x);
+  xml::write_attribute(&tree, "y", y);
+  xml::write_attribute(&tree, "type", type, "offcurve");
+  xml::write_attribute(&tree, "smooth", smooth ? "yes" : "no", "no");
+  xml::write_attribute(&tree, "name", name, "");
+  xml::write_attribute(&tree, "identifier", identifier, "");
   return std::move(tree);
 }
 
