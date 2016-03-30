@@ -1,5 +1,5 @@
 //
-//  token/afdko/makeotf.cc
+//  token/afdko/opentype.cc
 //
 //  The MIT License
 //
@@ -24,19 +24,18 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/afdko/makeotf.h"
+#include "token/afdko/opentype.h"
 
 #include <cassert>
 #include <fstream>
 #include <ostream>
-#include <sstream>
 #include <string>
 
 #include <boost/algorithm/string/join.hpp>
 #include <boost/filesystem/path.hpp>
-#include <boost/format.hpp>
 #include <boost/range/adaptor/transformed.hpp>
 
+#include "token/afdko/task.h"
 #include "token/ufo.h"
 
 namespace token {
@@ -44,9 +43,9 @@ namespace afdko {
 
 namespace {
 
-inline void writeName(std::ostream *stream,
-                      unsigned int id,
-                      const std::string& value) {
+inline void write_name(std::ostream *stream,
+                       unsigned int id,
+                       const std::string& value) {
   if (!value.empty()) {
     assert(stream);
     *stream << "nameid " << id << " \"" << value << "\";\n";
@@ -56,33 +55,19 @@ inline void writeName(std::ostream *stream,
 
 }  // namespace
 
-bool makeotf(const std::string& tools,
-             const std::string& input,
-             const std::string& output,
-             bool release) {
-  const auto name = "makeotf";
-  const auto command = (boost::filesystem::path(tools) / name).string();
-  std::string options;
-  if (release) {
-    options += " -r ";
-  }
-  const std::string format = R"(
-    export PATH=${PATH}:"%1%"
-    export FDK_EXE="%1%"
-    "%2%" %3% -f "%4%" -o "%5%"
-  )";
-  return !std::system((
-      boost::format(format) %
-      tools %
-      command %
-      options %
-      input %
-      output).str().c_str());
+bool createOpenTypeFont(const std::string& directory,
+                        const std::string& input,
+                        const std::string& output) {
+  Task task;
+  task.set_directory(directory);
+  task.set_name("makeotf");
+  task.set_arguments({"-r", "-f", input, "-o", output});
+  return task.execute();
 }
 
 void createFeatures(const ufo::FontInfo& font_info,
-                    const std::string& directory) {
-  const auto path = boost::filesystem::path(directory) / "features";
+                    const std::string& output) {
+  const auto path = boost::filesystem::path(output) / "features";
   std::ofstream stream(path.string());
   assert(stream.good());
   const std::string endl = ";\n";
@@ -106,13 +91,12 @@ void createFeatures(const ufo::FontInfo& font_info,
   stream << "} hhea;" << std::endl;
 
   // OS/2
+  std::string (* const transformer)(unsigned int) = &std::to_string;
   stream << "table OS/2 {" << std::endl;
   stream << "FSType 0" << endl;
   stream << "Panose " << boost::algorithm::join(
       font_info.open_type_os2_panose |
-      boost::adaptors::transformed(
-          static_cast<std::string (*)(unsigned int)>(
-              &std::to_string)), " ") << endl;
+      boost::adaptors::transformed(transformer), " ") << endl;
   stream << "TypoAscender " << font_info.open_type_os2_typo_ascender << endl;
   stream << "TypoDescender " << font_info.open_type_os2_typo_descender << endl;
   stream << "TypoLineGap " << font_info.open_type_os2_typo_line_gap << endl;
@@ -127,33 +111,28 @@ void createFeatures(const ufo::FontInfo& font_info,
 
   // name
   stream << "table name {" << std::endl;
-  writeName(&stream, 0, font_info.copyright);
-//  writeName(&stream, 1, font_info.style_map_family_name);
-//  writeName(&stream, 2, font_info.style_map_style_name);
-//  writeName(&stream, 3, font_info.open_type_name_unique_id);
-//  writeName(&stream, 5, font_info.open_type_name_version);
-//  writeName(&stream, 6, font_info.postscript_font_name);
-  writeName(&stream, 7, font_info.trademark);
-  writeName(&stream, 8, font_info.open_type_name_manufacturer);
-  writeName(&stream, 9, font_info.open_type_name_designer);
-  writeName(&stream, 10, font_info.open_type_name_description);
-  writeName(&stream, 11, font_info.open_type_name_manufacturer_url);
-  writeName(&stream, 12, font_info.open_type_name_designer_url);
-  writeName(&stream, 13, font_info.open_type_name_license);
-  writeName(&stream, 14, font_info.open_type_name_license_url);
-  writeName(&stream, 16, font_info.open_type_name_preferred_family_name);
-  writeName(&stream, 17, font_info.open_type_name_preferred_subfamily_name);
-  writeName(&stream, 18, font_info.open_type_name_compatible_full_name);
-  writeName(&stream, 19, font_info.open_type_name_sample_text);
-  writeName(&stream, 21, font_info.open_type_name_wws_family_name);
-  writeName(&stream, 22, font_info.open_type_name_wws_subfamily_name);
+  write_name(&stream, 0, font_info.copyright);
+  write_name(&stream, 7, font_info.trademark);
+  write_name(&stream, 8, font_info.open_type_name_manufacturer);
+  write_name(&stream, 9, font_info.open_type_name_designer);
+  write_name(&stream, 10, font_info.open_type_name_description);
+  write_name(&stream, 11, font_info.open_type_name_manufacturer_url);
+  write_name(&stream, 12, font_info.open_type_name_designer_url);
+  write_name(&stream, 13, font_info.open_type_name_license);
+  write_name(&stream, 14, font_info.open_type_name_license_url);
+  write_name(&stream, 16, font_info.open_type_name_preferred_family_name);
+  write_name(&stream, 17, font_info.open_type_name_preferred_subfamily_name);
+  write_name(&stream, 18, font_info.open_type_name_compatible_full_name);
+  write_name(&stream, 19, font_info.open_type_name_sample_text);
+  write_name(&stream, 21, font_info.open_type_name_wws_family_name);
+  write_name(&stream, 22, font_info.open_type_name_wws_subfamily_name);
   stream << "} name;" << std::endl;
   stream.close();
 }
 
-void createFontMenuNameDB(const ufo::FontInfo& font_info,
-                          const std::string& directory) {
-  const auto path = boost::filesystem::path(directory) / "FontMenuNameDB";
+void createFontMenuName(const ufo::FontInfo& font_info,
+                        const std::string& output) {
+  const auto path = boost::filesystem::path(output) / "FontMenuNameDB";
   std::ofstream stream(path.string());
   assert(stream.good());
   stream << "[" << font_info.postscript_font_name << "]" << std::endl;
@@ -164,9 +143,9 @@ void createFontMenuNameDB(const ufo::FontInfo& font_info,
   stream.close();
 }
 
-void createGlyphOrderAndAliasDB(const ufo::Glyphs& glyphs,
-                                const std::string& directory) {
-  const auto path = boost::filesystem::path(directory) / "GlyphOrderAndAliasDB";
+void createGlyphOrderAndAlias(const ufo::Glyphs& glyphs,
+                              const std::string& output) {
+  const auto path = boost::filesystem::path(output) / "GlyphOrderAndAliasDB";
   std::ofstream stream(path.string());
   assert(stream.good());
   for (const auto& glyph : glyphs) {

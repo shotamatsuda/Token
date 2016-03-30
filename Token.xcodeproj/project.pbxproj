@@ -44,6 +44,8 @@
 		93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */; };
 		93654CDE1C82F6C5004C3CC9 /* NSBezierPath+RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */; };
 		936839AC1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
+		936A9EF51CAB577600CFBE5E /* task.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9EF41CAB577600CFBE5E /* task.cc */; };
+		936A9F071CAB6C7B00CFBE5E /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9F061CAB6C7B00CFBE5E /* transform.cc */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
 		937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93D334BB1C8032AB00FF4567 /* TKNStroker.mm */; };
 		937E19591C97D5A700090AEF /* StrokerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19581C97D5A600090AEF /* StrokerBehavior.swift */; };
@@ -51,10 +53,9 @@
 		937E19811C9ACB1A00090AEF /* TKNTypeface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9383794B1B962D47003E6893 /* TKNTypeface.mm */; };
 		9390CBF51B95328D0088153C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9390CBF41B95328D0088153C /* Credits.rtf */; };
 		93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */; };
-		93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */; };
+		93A05AEB1B9B8A6B002DDAD5 /* opentype.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* opentype.cc */; };
 		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
-		93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* autohint.cc */; };
-		93AB70431BA5D9FA004EB3C8 /* check_outlines.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */; };
+		93A05AF21B9B9B98002DDAD5 /* hinting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* hinting.cc */; };
 		93C18F491B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
 		93C18F921B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
 		93C18F951B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
@@ -76,7 +77,6 @@
 		93C257B01B9C5AB700134399 /* ZoomOut.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257AE1B9C5AB700134399 /* ZoomOut.pdf */; };
 		93C257C41B9C96D900134399 /* Invert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C31B9C96D900134399 /* Invert.pdf */; };
 		93C257C61B9C99F700134399 /* Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93C257C51B9C99F700134399 /* Outline.pdf */; };
-		93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93CDED651CA6DC9B00FB95E8 /* ttx.cc */; };
 		93D334C11C80370C00FF4567 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D334C01C80370C00FF4567 /* Welcome.storyboard */; };
 		93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209661BB3AAC100C76B70 /* CapHeightTemplate.pdf */; };
 		93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93E209671BB3AAC100C76B70 /* StrokeWidthTemplate.pdf */; };
@@ -225,6 +225,9 @@
 		936839A91B9E925200E21EF7 /* glif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glif.h; sourceTree = "<group>"; };
 		936839AA1B9E931D00E21EF7 /* guideline.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guideline.cc; sourceTree = "<group>"; };
 		936839AB1B9E931D00E21EF7 /* guideline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideline.h; sourceTree = "<group>"; };
+		936A9EE81CAB539700CFBE5E /* task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = task.h; sourceTree = "<group>"; };
+		936A9EF41CAB577600CFBE5E /* task.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task.cc; sourceTree = "<group>"; };
+		936A9F061CAB6C7B00CFBE5E /* transform.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cc; sourceTree = "<group>"; };
 		93714B491B996C7E0077B273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		93714B5F1B996EA70077B273 /* lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib.cc; sourceTree = "<group>"; };
 		9373E7811C64613D003A66B0 /* TypefaceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceUnit.swift; sourceTree = "<group>"; };
@@ -239,11 +242,11 @@
 		939FDF1A1C1F630D00B0DECD /* TypefaceControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceControlView.swift; sourceTree = "<group>"; };
 		939FDF1C1C1F635800B0DECD /* TypefaceClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceClipView.swift; sourceTree = "<group>"; };
 		93A05ADE1B9B8A4A002DDAD5 /* afdko.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afdko.h; sourceTree = "<group>"; };
-		93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeotf.cc; sourceTree = "<group>"; };
-		93A05AEA1B9B8A6B002DDAD5 /* makeotf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = makeotf.h; sourceTree = "<group>"; };
+		93A05AE91B9B8A6B002DDAD5 /* opentype.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = opentype.cc; sourceTree = "<group>"; };
+		93A05AEA1B9B8A6B002DDAD5 /* opentype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opentype.h; sourceTree = "<group>"; };
 		93A05AEE1B9B914A002DDAD5 /* typeface */ = {isa = PBXFileReference; lastKnownFileType = folder; path = typeface; sourceTree = SOURCE_ROOT; };
-		93A05AF01B9B9B98002DDAD5 /* autohint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = autohint.cc; sourceTree = "<group>"; };
-		93A05AF11B9B9B98002DDAD5 /* autohint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autohint.h; sourceTree = "<group>"; };
+		93A05AF01B9B9B98002DDAD5 /* hinting.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hinting.cc; sourceTree = "<group>"; };
+		93A05AF11B9B9B98002DDAD5 /* hinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hinting.h; sourceTree = "<group>"; };
 		93A224941B7B1FD200CB1DBB /* advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = advance.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93A224951B7B1FD200CB1DBB /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = anchor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93A224961B7B1FD200CB1DBB /* component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = component.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -255,8 +258,6 @@
 		93A2249C1B7B1FD200CB1DBB /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = point.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93A2249D1B7B1FD200CB1DBB /* unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = unicode.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93A224A31B7B1FD200CB1DBB /* ufo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufo.h; sourceTree = "<group>"; };
-		93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = check_outlines.cc; sourceTree = "<group>"; };
-		93AB70421BA5D9FA004EB3C8 /* check_outlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = check_outlines.h; sourceTree = "<group>"; };
 		93ACDAFD1C82A431009F1C8C /* TypefaceScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceScrollView.swift; sourceTree = "<group>"; };
 		93B4749E1B64CF8800613FB6 /* product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = product.xcconfig; path = config/product.xcconfig; sourceTree = SOURCE_ROOT; };
 		93B7635E1B91B332009CA8B0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -285,8 +286,7 @@
 		93C257AE1B9C5AB700134399 /* ZoomOut.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ZoomOut.pdf; sourceTree = "<group>"; };
 		93C257C31B9C96D900134399 /* Invert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Invert.pdf; sourceTree = "<group>"; };
 		93C257C51B9C99F700134399 /* Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Outline.pdf; sourceTree = "<group>"; };
-		93CDED651CA6DC9B00FB95E8 /* ttx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ttx.cc; sourceTree = "<group>"; };
-		93CDED661CA6DC9B00FB95E8 /* ttx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttx.h; sourceTree = "<group>"; };
+		93CDED661CA6DC9B00FB95E8 /* transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
 		93D334BA1C8032AB00FF4567 /* TKNStroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNStroker.h; sourceTree = "<group>"; };
 		93D334BB1C8032AB00FF4567 /* TKNStroker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TKNStroker.mm; sourceTree = "<group>"; };
 		93D334C01C80370C00FF4567 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -428,16 +428,16 @@
 		93A05ADD1B9B8A4A002DDAD5 /* afdko */ = {
 			isa = PBXGroup;
 			children = (
-				93A05AEA1B9B8A6B002DDAD5 /* makeotf.h */,
-				93A05AE91B9B8A6B002DDAD5 /* makeotf.cc */,
-				93A05AF11B9B9B98002DDAD5 /* autohint.h */,
-				93A05AF01B9B9B98002DDAD5 /* autohint.cc */,
-				93AB70421BA5D9FA004EB3C8 /* check_outlines.h */,
-				93AB70411BA5D9FA004EB3C8 /* check_outlines.cc */,
+				936A9EE81CAB539700CFBE5E /* task.h */,
+				936A9EF41CAB577600CFBE5E /* task.cc */,
+				93A05AEA1B9B8A6B002DDAD5 /* opentype.h */,
+				93A05AE91B9B8A6B002DDAD5 /* opentype.cc */,
+				93A05AF11B9B9B98002DDAD5 /* hinting.h */,
+				93A05AF01B9B9B98002DDAD5 /* hinting.cc */,
+				93CDED661CA6DC9B00FB95E8 /* transform.h */,
+				936A9F061CAB6C7B00CFBE5E /* transform.cc */,
 				9308C72E1CA29ACD004EDECA /* extra.h */,
 				9308C72D1CA29ACD004EDECA /* extra.cc */,
-				93CDED661CA6DC9B00FB95E8 /* ttx.h */,
-				93CDED651CA6DC9B00FB95E8 /* ttx.cc */,
 			);
 			path = afdko;
 			sourceTree = "<group>";
@@ -826,18 +826,17 @@
 				936839AC1B9E931D00E21EF7 /* guideline.cc in Sources */,
 				93654CD01C82F6C5004C3CC9 /* TypefaceClipView.swift in Sources */,
 				93714B601B996EA70077B273 /* lib.cc in Sources */,
-				93A05AEB1B9B8A6B002DDAD5 /* makeotf.cc in Sources */,
+				93A05AEB1B9B8A6B002DDAD5 /* opentype.cc in Sources */,
 				93654CDC1C82F6C5004C3CC9 /* SheetContentSegue.swift in Sources */,
 				93654CC31C82F6C5004C3CC9 /* ApplicationDelegate.swift in Sources */,
 				93654CD91C82F6C5004C3CC9 /* FirstResponderView.swift in Sources */,
 				93654CCB1C82F6C5004C3CC9 /* WelcomeViewController.swift in Sources */,
 				93654CD81C82F6C5004C3CC9 /* Location.swift in Sources */,
-				93A05AF21B9B9B98002DDAD5 /* autohint.cc in Sources */,
+				93A05AF21B9B9B98002DDAD5 /* hinting.cc in Sources */,
 				93654CDB1C82F6C5004C3CC9 /* MultilineTextField.swift in Sources */,
 				93654CCD1C82F6C5004C3CC9 /* WelcomeProgressViewController.swift in Sources */,
 				93654CD11C82F6C5004C3CC9 /* TypefaceScrollView.swift in Sources */,
 				93654CC51C82F6C5004C3CC9 /* MainViewController.swift in Sources */,
-				93AB70431BA5D9FA004EB3C8 /* check_outlines.cc in Sources */,
 				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
 				93654CCA1C82F6C5004C3CC9 /* WelcomeWindow.swift in Sources */,
 				93654CD61C82F6C5004C3CC9 /* NumericTextField.swift in Sources */,
@@ -853,7 +852,9 @@
 				93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */,
 				93654CCF1C82F6C5004C3CC9 /* TypefaceView.swift in Sources */,
 				9321E9321C9CA1ED00D6FCEA /* main.m in Sources */,
+				936A9EF51CAB577600CFBE5E /* task.cc in Sources */,
 				93654CC81C82F6C5004C3CC9 /* Typeface.swift in Sources */,
+				936A9F071CAB6C7B00CFBE5E /* transform.cc in Sources */,
 				93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */,
 				9308C72F1CA29ACD004EDECA /* extra.cc in Sources */,
 				93C18FA11B930D440044AAEB /* extension_name.cc in Sources */,
@@ -868,7 +869,6 @@
 				93654CC41C82F6C5004C3CC9 /* MainWindowController.swift in Sources */,
 				93C18FAA1B930D440044AAEB /* license.cc in Sources */,
 				93654CD71C82F6C5004C3CC9 /* RectCorners.swift in Sources */,
-				93CDED671CA6DC9B00FB95E8 /* ttx.cc in Sources */,
 				93654CD31C82F6C5004C3CC9 /* SettingsViewController.swift in Sources */,
 				93C18FAD1B930D440044AAEB /* licensee.cc in Sources */,
 				93C18FB01B930D440044AAEB /* text.cc in Sources */,

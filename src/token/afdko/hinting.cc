@@ -1,5 +1,5 @@
 //
-//  token/afdko/autohint.h
+//  token/afdko/hinting.cc
 //
 //  The MIT License
 //
@@ -24,22 +24,32 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TOKEN_AFDKO_AUTOHINT_H_
-#define TOKEN_AFDKO_AUTOHINT_H_
+#include "token/afdko/hinting.h"
 
 #include <string>
 
-#include "token/ufo.h"
+#include "token/afdko/task.h"
 
 namespace token {
 namespace afdko {
 
-bool autohint(const std::string& tools,
-              const std::string& input,
-              bool decimal = false);
+bool checkOutlines(const std::string& directory,
+                   const std::string& input) {
+  Task task;
+  task.set_directory(directory);
+  task.set_name("checkOutlinesUFO");
+  task.set_arguments({"-e", "-all", "-decimal", input});
+  return task.execute();
+}
+
+bool performAutoHinting(const std::string& directory,
+                        const std::string& input) {
+  Task task;
+  task.set_directory(directory);
+  task.set_name("autohint");
+  task.set_arguments({"-decimal", input});
+  return task.execute();
+}
 
 }  // namespace afdko
 }  // namespace token
-
-#endif  // TOKEN_AFDKO_AUTOHINT_H_

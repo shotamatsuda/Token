@@ -50,8 +50,8 @@ bool generateKernFile(const std::string& script, const std::string& input) {
   }
   const boost::filesystem::path path(input);
   boost::filesystem::rename(
-      path.parent_path().append("kern_" + path.stem().string() + ".fea"),
-      path.parent_path().append("kern.fea"));
+      path.parent_path() / ("kern_" + path.stem().string() + ".fea"),
+      path.parent_path() / "kern.fea");
   return true;
 }
 
@@ -70,8 +70,8 @@ bool generateMarkFile(const std::string& script, const std::string& input) {
   }
   const boost::filesystem::path path(input);
   boost::filesystem::rename(
-      path.parent_path().append("mark_" + path.stem().string() + ".fea"),
-      path.parent_path().append("mark.fea"));
+      path.parent_path() / ("mark_" + path.stem().string() + ".fea"),
+      path.parent_path() / "mark.fea");
   return true;
 }
 

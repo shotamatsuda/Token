@@ -114,7 +114,7 @@ inline void read_object(plist_t plist, const std::string& name, T *output) {
   const auto node = plist_dict_get_item(plist, name.c_str());
   if (node) {
     assert(plist_get_node_type(node) == PLIST_DICT);
-    *output = T::read(PropertyList(node, false));
+    *output = T(PropertyList(node, false));
   }
 }
 

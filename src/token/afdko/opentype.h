@@ -1,5 +1,5 @@
 //
-//  token/afdko/ttx.cc
+//  token/afdko/opentype.h
 //
 //  The MIT License
 //
@@ -24,30 +24,28 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/afdko/ttx.h"
+#pragma once
+#ifndef TOKEN_AFDKO_OPENTYPE_H_
+#define TOKEN_AFDKO_OPENTYPE_H_
 
 #include <string>
 
-#include <boost/filesystem/path.hpp>
-#include <boost/format.hpp>
+#include "token/ufo.h"
 
 namespace token {
 namespace afdko {
 
-bool ttx(const std::string& tools, const std::string& input) {
-  const auto name = "ttx";
-  const auto command = (boost::filesystem::path(tools) / name).string();
-  const std::string format = R"(
-    export PATH=${PATH}:"%1%"
-    export FDK_EXE="%1%"
-    "%2%" -f "%3%"
-  )";
-  return !std::system((
-      boost::format(format) %
-      tools %
-      command %
-      input).str().c_str());
-}
+bool createOpenTypeFont(const std::string& directory,
+                        const std::string& input,
+                        const std::string& output);
+void createFeatures(const ufo::FontInfo& font_info,
+                    const std::string& output);
+void createFontMenuName(const ufo::FontInfo& font_info,
+                        const std::string& output);
+void createGlyphOrderAndAlias(const ufo::Glyphs& glyphs,
+                              const std::string& output);
 
 }  // namespace afdko
 }  // namespace token
+
+#endif  // TOKEN_AFDKO_OPENTYPE_H_

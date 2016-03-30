@@ -1,5 +1,5 @@
 //
-//  token/afdko/makeotf.h
+//  token/afdko/hinting.h
 //
 //  The MIT License
 //
@@ -25,29 +25,20 @@
 //
 
 #pragma once
-#ifndef TOKEN_AFDKO_MAKEOTF_H_
-#define TOKEN_AFDKO_MAKEOTF_H_
+#ifndef TOKEN_AFDKO_HINTING_H_
+#define TOKEN_AFDKO_HINTING_H_
 
 #include <string>
-
-#include "token/ufo.h"
 
 namespace token {
 namespace afdko {
 
-bool makeotf(const std::string& tools,
-             const std::string& input,
-             const std::string& output,
-             bool release = true);
-
-void createFeatures(const ufo::FontInfo& font_info,
-                    const std::string& directory);
-void createFontMenuNameDB(const ufo::FontInfo& font_info,
-                          const std::string& directory);
-void createGlyphOrderAndAliasDB(const ufo::Glyphs& glyphs,
-                                const std::string& directory);
+bool checkOutlines(const std::string& directory,
+                   const std::string& input);
+bool performAutoHinting(const std::string& directory,
+                        const std::string& input);
 
 }  // namespace afdko
 }  // namespace token
 
-#endif  // TOKEN_AFDKO_MAKEOTF_H_
+#endif  // TOKEN_AFDKO_HINTING_H_
