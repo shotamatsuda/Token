@@ -27,6 +27,8 @@
 #include "token/afdko/extra.h"
 
 #include <cstdlib>
+#include <ostream>
+#include <sstream>
 #include <string>
 
 #include <boost/format.hpp>
@@ -37,15 +39,12 @@ namespace afdko {
 
 bool generateKernFile(const std::string& script, const std::string& input) {
   const auto module = "generateSingleKernFile";
-  const std::string format = R"(
-    export PYTHONPATH=${PYTHONPATH}:"%1%"
-    python -m "%2%" "%3%"
-  )";
-  if (std::system((
-      boost::format(format) %
-      script %
-      module %
-      input).str().c_str())) {
+  std::ostringstream oss;
+  oss << "export PYTHONPATH=${PYTHONPATH}:'%1%'" << std::endl;
+  oss << "python -m '%2%' '%3%'" << std::endl;
+  boost::format format(oss.str());
+  const auto command = (format % script % module % input).str();
+  if (std::system(command.c_str())) {
     return false;
   }
   const boost::filesystem::path path(input);
@@ -57,15 +56,12 @@ bool generateKernFile(const std::string& script, const std::string& input) {
 
 bool generateMarkFile(const std::string& script, const std::string& input) {
   const auto module = "generateSingleMarkFiles";
-  const std::string format = R"(
-    export PYTHONPATH=${PYTHONPATH}:"%1%"
-    python -m "%2%" "%3%"
-  )";
-  if (std::system((
-      boost::format(format) %
-      script %
-      module %
-      input).str().c_str())) {
+  std::ostringstream oss;
+  oss << "export PYTHONPATH=${PYTHONPATH}:'%1%'" << std::endl;
+  oss << "python -m '%2%' '%3%'" << std::endl;
+  boost::format format(oss.str());
+  const auto command = (format % script % module % input).str();
+  if (std::system(command.c_str())) {
     return false;
   }
   const boost::filesystem::path path(input);

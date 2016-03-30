@@ -120,7 +120,8 @@ inline bool operator!=(const Component& lhs, const Component& rhs) {
 
 #pragma mark Property tree
 
-inline Component::Component(const boost::property_tree::ptree& tree) {
+inline Component::Component(const boost::property_tree::ptree& tree)
+    : Component() {
   xml::read_attribute(tree, "base", &base);
   xml::read_attribute(tree, "xScale", &x_scale);
   xml::read_attribute(tree, "xyScale", &xy_scale);

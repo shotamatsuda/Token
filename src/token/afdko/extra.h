@@ -30,8 +30,6 @@
 
 #include <string>
 
-#include "token/ufo.h"
-
 namespace token {
 namespace afdko {
 

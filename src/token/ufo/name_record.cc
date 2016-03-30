@@ -36,7 +36,7 @@ namespace ufo {
 
 #pragma mark Property list
 
-NameRecord::NameRecord(const PropertyList& plist) {
+NameRecord::NameRecord(const PropertyList& plist) : NameRecord() {
   plist::read_number(plist, "nameID", &name_id);
   plist::read_number(plist, "platformID", &platform_id);
   plist::read_number(plist, "encodingID", &encoding_id);

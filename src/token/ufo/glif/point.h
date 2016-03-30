@@ -117,7 +117,7 @@ inline bool operator!=(const Point& lhs, const Point& rhs) {
 
 #pragma mark Property tree
 
-inline Point::Point(const boost::property_tree::ptree& tree) {
+inline Point::Point(const boost::property_tree::ptree& tree) : Point() {
   xml::read_attribute(tree, "x", &x);
   xml::read_attribute(tree, "y", &y);
   std::string type_string;

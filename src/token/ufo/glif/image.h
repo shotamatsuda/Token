@@ -120,7 +120,7 @@ inline bool operator!=(const Image& lhs, const Image& rhs) {
 
 #pragma mark Property tree
 
-inline Image::Image(const boost::property_tree::ptree& tree) {
+inline Image::Image(const boost::property_tree::ptree& tree) : Image() {
   xml::read_attribute(tree, "fileName", &file_name);
   xml::read_attribute(tree, "xScale", &x_scale);
   xml::read_attribute(tree, "xyScale", &xy_scale);

@@ -42,7 +42,7 @@ namespace glif {
 
 #pragma mark Property tree
 
-Lib::Lib(const boost::property_tree::ptree& tree) {
+Lib::Lib(const boost::property_tree::ptree& tree) : Lib() {
   auto plist = convertToPropertyList(tree);
   plist::read_number(plist, "com.takram.token.numberOfContours",
                      &number_of_contours);

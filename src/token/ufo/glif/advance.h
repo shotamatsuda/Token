@@ -80,7 +80,7 @@ inline bool operator!=(const Advance& lhs, const Advance& rhs) {
 
 #pragma mark Property tree
 
-inline Advance::Advance(const boost::property_tree::ptree& tree) {
+inline Advance::Advance(const boost::property_tree::ptree& tree) : Advance() {
   xml::read_attribute(tree, "width", &width);
   xml::read_attribute(tree, "height", &height);
 }
