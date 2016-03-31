@@ -1,25 +1,78 @@
-@import 'nib'
+@import 'normalize'
 
-section()
+@font-face
+  font-family: 'Token-1.5pt/9pt'
+  font-style: normal
+  src: url(/fonts/Token-1.50pt-9.00pt.otf)
+
+@font-face
+  font-family: 'Token-1.7pt/20pt'
+  font-style: normal
+  src: url(/fonts/Token-1.70pt-20.00pt.otf)
+
+@lost gutter 25px
+
+html
+  font-smoothing: antialiased
+
+p
+  margin: 0
+
+for n in (1..5)
+  h{n}
+    margin: 0
+
+.section
   width: 100vw
-  height: 100vh
 
-.section-index
-  section()
-  background-color: #f2f2f2
+  .container
+    lost-center: 1130px padding
+    lost-utility: clearfix
+    padding-top: 20em
+    padding-bottom: 20em
+    font-family: 'Token-1.5pt/9pt'
+    font-size: 8px
+    line-height: 2.5
+    letter-spacing: 0.0625em
+    text-transform: uppercase
+
+    p
+      margin-bottom: 2em
+
+    h1
+      font-family: 'Token-1.7pt/20pt'
+      font-size: 24px
+      line-height: 1.5
+      letter-spacing: 2px
+
+    .column-quarter
+      lost-column: 1/4 0
+
+    .column-half
+      lost-column: 1/2 0
+
+    .offset-quarter
+      lost-offset: -1/4
+
+    .offset-half
+      lost-offset: -1/2
 
 .section-1
-  section()
-  background-color: #877872
+  color: #333333
+  background-color: #f5f5f5
+
+  *::selection
+    background-color: rgba(#333333, 0.1)
 
 .section-2
-  section()
+  color: #cccccc
   background-color: black
 
+  *::selection
+    background-color: rgba(#cccccc, 0.2)
+
 .section-3
-  section()
   background-color: #f2f2f2
 
 .section-4
-  section()
   background-color: #b8d0de
