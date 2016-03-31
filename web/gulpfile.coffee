@@ -7,10 +7,11 @@ cssnano = require 'gulp-cssnano'
 sourcemaps = require 'gulp-sourcemaps'
 browserify = require 'browserify'
 poststylus = require 'poststylus'
+lost = require 'lost'
+autoprefixer = require 'autoprefixer'
 source = require 'vinyl-source-stream'
 buffer = require 'vinyl-buffer'
-browsersync = require 'browser-sync'
-browsersync.create()
+browsersync = require('browser-sync').create()
 
 # Configuration
 paths =
@@ -21,7 +22,6 @@ paths =
   views: 'source/**/*.slim'
   bower: 'bower_components/**/*'
   dist: 'gulp_dist'
-postCssPlugins = []
 
 # Javascript task
 gulp.task 'javascripts', ->
@@ -47,7 +47,7 @@ gulp.task 'stylesheets', ->
     .pipe plumber()
     .pipe sourcemaps.init()
     .pipe stylus
-      use: [poststylus(postCssPlugins)]
+      use: [poststylus(['lost', 'autoprefixer'])]
       include: [paths.bower]
     .pipe cssnano()
     .pipe sourcemaps.write('.')
@@ -55,12 +55,12 @@ gulp.task 'stylesheets', ->
     .pipe browsersync.stream(match: '**/*.css')
 
 # Browsersync task
-gulp.task 'browser-sync', ->
+gulp.task 'browsersync', ->
   browsersync.init
     proxy: 'localhost:4567'
 
 # Watch task
-gulp.task 'watch', ['javascripts', 'stylesheets', 'browser-sync'], ->
+gulp.task 'watch', ['javascripts', 'stylesheets', 'browsersync'], ->
   gulp.watch paths.javascripts, ['javascripts']
   gulp.watch paths.stylesheets, ['stylesheets']
   gulp.watch paths.views
