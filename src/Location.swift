@@ -33,8 +33,8 @@ class Location : NSObject {
         fatalError("Could not retrieve the main bundle identifier")
       }
       guard let searchPath = NSSearchPathForDirectoriesInDomains(
-        .ApplicationSupportDirectory, .UserDomainMask, true).first else {
-          fatalError("Could not retrieve user's application support directory")
+          .ApplicationSupportDirectory, .UserDomainMask, true).first else {
+        fatalError("Could not retrieve user's application support directory")
       }
       return NSURL(fileURLWithPath: searchPath)
           .URLByAppendingPathComponent(identifier)
@@ -47,8 +47,8 @@ class Location : NSObject {
         fatalError("Could not retrieve the main bundle identifier")
       }
       guard let searchPath = NSSearchPathForDirectoriesInDomains(
-        .LibraryDirectory, .UserDomainMask, true).first else {
-          fatalError("Could not retrieve user's library directory")
+          .LibraryDirectory, .UserDomainMask, true).first else {
+        fatalError("Could not retrieve user's library directory")
       }
       return NSURL(fileURLWithPath: searchPath)
           .URLByAppendingPathComponent("." + identifier)

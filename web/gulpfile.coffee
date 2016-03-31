@@ -44,8 +44,8 @@ gulp.task 'javascripts', ->
 # Stylesheet task
 gulp.task 'stylesheets', ->
   gulp.src paths.stylesheetsEntryPoint
-    .pipe sourcemaps.init()
     .pipe plumber()
+    .pipe sourcemaps.init()
     .pipe stylus
       use: [poststylus(postCssPlugins)]
       include: [paths.bower]
