@@ -61,6 +61,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     let bundle = NSBundle.mainBundle()
     let URL = bundle.URLForResource("typeface", withExtension: nil)
     typeface = Typeface(directoryURL: URL!)
+    restoreTypefaceSettings()
     typefaceViewController?.typeface = typeface
     settingsViewController?.typeface = typeface
 
@@ -68,6 +69,47 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     dispatch_async(dispatch_get_main_queue()) { () in
       if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
         self.installAdobeFDK(self)
+      }
+    }
+  }
+
+  func windowWillClose(notification: NSNotification) {
+    saveTypefaceSettings()
+  }
+
+  // MARK: Settings
+
+  private func saveTypefaceSettings() {
+    if let typeface = typeface {
+      let defaults = NSUserDefaults.standardUserDefaults()
+      defaults.setDouble(
+          typeface.strokeWidth,
+          forKey: "PhysicalStrokeWidth")
+      defaults.setInteger(
+          typeface.strokeWidthUnit.rawValue,
+          forKey: "PhysicalStrokeWidthUnit")
+      defaults.setDouble(
+          typeface.capHeight,
+          forKey: "PhysicalCapHeight")
+      defaults.setInteger(
+          typeface.capHeightUnit.rawValue,
+          forKey: "PhysicalCapHeightUnit")
+      defaults.synchronize()
+    }
+  }
+
+  private func restoreTypefaceSettings() {
+    if let typeface = typeface {
+      let defaults = NSUserDefaults.standardUserDefaults()
+      if let strokeWidth = defaults.objectForKey("PhysicalStrokeWidth"),
+          strokeWidthUnit = defaults.objectForKey("PhysicalStrokeWidthUnit"),
+          capHeight = defaults.objectForKey("PhysicalCapHeight"),
+          capHeightUnit = defaults.objectForKey("PhysicalCapHeightUnit") {
+        typeface.setStrokeWidth(
+            strokeWidth as! Double,
+            strokeWidthUnit: TypefaceUnit(rawValue: strokeWidthUnit as! Int)!,
+            capHeight: capHeight as! Double,
+            capHeightUnit: TypefaceUnit(rawValue: capHeightUnit as! Int)!)
       }
     }
   }

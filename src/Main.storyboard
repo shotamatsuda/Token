@@ -206,6 +206,9 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="960" height="680"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="qw9-4F-FKp" id="AXa-4c-1IM"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="QTk-2g-cua" kind="relationship" relationship="window.shadowedContentViewController" id="AJK-b2-nX6"/>

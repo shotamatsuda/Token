@@ -202,7 +202,7 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingStrokeWidth() -> NSSet {
-    return NSSet(object: "strokerBehavior")
+    return NSSet(objects: "strokerBehavior", "strokeWidthUnit")
   }
 
   var strokeWidthUnit: TypefaceUnit = .Millimeter {
@@ -237,7 +237,8 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingMinStrokeWidth() -> NSSet {
-    return NSSet(object: "strokerBehavior")
+    return NSSet(objects: "strokerBehavior", "strokeWidthUnit", "capHeight",
+                 "capHeightUnit")
   }
 
   var maxStrokeWidth: Double {
@@ -257,7 +258,8 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingMaxStrokeWidth() -> NSSet {
-    return NSSet(object: "strokerBehavior")
+    return NSSet(objects: "strokerBehavior", "strokeWidthUnit", "capHeight",
+                 "capHeightUnit")
   }
 
   private var _capHeight: Double = Double()
@@ -278,7 +280,7 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingCapHeight() -> NSSet {
-    return NSSet(object: "strokerBehavior")
+    return NSSet(objects: "strokerBehavior", "capHeightUnit")
   }
 
   var capHeightUnit: TypefaceUnit = .Millimeter {
@@ -313,7 +315,8 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingMinCapHeight() -> NSSet {
-    return NSSet(object: "strokerBehavior")
+    return NSSet(objects: "strokerBehavior", "strokeWidth", "strokeWidthUnit",
+                 "capHeightUnit")
   }
 
   var maxCapHeight: Double {
@@ -333,7 +336,32 @@ class Typeface : TKNTypeface {
   }
 
   class func keyPathsForValuesAffectingMaxCapHeight() -> NSSet {
-    return NSSet(object: "strokerBehavior")
+    return NSSet(objects: "strokerBehavior", "strokeWidth", "strokeWidthUnit",
+                 "capHeightUnit")
+  }
+
+  func setStrokeWidth(strokeWidth: Double,
+                      strokeWidthUnit: TypefaceUnit,
+                      capHeight: Double,
+                      capHeightUnit: TypefaceUnit) {
+    self.strokeWidthUnit = strokeWidthUnit
+    willChangeValueForKey("strokeWidth")
+    _strokeWidth = strokeWidth
+    didChangeValueForKey("strokeWidth")
+    self.capHeightUnit = capHeightUnit
+    self.capHeight = capHeight
+  }
+
+  func setCapHeight(capHeight: Double,
+                    capHeightUnit: TypefaceUnit,
+                    strokeWidth: Double,
+                    strokeWidthUnit: TypefaceUnit) {
+    self.capHeightUnit = capHeightUnit
+    willChangeValueForKey("capHeight")
+    _capHeight = capHeight
+    didChangeValueForKey("capHeight")
+    self.strokeWidthUnit = strokeWidthUnit
+    self.strokeWidth = strokeWidth
   }
 
   // MARK: Glyphs
