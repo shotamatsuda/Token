@@ -49,7 +49,7 @@ bool Task::execute() {
   oss << "'%2%' %3%" << std::endl;
   boost::format format(oss.str());
   const auto command = (format % directory_ % path % arguments).str();
-  return std::system(command.c_str());
+  return !std::system(command.c_str());
 }
 
 }  // namespace afdko

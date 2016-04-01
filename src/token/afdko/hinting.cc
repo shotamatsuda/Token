@@ -47,7 +47,7 @@ bool performAutoHinting(const std::string& directory,
   Task task;
   task.set_directory(directory);
   task.set_name("autohint");
-  task.set_arguments({"-decimal", input});
+  task.set_arguments({"-all", "-decimal", input});
   return task.execute();
 }
 

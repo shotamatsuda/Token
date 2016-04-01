@@ -53,7 +53,7 @@ bool convertFontToXML(const std::string& directory,
     return false;
   }
   const boost::filesystem::path path(input);
-  const auto xml_path = path.parent_path() / (path.stem().string() + "ttx");
+  const auto xml_path = path.parent_path() / (path.stem().string() + ".ttx");
   boost::property_tree::xml_parser::read_xml(xml_path.string(), *tree);
   return true;
 }
@@ -68,7 +68,7 @@ bool convertXMLToFont(const std::string& directory,
   // Manually replace line feeds then save to file because boost's xml parser
   // doesn't encode them.
   const boost::filesystem::path path(output);
-  const auto xml_path = path.parent_path() / (path.stem().string() + "ttx");
+  const auto xml_path = path.parent_path() / (path.stem().string() + ".ttx");
   std::string xml = oss.str();
   boost::replace_all(xml, "&#10;", "\x0a");
   std::ofstream file(xml_path.string(), std::ios::binary | std::ios::trunc);
