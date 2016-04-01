@@ -152,6 +152,13 @@
 		<key>@MMK_R_seven</key>
 		<integer>-60</integer>
 	</dict>
+	<key>@MMK_L_H</key>
+	<dict>
+		<key>@MMK_R_H</key>
+		<integer>0</integer>
+		<key>@MMK_R_O</key>
+		<integer>-20</integer>
+	</dict>
 	<key>@MMK_L_J</key>
 	<dict>
 		<key>@MMK_R_A</key>
@@ -219,6 +226,8 @@
 	<dict>
 		<key>@MMK_R_A</key>
 		<integer>-40</integer>
+		<key>@MMK_R_H</key>
+		<integer>-20</integer>
 		<key>@MMK_R_S</key>
 		<integer>-20</integer>
 		<key>@MMK_R_T</key>
