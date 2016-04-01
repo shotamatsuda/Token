@@ -117,6 +117,10 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
   // MARK: Actions
 
   @IBAction func exportFont(sender: AnyObject?) {
+    if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
+      self.installAdobeFDK(self)
+      return
+    }
     guard let typeface = typeface else {
       return
     }
@@ -143,6 +147,10 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
   }
 
   @IBAction func installFont(sender: AnyObject?) {
+    if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
+      self.installAdobeFDK(self)
+      return
+    }
     guard let typeface = typeface else {
       return
     }
