@@ -48,7 +48,7 @@ gulp.task 'stylesheets', ->
     .pipe sourcemaps.init()
     .pipe stylus
       use: [poststylus(['lost', 'autoprefixer'])]
-      include: [paths.bower]
+      include: [paths.bower, 'source']
     .pipe cssnano()
     .pipe sourcemaps.write('.')
     .pipe gulp.dest(paths.dist + '/stylesheets')

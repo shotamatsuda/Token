@@ -12,8 +12,8 @@
 
 @lost gutter 25px
 
-html
-  font-smoothing: antialiased
+html, *
+  -webkit-font-smoothing: antialiased
 
 p
   margin: 0
@@ -23,27 +23,31 @@ for n in (1..5)
     margin: 0
 
 .section
-  width: 100vw
+  width: auto
+  padding-top: 20em
+  padding-bottom: 20em
+  font-family: 'Token-1.5pt/9pt'
+  font-size: 8px
+  line-height: 2.5
+  letter-spacing: 0.1em
+  text-transform: uppercase
 
-  .container
-    lost-center: 1130px padding
+  h1
+    font-family: 'Token-1.7pt/20pt'
+    font-size: 24px
+    line-height: 1.6
+    letter-spacing: 0.2em
+    margin-bottom: 2em
+
+  .row
+    lost-center: 1130px 50px
     lost-utility: clearfix
-    padding-top: 20em
-    padding-bottom: 20em
-    font-family: 'Token-1.5pt/9pt'
-    font-size: 8px
-    line-height: 2.5
-    letter-spacing: 0.0625em
-    text-transform: uppercase
 
     p
-      margin-bottom: 2em
+      margin-bottom: 4em
 
-    h1
-      font-family: 'Token-1.7pt/20pt'
-      font-size: 24px
-      line-height: 1.5
-      letter-spacing: 2px
+      &.links
+        margin-top: 10em
 
     .column-quarter
       lost-column: 1/4 0
@@ -57,7 +61,24 @@ for n in (1..5)
     .offset-half
       lost-offset: -1/2
 
+    & + .row
+      margin-top: 20em
+
+  .github
+    $size = image-size('/images/github.png')
+    display: inline-block
+    width: ($size[0] / 2)
+    height: ($size[1] / 2)
+    background-image: url('/images/github.png')
+    background-size: contain
+    transition: 0.2s opacity
+    cursor: pointer
+
+    &:hover
+      opacity: 0.5
+
 .section-1
+  padding-bottom: 10em
   color: #333333
   background-color: #f5f5f5
 
@@ -65,14 +86,32 @@ for n in (1..5)
     background-color: rgba(#333333, 0.1)
 
 .section-2
+  padding-top: 30em
+  padding-bottom: 30em
   color: #cccccc
   background-color: black
+  background-image: url(/images/switch_box.jpg)
+  background-size: contain
+  background-position: 15% 50%
+  background-repeat: no-repeat
 
   *::selection
-    background-color: rgba(#cccccc, 0.2)
+    background-color: rgba(#cccccc, 0.25)
 
 .section-3
-  background-color: #f2f2f2
+  color: #333333
+  background-color: #f5f5f5
+
+  *::selection
+    background-color: rgba(#333333, 0.1)
 
 .section-4
-  background-color: #b8d0de
+  padding-top: 30em
+  padding-bottom: 30em
+  color: rgba(black, 0.66)
+  background-image: url(/images/desktop_picture.jpg)
+  background-size: cover
+  background-position: center
+
+  *::selection
+    background-color: rgba(black, 0.1)
