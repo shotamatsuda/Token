@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9308C72F1CA29ACD004EDECA /* extra.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9308C72D1CA29ACD004EDECA /* extra.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
+		9321BA8C1CAE5057004284CA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936A9F341CAE452200CFBE5E /* Sparkle.framework */; };
+		9321BA8E1CAE505F004284CA /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 936A9F341CAE452200CFBE5E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9321E9321C9CA1ED00D6FCEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
 		933162D71B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
 		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
@@ -46,6 +48,7 @@
 		936839AC1B9E931D00E21EF7 /* guideline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936839AA1B9E931D00E21EF7 /* guideline.cc */; };
 		936A9EF51CAB577600CFBE5E /* task.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9EF41CAB577600CFBE5E /* task.cc */; };
 		936A9F071CAB6C7B00CFBE5E /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9F061CAB6C7B00CFBE5E /* transform.cc */; };
+		936A9F441CAE4CE800CFBE5E /* SparklePublicDSAKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = 936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
 		937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93D334BB1C8032AB00FF4567 /* TKNStroker.mm */; };
 		937E19591C97D5A700090AEF /* StrokerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19581C97D5A600090AEF /* StrokerBehavior.swift */; };
@@ -56,6 +59,10 @@
 		93A05AEB1B9B8A6B002DDAD5 /* opentype.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* opentype.cc */; };
 		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
 		93A05AF21B9B9B98002DDAD5 /* hinting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* hinting.cc */; };
+		93A0C05F1CAE56380067548B /* General.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93A0C05E1CAE56380067548B /* General.icns */; };
+		93A0C0741CAE56640067548B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0C0731CAE56640067548B /* PreferencesViewController.swift */; };
+		93A0C0981CB21E2B0067548B /* TypefaceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0C0971CB21E2B0067548B /* TypefaceDelegate.swift */; };
+		93A0C09A1CB229FF0067548B /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0C0991CB229FF0067548B /* ProgressViewController.swift */; };
 		93C18F491B93089E0044AAEB /* property_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F481B93089D0044AAEB /* property_list.cc */; };
 		93C18F921B930D440044AAEB /* copyright.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F841B930D430044AAEB /* copyright.cc */; };
 		93C18F951B930D440044AAEB /* credit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93C18F851B930D430044AAEB /* credit.cc */; };
@@ -84,6 +91,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9321BA8F1CAE505F004284CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
 		93563AB41B674487004C47E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
@@ -118,6 +132,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
 			remoteInfo = graphics_static;
+		};
+		936A9F331CAE452200CFBE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+		936A9F351CAE452200CFBE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
+			remoteInfo = "Sparkle Test App";
+		};
+		936A9F371CAE452200CFBE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
+		936A9F391CAE452200CFBE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06E8D00FD68C7C005AE3F6;
+			remoteInfo = BinaryDelta;
+		};
+		936A9F3B1CAE452200CFBE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55C14BB7136EEF1500649790;
+			remoteInfo = Autoupdate;
+		};
+		936A9F3D1CAE452200CFBE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 726B2B5D1C645FC900388755;
+			remoteInfo = "UI Tests";
 		};
 		93C257851B9BCCDB00134399 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -177,6 +233,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		936A9F411CAE457000CFBE5E /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9321BA8E1CAE505F004284CA /* Sparkle.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9308C72D1CA29ACD004EDECA /* extra.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cc; sourceTree = "<group>"; };
 		9308C72E1CA29ACD004EDECA /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
@@ -228,6 +298,8 @@
 		936A9EE81CAB539700CFBE5E /* task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = task.h; sourceTree = "<group>"; };
 		936A9EF41CAB577600CFBE5E /* task.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task.cc; sourceTree = "<group>"; };
 		936A9F061CAB6C7B00CFBE5E /* transform.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cc; sourceTree = "<group>"; };
+		936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = lib/sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
+		936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SparklePublicDSAKey.pem; sourceTree = "<group>"; };
 		93714B491B996C7E0077B273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		93714B5F1B996EA70077B273 /* lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib.cc; sourceTree = "<group>"; };
 		9373E7811C64613D003A66B0 /* TypefaceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceUnit.swift; sourceTree = "<group>"; };
@@ -247,6 +319,10 @@
 		93A05AEE1B9B914A002DDAD5 /* typeface */ = {isa = PBXFileReference; lastKnownFileType = folder; path = typeface; sourceTree = SOURCE_ROOT; };
 		93A05AF01B9B9B98002DDAD5 /* hinting.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hinting.cc; sourceTree = "<group>"; };
 		93A05AF11B9B9B98002DDAD5 /* hinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hinting.h; sourceTree = "<group>"; };
+		93A0C05E1CAE56380067548B /* General.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = General.icns; sourceTree = "<group>"; };
+		93A0C0731CAE56640067548B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		93A0C0971CB21E2B0067548B /* TypefaceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceDelegate.swift; sourceTree = "<group>"; };
+		93A0C0991CB229FF0067548B /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		93A224941B7B1FD200CB1DBB /* advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = advance.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93A224951B7B1FD200CB1DBB /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = anchor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		93A224961B7B1FD200CB1DBB /* component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = component.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -317,6 +393,7 @@
 				9359E9F41CA4B46000E57962 /* libtakram_algorithm.a in Frameworks */,
 				93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */,
 				9359E9F31CA4B45D00E57962 /* libtakram_math.a in Frameworks */,
+				9321BA8C1CAE5057004284CA /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +425,7 @@
 				937E19741C9A628D00090AEF /* Stroker.swift */,
 				937E19581C97D5A600090AEF /* StrokerBehavior.swift */,
 				930ECCC51C7D5DBC004C9978 /* Typeface.swift */,
+				93A0C0971CB21E2B0067548B /* TypefaceDelegate.swift */,
 				9373E7811C64613D003A66B0 /* TypefaceUnit.swift */,
 			);
 			name = Model;
@@ -423,6 +501,19 @@
 				93714B5F1B996EA70077B273 /* lib.cc */,
 			);
 			path = glif;
+			sourceTree = "<group>";
+		};
+		936A9F1D1CAE452200CFBE5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				936A9F341CAE452200CFBE5E /* Sparkle.framework */,
+				936A9F361CAE452200CFBE5E /* Sparkle Test App.app */,
+				936A9F381CAE452200CFBE5E /* Sparkle Unit Tests.xctest */,
+				936A9F3A1CAE452200CFBE5E /* BinaryDelta */,
+				936A9F3C1CAE452200CFBE5E /* Autoupdate.app */,
+				936A9F3E1CAE452200CFBE5E /* UI Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		93A05ADD1B9B8A4A002DDAD5 /* afdko */ = {
@@ -516,8 +607,10 @@
 				93C257AE1B9C5AB700134399 /* ZoomOut.pdf */,
 				93C257C31B9C96D900134399 /* Invert.pdf */,
 				93C257C51B9C99F700134399 /* Outline.pdf */,
+				93A0C05E1CAE56380067548B /* General.icns */,
 				93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */,
 				9390CBF41B95328D0088153C /* Credits.rtf */,
+				936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */,
 				93A05AEE1B9B914A002DDAD5 /* typeface */,
 			);
 			path = resource;
@@ -568,6 +661,8 @@
 				93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */,
 				93D70EE21C2DAB0A003C6F2B /* MainWindowController.swift */,
 				93D70EE41C2DAB1A003C6F2B /* MainViewController.swift */,
+				93A0C0991CB229FF0067548B /* ProgressViewController.swift */,
+				93A0C0731CAE56640067548B /* PreferencesViewController.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -582,6 +677,7 @@
 				93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */,
 				93563AAB1B674487004C47E4 /* graphics.xcodeproj */,
 				93C2577E1B9BCCDB00134399 /* math.xcodeproj */,
+				936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -630,12 +726,14 @@
 				93FEF94A1AD97263009D0646 /* Sources */,
 				93FEF94B1AD97263009D0646 /* Frameworks */,
 				93FEF94C1AD97263009D0646 /* Resources */,
+				936A9F411CAE457000CFBE5E /* Copy Files */,
 				93714B651B998F3B0077B273 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
+				9321BA901CAE505F004284CA /* PBXTargetDependency */,
 			);
 			name = Token;
 			productName = Zorozoro;
@@ -681,6 +779,10 @@
 					ProductGroup = 93C2577F1B9BCCDB00134399 /* Products */;
 					ProjectRef = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 				},
+				{
+					ProductGroup = 936A9F1D1CAE452200CFBE5E /* Products */;
+					ProjectRef = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -716,6 +818,48 @@
 			fileType = "compiled.mach-o.executable";
 			path = takram_graphics_test;
 			remoteRef = 93563ABA1B674487004C47E4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		936A9F341CAE452200CFBE5E /* Sparkle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sparkle.framework;
+			remoteRef = 936A9F331CAE452200CFBE5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		936A9F361CAE452200CFBE5E /* Sparkle Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sparkle Test App.app";
+			remoteRef = 936A9F351CAE452200CFBE5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		936A9F381CAE452200CFBE5E /* Sparkle Unit Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.xctest";
+			remoteRef = 936A9F371CAE452200CFBE5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		936A9F3A1CAE452200CFBE5E /* BinaryDelta */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BinaryDelta;
+			remoteRef = 936A9F391CAE452200CFBE5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		936A9F3C1CAE452200CFBE5E /* Autoupdate.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Autoupdate.app;
+			remoteRef = 936A9F3B1CAE452200CFBE5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		936A9F3E1CAE452200CFBE5E /* UI Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UI Tests.xctest";
+			remoteRef = 936A9F3D1CAE452200CFBE5E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		93C257861B9BCCDB00134399 /* libtakram_algorithm.dylib */ = {
@@ -789,7 +933,9 @@
 				93C257C41B9C96D900134399 /* Invert.pdf in Resources */,
 				93C257C61B9C99F700134399 /* Outline.pdf in Resources */,
 				93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */,
+				93A0C05F1CAE56380067548B /* General.icns in Resources */,
 				93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */,
+				936A9F441CAE4CE800CFBE5E /* SparklePublicDSAKey.pem in Resources */,
 				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
 				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
 			);
@@ -837,15 +983,18 @@
 				93654CCD1C82F6C5004C3CC9 /* WelcomeProgressViewController.swift in Sources */,
 				93654CD11C82F6C5004C3CC9 /* TypefaceScrollView.swift in Sources */,
 				93654CC51C82F6C5004C3CC9 /* MainViewController.swift in Sources */,
+				93A0C0741CAE56640067548B /* PreferencesViewController.swift in Sources */,
 				93C18F491B93089E0044AAEB /* property_list.cc in Sources */,
 				93654CCA1C82F6C5004C3CC9 /* WelcomeWindow.swift in Sources */,
 				93654CD61C82F6C5004C3CC9 /* NumericTextField.swift in Sources */,
 				93C18F921B930D440044AAEB /* copyright.cc in Sources */,
+				93A0C09A1CB229FF0067548B /* ProgressViewController.swift in Sources */,
 				937E19811C9ACB1A00090AEF /* TKNTypeface.mm in Sources */,
 				937E19591C97D5A700090AEF /* StrokerBehavior.swift in Sources */,
 				93654CCC1C82F6C5004C3CC9 /* WelcomeAgreementViewController.swift in Sources */,
 				93C18F951B930D440044AAEB /* credit.cc in Sources */,
 				93C18F981B930D440044AAEB /* credits.cc in Sources */,
+				93A0C0981CB21E2B0067548B /* TypefaceDelegate.swift in Sources */,
 				93C18F9B1B930D440044AAEB /* description.cc in Sources */,
 				93654CCE1C82F6C5004C3CC9 /* TypefaceViewController.swift in Sources */,
 				93654CC91C82F6C5004C3CC9 /* TypefaceUnit.swift in Sources */,
@@ -884,6 +1033,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9321BA901CAE505F004284CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sparkle;
+			targetProxy = 9321BA8F1CAE505F004284CA /* PBXContainerItemProxy */;
+		};
 		93563AC91B6744C1004C47E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = graphics_static;

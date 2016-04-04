@@ -63,7 +63,7 @@ class SheetContentSegue : NSStoryboardSegue {
     NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) in
       sourceView.animator().alphaValue = 0.0
       destinationView.animator().alphaValue = 1.0
-    }, completionHandler: { () in
+    }, completionHandler: {
       sourceView.removeFromSuperview()
       sourceController.removeFromParentViewController()
       destinationView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]

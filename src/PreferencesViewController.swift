@@ -1,5 +1,5 @@
 //
-//  Token.h
+//  PreferencesViewController.swift
 //
 //  The MIT License
 //
@@ -24,7 +24,36 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Sparkle/Sparkle.h>
+import AppKit
 
-#import "TKNStroker.h"
-#import "TKNTypeface.h"
+class PreferencesViewController : NSViewController {
+  var updateCheckInterval: Int {
+    get {
+      let interval = SUUpdater.sharedUpdater().updateCheckInterval
+      switch interval {
+      case 3600.0:
+        return 0
+      case 86400.0:
+        return 1
+      case 604800.0:
+        return 2
+      default:
+        break
+      }
+      return 1
+    }
+
+    set(value) {
+      switch value {
+      case 0:
+        SUUpdater.sharedUpdater().updateCheckInterval = 3600.0;
+      case 1:
+        SUUpdater.sharedUpdater().updateCheckInterval = 86400.0;
+      case 2:
+        SUUpdater.sharedUpdater().updateCheckInterval = 604800.0;
+      default:
+        break
+      }
+    }
+  }
+}

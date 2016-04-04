@@ -26,7 +26,7 @@
 
 import AppKit
 
-class Typeface : TKNTypeface {
+class Typeface : TKNTypeface, TypefaceDelegate {
   init(directoryURL: NSURL) {
     let URL = directoryURL.URLByAppendingPathComponent("font.ufo")
     _strokeWidth = 0.2
@@ -380,7 +380,9 @@ class Typeface : TKNTypeface {
 
   // MARK: Saving
 
-  func createFontToURL(URL: NSURL) throws {
+  var delegate: TypefaceDelegate?
+
+  func createFontToURL(URL: NSURL, completionHandler: (() -> Void)?) {
     let stroker = self.stroker.copy() as! Stroker
     let workingDirectoryURL = NSURL(
         fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(
@@ -403,25 +405,52 @@ class Typeface : TKNTypeface {
     if strokerBehavior == .Physical {
       stroker.UPEM = stroker.capHeight
     }
-    try stroker.saveToURL(contentsURL)
-    try createFontWithContentsOfURL(
+    do {
+      try stroker.saveToURL(contentsURL)
+    } catch let error as NSError {
+      (delegate ?? self).typeface(self,
+          didFailToCreateFontWithContentsOfURL: contentsURL,
+          toURL: fontURL,
+          error: error)
+      return
+    }
+    createFontWithContentsOfURL(
         contentsURL,
         toURL: fontURL,
         toolsURL: toolsURL,
-        extraURL: extraURL)
-    correctUPEM(stroker.UPEM, forFontAtURL: fontURL, toolsURL: toolsURL)
-    let fileManager = NSFileManager.defaultManager()
-    if URL.checkResourceIsReachableAndReturnError(nil) {
-      try fileManager.removeItemAtURL(URL)
-    }
-    let directoryURL = URL.URLByDeletingLastPathComponent!
-    if !directoryURL.checkResourceIsReachableAndReturnError(nil) {
-      try fileManager.createDirectoryAtURL(
-          directoryURL,
-          withIntermediateDirectories: true,
-          attributes: nil)
-    }
-    try fileManager.copyItemAtURL(fontURL, toURL: URL)
-    try fileManager.removeItemAtURL(workingDirectoryURL)
+        extraURL: extraURL,
+        progressHandler: { (numberOfTasks: UInt, totalNumberOfTasks: UInt) in
+          (self.delegate ?? self).typeface(self,
+              didFinishNumberOfTasks: numberOfTasks,
+              totalNumberOfTasks: totalNumberOfTasks)
+        },
+        completionHandler: {
+          self.correctUPEM(
+              stroker.UPEM,
+              forFontAtURL: fontURL,
+              toolsURL: toolsURL)
+          do {
+            let fileManager = NSFileManager.defaultManager()
+            if URL.checkResourceIsReachableAndReturnError(nil) {
+              try fileManager.removeItemAtURL(URL)
+            }
+            let directoryURL = URL.URLByDeletingLastPathComponent!
+            if !directoryURL.checkResourceIsReachableAndReturnError(nil) {
+              try fileManager.createDirectoryAtURL(
+                  directoryURL,
+                  withIntermediateDirectories: true,
+                  attributes: nil)
+            }
+            try fileManager.copyItemAtURL(fontURL, toURL: URL)
+            try fileManager.removeItemAtURL(workingDirectoryURL)
+          } catch let error as NSError {
+            (self.delegate ?? self).typeface(self,
+                didFailToCreateFontWithContentsOfURL: contentsURL,
+                toURL: fontURL,
+                error: error)
+            return
+          }
+          completionHandler?()
+        })
   }
 }

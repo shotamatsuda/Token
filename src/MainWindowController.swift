@@ -26,7 +26,8 @@
 
 import AppKit
 
-class MainWindowController : NSWindowController, NSWindowDelegate {
+class MainWindowController : NSWindowController, NSWindowDelegate,
+    TypefaceDelegate {
   var typeface: Typeface?
 
   var mainViewController: MainViewController? {
@@ -47,6 +48,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     }
   }
 
+  private var progressViewController: ProgressViewController?
+
   override func windowDidLoad() {
     super.windowDidLoad()
     guard let window = window else {
@@ -61,12 +64,13 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     let bundle = NSBundle.mainBundle()
     let URL = bundle.URLForResource("typeface", withExtension: nil)
     typeface = Typeface(directoryURL: URL!)
+    typeface!.delegate = self
     restoreTypefaceSettings()
     typefaceViewController?.typeface = typeface
     settingsViewController?.typeface = typeface
 
     // Check for Adobe FDK and show the welcome sheet if necessary.
-    dispatch_async(dispatch_get_main_queue()) { () in
+    dispatch_async(dispatch_get_main_queue()) {
       if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
         self.installAdobeFDK(self)
       }
@@ -116,6 +120,22 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
 
   // MARK: Actions
 
+  private func createFontAtURL(
+      URL: NSURL,
+      message: String,
+      completionHandler: (() -> Void)?) {
+    progressViewController = storyboard!.instantiateControllerWithIdentifier(
+        "ProgressViewController") as? ProgressViewController
+    contentViewController!.presentViewControllerAsSheet(progressViewController!)
+    progressViewController!.progressLabel!.stringValue = message
+    typeface!.createFontToURL(URL) {
+      self.contentViewController!.dismissViewController(
+          self.progressViewController!)
+      self.progressViewController = nil
+      completionHandler?()
+    }
+  }
+
   @IBAction func exportFont(sender: AnyObject?) {
     if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
       self.installAdobeFDK(self)
@@ -128,20 +148,10 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
     panel.nameFieldStringValue = typeface.postscriptName + ".otf"
     panel.beginSheetModalForWindow(window!) { (result: Int) in
       if result == NSFileHandlingPanelOKButton {
-        do {
-          try typeface.createFontToURL(panel.URL!)
-        } catch let error as NSError {
-          let alert = NSAlert()
-          alert.alertStyle = .WarningAlertStyle
-          alert.messageText = NSLocalizedString(
-              "Couldn’t export font “\(panel.URL!.lastPathComponent!)”.",
-              comment: "")
-          alert.informativeText = error.localizedDescription
-          alert.beginSheetModalForWindow(
-              NSApp.mainWindow!,
-              completionHandler: nil)
-          return
-        }
+        self.createFontAtURL(
+            panel.URL!,
+            message: NSLocalizedString("Exporting font...", comment: ""),
+            completionHandler: nil)
       }
     }
   }
@@ -163,22 +173,12 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
         .URLByAppendingPathComponent(typeface.familyName)
         .URLByAppendingPathComponent(typeface.postscriptName)
         .URLByAppendingPathExtension("otf")
-    do {
-      try typeface.createFontToURL(installURL)
-    } catch let error as NSError {
-      let alert = NSAlert()
-      alert.alertStyle = .WarningAlertStyle
-      alert.messageText = NSLocalizedString(
-          "Couldn’t export font “\(installURL.lastPathComponent!)”.",
-          comment: "")
-      alert.informativeText = error.localizedDescription
-      alert.beginSheetModalForWindow(
-          NSApp.mainWindow!,
-          completionHandler: nil)
-      return
+    self.createFontAtURL(
+        installURL,
+        message: NSLocalizedString("Installing font...", comment: "")) {
+      NSWorkspace.sharedWorkspace().openURL(
+          installURL.URLByDeletingLastPathComponent!)
     }
-    NSWorkspace.sharedWorkspace().openURL(
-        installURL.URLByDeletingLastPathComponent!)
   }
 
   @IBAction func zoomIn(sender: AnyObject?) {
@@ -191,6 +191,33 @@ class MainWindowController : NSWindowController, NSWindowDelegate {
 
   @IBAction func zoomToFit(sender: AnyObject?) {
     typefaceViewController?.zoomToFit(sender)
+  }
+
+  // MARK: Typeface Delegate
+
+  func typeface(
+      typeface: Typeface,
+      didFinishNumberOfTasks numberOfTasks: UInt,
+      totalNumberOfTasks: UInt) {
+    progressViewController!.progressIndicator!.indeterminate = false
+    progressViewController!.progressIndicator!.doubleValue =
+        Double(numberOfTasks) / Double(totalNumberOfTasks)
+  }
+
+  func typeface(
+      typeface: Typeface,
+      didFailToCreateFontWithContentsOfURL contentsURL: NSURL,
+      toURL: NSURL,
+      error: NSError) {
+    let alert = NSAlert()
+    alert.alertStyle = .WarningAlertStyle
+    alert.messageText = NSLocalizedString(
+        "Couldn’t export font “\(toURL.lastPathComponent!)”.",
+        comment: "")
+    alert.informativeText = error.localizedDescription
+    alert.beginSheetModalForWindow(
+        NSApp.mainWindow!,
+        completionHandler: nil)
   }
 
   // MARK: Adobe FDK

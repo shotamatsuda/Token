@@ -21,7 +21,19 @@
                                                 <action selector="orderFrontStandardAboutPanel:" target="UkH-Qk-Gn3" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="6RQ-QE-W7P"/>
+                                        <menuItem title="Check for Updates..." id="aRI-jE-cON">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="jph-WQ-4ZU" id="2EU-0P-mKI"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Preferences..." id="jhA-Do-epo">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="OIm-uz-wYw" kind="show" id="qdR-O9-BL1"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="QXD-9q-ieq"/>
                                         <menuItem title="Install Adobe FDK..." id="Zgx-TU-pnu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -195,6 +207,7 @@
                 </application>
                 <customObject id="UkH-Qk-Gn3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="YLy-65-1bz" customClass="ApplicationDelegate" customModule="Token" customModuleProvider="target"/>
+                <customObject id="jph-WQ-4ZU" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="-603" y="-155"/>
         </scene>
@@ -959,9 +972,224 @@
             </objects>
             <point key="canvasLocation" x="2163" y="1256.5"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="7pz-LQ-cPc">
+            <objects>
+                <windowController storyboardIdentifier="Preferences" id="OIm-uz-wYw" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7Em-Zu-3bm">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                    </window>
+                    <connections>
+                        <segue destination="hWJ-JX-UuH" kind="relationship" relationship="window.shadowedContentViewController" id="23R-D7-AfX"/>
+                    </connections>
+                </windowController>
+                <customObject id="R6g-pk-Q1A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-603" y="1012"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JJi-ot-7dC">
+            <objects>
+                <viewController id="hWJ-JX-UuH" sceneMemberID="viewController">
+                    <view key="view" id="5DY-RM-Vrh">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="Sn2-yL-EMJ">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <connections>
+                                    <segue destination="yLc-BR-oPR" kind="embed" id="1KB-kA-ZyY"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Sn2-yL-EMJ" secondAttribute="trailing" id="Ge2-he-2u9"/>
+                            <constraint firstItem="Sn2-yL-EMJ" firstAttribute="top" secondItem="5DY-RM-Vrh" secondAttribute="top" id="MiZ-zt-YeH"/>
+                            <constraint firstItem="Sn2-yL-EMJ" firstAttribute="leading" secondItem="5DY-RM-Vrh" secondAttribute="leading" id="UoG-G0-T2m"/>
+                            <constraint firstAttribute="bottom" secondItem="Sn2-yL-EMJ" secondAttribute="bottom" id="kM3-rD-txY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="pgq-0s-pgQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-48" y="1004"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="gSZ-nm-VAb">
+            <objects>
+                <customObject id="ige-FB-VHe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <tabViewController tabStyle="toolbar" id="yLc-BR-oPR" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem image="General" id="xgg-g0-ewc"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="012-yn-Yp4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="ZF1-xp-Y27" kind="relationship" relationship="tabItems" id="DTu-4c-PZX"/>
+                    </connections>
+                </tabViewController>
+            </objects>
+            <point key="canvasLocation" x="489" y="1004"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="O0z-s4-XFn">
+            <objects>
+                <viewController title="General" id="ZF1-xp-Y27" customClass="PreferencesViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="WxF-Sc-JQh" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="490" height="132"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="sTr-fn-ULt">
+                                <rect key="frame" x="188" y="76" width="219" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="0Yy-Ab-BVz"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Automatically download updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RCy-u0-IQA">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="U24-aC-TES" name="value" keyPath="self.automaticallyDownloadsUpdates" id="19C-Ix-V0N"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eJ1-tM-h87">
+                                <rect key="frame" x="188" y="42" width="255" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="phn-Yr-PAr"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Xx6-hl-dQE">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Tt1-j7-cWq">
+                                        <items>
+                                            <menuItem title="Hourly" tag="2" id="Qt4-B3-a7U"/>
+                                            <menuItem title="Daily" tag="1" id="NbR-5C-2Kh"/>
+                                            <menuItem title="Weekly" id="hVj-dr-MZ2"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="ZF1-xp-Y27" name="selectedTag" keyPath="self.updateCheckInterval" id="hai-lG-I4U"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j5k-Qu-SW6">
+                                <rect key="frame" x="83" y="48" width="101" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Update interval:" id="Whd-4h-txR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1N7-Rv-Yyq">
+                                <rect key="frame" x="188" y="96" width="217" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="O0j-aF-PfU"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zl2-pS-1iD">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="U24-aC-TES" name="value" keyPath="self.automaticallyChecksForUpdates" id="gNE-1P-DeA"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bfk-bW-q1m">
+                                <rect key="frame" x="188" y="20" width="157" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Month 00, 0000 at 00:00" id="ygb-cI-n6R">
+                                    <dateFormatter key="formatter" dateStyle="long" timeStyle="short" doesRelativeDateFormatting="YES" id="Njs-eY-W4Q"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="U24-aC-TES" name="value" keyPath="self.lastUpdateCheckDate" id="ypE-Yk-v0L"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pgc-WL-hSq">
+                                <rect key="frame" x="18" y="20" width="166" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Last check for updates at:" id="IV9-ww-T5m">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="eJ1-tM-h87" firstAttribute="baseline" secondItem="j5k-Qu-SW6" secondAttribute="baseline" id="38s-p6-Vob"/>
+                            <constraint firstItem="bfk-bW-q1m" firstAttribute="leading" secondItem="eJ1-tM-h87" secondAttribute="leading" id="B1y-JX-BPl"/>
+                            <constraint firstItem="eJ1-tM-h87" firstAttribute="leading" secondItem="sTr-fn-ULt" secondAttribute="leading" id="DF6-nT-T0j"/>
+                            <constraint firstItem="Pgc-WL-hSq" firstAttribute="leading" secondItem="WxF-Sc-JQh" secondAttribute="leading" constant="20" id="EJI-Qc-qdx"/>
+                            <constraint firstItem="eJ1-tM-h87" firstAttribute="top" secondItem="sTr-fn-ULt" secondAttribute="bottom" constant="12" id="L7V-vh-LcT"/>
+                            <constraint firstItem="bfk-bW-q1m" firstAttribute="top" secondItem="eJ1-tM-h87" secondAttribute="bottom" constant="8" id="Or9-2n-hPb"/>
+                            <constraint firstItem="eJ1-tM-h87" firstAttribute="leading" secondItem="1N7-Rv-Yyq" secondAttribute="leading" id="VSn-ak-zqZ"/>
+                            <constraint firstAttribute="bottom" secondItem="bfk-bW-q1m" secondAttribute="bottom" constant="20" id="ZCt-fq-rVk"/>
+                            <constraint firstAttribute="trailing" secondItem="eJ1-tM-h87" secondAttribute="trailing" constant="50" id="aOg-AR-XCr"/>
+                            <constraint firstItem="bfk-bW-q1m" firstAttribute="leading" secondItem="Pgc-WL-hSq" secondAttribute="trailing" constant="8" id="oUN-fn-WoB"/>
+                            <constraint firstItem="sTr-fn-ULt" firstAttribute="top" secondItem="1N7-Rv-Yyq" secondAttribute="bottom" constant="6" id="pF1-dN-3fE"/>
+                            <constraint firstItem="1N7-Rv-Yyq" firstAttribute="top" secondItem="WxF-Sc-JQh" secondAttribute="top" constant="20" id="q36-Ao-Lhd"/>
+                            <constraint firstItem="bfk-bW-q1m" firstAttribute="baseline" secondItem="Pgc-WL-hSq" secondAttribute="baseline" id="t4I-3U-eSB"/>
+                            <constraint firstItem="eJ1-tM-h87" firstAttribute="leading" secondItem="j5k-Qu-SW6" secondAttribute="trailing" constant="8" id="xJZ-H8-qKD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="Uyd-XA-e0g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="U24-aC-TES" customClass="SUUpdater"/>
+            </objects>
+            <point key="canvasLocation" x="489" y="1374"/>
+        </scene>
+        <!--Progress View Controller-->
+        <scene sceneID="qaN-5Y-oYR">
+            <objects>
+                <viewController storyboardIdentifier="ProgressViewController" id="FSR-4A-9Ae" customClass="ProgressViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="pI5-p9-ato">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="66"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <progressIndicator wantsLayer="YES" maxValue="1" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VSV-SU-Hg1">
+                                <rect key="frame" x="16" y="15" width="370" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="370" id="9wR-5k-w3P"/>
+                                    <constraint firstAttribute="height" constant="20" id="Nlz-c6-csg"/>
+                                </constraints>
+                            </progressIndicator>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-NI-ZSC">
+                                <rect key="frame" x="14" y="36" width="374" height="14"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="pj2-zC-kJA">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VSV-SU-Hg1" firstAttribute="top" secondItem="NXC-NI-ZSC" secondAttribute="bottom" id="7je-qW-k5W"/>
+                            <constraint firstItem="NXC-NI-ZSC" firstAttribute="top" secondItem="pI5-p9-ato" secondAttribute="top" constant="16" id="RRB-9j-R6t"/>
+                            <constraint firstAttribute="trailing" secondItem="VSV-SU-Hg1" secondAttribute="trailing" constant="16" id="eNR-0D-xHJ"/>
+                            <constraint firstAttribute="trailing" secondItem="NXC-NI-ZSC" secondAttribute="trailing" constant="16" id="eTx-7x-RrZ"/>
+                            <constraint firstAttribute="bottom" secondItem="VSV-SU-Hg1" secondAttribute="bottom" constant="16" id="evX-7l-uZG"/>
+                            <constraint firstItem="VSV-SU-Hg1" firstAttribute="leading" secondItem="pI5-p9-ato" secondAttribute="leading" constant="16" id="ni9-Is-eS2"/>
+                            <constraint firstItem="NXC-NI-ZSC" firstAttribute="leading" secondItem="pI5-p9-ato" secondAttribute="leading" constant="16" id="qJj-ec-BZV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressIndicator" destination="VSV-SU-Hg1" id="E8c-iz-LDX"/>
+                        <outlet property="progressLabel" destination="NXC-NI-ZSC" id="VfC-Xs-RI1"/>
+                    </connections>
+                </viewController>
+                <customObject id="dOy-In-st2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1104" y="865.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CapHeightTemplate" width="50" height="64"/>
+        <image name="General" width="128" height="128"/>
         <image name="Invert" width="23" height="23"/>
         <image name="Outline" width="23" height="23"/>
         <image name="StrokeWidthTemplate" width="50" height="64"/>

@@ -40,11 +40,12 @@
 
 @implementation TKNTypeface
 
-- (BOOL)createFontWithContentsOfURL:(NSURL *)contentsURL
+- (void)createFontWithContentsOfURL:(NSURL *)contentsURL
                               toURL:(NSURL *)fontURL
                            toolsURL:(NSURL *)toolsURL
                            extraURL:(NSURL *)extraURL
-                              error:(NSError **)error {
+                    progressHandler:(TKNTypefaceProgressHandler)progressHandler
+                  completionHandler:(dispatch_block_t)completionHandler {
   const std::string directoryPath(
       fontURL.URLByDeletingLastPathComponent.path.UTF8String);
   const std::string contentsPath(contentsURL.path.UTF8String);
@@ -53,14 +54,33 @@
   const std::string extraPath(extraURL.path.UTF8String);
   const token::ufo::FontInfo fontInfo(contentsPath);
   const token::ufo::Glyphs glyphs(contentsPath);
-  token::afdko::checkOutlines(toolsPath, contentsPath);
-  token::afdko::performAutoHinting(toolsPath, contentsPath);
-  token::afdko::createFeatures(fontInfo, directoryPath);
-  token::afdko::createFontMenuName(fontInfo, directoryPath);
-  token::afdko::createGlyphOrderAndAlias(glyphs, directoryPath);
-  token::afdko::generateKernFile(extraPath, contentsPath);
-  token::afdko::createOpenTypeFont(toolsPath, contentsPath, fontPath);
-  return true;
+  NSArray *tasks = @[
+    ^{ token::afdko::checkOutlines(toolsPath, contentsPath); },
+    ^{ token::afdko::performAutoHinting(toolsPath, contentsPath); },
+    ^{ token::afdko::createFeatures(fontInfo, directoryPath); },
+    ^{ token::afdko::createFontMenuName(fontInfo, directoryPath); },
+    ^{ token::afdko::createGlyphOrderAndAlias(glyphs, directoryPath); },
+    ^{ token::afdko::generateKernFile(extraPath, contentsPath); },
+    ^{ token::afdko::createOpenTypeFont(toolsPath, contentsPath, fontPath); }
+  ];
+  dispatch_async(dispatch_get_global_queue(
+      DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    NSUInteger numberOfTasks{};
+    for (dispatch_block_t task in tasks) {
+      task();
+      ++numberOfTasks;
+      if (progressHandler) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          progressHandler(numberOfTasks, tasks.count);
+        });
+      }
+    }
+    if (completionHandler) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        completionHandler();
+      });
+    }
+  });
 }
 
 - (BOOL)correctUPEM:(double)UPEM

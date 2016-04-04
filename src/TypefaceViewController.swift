@@ -270,7 +270,7 @@ class TypefaceViewController : NSViewController {
           scrollView.animator().magnification = CGFloat(magnification)
           self.magnificationQueue.removeFirst()
         },
-        completionHandler: { () in
+        completionHandler: {
           typefaceView.needsDisplay = true
           if !self.magnificationQueue.isEmpty {
             self.animateQueuedMagnification()

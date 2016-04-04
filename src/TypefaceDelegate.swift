@@ -1,5 +1,5 @@
 //
-//  Token.h
+//  TypefaceDelegate.swift
 //
 //  The MIT License
 //
@@ -24,7 +24,34 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Sparkle/Sparkle.h>
+import AppKit
 
-#import "TKNStroker.h"
-#import "TKNTypeface.h"
+protocol TypefaceDelegate {
+  func typeface(typeface: Typeface,
+      didFinishNumberOfTasks numberOfTasks:UInt,
+      totalNumberOfTasks: UInt)
+
+  func typeface(typeface: Typeface,
+      didFailToCreateFontWithContentsOfURL contentsURL: NSURL,
+      toURL: NSURL,
+      error: NSError)
+
+  func typeface(typeface: Typeface,
+      didCreateFontWithContentsOfURL contentsURL: NSURL,
+      toURL: NSURL)
+}
+
+extension TypefaceDelegate {
+  func typeface(typeface: Typeface,
+      didFinishNumberOfTasks numberOfTasks:UInt,
+      totalNumberOfTasks: UInt) {}
+
+  func typeface(typeface: Typeface,
+      didFailToCreateFontWithContentsOfURL contentsURL: NSURL,
+      toURL: NSURL,
+      error: NSError) {}
+
+  func typeface(typeface: Typeface,
+      didCreateFontWithContentsOfURL contentsURL: NSURL,
+      toURL: NSURL) {}
+}

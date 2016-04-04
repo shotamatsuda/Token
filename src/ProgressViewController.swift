@@ -1,5 +1,5 @@
 //
-//  Token.h
+//  ProgressViewController.swift
 //
 //  The MIT License
 //
@@ -24,7 +24,22 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Sparkle/Sparkle.h>
+import AppKit
 
-#import "TKNStroker.h"
-#import "TKNTypeface.h"
+class ProgressViewController : NSViewController {
+  @IBOutlet var progressIndicator: NSProgressIndicator?
+  @IBOutlet var progressLabel: NSTextField?
+
+  override func viewDidAppear() {
+    super.viewDidAppear()
+    progressIndicator?.indeterminate = true
+    progressIndicator?.startAnimation(self)
+  }
+
+  @IBAction func cancel(sender: AnyObject?) {
+    guard let window = view.window, sheetParent = window.sheetParent else {
+      return
+    }
+    sheetParent.endSheet(window, returnCode:NSModalResponseCancel)
+  }
+}

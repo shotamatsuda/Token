@@ -164,7 +164,7 @@ class WelcomeProgressViewController : NSViewController,
 
   private func didExtract() {
     // This function ill be invoked in a background thread
-    dispatch_async(dispatch_get_main_queue()) { () in
+    dispatch_async(dispatch_get_main_queue()) {
       defer {
         self.progressIndicator?.stopAnimation(self)
       }
