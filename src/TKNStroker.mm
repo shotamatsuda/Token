@@ -29,16 +29,15 @@
 #import "TKNStroker.h"
 
 #include <cassert>
+#include <cmath>
 #include <iterator>
 #include <string>
 #include <unordered_map>
-#include <utility>
 
 #include <boost/filesystem.hpp>
 
 #include "takram/graphics.h"
 #include "takram/math.h"
-#include "token/afdko.h"
 #include "token/glyph_outline.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
