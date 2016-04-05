@@ -28,30 +28,26 @@ import AppKit
 
 protocol TypefaceDelegate {
   func typeface(typeface: Typeface,
-      didFinishNumberOfTasks numberOfTasks:UInt,
-      totalNumberOfTasks: UInt)
+      createFontAtURL URL: NSURL,
+      didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
+      totalNumberOfSubtasks: UInt)
 
   func typeface(typeface: Typeface,
-      didFailToCreateFontWithContentsOfURL contentsURL: NSURL,
-      toURL: NSURL,
+      didFailToCreateFontAtURL URL: NSURL,
       error: NSError)
 
-  func typeface(typeface: Typeface,
-      didCreateFontWithContentsOfURL contentsURL: NSURL,
-      toURL: NSURL)
+  func typeface(typeface: Typeface, didCreateFontAtURL URL: NSURL)
 }
 
 extension TypefaceDelegate {
   func typeface(typeface: Typeface,
-      didFinishNumberOfTasks numberOfTasks:UInt,
-      totalNumberOfTasks: UInt) {}
+      createFontAtURL URL: NSURL,
+      didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
+      totalNumberOfSubtasks: UInt) {}
 
   func typeface(typeface: Typeface,
-      didFailToCreateFontWithContentsOfURL contentsURL: NSURL,
-      toURL: NSURL,
+      didFailToCreateFontAtURL URL: NSURL,
       error: NSError) {}
 
-  func typeface(typeface: Typeface,
-      didCreateFontWithContentsOfURL contentsURL: NSURL,
-      toURL: NSURL) {}
+  func typeface(typeface: Typeface, didCreateFontAtURL URL: NSURL) {}
 }

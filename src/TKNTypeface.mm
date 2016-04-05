@@ -54,7 +54,7 @@
   const std::string extraPath(extraURL.path.UTF8String);
   const token::ufo::FontInfo fontInfo(contentsPath);
   const token::ufo::Glyphs glyphs(contentsPath);
-  NSArray *tasks = @[
+  NSArray *subtasks = @[
     ^{ token::afdko::checkOutlines(toolsPath, contentsPath); },
     ^{ token::afdko::performAutoHinting(toolsPath, contentsPath); },
     ^{ token::afdko::createFeatures(fontInfo, directoryPath); },
@@ -65,13 +65,13 @@
   ];
   dispatch_async(dispatch_get_global_queue(
       DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-    NSUInteger numberOfTasks{};
-    for (dispatch_block_t task in tasks) {
-      task();
-      ++numberOfTasks;
+    NSUInteger numberOfSubtasks{};
+    for (dispatch_block_t subtask in subtasks) {
+      subtask();
+      ++numberOfSubtasks;
       if (progressHandler) {
         dispatch_async(dispatch_get_main_queue(), ^{
-          progressHandler(numberOfTasks, tasks.count);
+          progressHandler(numberOfSubtasks, subtasks.count);
         });
       }
     }

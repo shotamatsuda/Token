@@ -150,7 +150,9 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       if result == NSFileHandlingPanelOKButton {
         self.createFontAtURL(
             panel.URL!,
-            message: NSLocalizedString("Exporting font...", comment: ""),
+            message: String(
+                format: NSLocalizedString("Exporting “%@”...", comment: ""),
+                panel.URL!.lastPathComponent!),
             completionHandler: nil)
       }
     }
@@ -175,7 +177,9 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
         .URLByAppendingPathExtension("otf")
     self.createFontAtURL(
         installURL,
-        message: NSLocalizedString("Installing font...", comment: "")) {
+        message: String(
+            format: NSLocalizedString("Installing “%@”...", comment: ""),
+            installURL.lastPathComponent!)) {
       NSWorkspace.sharedWorkspace().openURL(
           installURL.URLByDeletingLastPathComponent!)
     }
@@ -197,22 +201,22 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
 
   func typeface(
       typeface: Typeface,
-      didFinishNumberOfTasks numberOfTasks: UInt,
-      totalNumberOfTasks: UInt) {
+      createFontAtURL URL: NSURL,
+      didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
+      totalNumberOfSubtasks: UInt) {
     progressViewController!.progressIndicator!.indeterminate = false
     progressViewController!.progressIndicator!.doubleValue =
-        Double(numberOfTasks) / Double(totalNumberOfTasks)
+        Double(numberOfSubtasks) / Double(totalNumberOfSubtasks)
   }
 
   func typeface(
       typeface: Typeface,
-      didFailToCreateFontWithContentsOfURL contentsURL: NSURL,
-      toURL: NSURL,
+      didFailToCreateFontAtURL URL: NSURL,
       error: NSError) {
     let alert = NSAlert()
     alert.alertStyle = .WarningAlertStyle
     alert.messageText = NSLocalizedString(
-        "Couldn’t export font “\(toURL.lastPathComponent!)”.",
+        "Couldn’t export font “\(URL.lastPathComponent!)”.",
         comment: "")
     alert.informativeText = error.localizedDescription
     alert.beginSheetModalForWindow(

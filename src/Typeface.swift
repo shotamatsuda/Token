@@ -408,9 +408,9 @@ class Typeface : TKNTypeface, TypefaceDelegate {
     do {
       try stroker.saveToURL(contentsURL)
     } catch let error as NSError {
-      (delegate ?? self).typeface(self,
-          didFailToCreateFontWithContentsOfURL: contentsURL,
-          toURL: fontURL,
+      (delegate ?? self).typeface(
+          self,
+          didFailToCreateFontAtURL: fontURL,
           error: error)
       return
     }
@@ -419,10 +419,13 @@ class Typeface : TKNTypeface, TypefaceDelegate {
         toURL: fontURL,
         toolsURL: toolsURL,
         extraURL: extraURL,
-        progressHandler: { (numberOfTasks: UInt, totalNumberOfTasks: UInt) in
-          (self.delegate ?? self).typeface(self,
-              didFinishNumberOfTasks: numberOfTasks,
-              totalNumberOfTasks: totalNumberOfTasks)
+        progressHandler: { (numberOfSubtasks: UInt,
+                            totalNumberOfSubtasks: UInt) in
+          (self.delegate ?? self).typeface(
+              self,
+              createFontAtURL: fontURL,
+              didCompleteNumberOfSubtasks: numberOfSubtasks,
+              totalNumberOfSubtasks: totalNumberOfSubtasks)
         },
         completionHandler: {
           self.correctUPEM(
@@ -444,9 +447,9 @@ class Typeface : TKNTypeface, TypefaceDelegate {
             try fileManager.copyItemAtURL(fontURL, toURL: URL)
             try fileManager.removeItemAtURL(workingDirectoryURL)
           } catch let error as NSError {
-            (self.delegate ?? self).typeface(self,
-                didFailToCreateFontWithContentsOfURL: contentsURL,
-                toURL: fontURL,
+            (self.delegate ?? self).typeface(
+                self,
+                didFailToCreateFontAtURL: fontURL,
                 error: error)
             return
           }
