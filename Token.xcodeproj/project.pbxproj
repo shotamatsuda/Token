@@ -967,7 +967,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/update_version.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1097,6 +1097,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = resource/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
@@ -1116,6 +1118,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				INFOPLIST_FILE = resource/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";

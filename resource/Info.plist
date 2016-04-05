@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SUFeedURL</key>
-	<string>https://www.dropbox.com/s/xj5g7g4cqq9t5wc/Token.xml?dl=1</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>SparklePublicDSAKey.pem</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -36,5 +32,9 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://www.dropbox.com/s/xj5g7g4cqq9t5wc/Token.xml?dl=1</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>SparklePublicDSAKey.pem</string>
 </dict>
 </plist>
