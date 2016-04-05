@@ -59,7 +59,6 @@
 		93A05AEB1B9B8A6B002DDAD5 /* opentype.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* opentype.cc */; };
 		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
 		93A05AF21B9B9B98002DDAD5 /* hinting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* hinting.cc */; };
-		93A0C05F1CAE56380067548B /* General.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93A0C05E1CAE56380067548B /* General.icns */; };
 		93A0C0741CAE56640067548B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0C0731CAE56640067548B /* PreferencesViewController.swift */; };
 		93A0C0981CB21E2B0067548B /* TypefaceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0C0971CB21E2B0067548B /* TypefaceDelegate.swift */; };
 		93A0C09A1CB229FF0067548B /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0C0991CB229FF0067548B /* ProgressViewController.swift */; };
@@ -174,6 +173,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 726B2B5D1C645FC900388755;
 			remoteInfo = "UI Tests";
+		};
+		93A0C0C61CB3671C0067548B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = algorithm_static;
+		};
+		93A0C0C81CB3671F0067548B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = math_static;
 		};
 		93C257851B9BCCDB00134399 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -319,7 +332,6 @@
 		93A05AEE1B9B914A002DDAD5 /* typeface */ = {isa = PBXFileReference; lastKnownFileType = folder; path = typeface; sourceTree = SOURCE_ROOT; };
 		93A05AF01B9B9B98002DDAD5 /* hinting.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hinting.cc; sourceTree = "<group>"; };
 		93A05AF11B9B9B98002DDAD5 /* hinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hinting.h; sourceTree = "<group>"; };
-		93A0C05E1CAE56380067548B /* General.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = General.icns; sourceTree = "<group>"; };
 		93A0C0731CAE56640067548B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		93A0C0971CB21E2B0067548B /* TypefaceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceDelegate.swift; sourceTree = "<group>"; };
 		93A0C0991CB229FF0067548B /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -607,7 +619,6 @@
 				93C257AE1B9C5AB700134399 /* ZoomOut.pdf */,
 				93C257C31B9C96D900134399 /* Invert.pdf */,
 				93C257C51B9C99F700134399 /* Outline.pdf */,
-				93A0C05E1CAE56380067548B /* General.icns */,
 				93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */,
 				9390CBF41B95328D0088153C /* Credits.rtf */,
 				936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */,
@@ -732,7 +743,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				93A0C0C71CB3671C0067548B /* PBXTargetDependency */,
 				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
+				93A0C0C91CB3671F0067548B /* PBXTargetDependency */,
 				9321BA901CAE505F004284CA /* PBXTargetDependency */,
 			);
 			name = Token;
@@ -933,7 +946,6 @@
 				93C257C41B9C96D900134399 /* Invert.pdf in Resources */,
 				93C257C61B9C99F700134399 /* Outline.pdf in Resources */,
 				93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */,
-				93A0C05F1CAE56380067548B /* General.icns in Resources */,
 				93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */,
 				936A9F441CAE4CE800CFBE5E /* SparklePublicDSAKey.pem in Resources */,
 				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
@@ -1042,6 +1054,16 @@
 			isa = PBXTargetDependency;
 			name = graphics_static;
 			targetProxy = 93563AC81B6744C1004C47E4 /* PBXContainerItemProxy */;
+		};
+		93A0C0C71CB3671C0067548B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = algorithm_static;
+			targetProxy = 93A0C0C61CB3671C0067548B /* PBXContainerItemProxy */;
+		};
+		93A0C0C91CB3671F0067548B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = math_static;
+			targetProxy = 93A0C0C81CB3671F0067548B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

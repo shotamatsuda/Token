@@ -1022,7 +1022,7 @@
                 <customObject id="ige-FB-VHe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <tabViewController tabStyle="toolbar" id="yLc-BR-oPR" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem image="General" id="xgg-g0-ewc"/>
+                        <tabViewItem image="NSPreferencesGeneral" id="xgg-g0-ewc"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="012-yn-Yp4">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -1160,7 +1160,7 @@
                             </progressIndicator>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-NI-ZSC">
                                 <rect key="frame" x="14" y="36" width="374" height="14"/>
-                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="pj2-zC-kJA">
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="Preparing..." id="pj2-zC-kJA">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1189,8 +1189,8 @@
     </scenes>
     <resources>
         <image name="CapHeightTemplate" width="50" height="64"/>
-        <image name="General" width="128" height="128"/>
         <image name="Invert" width="23" height="23"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="Outline" width="23" height="23"/>
         <image name="StrokeWidthTemplate" width="50" height="64"/>
         <image name="ZoomIn" width="23" height="23"/>
