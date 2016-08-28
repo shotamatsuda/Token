@@ -36,7 +36,7 @@ cp -r "${PROJECT_DIR}/lib/fonttools/Lib/" "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/robofab/Lib/" "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/defcon/Lib/" "${TARGET_DIR}"
 cp "${PROJECT_DIR}/lib/python-modules/"*.py "${TARGET_DIR}"
-cp "${PROJECT_DIR}/lib/python-scripts/FDK Extras/"*.py "${TARGET_DIR}"
+cp "${PROJECT_DIR}/lib/python-scripts/"*.py "${TARGET_DIR}"
 
 # Zip the target directory as an executable
 cd "${TARGET_DIR}"
