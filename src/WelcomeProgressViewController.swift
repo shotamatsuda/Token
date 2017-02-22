@@ -54,7 +54,7 @@ class WelcomeProgressViewController : NSViewController,
   private func download() {
     guard let url = URL(
         string: "https://github.com/adobe-type-tools/afdko/releases/download/" +
-                "2.5.64958/FDK-25-MAC.b64958.zip") else {
+                "2.5.65322/FDK-25-MAC.b65322.zip") else {
       return
     }
     downloadSession = URLSession(
