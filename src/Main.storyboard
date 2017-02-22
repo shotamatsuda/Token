@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qw9-4F-FKp">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -287,9 +289,9 @@
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-xk-Nsy">
                                             <rect key="frame" x="-96" y="-89" width="171" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="oon-mL-DTw"/>
@@ -437,12 +439,14 @@
                 <viewController id="FnN-Dk-mc2" customClass="SettingsViewController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JTP-jm-MIM" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-qo-Slp" customClass="ZeroSplitView" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="225"/>
                                 <subviews>
                                     <customView id="iH7-Cb-6Xa" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GVd-Xi-Ezs">
                                                 <rect key="frame" x="18" y="184" width="112" height="17"/>
@@ -491,6 +495,7 @@
                                     </customView>
                                     <customView id="kve-Rx-3K7" customClass="FirstResponderView" customModule="Token" customModuleProvider="target">
                                         <rect key="frame" x="401" y="0.0" width="399" height="225"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atb-Eb-4cF">
                                                 <rect key="frame" x="8" y="184" width="86" height="17"/>
@@ -690,11 +695,8 @@
                                             <binding destination="WDW-0g-JKH" name="selectedTag" keyPath="selection.self.typeface.strokeWidthUnit" id="MwX-Z9-h8m"/>
                                         </connections>
                                     </popUpButton>
-                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="iFw-ra-Rxr">
+                                    <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="iFw-ra-Rxr">
                                         <rect key="frame" x="0.0" y="90" width="390" height="5"/>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" metaFont="system"/>
                                     </box>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-cp-cEs">
                                         <rect key="frame" x="20" y="20" width="50" height="64"/>
