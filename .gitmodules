@@ -1,12 +1,3 @@
-[submodule "lib/takram-math"]
-	path = lib/takram-math
-	url = git@github.com:takram-design-engineering/takram-math.git
-[submodule "lib/takram-graphics"]
-	path = lib/takram-graphics
-	url = git@github.com:takram-design-engineering/takram-graphics.git
-[submodule "lib/takram-algorithm"]
-	path = lib/takram-algorithm
-	url = git@github.com:takram-design-engineering/takram-algorithm.git
 [submodule "lib/defcon"]
 	path = lib/defcon
 	url = git@github.com:typesupply/defcon.git
