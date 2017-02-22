@@ -24,13 +24,21 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
+SHOTAMATSUDA_MATH_DIR = $(PROJECT_DIR)/lib/math
+SHOTAMATSUDA_ALGORITHM_DIR = $(PROJECT_DIR)/lib/algorithm
+SHOTAMATSUDA_GRAPHICS_DIR = $(PROJECT_DIR)/lib/graphics
+
+#include "../lib/math/config/shared.xcconfig"
+#include "../lib/algorithm/config/shared.xcconfig"
+#include "../lib/graphics/config/shared.xcconfig"
+
 // Search Paths
-HEADER_SEARCH_PATHS = $(inherited) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**"
-USER_HEADER_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/src"
+HEADER_SEARCH_PATHS = $(inherited) $(SHOTAMATSUDA_MATH_HEADER_SEARCH_PATHS) $(SHOTAMATSUDA_ALGORITHM_HEADER_SEARCH_PATHS) $(SHOTAMATSUDA_GRAPHICS_HEADER_SEARCH_PATHS) "/usr/local/include" "$(PROJECT_DIR)/build/skia/include/**"
+USER_HEADER_SEARCH_PATHS = $(inherited) $(SHOTAMATSUDA_MATH_USER_HEADER_SEARCH_PATHS) $(SHOTAMATSUDA_ALGORITHM_HEADER_USER_SEARCH_PATHS) $(SHOTAMATSUDA_GRAPHICS_USER_HEADER_SEARCH_PATHS) "$(PROJECT_DIR)/src"
 LIBRARY_SEARCH_PATHS = $(inerited) "/usr/local/lib" "$(PROJECT_DIR)/build/skia/lib"
 
 // Linking
 OTHER_LDFLAGS = $(inherited) -lboost_filesystem -lboost_system -lplist -lskia -lz
 
 // Apple LLVM - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) TAKRAM_HAS_BOOST=1
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) SHOTAMATSUDA_HAS_BOOST=1 SHOTAMATSUDA_HAS_COREGRAPHICS=1
