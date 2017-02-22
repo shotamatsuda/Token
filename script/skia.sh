@@ -4,7 +4,7 @@
 #
 #  The MIT License
 #
-#  Copyright (C) 2015-2016 Shota Matsuda
+#  Copyright (C) 2015-2017 Shota Matsuda
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 #  DEALINGS IN THE SOFTWARE.
 #
 
-readonly DEPOT_TOOLS_GIT='https://chromium.googlesource.com/chromium/tools/depot_tools.git'
-readonly SKIA_GIT='https://skia.googlesource.com/skia.git'
+readonly DEPOT_TOOLS_GIT="https://chromium.googlesource.com/chromium/tools/depot_tools.git"
+readonly SKIA_GIT="https://skia.googlesource.com/skia.git"
 
 readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
 readonly BUILD_DIR="${PROJECT_DIR}/build/skia"
@@ -35,14 +35,14 @@ readonly SKIA_DIR="${BUILD_DIR}/skia"
 
 cleanup() {
   echo "Cleaning everything before we start to build..."
-  rm -rf "${SKIA_DIR}/out"
-  rm -rf "${BUILD_DIR}/lib"
-  rm -rf "${BUILD_DIR}/include"
+  rm -r "${SKIA_DIR}/out"
+  rm -r "${BUILD_DIR}/lib"
+  rm -r "${BUILD_DIR}/include"
 }
 
 download_depot_tools() {
   if [[ ! -d "${DEPOT_TOOLS_DIR}" ]]; then
-    echo 'Downloading depot tools...'
+    echo "Downloading depot tools..."
     git clone "${DEPOT_TOOLS_GIT}" "${DEPOT_TOOLS_DIR}"
   fi
 }
@@ -51,48 +51,46 @@ download_skia() {
   if [[ ! -d "${SKIA_DIR}" ]]; then
     mkdir -p "${SKIA_DIR}"
   fi
+  echo "Downloading skia..."
+  git clone "${SKIA_GIT}" "${SKIA_DIR}"
   cd "${SKIA_DIR}"
-  export PATH="${DEPOT_TOOLS_DIR}":"${PATH}"
-  echo 'Downloading skia...'
-  gclient config --name "${SKIA_DIR}" --unmanaged "${SKIA_GIT}"
-  gclient sync
-  git checkout chrome/m50
+  python "./tools/git-sync-deps"
 }
 
 build_skia() {
+  export PATH="${DEPOT_TOOLS_DIR}:${PATH}"
   cd "${SKIA_DIR}"
-  export PATH="${DEPOT_TOOLS_DIR}":"${PATH}"
-  export GYP_GENERATORS='ninja,xcode'
-  echo 'Building for OS X...'
-  GYP_DEFINES="skia_os='mac' skia_arch_width='64'" './gyp_skia'
-  ninja -C 'out/Release' skia_lib tools
+  echo "Building for OS X..."
+  export MACOSX_DEPLOYMENT_TARGET=10.11
+  "./bin/gn" gen "out/Release" --args='is_debug=false'
+  ninja -C "out/Release" skia
   copy_libraries_in_place "${SKIA_DIR}/out/Release"
 }
 
 copy_libraries_in_place() {
   local dir=$1
-  echo 'Copying libraries in place...'
+  echo "Copying libraries in place..."
   mkdir -p "${BUILD_DIR}/lib"
-  for file in $(find "${dir}" -name '*.a'); do
+  for file in $(find "${dir}" -name "*.a"); do
     cp -n "${file}" "${BUILD_DIR}/lib"
   done
 }
 
 decompose_libraries() {
-  echo 'Decomposing libraries to object files...'
+  echo "Decomposing libraries to object files..."
   mkdir -p "${BUILD_DIR}/lib/obj"
-  for file in $(find "${BUILD_DIR}/lib" -name '*.a'); do
+  for file in $(find "${BUILD_DIR}/lib" -name "*.a"); do
     cd "${BUILD_DIR}/lib/obj"; ar -x "${file}"
   done
 }
 
 create_library() {
-  echo 'Linking everything within architectures...'
+  echo "Linking everything within architectures..."
   cd "${BUILD_DIR}/lib"
   xcrun ar crus "libskia.a" obj/*.o
-  rm -rf "${BUILD_DIR}/lib/obj"
+  rm -r "${BUILD_DIR}/lib/obj"
 
-  echo 'Copying headers...'
+  echo "Copying headers..."
   cd "${SKIA_DIR}/include"
   for header in $(find . -name "*.h"); do
     ditto "${header}" "${BUILD_DIR}/include/${header}"
