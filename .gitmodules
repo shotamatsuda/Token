@@ -10,9 +10,6 @@
 [submodule "lib/fonttools"]
 	path = lib/fonttools
 	url = git@github.com:behdad/fonttools.git
-[submodule "lib/robofab"]
-	path = lib/robofab
-	url = git@github.com:robofab-developers/robofab.git
 [submodule "lib/afdko"]
 	path = lib/afdko
 	url = git@github.com:adobe-type-tools/afdko.git
@@ -28,3 +25,6 @@
 [submodule "lib/algorithm"]
 	path = lib/algorithm
 	url = git@github.com:shotamatsuda/algorithm.git
+[submodule "lib/ufolib"]
+	path = lib/ufolib
+	url = git@github.com:unified-font-object/ufoLib.git

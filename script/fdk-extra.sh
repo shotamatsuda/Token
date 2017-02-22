@@ -4,7 +4,7 @@
 #
 #  The MIT License
 #
-#  Copyright (C) 2015-2016 Shota Matsuda
+#  Copyright (C) 2015-2017 Shota Matsuda
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -33,7 +33,7 @@ readonly INSTALL_DIR="$1"
 # Collect all of the libraries into the target directory
 mkdir -p "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/fonttools/Lib/" "${TARGET_DIR}"
-cp -r "${PROJECT_DIR}/lib/robofab/Lib/" "${TARGET_DIR}"
+cp -r "${PROJECT_DIR}/lib/ufolib/Lib/" "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/defcon/Lib/" "${TARGET_DIR}"
 cp "${PROJECT_DIR}/lib/python-modules/"*.py "${TARGET_DIR}"
 cp "${PROJECT_DIR}/lib/python-scripts/"*.py "${TARGET_DIR}"
