@@ -7,9 +7,6 @@
 [submodule "lib/python-scripts"]
 	path = lib/python-scripts
 	url = git@github.com:adobe-type-tools/python-scripts.git
-[submodule "lib/fonttools"]
-	path = lib/fonttools
-	url = git@github.com:behdad/fonttools.git
 [submodule "lib/afdko"]
 	path = lib/afdko
 	url = git@github.com:adobe-type-tools/afdko.git
