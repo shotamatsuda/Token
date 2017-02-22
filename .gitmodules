@@ -19,3 +19,12 @@
 [submodule "lib/sparkle"]
 	path = lib/sparkle
 	url = git@github.com:sparkle-project/Sparkle.git
+[submodule "lib/math"]
+	path = lib/math
+	url = git@github.com:shotamatsuda/math.git
+[submodule "lib/graphics"]
+	path = lib/graphics
+	url = git@github.com:shotamatsuda/graphics.git
+[submodule "lib/algorithm"]
+	path = lib/algorithm
+	url = git@github.com:shotamatsuda/algorithm.git
