@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -74,7 +74,7 @@ class Image final {
 bool operator==(const Image& lhs, const Image& rhs);
 bool operator!=(const Image& lhs, const Image& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Image::Image()
     : x_scale(1.0),
@@ -101,7 +101,7 @@ inline Image::Image(const std::string& file_name,
       y_offset(y_offset),
       color(color) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Image& lhs, const Image& rhs) {
   return (lhs.file_name == rhs.file_name &&
@@ -118,7 +118,7 @@ inline bool operator!=(const Image& lhs, const Image& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Image::Image(const boost::property_tree::ptree& tree) : Image() {
   xml::read_attribute(tree, "fileName", &file_name);

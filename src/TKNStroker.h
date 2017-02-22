@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -28,20 +28,20 @@
 
 @interface TKNStroker : NSObject <NSCopying>
 
-#pragma mark Opening and Saving
+// MARK: Opening and Saving
 
-- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)URL;
+- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)url;
 
-@property (nonatomic, copy, readonly, nonnull) NSURL *URL;
+@property (nonatomic, copy, readonly, nonnull) NSURL *url;
 
-#pragma mark Stroking
+// MARK: Stroking
 
 @property (nonatomic, assign) double strokeWidth;
 @property (nonatomic, assign) double strokePrecision;
 @property (nonatomic, assign) double strokeShiftIncrement;
 @property (nonatomic, assign) double strokeShiftLimit;
 
-#pragma mark Properties
+// MARK: Properties
 
 @property (nonatomic, copy, readonly, nonnull) NSString *familyName;
 @property (nonatomic, copy, nonnull) NSString *styleName;
@@ -53,16 +53,16 @@
 @property (nonatomic, assign, readonly) double capHeight;
 @property (nonatomic, assign, readonly) double lineGap;
 
-#pragma mark Glyphs
+// MARK: Glyphs
 
 - (BOOL)strokeGlyphForName:(nonnull NSString *)name;
 - (nullable NSBezierPath *)glyphBezierPathForName:(nonnull NSString *)name;
 - (double)glyphAdvanceForName:(nonnull NSString *)name;
 - (CGRect)glyphBoundsForName:(nonnull NSString *)name;
 
-#pragma mark Saving
+// MARK: Saving
 
-- (BOOL)saveToURL:(nonnull NSURL *)URL
+- (BOOL)saveToURL:(nonnull NSURL *)url
             error:(NSError * _Nullable * _Nullable)error;
 
 @end

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -59,9 +59,9 @@ class Task final {
   std::vector<std::string> arguments_;
 };
 
-#pragma mark -
+// MARK: -
 
-#pragma mark Modifiers
+// MARK: Modifiers
 
 inline const std::string& Task::directory() const {
   return directory_;

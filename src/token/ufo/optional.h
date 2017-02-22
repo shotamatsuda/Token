@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -82,7 +82,7 @@ class Optional final {
   T value_;
 };
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Optional<T>::Optional() : exists_(), value_() {}
@@ -95,7 +95,7 @@ inline Optional<T>::Optional(T&& value)
     : exists_(true),
       value_(std::forward<T>(value)) {}
 
-#pragma mark Copy semantics
+// MARK: Copy semantics
 
 template <class T>
 inline Optional<T>& Optional<T>::operator=(const T& other) {
@@ -111,7 +111,7 @@ inline Optional<T>& Optional<T>::operator=(T&& other) {
   return *this;
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T>
 inline bool operator==(const Optional<T>& lhs, const Optional<T>& rhs) {
@@ -143,7 +143,7 @@ inline bool operator!=(const T& lhs, const Optional<T>& rhs) {
   return rhs != lhs;
 }
 
-#pragma mark Modifiers
+// MARK: Modifiers
 
 template <class T>
 template <class... Args>
@@ -152,7 +152,7 @@ inline void Optional<T>::emplace(Args&&... args) {
   value_ = T(std::forward<Args>(args)...);
 }
 
-#pragma mark Value access
+// MARK: Value access
 
 template <class T>
 inline const T& Optional<T>::operator*() const {

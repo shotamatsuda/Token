@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -87,13 +87,13 @@ class Glyphs final {
   mutable std::vector<std::pair<std::string, Glyph>> glyphs_;
 };
 
-#pragma mark -
+// MARK: -
 
 inline Glyphs::Glyphs(const std::string& path) {
   open(path);
 }
 
-#pragma mark Glyphs
+// MARK: Glyphs
 
 inline const Glyph& Glyphs::get(const std::string& name) const {
   auto glyph = find(name);
@@ -107,7 +107,7 @@ inline Glyph& Glyphs::get(const std::string& name) {
   return *glyph;
 }
 
-#pragma mark Iterator
+// MARK: Iterator
 
 inline typename Glyphs::Iterator Glyphs::begin() {
   return Iterator(this, std::begin(contents_));

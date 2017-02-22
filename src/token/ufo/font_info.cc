@@ -3,7 +3,7 @@
 //
 //  MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -49,7 +49,7 @@ extern "C" {
 namespace token {
 namespace ufo {
 
-#pragma mark Opening and saving
+// MARK: Opening and saving
 
 bool FontInfo::open(const std::string& path) {
   const boost::filesystem::path node(path);
@@ -116,7 +116,7 @@ bool FontInfo::save(std::ostream *stream) const {
   return true;
 }
 
-#pragma mark Reading from property list
+// MARK: Reading from property list
 
 void FontInfo::readIdentificationInformation(const PropertyList& plist) {
   plist::read_string(plist, "familyName", &family_name);
@@ -355,7 +355,7 @@ void FontInfo::readGuidelines(const PropertyList& plist) {
   plist::read_vector(plist, "guidelines", &guidelines);
 }
 
-#pragma mark Writing to property list
+// MARK: Writing to property list
 
 void FontInfo::writeIdentificationInformation(const PropertyList& plist) const {
   plist::write_string(plist, "familyName", family_name);

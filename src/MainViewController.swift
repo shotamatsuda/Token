@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -30,8 +30,8 @@ class MainViewController : NSViewController {
   private(set) var typefaceViewController: TypefaceViewController?
   private(set) var settingsViewController: SettingsViewController?
 
-  override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
-    super.prepareForSegue(segue, sender: sender)
+  override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
     guard let identifier = segue.identifier else {
       return
     }

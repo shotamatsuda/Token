@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -29,7 +29,7 @@ import AppKit
 class PreferencesViewController : NSViewController {
   var updateCheckInterval: Int {
     get {
-      let interval = SUUpdater.sharedUpdater().updateCheckInterval
+      let interval = SUUpdater.shared().updateCheckInterval
       switch interval {
       case 3600.0:
         return 0
@@ -46,11 +46,11 @@ class PreferencesViewController : NSViewController {
     set(value) {
       switch value {
       case 0:
-        SUUpdater.sharedUpdater().updateCheckInterval = 3600.0;
+        SUUpdater.shared().updateCheckInterval = 3600.0;
       case 1:
-        SUUpdater.sharedUpdater().updateCheckInterval = 86400.0;
+        SUUpdater.shared().updateCheckInterval = 86400.0;
       case 2:
-        SUUpdater.sharedUpdater().updateCheckInterval = 604800.0;
+        SUUpdater.shared().updateCheckInterval = 604800.0;
       default:
         break
       }

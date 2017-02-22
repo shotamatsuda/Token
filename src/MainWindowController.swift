@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -55,29 +55,29 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     guard let window = window else {
       return
     }
-    window.movableByWindowBackground = true
+    window.isMovableByWindowBackground = true
     window.titlebarAppearsTransparent = true
-    window.titleVisibility = .Hidden
-    window.styleMask |= NSFullSizeContentViewWindowMask
+    window.titleVisibility = .hidden
+    window.styleMask.insert(.fullSizeContentView)
 
     // Prepare a typeface
-    let bundle = NSBundle.mainBundle()
-    let URL = bundle.URLForResource("typeface", withExtension: nil)
-    typeface = Typeface(directoryURL: URL!)
+    let bundle = Bundle.main
+    let url = bundle.url(forResource: "typeface", withExtension: nil)
+    typeface = Typeface(directoryURL: url!)
     typeface!.delegate = self
     restoreTypefaceSettings()
     typefaceViewController?.typeface = typeface
     settingsViewController?.typeface = typeface
 
     // Check for Adobe FDK and show the welcome sheet if necessary.
-    dispatch_async(dispatch_get_main_queue()) {
-      if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
+    DispatchQueue.main.async {
+      if !((try? Location.adobeFDKURL.checkResourceIsReachable()) ?? false) {
         self.installAdobeFDK(self)
       }
     }
   }
 
-  func windowWillClose(notification: NSNotification) {
+  func windowWillClose(_ notification: Notification) {
     saveTypefaceSettings()
   }
 
@@ -85,17 +85,17 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
 
   private func saveTypefaceSettings() {
     if let typeface = typeface {
-      let defaults = NSUserDefaults.standardUserDefaults()
-      defaults.setDouble(
+      let defaults = UserDefaults.standard
+      defaults.set(
           typeface.strokeWidth,
           forKey: "PhysicalStrokeWidth")
-      defaults.setInteger(
+      defaults.set(
           typeface.strokeWidthUnit.rawValue,
           forKey: "PhysicalStrokeWidthUnit")
-      defaults.setDouble(
+      defaults.set(
           typeface.capHeight,
           forKey: "PhysicalCapHeight")
-      defaults.setInteger(
+      defaults.set(
           typeface.capHeightUnit.rawValue,
           forKey: "PhysicalCapHeightUnit")
       defaults.synchronize()
@@ -104,11 +104,11 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
 
   private func restoreTypefaceSettings() {
     if let typeface = typeface {
-      let defaults = NSUserDefaults.standardUserDefaults()
-      if let strokeWidth = defaults.objectForKey("PhysicalStrokeWidth"),
-          strokeWidthUnit = defaults.objectForKey("PhysicalStrokeWidthUnit"),
-          capHeight = defaults.objectForKey("PhysicalCapHeight"),
-          capHeightUnit = defaults.objectForKey("PhysicalCapHeightUnit") {
+      let defaults = UserDefaults.standard
+      if let strokeWidth = defaults.object(forKey: "PhysicalStrokeWidth"),
+          let strokeWidthUnit = defaults.object(forKey: "PhysicalStrokeWidthUnit"),
+          let capHeight = defaults.object(forKey: "PhysicalCapHeight"),
+          let capHeightUnit = defaults.object(forKey: "PhysicalCapHeightUnit") {
         typeface.setStrokeWidth(
             strokeWidth as! Double,
             strokeWidthUnit: TypefaceUnit(rawValue: strokeWidthUnit as! Int)!,
@@ -121,14 +121,14 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
   // MARK: Actions
 
   private func createFontAtURL(
-      URL: NSURL,
+      _ url: URL,
       message: String,
       completionHandler: (() -> Void)?) {
-    progressViewController = storyboard!.instantiateControllerWithIdentifier(
-        "ProgressViewController") as? ProgressViewController
+    progressViewController = storyboard!.instantiateController(
+        withIdentifier: "ProgressViewController") as? ProgressViewController
     contentViewController!.presentViewControllerAsSheet(progressViewController!)
     progressViewController!.progressLabel!.stringValue = message
-    typeface!.createFontToURL(URL) {
+    typeface!.createFontToURL(url) {
       self.contentViewController!.dismissViewController(
           self.progressViewController!)
       self.progressViewController = nil
@@ -136,8 +136,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     }
   }
 
-  @IBAction func exportFont(sender: AnyObject?) {
-    if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
+  @IBAction func exportFont(_ sender: AnyObject?) {
+    if !((try? Location.adobeFDKURL.checkResourceIsReachable()) ?? false) {
       self.installAdobeFDK(self)
       return
     }
@@ -146,20 +146,20 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     }
     let panel = NSSavePanel()
     panel.nameFieldStringValue = typeface.postscriptName + ".otf"
-    panel.beginSheetModalForWindow(window!) { (result: Int) in
+    panel.beginSheetModal(for: window!) { (result: Int) in
       if result == NSFileHandlingPanelOKButton {
         self.createFontAtURL(
-            panel.URL!,
+            panel.url!,
             message: String(
                 format: NSLocalizedString("Exporting “%@”...", comment: ""),
-                panel.URL!.lastPathComponent!),
+                panel.url!.lastPathComponent),
             completionHandler: nil)
       }
     }
   }
 
-  @IBAction func installFont(sender: AnyObject?) {
-    if !Location.adobeFDKURL.checkResourceIsReachableAndReturnError(nil) {
+  @IBAction func installFont(_ sender: AnyObject?) {
+    if !((try? Location.adobeFDKURL.checkResourceIsReachable()) ?? false) {
       self.installAdobeFDK(self)
       return
     }
@@ -167,66 +167,66 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       return
     }
     guard let searchPath = NSSearchPathForDirectoriesInDomains(
-        .LibraryDirectory, .UserDomainMask, true).first else {
+        .libraryDirectory, .userDomainMask, true).first else {
       fatalError("Could not retrieve user's library directory")
     }
-    let installURL = NSURL(fileURLWithPath: searchPath)
-        .URLByAppendingPathComponent("Fonts")
-        .URLByAppendingPathComponent(typeface.familyName)
-        .URLByAppendingPathComponent(typeface.postscriptName)
-        .URLByAppendingPathExtension("otf")
+    let installURL = URL(fileURLWithPath: searchPath)
+        .appendingPathComponent("Fonts")
+        .appendingPathComponent(typeface.familyName)
+        .appendingPathComponent(typeface.postscriptName)
+        .appendingPathExtension("otf")
     self.createFontAtURL(
         installURL,
         message: String(
             format: NSLocalizedString("Installing “%@”...", comment: ""),
-            installURL.lastPathComponent!)) {
-      NSWorkspace.sharedWorkspace().openURL(
-          installURL.URLByDeletingLastPathComponent!)
+            installURL.lastPathComponent)) {
+      NSWorkspace.shared().open(
+          installURL.deletingLastPathComponent())
     }
   }
 
-  @IBAction func zoomIn(sender: AnyObject?) {
+  @IBAction func zoomIn(_ sender: AnyObject?) {
     typefaceViewController?.zoomIn(sender)
   }
 
-  @IBAction func zoomOut(sender: AnyObject?) {
+  @IBAction func zoomOut(_ sender: AnyObject?) {
     typefaceViewController?.zoomOut(sender)
   }
 
-  @IBAction func zoomToFit(sender: AnyObject?) {
+  @IBAction func zoomToFit(_ sender: AnyObject?) {
     typefaceViewController?.zoomToFit(sender)
   }
 
   // MARK: Typeface Delegate
 
   func typeface(
-      typeface: Typeface,
-      createFontAtURL URL: NSURL,
+      _ typeface: Typeface,
+      createFontAtURL url: URL,
       didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
       totalNumberOfSubtasks: UInt) {
-    progressViewController!.progressIndicator!.indeterminate = false
+    progressViewController!.progressIndicator!.isIndeterminate = false
     progressViewController!.progressIndicator!.doubleValue =
         Double(numberOfSubtasks) / Double(totalNumberOfSubtasks)
   }
 
   func typeface(
-      typeface: Typeface,
-      didFailToCreateFontAtURL URL: NSURL,
+      _ typeface: Typeface,
+      didFailToCreateFontAtURL url: URL,
       error: NSError) {
     let alert = NSAlert()
-    alert.alertStyle = .WarningAlertStyle
+    alert.alertStyle = .warning
     alert.messageText = NSLocalizedString(
-        "Couldn’t export font “\(URL.lastPathComponent!)”.",
+        "Couldn’t export font “\(url.lastPathComponent)”.",
         comment: "")
     alert.informativeText = error.localizedDescription
-    alert.beginSheetModalForWindow(
-        NSApp.mainWindow!,
+    alert.beginSheetModal(
+        for: NSApp.mainWindow!,
         completionHandler: nil)
   }
 
   // MARK: Adobe FDK
 
-  @IBAction func installAdobeFDK(sender: AnyObject?) {
+  @IBAction func installAdobeFDK(_ sender: AnyObject?) {
     guard let window = window else {
       return
     }
@@ -238,40 +238,40 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     window.beginSheet(sheet, completionHandler: nil)
   }
 
-  @IBAction func uninstallAdobeFDK(sender: AnyObject?) {
+  @IBAction func uninstallAdobeFDK(_ sender: AnyObject?) {
     let alert = NSAlert()
-    alert.alertStyle = .WarningAlertStyle
+    alert.alertStyle = .warning
     alert.messageText = NSLocalizedString(
         "Are you sure you want to permanently erase Adobe FDK?",
         comment: "")
     alert.informativeText = NSLocalizedString(
         "You can’t undo this action.",
         comment: "")
-    alert.addButtonWithTitle(NSLocalizedString("Uninstall", comment: ""))
-    alert.addButtonWithTitle(NSLocalizedString("Cancel", comment: ""))
+    alert.addButton(withTitle: NSLocalizedString("Uninstall", comment: ""))
+    alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
     let completionHandler = { (returnCode: NSModalResponse) in
       guard returnCode == NSAlertFirstButtonReturn else {
         return
       }
-      let fileManager = NSFileManager.defaultManager()
+      let fileManager = FileManager.default
       let applicationSupportURL = Location.privateApplicationSupportURL
       let libraryURL = Location.privateLibraryURL
       do {
-        if applicationSupportURL.checkResourceIsReachableAndReturnError(nil) {
-          try fileManager.removeItemAtURL(applicationSupportURL)
+        if (try? applicationSupportURL.checkResourceIsReachable()) ?? false {
+          try fileManager.removeItem(at: applicationSupportURL)
         }
-        if libraryURL.checkResourceIsReachableAndReturnError(nil) {
-          try fileManager.removeItemAtURL(libraryURL)
+        if (try? libraryURL.checkResourceIsReachable()) ?? false {
+          try fileManager.removeItem(at: libraryURL)
         }
       } catch let error as NSError {
         let alert = NSAlert()
-        alert.alertStyle = .WarningAlertStyle
+        alert.alertStyle = .warning
         alert.messageText = NSLocalizedString(
             "Couldn’t uninstall Adobe FDK.",
             comment: "")
         alert.informativeText = error.localizedDescription
-        alert.beginSheetModalForWindow(
-            NSApp.mainWindow!,
+        alert.beginSheetModal(
+            for: NSApp.mainWindow!,
             completionHandler: nil)
         return
       }
@@ -282,12 +282,12 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       alert.informativeText = NSLocalizedString(
           "Adobe FDK was uninstalled.",
           comment: "")
-      alert.beginSheetModalForWindow(
-          NSApp.mainWindow!,
+      alert.beginSheetModal(
+          for: NSApp.mainWindow!,
           completionHandler: nil)
     }
-    alert.beginSheetModalForWindow(
-        window!,
+    alert.beginSheetModal(
+        for: window!,
         completionHandler: completionHandler)
   }
 }

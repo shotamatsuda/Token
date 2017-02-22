@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -74,7 +74,7 @@ class Component final {
 bool operator==(const Component& lhs, const Component& rhs);
 bool operator!=(const Component& lhs, const Component& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Component::Component()
     : x_scale(1.0),
@@ -101,7 +101,7 @@ inline Component::Component(const std::string& base,
       y_offset(y_offset),
       identifier(identifier) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Component& lhs, const Component& rhs) {
   return (lhs.base == rhs.base &&
@@ -118,7 +118,7 @@ inline bool operator!=(const Component& lhs, const Component& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Component::Component(const boost::property_tree::ptree& tree)
     : Component() {

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -64,14 +64,14 @@ class Outline final {
 bool operator==(const Outline& lhs, const Outline& rhs);
 bool operator!=(const Outline& lhs, const Outline& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Outline::Outline(const std::vector<Component>& components,
                         const std::vector<Contour>& contours)
     : components(components),
       contours(contours) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Outline& lhs, const Outline& rhs) {
   return lhs.components == rhs.components && lhs.contours == rhs.contours;
@@ -81,7 +81,7 @@ inline bool operator!=(const Outline& lhs, const Outline& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Outline::Outline(const boost::property_tree::ptree& tree) {
   xml::read_children(tree, "component", &components);

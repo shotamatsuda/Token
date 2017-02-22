@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,7 @@ class TypefaceClipView : NSClipView {
 
   private var documentSize: CGSize = CGSize()
 
-  override func viewFrameChanged(notification: NSNotification) {
+  override func viewFrameChanged(_ notification: Notification) {
     super.viewFrameChanged(notification)
     guard let documentView = documentView else {
       return
@@ -56,7 +56,7 @@ class TypefaceClipView : NSClipView {
     }
   }
 
-  override func constrainBoundsRect(proposedBounds: NSRect) -> NSRect {
+  override func constrainBoundsRect(_ proposedBounds: NSRect) -> NSRect {
     var bounds = super.constrainBoundsRect(proposedBounds)
     guard let documentView = documentView else {
       return bounds

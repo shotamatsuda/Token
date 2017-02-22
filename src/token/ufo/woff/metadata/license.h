@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -61,9 +61,9 @@ class License final {
 bool operator==(const License& lhs, const License& rhs);
 bool operator!=(const License& lhs, const License& rhs);
 
-#pragma mark -
+// MARK: -
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const License& lhs, const License& rhs) {
   return (lhs.url == rhs.url &&

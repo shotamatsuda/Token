@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -33,11 +33,11 @@ class MultilineTextField : NSTextField {
         return super.intrinsicContentSize
       }
       if cell.wraps && frame.height > 1.0 {
-        return cell.cellSizeForBounds(CGRect(
+        return cell.cellSize(forBounds: CGRect(
             x: 0.0,
             y: 0.0,
             width: bounds.width,
-            height: CGFloat.max))
+            height: CGFloat.greatestFiniteMagnitude))
       }
       return super.intrinsicContentSize
     }

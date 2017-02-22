@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -64,14 +64,14 @@ class Contour final {
 bool operator==(const Contour& lhs, const Contour& rhs);
 bool operator!=(const Contour& lhs, const Contour& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Contour::Contour(const std::string& identifier,
                         const std::vector<Point>& points)
     : identifier(identifier),
       points(points) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Contour& lhs, const Contour& rhs) {
   return lhs.identifier == rhs.identifier && lhs.points == rhs.points;
@@ -81,7 +81,7 @@ inline bool operator!=(const Contour& lhs, const Contour& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Contour::Contour(const boost::property_tree::ptree& tree) {
   xml::read_attribute(tree, "identifier", &identifier);

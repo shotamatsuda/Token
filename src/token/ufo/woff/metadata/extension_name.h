@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -60,9 +60,9 @@ class ExtensionName final {
 bool operator==(const ExtensionName& lhs, const ExtensionName& rhs);
 bool operator!=(const ExtensionName& lhs, const ExtensionName& rhs);
 
-#pragma mark -
+// MARK: -
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const ExtensionName& lhs, const ExtensionName& rhs) {
   return (lhs.text == rhs.text &&

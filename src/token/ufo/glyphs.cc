@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -50,7 +50,7 @@ extern "C" {
 namespace token {
 namespace ufo {
 
-#pragma mark Opening
+// MARK: Opening
 
 bool Glyphs::open(const std::string& path) {
   const boost::filesystem::path node(path);
@@ -89,7 +89,7 @@ bool Glyphs::open(std::istream *stream) {
   return true;
 }
 
-#pragma mark Glyphs
+// MARK: Glyphs
 
 std::string Glyphs::filename(const std::string& name) const {
   const auto value = std::find_if(

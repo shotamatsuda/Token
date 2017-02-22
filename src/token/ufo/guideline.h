@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -66,7 +66,7 @@ class Guideline final {
 bool operator==(const Guideline& lhs, const Guideline& rhs);
 bool operator!=(const Guideline& lhs, const Guideline& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Guideline::Guideline(double x,
                             double y,
@@ -81,7 +81,7 @@ inline Guideline::Guideline(double x,
       color(color),
       identifier(identifier) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Guideline& lhs, const Guideline& rhs) {
   return (lhs.x == rhs.x &&

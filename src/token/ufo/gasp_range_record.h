@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -56,11 +56,11 @@ class GASPRangeRecord final {
 bool operator==(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs);
 bool operator!=(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline GASPRangeRecord::GASPRangeRecord() : range_max_ppem() {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const GASPRangeRecord& lhs, const GASPRangeRecord& rhs) {
   return (lhs.range_max_ppem == rhs.range_max_ppem &&

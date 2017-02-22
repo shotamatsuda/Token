@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -24,8 +24,6 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#define TAKRAM_HAS_COREGRAPHICS 1
-
 #import "TKNStroker.h"
 
 #include <cassert>
@@ -36,29 +34,31 @@
 
 #include <boost/filesystem.hpp>
 
-#include "takram/graphics.h"
-#include "takram/math.h"
+#include "shotamatsuda/graphics.h"
+#include "shotamatsuda/math.h"
 #include "token/glyph_outline.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo.h"
+
+namespace shota = shotamatsuda;
 
 @interface TKNStroker () {
  @private
   token::ufo::FontInfo _fontInfo;
   token::ufo::Glyphs _glyphs;
   std::unordered_map<std::string, token::GlyphOutline> _glyphOutlines;
-  std::unordered_map<std::string, takram::Shape2d> _glyphShapes;
-  std::unordered_map<std::string, takram::Rect2d> _glyphBounds;
+  std::unordered_map<std::string, shota::Shape2d> _glyphShapes;
+  std::unordered_map<std::string, shota::Rect2d> _glyphBounds;
   std::unordered_map<std::string, token::ufo::glif::Advance> _glyphAdvances;
   NSMutableDictionary *_glyphBezierPaths;
 }
 
-#pragma mark Glyphs
+// MARK: Glyphs
 
 - (BOOL)strokeGlyph:(const token::ufo::Glyph&)glyph;
-- (NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape;
+- (NSBezierPath *)bezierPathWithShape:(const shota::Shape2d&)shape;
 
-#pragma mark Exporting
+// MARK: Exporting
 
 - (BOOL)saveFontInfoAtPath:(const std::string&)path;
 - (BOOL)saveGlyphsAtPath:(const std::string&)path;
@@ -67,11 +67,11 @@
 
 @implementation TKNStroker
 
-- (instancetype)initWithContentsOfURL:(nonnull NSURL *)URL {
+- (instancetype)initWithContentsOfURL:(nonnull NSURL *)url {
   self = [super init];
   if (self) {
-    _fontInfo = token::ufo::FontInfo(URL.path.UTF8String);
-    _glyphs = token::ufo::Glyphs(URL.path.UTF8String);
+    _fontInfo = token::ufo::FontInfo(url.path.UTF8String);
+    _glyphs = token::ufo::Glyphs(url.path.UTF8String);
     _glyphBezierPaths = [NSMutableDictionary dictionary];
     _styleName = [NSString stringWithUTF8String:
         _fontInfo.style_name.c_str()];
@@ -79,7 +79,7 @@
         _fontInfo.postscript_font_name.c_str()];
     _fullName = [NSString stringWithUTF8String:
         _fontInfo.postscript_full_name.c_str()];
-    _URL = URL;
+    _url = url;
     _strokePrecision = 250.0 / _fontInfo.units_per_em;
     _strokeShiftIncrement = 0.0001;
     _strokeShiftLimit = 0.1;
@@ -96,7 +96,7 @@
   copy->_glyphBounds = _glyphBounds;
   copy->_glyphAdvances = _glyphAdvances;
   copy->_glyphBezierPaths = [_glyphBezierPaths copy];
-  copy->_URL = [_URL copy];
+  copy->_url = [_url copy];
   copy->_strokeWidth = _strokeWidth;
   copy->_strokePrecision = _strokePrecision;
   copy->_strokeShiftIncrement = _strokeShiftIncrement;
@@ -108,7 +108,7 @@
   return copy;
 }
 
-#pragma mark Stroke Width
+// MARK: Stroke Width
 
 - (void)setStrokeWidth:(double)strokeWidth {
   strokeWidth = std::round(strokeWidth);
@@ -122,7 +122,7 @@
   }
 }
 
-#pragma mark Properties
+// MARK: Properties
 
 @dynamic familyName;
 @dynamic UPEM;
@@ -159,7 +159,7 @@
   return _fontInfo.open_type_hhea_line_gap;
 }
 
-#pragma mark Glyphs
+// MARK: Glyphs
 
 - (NSBezierPath *)glyphBezierPathForName:(NSString *)name {
   [self strokeGlyphForName:name];
@@ -181,7 +181,7 @@
   [self strokeGlyphForName:name];
   const auto bounds = _glyphBounds.find(name.UTF8String);
   assert(bounds != std::end(_glyphBounds));
-  return bounds->second;
+  return static_cast<CGRect>(bounds->second);
 }
 
 - (BOOL)strokeGlyphForName:(nonnull NSString *)name {
@@ -210,22 +210,22 @@
   return true;
 }
 
-- (NSBezierPath *)bezierPathWithShape:(const takram::Shape2d&)shape {
+- (NSBezierPath *)bezierPathWithShape:(const shota::Shape2d&)shape {
   NSBezierPath *path = [NSBezierPath bezierPath];
   for (const auto& command : shape) {
     switch (command.type()) {
-      case takram::graphics::CommandType::MOVE:
+      case shota::graphics::CommandType::MOVE:
         [path moveToPoint:command.point()];
         break;
-      case takram::graphics::CommandType::LINE:
+      case shota::graphics::CommandType::LINE:
         [path lineToPoint:command.point()];
         break;
-      case takram::graphics::CommandType::CUBIC:
+      case shota::graphics::CommandType::CUBIC:
         [path curveToPoint:command.point()
              controlPoint1:command.control1()
              controlPoint2:command.control2()];
         break;
-      case takram::graphics::CommandType::CLOSE:
+      case shota::graphics::CommandType::CLOSE:
         [path closePath];
         break;
       default:
@@ -236,22 +236,22 @@
   return path;
 }
 
-#pragma mark Saving
+// MARK: Saving
 
-- (BOOL)saveToURL:(NSURL *)URL error:(NSError **)error {
+- (BOOL)saveToURL:(NSURL *)url error:(NSError **)error {
   NSFileManager *fileManager = [NSFileManager defaultManager];
-  if (![URL.URLByDeletingLastPathComponent
+  if (![url.URLByDeletingLastPathComponent
           checkResourceIsReachableAndReturnError:nil]) {
-    if (![fileManager createDirectoryAtURL:URL.URLByDeletingLastPathComponent
+    if (![fileManager createDirectoryAtURL:url.URLByDeletingLastPathComponent
                withIntermediateDirectories:YES
                                 attributes:nil
                                      error:error]) {
       return NO;
     }
   }
-  if (![fileManager copyItemAtURL:_URL toURL:URL error:error] ||
-      ![self saveFontInfoAtPath:URL.path.UTF8String] ||
-      ![self saveGlyphsAtPath:URL.path.UTF8String]) {
+  if (![fileManager copyItemAtURL:_url toURL:url error:error] ||
+      ![self saveFontInfoAtPath:url.path.UTF8String] ||
+      ![self saveGlyphsAtPath:url.path.UTF8String]) {
     return NO;
   }
   return YES;

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -38,8 +38,8 @@
 #include "SkPath.h"
 #include "SkPathOps.h"
 
-#include "takram/graphics.h"
-#include "takram/math.h"
+#include "shotamatsuda/graphics.h"
+#include "shotamatsuda/math.h"
 #include "token/glyph_outline.h"
 #include "token/ufo/font_info.h"
 #include "token/ufo/glif/advance.h"
@@ -83,8 +83,8 @@ inline SkPaint::Join convertJoin(GlyphStroker::Join join) {
   return SkPaint::Join::kDefault_Join;
 }
 
-inline takram::Shape2d convertShape(const SkPath& other) {
-  takram::Shape2d shape;
+inline shota::Shape2d convertShape(const SkPath& other) {
+  shota::Shape2d shape;
   SkPath::RawIter itr(other);
   SkPath::Verb verb;
   std::vector<SkPoint> points(4);
@@ -121,31 +121,31 @@ inline takram::Shape2d convertShape(const SkPath& other) {
   return std::move(shape);
 }
 
-inline SkPath convertShape(const takram::Shape2d& other) {
+inline SkPath convertShape(const shota::Shape2d& other) {
   SkPath path;
   for (const auto& command : other) {
     switch (command.type()) {
-      case takram::graphics::CommandType::MOVE:
+      case shota::graphics::CommandType::MOVE:
         path.moveTo(command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::LINE:
+      case shota::graphics::CommandType::LINE:
         path.lineTo(command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::QUADRATIC:
+      case shota::graphics::CommandType::QUADRATIC:
         path.quadTo(command.control().x, command.control().y,
                     command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::CONIC:
+      case shota::graphics::CommandType::CONIC:
         path.conicTo(command.control().x, command.control().y,
                      command.point().x, command.point().y,
                      command.weight());
         break;
-      case takram::graphics::CommandType::CUBIC:
+      case shota::graphics::CommandType::CUBIC:
         path.cubicTo(command.control1().x, command.control1().y,
                      command.control2().x, command.control2().y,
                      command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::CLOSE:
+      case shota::graphics::CommandType::CLOSE:
         path.close();
         break;
       default:
@@ -156,31 +156,31 @@ inline SkPath convertShape(const takram::Shape2d& other) {
   return std::move(path);
 }
 
-inline SkPath convertPath(const takram::Path2d& other) {
+inline SkPath convertPath(const shota::Path2d& other) {
   SkPath path;
   for (const auto& command : other) {
     switch (command.type()) {
-      case takram::graphics::CommandType::MOVE:
+      case shota::graphics::CommandType::MOVE:
         path.moveTo(command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::LINE:
+      case shota::graphics::CommandType::LINE:
         path.lineTo(command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::QUADRATIC:
+      case shota::graphics::CommandType::QUADRATIC:
         path.quadTo(command.control().x, command.control().y,
                     command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::CONIC:
+      case shota::graphics::CommandType::CONIC:
         path.conicTo(command.control().x, command.control().y,
                      command.point().x, command.point().y,
                      command.weight());
         break;
-      case takram::graphics::CommandType::CUBIC:
+      case shota::graphics::CommandType::CUBIC:
         path.cubicTo(command.control1().x, command.control1().y,
                      command.control2().x, command.control2().y,
                      command.point().x, command.point().y);
         break;
-      case takram::graphics::CommandType::CLOSE:
+      case shota::graphics::CommandType::CLOSE:
         path.close();
         break;
       default:
@@ -193,7 +193,7 @@ inline SkPath convertPath(const takram::Path2d& other) {
 
 }  // namespace
 
-std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
+std::pair<shota::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
     const ufo::FontInfo& font_info,
     const ufo::Glyph& glyph,
     const GlyphOutline& outline) const {
@@ -229,7 +229,7 @@ std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
   } else {
     lsb_error = error / 2.0;
   }
-  takram::Vec2d offset(lsb + lsb_error - bounds.minX(), width_ / 2.0);
+  shota::Vec2d offset(lsb + lsb_error - bounds.minX(), width_ / 2.0);
   for (auto& command : shape) {
     command.point() += offset;
     command.control1() += offset;
@@ -240,10 +240,10 @@ std::pair<takram::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
   return std::make_pair(shape, glyph_advance);
 }
 
-takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
+shota::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
                                      const GlyphOutline& outline) const {
   GlyphStroker stroker(*this);
-  takram::Shape2d shape;
+  shota::Shape2d shape;
   // Check for the number of contours of the resulting shape and retry if that
   // differs from the expected value, because the path simplification
   // occationally fails.
@@ -262,10 +262,10 @@ takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
       std::size_t contour_count{};
       std::size_t hole_count{};
       for (const auto& path : shape.paths()) {
-        if (path.direction() != takram::PathDirection::UNDEFINED) {
+        if (path.direction() != shota::PathDirection::UNDEFINED) {
           ++contour_count;
         }
-        if (path.direction() == takram::PathDirection::COUNTER_CLOCKWISE) {
+        if (path.direction() == shota::PathDirection::COUNTER_CLOCKWISE) {
           ++hole_count;
         }
       }
@@ -297,9 +297,9 @@ takram::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
   return std::move(shape);
 }
 
-takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
+shota::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
   GlyphStroker stroker(*this);
-  takram::Shape2d result;
+  shota::Shape2d result;
   for (const auto& path : outline.shape().paths()) {
     if (outline.cap(path) != Cap::UNDEFINED) {
       stroker.set_cap(outline.cap(path));
@@ -325,9 +325,9 @@ takram::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
   return std::move(result);
 }
 
-takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
+shota::Shape2d GlyphStroker::stroke(const shota::Path2d& path) const {
   auto aligned_path = path;
-  takram::Vec2d offset;
+  shota::Vec2d offset;
   switch (align_) {
     case Align::LEFT:
       offset.x = width_ / 2.0;
@@ -370,12 +370,12 @@ takram::Shape2d GlyphStroker::stroke(const takram::Path2d& path) const {
         max_bounds = bounds;
       }
     }
-    result = takram::Shape2d(*max_path);
+    result = shota::Shape2d(*max_path);
   }
   return std::move(result);
 }
 
-takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
+shota::Shape2d GlyphStroker::simplify(const shota::Shape2d& shape) const {
   SkPath sk_path(convertShape(shape));
   SkPath sk_result;
   Simplify(sk_path, &sk_result);
@@ -384,13 +384,13 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   // Fix up winding rules
   const auto bounds_error = 1.0;
   const auto bounds_insets = width_ - bounds_error;
-  std::unordered_map<takram::Path2d *, int> depths;
+  std::unordered_map<shota::Path2d *, int> depths;
   auto& paths = result.paths();
   if (paths.size() == 1) {
     depths[&paths.front()] = 0;
   } else {
     for (auto itr = std::begin(paths); itr != std::end(paths);) {
-      if (itr->direction() == takram::PathDirection::UNDEFINED) {
+      if (itr->direction() == shota::PathDirection::UNDEFINED) {
         itr = paths.erase(itr);
       } else {
         for (auto& other : result.paths()) {
@@ -413,13 +413,13 @@ takram::Shape2d GlyphStroker::simplify(const takram::Shape2d& shape) const {
   for (const auto& pair : depths) {
     auto& path = *pair.first;
     if (pair.second % 2) {
-      if (path.direction() == takram::PathDirection::CLOCKWISE) {
+      if (path.direction() == shota::PathDirection::CLOCKWISE) {
         path.reverse();
-        assert(path.direction() == takram::PathDirection::COUNTER_CLOCKWISE);
+        assert(path.direction() == shota::PathDirection::COUNTER_CLOCKWISE);
       }
-    } else if (path.direction() == takram::PathDirection::COUNTER_CLOCKWISE) {
+    } else if (path.direction() == shota::PathDirection::COUNTER_CLOCKWISE) {
       path.reverse();
-      assert(path.direction() == takram::PathDirection::CLOCKWISE);
+      assert(path.direction() == shota::PathDirection::CLOCKWISE);
     }
   }
   return std::move(result);

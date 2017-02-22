@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -30,12 +30,14 @@
 
 #include <utility>
 
-#include "takram/graphics.h"
+#include "shotamatsuda/graphics.h"
 #include "token/ufo/font_info.h"
 #include "token/ufo/glif/advance.h"
 #include "token/ufo/glyph.h"
 
 namespace token {
+
+namespace shota = shotamatsuda;
 
 class GlyphOutline;
 
@@ -73,7 +75,7 @@ class GlyphStroker final {
   friend bool operator!=(const GlyphStroker& lhs, const GlyphStroker& rhs);
 
   // Stroking
-  std::pair<takram::Shape2d, ufo::glif::Advance> operator()(
+  std::pair<shota::Shape2d, ufo::glif::Advance> operator()(
       const ufo::FontInfo& font_info,
       const ufo::Glyph& glyph,
       const GlyphOutline& outline) const;
@@ -99,11 +101,11 @@ class GlyphStroker final {
   void set_shift_limit(double value) { shift_limit_ = value; }
 
  private:
-  takram::Shape2d stroke(const ufo::Glyph& glyph,
+  shota::Shape2d stroke(const ufo::Glyph& glyph,
                          const GlyphOutline& outline) const;
-  takram::Shape2d stroke(const GlyphOutline& outline) const;
-  takram::Shape2d stroke(const takram::Path2d& path) const;
-  takram::Shape2d simplify(const takram::Shape2d& shape) const;
+  shota::Shape2d stroke(const GlyphOutline& outline) const;
+  shota::Shape2d stroke(const shota::Path2d& path) const;
+  shota::Shape2d simplify(const shota::Shape2d& shape) const;
 
  private:
   double width_;
@@ -117,7 +119,7 @@ class GlyphStroker final {
   double shift_limit_;
 };
 
-#pragma mark -
+// MARK: -
 
 inline GlyphStroker::GlyphStroker()
     : width_(),
@@ -130,7 +132,7 @@ inline GlyphStroker::GlyphStroker()
       shift_increment_(0.0001),
       shift_limit_(0.1) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const GlyphStroker& lhs, const GlyphStroker& rhs) {
   return (lhs.width_ == rhs.width_ &&

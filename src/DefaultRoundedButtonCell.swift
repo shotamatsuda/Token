@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -29,25 +29,25 @@ import AppKit
 class DefaultRoundedButtonCell : RoundedButtonCell {
   override var textColor: NSColor {
     get {
-      return NSColor.blackColor().colorWithAlphaComponent(0.75)
+      return NSColor.black.withAlphaComponent(0.75)
     }
   }
 
   override var highlightedTextColor: NSColor {
     get {
-      return NSColor.blackColor()
+      return NSColor.black
     }
   }
 
   override var frameColor: NSColor {
     get {
-      return NSColor.whiteColor().colorWithAlphaComponent(0.75)
+      return NSColor.white.withAlphaComponent(0.75)
     }
   }
 
   override var highlightedFrameColor: NSColor {
     get {
-      return NSColor.whiteColor()
+      return NSColor.white
     }
   }
 }

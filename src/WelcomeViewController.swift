@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,8 @@
 import AppKit
 
 class WelcomeViewController : NSViewController {
-  @IBAction func cancel(sender: AnyObject?) {
-    guard let window = view.window, sheetParent = window.sheetParent else {
+  @IBAction func cancel(_ sender: AnyObject?) {
+    guard let window = view.window, let sheetParent = window.sheetParent else {
       return
     }
     sheetParent.endSheet(window, returnCode:NSModalResponseCancel)

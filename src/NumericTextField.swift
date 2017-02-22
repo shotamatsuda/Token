@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -40,20 +40,20 @@ class NumericTextField : NSTextField {
   }
 
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(
+    NotificationCenter.default.removeObserver(
         self,
-        name: NSControlTextDidEndEditingNotification,
+        name: NSNotification.Name.NSControlTextDidEndEditing,
         object: self)
   }
 
   private func setUpNumericTextField() {
     setUpTrackingArea()
-    editable = false
-    selectable = false
-    NSNotificationCenter.defaultCenter().addObserver(
+    isEditable = false
+    isSelectable = false
+    NotificationCenter.default.addObserver(
         self,
         selector: #selector(controlTextDidEndEditing(_:)),
-        name: NSControlTextDidEndEditingNotification,
+        name: NSNotification.Name.NSControlTextDidEndEditing,
         object: self)
   }
 
@@ -65,7 +65,7 @@ class NumericTextField : NSTextField {
     }
     trackingArea = NSTrackingArea(
         rect: bounds,
-        options: [.MouseEnteredAndExited, .MouseMoved, .ActiveInKeyWindow],
+        options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow],
         owner: self,
         userInfo: nil)
   }
@@ -78,60 +78,66 @@ class NumericTextField : NSTextField {
     }
   }
 
-  override func mouseDragged(event: NSEvent) {
-    super.mouseDragged(event)
+  override func mouseDragged(with event: NSEvent) {
+    super.mouseDragged(with: event)
 
     // Propagate the change through binding, and store the value after
     // propagation back to the double value of the text field.
-    guard let bindingInfo = infoForBinding(NSValueBinding),
-        observedObject = bindingInfo[NSObservedObjectKey],
-        keyPath = bindingInfo[NSObservedKeyPathKey] as? String else {
+    guard let info = infoForBinding(NSValueBinding) else {
+      return
+    }
+    guard let keyPath = info[NSObservedKeyPathKey] as? String else {
+      return
+    }
+    guard let observedObject = info[NSObservedObjectKey] as AnyObject? else {
       return
     }
     let result = doubleValue + Double(event.deltaX) * step
-    observedObject.setValue?(NSNumber(double: result), forKeyPath: keyPath)
-    if let value = observedObject.valueForKeyPath(keyPath) as? NSNumber {
+    observedObject.setValue(NSNumber(value: result), forKeyPath: keyPath)
+    if let value = observedObject.value(forKeyPath: keyPath) as? NSNumber {
       doubleValue = value.doubleValue
     }
   }
 
-  override func mouseUp(event: NSEvent) {
-    super.mouseUp(event)
+  override func mouseUp(with event: NSEvent) {
+    super.mouseUp(with: event)
     guard event.clickCount != 0 else {
       return
     }
     guard let window = window else {
       return
     }
-    let location = convertPoint(
-        event.locationInWindow,
-        fromView: window.contentView)
-    if CGRectContainsPoint(bounds, location) {
-      editable = true
-      selectable = true
+    let location = convert(event.locationInWindow, from: window.contentView)
+    if bounds.contains(location) {
+      isEditable = true
+      isSelectable = true
       selectText(self)
       resetCursorRects()
     }
   }
 
   override func resetCursorRects() {
-    if editable {
+    if isEditable {
       super.resetCursorRects()
     } else {
-      addCursorRect(bounds, cursor: NSCursor.resizeLeftRightCursor())
+      addCursorRect(bounds, cursor: NSCursor.resizeLeftRight())
     }
   }
 
-  override func controlTextDidEndEditing(notification: NSNotification) {
-    guard let bindingInfo = infoForBinding(NSValueBinding),
-        observedObject = bindingInfo[NSObservedObjectKey],
-        keyPath = bindingInfo[NSObservedKeyPathKey] as? String else {
+  override func controlTextDidEndEditing(_ notification: Notification) {
+    guard let info = infoForBinding(NSValueBinding) else {
       return
     }
-    if let value = observedObject.valueForKeyPath(keyPath) as? NSNumber {
+    guard let keyPath = info[NSObservedKeyPathKey] as? String else {
+      return
+    }
+    guard let observedObject = info[NSObservedObjectKey] as AnyObject? else {
+      return
+    }
+    if let value = observedObject.value(forKeyPath: keyPath) as? NSNumber {
       doubleValue = value.doubleValue
-      editable = false
-      selectable = false
+      isEditable = false
+      isSelectable = false
       resetCursorRects()
     }
   }

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -60,11 +60,11 @@ class Unicode final {
 bool operator==(const Unicode& lhs, const Unicode& rhs);
 bool operator!=(const Unicode& lhs, const Unicode& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Unicode::Unicode(const std::string& hex) : hex(hex) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Unicode& lhs, const Unicode& rhs) {
   return lhs.hex == rhs.hex;
@@ -74,7 +74,7 @@ inline bool operator!=(const Unicode& lhs, const Unicode& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Unicode::Unicode(const boost::property_tree::ptree& tree) {
   xml::read_attribute(tree, "hex", &hex);

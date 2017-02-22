@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -26,21 +26,21 @@
 
 import AppKit
 
-class TypefaceViewController : NSViewController {
-  private let KVOContext: UnsafeMutablePointer<()> = UnsafeMutablePointer<()>(nil)
+private var KVOContext: UInt = 0
 
+class TypefaceViewController : NSViewController {
   @IBOutlet var typefaceView: TypefaceView?
   @IBOutlet var scrollView: NSScrollView?
 
   deinit {
-    let defaultCenter = NSNotificationCenter.defaultCenter()
+    let defaultCenter = NotificationCenter.default
     defaultCenter.removeObserver(
         self,
-        name: NSViewFrameDidChangeNotification,
+        name: NSNotification.Name.NSViewFrameDidChange,
         object: typefaceView)
     defaultCenter.removeObserver(
         self,
-        name: NSViewFrameDidChangeNotification,
+        name: NSNotification.Name.NSViewFrameDidChange,
         object: scrollView)
   }
 
@@ -55,7 +55,7 @@ class TypefaceViewController : NSViewController {
     typefaceView?.typeface = typeface
 
     // Scroll view
-    scrollView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+    scrollView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
     scrollView.hasHorizontalScroller = true
     scrollView.hasVerticalScroller = true
     scrollView.documentView = typefaceView
@@ -64,16 +64,16 @@ class TypefaceViewController : NSViewController {
     scrollView.maxMagnification = 64.0
 
     // Observe for the frames' changes for zooming to fit
-    let defaultCenter = NSNotificationCenter.defaultCenter()
+    let defaultCenter = NotificationCenter.default
     defaultCenter.addObserver(
         self,
         selector: #selector(contentViewFrameDidChange(_:)),
-        name: NSViewFrameDidChangeNotification,
+        name: NSNotification.Name.NSViewFrameDidChange,
         object: typefaceView)
     defaultCenter.addObserver(
         self,
         selector: #selector(contentViewFrameDidChange(_:)),
-        name: NSViewFrameDidChangeNotification,
+        name: NSNotification.Name.NSViewFrameDidChange,
         object: scrollView)
 
     // Inject self to the responder chain
@@ -81,72 +81,72 @@ class TypefaceViewController : NSViewController {
     scrollView.contentView.nextResponder = self
   }
 
-  override func scrollWheel(event: NSEvent) {
+  override func scrollWheel(with event: NSEvent) {
     guard let scrollView = scrollView else {
       return
     }
-    if event.type == .ScrollWheel &&
-        event.modifierFlags.contains(.AlternateKeyMask) {
+    if event.type == .scrollWheel &&
+        event.modifierFlags.contains(.option) {
       guard let window = view.window else {
         return
       }
       alwaysZoomsToFit = false
-      let center = scrollView.contentView.convertPoint(
+      let center = scrollView.contentView.convert(
           event.locationInWindow,
-          fromView: window.contentView)
+          from: window.contentView)
       let scale = Double(event.scrollingDeltaY < 0.0 ? 0.9 : 1.0 / 0.9)
-      willChangeValueForKey("magnification")
+      willChangeValue(forKey: "magnification")
       _magnification = min(max(
           _magnification * scale,
           Double(scrollView.minMagnification)),
           Double(scrollView.maxMagnification))
-      didChangeValueForKey("magnification")
+      didChangeValue(forKey: "magnification")
       scrollView.setMagnification(
           CGFloat(_magnification),
-          centeredAtPoint: center)
+          centeredAt: center)
     } else {
-      scrollView.scrollWheel(event)
+      scrollView.scrollWheel(with: event)
     }
   }
 
-  override func magnifyWithEvent(event: NSEvent) {
-    guard let scrollView = scrollView, window = view.window else {
+  override func magnify(with event: NSEvent) {
+    guard let scrollView = scrollView, let window = view.window else {
       return
     }
     alwaysZoomsToFit = false
-    let center = scrollView.contentView.convertPoint(
+    let center = scrollView.contentView.convert(
         event.locationInWindow,
-        fromView: window.contentView)
-    willChangeValueForKey("magnification")
+        from: window.contentView)
+    willChangeValue(forKey: "magnification")
     _magnification = min(max(
         _magnification * (1.0 + Double(event.magnification)),
         Double(scrollView.minMagnification)),
         Double(scrollView.maxMagnification))
-    didChangeValueForKey("magnification")
+    didChangeValue(forKey: "magnification")
     scrollView.setMagnification(
         CGFloat(_magnification),
-        centeredAtPoint: center)
+        centeredAt: center)
   }
 
-  override func observeValueForKeyPath(
-      keyPath: String?,
-      ofObject object: AnyObject?,
-      change: [String : AnyObject]?,
-      context: UnsafeMutablePointer<Void>) {
-    if context == KVOContext {
-      if object === typeface {
+  override func observeValue(
+      forKeyPath keyPath: String?,
+      of object: Any?,
+      change: [NSKeyValueChangeKey : Any]?,
+      context: UnsafeMutableRawPointer?) {
+    if context == &KVOContext {
+      if object as? Typeface === typeface {
         typefaceView?.needsDisplay = true
       }
     } else {
-      super.observeValueForKeyPath(
-          keyPath,
-          ofObject: object,
+      super.observeValue(
+          forKeyPath: keyPath,
+          of: object,
           change: change,
           context: context)
     }
   }
 
-  func contentViewFrameDidChange(notification: NSNotification) {
+  func contentViewFrameDidChange(_ notification: Notification) {
     if alwaysZoomsToFit {
       zoomToFitAnimated(false)
     }
@@ -164,7 +164,7 @@ class TypefaceViewController : NSViewController {
         return
       }
       for keyPath in typefaceKeyPaths {
-        typeface.removeObserver(self, forKeyPath: keyPath, context: KVOContext)
+        typeface.removeObserver(self, forKeyPath: keyPath, context: &KVOContext)
       }
     }
 
@@ -178,8 +178,8 @@ class TypefaceViewController : NSViewController {
           typeface.addObserver(
               self,
               forKeyPath: keyPath,
-              options: .New,
-              context: KVOContext)
+              options: .new,
+              context: &KVOContext)
         }
       }
     }
@@ -189,9 +189,9 @@ class TypefaceViewController : NSViewController {
     didSet {
       typefaceView?.inverted = inverted
       if inverted {
-        scrollView?.backgroundColor = NSColor.blackColor()
+        scrollView?.backgroundColor = NSColor.black
       } else {
-        scrollView?.backgroundColor = NSColor.whiteColor()
+        scrollView?.backgroundColor = NSColor.white
       }
     }
   }
@@ -202,11 +202,11 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  @IBAction func toggleInverted(sender: AnyObject?) {
+  @IBAction func toggleInverted(_ sender: AnyObject?) {
     inverted = !inverted
   }
 
-  @IBAction func toggleOutlined(sender: AnyObject?) {
+  @IBAction func toggleOutlined(_ sender: AnyObject?) {
     outlined = !outlined
   }
 
@@ -233,7 +233,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  func setMagnification(magnification: Double, animated: Bool) {
+  func setMagnification(_ magnification: Double, animated: Bool) {
     guard let scrollView = scrollView else {
       return
     }
@@ -244,9 +244,9 @@ class TypefaceViewController : NSViewController {
     if value == _magnification {
       return
     }
-    willChangeValueForKey("magnification")
+    willChangeValue(forKey: "magnification")
     _magnification = value
-    didChangeValueForKey("magnification")
+    didChangeValue(forKey: "magnification")
     if animated {
       magnificationQueue.append(_magnification)
       if magnificationQueue.count == 1 {
@@ -259,7 +259,7 @@ class TypefaceViewController : NSViewController {
 
   private func animateQueuedMagnification() {
     guard let scrollView = scrollView,
-        typefaceView = typefaceView else {
+        let typefaceView = typefaceView else {
       return
     }
     NSAnimationContext.runAnimationGroup(
@@ -278,9 +278,9 @@ class TypefaceViewController : NSViewController {
         })
   }
 
-  func zoomToFitAnimated(animated: Bool) {
+  func zoomToFitAnimated(_ animated: Bool) {
     guard let scrollView = scrollView,
-        documentView = scrollView.documentView else {
+        let documentView = scrollView.documentView else {
       return
     }
     let magnification = min(
@@ -290,11 +290,11 @@ class TypefaceViewController : NSViewController {
     alwaysZoomsToFit = true
   }
 
-  @IBAction func zoomToFit(sender: AnyObject?) {
+  @IBAction func zoomToFit(_ sender: AnyObject?) {
     zoomToFitAnimated(true)
   }
 
-  @IBAction func zoomIn(sender: AnyObject?) {
+  @IBAction func zoomIn(_ sender: AnyObject?) {
     guard let scrollView = scrollView else {
       return
     }
@@ -319,7 +319,7 @@ class TypefaceViewController : NSViewController {
     setMagnification(result, animated: true)
   }
 
-  @IBAction func zoomOut(sender: AnyObject?) {
+  @IBAction func zoomOut(_ sender: AnyObject?) {
     guard let scrollView = scrollView else {
       return
     }

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -29,9 +29,9 @@ import AppKit
 class SheetContentSegue : NSStoryboardSegue {
   override func perform() {
     guard let sourceController = sourceController as? NSViewController,
-        destinationController = destinationController as? NSViewController,
-        containerController = sourceController.parentViewController,
-        window = containerController.view.window else {
+        let destinationController = destinationController as? NSViewController,
+        let containerController = sourceController.parent,
+        let window = containerController.view.window else {
       return
     }
     let sourceView = sourceController.view
@@ -42,9 +42,9 @@ class SheetContentSegue : NSStoryboardSegue {
 
     // Temporarily disable auto layout
     sourceView.autoresizingMask =
-        [.ViewMinXMargin, .ViewMaxXMargin, .ViewMinYMargin]
+        [.viewMinXMargin, .viewMaxXMargin, .viewMinYMargin]
     destinationView.autoresizingMask =
-        [.ViewMinXMargin, .ViewMaxXMargin, .ViewMinYMargin]
+        [.viewMinXMargin, .viewMaxXMargin, .viewMinYMargin]
 
     // Horizontally centerize the destination view
     let size = destinationView.frame.size
@@ -66,7 +66,7 @@ class SheetContentSegue : NSStoryboardSegue {
     }, completionHandler: {
       sourceView.removeFromSuperview()
       sourceController.removeFromParentViewController()
-      destinationView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+      destinationView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
     })
     window.setFrame(
         CGRect(origin: window.frame.origin, size: size),

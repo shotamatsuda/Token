@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -77,7 +77,7 @@ class GlyphIterator final : public std::iterator<std::forward_iterator_tag, T> {
   Iterator iterator_;
 };
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline GlyphIterator<T>::GlyphIterator() : glyphs_(), iterator_() {}
@@ -87,7 +87,7 @@ inline GlyphIterator<T>::GlyphIterator(Glyphs *glyphs, Iterator iterator)
     : glyphs_(glyphs),
       iterator_(iterator) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T>
 inline bool operator==(const GlyphIterator<T>& lhs,
@@ -101,7 +101,7 @@ inline bool operator!=(const GlyphIterator<T>& lhs,
   return !(lhs == rhs);
 }
 
-#pragma mark Iterator
+// MARK: Iterator
 
 template <class T>
 inline T& GlyphIterator<T>::operator*() const {

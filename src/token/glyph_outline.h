@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -32,12 +32,14 @@
 #include <iterator>
 #include <unordered_map>
 
-#include "takram/graphics.h"
+#include "shotamatsuda/graphics.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo/glif.h"
 #include "token/ufo/glyph.h"
 
 namespace token {
+
+namespace shota = shotamatsuda;
 
 class GlyphOutline final {
  public:
@@ -49,12 +51,12 @@ class GlyphOutline final {
   GlyphOutline& operator=(const GlyphOutline&) = default;
 
   // Attributes
-  const takram::Shape2d& shape() const { return shape_; }
-  takram::Shape2d& shape() { return shape_; }
-  GlyphStroker::Cap cap(const takram::Path2d& path) const;
-  GlyphStroker::Join join(const takram::Path2d& path) const;
-  GlyphStroker::Align align(const takram::Path2d& path) const;
-  bool filled(const takram::Path2d& path) const;
+  const shota::Shape2d& shape() const { return shape_; }
+  shota::Shape2d& shape() { return shape_; }
+  GlyphStroker::Cap cap(const shota::Path2d& path) const;
+  GlyphStroker::Join join(const shota::Path2d& path) const;
+  GlyphStroker::Align align(const shota::Path2d& path) const;
+  bool filled(const shota::Path2d& path) const;
 
   // Conversion
   ufo::Glyph glyph(const ufo::Glyph& prototype) const;
@@ -62,21 +64,21 @@ class GlyphOutline final {
  private:
   void processContour(const ufo::glif::Contour& contour);
   void processAttributes(const ufo::glif::Point& point);
-  void processPath(const takram::Path2d& path, ufo::Glyph *glyph) const;
+  void processPath(const shota::Path2d& path, ufo::Glyph *glyph) const;
 
  public:
-  takram::Shape2d shape_;
+  shota::Shape2d shape_;
   std::unordered_map<std::size_t, GlyphStroker::Cap> caps_;
   std::unordered_map<std::size_t, GlyphStroker::Join> joins_;
   std::unordered_map<std::size_t, GlyphStroker::Align> aligns_;
   std::unordered_map<std::size_t, bool> filleds_;
 };
 
-#pragma mark -
+// MARK: -
 
-#pragma mark Attributes
+// MARK: Attributes
 
-inline GlyphStroker::Cap GlyphOutline::cap(const takram::Path2d& path) const {
+inline GlyphStroker::Cap GlyphOutline::cap(const shota::Path2d& path) const {
   const auto& paths = shape_.paths();
   const auto itr = std::find(std::begin(paths), std::end(paths), path);
   if (itr == std::end(paths)) {
@@ -86,7 +88,7 @@ inline GlyphStroker::Cap GlyphOutline::cap(const takram::Path2d& path) const {
   return caps_.at(index);
 }
 
-inline GlyphStroker::Join GlyphOutline::join(const takram::Path2d& path) const {
+inline GlyphStroker::Join GlyphOutline::join(const shota::Path2d& path) const {
   const auto& paths = shape_.paths();
   const auto itr = std::find(std::begin(paths), std::end(paths), path);
   if (itr == std::end(paths)) {
@@ -97,7 +99,7 @@ inline GlyphStroker::Join GlyphOutline::join(const takram::Path2d& path) const {
 }
 
 inline GlyphStroker::Align GlyphOutline::align(
-    const takram::Path2d& path) const {
+    const shota::Path2d& path) const {
   const auto& paths = shape_.paths();
   const auto itr = std::find(std::begin(paths), std::end(paths), path);
   if (itr == std::end(paths)) {
@@ -107,7 +109,7 @@ inline GlyphStroker::Align GlyphOutline::align(
   return aligns_.at(index);
 }
 
-inline bool GlyphOutline::filled(const takram::Path2d& path) const {
+inline bool GlyphOutline::filled(const shota::Path2d& path) const {
   const auto& paths = shape_.paths();
   const auto itr = std::find(std::begin(paths), std::end(paths), path);
   if (itr == std::end(paths)) {

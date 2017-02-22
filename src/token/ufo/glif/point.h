@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -83,7 +83,7 @@ class Point final {
 bool operator==(const Point& lhs, const Point& rhs);
 bool operator!=(const Point& lhs, const Point& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Point::Point() : type(Type::OFFCURVE), smooth() {}
 
@@ -100,7 +100,7 @@ inline Point::Point(double x,
       name(name),
       identifier(identifier) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Point& lhs, const Point& rhs) {
   return (lhs.x == rhs.x &&
@@ -115,7 +115,7 @@ inline bool operator!=(const Point& lhs, const Point& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Point::Point(const boost::property_tree::ptree& tree) : Point() {
   xml::read_attribute(tree, "x", &x);

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -68,7 +68,7 @@ class Anchor final {
 bool operator==(const Anchor& lhs, const Anchor& rhs);
 bool operator!=(const Anchor& lhs, const Anchor& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Anchor::Anchor(double x,
                       double y,
@@ -81,7 +81,7 @@ inline Anchor::Anchor(double x,
       color(color),
       identifier(identifier) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Anchor& lhs, const Anchor& rhs) {
   return (lhs.x == rhs.x &&
@@ -95,7 +95,7 @@ inline bool operator!=(const Anchor& lhs, const Anchor& rhs) {
   return !(lhs == rhs);
 }
 
-#pragma mark Property tree
+// MARK: Property tree
 
 inline Anchor::Anchor(const boost::property_tree::ptree& tree) {
   xml::read_attribute(tree, "x", &x);

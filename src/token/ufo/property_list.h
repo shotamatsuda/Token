@@ -3,7 +3,7 @@
 //
 //  MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -63,9 +63,9 @@ class PropertyList final {
   bool owner_;
 };
 
-#pragma mark -
+// MARK: -
 
-#pragma mark Move semantics
+// MARK: Move semantics
 
 inline PropertyList::PropertyList(PropertyList&& other)
     : plist_(other.plist_),
@@ -82,7 +82,7 @@ inline PropertyList& PropertyList::operator=(PropertyList&& other) {
   return *this;
 }
 
-#pragma mark Value access
+// MARK: Value access
 
 inline void * PropertyList::release() {
   void *plist;

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -27,35 +27,35 @@
 import AppKit
 
 class Location : NSObject {
-  class var privateApplicationSupportURL: NSURL {
+  class var privateApplicationSupportURL: URL {
     get {
-      guard let identifier = NSBundle.mainBundle().bundleIdentifier else {
+      guard let identifier = Bundle.main.bundleIdentifier else {
         fatalError("Could not retrieve the main bundle identifier")
       }
       guard let searchPath = NSSearchPathForDirectoriesInDomains(
-          .ApplicationSupportDirectory, .UserDomainMask, true).first else {
+          .applicationSupportDirectory, .userDomainMask, true).first else {
         fatalError("Could not retrieve user's application support directory")
       }
-      return NSURL(fileURLWithPath: searchPath)
-          .URLByAppendingPathComponent(identifier)
+      return URL(fileURLWithPath: searchPath)
+          .appendingPathComponent(identifier)
     }
   }
 
-  class var privateLibraryURL: NSURL {
+  class var privateLibraryURL: URL {
     get {
-      guard let identifier = NSBundle.mainBundle().bundleIdentifier else {
+      guard let identifier = Bundle.main.bundleIdentifier else {
         fatalError("Could not retrieve the main bundle identifier")
       }
       guard let searchPath = NSSearchPathForDirectoriesInDomains(
-          .LibraryDirectory, .UserDomainMask, true).first else {
+          .libraryDirectory, .userDomainMask, true).first else {
         fatalError("Could not retrieve user's library directory")
       }
-      return NSURL(fileURLWithPath: searchPath)
-          .URLByAppendingPathComponent("." + identifier)
+      return URL(fileURLWithPath: searchPath)
+          .appendingPathComponent("." + identifier)
     }
   }
 
-  class var adobeFDKURL: NSURL {
-    return privateLibraryURL.URLByAppendingPathComponent("FDK")
+  class var adobeFDKURL: URL {
+    return privateLibraryURL.appendingPathComponent("FDK")
   }
 }

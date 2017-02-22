@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -32,13 +32,13 @@ class Stroker : TKNStroker {
 
   var minStrokeWidth: Double {
     get {
-      return self.dynamicType.MinStrokeWidth
+      return type(of: self).MinStrokeWidth
     }
   }
 
   var maxStrokeWidth: Double {
     get {
-      return floor(self.dynamicType.MaxStrokeWidth * UPEM / 1000.0)
+      return floor(type(of: self).MaxStrokeWidth * upem / 1000.0)
     }
   }
 }

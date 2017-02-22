@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -34,15 +34,15 @@ class WelcomeAgreementViewController : NSViewController {
     guard let licenseTextView = licenseTextView else {
       return
     }
-    let bundle = NSBundle.mainBundle()
-    let URL = bundle.URLForResource("AdobeFDKLicense", withExtension: "rtf")!
-    let data = NSData(contentsOfURL: URL)!
-    let contents = NSAttributedString(RTF: data, documentAttributes: nil)
+    let bundle = Bundle.main
+    let url = bundle.url(forResource: "AdobeFDKLicense", withExtension: "rtf")!
+    let data = try! Data(contentsOf: url)
+    let contents = NSAttributedString(rtf: data, documentAttributes: nil)
     licenseTextView.textStorage!.setAttributedString(contents!)
   }
 
-  @IBAction func cancel(sender: AnyObject?) {
-    guard let window = view.window, sheetParent = window.sheetParent else {
+  @IBAction func cancel(_ sender: AnyObject?) {
+    guard let window = view.window, let sheetParent = window.sheetParent else {
       return
     }
     sheetParent.endSheet(window, returnCode:NSModalResponseCancel)

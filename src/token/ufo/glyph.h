@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -70,13 +70,13 @@ class Glyph final {
 bool operator==(const Glyph& lhs, const Glyph& rhs);
 bool operator!=(const Glyph& lhs, const Glyph& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Glyph::Glyph(const std::string& path) {
   open(path);
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Glyph& lhs, const Glyph& rhs) {
   return (lhs.name == rhs.name &&

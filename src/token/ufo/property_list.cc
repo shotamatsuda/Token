@@ -3,7 +3,7 @@
 //
 //  MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -72,7 +72,7 @@ PropertyList::~PropertyList() {
   }
 }
 
-#pragma mark Modifier
+// MARK: Modifier
 
 void PropertyList::save(std::ostream *stream) const {
   char *xml{};

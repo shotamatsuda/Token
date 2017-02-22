@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -38,7 +38,7 @@
 namespace token {
 namespace afdko {
 
-#pragma mark Executing task
+// MARK: Executing task
 
 bool Task::execute() {
   const auto path = (boost::filesystem::path(directory_) / name_).string();

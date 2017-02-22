@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -24,16 +24,16 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-struct RectCorners : OptionSetType {
+struct RectCorners : OptionSet {
   let rawValue: Int
 
   init(rawValue: Int) {
     self.rawValue = rawValue
   }
 
-  static let TopLeft = RectCorners(rawValue: 1 << 0)
-  static let BottomLeft = RectCorners(rawValue: 1 << 1)
-  static let TopRight = RectCorners(rawValue: 1 << 2)
-  static let BottomRight = RectCorners(rawValue: 1 << 3)
-  static let All: RectCorners = [TopLeft, BottomLeft, TopRight, BottomRight]
+  static let topLeft = RectCorners(rawValue: 1 << 0)
+  static let bottomLeft = RectCorners(rawValue: 1 << 1)
+  static let topRight = RectCorners(rawValue: 1 << 2)
+  static let bottomRight = RectCorners(rawValue: 1 << 3)
+  static let all: RectCorners = [topLeft, bottomLeft, topRight, bottomRight]
 }

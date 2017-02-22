@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -66,7 +66,7 @@ class Lib final {
 bool operator==(const Lib& lhs, const Lib& rhs);
 bool operator!=(const Lib& lhs, const Lib& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline Lib::Lib() : number_of_contours(), number_of_holes() {}
 
@@ -75,7 +75,7 @@ inline Lib::Lib(unsigned int number_of_contours,
     : number_of_contours(number_of_contours),
       number_of_holes(number_of_holes) {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Lib& lhs, const Lib& rhs) {
   return (lhs.number_of_contours == rhs.number_of_contours &&

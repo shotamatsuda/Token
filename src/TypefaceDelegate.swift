@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -27,27 +27,27 @@
 import AppKit
 
 protocol TypefaceDelegate {
-  func typeface(typeface: Typeface,
-      createFontAtURL URL: NSURL,
+  func typeface(_ typeface: Typeface,
+      createFontAtURL url: URL,
       didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
       totalNumberOfSubtasks: UInt)
 
-  func typeface(typeface: Typeface,
-      didFailToCreateFontAtURL URL: NSURL,
+  func typeface(_ typeface: Typeface,
+      didFailToCreateFontAtURL url: URL,
       error: NSError)
 
-  func typeface(typeface: Typeface, didCreateFontAtURL URL: NSURL)
+  func typeface(_ typeface: Typeface, didCreateFontAtURL url: URL)
 }
 
 extension TypefaceDelegate {
-  func typeface(typeface: Typeface,
-      createFontAtURL URL: NSURL,
+  func typeface(_ typeface: Typeface,
+      createFontAtURL url: URL,
       didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
       totalNumberOfSubtasks: UInt) {}
 
-  func typeface(typeface: Typeface,
-      didFailToCreateFontAtURL URL: NSURL,
+  func typeface(_ typeface: Typeface,
+      didFailToCreateFontAtURL url: URL,
       error: NSError) {}
 
-  func typeface(typeface: Typeface, didCreateFontAtURL URL: NSURL) {}
+  func typeface(_ typeface: Typeface, didCreateFontAtURL url: URL) {}
 }

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,51 +25,51 @@
 //
 
 @objc enum TypefaceUnit : Int {
-  case Millimeter = 0
-  case Point = 1
-  case Inch = 2
+  case millimeter = 0
+  case point = 1
+  case inch = 2
 
   var name: String {
     get {
       switch self {
-      case .Millimeter:
+      case .millimeter:
         return "mm"
-      case .Point:
+      case .point:
         return "pt"
-      case .Inch:
+      case .inch:
         return "in"
       }
     }
   }
 
-  func convert(value: Double, to: TypefaceUnit) -> Double {
+  func convert(_ value: Double, to: TypefaceUnit) -> Double {
     guard self != to else {
       return value
     }
     switch self {
-    case .Millimeter:
+    case .millimeter:
       switch to {
-      case .Point:
+      case .point:
         return value / (25.4 / 72.0)
-      case .Inch:
+      case .inch:
         return value / 25.4
       default:
         assertionFailure()
       }
-    case .Point:
+    case .point:
       switch to {
-      case .Millimeter:
+      case .millimeter:
         return value * (25.4 / 72.0)
-      case .Inch:
+      case .inch:
         return value / 72.0
       default:
         assertionFailure()
       }
-    case .Inch:
+    case .inch:
       switch to {
-      case .Millimeter:
+      case .millimeter:
         return value * 25.4
-      case .Point:
+      case .point:
         return value * 72.0
       default:
         assertionFailure()

@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -29,38 +29,38 @@ import AppKit
 class RoundedButtonCell : NSButtonCell {
   var textColor: NSColor {
     get {
-      return NSColor.whiteColor().colorWithAlphaComponent(0.9)
+      return NSColor.white.withAlphaComponent(0.9)
     }
   }
 
   var highlightedTextColor: NSColor {
     get {
-      return NSColor.whiteColor()
+      return NSColor.white
     }
   }
 
   var frameColor: NSColor {
     get {
-      return NSColor.whiteColor().colorWithAlphaComponent(0.1)
+      return NSColor.white.withAlphaComponent(0.1)
     }
   }
 
   var highlightedFrameColor: NSColor {
     get {
-      return NSColor.whiteColor().colorWithAlphaComponent(0.2)
+      return NSColor.white.withAlphaComponent(0.2)
     }
   }
 
   override var attributedTitle: NSAttributedString {
     get {
-      if !enabled {
+      if !isEnabled {
         return super.attributedTitle
       }
       let title = NSMutableAttributedString(
           attributedString: super.attributedTitle)
       let range = NSRange(location: 0, length: title.length)
       title.beginEditing()
-      if highlighted {
+      if isHighlighted {
         title.addAttribute(
             NSForegroundColorAttributeName,
             value: highlightedTextColor,
@@ -80,13 +80,13 @@ class RoundedButtonCell : NSButtonCell {
     }
   }
 
-  override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
+  override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
     NSGraphicsContext.saveGraphicsState()
     defer {
       NSGraphicsContext.restoreGraphicsState()
     }
     let path = NSBezierPath(roundedRect: frame, radius: 4.0)
-    if highlighted {
+    if isHighlighted {
       highlightedFrameColor.setFill()
     } else {
       frameColor.setFill()

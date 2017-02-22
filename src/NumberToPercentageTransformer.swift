@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -27,18 +27,18 @@
 import AppKit
 
 @objc(TKNNumberToPercentageTransformer)
-class NumberToPercentageTransformer : NSValueTransformer {
+class NumberToPercentageTransformer : ValueTransformer {
   override class func transformedValueClass() -> AnyClass {
     return NSString.self
   }
 
-  override func transformedValue(value: AnyObject?) -> AnyObject? {
+  override func transformedValue(_ value: Any?) -> Any? {
     guard let value = value as? NSNumber else {
       return nil
     }
-    let formatter = NSNumberFormatter()
-    formatter.numberStyle = .PercentStyle
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .percent
     formatter.maximumSignificantDigits = 4
-    return formatter.stringFromNumber(value)
+    return formatter.string(from: value)
   }
 }

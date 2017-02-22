@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -60,9 +60,9 @@ class Text final {
 bool operator==(const Text& lhs, const Text& rhs);
 bool operator!=(const Text& lhs, const Text& rhs);
 
-#pragma mark -
+// MARK: -
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const Text& lhs, const Text& rhs) {
   return (lhs.text == rhs.text &&

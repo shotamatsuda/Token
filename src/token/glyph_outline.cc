@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,7 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "takram/graphics.h"
+#include "shotamatsuda/graphics.h"
 #include "token/glyph_stroker.h"
 #include "token/ufo/glif.h"
 #include "token/ufo/glyph.h"
@@ -53,7 +53,7 @@ GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) {
   }
 }
 
-#pragma mark Conversion
+// MARK: Conversion
 
 ufo::Glyph GlyphOutline::glyph(const ufo::Glyph& prototype) const {
   ufo::Glyph result(prototype);
@@ -177,30 +177,30 @@ void GlyphOutline::processAttributes(const ufo::glif::Point& point) {
   filleds_.emplace(shape_.paths().size() - 1, filled);
 }
 
-void GlyphOutline::processPath(const takram::Path2d& path,
+void GlyphOutline::processPath(const shota::Path2d& path,
                                ufo::Glyph *glyph) const {
   assert(!path.empty());
   assert(glyph);
   std::deque<ufo::glif::Point> points;
   for (const auto& command : path) {
     switch (command.type()) {
-      case takram::graphics::CommandType::MOVE:
+      case shota::graphics::CommandType::MOVE:
         points.emplace_back(command.point().x,
                             command.point().y,
                             ufo::glif::Point::Type::MOVE);
         break;
-      case takram::graphics::CommandType::LINE:
+      case shota::graphics::CommandType::LINE:
         points.emplace_back(command.point().x,
                             command.point().y,
                             ufo::glif::Point::Type::LINE);
         break;
-      case takram::graphics::CommandType::QUADRATIC:
+      case shota::graphics::CommandType::QUADRATIC:
         assert(false);  // Not supported
         break;
-      case takram::graphics::CommandType::CONIC:
+      case shota::graphics::CommandType::CONIC:
         assert(false);  // Not supported
         break;
-      case takram::graphics::CommandType::CUBIC:
+      case shota::graphics::CommandType::CUBIC:
         points.emplace_back(command.control1().x,
                             command.control1().y);
         points.emplace_back(command.control2().x,
@@ -209,7 +209,7 @@ void GlyphOutline::processPath(const takram::Path2d& path,
                             command.point().y,
                             ufo::glif::Point::Type::CURVE);
         break;
-      case takram::graphics::CommandType::CLOSE:
+      case shota::graphics::CommandType::CLOSE:
         break;  // We'll check this later
       default:
         assert(false);

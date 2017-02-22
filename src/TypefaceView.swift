@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -73,15 +73,15 @@ class TypefaceView : NSView {
 
   // MARK: Drawing
 
-  override func drawRect(dirtyRect: NSRect) {
+  override func draw(_ dirtyRect: NSRect) {
     resizeToFitLines()
 
     // Remember this view's current transformation matrix because it's not
     // identity matrix. We'll use this later for intersection tests.
-    guard let currentContext = NSGraphicsContext.currentContext() else {
+    guard let currentContext = NSGraphicsContext.current() else {
       return
     }
-    self.transform = CGContextGetCTM(currentContext.CGContext)
+    self.transform = currentContext.cgContext.ctm
 
     // Background color
     NSGraphicsContext.saveGraphicsState()
@@ -90,18 +90,18 @@ class TypefaceView : NSView {
     }
     var backgroundColor: NSColor?
     if inverted {
-      backgroundColor = NSColor.blackColor()
+      backgroundColor = NSColor.black
     } else {
-      backgroundColor = NSColor.whiteColor()
+      backgroundColor = NSColor.white
     }
     backgroundColor!.setFill()
     NSRectFill(dirtyRect)
 
     // Move the origin to horizontal center and vertical top.
-    let transform = NSAffineTransform()
-    transform.translateXBy(frame.width / 2.0, yBy: frame.height)
-    transform.scaleBy(scale)
-    transform.concat()
+    var transform = AffineTransform.identity
+    transform.translate(x: frame.width / 2.0, y: frame.height)
+    transform.scale(scale)
+    (transform as NSAffineTransform).concat()
 
     // Draw every lines, moving down by ascender + descender per line.
     guard let typeface = typeface else {
@@ -117,7 +117,7 @@ class TypefaceView : NSView {
   }
 
   private func drawLine(
-      line: Array<String>,
+      _ line: Array<String>,
       position: CGPoint,
       dirtyRect: CGRect) {
     guard let typeface = typeface else {
@@ -132,9 +132,9 @@ class TypefaceView : NSView {
     defer {
       NSGraphicsContext.restoreGraphicsState()
     }
-    let transform = NSAffineTransform()
-    transform.translateXBy(-lineWidth / 2.0, yBy: 0.0)
-    transform.concat()
+    var transform = AffineTransform.identity
+    transform.translate(x: -lineWidth / 2.0, y: 0.0)
+    (transform as NSAffineTransform).concat()
 
     // Draw every glyphs, moving right by the advance of each glyph.
     var glyphPosition = position
@@ -144,27 +144,27 @@ class TypefaceView : NSView {
     }
   }
 
-  private func drawGlyph(name: String, position: CGPoint, dirtyRect: CGRect) {
+  private func drawGlyph(_ name: String, position: CGPoint, dirtyRect: CGRect) {
     guard let typeface = typeface,
-      currentContext = NSGraphicsContext.currentContext() else {
+      let currentContext = NSGraphicsContext.current() else {
       return
     }
     NSGraphicsContext.saveGraphicsState()
     defer {
       NSGraphicsContext.restoreGraphicsState()
     }
-    let transform = NSAffineTransform()
-    transform.translateXBy(position.x, yBy: position.y)
-    transform.concat()
+    var transform = AffineTransform.identity
+    transform.translate(x: position.x, y: position.y)
+    (transform as NSAffineTransform).concat()
 
     // Intersection test with a dirty rect and the bounds of this glyph outline.
     let bounds = typeface.glyphBoundsForName(name)
-    let context = currentContext.CGContext
-    let currentTransform = CGContextGetCTM(context)
-    let rect1 = CGRectApplyAffineTransform(dirtyRect, self.transform)
-    var rect2 = CGRectApplyAffineTransform(bounds, currentTransform)
+    let context = currentContext.cgContext
+    let currentTransform = context.ctm
+    let rect1 = dirtyRect.applying(self.transform)
+    var rect2 = bounds.applying(currentTransform)
     // Inset by the size of path handles
-    rect2.insetInPlace(dx: -4.0, dy: -4.0)
+    rect2 = rect2.insetBy(dx: -4.0, dy: -4.0)
     guard rect1.intersects(rect2) else {
       return
     }
@@ -177,18 +177,18 @@ class TypefaceView : NSView {
     }
   }
 
-  private func drawSolidGlyph(outline: NSBezierPath) {
+  private func drawSolidGlyph(_ outline: NSBezierPath) {
     var foregroundColor: NSColor?
     if inverted {
-      foregroundColor = NSColor.whiteColor()
+      foregroundColor = NSColor.white
     } else {
-      foregroundColor = NSColor.blackColor()
+      foregroundColor = NSColor.black
     }
     foregroundColor!.setFill()
     outline.fill()
   }
 
-  private func drawOutlineGlyph(outline: NSBezierPath) {
+  private func drawOutlineGlyph(_ outline: NSBezierPath) {
     // Scale line width by inverse of scroll view's magnification to get
     // consistent line width.
     let scrollView = superview!.superview as! NSScrollView
@@ -196,62 +196,62 @@ class TypefaceView : NSView {
     outline.lineWidth = scale
 
     // Outline 
-    NSColor.grayColor().colorWithAlphaComponent(0.5).setStroke()
+    NSColor.gray.withAlphaComponent(0.5).setStroke()
     outline.stroke()
 
     // Control lines and points
-    NSColor.grayColor().setFill()
+    NSColor.gray.setFill()
     let pointRect = CGRect(
         x: -2.0 * scale,
         y: -2.0 * scale,
         width: 4.0 * scale,
         height: 4.0 * scale)
-    var previous = Array<CGPoint>(count: 3, repeatedValue: CGPoint())
-    var current = Array<CGPoint>(count: 3, repeatedValue: CGPoint())
+    var previous = Array<CGPoint>(repeating: CGPoint(), count: 3)
+    var current = Array<CGPoint>(repeating: CGPoint(), count: 3)
     for index in 0..<outline.elementCount {
-      let previousType = outline.elementAtIndex(
-          index,
+      let previousType = outline.element(
+          at: index,
           associatedPoints: &previous)
-      let currentType = outline.elementAtIndex(
-          index.successor() % outline.elementCount,
+      let currentType = outline.element(
+          at: (index + 1) % outline.elementCount,
           associatedPoints: &current)
       switch currentType {
-      case .LineToBezierPathElement:
+      case .lineToBezierPathElement:
         fallthrough
-      case .MoveToBezierPathElement:
+      case .moveToBezierPathElement:
         NSRectFill(CGRect(
             x: current[0].x + pointRect.minX,
             y: current[0].y + pointRect.minY,
             width: pointRect.width,
             height: pointRect.height))
-      case .CurveToBezierPathElement:
+      case .curveToBezierPathElement:
         NSRectFill(CGRect(
             x: current[2].x + pointRect.minX,
             y: current[2].y + pointRect.minY,
             width: pointRect.width,
             height: pointRect.height))
         var path = NSBezierPath()
-        if previousType == .CurveToBezierPathElement {
-          path.moveToPoint(previous[2])
+        if previousType == .curveToBezierPathElement {
+          path.move(to: previous[2])
         } else {
-          path.moveToPoint(previous[0])
+          path.move(to: previous[0])
         }
-        path.lineToPoint(current[0])
+        path.line(to: current[0])
         path.lineWidth = scale
         path.stroke()
         path = NSBezierPath()
-        path.moveToPoint(current[1])
-        path.lineToPoint(current[2])
+        path.move(to: current[1])
+        path.line(to: current[2])
         path.lineWidth = scale
         path.stroke()
-        path = NSBezierPath(ovalInRect: CGRect(
+        path = NSBezierPath(ovalIn: CGRect(
             x: current[0].x + pointRect.minX,
             y: current[0].y + pointRect.minY,
             width: pointRect.width,
             height: pointRect.height))
         path.lineWidth = scale
         path.stroke()
-        path = NSBezierPath(ovalInRect: CGRect(
+        path = NSBezierPath(ovalIn: CGRect(
             x: current[1].x + pointRect.minX,
             y: current[1].y + pointRect.minY,
             width: pointRect.width,
@@ -271,7 +271,7 @@ class TypefaceView : NSView {
     frame.size = CGSize(width: ceil(size.width), height: ceil(size.height))
   }
 
-  private func sizeForLines(lines: Array<Array<String>>) -> CGSize {
+  private func sizeForLines(_ lines: Array<Array<String>>) -> CGSize {
     guard let typeface = typeface else {
       return CGSize()
     }

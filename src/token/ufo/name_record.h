@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -59,7 +59,7 @@ class NameRecord final {
 bool operator==(const NameRecord& lhs, const NameRecord& rhs);
 bool operator!=(const NameRecord& lhs, const NameRecord& rhs);
 
-#pragma mark -
+// MARK: -
 
 inline NameRecord::NameRecord()
     : name_id(),
@@ -67,7 +67,7 @@ inline NameRecord::NameRecord()
       encoding_id(),
       language_id() {}
 
-#pragma mark Comparison
+// MARK: Comparison
 
 inline bool operator==(const NameRecord& lhs, const NameRecord& rhs) {
   return (lhs.name_id == rhs.name_id &&

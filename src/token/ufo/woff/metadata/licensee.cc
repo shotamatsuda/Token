@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015-2016 Shota Matsuda
+//  Copyright (C) 2015-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -36,7 +36,7 @@ namespace ufo {
 namespace woff {
 namespace metadata {
 
-#pragma mark Property list
+// MARK: Property list
 
 Licensee::Licensee(const PropertyList& plist) {
   plist::read_string(plist, "name", &name);

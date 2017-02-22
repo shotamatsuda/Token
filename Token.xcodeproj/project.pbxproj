@@ -16,9 +16,6 @@
 		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
 		933A61501BC8C95000C600C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933A614F1BC8C95000C600C5 /* Main.storyboard */; };
 		9349562E1B8D8B17000FD457 /* glyphs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9349562D1B8D8B17000FD457 /* glyphs.cc */; };
-		93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93563AB71B674487004C47E4 /* libtakram_graphics.a */; };
-		9359E9F31CA4B45D00E57962 /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C257941B9BCCDB00134399 /* libtakram_math.a */; };
-		9359E9F41CA4B46000E57962 /* libtakram_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C257881B9BCCDB00134399 /* libtakram_algorithm.a */; };
 		93654CC31C82F6C5004C3CC9 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D70EE01C2DAAF2003C6F2B /* ApplicationDelegate.swift */; };
 		93654CC41C82F6C5004C3CC9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D70EE21C2DAB0A003C6F2B /* MainWindowController.swift */; };
 		93654CC51C82F6C5004C3CC9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D70EE41C2DAB1A003C6F2B /* MainViewController.swift */; };
@@ -104,41 +101,6 @@
 			remoteGlobalIDString = 722954B41D04ADAF00ECF9CA;
 			remoteInfo = fileop;
 		};
-		93563AB41B674487004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
-			remoteInfo = graphics_shared;
-		};
-		93563AB61B674487004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
-			remoteInfo = graphics_static;
-		};
-		93563AB81B674487004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93B474091B648C4C00613FB6;
-			remoteInfo = graphics_ios;
-		};
-		93563ABA1B674487004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
-			remoteInfo = graphics_test;
-		};
-		93563AC81B6744C1004C47E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = graphics_static;
-		};
 		936A9F331CAE452200CFBE5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
@@ -181,75 +143,117 @@
 			remoteGlobalIDString = 726B2B5D1C645FC900388755;
 			remoteInfo = "UI Tests";
 		};
-		93A0C0C61CB3671C0067548B /* PBXContainerItemProxy */ = {
+		93B4E96D1E5D7D9700233E24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = algorithm_static;
+			containerPortal = 936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5AE13FB31E0D9E07000D2C2C;
+			remoteInfo = generate_appcast;
 		};
-		93A0C0C81CB3671F0067548B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = math_static;
-		};
-		93C257851B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93B4E9751E5D7D9700233E24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
 			remoteInfo = algorithm_shared;
 		};
-		93C257871B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93B4E9771E5D7D9700233E24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
 			remoteInfo = algorithm_static;
 		};
-		93C257891B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93B4E9791E5D7D9700233E24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9397F58D1B647CAA00DFEDC9;
 			remoteInfo = algorithm_ios;
 		};
-		93C2578B1B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93B4E97B1E5D7D9700233E24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
 			remoteInfo = algorithm_test;
 		};
-		93C257911B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93B4E9851E5D7DA500233E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
+			remoteInfo = graphics_shared;
+		};
+		93B4E9871E5D7DA500233E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
+			remoteInfo = graphics_static;
+		};
+		93B4E9891E5D7DA500233E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93B474091B648C4C00613FB6;
+			remoteInfo = graphics_ios;
+		};
+		93B4E98B1E5D7DA500233E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
+			remoteInfo = graphics_test;
+		};
+		93B4E98D1E5D7DCF00233E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = algorithm_static;
+		};
+		93B4E98F1E5D7DD100233E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = graphics_static;
+		};
+		93CFF45D1E5D7DED003B27FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
 			remoteInfo = math_shared;
 		};
-		93C257931B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93CFF45F1E5D7DED003B27FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
 			remoteInfo = math_static;
 		};
-		93C257951B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93CFF4611E5D7DED003B27FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 93F858331B564DB200C32E8D;
 			remoteInfo = math_ios;
 		};
-		93C257971B9BCCDB00134399 /* PBXContainerItemProxy */ = {
+		93CFF4631E5D7DED003B27FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
 			remoteInfo = math_test;
+		};
+		93CFF46F1E5D7DF4003B27FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = math_static;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -303,7 +307,7 @@
 		9349561E1B8D8820000FD457 /* glyphs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glyphs.h; sourceTree = "<group>"; };
 		9349562D1B8D8B17000FD457 /* glyphs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyphs.cc; sourceTree = "<group>"; };
 		9349563C1B8EEF0E000FD457 /* glyph_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = glyph_iterator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = "lib/takram-graphics/graphics.xcodeproj"; sourceTree = "<group>"; };
+		93563AAB1B674487004C47E4 /* graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = graphics.xcodeproj; path = lib/graphics/graphics.xcodeproj; sourceTree = "<group>"; };
 		935DDCEA1BEB0F490070F741 /* Token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
 		935DDCEB1BEB102D0070F741 /* NumberToPercentageTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberToPercentageTransformer.swift; sourceTree = "<group>"; };
 		935DDCED1BEB125C0070F741 /* NSBezierPath+RoundedRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+RoundedRect.swift"; sourceTree = "<group>"; };
@@ -375,8 +379,8 @@
 		93C18FBC1B930E0D0044AAEB /* gasp_range_record.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = gasp_range_record.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		93C18FBD1B930E0D0044AAEB /* name_record.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = name_record.cc; sourceTree = "<group>"; };
 		93C18FCD1B93561B0044AAEB /* plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
-		93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = algorithm.xcodeproj; path = "lib/takram-algorithm/algorithm.xcodeproj"; sourceTree = "<group>"; };
-		93C2577E1B9BCCDB00134399 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = "lib/takram-math/math.xcodeproj"; sourceTree = "<group>"; };
+		93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = algorithm.xcodeproj; path = lib/algorithm/algorithm.xcodeproj; sourceTree = "<group>"; };
+		93C2577E1B9BCCDB00134399 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = lib/math/math.xcodeproj; sourceTree = "<group>"; };
 		93C257AD1B9C5AB700134399 /* ZoomIn.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ZoomIn.pdf; sourceTree = "<group>"; };
 		93C257AE1B9C5AB700134399 /* ZoomOut.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ZoomOut.pdf; sourceTree = "<group>"; };
 		93C257C31B9C96D900134399 /* Invert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Invert.pdf; sourceTree = "<group>"; };
@@ -409,9 +413,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9359E9F41CA4B46000E57962 /* libtakram_algorithm.a in Frameworks */,
-				93563ACC1B6744CD004C47E4 /* libtakram_graphics.a in Frameworks */,
-				9359E9F31CA4B45D00E57962 /* libtakram_math.a in Frameworks */,
 				9321BA8C1CAE5057004284CA /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,17 +494,6 @@
 			path = woff;
 			sourceTree = "<group>";
 		};
-		93563AAC1B674487004C47E4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				93563AB51B674487004C47E4 /* libtakram_graphics.dylib */,
-				93563AB71B674487004C47E4 /* libtakram_graphics.a */,
-				93563AB91B674487004C47E4 /* libtakram_graphics.a */,
-				93563ABB1B674487004C47E4 /* takram_graphics_test */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		936839A81B9E923900E21EF7 /* glif */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +522,7 @@
 				936A9F3C1CAE452200CFBE5E /* Autoupdate.app */,
 				936A9F3E1CAE452200CFBE5E /* UI Tests.xctest */,
 				9351BF961D8451A900FBAA50 /* fileop */,
+				93B4E96E1E5D7D9700233E24 /* generate_appcast */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -580,6 +571,28 @@
 				933162DA1B92CB6A009FFC7C /* optional.h */,
 			);
 			path = ufo;
+			sourceTree = "<group>";
+		};
+		93B4E96F1E5D7D9700233E24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93B4E9761E5D7D9700233E24 /* libshota_algorithm.dylib */,
+				93B4E9781E5D7D9700233E24 /* libshota_algorithm.a */,
+				93B4E97A1E5D7D9700233E24 /* libshota_algorithm.a */,
+				93B4E97C1E5D7D9700233E24 /* shota_algorithm_test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93B4E97F1E5D7DA500233E24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93B4E9861E5D7DA500233E24 /* libshota_graphics.dylib */,
+				93B4E9881E5D7DA500233E24 /* libshota_graphics.a */,
+				93B4E98A1E5D7DA500233E24 /* libshota_graphics.a */,
+				93B4E98C1E5D7DA500233E24 /* shota_graphics_test */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		93C18F381B92E1010044AAEB /* metadata */ = {
@@ -635,24 +648,13 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
-		93C2577C1B9BCCDB00134399 /* Products */ = {
+		93CFF4511E5D7DED003B27FA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				93C257861B9BCCDB00134399 /* libtakram_algorithm.dylib */,
-				93C257881B9BCCDB00134399 /* libtakram_algorithm.a */,
-				93C2578A1B9BCCDB00134399 /* libtakram_algorithm.a */,
-				93C2578C1B9BCCDB00134399 /* takram_algorithm_test */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		93C2577F1B9BCCDB00134399 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				93C257921B9BCCDB00134399 /* libtakram_math.dylib */,
-				93C257941B9BCCDB00134399 /* libtakram_math.a */,
-				93C257961B9BCCDB00134399 /* libtakram_math.a */,
-				93C257981B9BCCDB00134399 /* takram_math_test */,
+				93CFF45E1E5D7DED003B27FA /* libshota_math.dylib */,
+				93CFF4601E5D7DED003B27FA /* libshota_math.a */,
+				93CFF4621E5D7DED003B27FA /* libshota_math.a */,
+				93CFF4641E5D7DED003B27FA /* shota_math_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -751,9 +753,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				93A0C0C71CB3671C0067548B /* PBXTargetDependency */,
-				93563AC91B6744C1004C47E4 /* PBXTargetDependency */,
-				93A0C0C91CB3671F0067548B /* PBXTargetDependency */,
+				93CFF4701E5D7DF4003B27FA /* PBXTargetDependency */,
+				93B4E9901E5D7DD100233E24 /* PBXTargetDependency */,
+				93B4E98E1E5D7DCF00233E24 /* PBXTargetDependency */,
 				9321BA901CAE505F004284CA /* PBXTargetDependency */,
 			);
 			name = Token;
@@ -773,6 +775,7 @@
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = CMMH8M4457;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -789,15 +792,15 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 93C2577C1B9BCCDB00134399 /* Products */;
+					ProductGroup = 93B4E96F1E5D7D9700233E24 /* Products */;
 					ProjectRef = 93C2577B1B9BCCDB00134399 /* algorithm.xcodeproj */;
 				},
 				{
-					ProductGroup = 93563AAC1B674487004C47E4 /* Products */;
+					ProductGroup = 93B4E97F1E5D7DA500233E24 /* Products */;
 					ProjectRef = 93563AAB1B674487004C47E4 /* graphics.xcodeproj */;
 				},
 				{
-					ProductGroup = 93C2577F1B9BCCDB00134399 /* Products */;
+					ProductGroup = 93CFF4511E5D7DED003B27FA /* Products */;
 					ProjectRef = 93C2577E1B9BCCDB00134399 /* math.xcodeproj */;
 				},
 				{
@@ -818,34 +821,6 @@
 			fileType = "compiled.mach-o.executable";
 			path = fileop;
 			remoteRef = 9351BF951D8451A900FBAA50 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563AB51B674487004C47E4 /* libtakram_graphics.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libtakram_graphics.dylib;
-			remoteRef = 93563AB41B674487004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563AB71B674487004C47E4 /* libtakram_graphics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_graphics.a;
-			remoteRef = 93563AB61B674487004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563AB91B674487004C47E4 /* libtakram_graphics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_graphics.a;
-			remoteRef = 93563AB81B674487004C47E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93563ABB1B674487004C47E4 /* takram_graphics_test */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = takram_graphics_test;
-			remoteRef = 93563ABA1B674487004C47E4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		936A9F341CAE452200CFBE5E /* Sparkle.framework */ = {
@@ -890,60 +865,95 @@
 			remoteRef = 936A9F3D1CAE452200CFBE5E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		93C257861B9BCCDB00134399 /* libtakram_algorithm.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libtakram_algorithm.dylib;
-			remoteRef = 93C257851B9BCCDB00134399 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93C257881B9BCCDB00134399 /* libtakram_algorithm.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_algorithm.a;
-			remoteRef = 93C257871B9BCCDB00134399 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93C2578A1B9BCCDB00134399 /* libtakram_algorithm.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtakram_algorithm.a;
-			remoteRef = 93C257891B9BCCDB00134399 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		93C2578C1B9BCCDB00134399 /* takram_algorithm_test */ = {
+		93B4E96E1E5D7D9700233E24 /* generate_appcast */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = takram_algorithm_test;
-			remoteRef = 93C2578B1B9BCCDB00134399 /* PBXContainerItemProxy */;
+			path = generate_appcast;
+			remoteRef = 93B4E96D1E5D7D9700233E24 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		93C257921B9BCCDB00134399 /* libtakram_math.dylib */ = {
+		93B4E9761E5D7D9700233E24 /* libshota_algorithm.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libtakram_math.dylib;
-			remoteRef = 93C257911B9BCCDB00134399 /* PBXContainerItemProxy */;
+			path = libshota_algorithm.dylib;
+			remoteRef = 93B4E9751E5D7D9700233E24 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		93C257941B9BCCDB00134399 /* libtakram_math.a */ = {
+		93B4E9781E5D7D9700233E24 /* libshota_algorithm.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libtakram_math.a;
-			remoteRef = 93C257931B9BCCDB00134399 /* PBXContainerItemProxy */;
+			path = libshota_algorithm.a;
+			remoteRef = 93B4E9771E5D7D9700233E24 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		93C257961B9BCCDB00134399 /* libtakram_math.a */ = {
+		93B4E97A1E5D7D9700233E24 /* libshota_algorithm.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libtakram_math.a;
-			remoteRef = 93C257951B9BCCDB00134399 /* PBXContainerItemProxy */;
+			path = libshota_algorithm.a;
+			remoteRef = 93B4E9791E5D7D9700233E24 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		93C257981B9BCCDB00134399 /* takram_math_test */ = {
+		93B4E97C1E5D7D9700233E24 /* shota_algorithm_test */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = takram_math_test;
-			remoteRef = 93C257971B9BCCDB00134399 /* PBXContainerItemProxy */;
+			path = shota_algorithm_test;
+			remoteRef = 93B4E97B1E5D7D9700233E24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93B4E9861E5D7DA500233E24 /* libshota_graphics.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libshota_graphics.dylib;
+			remoteRef = 93B4E9851E5D7DA500233E24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93B4E9881E5D7DA500233E24 /* libshota_graphics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libshota_graphics.a;
+			remoteRef = 93B4E9871E5D7DA500233E24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93B4E98A1E5D7DA500233E24 /* libshota_graphics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libshota_graphics.a;
+			remoteRef = 93B4E9891E5D7DA500233E24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93B4E98C1E5D7DA500233E24 /* shota_graphics_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = shota_graphics_test;
+			remoteRef = 93B4E98B1E5D7DA500233E24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93CFF45E1E5D7DED003B27FA /* libshota_math.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libshota_math.dylib;
+			remoteRef = 93CFF45D1E5D7DED003B27FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93CFF4601E5D7DED003B27FA /* libshota_math.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libshota_math.a;
+			remoteRef = 93CFF45F1E5D7DED003B27FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93CFF4621E5D7DED003B27FA /* libshota_math.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libshota_math.a;
+			remoteRef = 93CFF4611E5D7DED003B27FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93CFF4641E5D7DED003B27FA /* shota_math_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = shota_math_test;
+			remoteRef = 93CFF4631E5D7DED003B27FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1065,20 +1075,20 @@
 			name = Sparkle;
 			targetProxy = 9321BA8F1CAE505F004284CA /* PBXContainerItemProxy */;
 		};
-		93563AC91B6744C1004C47E4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = graphics_static;
-			targetProxy = 93563AC81B6744C1004C47E4 /* PBXContainerItemProxy */;
-		};
-		93A0C0C71CB3671C0067548B /* PBXTargetDependency */ = {
+		93B4E98E1E5D7DCF00233E24 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = algorithm_static;
-			targetProxy = 93A0C0C61CB3671C0067548B /* PBXContainerItemProxy */;
+			targetProxy = 93B4E98D1E5D7DCF00233E24 /* PBXContainerItemProxy */;
 		};
-		93A0C0C91CB3671F0067548B /* PBXTargetDependency */ = {
+		93B4E9901E5D7DD100233E24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = graphics_static;
+			targetProxy = 93B4E98F1E5D7DD100233E24 /* PBXContainerItemProxy */;
+		};
+		93CFF4701E5D7DF4003B27FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = math_static;
-			targetProxy = 93A0C0C81CB3671F0067548B /* PBXContainerItemProxy */;
+			targetProxy = 93CFF46F1E5D7DF4003B27FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1087,7 +1097,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93F859271B575DCC00C32E8D /* project_debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1099,7 +1108,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93F859281B575DCC00C32E8D /* project_release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
 			};
@@ -1109,20 +1117,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = resource/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1130,19 +1134,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93B4749E1B64CF8800613FB6 /* product.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				ENABLE_NS_ASSERTIONS = NO;
 				INFOPLIST_FILE = resource/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
