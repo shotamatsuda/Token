@@ -1,6 +1,4 @@
 //
-//  TKNStroker.h
-//
 //  The MIT License
 //
 //  Copyright (C) 2015-2017 Shota Matsuda

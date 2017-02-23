@@ -1,6 +1,4 @@
 //
-//  TypefaceView.swift
-//
 //  The MIT License
 //
 //  Copyright (C) 2015-2017 Shota Matsuda
@@ -195,7 +193,7 @@ class TypefaceView : NSView {
     let scale = 1.0 / (self.scale * scrollView.magnification)
     outline.lineWidth = scale
 
-    // Outline 
+    // Outline
     NSColor.gray.withAlphaComponent(0.5).setStroke()
     outline.stroke()
 

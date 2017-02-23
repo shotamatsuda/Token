@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-#  update_version.sh
-#
 #  The MIT License
 #
 #  Copyright (C) 2017 Shota Matsuda

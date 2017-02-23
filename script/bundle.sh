@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-#  bundle.sh
-#
 #  The MIT License
 #
 #  Copyright (C) 2015 Shota Matsuda
