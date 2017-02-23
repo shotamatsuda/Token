@@ -25,6 +25,7 @@
 
 readonly DEPOT_TOOLS_GIT="https://chromium.googlesource.com/chromium/tools/depot_tools.git"
 readonly SKIA_GIT="https://skia.googlesource.com/skia.git"
+readonly DEPLOYMENT_TARGET=10.11
 
 readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
 readonly BUILD_DIR="${PROJECT_DIR}/build/skia"
@@ -59,7 +60,7 @@ build_skia() {
   export PATH="${DEPOT_TOOLS_DIR}:${PATH}"
   cd "${SKIA_DIR}"
   echo "Building for OS X..."
-  export MACOSX_DEPLOYMENT_TARGET=10.11
+  export MACOSX_DEPLOYMENT_TARGET="${DEPLOYMENT_TARGET}"
   "./bin/gn" gen "out/Release" --args='is_debug=false'
   ninja -C "out/Release" skia
   copy_libraries_in_place "${SKIA_DIR}/out/Release"

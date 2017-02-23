@@ -4,6 +4,21 @@ Token
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
+![](https://cloud.githubusercontent.com/assets/8651513/23258066/e99d7d82-fa09-11e6-9ae3-f23de80409e6.jpg)
+
+![](https://cloud.githubusercontent.com/assets/8651513/23258068/eabd74e2-fa09-11e6-9522-56432565d784.jpg)
+
+## Compiling
+
+Install the following dependencies via [Homebrew](https://brew.sh),
+
+- boost (developed on 1.63.0)
+- libplist (developed on 1.12)
+
+and run [skia.sh](script/skia.sh) inside the [script](script) folder in this repository to download and build Skia (this will take a time to complete since it's a large piece of source codes).
+
+After making sure to init and update the submodules, you should be able to open the project file in Xcode and build it.
+
 ## License
 
 The MIT License
@@ -27,3 +42,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+## Credits
+
+- Design & Development: Shota Matsuda (Takram)
+- Typeface Design: Ken Okamoto
