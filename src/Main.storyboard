@@ -459,7 +459,7 @@
                                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="NWi-2f-MGV">
                                                 <rect key="frame" x="128" y="182" width="170" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="170" id="zdh-SV-kJg"/>
+                                                    <constraint firstAttribute="width" priority="750" constant="170" id="zdh-SV-kJg"/>
                                                 </constraints>
                                                 <popUpButtonCell key="cell" type="bevel" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="6H1-Lu-RhZ">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -485,6 +485,7 @@
                                         <constraints>
                                             <constraint firstItem="V6r-aJ-L8X" firstAttribute="leading" secondItem="iH7-Cb-6Xa" secondAttribute="leading" id="3aq-So-XpF"/>
                                             <constraint firstAttribute="trailing" secondItem="V6r-aJ-L8X" secondAttribute="trailing" id="AAt-HJ-9va"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NWi-2f-MGV" secondAttribute="trailing" constant="10" id="QPP-Mx-xtZ"/>
                                             <constraint firstItem="NWi-2f-MGV" firstAttribute="leading" secondItem="GVd-Xi-Ezs" secondAttribute="trailing" id="apZ-lC-dtS"/>
                                             <constraint firstItem="V6r-aJ-L8X" firstAttribute="top" secondItem="iH7-Cb-6Xa" secondAttribute="top" constant="40" id="cOI-yu-gPE"/>
                                             <constraint firstItem="GVd-Xi-Ezs" firstAttribute="top" secondItem="iH7-Cb-6Xa" secondAttribute="top" constant="24" id="dsJ-pq-tMC"/>
