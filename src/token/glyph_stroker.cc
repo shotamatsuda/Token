@@ -116,7 +116,7 @@ inline shota::Shape2d convertShape(const SkPath& other) {
         break;
     }
   }
-  return std::move(shape);
+  return shape;
 }
 
 inline SkPath convertShape(const shota::Shape2d& other) {
@@ -151,7 +151,7 @@ inline SkPath convertShape(const shota::Shape2d& other) {
         break;
     }
   }
-  return std::move(path);
+  return path;
 }
 
 inline SkPath convertPath(const shota::Path2d& other) {
@@ -186,7 +186,7 @@ inline SkPath convertPath(const shota::Path2d& other) {
         break;
     }
   }
-  return std::move(path);
+  return path;
 }
 
 }  // namespace
@@ -292,7 +292,7 @@ shota::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
 #endif
     shape.reset();
   }
-  return std::move(shape);
+  return shape;
 }
 
 shota::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
@@ -320,7 +320,7 @@ shota::Shape2d GlyphStroker::stroke(const GlyphOutline& outline) const {
       result.paths().emplace_back(path);
     }
   }
-  return std::move(result);
+  return result;
 }
 
 shota::Shape2d GlyphStroker::stroke(const shota::Path2d& path) const {
@@ -370,7 +370,7 @@ shota::Shape2d GlyphStroker::stroke(const shota::Path2d& path) const {
     }
     result = shota::Shape2d(*max_path);
   }
-  return std::move(result);
+  return result;
 }
 
 shota::Shape2d GlyphStroker::simplify(const shota::Shape2d& shape) const {
@@ -420,7 +420,7 @@ shota::Shape2d GlyphStroker::simplify(const shota::Shape2d& shape) const {
       assert(path.direction() == shota::PathDirection::CLOCKWISE);
     }
   }
-  return std::move(result);
+  return result;
 }
 
 }  // namespace token

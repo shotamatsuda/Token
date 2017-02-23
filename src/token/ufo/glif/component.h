@@ -140,7 +140,7 @@ inline boost::property_tree::ptree Component::ptree() const {
   xml::write_attribute(&tree, "xOffset", x_offset, 0.0);
   xml::write_attribute(&tree, "yOffset", y_offset, 0.0);
   xml::write_attribute(&tree, "identifier", identifier, "");
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

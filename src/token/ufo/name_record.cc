@@ -49,7 +49,7 @@ PropertyList NameRecord::plist() const {
   plist::write_number(plist, "encodingID", encoding_id);
   plist::write_number(plist, "languageID", language_id);
   plist::write_string(plist, "string", string);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace ufo

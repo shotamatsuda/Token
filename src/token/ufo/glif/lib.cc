@@ -56,7 +56,7 @@ boost::property_tree::ptree Lib::ptree() const {
   dict.add("integer", number_of_holes);
   boost::property_tree::ptree tree;
   tree.add_child("dict", dict);
-  return std::move(tree);
+  return tree;
 }
 
 PropertyList Lib::convertToPropertyList(

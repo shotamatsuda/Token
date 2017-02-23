@@ -90,7 +90,7 @@ inline boost::property_tree::ptree Contour::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attribute(&tree, "identifier", identifier, "");
   xml::write_children(&tree, "point", points);
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

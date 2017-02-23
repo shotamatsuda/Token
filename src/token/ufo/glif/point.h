@@ -159,7 +159,7 @@ inline boost::property_tree::ptree Point::ptree() const {
   xml::write_attribute(&tree, "smooth", smooth ? "yes" : "no", "no");
   xml::write_attribute(&tree, "name", name, "");
   xml::write_attribute(&tree, "identifier", identifier, "");
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

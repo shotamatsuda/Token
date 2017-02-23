@@ -47,7 +47,7 @@ PropertyList Licensee::plist() const {
   plist::write_string(plist, "name", name);
   plist::write_string(plist, "dir", dir);
   plist::write_string(plist, "class", klass);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

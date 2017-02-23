@@ -117,7 +117,7 @@ inline boost::property_tree::ptree Guideline::ptree() const {
   xml::write_attribute(&tree, "name", name, "");
   xml::write_attribute(&tree, "color", color, "");
   xml::write_attribute(&tree, "identifier", identifier, "");
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

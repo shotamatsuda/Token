@@ -43,7 +43,7 @@ UniqueID::UniqueID(const PropertyList& plist) {
 PropertyList UniqueID::plist() const {
   PropertyList plist;
   plist::write_string(plist, "identifier", identifier);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

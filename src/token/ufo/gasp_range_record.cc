@@ -44,7 +44,7 @@ PropertyList GASPRangeRecord::plist() const {
   PropertyList plist;
   plist::write_number(plist, "rangeMaxPPEM", range_max_ppem);
   plist::write_vector(plist, "rangeGaspBehavior", range_gasp_behavior);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace ufo

@@ -43,7 +43,7 @@ Copyright::Copyright(const PropertyList& plist) {
 PropertyList Copyright::plist() const {
   PropertyList plist;
   plist::write_vector(plist, "text", text);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

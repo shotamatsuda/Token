@@ -64,7 +64,7 @@ ufo::Glyph GlyphOutline::glyph(const ufo::Glyph& prototype) const {
       processPath(path, &result);
     }
   }
-  return std::move(result);
+  return result;
 }
 
 void GlyphOutline::processContour(const ufo::glif::Contour& contour) {

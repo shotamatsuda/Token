@@ -49,7 +49,7 @@ PropertyList Vendor::plist() const {
   plist::write_string(plist, "url", url);
   plist::write_string(plist, "dir", dir);
   plist::write_string(plist, "class", klass);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

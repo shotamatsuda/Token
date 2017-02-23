@@ -87,7 +87,7 @@ inline boost::property_tree::ptree Advance::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attribute(&tree, "width", width, 0.0);
   xml::write_attribute(&tree, "height", height, 0.0);
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

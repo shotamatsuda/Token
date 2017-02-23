@@ -47,7 +47,7 @@ PropertyList License::plist() const {
   plist::write_string(plist, "url", url);
   plist::write_string(plist, "identifier", identifier);
   plist::write_vector(plist, "text", text);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

@@ -90,7 +90,7 @@ inline boost::property_tree::ptree Outline::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_children(&tree, "component", components);
   xml::write_children(&tree, "contour", contours);
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

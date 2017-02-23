@@ -47,7 +47,7 @@ PropertyList ExtensionItem::plist() const {
   plist::write_string(plist, "identifier", identifier);
   plist::write_vector(plist, "names", names);
   plist::write_vector(plist, "values", values);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

@@ -43,7 +43,7 @@ Credits::Credits(const PropertyList& plist) {
 PropertyList Credits::plist() const {
   PropertyList plist;
   plist::write_vector(plist, "credits", credits);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata

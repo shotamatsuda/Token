@@ -139,7 +139,7 @@ inline boost::property_tree::ptree Image::ptree() const {
   xml::write_attribute(&tree, "xOffset", x_offset, 0.0);
   xml::write_attribute(&tree, "yOffset", y_offset, 0.0);
   xml::write_attribute(&tree, "color", color, "");
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

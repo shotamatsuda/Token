@@ -81,7 +81,7 @@ inline Unicode::Unicode(const boost::property_tree::ptree& tree) {
 inline boost::property_tree::ptree Unicode::ptree() const {
   boost::property_tree::ptree tree;
   xml::write_attribute(&tree, "hex", hex);
-  return std::move(tree);
+  return tree;
 }
 
 }  // namespace glif

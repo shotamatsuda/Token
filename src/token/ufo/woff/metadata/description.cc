@@ -45,7 +45,7 @@ PropertyList Description::plist() const {
   PropertyList plist;
   plist::write_string(plist, "url", url);
   plist::write_vector(plist, "text", text);
-  return std::move(plist);
+  return plist;
 }
 
 }  // namespace metadata
