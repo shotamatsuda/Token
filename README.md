@@ -6,7 +6,7 @@ Token
 
 ![](https://cloud.githubusercontent.com/assets/8651513/23258066/e99d7d82-fa09-11e6-9ae3-f23de80409e6.jpg)
 
-![](https://cloud.githubusercontent.com/assets/8651513/23258068/eabd74e2-fa09-11e6-9522-56432565d784.jpg)
+![](https://cloud.githubusercontent.com/assets/8651513/23258534/0f1dad3c-fa0c-11e6-9b53-81434943dec3.jpg)
 
 ## Compiling
 
@@ -15,7 +15,7 @@ Install the following dependencies via [Homebrew](https://brew.sh),
 - boost (developed on 1.63.0)
 - libplist (developed on 1.12)
 
-and run [skia.sh](script/skia.sh) inside the [script](script) folder in this repository to download and build Skia (this will take a time to complete since it's a large piece of source codes).
+and run [skia.sh](script/skia.sh) inside the [script folder](script) in this repository to download and build Skia (this will take a time to complete since it's a large piece of source codes).
 
 After making sure to init and update the submodules, you should be able to open the project file in Xcode and build it.
 
