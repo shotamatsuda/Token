@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2014-2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -29,6 +29,7 @@
 // Build Options
 DEBUG_INFORMATION_FORMAT = dwarf
 ENABLE_TESTABILITY = YES
+VALIDATE_PRODUCT = NO
 
 // Deployment
 COPY_PHASE_STRIP = NO
@@ -39,6 +40,9 @@ GCC_FAST_MATH = NO
 
 // Apple LLVM - Preprocessing
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
+
+// Swift Compiler - Code Generation
+SWIFT_OPTIMIZATION_LEVEL = -Onone
 
 // User-Defined
 MTL_ENABLE_DEBUG_INFO = YES
