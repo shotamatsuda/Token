@@ -67,7 +67,12 @@
       DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
     NSUInteger numberOfSubtasks{};
     for (dispatch_block_t subtask in subtasks) {
-      subtask();
+      try {
+        subtask();
+      } catch (const std::exception& e) {
+        // TODO: Deal with error
+        return;
+      }
       ++numberOfSubtasks;
       if (progressHandler) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -88,14 +93,20 @@
            toolsURL:(NSURL *)toolsURL {
   const std::string fontPath(fontURL.path.UTF8String);
   const std::string toolsPath(toolsURL.path.UTF8String);
-  return token::afdko::transformFont(
-      toolsPath, fontPath,
-      [UPEM](boost::property_tree::ptree& tree) {
-    tree.put("ttFont.head.unitsPerEm.<xmlattr>.value", UPEM);
-    const auto scale = boost::lexical_cast<std::string>(1.0 / UPEM);
-    const auto fontMatrix = scale + " 0 0 " + scale + " 0 0";
-    tree.put("ttFont.CFF.CFFFont.FontMatrix.<xmlattr>.value", fontMatrix);
-  });
+  bool result = false;
+  try {
+    result = token::afdko::transformFont(
+        toolsPath, fontPath,
+        [UPEM](boost::property_tree::ptree& tree) {
+      tree.put("ttFont.head.unitsPerEm.<xmlattr>.value", UPEM);
+      const auto scale = boost::lexical_cast<std::string>(1.0 / UPEM);
+      const auto fontMatrix = scale + " 0 0 " + scale + " 0 0";
+      tree.put("ttFont.CFF.CFFFont.FontMatrix.<xmlattr>.value", fontMatrix);
+    });
+  } catch (const std::exception& e) {
+    // TODO: Deal with error
+  }
+  return result;
 }
 
 @end

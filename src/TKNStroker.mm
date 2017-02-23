@@ -193,7 +193,7 @@ namespace shota = shotamatsuda;
 - (BOOL)strokeGlyph:(const token::ufo::Glyph&)glyph {
   const auto found = _glyphOutlines.find(glyph.name);
   if (found != std::end(_glyphOutlines)) {
-    return false;
+    return NO;
   }
   const auto& outline = _glyphOutlines.emplace(
       glyph.name,
@@ -203,11 +203,16 @@ namespace shota = shotamatsuda;
   stroker.set_precision(_strokePrecision);
   stroker.set_shift_increment(_strokeShiftIncrement);
   stroker.set_shift_limit(_strokeShiftLimit);
-  auto pair = stroker(_fontInfo, glyph, outline);
-  _glyphShapes.emplace(glyph.name, pair.first);
-  _glyphBounds.emplace(glyph.name, pair.first.bounds(true));
-  _glyphAdvances.emplace(glyph.name, pair.second);
-  return true;
+  try {
+    auto pair = stroker(_fontInfo, glyph, outline);
+    _glyphShapes.emplace(glyph.name, pair.first);
+    _glyphBounds.emplace(glyph.name, pair.first.bounds(true));
+    _glyphAdvances.emplace(glyph.name, pair.second);
+  } catch (const std::exception& e) {
+    // TODO: Deal with error
+    return NO;
+  }
+  return YES;
 }
 
 - (NSBezierPath *)bezierPathWithShape:(const shota::Shape2d&)shape {
