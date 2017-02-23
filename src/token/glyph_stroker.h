@@ -100,7 +100,7 @@ class GlyphStroker final {
 
  private:
   shota::Shape2d stroke(const ufo::Glyph& glyph,
-                         const GlyphOutline& outline) const;
+                        const GlyphOutline& outline) const;
   shota::Shape2d stroke(const GlyphOutline& outline) const;
   shota::Shape2d stroke(const shota::Path2d& path) const;
   shota::Shape2d simplify(const shota::Shape2d& shape) const;

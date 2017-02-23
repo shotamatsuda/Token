@@ -35,6 +35,19 @@ follow_symlink() {
   echo "${file}"
 }
 
+code_sign() {
+  if [[ -z "${CODE_SIGN_IDENTITY}" ]]; then
+    return
+  fi
+  local file=$1
+  local identity="${CODE_SIGN_IDENTITY}"
+  if [[ ! -z "${EXPANDED_CODE_SIGN_IDENTITY_NAME}" ]]; then
+    identity="${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
+  fi
+  echo "${identity}"
+  codesign --sign "${identity}" "${file}"
+}
+
 bundle_dependency() {
   local file
   file=$(follow_symlink "$1")
@@ -52,6 +65,7 @@ bundle_dependency() {
   fi
   cp -f "${file}" "." || return
   chmod 0755 "${copy}" || return
+  code_sign "${copy}"
   local install_name
   install_name=$(otool -D "${file}" | grep -v ":$" | egrep -o "[^/]+$")
   install_name_tool -id "@rpath/${install_name}" "${copy}" || return

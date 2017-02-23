@@ -239,7 +239,7 @@ std::pair<shota::Shape2d, ufo::glif::Advance> GlyphStroker::operator()(
 }
 
 shota::Shape2d GlyphStroker::stroke(const ufo::Glyph& glyph,
-                                     const GlyphOutline& outline) const {
+                                    const GlyphOutline& outline) const {
   GlyphStroker stroker(*this);
   shota::Shape2d shape;
   // Check for the number of contours of the resulting shape and retry if that
