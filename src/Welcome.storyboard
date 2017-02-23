@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
@@ -189,14 +190,16 @@ DQ
                                     <rect key="frame" x="1" y="1" width="484" height="262"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView editable="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="OOh-lj-jmB">
+                                        <webView maintainsBackForwardList="NO" id="OOh-lj-jmB">
                                             <rect key="frame" x="0.0" y="0.0" width="484" height="262"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="484" height="262"/>
-                                            <size key="maxSize" width="497" height="10000000"/>
-                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
+                                            <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" loadsImagesAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
+                                                <nil key="identifier"/>
+                                            </webPreferences>
+                                            <connections>
+                                                <outlet property="UIDelegate" destination="GyR-bY-TuW" id="zC2-4n-dHU"/>
+                                            </connections>
+                                        </webView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
@@ -232,7 +235,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="licenseTextView" destination="OOh-lj-jmB" id="bko-zs-RIz"/>
+                        <outlet property="licenseWebView" destination="OOh-lj-jmB" id="eQf-Cv-iTD"/>
                     </connections>
                 </viewController>
                 <customObject id="kKI-h9-HA2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

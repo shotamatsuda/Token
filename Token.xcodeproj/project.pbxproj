@@ -47,12 +47,12 @@
 		936A9F071CAB6C7B00CFBE5E /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9F061CAB6C7B00CFBE5E /* transform.cc */; };
 		936A9F441CAE4CE800CFBE5E /* SparklePublicDSAKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = 936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
+		937DD8141E5ECD590043CA1A /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 937DD8131E5ECD590043CA1A /* Credits.html */; };
+		937DD8291E5ECEFE0043CA1A /* AdobeFDKLicense.html in Resources */ = {isa = PBXBuildFile; fileRef = 937DD8281E5ECEFE0043CA1A /* AdobeFDKLicense.html */; };
 		937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93D334BB1C8032AB00FF4567 /* TKNStroker.mm */; };
 		937E19591C97D5A700090AEF /* StrokerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19581C97D5A600090AEF /* StrokerBehavior.swift */; };
 		937E19751C9A628D00090AEF /* Stroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E19741C9A628D00090AEF /* Stroker.swift */; };
 		937E19811C9ACB1A00090AEF /* TKNTypeface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9383794B1B962D47003E6893 /* TKNTypeface.mm */; };
-		9390CBF51B95328D0088153C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9390CBF41B95328D0088153C /* Credits.rtf */; };
-		93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */; };
 		93A05AEB1B9B8A6B002DDAD5 /* opentype.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AE91B9B8A6B002DDAD5 /* opentype.cc */; };
 		93A05AEF1B9B914A002DDAD5 /* typeface in Resources */ = {isa = PBXBuildFile; fileRef = 93A05AEE1B9B914A002DDAD5 /* typeface */; };
 		93A05AF21B9B9B98002DDAD5 /* hinting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A05AF01B9B9B98002DDAD5 /* hinting.cc */; };
@@ -327,13 +327,13 @@
 		93714B491B996C7E0077B273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		93714B5F1B996EA70077B273 /* lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib.cc; sourceTree = "<group>"; };
 		9373E7811C64613D003A66B0 /* TypefaceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceUnit.swift; sourceTree = "<group>"; };
+		937DD8131E5ECD590043CA1A /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		937DD8281E5ECEFE0043CA1A /* AdobeFDKLicense.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AdobeFDKLicense.html; sourceTree = "<group>"; };
 		937E19451C80588800090AEF /* WelcomeAgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeAgreementViewController.swift; sourceTree = "<group>"; };
 		937E19581C97D5A600090AEF /* StrokerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokerBehavior.swift; sourceTree = "<group>"; };
 		937E19741C9A628D00090AEF /* Stroker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stroker.swift; sourceTree = "<group>"; };
 		9383794A1B962D47003E6893 /* TKNTypeface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNTypeface.h; sourceTree = "<group>"; };
 		9383794B1B962D47003E6893 /* TKNTypeface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TKNTypeface.mm; sourceTree = "<group>"; };
-		9390CBF41B95328D0088153C /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = AdobeFDKLicense.rtf; sourceTree = "<group>"; };
 		939FDF181C1F62CD00B0DECD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		939FDF1A1C1F630D00B0DECD /* TypefaceControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceControlView.swift; sourceTree = "<group>"; };
 		939FDF1C1C1F635800B0DECD /* TypefaceClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceClipView.swift; sourceTree = "<group>"; };
@@ -640,8 +640,8 @@
 				93C257AE1B9C5AB700134399 /* ZoomOut.pdf */,
 				93C257C31B9C96D900134399 /* Invert.pdf */,
 				93C257C51B9C99F700134399 /* Outline.pdf */,
-				93982FBB1BA3D5F000438BDA /* AdobeFDKLicense.rtf */,
-				9390CBF41B95328D0088153C /* Credits.rtf */,
+				937DD8281E5ECEFE0043CA1A /* AdobeFDKLicense.html */,
+				937DD8131E5ECD590043CA1A /* Credits.html */,
 				936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */,
 				93A05AEE1B9B914A002DDAD5 /* typeface */,
 			);
@@ -970,11 +970,11 @@
 				93C257B01B9C5AB700134399 /* ZoomOut.pdf in Resources */,
 				93C257C41B9C96D900134399 /* Invert.pdf in Resources */,
 				93C257C61B9C99F700134399 /* Outline.pdf in Resources */,
+				937DD8291E5ECEFE0043CA1A /* AdobeFDKLicense.html in Resources */,
 				93E209681BB3AAC100C76B70 /* CapHeightTemplate.pdf in Resources */,
+				937DD8141E5ECD590043CA1A /* Credits.html in Resources */,
 				93E209691BB3AAC100C76B70 /* StrokeWidthTemplate.pdf in Resources */,
 				936A9F441CAE4CE800CFBE5E /* SparklePublicDSAKey.pem in Resources */,
-				93982FBC1BA3D5F000438BDA /* AdobeFDKLicense.rtf in Resources */,
-				9390CBF51B95328D0088153C /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
