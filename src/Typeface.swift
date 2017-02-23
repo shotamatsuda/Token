@@ -114,15 +114,19 @@ class Typeface : TKNTypeface, TypefaceDelegate {
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
-        return formatter.string(from: NSNumber(value: strokeWidth))! + strokeWidthUnit.name +
-            " / " + formatter.string(from: NSNumber(value: capHeight))! + capHeightUnit.name
+        var name = ""
+        name += formatter.string(from: NSNumber(value: self.strokeWidth))!
+        name += strokeWidthUnit.name
+        name += " / "
+        name += formatter.string(from: NSNumber(value: capHeight))!
+        name += capHeightUnit.name
+        return name
       }
     }
   }
 
   class func keyPathsForValuesAffectingStyleName() -> NSSet {
-    return NSSet(objects: "strokerBehavior",
-        "strokeWidth", "strokeWidthUnit",
+    return NSSet(objects: "strokerBehavior", "strokeWidth", "strokeWidthUnit",
         "capHeight", "capHeightUnit")
   }
 
@@ -146,17 +150,21 @@ class Typeface : TKNTypeface, TypefaceDelegate {
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
-        return familyName + "-" +
-            formatter.string(from: NSNumber(value: strokeWidth))! + strokeWidthUnit.name +
-            "-" + formatter.string(from: NSNumber(value: capHeight))! + capHeightUnit.name
+        var name = ""
+        name += familyName + "-"
+        name += formatter.string(from: NSNumber(value: strokeWidth))!
+        name += strokeWidthUnit.name
+        name += "-"
+        name += formatter.string(from: NSNumber(value: capHeight))!
+        name += capHeightUnit.name
+        return name
       }
     }
   }
 
   class func keyPathsForValuesAffectingPostscriptName() -> NSSet {
-    return NSSet(objects: "strokerBehavior", "familyName",
-        "strokeWidth", "strokeWidthUnit",
-        "capHeight", "capHeightUnit")
+    return NSSet(objects: "strokerBehavior", "familyName", "strokeWidth",
+        "strokeWidthUnit", "capHeight", "capHeightUnit")
   }
 
   var ascender: Double {
@@ -237,8 +245,8 @@ class Typeface : TKNTypeface, TypefaceDelegate {
   }
 
   class func keyPathsForValuesAffectingMinStrokeWidth() -> NSSet {
-    return NSSet(objects: "strokerBehavior", "strokeWidthUnit", "capHeight",
-                 "capHeightUnit")
+    return NSSet(objects: "strokerBehavior", "strokeWidthUnit",
+        "capHeight", "capHeightUnit")
   }
 
   var maxStrokeWidth: Double {
@@ -258,8 +266,8 @@ class Typeface : TKNTypeface, TypefaceDelegate {
   }
 
   class func keyPathsForValuesAffectingMaxStrokeWidth() -> NSSet {
-    return NSSet(objects: "strokerBehavior", "strokeWidthUnit", "capHeight",
-                 "capHeightUnit")
+    return NSSet(objects: "strokerBehavior", "strokeWidthUnit",
+        "capHeight", "capHeightUnit")
   }
 
   private var _capHeight: Double = Double()
@@ -315,8 +323,8 @@ class Typeface : TKNTypeface, TypefaceDelegate {
   }
 
   class func keyPathsForValuesAffectingMinCapHeight() -> NSSet {
-    return NSSet(objects: "strokerBehavior", "strokeWidth", "strokeWidthUnit",
-                 "capHeightUnit")
+    return NSSet(objects: "strokerBehavior", "strokeWidth",
+        "strokeWidthUnit", "capHeightUnit")
   }
 
   var maxCapHeight: Double {
@@ -336,8 +344,8 @@ class Typeface : TKNTypeface, TypefaceDelegate {
   }
 
   class func keyPathsForValuesAffectingMaxCapHeight() -> NSSet {
-    return NSSet(objects: "strokerBehavior", "strokeWidth", "strokeWidthUnit",
-                 "capHeightUnit")
+    return NSSet(objects: "strokerBehavior", "strokeWidth",
+        "strokeWidthUnit", "capHeightUnit")
   }
 
   func setStrokeWidth(_ strokeWidth: Double,
