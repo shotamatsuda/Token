@@ -29,39 +29,6 @@
       <integer>2</integer>
       <key>com.takram.token.numberOfHoles</key>
       <integer>1</integer>
-      <key>com.typemytype.robofont.guides</key>
-      <array>
-        <dict>
-          <key>angle</key>
-          <integer>0</integer>
-          <key>isGlobal</key>
-          <false/>
-          <key>x</key>
-          <integer>0</integer>
-          <key>y</key>
-          <real>-14.64</real>
-        </dict>
-        <dict>
-          <key>angle</key>
-          <integer>0</integer>
-          <key>isGlobal</key>
-          <false/>
-          <key>x</key>
-          <integer>0</integer>
-          <key>y</key>
-          <real>1374.64</real>
-        </dict>
-        <dict>
-          <key>angle</key>
-          <integer>90</integer>
-          <key>isGlobal</key>
-          <false/>
-          <key>x</key>
-          <real>112.4</real>
-          <key>y</key>
-          <integer>680</integer>
-        </dict>
-      </array>
     </dict>
   </lib>
 </glyph>
