@@ -4,9 +4,9 @@ Token
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
-![](https://cloud.githubusercontent.com/assets/8651513/23258066/e99d7d82-fa09-11e6-9ae3-f23de80409e6.jpg)
+![](https://cloud.githubusercontent.com/assets/8651513/23328503/c8e1efd0-fb65-11e6-9ba7-91f5aa58d491.jpg)
 
-![](https://cloud.githubusercontent.com/assets/8651513/23258534/0f1dad3c-fa0c-11e6-9b53-81434943dec3.jpg)
+![](https://cloud.githubusercontent.com/assets/8651513/23328504/c9e5c44c-fb65-11e6-9604-ec3e7adb79fe.png)
 
 ## Compiling
 
