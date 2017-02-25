@@ -59,14 +59,16 @@ bool Glyphs::open(const std::string& path) {
     contents = (node / "glyphs" / "contents.plist").string();
   }
   std::ifstream stream(contents);
-  const auto result = open(&stream);
+  const auto result = open(stream);
   stream.close();
   path_ = glyphs;
   return result;
 }
 
-bool Glyphs::open(std::istream *stream) {
-  assert(stream);
+bool Glyphs::open(std::istream& stream) {
+  if (!stream.good()) {
+    return false;
+  }
   PropertyList plist(stream);
   plist_dict_iter itr{};
   plist_dict_new_iter(plist, &itr);

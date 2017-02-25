@@ -77,7 +77,7 @@ class Glyphs final {
   ConstIterator end() const;
 
  private:
-  bool open(std::istream *stream);
+  bool open(std::istream& stream);
 
  private:
   std::string path_;

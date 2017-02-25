@@ -32,7 +32,6 @@ extern "C" {
 
 }  // extern "C"
 
-#include <cassert>
 #include <cstdlib>
 #include <fstream>
 #include <istream>
@@ -58,13 +57,15 @@ bool FontInfo::open(const std::string& path) {
     font_info = (node / "fontinfo.plist").string();
   }
   std::ifstream stream(font_info);
-  const auto result = open(&stream);
+  const auto result = open(stream);
   stream.close();
   return result;
 }
 
-bool FontInfo::open(std::istream *stream) {
-  assert(stream);
+bool FontInfo::open(std::istream& stream) {
+  if (!stream.good()) {
+    return false;
+  }
   PropertyList plist(stream);
   readIdentificationInformation(plist);
   readLegalInformation(plist);
@@ -90,13 +91,15 @@ bool FontInfo::save(const std::string& path) const {
     font_info = (node / "fontinfo.plist").string();
   }
   std::ofstream stream(font_info);
-  const auto result = save(&stream);
+  const auto result = save(stream);
   stream.close();
   return result;
 }
 
-bool FontInfo::save(std::ostream *stream) const {
-  assert(stream);
+bool FontInfo::save(std::ostream& stream) const {
+  if (!stream.good()) {
+    return false;
+  }
   PropertyList plist;
   writeIdentificationInformation(plist);
   writeLegalInformation(plist);
@@ -324,13 +327,17 @@ void FontInfo::readPostScriptSpecificData(const PropertyList& plist) {
 }
 
 void FontInfo::readMacintoshFONDResourceData(const PropertyList& plist) {
-  plist::read_number(plist, "macintoshFONDFamilyID", &macintosh_fond_family_id);
-  plist::read_string(plist, "macintoshFONDName", &macintosh_fond_name);
+  plist::read_number(plist, "macintoshFONDFamilyID",
+                     &macintosh_fond_family_id);
+  plist::read_string(plist, "macintoshFONDName",
+                     &macintosh_fond_name);
 }
 
 void FontInfo::readWOFFData(const PropertyList& plist) {
-  plist::read_number(plist, "woffMajorVersion", &woff_major_version);
-  plist::read_number(plist, "woffMinorVersion", &woff_minor_version);
+  plist::read_number(plist, "woffMajorVersion",
+                     &woff_major_version);
+  plist::read_number(plist, "woffMinorVersion",
+                     &woff_minor_version);
   plist::read_object(plist, "woffMetadataUniqueID",
                      &woff_metadata_unique_id);
   plist::read_object(plist, "woffMetadataVendor",
@@ -563,13 +570,17 @@ void FontInfo::writePostScriptSpecificData(const PropertyList& plist) const {
 }
 
 void FontInfo::writeMacintoshFONDResourceData(const PropertyList& plist) const {
-  plist::write_number(plist, "macintoshFONDFamilyID", macintosh_fond_family_id);
-  plist::write_string(plist, "macintoshFONDName", macintosh_fond_name);
+  plist::write_number(plist, "macintoshFONDFamilyID",
+                      macintosh_fond_family_id);
+  plist::write_string(plist, "macintoshFONDName",
+                      macintosh_fond_name);
 }
 
 void FontInfo::writeWOFFData(const PropertyList& plist) const {
-  plist::write_number(plist, "woffMajorVersion", woff_major_version);
-  plist::write_number(plist, "woffMinorVersion", woff_minor_version);
+  plist::write_number(plist, "woffMajorVersion",
+                      woff_major_version);
+  plist::write_number(plist, "woffMinorVersion",
+                      woff_minor_version);
   plist::write_object(plist, "woffMetadataUniqueID",
                       woff_metadata_unique_id);
   plist::write_object(plist, "woffMetadataVendor",

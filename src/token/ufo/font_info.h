@@ -46,7 +46,7 @@ class FontInfo final {
  public:
   FontInfo() = default;
   explicit FontInfo(const std::string& ufo_path);
-  explicit FontInfo(std::istream *stream);
+  explicit FontInfo(std::istream& stream);
 
   // Copy semantics
   FontInfo(const FontInfo&) = default;
@@ -54,9 +54,9 @@ class FontInfo final {
 
   // Opening and saving
   bool open(const std::string& path);
-  bool open(std::istream *stream);
+  bool open(std::istream& stream);
   bool save(const std::string& path) const;
-  bool save(std::ostream *stream) const;
+  bool save(std::ostream& stream) const;
 
  private:
   // Reading from property list
@@ -235,7 +235,7 @@ inline FontInfo::FontInfo(const std::string& path) {
   open(path);
 }
 
-inline FontInfo::FontInfo(std::istream *stream) {
+inline FontInfo::FontInfo(std::istream& stream) {
   open(stream);
 }
 

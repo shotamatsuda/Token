@@ -44,10 +44,9 @@ namespace ufo {
 
 PropertyList::PropertyList() : plist_(plist_new_dict()), owner_(true) {}
 
-PropertyList::PropertyList(std::istream *stream) : plist_(), owner_() {
-  assert(stream);
-  assert(stream->good());
-  const std::istreambuf_iterator<char> first(*stream);
+PropertyList::PropertyList(std::istream& stream) : plist_(), owner_() {
+  assert(stream.good());
+  const std::istreambuf_iterator<char> first(stream);
   const std::string contents(first, std::istreambuf_iterator<char>());
   plist_t node{};
   plist_from_xml(contents.c_str(), contents.size(), &node);
@@ -74,11 +73,11 @@ PropertyList::~PropertyList() {
 
 // MARK: Modifier
 
-void PropertyList::save(std::ostream *stream) const {
+void PropertyList::save(std::ostream& stream) const {
   char *xml{};
   std::uint32_t length{};
   plist_to_xml(plist_, &xml, &length);
-  *stream << std::string(xml, length);
+  stream << std::string(xml, length);
   std::free(xml);
 }
 

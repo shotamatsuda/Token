@@ -41,9 +41,6 @@
   }
 
   func convert(_ value: Double, to: TypefaceUnit) -> Double {
-    guard self != to else {
-      return value
-    }
     switch self {
     case .millimeter:
       switch to {
@@ -52,7 +49,7 @@
       case .inch:
         return value / 25.4
       default:
-        assertionFailure()
+        return value
       }
     case .point:
       switch to {
@@ -61,7 +58,7 @@
       case .inch:
         return value / 72.0
       default:
-        assertionFailure()
+        return value
       }
     case .inch:
       switch to {
@@ -70,9 +67,8 @@
       case .point:
         return value * 72.0
       default:
-        assertionFailure()
+        return value
       }
     }
-    fatalError()
   }
 }

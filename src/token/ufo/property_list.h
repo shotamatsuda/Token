@@ -38,7 +38,7 @@ namespace ufo {
 class PropertyList final {
  public:
   PropertyList();
-  explicit PropertyList(std::istream *stream);
+  explicit PropertyList(std::istream& stream);
   explicit PropertyList(void *plist, bool owner = true);
   ~PropertyList();
 
@@ -56,7 +56,7 @@ class PropertyList final {
   operator void *() const { return plist_; }
 
   // Modifier
-  void save(std::ostream *stream) const;
+  void save(std::ostream& stream) const;
 
  public:
   void *plist_;

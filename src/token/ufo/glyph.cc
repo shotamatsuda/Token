@@ -24,7 +24,6 @@
 
 #include "token/ufo/glyph.h"
 
-#include <cassert>
 #include <fstream>
 #include <istream>
 #include <ostream>
@@ -42,18 +41,17 @@ namespace ufo {
 
 bool Glyph::open(const std::string& path) {
   std::ifstream stream(path);
-  const auto result = open(&stream);
+  const auto result = open(stream);
   stream.close();
   return result;
 }
 
-bool Glyph::open(std::istream *stream) {
-  assert(stream);
-  if (!stream->good()) {
+bool Glyph::open(std::istream& stream) {
+  if (!stream.good()) {
     return false;
   }
   boost::property_tree::ptree tree;
-  boost::property_tree::xml_parser::read_xml(*stream, tree);
+  boost::property_tree::xml_parser::read_xml(stream, tree);
   const auto& glyph = tree.get_child("glyph");
   xml::read_attribute(glyph, "name", &name);
   xml::read_child(glyph, "advance", &advance);
@@ -68,14 +66,13 @@ bool Glyph::open(std::istream *stream) {
 
 bool Glyph::save(const std::string& path) const {
   std::ofstream stream(path);
-  const auto result = save(&stream);
+  const auto result = save(stream);
   stream.close();
   return result;
 }
 
-bool Glyph::save(std::ostream *stream) const {
-  assert(stream);
-  if (!stream->good()) {
+bool Glyph::save(std::ostream& stream) const {
+  if (!stream.good()) {
     return false;
   }
   boost::property_tree::ptree glyph;
@@ -91,7 +88,7 @@ bool Glyph::save(std::ostream *stream) const {
   boost::property_tree::ptree tree;
   tree.add_child("glyph", glyph);
   boost::property_tree::xml_writer_settings<std::string> settings(' ', 2);
-  boost::property_tree::xml_parser::write_xml(*stream, tree, settings);
+  boost::property_tree::xml_parser::write_xml(stream, tree, settings);
   return true;
 }
 
