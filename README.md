@@ -6,7 +6,61 @@ Token
 
 ![](https://cloud.githubusercontent.com/assets/8651513/23328503/c8e1efd0-fb65-11e6-9ba7-91f5aa58d491.jpg)
 
+## Design Concept
+
 ![](https://cloud.githubusercontent.com/assets/8651513/23328504/c9e5c44c-fb65-11e6-9604-ec3e7adb79fe.png)
+
+## Implementation Detail
+
+### Typeface Definition
+
+#### Glyph Custom Data Storage
+
+<dl>
+<dt>com.shotamatsuda.token.numberOfContours</dt>
+<dd></dd>
+<dt>com.shotamatsuda.token.numberOfHoles</dt>
+<dd></dd>
+<dt>com.shotamatsuda.token.contourStyles</dt>
+<dd></dd>
+</dl>
+
+#### Contour Styles
+
+Attribute|Type|Description|Default
+---|---|---|---
+cap|string||round
+join|string||round
+align|string||none
+filled|boolean||false
+
+#### Cap
+
+Value|Description
+---|---
+butt|
+round|
+project|
+
+#### Join
+
+Value|Description
+---|---
+miter|
+round|
+bevel|
+
+#### Align
+
+Value|Description
+---|---
+none|
+left|
+right|
+
+### Stroking & Path Ops
+
+### Font Generation
 
 ## Compiling
 

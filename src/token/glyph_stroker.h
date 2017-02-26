@@ -104,7 +104,7 @@ inline GlyphStroker::GlyphStroker()
       miter_(),
       cap_(Cap::ROUND),
       join_(Join::ROUND),
-      align_(Align::UNDEFINED),
+      align_(Align::NONE),
       filled_(),
       precision_(1.0),
       shift_increment_(0.0001),

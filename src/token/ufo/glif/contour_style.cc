@@ -89,7 +89,9 @@ inline std::string convertJoin(Join value) {
 }
 
 inline Align convertAlign(const std::string& value) {
-  if (value == "left") {
+  if (value == "none") {
+    return Align::NONE;
+  } else if (value == "left") {
     return Align::LEFT;
   } else if (value == "right") {
     return Align::RIGHT;
@@ -99,6 +101,8 @@ inline Align convertAlign(const std::string& value) {
 
 inline std::string convertAlign(Align value) {
   switch (value) {
+    case Align::NONE:
+      return "none";
     case Align::LEFT:
       return "left";
     case Align::RIGHT:

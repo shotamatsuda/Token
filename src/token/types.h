@@ -44,6 +44,7 @@ enum class Join {
 
 enum class Align {
   UNDEFINED,
+  NONE,
   LEFT,
   RIGHT
 };
