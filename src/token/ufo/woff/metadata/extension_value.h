@@ -43,7 +43,7 @@ class ExtensionValue final {
   ExtensionValue(const ExtensionValue&) = default;
   ExtensionValue& operator=(const ExtensionValue&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit ExtensionValue(const PropertyList& plist);
   PropertyList plist() const;
 

@@ -27,7 +27,6 @@
 #define TOKEN_UFO_GLIF_IMAGE_H_
 
 #include <string>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -53,7 +52,7 @@ class Image final {
   Image(const Image&) = default;
   Image& operator=(const Image&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Image(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

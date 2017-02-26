@@ -44,7 +44,7 @@ class Trademark final {
   Trademark(const Trademark&) = default;
   Trademark& operator=(const Trademark&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Trademark(const PropertyList& plist);
   PropertyList plist() const;
 

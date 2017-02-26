@@ -46,7 +46,7 @@ class ExtensionItem final {
   ExtensionItem(const ExtensionItem&) = default;
   ExtensionItem& operator=(const ExtensionItem&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit ExtensionItem(const PropertyList& plist);
   PropertyList plist() const;
 

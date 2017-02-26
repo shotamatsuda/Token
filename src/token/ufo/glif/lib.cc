@@ -26,11 +26,11 @@
 
 #include <string>
 #include <sstream>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 
+#include "token/ufo/glif/contour_styles.h"
 #include "token/ufo/plist.h"
 #include "token/ufo/property_list.h"
 
@@ -42,18 +42,24 @@ namespace glif {
 
 Lib::Lib(const boost::property_tree::ptree& tree) : Lib() {
   auto plist = convertToPropertyList(tree);
-  plist::readNumber(plist, "com.takram.token.numberOfContours",
+  plist::readNumber(plist, "com.shotamatsuda.token.numberOfContours",
                     &number_of_contours);
-  plist::readNumber(plist, "com.takram.token.numberOfHoles",
+  plist::readNumber(plist, "com.shotamatsuda.token.numberOfHoles",
                     &number_of_holes);
+  plist::readObject(plist, "com.shotamatsuda.token.contourStyles",
+                    &contour_styles);
 }
 
 boost::property_tree::ptree Lib::ptree() const {
   boost::property_tree::ptree dict;
-  dict.add("key", "com.takram.token.numberOfContours");
+  dict.add("key", "com.shotamatsuda.token.numberOfContours");
   dict.add("integer", number_of_contours);
-  dict.add("key", "com.takram.token.numberOfHoles");
+  dict.add("key", "com.shotamatsuda.token.numberOfHoles");
   dict.add("integer", number_of_holes);
+  if (!contour_styles.empty()) {
+    dict.add("key", "com.shotamatsuda.token.contourStyles");
+    dict.add_child("dict", contour_styles.ptree());
+  }
   boost::property_tree::ptree tree;
   tree.add_child("dict", dict);
   return tree;

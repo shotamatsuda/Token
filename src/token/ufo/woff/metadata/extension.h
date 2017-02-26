@@ -46,7 +46,7 @@ class Extension final {
   Extension(const Extension&) = default;
   Extension& operator=(const Extension&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Extension(const PropertyList& plist);
   PropertyList plist() const;
 

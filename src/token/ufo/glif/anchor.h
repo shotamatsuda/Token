@@ -27,7 +27,6 @@
 #define TOKEN_UFO_GLIF_ANCHOR_H_
 
 #include <string>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -50,7 +49,7 @@ class Anchor final {
   Anchor(const Anchor&) = default;
   Anchor& operator=(const Anchor&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Anchor(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

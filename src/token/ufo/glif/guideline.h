@@ -27,7 +27,6 @@
 #define TOKEN_UFO_GLIF_GUIDELINE_H_
 
 #include <string>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -51,7 +50,7 @@ class Guideline final {
   Guideline(const Guideline&) = default;
   Guideline& operator=(const Guideline&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Guideline(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

@@ -45,7 +45,7 @@ class Description final {
   Description(const Description&) = default;
   Description& operator=(const Description&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Description(const PropertyList& plist);
   PropertyList plist() const;
 

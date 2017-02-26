@@ -64,8 +64,6 @@ class Glyphs final {
 
   // Glyphs
   std::string filename(const std::string& name) const;
-  const Glyph& get(const std::string& name) const;
-  Glyph& get(const std::string& name);
   const Glyph * find(const std::string& name) const;
   Glyph * find(const std::string& name);
   void set(const std::string& name, const Glyph& glyph);
@@ -89,20 +87,6 @@ class Glyphs final {
 
 inline Glyphs::Glyphs(const std::string& path) {
   open(path);
-}
-
-// MARK: Glyphs
-
-inline const Glyph& Glyphs::get(const std::string& name) const {
-  auto glyph = find(name);
-  assert(glyph);
-  return *glyph;
-}
-
-inline Glyph& Glyphs::get(const std::string& name) {
-  auto glyph = find(name);
-  assert(glyph);
-  return *glyph;
 }
 
 // MARK: Iterator

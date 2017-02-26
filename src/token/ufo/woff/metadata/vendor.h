@@ -43,7 +43,7 @@ class Vendor final {
   Vendor(const Vendor&) = default;
   Vendor& operator=(const Vendor&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Vendor(const PropertyList& plist);
   PropertyList plist() const;
 

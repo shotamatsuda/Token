@@ -43,7 +43,7 @@ class Text final {
   Text(const Text&) = default;
   Text& operator=(const Text&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Text(const PropertyList& plist);
   PropertyList plist() const;
 

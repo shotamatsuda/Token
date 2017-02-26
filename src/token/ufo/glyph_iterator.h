@@ -26,6 +26,7 @@
 #ifndef TOKEN_UFO_GLYPH_ITERATOR_H_
 #define TOKEN_UFO_GLYPH_ITERATOR_H_
 
+#include <cassert>
 #include <functional>
 #include <iterator>
 #include <utility>
@@ -103,7 +104,9 @@ inline bool operator!=(const GlyphIterator<T>& lhs,
 
 template <class T>
 inline T& GlyphIterator<T>::operator*() const {
-  return glyphs_->get(iterator_->first);
+  const auto ptr = glyphs_->find(iterator_->first);
+  assert(ptr);
+  return *ptr;
 }
 
 template <class T>

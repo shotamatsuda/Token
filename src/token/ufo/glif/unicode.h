@@ -27,7 +27,6 @@
 #define TOKEN_UFO_GLIF_UNICODE_H_
 
 #include <string>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -46,7 +45,7 @@ class Unicode final {
   Unicode(const Unicode&) = default;
   Unicode& operator=(const Unicode&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Unicode(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

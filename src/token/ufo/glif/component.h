@@ -27,7 +27,6 @@
 #define TOKEN_UFO_GLIF_COMPONENT_H_
 
 #include <string>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -53,7 +52,7 @@ class Component final {
   Component(const Component&) = default;
   Component& operator=(const Component&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Component(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

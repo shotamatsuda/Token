@@ -43,7 +43,7 @@ class Licensee final {
   Licensee(const Licensee&) = default;
   Licensee& operator=(const Licensee&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Licensee(const PropertyList& plist);
   PropertyList plist() const;
 

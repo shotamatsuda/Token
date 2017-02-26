@@ -28,7 +28,6 @@
 
 #include <cassert>
 #include <string>
-#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -64,7 +63,7 @@ class Point final {
   // Mutator
   void reset();
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Point(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

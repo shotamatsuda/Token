@@ -26,7 +26,6 @@
 #ifndef TOKEN_UFO_GLIF_OUTLINE_H_
 #define TOKEN_UFO_GLIF_OUTLINE_H_
 
-#include <utility>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
@@ -49,7 +48,7 @@ class Outline final {
   Outline(const Outline&) = default;
   Outline& operator=(const Outline&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Outline(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

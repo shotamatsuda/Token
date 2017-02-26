@@ -26,8 +26,6 @@
 #ifndef TOKEN_UFO_GLIF_ADVANCE_H_
 #define TOKEN_UFO_GLIF_ADVANCE_H_
 
-#include <utility>
-
 #include <boost/property_tree/ptree.hpp>
 
 #include "token/ufo/xml.h"
@@ -45,7 +43,7 @@ class Advance final {
   Advance(const Advance&) = default;
   Advance& operator=(const Advance&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Advance(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

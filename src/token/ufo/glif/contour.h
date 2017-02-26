@@ -27,7 +27,6 @@
 #define TOKEN_UFO_GLIF_CONTOUR_H_
 
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
@@ -49,7 +48,7 @@ class Contour final {
   Contour(const Contour&) = default;
   Contour& operator=(const Contour&) = default;
 
-  // Concept: Property tree representable
+  // Property tree
   explicit Contour(const boost::property_tree::ptree& tree);
   boost::property_tree::ptree ptree() const;
 

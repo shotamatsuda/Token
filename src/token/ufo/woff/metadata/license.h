@@ -45,7 +45,7 @@ class License final {
   License(const License&) = default;
   License& operator=(const License&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit License(const PropertyList& plist);
   PropertyList plist() const;
 

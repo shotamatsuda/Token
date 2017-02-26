@@ -35,7 +35,6 @@ extern "C" {
 #include <istream>
 #include <ostream>
 #include <string>
-#include <utility>
 
 #include <boost/filesystem/path.hpp>
 

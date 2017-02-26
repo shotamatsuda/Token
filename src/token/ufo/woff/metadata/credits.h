@@ -44,7 +44,7 @@ class Credits final {
   Credits(const Credits&) = default;
   Credits& operator=(const Credits&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit Credits(const PropertyList& plist);
   PropertyList plist() const;
 

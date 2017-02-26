@@ -41,7 +41,7 @@ class NameRecord final {
   NameRecord(const NameRecord&) = default;
   NameRecord& operator=(const NameRecord&) = default;
 
-  // Concept: Property list representable
+  // Property list
   explicit NameRecord(const PropertyList& plist);
   PropertyList plist() const;
 
