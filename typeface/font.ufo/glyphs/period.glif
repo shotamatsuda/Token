@@ -3,7 +3,7 @@
   <advance width="320"/>
   <unicode hex="002E"/>
   <outline>
-    <contour>
+    <contour identifier="circle">
       <point x="180.16" y="0"/>
       <point x="196.52" y="16.36"/>
       <point x="196.52" y="36.56" type="curve" smooth="yes"/>
@@ -15,15 +15,23 @@
       <point x="123.48" y="36.56" type="curve" smooth="yes"/>
       <point x="123.48" y="16.36"/>
       <point x="139.84" y="0"/>
-      <point x="160" y="0" type="curve" name="filled" smooth="yes"/>
+      <point x="160" y="0" type="curve" smooth="yes"/>
     </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.takram.token.numberOfContours</key>
+      <key>com.shotamatsuda.token.numberOfContours</key>
       <integer>1</integer>
-      <key>com.takram.token.numberOfHoles</key>
+      <key>com.shotamatsuda.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>com.shotamatsuda.token.contourStyles</key>
+      <dict>
+        <key>circle</key>
+        <dict>
+          <key>filled</key>
+          <true/>
+        </dict>
+      </dict>
     </dict>
   </lib>
 </glyph>

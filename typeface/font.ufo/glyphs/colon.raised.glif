@@ -2,7 +2,7 @@
 <glyph name="colon.raised" format="1">
   <advance width="320"/>
   <outline>
-    <contour>
+    <contour identifier="circle1">
       <point x="180.16" y="322.56"/>
       <point x="196.52" y="338.92"/>
       <point x="196.52" y="359.12" type="curve" smooth="yes"/>
@@ -14,9 +14,9 @@
       <point x="123.48" y="359.12" type="curve" smooth="yes"/>
       <point x="123.48" y="338.92"/>
       <point x="139.84" y="322.56"/>
-      <point x="160" y="322.56" type="curve" name="filled" smooth="yes"/>
+      <point x="160" y="322.56" type="curve" smooth="yes"/>
     </contour>
-    <contour>
+    <contour identifier="circle1">
       <point x="180.16" y="964.32"/>
       <point x="196.52" y="980.68"/>
       <point x="196.52" y="1000.88" type="curve" smooth="yes"/>
@@ -28,15 +28,28 @@
       <point x="123.48" y="1000.88" type="curve" smooth="yes"/>
       <point x="123.48" y="980.68"/>
       <point x="139.84" y="964.32"/>
-      <point x="160" y="964.32" type="curve" name="filled" smooth="yes"/>
+      <point x="160" y="964.32" type="curve" smooth="yes"/>
     </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.takram.token.numberOfContours</key>
+      <key>com.shotamatsuda.token.numberOfContours</key>
       <integer>2</integer>
-      <key>com.takram.token.numberOfHoles</key>
+      <key>com.shotamatsuda.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>com.shotamatsuda.token.contourStyles</key>
+      <dict>
+        <key>circle1</key>
+        <dict>
+          <key>filled</key>
+          <true/>
+        </dict>
+        <key>circle2</key>
+        <dict>
+          <key>filled</key>
+          <true/>
+        </dict>
+      </dict>
     </dict>
   </lib>
 </glyph>

@@ -11,21 +11,34 @@
       <point x="1184" y="1360" type="line"/>
       <point x="272" y="1360" type="line"/>
     </contour>
-    <contour>
+    <contour identifier="cross1">
       <point x="274" y="1358" type="move"/>
-      <point x="1182" y="2" type="line" name="butt"/>
+      <point x="1182" y="2" type="line"/>
     </contour>
-    <contour>
+    <contour identifier="cross2">
       <point x="274" y="2" type="move"/>
-      <point x="1182" y="1358" type="line" name="butt"/>
+      <point x="1182" y="1358" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.takram.token.numberOfContours</key>
+      <key>com.shotamatsuda.token.numberOfContours</key>
       <integer>5</integer>
-      <key>com.takram.token.numberOfHoles</key>
+      <key>com.shotamatsuda.token.numberOfHoles</key>
       <integer>4</integer>
+      <key>com.shotamatsuda.token.contourStyles</key>
+      <dict>
+        <key>cross1</key>
+        <dict>
+          <key>cap</key>
+          <string>butt</string>
+        </dict>
+        <key>cross2</key>
+        <dict>
+          <key>cap</key>
+          <string>butt</string>
+        </dict>
+      </dict>
     </dict>
   </lib>
 </glyph>

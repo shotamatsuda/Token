@@ -3,21 +3,34 @@
   <advance width="445"/>
   <unicode hex="0022"/>
   <outline>
-    <contour>
+    <contour identifier="right">
       <point x="99" y="1360" type="move"/>
-      <point x="99" y="900" type="line" name="align-right"/>
+      <point x="99" y="900" type="line"/>
     </contour>
-    <contour>
+    <contour identifier="left">
       <point x="346" y="1360" type="move"/>
-      <point x="346" y="900" type="line" name="align-left"/>
+      <point x="346" y="900" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.takram.token.numberOfContours</key>
+      <key>com.shotamatsuda.token.numberOfContours</key>
       <integer>2</integer>
-      <key>com.takram.token.numberOfHoles</key>
+      <key>com.shotamatsuda.token.numberOfHoles</key>
       <integer>0</integer>
+      <key>com.shotamatsuda.token.contourStyles</key>
+      <dict>
+        <key>right</key>
+        <dict>
+          <key>align</key>
+          <string>right</string>
+        </dict>
+        <key>left</key>
+        <dict>
+          <key>align</key>
+          <string>left</string>
+        </dict>
+      </dict>
     </dict>
   </lib>
 </glyph>

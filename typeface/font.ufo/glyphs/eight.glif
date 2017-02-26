@@ -36,9 +36,9 @@
   </outline>
   <lib>
     <dict>
-      <key>com.takram.token.numberOfContours</key>
+      <key>com.shotamatsuda.token.numberOfContours</key>
       <integer>3</integer>
-      <key>com.takram.token.numberOfHoles</key>
+      <key>com.shotamatsuda.token.numberOfHoles</key>
       <integer>2</integer>
     </dict>
   </lib>
