@@ -105,7 +105,7 @@ inline Optional<T>& Optional<T>::operator=(const T& other) {
 template <class T>
 inline Optional<T>& Optional<T>::operator=(T&& other) {
   exists_ = true;
-  value_ = std::forward<T>(other);
+  value_ = other;
   return *this;
 }
 

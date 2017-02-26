@@ -22,33 +22,32 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "token/ufo/woff/metadata/license.h"
-
-#include "token/ufo/plist.h"
-#include "token/ufo/property_list.h"
+#pragma once
+#ifndef TOKEN_TYPES_H_
+#define TOKEN_TYPES_H_
 
 namespace token {
-namespace ufo {
-namespace woff {
-namespace metadata {
 
-// MARK: Property list
+enum class Cap {
+  UNDEFINED,
+  BUTT,
+  ROUND,
+  PROJECT
+};
 
-License::License(const PropertyList& plist) {
-  plist::readString(plist, "url", &url);
-  plist::readString(plist, "identifier", &identifier);
-  plist::readVector(plist, "text", &text);
-}
+enum class Join {
+  UNDEFINED,
+  MITER,
+  ROUND,
+  BEVEL
+};
 
-PropertyList License::plist() const {
-  PropertyList plist;
-  plist::writeString(plist, "url", url);
-  plist::writeString(plist, "identifier", identifier);
-  plist::writeVector(plist, "text", text);
-  return plist;
-}
+enum class Align {
+  UNDEFINED,
+  LEFT,
+  RIGHT
+};
 
-}  // namespace metadata
-}  // namespace woff
-}  // namespace ufo
 }  // namespace token
+
+#endif  // TOKEN_TYPES_H_

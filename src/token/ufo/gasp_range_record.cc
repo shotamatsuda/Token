@@ -24,8 +24,6 @@
 
 #include "token/ufo/gasp_range_record.h"
 
-#include <utility>
-
 #include "token/ufo/plist.h"
 #include "token/ufo/property_list.h"
 

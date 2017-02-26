@@ -12,6 +12,8 @@
 		9321BA8C1CAE5057004284CA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936A9F341CAE452200CFBE5E /* Sparkle.framework */; };
 		9321BA8E1CAE505F004284CA /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 936A9F341CAE452200CFBE5E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9321E9321C9CA1ED00D6FCEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B7635E1B91B332009CA8B0 /* main.m */; };
+		932F46C91E627FA500F0CCD8 /* contour_styles.cc in Sources */ = {isa = PBXBuildFile; fileRef = 932F46C71E627FA500F0CCD8 /* contour_styles.cc */; };
+		932F46CF1E6281DE00F0CCD8 /* contour_style.cc in Sources */ = {isa = PBXBuildFile; fileRef = 932F46CD1E6281DE00F0CCD8 /* contour_style.cc */; };
 		933162D71B92C58F009FFC7C /* font_info.cc in Sources */ = {isa = PBXBuildFile; fileRef = 933162D61B92C58F009FFC7C /* font_info.cc */; };
 		9337DC541B8D67F20070814C /* glyph_outline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9337DC531B8D67F20070814C /* glyph_outline.cc */; };
 		933A61501BC8C95000C600C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933A614F1BC8C95000C600C5 /* Main.storyboard */; };
@@ -280,6 +282,11 @@
 		931043F71B94184F00DAC200 /* glyph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glyph.cc; sourceTree = "<group>"; };
 		932063001C82F84900E3EA83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9328FC1F1C8042EB003D8FB6 /* SheetContentSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetContentSegue.swift; sourceTree = "<group>"; };
+		932F46C71E627FA500F0CCD8 /* contour_styles.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contour_styles.cc; sourceTree = "<group>"; };
+		932F46C81E627FA500F0CCD8 /* contour_styles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contour_styles.h; sourceTree = "<group>"; };
+		932F46CA1E62808000F0CCD8 /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		932F46CD1E6281DE00F0CCD8 /* contour_style.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contour_style.cc; sourceTree = "<group>"; };
+		932F46CE1E6281DE00F0CCD8 /* contour_style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contour_style.h; sourceTree = "<group>"; };
 		933162C71B92C3F3009FFC7C /* font_info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = font_info.h; sourceTree = "<group>"; };
 		933162D61B92C58F009FFC7C /* font_info.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_info.cc; sourceTree = "<group>"; };
 		933162DA1B92CB6A009FFC7C /* optional.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = optional.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -508,6 +515,10 @@
 				93A2249C1B7B1FD200CB1DBB /* point.h */,
 				93714B491B996C7E0077B273 /* lib.h */,
 				93714B5F1B996EA70077B273 /* lib.cc */,
+				932F46C81E627FA500F0CCD8 /* contour_styles.h */,
+				932F46C71E627FA500F0CCD8 /* contour_styles.cc */,
+				932F46CE1E6281DE00F0CCD8 /* contour_style.h */,
+				932F46CD1E6281DE00F0CCD8 /* contour_style.cc */,
 			);
 			path = glif;
 			sourceTree = "<group>";
@@ -717,6 +728,7 @@
 				93E5FF151B915970006E968A /* glyph_stroker.cc */,
 				9337DC441B8D671B0070814C /* glyph_outline.h */,
 				9337DC531B8D67F20070814C /* glyph_outline.cc */,
+				932F46CA1E62808000F0CCD8 /* types.h */,
 				93A05ADE1B9B8A4A002DDAD5 /* afdko.h */,
 				93A05ADD1B9B8A4A002DDAD5 /* afdko */,
 				93A224A31B7B1FD200CB1DBB /* ufo.h */,
@@ -1036,6 +1048,8 @@
 				93654CCE1C82F6C5004C3CC9 /* TypefaceViewController.swift in Sources */,
 				93654CC91C82F6C5004C3CC9 /* TypefaceUnit.swift in Sources */,
 				93C18F9E1B930D440044AAEB /* extension_item.cc in Sources */,
+				932F46C91E627FA500F0CCD8 /* contour_styles.cc in Sources */,
+				932F46CF1E6281DE00F0CCD8 /* contour_style.cc in Sources */,
 				93654CCF1C82F6C5004C3CC9 /* TypefaceView.swift in Sources */,
 				9321E9321C9CA1ED00D6FCEA /* main.m in Sources */,
 				936A9EF51CAB577600CFBE5E /* task.cc in Sources */,

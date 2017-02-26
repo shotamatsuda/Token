@@ -24,8 +24,6 @@
 
 #include "token/ufo/woff/metadata/extension_value.h"
 
-#include <utility>
-
 #include "token/ufo/plist.h"
 #include "token/ufo/property_list.h"
 
