@@ -56,9 +56,9 @@ class Typeface : TKNTypeface, TypefaceDelegate {
       case .default:
         self.strokeWidth = strokeWidth
       case .physical:
-        capHeight = physicalCapHeightWithUnit(
-            capHeightUnit,
-            relativeToStrokeWidth: (self.strokeWidth, strokeWidthUnit),
+        self.strokeWidth = physicalStrokeWidthWithUnit(
+            strokeWidthUnit,
+            relativeToCapHeight: (capHeight, capHeightUnit),
             forStrokeWidth: strokeWidth,
             usingStroker: stroker)
       }
