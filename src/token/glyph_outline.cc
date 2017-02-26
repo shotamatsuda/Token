@@ -27,6 +27,7 @@
 #include <algorithm>
 #include <cassert>
 #include <deque>
+#include <exception>
 #include <iterator>
 #include <string>
 #include <unordered_set>
@@ -35,6 +36,7 @@
 
 #include "shotamatsuda/graphics.h"
 #include "token/glyph_stroker.h"
+#include "token/types.h"
 #include "token/ufo/glif.h"
 #include "token/ufo/glyph.h"
 
@@ -47,6 +49,14 @@ GlyphOutline::GlyphOutline(const ufo::Glyph& glyph) {
   for (const auto& contour : glyph.outline->contours) {
     if (!contour.points.empty()) {
       processContour(contour);
+      if (!glyph.lib.exists()) {
+        continue;
+      }
+      const auto style = glyph.lib->contour_styles.find(contour.identifier);
+      if (!style) {
+        continue;
+      }
+      processStyle(*style);
     }
   }
 }
@@ -61,7 +71,7 @@ ufo::Glyph GlyphOutline::glyph(const ufo::Glyph& prototype) const {
   result.outline.emplace();
   for (const auto& path : shape_.paths()) {
     if (!shape_.empty()) {
-      processPath(path, &result);
+      processPath(path, result);
     }
   }
   return result;
@@ -99,8 +109,7 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
     }
     switch (itr->type) {
       case ufo::glif::Point::Type::MOVE:
-        assert(false);  // A move point must appear the first
-        break;
+        throw std::runtime_error("Move point must appear the first");
       case ufo::glif::Point::Type::LINE:
         shape_.lineTo(itr->x, itr->y);
         offcurve1 = offcurve2 = end;
@@ -111,7 +120,7 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
         } else if (offcurve2 == end) {
           offcurve2 = itr;
         } else {
-          assert(false);
+          throw std::runtime_error("Extraneous offcurve point");
         }
         break;
       case ufo::glif::Point::Type::CURVE:
@@ -127,58 +136,27 @@ void GlyphOutline::processContour(const ufo::glif::Contour& contour) {
         offcurve1 = offcurve2 = end;
         break;
       case ufo::glif::Point::Type::QCURVE:
-        assert(false);  // Not supported
-        break;
+        throw std::runtime_error("Quadratic curve point is not supported");
       default:
-        assert(false);
-        break;
+        throw std::runtime_error("Invalid type of point");
     }
     if (itr == close) {
       break;  // This is the end of a closed contour
     }
   }
-  processAttributes(contour.points.back());
 }
 
-void GlyphOutline::processAttributes(const ufo::glif::Point& point) {
-  std::unordered_set<std::string> attributes;
-  boost::algorithm::split(attributes, point.name, boost::is_any_of(", "));
-  auto cap = GlyphStroker::Cap::UNDEFINED;
-  if (attributes.count("cap-butt")) {
-    cap = GlyphStroker::Cap::BUTT;
-  } else if (attributes.count("cap-round")) {
-    cap = GlyphStroker::Cap::ROUND;
-  } else if (attributes.count("cap-project")) {
-    cap = GlyphStroker::Cap::PROJECT;
-  }
-  caps_.emplace(shape_.paths().size() - 1, cap);
-  auto join = GlyphStroker::Join::UNDEFINED;
-  if (attributes.count("join-miter")) {
-    join = GlyphStroker::Join::MITER;
-  } else if (attributes.count("join-round")) {
-    join = GlyphStroker::Join::ROUND;
-  } else if (attributes.count("join-bevel")) {
-    join = GlyphStroker::Join::BEVEL;
-  }
-  joins_.emplace(shape_.paths().size() - 1, join);
-  auto align = GlyphStroker::Align::UNDEFINED;
-  if (attributes.count("align-left")) {
-    align = GlyphStroker::Align::LEFT;
-  } else if (attributes.count("align-right")) {
-    align = GlyphStroker::Align::RIGHT;
-  }
-  aligns_.emplace(shape_.paths().size() - 1, align);
-  bool filled{};
-  if (attributes.count("filled")) {
-    filled = true;
-  }
-  filleds_.emplace(shape_.paths().size() - 1, filled);
+void GlyphOutline::processStyle(const ufo::glif::ContourStyle& style) {
+  const auto index = shape_.paths().size() - 1;
+  caps_.emplace(index, style.cap);
+  joins_.emplace(index, style.join);
+  aligns_.emplace(index, style.align);
+  filleds_.emplace(index, style.filled);
 }
 
 void GlyphOutline::processPath(const shota::Path2d& path,
-                               ufo::Glyph *glyph) const {
+                               ufo::Glyph& glyph) const {
   assert(!path.empty());
-  assert(glyph);
   std::deque<ufo::glif::Point> points;
   for (const auto& command : path) {
     switch (command.type()) {
@@ -223,8 +201,8 @@ void GlyphOutline::processPath(const shota::Path2d& path,
     points.push_front(back);
   }
   if (!points.empty()) {
-    glyph->outline->contours.emplace_back();
-    auto& target = glyph->outline->contours.back().points;
+    glyph.outline->contours.emplace_back();
+    auto& target = glyph.outline->contours.back().points;
     target.resize(points.size());
     std::copy(std::begin(points), std::end(points), std::begin(target));
   }

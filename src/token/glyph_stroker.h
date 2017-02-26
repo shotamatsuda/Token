@@ -29,6 +29,7 @@
 #include <utility>
 
 #include "shotamatsuda/graphics.h"
+#include "token/types.h"
 #include "token/ufo/font_info.h"
 #include "token/ufo/glif/advance.h"
 #include "token/ufo/glyph.h"
@@ -40,27 +41,6 @@ namespace shota = shotamatsuda;
 class GlyphOutline;
 
 class GlyphStroker final {
- public:
-  enum class Cap {
-    UNDEFINED,
-    BUTT,
-    ROUND,
-    PROJECT
-  };
-
-  enum class Join {
-    UNDEFINED,
-    MITER,
-    ROUND,
-    BEVEL
-  };
-
-  enum class Align {
-    UNDEFINED,
-    LEFT,
-    RIGHT
-  };
-
  public:
   GlyphStroker();
 

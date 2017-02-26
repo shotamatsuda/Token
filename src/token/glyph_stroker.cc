@@ -39,6 +39,7 @@
 #include "shotamatsuda/graphics.h"
 #include "shotamatsuda/math.h"
 #include "token/glyph_outline.h"
+#include "token/types.h"
 #include "token/ufo/font_info.h"
 #include "token/ufo/glif/advance.h"
 #include "token/ufo/glyph.h"
@@ -47,15 +48,15 @@ namespace token {
 
 namespace {
 
-inline SkPaint::Cap convertCap(GlyphStroker::Cap cap) {
+inline SkPaint::Cap convertCap(Cap cap) {
   switch (cap) {
-    case GlyphStroker::Cap::UNDEFINED:
+    case Cap::UNDEFINED:
       return SkPaint::Cap::kDefault_Cap;
-    case GlyphStroker::Cap::BUTT:
+    case Cap::BUTT:
       return SkPaint::Cap::kButt_Cap;
-    case GlyphStroker::Cap::ROUND:
+    case Cap::ROUND:
       return SkPaint::Cap::kRound_Cap;
-    case GlyphStroker::Cap::PROJECT:
+    case Cap::PROJECT:
       return SkPaint::Cap::kSquare_Cap;
     default:
       assert(false);
@@ -64,15 +65,15 @@ inline SkPaint::Cap convertCap(GlyphStroker::Cap cap) {
   return SkPaint::Cap::kDefault_Cap;
 }
 
-inline SkPaint::Join convertJoin(GlyphStroker::Join join) {
+inline SkPaint::Join convertJoin(Join join) {
   switch (join) {
-    case GlyphStroker::Join::UNDEFINED:
+    case Join::UNDEFINED:
       return SkPaint::Join::kDefault_Join;
-    case GlyphStroker::Join::MITER:
+    case Join::MITER:
       return SkPaint::Join::kMiter_Join;
-    case GlyphStroker::Join::ROUND:
+    case Join::ROUND:
       return SkPaint::Join::kRound_Join;
-    case GlyphStroker::Join::BEVEL:
+    case Join::BEVEL:
       return SkPaint::Join::kBevel_Join;
     default:
       assert(false);
