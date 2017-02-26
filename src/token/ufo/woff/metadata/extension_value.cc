@@ -37,18 +37,18 @@ namespace metadata {
 // MARK: Property list
 
 ExtensionValue::ExtensionValue(const PropertyList& plist) {
-  plist::read_string(plist, "text", &text);
-  plist::read_string(plist, "language", &language);
-  plist::read_string(plist, "dir", &dir);
-  plist::read_string(plist, "class", &klass);
+  plist::readString(plist, "text", &text);
+  plist::readString(plist, "language", &language);
+  plist::readString(plist, "dir", &dir);
+  plist::readString(plist, "class", &klass);
 }
 
 PropertyList ExtensionValue::plist() const {
   PropertyList plist;
-  plist::write_string(plist, "text", text);
-  plist::write_string(plist, "language", language);
-  plist::write_string(plist, "dir", dir);
-  plist::write_string(plist, "class", klass);
+  plist::writeString(plist, "text", text);
+  plist::writeString(plist, "language", language);
+  plist::writeString(plist, "dir", dir);
+  plist::writeString(plist, "class", klass);
   return plist;
 }
 

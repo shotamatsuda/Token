@@ -35,12 +35,12 @@ namespace ufo {
 // MARK: Property list
 
 Guideline::Guideline(const PropertyList& plist) {
-  plist::read_number(plist, "x", &x);
-  plist::read_number(plist, "y", &y);
-  plist::read_number(plist, "angle", &angle);
-  plist::read_string(plist, "name", &name);
-  plist::read_string(plist, "color", &color);
-  plist::read_string(plist, "identifier", &identifier);
+  plist::readNumber(plist, "x", &x);
+  plist::readNumber(plist, "y", &y);
+  plist::readNumber(plist, "angle", &angle);
+  plist::readString(plist, "name", &name);
+  plist::readString(plist, "color", &color);
+  plist::readString(plist, "identifier", &identifier);
 }
 
 PropertyList Guideline::plist() const {

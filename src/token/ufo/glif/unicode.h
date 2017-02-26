@@ -75,12 +75,12 @@ inline bool operator!=(const Unicode& lhs, const Unicode& rhs) {
 // MARK: Property tree
 
 inline Unicode::Unicode(const boost::property_tree::ptree& tree) {
-  xml::read_attribute(tree, "hex", &hex);
+  xml::readAttribute(tree, "hex", &hex);
 }
 
 inline boost::property_tree::ptree Unicode::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attribute(&tree, "hex", hex);
+  xml::writeAttribute(&tree, "hex", hex);
   return tree;
 }
 

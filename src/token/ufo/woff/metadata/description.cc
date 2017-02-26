@@ -37,14 +37,14 @@ namespace metadata {
 // MARK: Property list
 
 Description::Description(const PropertyList& plist) {
-  plist::read_string(plist, "url", &url);
-  plist::read_vector(plist, "text", &text);
+  plist::readString(plist, "url", &url);
+  plist::readVector(plist, "text", &text);
 }
 
 PropertyList Description::plist() const {
   PropertyList plist;
-  plist::write_string(plist, "url", url);
-  plist::write_vector(plist, "text", text);
+  plist::writeString(plist, "url", url);
+  plist::writeVector(plist, "text", text);
   return plist;
 }
 

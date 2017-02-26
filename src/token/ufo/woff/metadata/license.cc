@@ -37,16 +37,16 @@ namespace metadata {
 // MARK: Property list
 
 License::License(const PropertyList& plist) {
-  plist::read_string(plist, "url", &url);
-  plist::read_string(plist, "identifier", &identifier);
-  plist::read_vector(plist, "text", &text);
+  plist::readString(plist, "url", &url);
+  plist::readString(plist, "identifier", &identifier);
+  plist::readVector(plist, "text", &text);
 }
 
 PropertyList License::plist() const {
   PropertyList plist;
-  plist::write_string(plist, "url", url);
-  plist::write_string(plist, "identifier", identifier);
-  plist::write_vector(plist, "text", text);
+  plist::writeString(plist, "url", url);
+  plist::writeString(plist, "identifier", identifier);
+  plist::writeVector(plist, "text", text);
   return plist;
 }
 

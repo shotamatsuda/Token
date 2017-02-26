@@ -42,10 +42,10 @@ namespace glif {
 
 Lib::Lib(const boost::property_tree::ptree& tree) : Lib() {
   auto plist = convertToPropertyList(tree);
-  plist::read_number(plist, "com.takram.token.numberOfContours",
-                     &number_of_contours);
-  plist::read_number(plist, "com.takram.token.numberOfHoles",
-                     &number_of_holes);
+  plist::readNumber(plist, "com.takram.token.numberOfContours",
+                    &number_of_contours);
+  plist::readNumber(plist, "com.takram.token.numberOfHoles",
+                    &number_of_holes);
 }
 
 boost::property_tree::ptree Lib::ptree() const {

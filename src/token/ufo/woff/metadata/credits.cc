@@ -37,12 +37,12 @@ namespace metadata {
 // MARK: Property list
 
 Credits::Credits(const PropertyList& plist) {
-  plist::read_vector(plist, "credits", &credits);
+  plist::readVector(plist, "credits", &credits);
 }
 
 PropertyList Credits::plist() const {
   PropertyList plist;
-  plist::write_vector(plist, "credits", credits);
+  plist::writeVector(plist, "credits", credits);
   return plist;
 }
 

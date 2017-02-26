@@ -36,14 +36,14 @@ namespace ufo {
 
 GASPRangeRecord::GASPRangeRecord(const PropertyList& plist)
     : GASPRangeRecord() {
-  plist::read_number(plist, "rangeMaxPPEM", &range_max_ppem);
-  plist::read_vector(plist, "rangeGaspBehavior", &range_gasp_behavior);
+  plist::readNumber(plist, "rangeMaxPPEM", &range_max_ppem);
+  plist::readVector(plist, "rangeGaspBehavior", &range_gasp_behavior);
 }
 
 PropertyList GASPRangeRecord::plist() const {
   PropertyList plist;
-  plist::write_number(plist, "rangeMaxPPEM", range_max_ppem);
-  plist::write_vector(plist, "rangeGaspBehavior", range_gasp_behavior);
+  plist::writeNumber(plist, "rangeMaxPPEM", range_max_ppem);
+  plist::writeVector(plist, "rangeGaspBehavior", range_gasp_behavior);
   return plist;
 }
 

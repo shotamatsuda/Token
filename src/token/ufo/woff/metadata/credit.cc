@@ -37,18 +37,18 @@ namespace metadata {
 // MARK: Property list
 
 Credit::Credit(const PropertyList& plist) {
-  plist::read_string(plist, "name", &name);
-  plist::read_string(plist, "url", &url);
-  plist::read_string(plist, "dir", &dir);
-  plist::read_string(plist, "class", &klass);
+  plist::readString(plist, "name", &name);
+  plist::readString(plist, "url", &url);
+  plist::readString(plist, "dir", &dir);
+  plist::readString(plist, "class", &klass);
 }
 
 PropertyList Credit::plist() const {
   PropertyList plist;
-  plist::write_string(plist, "name", name);
-  plist::write_string(plist, "url", url);
-  plist::write_string(plist, "dir", dir);
-  plist::write_string(plist, "class", klass);
+  plist::writeString(plist, "name", name);
+  plist::writeString(plist, "url", url);
+  plist::writeString(plist, "dir", dir);
+  plist::writeString(plist, "class", klass);
   return plist;
 }
 

@@ -53,14 +53,14 @@ bool Glyph::open(std::istream& stream) {
   boost::property_tree::ptree tree;
   boost::property_tree::xml_parser::read_xml(stream, tree);
   const auto& glyph = tree.get_child("glyph");
-  xml::read_attribute(glyph, "name", &name);
-  xml::read_child(glyph, "advance", &advance);
-  xml::read_children(glyph, "unicode", &unicodes);
-  xml::read_child(glyph, "image", &image);
-  xml::read_children(glyph, "guideline", &guidelines);
-  xml::read_children(glyph, "anchor", &anchors);
-  xml::read_child(glyph, "outline", &outline);
-  xml::read_child(glyph, "lib", &lib);
+  xml::readAttribute(glyph, "name", &name);
+  xml::readChild(glyph, "advance", &advance);
+  xml::readChildren(glyph, "unicode", &unicodes);
+  xml::readChild(glyph, "image", &image);
+  xml::readChildren(glyph, "guideline", &guidelines);
+  xml::readChildren(glyph, "anchor", &anchors);
+  xml::readChild(glyph, "outline", &outline);
+  xml::readChild(glyph, "lib", &lib);
   return true;
 }
 
@@ -76,15 +76,15 @@ bool Glyph::save(std::ostream& stream) const {
     return false;
   }
   boost::property_tree::ptree glyph;
-  xml::write_attribute(&glyph, "name", name);
-  xml::write_attribute(&glyph, "format", 2);
-  xml::write_child(&glyph, "advance", advance);
-  xml::write_children(&glyph, "unicode", unicodes);
-  xml::write_child(&glyph, "image", image);
-  xml::write_children(&glyph, "guideline", guidelines);
-  xml::write_children(&glyph, "anchor", anchors);
-  xml::write_child(&glyph, "outline", outline);
-  xml::write_child(&glyph, "lib", lib);
+  xml::writeAttribute(&glyph, "name", name);
+  xml::writeAttribute(&glyph, "format", 2);
+  xml::writeChild(&glyph, "advance", advance);
+  xml::writeChildren(&glyph, "unicode", unicodes);
+  xml::writeChild(&glyph, "image", image);
+  xml::writeChildren(&glyph, "guideline", guidelines);
+  xml::writeChildren(&glyph, "anchor", anchors);
+  xml::writeChild(&glyph, "outline", outline);
+  xml::writeChild(&glyph, "lib", lib);
   boost::property_tree::ptree tree;
   tree.add_child("glyph", glyph);
   boost::property_tree::xml_writer_settings<std::string> settings(' ', 2);

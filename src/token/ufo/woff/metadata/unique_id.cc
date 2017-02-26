@@ -37,12 +37,12 @@ namespace metadata {
 // MARK: Property list
 
 UniqueID::UniqueID(const PropertyList& plist) {
-  plist::read_string(plist, "identifier", &identifier);
+  plist::readString(plist, "identifier", &identifier);
 }
 
 PropertyList UniqueID::plist() const {
   PropertyList plist;
-  plist::write_string(plist, "identifier", identifier);
+  plist::writeString(plist, "identifier", identifier);
   return plist;
 }
 

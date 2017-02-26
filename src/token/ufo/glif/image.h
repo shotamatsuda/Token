@@ -119,26 +119,26 @@ inline bool operator!=(const Image& lhs, const Image& rhs) {
 // MARK: Property tree
 
 inline Image::Image(const boost::property_tree::ptree& tree) : Image() {
-  xml::read_attribute(tree, "fileName", &file_name);
-  xml::read_attribute(tree, "xScale", &x_scale);
-  xml::read_attribute(tree, "xyScale", &xy_scale);
-  xml::read_attribute(tree, "yxScale", &yx_scale);
-  xml::read_attribute(tree, "yScale", &y_scale);
-  xml::read_attribute(tree, "xOffset", &x_offset);
-  xml::read_attribute(tree, "yOffset", &y_offset);
-  xml::read_attribute(tree, "color", &color);
+  xml::readAttribute(tree, "fileName", &file_name);
+  xml::readAttribute(tree, "xScale", &x_scale);
+  xml::readAttribute(tree, "xyScale", &xy_scale);
+  xml::readAttribute(tree, "yxScale", &yx_scale);
+  xml::readAttribute(tree, "yScale", &y_scale);
+  xml::readAttribute(tree, "xOffset", &x_offset);
+  xml::readAttribute(tree, "yOffset", &y_offset);
+  xml::readAttribute(tree, "color", &color);
 }
 
 inline boost::property_tree::ptree Image::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attribute(&tree, "fileName", file_name);
-  xml::write_attribute(&tree, "xScale", x_scale, 1.0);
-  xml::write_attribute(&tree, "xyScale", xy_scale, 0.0);
-  xml::write_attribute(&tree, "yxScale", yx_scale, 0.0);
-  xml::write_attribute(&tree, "yScale", y_scale, 1.0);
-  xml::write_attribute(&tree, "xOffset", x_offset, 0.0);
-  xml::write_attribute(&tree, "yOffset", y_offset, 0.0);
-  xml::write_attribute(&tree, "color", color, "");
+  xml::writeAttribute(&tree, "fileName", file_name);
+  xml::writeAttribute(&tree, "xScale", x_scale, 1.0);
+  xml::writeAttribute(&tree, "xyScale", xy_scale, 0.0);
+  xml::writeAttribute(&tree, "yxScale", yx_scale, 0.0);
+  xml::writeAttribute(&tree, "yScale", y_scale, 1.0);
+  xml::writeAttribute(&tree, "xOffset", x_offset, 0.0);
+  xml::writeAttribute(&tree, "yOffset", y_offset, 0.0);
+  xml::writeAttribute(&tree, "color", color, "");
   return tree;
 }
 

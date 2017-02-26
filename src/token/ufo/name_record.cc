@@ -35,20 +35,20 @@ namespace ufo {
 // MARK: Property list
 
 NameRecord::NameRecord(const PropertyList& plist) : NameRecord() {
-  plist::read_number(plist, "nameID", &name_id);
-  plist::read_number(plist, "platformID", &platform_id);
-  plist::read_number(plist, "encodingID", &encoding_id);
-  plist::read_number(plist, "languageID", &language_id);
-  plist::read_string(plist, "string", &string);
+  plist::readNumber(plist, "nameID", &name_id);
+  plist::readNumber(plist, "platformID", &platform_id);
+  plist::readNumber(plist, "encodingID", &encoding_id);
+  plist::readNumber(plist, "languageID", &language_id);
+  plist::readString(plist, "string", &string);
 }
 
 PropertyList NameRecord::plist() const {
   PropertyList plist;
-  plist::write_number(plist, "nameID", name_id);
-  plist::write_number(plist, "platformID", platform_id);
-  plist::write_number(plist, "encodingID", encoding_id);
-  plist::write_number(plist, "languageID", language_id);
-  plist::write_string(plist, "string", string);
+  plist::writeNumber(plist, "nameID", name_id);
+  plist::writeNumber(plist, "platformID", platform_id);
+  plist::writeNumber(plist, "encodingID", encoding_id);
+  plist::writeNumber(plist, "languageID", language_id);
+  plist::writeString(plist, "string", string);
   return plist;
 }
 

@@ -82,14 +82,14 @@ inline bool operator!=(const Contour& lhs, const Contour& rhs) {
 // MARK: Property tree
 
 inline Contour::Contour(const boost::property_tree::ptree& tree) {
-  xml::read_attribute(tree, "identifier", &identifier);
-  xml::read_children(tree, "point", &points);
+  xml::readAttribute(tree, "identifier", &identifier);
+  xml::readChildren(tree, "point", &points);
 }
 
 inline boost::property_tree::ptree Contour::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attribute(&tree, "identifier", identifier, "");
-  xml::write_children(&tree, "point", points);
+  xml::writeAttribute(&tree, "identifier", identifier, "");
+  xml::writeChildren(&tree, "point", points);
   return tree;
 }
 

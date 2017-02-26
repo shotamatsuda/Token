@@ -79,14 +79,14 @@ inline bool operator!=(const Advance& lhs, const Advance& rhs) {
 // MARK: Property tree
 
 inline Advance::Advance(const boost::property_tree::ptree& tree) : Advance() {
-  xml::read_attribute(tree, "width", &width);
-  xml::read_attribute(tree, "height", &height);
+  xml::readAttribute(tree, "width", &width);
+  xml::readAttribute(tree, "height", &height);
 }
 
 inline boost::property_tree::ptree Advance::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attribute(&tree, "width", width, 0.0);
-  xml::write_attribute(&tree, "height", height, 0.0);
+  xml::writeAttribute(&tree, "width", width, 0.0);
+  xml::writeAttribute(&tree, "height", height, 0.0);
   return tree;
 }
 

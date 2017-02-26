@@ -37,16 +37,16 @@ namespace metadata {
 // MARK: Property list
 
 Extension::Extension(const PropertyList& plist) {
-  plist::read_string(plist, "identifier", &identifier);
-  plist::read_vector(plist, "names", &names);
-  plist::read_vector(plist, "items", &items);
+  plist::readString(plist, "identifier", &identifier);
+  plist::readVector(plist, "names", &names);
+  plist::readVector(plist, "items", &items);
 }
 
 PropertyList Extension::plist() const {
   PropertyList plist;
-  plist::write_string(plist, "identifier", identifier);
-  plist::write_vector(plist, "names", names);
-  plist::write_vector(plist, "items", items);
+  plist::writeString(plist, "identifier", identifier);
+  plist::writeVector(plist, "names", names);
+  plist::writeVector(plist, "items", items);
   return plist;
 }
 

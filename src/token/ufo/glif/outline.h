@@ -82,14 +82,14 @@ inline bool operator!=(const Outline& lhs, const Outline& rhs) {
 // MARK: Property tree
 
 inline Outline::Outline(const boost::property_tree::ptree& tree) {
-  xml::read_children(tree, "component", &components);
-  xml::read_children(tree, "contour", &contours);
+  xml::readChildren(tree, "component", &components);
+  xml::readChildren(tree, "contour", &contours);
 }
 
 inline boost::property_tree::ptree Outline::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_children(&tree, "component", components);
-  xml::write_children(&tree, "contour", contours);
+  xml::writeChildren(&tree, "component", components);
+  xml::writeChildren(&tree, "contour", contours);
   return tree;
 }
 

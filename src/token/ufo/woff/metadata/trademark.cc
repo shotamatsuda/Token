@@ -37,12 +37,12 @@ namespace metadata {
 // MARK: Property list
 
 Trademark::Trademark(const PropertyList& plist) {
-  plist::read_vector(plist, "text", &text);
+  plist::readVector(plist, "text", &text);
 }
 
 PropertyList Trademark::plist() const {
   PropertyList plist;
-  plist::write_vector(plist, "text", text);
+  plist::writeVector(plist, "text", text);
   return plist;
 }
 

@@ -46,7 +46,7 @@ namespace token {
 namespace ufo {
 namespace plist {
 
-inline void read_boolean(plist_t plist, const std::string& name, bool *output) {
+inline void readBoolean(plist_t plist, const std::string& name, bool *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -58,9 +58,9 @@ inline void read_boolean(plist_t plist, const std::string& name, bool *output) {
   }
 }
 
-inline void read_boolean(plist_t plist,
-                         const std::string& name,
-                         Optional<bool> *output) {
+inline void readBoolean(plist_t plist,
+                        const std::string& name,
+                        Optional<bool> *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -73,7 +73,7 @@ inline void read_boolean(plist_t plist,
 }
 
 template <class T>
-inline void read_number(plist_t plist, const std::string& name, T *output) {
+inline void readNumber(plist_t plist, const std::string& name, T *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -92,7 +92,7 @@ inline void read_number(plist_t plist, const std::string& name, T *output) {
 }
 
 template <class T>
-inline void read_string(plist_t plist, const std::string& name, T *output) {
+inline void readString(plist_t plist, const std::string& name, T *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -106,7 +106,7 @@ inline void read_string(plist_t plist, const std::string& name, T *output) {
 }
 
 template <class T>
-inline void read_object(plist_t plist, const std::string& name, T *output) {
+inline void readObject(plist_t plist, const std::string& name, T *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -117,9 +117,9 @@ inline void read_object(plist_t plist, const std::string& name, T *output) {
 }
 
 template <class T>
-inline void read_object(plist_t plist,
-                        const std::string& name,
-                        Optional<T> *output) {
+inline void readObject(plist_t plist,
+                       const std::string& name,
+                       Optional<T> *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -133,9 +133,9 @@ template <
   class T,
   std::enable_if_t<std::is_arithmetic<T>::value> * = nullptr
 >
-inline void read_vector(plist_t plist,
-                        const std::string& name,
-                        std::vector<T> *output) {
+inline void readVector(plist_t plist,
+                       const std::string& name,
+                       std::vector<T> *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -162,9 +162,9 @@ template <
   class T,
   std::enable_if_t<std::is_class<T>::value> * = nullptr
 >
-inline void read_vector(plist_t plist,
-                        const std::string& name,
-                        std::vector<T> *output) {
+inline void readVector(plist_t plist,
+                       const std::string& name,
+                       std::vector<T> *output) {
   assert(output);
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_dict_get_item(plist, name.c_str());
@@ -174,15 +174,15 @@ inline void read_vector(plist_t plist,
   }
 }
 
-inline void write_boolean(plist_t plist, const std::string& name, bool value) {
+inline void writeBoolean(plist_t plist, const std::string& name, bool value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_new_bool(value);
   plist_dict_set_item(plist, name.c_str(), node);
 }
 
-inline void write_boolean(plist_t plist,
-                          const std::string& name,
-                          const Optional<bool>& value) {
+inline void writeBoolean(plist_t plist,
+                         const std::string& name,
+                         const Optional<bool>& value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   if (value.exists()) {
     const auto node = plist_new_bool(value);
@@ -194,7 +194,7 @@ template <
   class T,
   std::enable_if_t<std::is_integral<T>::value> * = nullptr
 >
-inline void write_number(plist_t plist, const std::string& name, T value) {
+inline void writeNumber(plist_t plist, const std::string& name, T value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_new_uint(value);
   plist_dict_set_item(plist, name.c_str(), node);
@@ -204,7 +204,7 @@ template <
   class T,
   std::enable_if_t<std::is_floating_point<T>::value> * = nullptr
 >
-inline void write_number(plist_t plist, const std::string& name, T value) {
+inline void writeNumber(plist_t plist, const std::string& name, T value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   const auto node = plist_new_real(value);
   plist_dict_set_item(plist, name.c_str(), node);
@@ -214,9 +214,9 @@ template <
   class T,
   std::enable_if_t<std::is_integral<T>::value> * = nullptr
 >
-inline void write_number(plist_t plist,
-                         const std::string& name,
-                         const Optional<T>& value) {
+inline void writeNumber(plist_t plist,
+                        const std::string& name,
+                        const Optional<T>& value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   if (value.exists()) {
     const auto node = plist_new_uint(value);
@@ -228,9 +228,9 @@ template <
   class T,
   std::enable_if_t<std::is_floating_point<T>::value> * = nullptr
 >
-inline void write_number(plist_t plist,
-                         const std::string& name,
-                         const Optional<T>& value) {
+inline void writeNumber(plist_t plist,
+                        const std::string& name,
+                        const Optional<T>& value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   if (value.exists()) {
     const auto node = plist_new_real(value);
@@ -238,9 +238,9 @@ inline void write_number(plist_t plist,
   }
 }
 
-inline void write_string(plist_t plist,
-                         const std::string& name,
-                         const std::string& value) {
+inline void writeString(plist_t plist,
+                        const std::string& name,
+                        const std::string& value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   if (value.empty()) {
     return;
@@ -253,9 +253,9 @@ template <
   class T,
   std::enable_if_t<std::is_object<T>::value> * = nullptr
 >
-inline void write_object(plist_t plist,
-                         const std::string& name,
-                         const T& value) {
+inline void writeObject(plist_t plist,
+                        const std::string& name,
+                        const T& value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   plist_dict_set_item(plist, name.c_str(), value.plist().release());
 }
@@ -264,9 +264,9 @@ template <
   class T,
   std::enable_if_t<std::is_object<T>::value> * = nullptr
 >
-inline void write_object(plist_t plist,
-                         const std::string& name,
-                         const Optional<T>& value) {
+inline void writeObject(plist_t plist,
+                        const std::string& name,
+                        const Optional<T>& value) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   if (value.exists()) {
     plist_dict_set_item(plist, name.c_str(), value->plist().release());
@@ -277,9 +277,9 @@ template <
   class T,
   std::enable_if_t<std::is_integral<T>::value> * = nullptr
 >
-inline void write_vector(plist_t plist,
-                         const std::string& name,
-                         const std::vector<T>& values) {
+inline void writeVector(plist_t plist,
+                        const std::string& name,
+                        const std::vector<T>& values) {
   assert(plist_get_node_type(plist) == PLIST_DICT);
   if (values.empty()) {
     return;
@@ -296,9 +296,9 @@ template <
   class T,
   std::enable_if_t<std::is_floating_point<T>::value> * = nullptr
 >
-inline void write_vector(plist_t plist,
-                         const std::string& name,
-                         const std::vector<T>& values) {
+inline void writeVector(plist_t plist,
+                        const std::string& name,
+                        const std::vector<T>& values) {
   if (values.empty()) {
     return;
   }
@@ -315,9 +315,9 @@ template <
   class T,
   std::enable_if_t<std::is_class<T>::value> * = nullptr
 >
-inline void write_vector(plist_t plist,
-                         const std::string& name,
-                         const std::vector<T>& values) {
+inline void writeVector(plist_t plist,
+                        const std::string& name,
+                        const std::vector<T>& values) {
   if (values.empty()) {
     return;
   }

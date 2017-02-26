@@ -40,9 +40,9 @@ namespace ufo {
 namespace xml {
 
 template <class T>
-inline void read_attribute(const boost::property_tree::ptree& tree,
-                           const std::string& name,
-                           T *output) {
+inline void readAttribute(const boost::property_tree::ptree& tree,
+                          const std::string& name,
+                          T *output) {
   assert(output);
   const auto attrs = tree.find("<xmlattr>");
   if (attrs != tree.not_found()) {
@@ -54,9 +54,9 @@ inline void read_attribute(const boost::property_tree::ptree& tree,
 }
 
 template <class T>
-inline void read_child(const boost::property_tree::ptree& tree,
-                       const std::string& name,
-                       T *output) {
+inline void readChild(const boost::property_tree::ptree& tree,
+                      const std::string& name,
+                      T *output) {
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
@@ -65,9 +65,9 @@ inline void read_child(const boost::property_tree::ptree& tree,
 }
 
 template <class T>
-inline void read_child(const boost::property_tree::ptree& tree,
-                       const std::string& name,
-                       Optional<T> *output) {
+inline void readChild(const boost::property_tree::ptree& tree,
+                      const std::string& name,
+                      Optional<T> *output) {
   assert(output);
   const auto itr = tree.find(name);
   if (itr != tree.not_found()) {
@@ -76,9 +76,9 @@ inline void read_child(const boost::property_tree::ptree& tree,
 }
 
 template <class T>
-inline void read_children(const boost::property_tree::ptree& tree,
-                          const std::string& name,
-                          std::vector<T> *output) {
+inline void readChildren(const boost::property_tree::ptree& tree,
+                         const std::string& name,
+                         std::vector<T> *output) {
   assert(output);
   const auto values = tree.find(name);
   if (values != tree.not_found()) {
@@ -91,18 +91,18 @@ inline void read_children(const boost::property_tree::ptree& tree,
 }
 
 template <class T>
-inline void write_attribute(boost::property_tree::ptree *tree,
-                            const std::string& name,
-                            const T& value) {
+inline void writeAttribute(boost::property_tree::ptree *tree,
+                           const std::string& name,
+                           const T& value) {
   assert(tree);
   tree->put("<xmlattr>." + name, value);
 }
 
 template <class T, class U>
-inline void write_attribute(boost::property_tree::ptree *tree,
-                            const std::string& name,
-                            const T& value,
-                            const U& default_value) {
+inline void writeAttribute(boost::property_tree::ptree *tree,
+                           const std::string& name,
+                           const T& value,
+                           const U& default_value) {
   assert(tree);
   if (value != default_value) {
     tree->put("<xmlattr>." + name, value);
@@ -110,17 +110,17 @@ inline void write_attribute(boost::property_tree::ptree *tree,
 }
 
 template <class T>
-inline void write_child(boost::property_tree::ptree *tree,
-                        const std::string& name,
-                        const T& value) {
+inline void writeChild(boost::property_tree::ptree *tree,
+                       const std::string& name,
+                       const T& value) {
   assert(tree);
   tree->add_child(name, value.ptree());
 }
 
 template <class T>
-inline void write_child(boost::property_tree::ptree *tree,
-                        const std::string& name,
-                        const Optional<T>& value) {
+inline void writeChild(boost::property_tree::ptree *tree,
+                       const std::string& name,
+                       const Optional<T>& value) {
   assert(tree);
   if (value.exists()) {
     tree->add_child(name, value->ptree());
@@ -128,9 +128,9 @@ inline void write_child(boost::property_tree::ptree *tree,
 }
 
 template <class T>
-inline void write_children(boost::property_tree::ptree *tree,
-                           const std::string& name,
-                           const std::vector<T>& values) {
+inline void writeChildren(boost::property_tree::ptree *tree,
+                          const std::string& name,
+                          const std::vector<T>& values) {
   assert(tree);
   for (const auto& value : values) {
     tree->add_child(name, value.ptree());

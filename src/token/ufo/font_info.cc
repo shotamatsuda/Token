@@ -1,7 +1,5 @@
 //
-//  token/ufo/font_info.cc
-//
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2015-2017 Shota Matsuda
 //
@@ -122,487 +120,487 @@ bool FontInfo::save(std::ostream& stream) const {
 // MARK: Reading from property list
 
 void FontInfo::readIdentificationInformation(const PropertyList& plist) {
-  plist::read_string(plist, "familyName", &family_name);
-  plist::read_string(plist, "styleName", &style_name);
-  plist::read_string(plist, "styleMapFamilyName", &style_map_family_name);
-  plist::read_string(plist, "styleMapStyleName", &style_map_style_name);
-  plist::read_number(plist, "versionMajor", &version_major);
-  plist::read_number(plist, "versionMinor", &version_minor);
-  plist::read_number(plist, "year", &year);
+  plist::readString(plist, "familyName", &family_name);
+  plist::readString(plist, "styleName", &style_name);
+  plist::readString(plist, "styleMapFamilyName", &style_map_family_name);
+  plist::readString(plist, "styleMapStyleName", &style_map_style_name);
+  plist::readNumber(plist, "versionMajor", &version_major);
+  plist::readNumber(plist, "versionMinor", &version_minor);
+  plist::readNumber(plist, "year", &year);
 }
 
 void FontInfo::readLegalInformation(const PropertyList& plist) {
-  plist::read_string(plist, "copyright", &copyright);
-  plist::read_string(plist, "trademark", &trademark);
+  plist::readString(plist, "copyright", &copyright);
+  plist::readString(plist, "trademark", &trademark);
 }
 
 void FontInfo::readDimensionInformation(const PropertyList& plist) {
-  plist::read_number(plist, "unitsPerEm", &units_per_em);
-  plist::read_number(plist, "descender", &descender);
-  plist::read_number(plist, "xHeight", &x_height);
-  plist::read_number(plist, "capHeight", &cap_height);
-  plist::read_number(plist, "ascender", &ascender);
-  plist::read_number(plist, "italicAngle", &italic_angle);
+  plist::readNumber(plist, "unitsPerEm", &units_per_em);
+  plist::readNumber(plist, "descender", &descender);
+  plist::readNumber(plist, "xHeight", &x_height);
+  plist::readNumber(plist, "capHeight", &cap_height);
+  plist::readNumber(plist, "ascender", &ascender);
+  plist::readNumber(plist, "italicAngle", &italic_angle);
 }
 
 void FontInfo::readMiscellaneousInformation(const PropertyList& plist) {
-  plist::read_string(plist, "note", &note);
+  plist::readString(plist, "note", &note);
 }
 
 void FontInfo::readOpenTypeGASPTableFields(const PropertyList& plist) {
-  plist::read_vector(plist, "openTypeGaspRangeRecords",
-                     &open_type_gasp_range_records);
+  plist::readVector(plist, "openTypeGaspRangeRecords",
+                    &open_type_gasp_range_records);
 }
 
 void FontInfo::readOpenTypeHEADTableFields(const PropertyList& plist) {
-  plist::read_string(plist, "openTypeHeadCreated",
-                     &open_type_head_created);
-  plist::read_number(plist, "openTypeHeadLowestRecPPEM",
-                     &open_type_head_lowest_rec_ppem);
-  plist::read_vector(plist, "openTypeHeadFlags",
-                     &open_type_head_flags);
+  plist::readString(plist, "openTypeHeadCreated",
+                    &open_type_head_created);
+  plist::readNumber(plist, "openTypeHeadLowestRecPPEM",
+                    &open_type_head_lowest_rec_ppem);
+  plist::readVector(plist, "openTypeHeadFlags",
+                    &open_type_head_flags);
 }
 
 void FontInfo::readOpenTypeHHEATableFields(const PropertyList& plist) {
-  plist::read_number(plist, "openTypeHheaAscender",
-                     &open_type_hhea_ascender);
-  plist::read_number(plist, "openTypeHheaDescender",
-                     &open_type_hhea_descender);
-  plist::read_number(plist, "openTypeHheaLineGap",
-                     &open_type_hhea_line_gap);
-  plist::read_number(plist, "openTypeHheaCaretSlopeRise",
-                     &open_type_hhea_caret_slope_rise);
-  plist::read_number(plist, "openTypeHheaCaretSlopeRun",
-                     &open_type_hhea_caret_slope_run);
-  plist::read_number(plist, "openTypeHheaCaretOffset",
-                     &open_type_hhea_caret_offset);
+  plist::readNumber(plist, "openTypeHheaAscender",
+                    &open_type_hhea_ascender);
+  plist::readNumber(plist, "openTypeHheaDescender",
+                    &open_type_hhea_descender);
+  plist::readNumber(plist, "openTypeHheaLineGap",
+                    &open_type_hhea_line_gap);
+  plist::readNumber(plist, "openTypeHheaCaretSlopeRise",
+                    &open_type_hhea_caret_slope_rise);
+  plist::readNumber(plist, "openTypeHheaCaretSlopeRun",
+                    &open_type_hhea_caret_slope_run);
+  plist::readNumber(plist, "openTypeHheaCaretOffset",
+                    &open_type_hhea_caret_offset);
 }
 
 void FontInfo::readOpenTypeNameTableFields(const PropertyList& plist) {
-  plist::read_string(plist, "openTypeNameDesigner",
-                     &open_type_name_designer);
-  plist::read_string(plist, "openTypeNameDesignerURL",
-                     &open_type_name_designer_url);
-  plist::read_string(plist, "openTypeNameManufacturer",
-                     &open_type_name_manufacturer);
-  plist::read_string(plist, "openTypeNameManufacturerURL",
-                     &open_type_name_manufacturer_url);
-  plist::read_string(plist, "openTypeNameLicense",
-                     &open_type_name_license);
-  plist::read_string(plist, "openTypeNameLicenseURL",
-                     &open_type_name_license_url);
-  plist::read_string(plist, "openTypeNameVersion",
-                     &open_type_name_version);
-  plist::read_string(plist, "openTypeNameUniqueID",
-                     &open_type_name_unique_id);
-  plist::read_string(plist, "openTypeNameDescription",
-                     &open_type_name_description);
-  plist::read_string(plist, "openTypeNamePreferredFamilyName",
-                     &open_type_name_preferred_family_name);
-  plist::read_string(plist, "openTypeNamePreferredSubfamilyName",
-                     &open_type_name_preferred_subfamily_name);
-  plist::read_string(plist, "openTypeNameCompatibleFullName",
-                     &open_type_name_compatible_full_name);
-  plist::read_string(plist, "openTypeNameSampleText",
-                     &open_type_name_sample_text);
-  plist::read_string(plist, "openTypeNameWWSFamilyName",
-                     &open_type_name_wws_family_name);
-  plist::read_string(plist, "openTypeNameWWSSubfamilyName",
-                     &open_type_name_wws_subfamily_name);
-  plist::read_vector(plist, "openTypeNameRecords",
-                     &open_type_name_records);
+  plist::readString(plist, "openTypeNameDesigner",
+                    &open_type_name_designer);
+  plist::readString(plist, "openTypeNameDesignerURL",
+                    &open_type_name_designer_url);
+  plist::readString(plist, "openTypeNameManufacturer",
+                    &open_type_name_manufacturer);
+  plist::readString(plist, "openTypeNameManufacturerURL",
+                    &open_type_name_manufacturer_url);
+  plist::readString(plist, "openTypeNameLicense",
+                    &open_type_name_license);
+  plist::readString(plist, "openTypeNameLicenseURL",
+                    &open_type_name_license_url);
+  plist::readString(plist, "openTypeNameVersion",
+                    &open_type_name_version);
+  plist::readString(plist, "openTypeNameUniqueID",
+                    &open_type_name_unique_id);
+  plist::readString(plist, "openTypeNameDescription",
+                    &open_type_name_description);
+  plist::readString(plist, "openTypeNamePreferredFamilyName",
+                    &open_type_name_preferred_family_name);
+  plist::readString(plist, "openTypeNamePreferredSubfamilyName",
+                    &open_type_name_preferred_subfamily_name);
+  plist::readString(plist, "openTypeNameCompatibleFullName",
+                    &open_type_name_compatible_full_name);
+  plist::readString(plist, "openTypeNameSampleText",
+                    &open_type_name_sample_text);
+  plist::readString(plist, "openTypeNameWWSFamilyName",
+                    &open_type_name_wws_family_name);
+  plist::readString(plist, "openTypeNameWWSSubfamilyName",
+                    &open_type_name_wws_subfamily_name);
+  plist::readVector(plist, "openTypeNameRecords",
+                    &open_type_name_records);
 }
 
 void FontInfo::readOpenTypeOS2TableFields(const PropertyList& plist) {
-  plist::read_number(plist, "openTypeOS2WidthClass",
-                     &open_type_os2_width_class);
-  plist::read_number(plist, "openTypeOS2WeightClass",
-                     &open_type_os2_weight_class);
-  plist::read_vector(plist, "openTypeOS2Selection",
-                     &open_type_os2_selection);
-  plist::read_string(plist, "openTypeOS2VendorID",
-                     &open_type_os2_vendor_id);
-  plist::read_vector(plist, "openTypeOS2Panose",
-                     &open_type_os2_panose);
-  plist::read_vector(plist, "openTypeOS2FamilyClass",
-                     &open_type_os2_family_class);
-  plist::read_vector(plist, "openTypeOS2UnicodeRanges",
-                     &open_type_os2_unicode_ranges);
-  plist::read_vector(plist, "openTypeOS2CodePageRanges",
-                     &open_type_os2_code_page_ranges);
-  plist::read_number(plist, "openTypeOS2TypoAscender",
-                     &open_type_os2_typo_ascender);
-  plist::read_number(plist, "openTypeOS2TypoDescender",
-                     &open_type_os2_typo_descender);
-  plist::read_number(plist, "openTypeOS2TypoLineGap",
-                     &open_type_os2_typo_line_gap);
-  plist::read_number(plist, "openTypeOS2WinAscent",
-                     &open_type_os2_win_ascent);
-  plist::read_number(plist, "openTypeOS2WinDescent",
-                     &open_type_os2_win_descent);
-  plist::read_vector(plist, "openTypeOS2Type",
-                     &open_type_os2_type);
-  plist::read_number(plist, "openTypeOS2SubscriptXSize",
-                     &open_type_os2_subscript_x_size);
-  plist::read_number(plist, "openTypeOS2SubscriptYSize",
-                     &open_type_os2_subscript_y_size);
-  plist::read_number(plist, "openTypeOS2SubscriptXOffset",
-                     &open_type_os2_subscript_x_offset);
-  plist::read_number(plist, "openTypeOS2SubscriptYOffset",
-                     &open_type_os2_subscript_y_offset);
-  plist::read_number(plist, "openTypeOS2SuperscriptXSize",
-                     &open_type_os2_superscript_x_size);
-  plist::read_number(plist, "openTypeOS2SuperscriptYSize",
-                     &open_type_os2_superscript_y_size);
-  plist::read_number(plist, "openTypeOS2SuperscriptXOffset",
-                     &open_type_os2_superscript_x_offset);
-  plist::read_number(plist, "openTypeOS2SuperscriptYOffset",
-                     &open_type_os2_superscript_y_offset);
-  plist::read_number(plist, "openTypeOS2StrikeoutSize",
-                     &open_type_os2_strikeout_size);
-  plist::read_number(plist, "openTypeOS2StrikeoutPosition",
-                     &open_type_os2_strikeout_position);
+  plist::readNumber(plist, "openTypeOS2WidthClass",
+                    &open_type_os2_width_class);
+  plist::readNumber(plist, "openTypeOS2WeightClass",
+                    &open_type_os2_weight_class);
+  plist::readVector(plist, "openTypeOS2Selection",
+                    &open_type_os2_selection);
+  plist::readString(plist, "openTypeOS2VendorID",
+                    &open_type_os2_vendor_id);
+  plist::readVector(plist, "openTypeOS2Panose",
+                    &open_type_os2_panose);
+  plist::readVector(plist, "openTypeOS2FamilyClass",
+                    &open_type_os2_family_class);
+  plist::readVector(plist, "openTypeOS2UnicodeRanges",
+                    &open_type_os2_unicode_ranges);
+  plist::readVector(plist, "openTypeOS2CodePageRanges",
+                    &open_type_os2_code_page_ranges);
+  plist::readNumber(plist, "openTypeOS2TypoAscender",
+                    &open_type_os2_typo_ascender);
+  plist::readNumber(plist, "openTypeOS2TypoDescender",
+                    &open_type_os2_typo_descender);
+  plist::readNumber(plist, "openTypeOS2TypoLineGap",
+                    &open_type_os2_typo_line_gap);
+  plist::readNumber(plist, "openTypeOS2WinAscent",
+                    &open_type_os2_win_ascent);
+  plist::readNumber(plist, "openTypeOS2WinDescent",
+                    &open_type_os2_win_descent);
+  plist::readVector(plist, "openTypeOS2Type",
+                    &open_type_os2_type);
+  plist::readNumber(plist, "openTypeOS2SubscriptXSize",
+                    &open_type_os2_subscript_x_size);
+  plist::readNumber(plist, "openTypeOS2SubscriptYSize",
+                    &open_type_os2_subscript_y_size);
+  plist::readNumber(plist, "openTypeOS2SubscriptXOffset",
+                    &open_type_os2_subscript_x_offset);
+  plist::readNumber(plist, "openTypeOS2SubscriptYOffset",
+                    &open_type_os2_subscript_y_offset);
+  plist::readNumber(plist, "openTypeOS2SuperscriptXSize",
+                    &open_type_os2_superscript_x_size);
+  plist::readNumber(plist, "openTypeOS2SuperscriptYSize",
+                    &open_type_os2_superscript_y_size);
+  plist::readNumber(plist, "openTypeOS2SuperscriptXOffset",
+                    &open_type_os2_superscript_x_offset);
+  plist::readNumber(plist, "openTypeOS2SuperscriptYOffset",
+                    &open_type_os2_superscript_y_offset);
+  plist::readNumber(plist, "openTypeOS2StrikeoutSize",
+                    &open_type_os2_strikeout_size);
+  plist::readNumber(plist, "openTypeOS2StrikeoutPosition",
+                    &open_type_os2_strikeout_position);
 }
 
 void FontInfo::readOpenTypeVHEATableFields(const PropertyList& plist) {
-  plist::read_number(plist, "openTypeVheaVertTypoAscender",
-                     &open_type_vhea_vert_typo_ascender);
-  plist::read_number(plist, "openTypeVheaVertTypoDescender",
-                     &open_type_vhea_vert_typo_descender);
-  plist::read_number(plist, "openTypeVheaVertTypoLineGap",
-                     &open_type_vhea_vert_typo_line_gap);
-  plist::read_number(plist, "openTypeVheaCaretSlopeRise",
-                     &open_type_vhea_caret_slope_rise);
-  plist::read_number(plist, "openTypeVheaCaretSlopeRun",
-                     &open_type_vhea_caret_slope_run);
-  plist::read_number(plist, "openTypeVheaCaretOffset",
-                     &open_type_vhea_caret_offset);
+  plist::readNumber(plist, "openTypeVheaVertTypoAscender",
+                    &open_type_vhea_vert_typo_ascender);
+  plist::readNumber(plist, "openTypeVheaVertTypoDescender",
+                    &open_type_vhea_vert_typo_descender);
+  plist::readNumber(plist, "openTypeVheaVertTypoLineGap",
+                    &open_type_vhea_vert_typo_line_gap);
+  plist::readNumber(plist, "openTypeVheaCaretSlopeRise",
+                    &open_type_vhea_caret_slope_rise);
+  plist::readNumber(plist, "openTypeVheaCaretSlopeRun",
+                    &open_type_vhea_caret_slope_run);
+  plist::readNumber(plist, "openTypeVheaCaretOffset",
+                    &open_type_vhea_caret_offset);
 }
 
 void FontInfo::readPostScriptSpecificData(const PropertyList& plist) {
-  plist::read_string(plist, "postscriptFontName",
-                     &postscript_font_name);
-  plist::read_string(plist, "postscriptFullName",
-                     &postscript_full_name);
-  plist::read_number(plist, "postscriptSlantAngle",
-                     &postscript_slant_angle);
-  plist::read_number(plist, "postscriptUniqueID",
-                     &postscript_unique_id);
-  plist::read_number(plist, "postscriptUnderlineThickness",
-                     &postscript_underline_thickness);
-  plist::read_number(plist, "postscriptUnderlinePosition",
-                     &postscript_underline_position);
-  plist::read_boolean(plist, "postscriptIsFixedPitch",
-                      &postscript_is_fixed_pitch);
-  plist::read_vector(plist, "postscriptBlueValues",
-                     &postscript_blue_values);
-  plist::read_vector(plist, "postscriptOtherBlues",
-                     &postscript_other_blues);
-  plist::read_vector(plist, "postscriptFamilyBlues",
-                     &postscript_family_blues);
-  plist::read_vector(plist, "postscriptFamilyOtherBlues",
-                     &postscript_family_other_blues);
-  plist::read_vector(plist, "postscriptStemSnapH",
-                     &postscript_stem_snap_h);
-  plist::read_vector(plist, "postscriptStemSnapV",
-                     &postscript_stem_snap_v);
-  plist::read_number(plist, "postscriptBlueFuzz",
-                     &postscript_blue_fuzz);
-  plist::read_number(plist, "postscriptBlueShift",
-                     &postscript_blue_shift);
-  plist::read_number(plist, "postscriptBlueScale",
-                     &postscript_blue_scale);
-  plist::read_boolean(plist, "postscriptForceBold",
-                      &postscript_force_bold);
-  plist::read_number(plist, "postscriptDefaultWidthX",
-                     &postscript_default_width_x);
-  plist::read_number(plist, "postscriptNominalWidthX",
-                     &postscript_nominal_width_x);
-  plist::read_string(plist, "postscriptWeightName",
-                     &postscript_weight_name);
-  plist::read_string(plist, "postscriptDefaultCharacter",
-                     &postscript_default_character);
-  plist::read_number(plist, "postscriptWindowsCharacterSet",
-                     &postscript_windows_character_set);
+  plist::readString(plist, "postscriptFontName",
+                    &postscript_font_name);
+  plist::readString(plist, "postscriptFullName",
+                    &postscript_full_name);
+  plist::readNumber(plist, "postscriptSlantAngle",
+                    &postscript_slant_angle);
+  plist::readNumber(plist, "postscriptUniqueID",
+                    &postscript_unique_id);
+  plist::readNumber(plist, "postscriptUnderlineThickness",
+                    &postscript_underline_thickness);
+  plist::readNumber(plist, "postscriptUnderlinePosition",
+                    &postscript_underline_position);
+  plist::readBoolean(plist, "postscriptIsFixedPitch",
+                     &postscript_is_fixed_pitch);
+  plist::readVector(plist, "postscriptBlueValues",
+                    &postscript_blue_values);
+  plist::readVector(plist, "postscriptOtherBlues",
+                    &postscript_other_blues);
+  plist::readVector(plist, "postscriptFamilyBlues",
+                    &postscript_family_blues);
+  plist::readVector(plist, "postscriptFamilyOtherBlues",
+                    &postscript_family_other_blues);
+  plist::readVector(plist, "postscriptStemSnapH",
+                    &postscript_stem_snap_h);
+  plist::readVector(plist, "postscriptStemSnapV",
+                    &postscript_stem_snap_v);
+  plist::readNumber(plist, "postscriptBlueFuzz",
+                    &postscript_blue_fuzz);
+  plist::readNumber(plist, "postscriptBlueShift",
+                    &postscript_blue_shift);
+  plist::readNumber(plist, "postscriptBlueScale",
+                    &postscript_blue_scale);
+  plist::readBoolean(plist, "postscriptForceBold",
+                     &postscript_force_bold);
+  plist::readNumber(plist, "postscriptDefaultWidthX",
+                    &postscript_default_width_x);
+  plist::readNumber(plist, "postscriptNominalWidthX",
+                    &postscript_nominal_width_x);
+  plist::readString(plist, "postscriptWeightName",
+                    &postscript_weight_name);
+  plist::readString(plist, "postscriptDefaultCharacter",
+                    &postscript_default_character);
+  plist::readNumber(plist, "postscriptWindowsCharacterSet",
+                    &postscript_windows_character_set);
 }
 
 void FontInfo::readMacintoshFONDResourceData(const PropertyList& plist) {
-  plist::read_number(plist, "macintoshFONDFamilyID",
-                     &macintosh_fond_family_id);
-  plist::read_string(plist, "macintoshFONDName",
-                     &macintosh_fond_name);
+  plist::readNumber(plist, "macintoshFONDFamilyID",
+                    &macintosh_fond_family_id);
+  plist::readString(plist, "macintoshFONDName",
+                    &macintosh_fond_name);
 }
 
 void FontInfo::readWOFFData(const PropertyList& plist) {
-  plist::read_number(plist, "woffMajorVersion",
-                     &woff_major_version);
-  plist::read_number(plist, "woffMinorVersion",
-                     &woff_minor_version);
-  plist::read_object(plist, "woffMetadataUniqueID",
-                     &woff_metadata_unique_id);
-  plist::read_object(plist, "woffMetadataVendor",
-                     &woff_metadata_vendor);
-  plist::read_object(plist, "woffMetadataCredits",
-                     &woff_metadata_credits);
-  plist::read_object(plist, "woffMetadataDescription",
-                     &woff_metadata_description);
-  plist::read_object(plist, "woffMetadataLicense",
-                     &woff_metadata_license);
-  plist::read_object(plist, "woffMetadataCopyright",
-                     &woff_metadata_copyright);
-  plist::read_object(plist, "woffMetadataTrademark",
-                     &woff_metadata_trademark);
-  plist::read_object(plist, "woffMetadataLicensee",
-                     &woff_metadata_licensee);
-  plist::read_vector(plist, "woffMetadataExtensions",
-                     &woff_metadata_extensions);
+  plist::readNumber(plist, "woffMajorVersion",
+                    &woff_major_version);
+  plist::readNumber(plist, "woffMinorVersion",
+                    &woff_minor_version);
+  plist::readObject(plist, "woffMetadataUniqueID",
+                    &woff_metadata_unique_id);
+  plist::readObject(plist, "woffMetadataVendor",
+                    &woff_metadata_vendor);
+  plist::readObject(plist, "woffMetadataCredits",
+                    &woff_metadata_credits);
+  plist::readObject(plist, "woffMetadataDescription",
+                    &woff_metadata_description);
+  plist::readObject(plist, "woffMetadataLicense",
+                    &woff_metadata_license);
+  plist::readObject(plist, "woffMetadataCopyright",
+                    &woff_metadata_copyright);
+  plist::readObject(plist, "woffMetadataTrademark",
+                    &woff_metadata_trademark);
+  plist::readObject(plist, "woffMetadataLicensee",
+                    &woff_metadata_licensee);
+  plist::readVector(plist, "woffMetadataExtensions",
+                    &woff_metadata_extensions);
 }
 
 void FontInfo::readGuidelines(const PropertyList& plist) {
-  plist::read_vector(plist, "guidelines", &guidelines);
+  plist::readVector(plist, "guidelines", &guidelines);
 }
 
 // MARK: Writing to property list
 
 void FontInfo::writeIdentificationInformation(const PropertyList& plist) const {
-  plist::write_string(plist, "familyName", family_name);
-  plist::write_string(plist, "styleName", style_name);
-  plist::write_string(plist, "styleMapFamilyName", style_map_family_name);
-  plist::write_string(plist, "styleMapStyleName", style_map_style_name);
-  plist::write_number(plist, "versionMajor", version_major);
-  plist::write_number(plist, "versionMinor", version_minor);
-  plist::write_number(plist, "year", year);
+  plist::writeString(plist, "familyName", family_name);
+  plist::writeString(plist, "styleName", style_name);
+  plist::writeString(plist, "styleMapFamilyName", style_map_family_name);
+  plist::writeString(plist, "styleMapStyleName", style_map_style_name);
+  plist::writeNumber(plist, "versionMajor", version_major);
+  plist::writeNumber(plist, "versionMinor", version_minor);
+  plist::writeNumber(plist, "year", year);
 }
 
 void FontInfo::writeLegalInformation(const PropertyList& plist) const {
-  plist::write_string(plist, "copyright", copyright);
-  plist::write_string(plist, "trademark", trademark);
+  plist::writeString(plist, "copyright", copyright);
+  plist::writeString(plist, "trademark", trademark);
 }
 
 void FontInfo::writeDimensionInformation(const PropertyList& plist) const {
-  plist::write_number(plist, "unitsPerEm", units_per_em);
-  plist::write_number(plist, "descender", descender);
-  plist::write_number(plist, "xHeight", x_height);
-  plist::write_number(plist, "capHeight", cap_height);
-  plist::write_number(plist, "ascender", ascender);
-  plist::write_number(plist, "italicAngle", italic_angle);
+  plist::writeNumber(plist, "unitsPerEm", units_per_em);
+  plist::writeNumber(plist, "descender", descender);
+  plist::writeNumber(plist, "xHeight", x_height);
+  plist::writeNumber(plist, "capHeight", cap_height);
+  plist::writeNumber(plist, "ascender", ascender);
+  plist::writeNumber(plist, "italicAngle", italic_angle);
 }
 
 void FontInfo::writeMiscellaneousInformation(const PropertyList& plist) const {
-  plist::write_string(plist, "note", note);
+  plist::writeString(plist, "note", note);
 }
 
 void FontInfo::writeOpenTypeGASPTableFields(const PropertyList& plist) const {
-  plist::write_vector(plist, "openTypeGaspRangeRecords",
-                      open_type_gasp_range_records);
+  plist::writeVector(plist, "openTypeGaspRangeRecords",
+                     open_type_gasp_range_records);
 }
 
 void FontInfo::writeOpenTypeHEADTableFields(const PropertyList& plist) const {
-  plist::write_string(plist, "openTypeHeadCreated",
-                      open_type_head_created);
-  plist::write_number(plist, "openTypeHeadLowestRecPPEM",
-                      open_type_head_lowest_rec_ppem);
-  plist::write_vector(plist, "openTypeHeadFlags",
-                      open_type_head_flags);
+  plist::writeString(plist, "openTypeHeadCreated",
+                     open_type_head_created);
+  plist::writeNumber(plist, "openTypeHeadLowestRecPPEM",
+                     open_type_head_lowest_rec_ppem);
+  plist::writeVector(plist, "openTypeHeadFlags",
+                     open_type_head_flags);
 }
 
 void FontInfo::writeOpenTypeHHEATableFields(const PropertyList& plist) const {
-  plist::write_number(plist, "openTypeHheaAscender",
-                      open_type_hhea_ascender);
-  plist::write_number(plist, "openTypeHheaDescender",
-                      open_type_hhea_descender);
-  plist::write_number(plist, "openTypeHheaLineGap",
-                      open_type_hhea_line_gap);
-  plist::write_number(plist, "openTypeHheaCaretSlopeRise",
-                      open_type_hhea_caret_slope_rise);
-  plist::write_number(plist, "openTypeHheaCaretSlopeRun",
-                      open_type_hhea_caret_slope_run);
-  plist::write_number(plist, "openTypeHheaCaretOffset",
-                      open_type_hhea_caret_offset);
+  plist::writeNumber(plist, "openTypeHheaAscender",
+                     open_type_hhea_ascender);
+  plist::writeNumber(plist, "openTypeHheaDescender",
+                     open_type_hhea_descender);
+  plist::writeNumber(plist, "openTypeHheaLineGap",
+                     open_type_hhea_line_gap);
+  plist::writeNumber(plist, "openTypeHheaCaretSlopeRise",
+                     open_type_hhea_caret_slope_rise);
+  plist::writeNumber(plist, "openTypeHheaCaretSlopeRun",
+                     open_type_hhea_caret_slope_run);
+  plist::writeNumber(plist, "openTypeHheaCaretOffset",
+                     open_type_hhea_caret_offset);
 }
 
 void FontInfo::writeOpenTypeNameTableFields(const PropertyList& plist) const {
-  plist::write_string(plist, "openTypeNameDesigner",
-                      open_type_name_designer);
-  plist::write_string(plist, "openTypeNameDesignerURL",
-                      open_type_name_designer_url);
-  plist::write_string(plist, "openTypeNameManufacturer",
-                      open_type_name_manufacturer);
-  plist::write_string(plist, "openTypeNameManufacturerURL",
-                      open_type_name_manufacturer_url);
-  plist::write_string(plist, "openTypeNameLicense",
-                      open_type_name_license);
-  plist::write_string(plist, "openTypeNameLicenseURL",
-                      open_type_name_license_url);
-  plist::write_string(plist, "openTypeNameVersion",
-                      open_type_name_version);
-  plist::write_string(plist, "openTypeNameUniqueID",
-                      open_type_name_unique_id);
-  plist::write_string(plist, "openTypeNameDescription",
-                      open_type_name_description);
-  plist::write_string(plist, "openTypeNamePreferredFamilyName",
-                      open_type_name_preferred_family_name);
-  plist::write_string(plist, "openTypeNamePreferredSubfamilyName",
-                      open_type_name_preferred_subfamily_name);
-  plist::write_string(plist, "openTypeNameCompatibleFullName",
-                      open_type_name_compatible_full_name);
-  plist::write_string(plist, "openTypeNameSampleText",
-                      open_type_name_sample_text);
-  plist::write_string(plist, "openTypeNameWWSFamilyName",
-                      open_type_name_wws_family_name);
-  plist::write_string(plist, "openTypeNameWWSSubfamilyName",
-                      open_type_name_wws_subfamily_name);
-  plist::write_vector(plist, "openTypeNameRecords",
-                      open_type_name_records);
+  plist::writeString(plist, "openTypeNameDesigner",
+                     open_type_name_designer);
+  plist::writeString(plist, "openTypeNameDesignerURL",
+                     open_type_name_designer_url);
+  plist::writeString(plist, "openTypeNameManufacturer",
+                     open_type_name_manufacturer);
+  plist::writeString(plist, "openTypeNameManufacturerURL",
+                     open_type_name_manufacturer_url);
+  plist::writeString(plist, "openTypeNameLicense",
+                     open_type_name_license);
+  plist::writeString(plist, "openTypeNameLicenseURL",
+                     open_type_name_license_url);
+  plist::writeString(plist, "openTypeNameVersion",
+                     open_type_name_version);
+  plist::writeString(plist, "openTypeNameUniqueID",
+                     open_type_name_unique_id);
+  plist::writeString(plist, "openTypeNameDescription",
+                     open_type_name_description);
+  plist::writeString(plist, "openTypeNamePreferredFamilyName",
+                     open_type_name_preferred_family_name);
+  plist::writeString(plist, "openTypeNamePreferredSubfamilyName",
+                     open_type_name_preferred_subfamily_name);
+  plist::writeString(plist, "openTypeNameCompatibleFullName",
+                     open_type_name_compatible_full_name);
+  plist::writeString(plist, "openTypeNameSampleText",
+                     open_type_name_sample_text);
+  plist::writeString(plist, "openTypeNameWWSFamilyName",
+                     open_type_name_wws_family_name);
+  plist::writeString(plist, "openTypeNameWWSSubfamilyName",
+                     open_type_name_wws_subfamily_name);
+  plist::writeVector(plist, "openTypeNameRecords",
+                     open_type_name_records);
 }
 
 void FontInfo::writeOpenTypeOS2TableFields(const PropertyList& plist) const {
-  plist::write_number(plist, "openTypeOS2WidthClass",
-                      open_type_os2_width_class);
-  plist::write_number(plist, "openTypeOS2WeightClass",
-                      open_type_os2_weight_class);
-  plist::write_vector(plist, "openTypeOS2Selection",
-                      open_type_os2_selection);
-  plist::write_string(plist, "openTypeOS2VendorID",
-                      open_type_os2_vendor_id);
-  plist::write_vector(plist, "openTypeOS2Panose",
-                      open_type_os2_panose);
-  plist::write_vector(plist, "openTypeOS2FamilyClass",
-                      open_type_os2_family_class);
-  plist::write_vector(plist, "openTypeOS2UnicodeRanges",
-                      open_type_os2_unicode_ranges);
-  plist::write_vector(plist, "openTypeOS2CodePageRanges",
-                      open_type_os2_code_page_ranges);
-  plist::write_number(plist, "openTypeOS2TypoAscender",
-                      open_type_os2_typo_ascender);
-  plist::write_number(plist, "openTypeOS2TypoDescender",
-                      open_type_os2_typo_descender);
-  plist::write_number(plist, "openTypeOS2TypoLineGap",
-                      open_type_os2_typo_line_gap);
-  plist::write_number(plist, "openTypeOS2WinAscent",
-                      open_type_os2_win_ascent);
-  plist::write_number(plist, "openTypeOS2WinDescent",
-                      open_type_os2_win_descent);
-  plist::write_vector(plist, "openTypeOS2Type",
-                      open_type_os2_type);
-  plist::write_number(plist, "openTypeOS2SubscriptXSize",
-                      open_type_os2_subscript_x_size);
-  plist::write_number(plist, "openTypeOS2SubscriptYSize",
-                      open_type_os2_subscript_y_size);
-  plist::write_number(plist, "openTypeOS2SubscriptXOffset",
-                      open_type_os2_subscript_x_offset);
-  plist::write_number(plist, "openTypeOS2SubscriptYOffset",
-                      open_type_os2_subscript_y_offset);
-  plist::write_number(plist, "openTypeOS2SuperscriptXSize",
-                      open_type_os2_superscript_x_size);
-  plist::write_number(plist, "openTypeOS2SuperscriptYSize",
-                      open_type_os2_superscript_y_size);
-  plist::write_number(plist, "openTypeOS2SuperscriptXOffset",
-                      open_type_os2_superscript_x_offset);
-  plist::write_number(plist, "openTypeOS2SuperscriptYOffset",
-                      open_type_os2_superscript_y_offset);
-  plist::write_number(plist, "openTypeOS2StrikeoutSize",
-                      open_type_os2_strikeout_size);
-  plist::write_number(plist, "openTypeOS2StrikeoutPosition",
-                      open_type_os2_strikeout_position);
+  plist::writeNumber(plist, "openTypeOS2WidthClass",
+                     open_type_os2_width_class);
+  plist::writeNumber(plist, "openTypeOS2WeightClass",
+                     open_type_os2_weight_class);
+  plist::writeVector(plist, "openTypeOS2Selection",
+                     open_type_os2_selection);
+  plist::writeString(plist, "openTypeOS2VendorID",
+                     open_type_os2_vendor_id);
+  plist::writeVector(plist, "openTypeOS2Panose",
+                     open_type_os2_panose);
+  plist::writeVector(plist, "openTypeOS2FamilyClass",
+                     open_type_os2_family_class);
+  plist::writeVector(plist, "openTypeOS2UnicodeRanges",
+                     open_type_os2_unicode_ranges);
+  plist::writeVector(plist, "openTypeOS2CodePageRanges",
+                     open_type_os2_code_page_ranges);
+  plist::writeNumber(plist, "openTypeOS2TypoAscender",
+                     open_type_os2_typo_ascender);
+  plist::writeNumber(plist, "openTypeOS2TypoDescender",
+                     open_type_os2_typo_descender);
+  plist::writeNumber(plist, "openTypeOS2TypoLineGap",
+                     open_type_os2_typo_line_gap);
+  plist::writeNumber(plist, "openTypeOS2WinAscent",
+                     open_type_os2_win_ascent);
+  plist::writeNumber(plist, "openTypeOS2WinDescent",
+                     open_type_os2_win_descent);
+  plist::writeVector(plist, "openTypeOS2Type",
+                     open_type_os2_type);
+  plist::writeNumber(plist, "openTypeOS2SubscriptXSize",
+                     open_type_os2_subscript_x_size);
+  plist::writeNumber(plist, "openTypeOS2SubscriptYSize",
+                     open_type_os2_subscript_y_size);
+  plist::writeNumber(plist, "openTypeOS2SubscriptXOffset",
+                     open_type_os2_subscript_x_offset);
+  plist::writeNumber(plist, "openTypeOS2SubscriptYOffset",
+                     open_type_os2_subscript_y_offset);
+  plist::writeNumber(plist, "openTypeOS2SuperscriptXSize",
+                     open_type_os2_superscript_x_size);
+  plist::writeNumber(plist, "openTypeOS2SuperscriptYSize",
+                     open_type_os2_superscript_y_size);
+  plist::writeNumber(plist, "openTypeOS2SuperscriptXOffset",
+                     open_type_os2_superscript_x_offset);
+  plist::writeNumber(plist, "openTypeOS2SuperscriptYOffset",
+                     open_type_os2_superscript_y_offset);
+  plist::writeNumber(plist, "openTypeOS2StrikeoutSize",
+                     open_type_os2_strikeout_size);
+  plist::writeNumber(plist, "openTypeOS2StrikeoutPosition",
+                     open_type_os2_strikeout_position);
 }
 
 void FontInfo::writeOpenTypeVHEATableFields(const PropertyList& plist) const {
-  plist::write_number(plist, "openTypeVheaVertTypoAscender",
-                      open_type_vhea_vert_typo_ascender);
-  plist::write_number(plist, "openTypeVheaVertTypoDescender",
-                      open_type_vhea_vert_typo_descender);
-  plist::write_number(plist, "openTypeVheaVertTypoLineGap",
-                      open_type_vhea_vert_typo_line_gap);
-  plist::write_number(plist, "openTypeVheaCaretSlopeRise",
-                      open_type_vhea_caret_slope_rise);
-  plist::write_number(plist, "openTypeVheaCaretSlopeRun",
-                      open_type_vhea_caret_slope_run);
-  plist::write_number(plist, "openTypeVheaCaretOffset",
-                      open_type_vhea_caret_offset);
+  plist::writeNumber(plist, "openTypeVheaVertTypoAscender",
+                     open_type_vhea_vert_typo_ascender);
+  plist::writeNumber(plist, "openTypeVheaVertTypoDescender",
+                     open_type_vhea_vert_typo_descender);
+  plist::writeNumber(plist, "openTypeVheaVertTypoLineGap",
+                     open_type_vhea_vert_typo_line_gap);
+  plist::writeNumber(plist, "openTypeVheaCaretSlopeRise",
+                     open_type_vhea_caret_slope_rise);
+  plist::writeNumber(plist, "openTypeVheaCaretSlopeRun",
+                     open_type_vhea_caret_slope_run);
+  plist::writeNumber(plist, "openTypeVheaCaretOffset",
+                     open_type_vhea_caret_offset);
 }
 
 void FontInfo::writePostScriptSpecificData(const PropertyList& plist) const {
-  plist::write_string(plist, "postscriptFontName",
-                      postscript_font_name);
-  plist::write_string(plist, "postscriptFullName",
-                      postscript_full_name);
-  plist::write_number(plist, "postscriptSlantAngle",
-                      postscript_slant_angle);
-  plist::write_number(plist, "postscriptUniqueID",
-                      postscript_unique_id);
-  plist::write_number(plist, "postscriptUnderlineThickness",
-                      postscript_underline_thickness);
-  plist::write_number(plist, "postscriptUnderlinePosition",
-                      postscript_underline_position);
-  plist::write_boolean(plist, "postscriptIsFixedPitch",
-                       postscript_is_fixed_pitch);
-  plist::write_vector(plist, "postscriptBlueValues",
-                      postscript_blue_values);
-  plist::write_vector(plist, "postscriptOtherBlues",
-                      postscript_other_blues);
-  plist::write_vector(plist, "postscriptFamilyBlues",
-                      postscript_family_blues);
-  plist::write_vector(plist, "postscriptFamilyOtherBlues",
-                      postscript_family_other_blues);
-  plist::write_vector(plist, "postscriptStemSnapH",
-                      postscript_stem_snap_h);
-  plist::write_vector(plist, "postscriptStemSnapV",
-                      postscript_stem_snap_v);
-  plist::write_number(plist, "postscriptBlueFuzz",
-                      postscript_blue_fuzz);
-  plist::write_number(plist, "postscriptBlueShift",
-                      postscript_blue_shift);
-  plist::write_number(plist, "postscriptBlueScale",
-                      postscript_blue_scale);
-  plist::write_boolean(plist, "postscriptForceBold",
-                       postscript_force_bold);
-  plist::write_number(plist, "postscriptDefaultWidthX",
-                      postscript_default_width_x);
-  plist::write_number(plist, "postscriptNominalWidthX",
-                      postscript_nominal_width_x);
-  plist::write_string(plist, "postscriptWeightName",
-                      postscript_weight_name);
-  plist::write_string(plist, "postscriptDefaultCharacter",
-                      postscript_default_character);
-  plist::write_number(plist, "postscriptWindowsCharacterSet",
-                      postscript_windows_character_set);
+  plist::writeString(plist, "postscriptFontName",
+                     postscript_font_name);
+  plist::writeString(plist, "postscriptFullName",
+                     postscript_full_name);
+  plist::writeNumber(plist, "postscriptSlantAngle",
+                     postscript_slant_angle);
+  plist::writeNumber(plist, "postscriptUniqueID",
+                     postscript_unique_id);
+  plist::writeNumber(plist, "postscriptUnderlineThickness",
+                     postscript_underline_thickness);
+  plist::writeNumber(plist, "postscriptUnderlinePosition",
+                     postscript_underline_position);
+  plist::writeBoolean(plist, "postscriptIsFixedPitch",
+                      postscript_is_fixed_pitch);
+  plist::writeVector(plist, "postscriptBlueValues",
+                     postscript_blue_values);
+  plist::writeVector(plist, "postscriptOtherBlues",
+                     postscript_other_blues);
+  plist::writeVector(plist, "postscriptFamilyBlues",
+                     postscript_family_blues);
+  plist::writeVector(plist, "postscriptFamilyOtherBlues",
+                     postscript_family_other_blues);
+  plist::writeVector(plist, "postscriptStemSnapH",
+                     postscript_stem_snap_h);
+  plist::writeVector(plist, "postscriptStemSnapV",
+                     postscript_stem_snap_v);
+  plist::writeNumber(plist, "postscriptBlueFuzz",
+                     postscript_blue_fuzz);
+  plist::writeNumber(plist, "postscriptBlueShift",
+                     postscript_blue_shift);
+  plist::writeNumber(plist, "postscriptBlueScale",
+                     postscript_blue_scale);
+  plist::writeBoolean(plist, "postscriptForceBold",
+                      postscript_force_bold);
+  plist::writeNumber(plist, "postscriptDefaultWidthX",
+                     postscript_default_width_x);
+  plist::writeNumber(plist, "postscriptNominalWidthX",
+                     postscript_nominal_width_x);
+  plist::writeString(plist, "postscriptWeightName",
+                     postscript_weight_name);
+  plist::writeString(plist, "postscriptDefaultCharacter",
+                     postscript_default_character);
+  plist::writeNumber(plist, "postscriptWindowsCharacterSet",
+                     postscript_windows_character_set);
 }
 
 void FontInfo::writeMacintoshFONDResourceData(const PropertyList& plist) const {
-  plist::write_number(plist, "macintoshFONDFamilyID",
-                      macintosh_fond_family_id);
-  plist::write_string(plist, "macintoshFONDName",
-                      macintosh_fond_name);
+  plist::writeNumber(plist, "macintoshFONDFamilyID",
+                     macintosh_fond_family_id);
+  plist::writeString(plist, "macintoshFONDName",
+                     macintosh_fond_name);
 }
 
 void FontInfo::writeWOFFData(const PropertyList& plist) const {
-  plist::write_number(plist, "woffMajorVersion",
-                      woff_major_version);
-  plist::write_number(plist, "woffMinorVersion",
-                      woff_minor_version);
-  plist::write_object(plist, "woffMetadataUniqueID",
-                      woff_metadata_unique_id);
-  plist::write_object(plist, "woffMetadataVendor",
-                      woff_metadata_vendor);
-  plist::write_object(plist, "woffMetadataCredits",
-                      woff_metadata_credits);
-  plist::write_object(plist, "woffMetadataDescription",
-                      woff_metadata_description);
-  plist::write_object(plist, "woffMetadataLicense",
-                      woff_metadata_license);
-  plist::write_object(plist, "woffMetadataCopyright",
-                      woff_metadata_copyright);
-  plist::write_object(plist, "woffMetadataTrademark",
-                      woff_metadata_trademark);
-  plist::write_object(plist, "woffMetadataLicensee",
-                      woff_metadata_licensee);
-  plist::write_vector(plist, "woffMetadataExtensions",
-                      woff_metadata_extensions);
+  plist::writeNumber(plist, "woffMajorVersion",
+                     woff_major_version);
+  plist::writeNumber(plist, "woffMinorVersion",
+                     woff_minor_version);
+  plist::writeObject(plist, "woffMetadataUniqueID",
+                     woff_metadata_unique_id);
+  plist::writeObject(plist, "woffMetadataVendor",
+                     woff_metadata_vendor);
+  plist::writeObject(plist, "woffMetadataCredits",
+                     woff_metadata_credits);
+  plist::writeObject(plist, "woffMetadataDescription",
+                     woff_metadata_description);
+  plist::writeObject(plist, "woffMetadataLicense",
+                     woff_metadata_license);
+  plist::writeObject(plist, "woffMetadataCopyright",
+                     woff_metadata_copyright);
+  plist::writeObject(plist, "woffMetadataTrademark",
+                     woff_metadata_trademark);
+  plist::writeObject(plist, "woffMetadataLicensee",
+                     woff_metadata_licensee);
+  plist::writeVector(plist, "woffMetadataExtensions",
+                     woff_metadata_extensions);
 }
 
 void FontInfo::writeGuidelines(const PropertyList& plist) const {
-  plist::write_vector(plist, "guidelines", guidelines);
+  plist::writeVector(plist, "guidelines", guidelines);
 }
 
 }  // namespace ufo

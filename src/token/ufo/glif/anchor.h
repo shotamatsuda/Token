@@ -96,20 +96,20 @@ inline bool operator!=(const Anchor& lhs, const Anchor& rhs) {
 // MARK: Property tree
 
 inline Anchor::Anchor(const boost::property_tree::ptree& tree) {
-  xml::read_attribute(tree, "x", &x);
-  xml::read_attribute(tree, "y", &y);
-  xml::read_attribute(tree, "name", &name);
-  xml::read_attribute(tree, "color", &color);
-  xml::read_attribute(tree, "identifier", &identifier);
+  xml::readAttribute(tree, "x", &x);
+  xml::readAttribute(tree, "y", &y);
+  xml::readAttribute(tree, "name", &name);
+  xml::readAttribute(tree, "color", &color);
+  xml::readAttribute(tree, "identifier", &identifier);
 }
 
 inline boost::property_tree::ptree Anchor::ptree() const {
   boost::property_tree::ptree tree;
-  xml::write_attribute(&tree, "x", x);
-  xml::write_attribute(&tree, "y", y);
-  xml::write_attribute(&tree, "name", name, "");
-  xml::write_attribute(&tree, "color", color, "");
-  xml::write_attribute(&tree, "identifier", identifier, "");
+  xml::writeAttribute(&tree, "x", x);
+  xml::writeAttribute(&tree, "y", y);
+  xml::writeAttribute(&tree, "name", name, "");
+  xml::writeAttribute(&tree, "color", color, "");
+  xml::writeAttribute(&tree, "identifier", identifier, "");
   return tree;
 }
 
