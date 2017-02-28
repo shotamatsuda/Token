@@ -61,34 +61,17 @@ build_skia() {
   cd "${SKIA_DIR}"
   echo "Building for OS X..."
   export MACOSX_DEPLOYMENT_TARGET="${DEPLOYMENT_TARGET}"
-  "./bin/gn" gen "out/Release" --args='is_debug=false'
-  ninja -C "out/Release" skia
-  copy_libraries_in_place "${SKIA_DIR}/out/Release"
+  "./bin/gn" gen "./out/Release" --args='is_debug=false'
+  ninja -C "./out/Release" skia
 }
 
-copy_libraries_in_place() {
-  local dir=$1
-  echo "Copying libraries in place..."
+copy_library() {
+  echo "Copying library..."
   mkdir -p "${BUILD_DIR}/lib"
-  for file in $(find "${dir}" -name "*.a"); do
-    cp -n "${file}" "${BUILD_DIR}/lib"
-  done
+  cp "${SKIA_DIR}/out/Release/libskia.a" "${BUILD_DIR}/lib"
 }
 
-decompose_libraries() {
-  echo "Decomposing libraries to object files..."
-  mkdir -p "${BUILD_DIR}/lib/obj"
-  for file in $(find "${BUILD_DIR}/lib" -name "*.a"); do
-    cd "${BUILD_DIR}/lib/obj"; ar -x "${file}"
-  done
-}
-
-create_library() {
-  echo "Linking everything within architectures..."
-  cd "${BUILD_DIR}/lib"
-  xcrun ar crus "libskia.a" obj/*.o
-  rm -r "${BUILD_DIR}/lib/obj"
-
+copy_headers() {
   echo "Copying headers..."
   cd "${SKIA_DIR}/include"
   for header in $(find . -name "*.h"); do
@@ -104,5 +87,5 @@ cleanup
 download_depot_tools
 download_skia
 build_skia
-decompose_libraries
-create_library
+copy_library
+copy_headers
