@@ -3,6 +3,8 @@ Token
 
 Token is an app to generate OpenType fonts of a product typeface designed for [TAMRON New SP Series](https://takram.com/projects/tamron/), applying arbitrary weight by defining cap height and stroke width in physical length.
 
+The official website for this project is: [takram.com/projects/token](http://takram.com/projects/token)
+
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
