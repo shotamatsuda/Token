@@ -1,66 +1,27 @@
 Token
 =====
 
+Token is an app to generate OpenType fonts of a product typeface designed for [TAMRON New SP Series](https://takram.com/projects/tamron/), applying arbitrary weight by defining cap height and stroke width in physical length.
+
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
 ![](https://cloud.githubusercontent.com/assets/8651513/23328503/c8e1efd0-fb65-11e6-9ba7-91f5aa58d491.jpg)
 
-## Design Concept
-
 ![](https://cloud.githubusercontent.com/assets/8651513/23328504/c9e5c44c-fb65-11e6-9604-ec3e7adb79fe.png)
 
-## Implementation Detail
+## Implementation
 
-### Typeface Definition
+Font information, glyph shapes, metrics as well as kerning are stored as [Unified Font Object](http://unifiedfontobject.org) in [`typeface/font.ufo`](typeface/font.ufo). It uses 2000 units per em for a higher level of precision to scale kerning values, which are always rounded to integers, whereas AFDKO retains decimal coordinates in glyph outlines.
 
-#### Glyph Custom Data Storage
+Each [GLIF](http://unifiedfontobject.org/versions/ufo3/glyphs/glif/) file may contain some conventional data in the custom data storage section in order to control Token’s path stroking and set operations. `numberOfContours` and `numberOfHoles` take an integer value that hints to Token’s stroker the number of contours or holes in a glyph after being stroked. `contourStyles` is a dictionary of contour identifiers and stroke styles described in the table below.
 
-<dl>
-<dt>com.shotamatsuda.token.numberOfContours</dt>
-<dd></dd>
-<dt>com.shotamatsuda.token.numberOfHoles</dt>
-<dd></dd>
-<dt>com.shotamatsuda.token.contourStyles</dt>
-<dd></dd>
-</dl>
-
-#### Contour Styles
-
-Attribute|Type|Description|Default
----|---|---|---
-cap|string||round
-join|string||round
-align|string||none
-filled|boolean||false
-
-#### Cap
-
-Value|Description
----|---
-butt|
-round|
-project|
-
-#### Join
-
-Value|Description
----|---
-miter|
-round|
-bevel|
-
-#### Align
-
-Value|Description
----|---
-none|
-left|
-right|
-
-### Stroking & Path Ops
-
-### Font Generation
+Attribute | Type | Description | Default
+--- | --- | --- | ---
+`cap` | string | Specifies the shape to be used at the start and end of a contour. Possible values are: `butt`, `round` and `project`. | `round`
+`join` | string | Specifies the shape to be used at the corners of a contour. Possible values are: `miter`, `round` and `bevel`. | `round`
+`align` | string | Specifies if the position of a contour moves by half a stroke width to right so that the stroked path aligns to the boundary of the original path at the left (`left`) or right (`right`). | `none`
+`filled` | boolean | Determines if a contour is filled (`true`) or stroked (`false`). | `false`
 
 ## Compiling
 
@@ -69,9 +30,7 @@ Install the following dependencies via [Homebrew](https://brew.sh),
 - boost (developed on 1.63.0)
 - libplist (developed on 1.12)
 
-and run [skia.sh](script/skia.sh) inside the [script folder](script) in this repository to download and build Skia (this will take a time to complete since it's a large piece of source codes).
-
-After making sure to init and update the submodules, you should be able to open the project file in Xcode and build it.
+and run [`skia.sh`](script/skia.sh) inside the [`script`](script) folder in this repository to download and build [Skia](https://skia.org) (this will take a time to complete since it's a large piece of source codes). After making sure to init and update the submodules, you should be able to open the project file in Xcode and build it.
 
 ## License
 

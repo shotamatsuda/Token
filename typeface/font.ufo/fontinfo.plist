@@ -7,7 +7,7 @@
 	<key>capHeight</key>
 	<integer>1360</integer>
 	<key>copyright</key>
-	<string>Copyright (C) 2015-2016 takram design engineering. www.takram.com.</string>
+	<string>Copyright (C) 2015-2017 Takram. takram.com.</string>
 	<key>descender</key>
 	<integer>-500</integer>
 	<key>familyName</key>
@@ -31,15 +31,15 @@
 	<key>openTypeNameDesigner</key>
 	<string>Ken Okamoto, Shota Matsuda</string>
 	<key>openTypeNameDesignerURL</key>
-	<string>http://www.okamotoken.jp, http://shotamatsuda.com</string>
+	<string>http://okamotoken.jp</string>
 	<key>openTypeNameLicense</key>
 	<string>SIL Open Font License</string>
 	<key>openTypeNameLicenseURL</key>
 	<string>http://opensource.org/licenses/OFL-1.1</string>
 	<key>openTypeNameManufacturer</key>
-	<string>takram design engineering</string>
+	<string>Takram</string>
 	<key>openTypeNameManufacturerURL</key>
-	<string>http://www.takram.com</string>
+	<string>http://takram.com</string>
 	<key>openTypeNamePreferredFamilyName</key>
 	<string>Token</string>
 	<key>openTypeNamePreferredSubfamilyName</key>
