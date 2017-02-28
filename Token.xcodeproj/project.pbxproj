@@ -48,6 +48,7 @@
 		936A9EF51CAB577600CFBE5E /* task.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9EF41CAB577600CFBE5E /* task.cc */; };
 		936A9F071CAB6C7B00CFBE5E /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 936A9F061CAB6C7B00CFBE5E /* transform.cc */; };
 		936A9F441CAE4CE800CFBE5E /* SparklePublicDSAKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = 936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */; };
+		93710AF21E6540DD00FA851A /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93710AF11E6540DD00FA851A /* WelcomeWindowController.swift */; };
 		93714B601B996EA70077B273 /* lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93714B5F1B996EA70077B273 /* lib.cc */; };
 		937DD8141E5ECD590043CA1A /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 937DD8131E5ECD590043CA1A /* Credits.html */; };
 		937DD8291E5ECEFE0043CA1A /* AdobeFDKLicense.html in Resources */ = {isa = PBXBuildFile; fileRef = 937DD8281E5ECEFE0043CA1A /* AdobeFDKLicense.html */; };
@@ -331,6 +332,7 @@
 		936A9F061CAB6C7B00CFBE5E /* transform.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cc; sourceTree = "<group>"; };
 		936A9F1C1CAE452200CFBE5E /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = lib/sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		936A9F431CAE4CE800CFBE5E /* SparklePublicDSAKey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SparklePublicDSAKey.pem; sourceTree = "<group>"; };
+		93710AF11E6540DD00FA851A /* WelcomeWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
 		93714B491B996C7E0077B273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		93714B5F1B996EA70077B273 /* lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib.cc; sourceTree = "<group>"; };
 		9373E7811C64613D003A66B0 /* TypefaceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypefaceUnit.swift; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 			children = (
 				93D334C01C80370C00FF4567 /* Welcome.storyboard */,
 				93D70EDC1C2DA991003C6F2B /* WelcomeWindow.swift */,
+				93710AF11E6540DD00FA851A /* WelcomeWindowController.swift */,
 				93D334C21C80394000FF4567 /* WelcomeViewController.swift */,
 				937E19451C80588800090AEF /* WelcomeAgreementViewController.swift */,
 				93D334C61C80396200FF4567 /* WelcomeProgressViewController.swift */,
@@ -1004,7 +1007,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/update_version.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n";
+			shellScript = "\"${PROJECT_DIR}/script/bundle.sh\"\n\"${PROJECT_DIR}/script/fdk-extra.sh\" \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1053,6 +1056,7 @@
 				93654CCF1C82F6C5004C3CC9 /* TypefaceView.swift in Sources */,
 				9321E9321C9CA1ED00D6FCEA /* main.m in Sources */,
 				936A9EF51CAB577600CFBE5E /* task.cc in Sources */,
+				93710AF21E6540DD00FA851A /* WelcomeWindowController.swift in Sources */,
 				93654CC81C82F6C5004C3CC9 /* Typeface.swift in Sources */,
 				936A9F071CAB6C7B00CFBE5E /* transform.cc in Sources */,
 				93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */,

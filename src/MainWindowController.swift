@@ -47,6 +47,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
   }
 
   private var progressViewController: ProgressViewController?
+  private var welcomeWindowController: WelcomeWindowController?
 
   override func windowDidLoad() {
     super.windowDidLoad()
@@ -77,6 +78,14 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
 
   func windowWillClose(_ notification: Notification) {
     saveTypefaceSettings()
+  }
+
+  override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    if menuItem.action == #selector(installAdobeFDK(_:)) ||
+       menuItem.action == #selector(uninstallAdobeFDK(_:)) {
+      return welcomeWindowController == nil
+    }
+    return super.validateMenuItem(menuItem)
   }
 
   // MARK: Settings
@@ -200,7 +209,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
   func typeface(
       _ typeface: Typeface,
       createFontAtURL url: URL,
-      didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
+      didCompleteNumberOfSubtasks numberOfSubtasks: UInt,
       totalNumberOfSubtasks: UInt) {
     progressViewController!.progressIndicator!.isIndeterminate = false
     progressViewController!.progressIndicator!.doubleValue =
@@ -228,12 +237,26 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     guard let window = window else {
       return
     }
-    let storyboard = NSStoryboard(name: "Welcome", bundle: nil)
-    let windowController = storyboard.instantiateInitialController()
-    guard let sheet = (windowController as? NSWindowController)?.window else {
+    if welcomeWindowController == nil {
+      let storyboard = NSStoryboard(name: "Welcome", bundle: nil)
+      let controller = storyboard.instantiateInitialController()
+      welcomeWindowController = controller as! WelcomeWindowController?
+      NotificationCenter.default.addObserver(
+          forName: WelcomeWindowController.DidFinishNotification,
+          object: welcomeWindowController,
+          queue: OperationQueue.main,
+          using: { (notification) in
+            self.welcomeWindowController = nil
+          })
+    }
+    guard let sheet = welcomeWindowController!.window else {
       return
     }
-    window.beginSheet(sheet, completionHandler: nil)
+    window.beginSheet(sheet) { (response) in
+      if response != NSModalResponseContinue {
+        self.welcomeWindowController = nil
+      }
+    }
   }
 
   @IBAction func uninstallAdobeFDK(_ sender: AnyObject?) {

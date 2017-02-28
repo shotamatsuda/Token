@@ -29,10 +29,17 @@ class WelcomeProgressViewController : NSViewController,
   @IBOutlet var progressIndicator: NSProgressIndicator?
   @IBOutlet var progressLabel: NSTextField?
 
-  override func viewDidAppear() {
-    super.viewDidAppear()
+  override func viewDidLoad() {
+    super.viewDidLoad()
     progressIndicator?.startAnimation(self)
     download()
+  }
+
+  @IBAction func background(_ sender: AnyObject?) {
+    guard let window = view.window, let sheetParent = window.sheetParent else {
+      return
+    }
+    sheetParent.endSheet(window, returnCode: NSModalResponseContinue)
   }
 
   @IBAction func cancel(_ sender: AnyObject?) {
@@ -41,7 +48,7 @@ class WelcomeProgressViewController : NSViewController,
     guard let window = view.window, let sheetParent = window.sheetParent else {
       return
     }
-    sheetParent.endSheet(window, returnCode:NSModalResponseCancel)
+    sheetParent.endSheet(window, returnCode: NSModalResponseCancel)
   }
 
   // MARK: Downloading
@@ -119,18 +126,17 @@ class WelcomeProgressViewController : NSViewController,
       _ session: URLSession,
       task: URLSessionTask,
       didCompleteWithError error: Error?) {
-    guard error == nil else {
-      // TODO:
-      // if error!.domain == NSURLErrorDomain &&
-      //     error!.code == NSURLErrorCancelled {
-      //   return  // Cancelled
-      // }
+    if let error = error as NSError? {
+      if error.domain == NSURLErrorDomain &&
+         error.code == NSURLErrorCancelled {
+        return  // User cancelled
+      }
       let alert = NSAlert()
       alert.alertStyle = .warning
       alert.messageText = NSLocalizedString(
           "Couldn’t download Adobe FDK.",
           comment: "")
-      alert.informativeText = error!.localizedDescription
+      alert.informativeText = error.localizedDescription
       alert.beginSheetModal(
           for: NSApp.mainWindow!,
           completionHandler: nil)
@@ -181,11 +187,16 @@ class WelcomeProgressViewController : NSViewController,
             for: NSApp.mainWindow!,
             completionHandler: nil)
       }
-      guard let window = self.view.window,
-          let sheetParent = window.sheetParent else {
+      guard let window = self.view.window else {
         return
       }
-      sheetParent.endSheet(window, returnCode:NSModalResponseOK)
+      guard let sheetParent = window.sheetParent else {
+        NotificationCenter.default.post(
+            name: WelcomeWindowController.DidFinishNotification,
+            object: window.windowController)
+        return
+      }
+      sheetParent.endSheet(window, returnCode: NSModalResponseOK)
     }
   }
 

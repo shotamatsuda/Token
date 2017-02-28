@@ -27,7 +27,7 @@ import AppKit
 protocol TypefaceDelegate {
   func typeface(_ typeface: Typeface,
       createFontAtURL url: URL,
-      didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
+      didCompleteNumberOfSubtasks numberOfSubtasks: UInt,
       totalNumberOfSubtasks: UInt)
 
   func typeface(_ typeface: Typeface,
@@ -40,7 +40,7 @@ protocol TypefaceDelegate {
 extension TypefaceDelegate {
   func typeface(_ typeface: Typeface,
       createFontAtURL url: URL,
-      didCompleteNumberOfSubtasks numberOfSubtasks:UInt,
+      didCompleteNumberOfSubtasks numberOfSubtasks: UInt,
       totalNumberOfSubtasks: UInt) {}
 
   func typeface(_ typeface: Typeface,

@@ -11,7 +11,7 @@
         <!--Window Controller-->
         <scene sceneID="Cus-cd-WGj">
             <objects>
-                <windowController id="diW-rc-6Ij" sceneMemberID="viewController">
+                <windowController id="diW-rc-6Ij" customClass="WelcomeWindowController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Lec-YU-nkE">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="483" y="461" width="422" height="270"/>
@@ -266,7 +266,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jzl-BH-44a">
-                                <rect key="frame" x="280" y="9" width="112" height="32"/>
+                                <rect key="frame" x="10" y="9" width="112" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="TGW-5E-SlB"/>
                                 </constraints>
@@ -281,14 +281,32 @@ Gw
                                     <action selector="cancel:" target="uEB-CH-ASI" id="dT3-fV-8g1"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jM6-1p-ufx">
+                                <rect key="frame" x="280" y="9" width="112" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ozO-uG-RqF"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Background" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GrH-Bn-xJC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="background:" target="uEB-CH-ASI" id="Utw-vb-7o4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="jzl-BH-44a" firstAttribute="leading" secondItem="zgj-My-ejX" secondAttribute="leading" constant="16" id="2E0-TC-lRc"/>
                             <constraint firstAttribute="bottom" secondItem="jzl-BH-44a" secondAttribute="bottom" constant="16" id="A4i-Vj-GeA"/>
                             <constraint firstItem="1Iw-UY-0D5" firstAttribute="leading" secondItem="zgj-My-ejX" secondAttribute="leading" constant="16" id="ETc-WO-JZB"/>
+                            <constraint firstAttribute="trailing" secondItem="jM6-1p-ufx" secondAttribute="trailing" constant="16" id="KWz-nM-jRh"/>
                             <constraint firstAttribute="trailing" secondItem="hh1-YY-V1N" secondAttribute="trailing" constant="16" id="Tzx-1y-ytt"/>
                             <constraint firstAttribute="trailing" secondItem="1Iw-UY-0D5" secondAttribute="trailing" constant="16" id="WJa-8U-sf1"/>
+                            <constraint firstAttribute="bottom" secondItem="jM6-1p-ufx" secondAttribute="bottom" constant="16" id="deq-Hd-44I"/>
                             <constraint firstItem="1Iw-UY-0D5" firstAttribute="top" secondItem="hh1-YY-V1N" secondAttribute="bottom" id="fhH-Tf-AEc"/>
-                            <constraint firstAttribute="trailing" secondItem="jzl-BH-44a" secondAttribute="trailing" constant="16" id="g0b-dv-Vcq"/>
                             <constraint firstItem="jzl-BH-44a" firstAttribute="top" secondItem="1Iw-UY-0D5" secondAttribute="bottom" constant="8" id="mYs-de-lQG"/>
                             <constraint firstItem="hh1-YY-V1N" firstAttribute="leading" secondItem="zgj-My-ejX" secondAttribute="leading" constant="16" id="n9j-H8-z9w"/>
                             <constraint firstItem="hh1-YY-V1N" firstAttribute="top" secondItem="zgj-My-ejX" secondAttribute="top" constant="16" id="wCr-Vs-Lr8"/>
