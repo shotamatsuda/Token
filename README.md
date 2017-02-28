@@ -10,7 +10,7 @@ Token is an app to generate OpenType fonts of a product typeface designed for [T
 
 ![](https://cloud.githubusercontent.com/assets/8651513/23328504/c9e5c44c-fb65-11e6-9604-ec3e7adb79fe.png)
 
-## Implementation
+## Typeface Definition
 
 Font information, glyph shapes, metrics as well as kerning are stored as [Unified Font Object](http://unifiedfontobject.org) in [`typeface/font.ufo`](typeface/font.ufo). It uses 2000 units per em for a higher level of precision to scale kerning values, which are always rounded to integers, whereas AFDKO retains decimal coordinates in glyph outlines.
 
@@ -22,6 +22,10 @@ Attribute | Type | Description | Default
 `join` | string | Specifies the shape to be used at the corners of a contour. Possible values are: `miter`, `round` and `bevel`. | `round`
 `align` | string | Specifies if the position of a contour moves by half a stroke width to right so that the stroked path aligns to the boundary of the original path at the left (`left`) or right (`right`). | `none`
 `filled` | boolean | Determines if a contour is filled (`true`) or stroked (`false`). | `false`
+
+## Stroking
+
+Stroking a Bézier curve is not as easy as it looks. Since a curve parallel to a Bézier curve cannot be represented as a Bézier curve, it needs a heuristic approach that gives a practical approximation. Among several algorithms and libraries such as [Fast, precise flattening of cubic Bézier path and offset curves](https://pdfs.semanticscholar.org/9679/e1295261d77cd9ef514b9c875953fe1d2c80.pdf), [FreeType Glyph Stroker](https://www.freetype.org/freetype2/docs/reference/ft2-glyph_stroker.html) or [QPainterPathStroker](http://doc.qt.io/qt-5/qpainterpathstroker.html), Token uses [Skia](https://skia.org)’s path stroker and set operations considering robustness and precision.
 
 ## Compiling
 
