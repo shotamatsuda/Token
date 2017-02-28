@@ -25,7 +25,13 @@ Attribute | Type | Description | Default
 
 ## Stroking
 
-Stroking a Bézier curve is not as easy as it looks. Since a curve parallel to a Bézier curve cannot be represented as a Bézier curve, it needs a heuristic approach that gives a practical approximation. Among several algorithms and libraries such as [Fast, precise flattening of cubic Bézier path and offset curves](https://pdfs.semanticscholar.org/9679/e1295261d77cd9ef514b9c875953fe1d2c80.pdf), [FreeType Glyph Stroker](https://www.freetype.org/freetype2/docs/reference/ft2-glyph_stroker.html) or [QPainterPathStroker](http://doc.qt.io/qt-5/qpainterpathstroker.html), Token uses [Skia](https://skia.org)’s path stroker and set operations considering robustness and precision.
+Stroking a Bézier curve is not as easy as it looks. Since a curve parallel to a Bézier curve cannot be represented as a Bézier curve, it needs a heuristic approach that gives a practical approximation. Among several algorithms and libraries such as [Fast, precise flattening of cubic Bézier path and offset curves](https://pdfs.semanticscholar.org/9679/e1295261d77cd9ef514b9c875953fe1d2c80.pdf), [FreeType Glyph Stroker](https://www.freetype.org/freetype2/docs/reference/ft2-glyph_stroker.html) or [QPainterPathStroker](http://doc.qt.io/qt-5/qpainterpathstroker.html), Token uses [Skia](https://skia.org)’s path stroker and set operations considering robustness and precision. Stroking a glyph takes 5 steps as follows.
+
+1. Retrieve stroked paths for each contour.
+2. Simplify all the paths at once to merge overlapping paths.
+3. Shift the stroke width by a small amount and start over until the number of contours and holes match the hints in the custom data storage.
+4. Give an appropriate path direction to each path (nonzero winding rule).
+5. Convert conic and quadratic curves to cubic curves.
 
 ## Compiling
 
