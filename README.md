@@ -5,6 +5,8 @@ Token is an app to generate OpenType fonts of a product typeface designed for [T
 
 The official website for this project is: [takram.com/projects/token](http://takram.com/projects/token)
 
+[**Download Latest Version (v0.1.0)**](https://github.com/shotamatsuda/Token/releases/download/v0.1.0/Token-0.1.0.zip)
+
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
