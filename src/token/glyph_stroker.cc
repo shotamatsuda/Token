@@ -402,7 +402,7 @@ shota::Shape2d GlyphStroker::simplify(const shota::Shape2d& shape) const {
             bounds.y += bounds_insets;
             bounds.width -= bounds_insets + bounds_insets;
             bounds.height -= bounds_insets + bounds_insets;
-            depths[&*itr] += bounds.contains(itr->bounds());
+            depths[&*itr] += bounds.contains(itr->bounds(true));
           }
         }
         ++itr;
