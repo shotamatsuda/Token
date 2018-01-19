@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="diW-rc-6Ij">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="diW-rc-6Ij">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
@@ -12,10 +12,13 @@
         <scene sceneID="Cus-cd-WGj">
             <objects>
                 <windowController id="diW-rc-6Ij" customClass="WelcomeWindowController" customModule="Token" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Lec-YU-nkE">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Lec-YU-nkE" customClass="Window" customModule="Token" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="483" y="461" width="422" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="diW-rc-6Ij" id="k1o-fP-BZP"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="kgZ-V7-aet" kind="relationship" relationship="window.shadowedContentViewController" id="ST9-BQ-Vcl"/>
@@ -60,7 +63,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="402" height="189"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JTX-eB-tNq">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTX-eB-tNq">
                                 <rect key="frame" x="126" y="125" width="150" height="44"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome" id="ZjS-iY-eoK">
                                     <font key="font" metaFont="systemThin" size="36"/>
@@ -68,7 +71,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cp-ue-hm5">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cp-ue-hm5">
                                 <rect key="frame" x="18" y="71" width="366" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" allowsEditingTextAttributes="YES" id="2OJ-Dy-4ZZ">
                                     <font key="font" metaFont="system"/>
@@ -172,7 +175,7 @@ DQ
                                     <segue destination="uEB-CH-ASI" kind="custom" customClass="SheetContentSegue" customModule="Token" customModuleProvider="target" id="O5Q-LU-9hF"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="486" translatesAutoresizingMaskIntoConstraints="NO" id="fR2-eC-x5b" customClass="MultilineTextField" customModule="Token" customModuleProvider="target">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="486" translatesAutoresizingMaskIntoConstraints="NO" id="fR2-eC-x5b" customClass="MultilineTextField" customModule="Token" customModuleProvider="target">
                                 <rect key="frame" x="14" y="333" width="490" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="34" id="3HY-X9-mat"/>
@@ -257,7 +260,7 @@ DQ
                                     <constraint firstAttribute="height" constant="20" id="pQn-bi-q4W"/>
                                 </constraints>
                             </progressIndicator>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hh1-YY-V1N">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hh1-YY-V1N">
                                 <rect key="frame" x="14" y="65" width="374" height="14"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="Yqb-nr-zUa">
                                     <font key="font" metaFont="smallSystem"/>
