@@ -7,6 +7,9 @@
 [submodule "lib/python-scripts"]
 	path = lib/python-scripts
 	url = git@github.com:adobe-type-tools/python-scripts.git
+[submodule "lib/fonttools"]
+	path = lib/fonttools
+	url = git@github.com:behdad/fonttools.git
 [submodule "lib/sparkle"]
 	path = lib/sparkle
 	url = git@github.com:sparkle-project/Sparkle.git

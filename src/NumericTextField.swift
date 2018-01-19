@@ -1,26 +1,5 @@
-//
-//  The MIT License
-//
-//  Copyright (C) 2015-2017 Shota Matsuda
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a
-//  copy of this software and associated documentation files (the "Software"),
-//  to deal in the Software without restriction, including without limitation
-//  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-//  and/or sell copies of the Software, and to permit persons to whom the
-//  Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-//  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//  DEALINGS IN THE SOFTWARE.
-//
+// The MIT License
+// Copyright (C) 2015-Present Shota Matsuda
 
 import AppKit
 
@@ -40,7 +19,7 @@ class NumericTextField : NSTextField {
   deinit {
     NotificationCenter.default.removeObserver(
         self,
-        name: NSNotification.Name.NSControlTextDidEndEditing,
+        name: NSControl.textDidEndEditingNotification,
         object: self)
   }
 
@@ -51,7 +30,7 @@ class NumericTextField : NSTextField {
     NotificationCenter.default.addObserver(
         self,
         selector: #selector(controlTextDidEndEditing(_:)),
-        name: NSNotification.Name.NSControlTextDidEndEditing,
+        name: NSControl.textDidEndEditingNotification,
         object: self)
   }
 
@@ -81,13 +60,13 @@ class NumericTextField : NSTextField {
 
     // Propagate the change through binding, and store the value after
     // propagation back to the double value of the text field.
-    guard let info = infoForBinding(NSValueBinding) else {
+    guard let info = infoForBinding(.value) else {
       return
     }
-    guard let keyPath = info[NSObservedKeyPathKey] as? String else {
+    guard let keyPath = info[.observedKeyPath] as? String else {
       return
     }
-    guard let observedObject = info[NSObservedObjectKey] as AnyObject? else {
+    guard let observedObject = info[.observedObject] as AnyObject? else {
       return
     }
     let result = doubleValue + Double(event.deltaX) * step
@@ -118,18 +97,18 @@ class NumericTextField : NSTextField {
     if isEditable {
       super.resetCursorRects()
     } else {
-      addCursorRect(bounds, cursor: NSCursor.resizeLeftRight())
+      addCursorRect(bounds, cursor: .resizeLeftRight)
     }
   }
 
   override func controlTextDidEndEditing(_ notification: Notification) {
-    guard let info = infoForBinding(NSValueBinding) else {
+    guard let info = infoForBinding(.value) else {
       return
     }
-    guard let keyPath = info[NSObservedKeyPathKey] as? String else {
+    guard let keyPath = info[.observedKeyPath] as? String else {
       return
     }
-    guard let observedObject = info[NSObservedObjectKey] as AnyObject? else {
+    guard let observedObject = info[.observedObject] as AnyObject? else {
       return
     }
     if let value = observedObject.value(forKeyPath: keyPath) as? NSNumber {

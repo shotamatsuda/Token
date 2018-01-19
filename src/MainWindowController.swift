@@ -1,26 +1,5 @@
-//
-//  The MIT License
-//
-//  Copyright (C) 2015-2017 Shota Matsuda
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a
-//  copy of this software and associated documentation files (the "Software"),
-//  to deal in the Software without restriction, including without limitation
-//  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-//  and/or sell copies of the Software, and to permit persons to whom the
-//  Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-//  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//  DEALINGS IN THE SOFTWARE.
-//
+// The MIT License
+// Copyright (C) 2015-Present Shota Matsuda
 
 import AppKit
 
@@ -85,7 +64,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
        menuItem.action == #selector(uninstallAdobeFDK(_:)) {
       return welcomeWindowController == nil
     }
-    return super.validateMenuItem(menuItem)
+    return true
   }
 
   // MARK: Settings
@@ -132,7 +111,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       message: String,
       completionHandler: (() -> Void)?) {
     progressViewController = storyboard!.instantiateController(
-        withIdentifier: "ProgressViewController") as? ProgressViewController
+        withIdentifier: NSStoryboard.SceneIdentifier("ProgressViewController"))
+            as? ProgressViewController
     contentViewController!.presentViewControllerAsSheet(progressViewController!)
     progressViewController!.progressLabel!.stringValue = message
     typeface!.createFontToURL(url) {
@@ -153,8 +133,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     }
     let panel = NSSavePanel()
     panel.nameFieldStringValue = typeface.postscriptName + ".otf"
-    panel.beginSheetModal(for: window!) { (result: Int) in
-      if result == NSFileHandlingPanelOKButton {
+    panel.beginSheetModal(for: window!) { (result) in
+      if result == .OK {
         self.createFontAtURL(
             panel.url!,
             message: String(
@@ -187,7 +167,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
         message: String(
             format: NSLocalizedString("Installing “%@”...", comment: ""),
             installURL.lastPathComponent)) {
-      NSWorkspace.shared().open(
+      NSWorkspace.shared.open(
           installURL.deletingLastPathComponent())
     }
   }
@@ -238,7 +218,9 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       return
     }
     if welcomeWindowController == nil {
-      let storyboard = NSStoryboard(name: "Welcome", bundle: nil)
+      let storyboard = NSStoryboard(
+          name: NSStoryboard.Name("Welcome"), 
+          bundle: nil)
       let controller = storyboard.instantiateInitialController()
       welcomeWindowController = controller as! WelcomeWindowController?
       NotificationCenter.default.addObserver(
@@ -253,7 +235,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       return
     }
     window.beginSheet(sheet) { (response) in
-      if response != NSModalResponseContinue {
+      if response != .continue {
         self.welcomeWindowController = nil
       }
     }
@@ -270,8 +252,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
         comment: "")
     alert.addButton(withTitle: NSLocalizedString("Uninstall", comment: ""))
     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-    let completionHandler = { (returnCode: NSModalResponse) in
-      guard returnCode == NSAlertFirstButtonReturn else {
+    let completionHandler = { (returnCode: NSApplication.ModalResponse) in
+      guard returnCode == .alertFirstButtonReturn else {
         return
       }
       let fileManager = FileManager.default
