@@ -34,11 +34,11 @@ class TypefaceViewController : NSViewController {
     let defaultCenter = NotificationCenter.default
     defaultCenter.removeObserver(
         self,
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: typefaceView)
     defaultCenter.removeObserver(
         self,
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: scrollView)
   }
 
@@ -53,7 +53,7 @@ class TypefaceViewController : NSViewController {
     typefaceView?.typeface = typeface
 
     // Scroll view
-    scrollView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+    scrollView.autoresizingMask = [.width, .height]
     scrollView.hasHorizontalScroller = true
     scrollView.hasVerticalScroller = true
     scrollView.documentView = typefaceView
@@ -66,12 +66,12 @@ class TypefaceViewController : NSViewController {
     defaultCenter.addObserver(
         self,
         selector: #selector(contentViewFrameDidChange(_:)),
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: typefaceView)
     defaultCenter.addObserver(
         self,
         selector: #selector(contentViewFrameDidChange(_:)),
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: scrollView)
 
     // Inject self to the responder chain
@@ -144,7 +144,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  func contentViewFrameDidChange(_ notification: Notification) {
+  @objc func contentViewFrameDidChange(_ notification: Notification) {
     if alwaysZoomsToFit {
       zoomToFitAnimated(false)
     }

@@ -76,7 +76,7 @@ class TypefaceView : NSView {
 
     // Remember this view's current transformation matrix because it's not
     // identity matrix. We'll use this later for intersection tests.
-    guard let currentContext = NSGraphicsContext.current() else {
+    guard let currentContext = NSGraphicsContext.current else {
       return
     }
     self.transform = currentContext.cgContext.ctm
@@ -93,7 +93,7 @@ class TypefaceView : NSView {
       backgroundColor = NSColor.white
     }
     backgroundColor!.setFill()
-    NSRectFill(dirtyRect)
+    dirtyRect.fill()
 
     // Move the origin to horizontal center and vertical top.
     var transform = AffineTransform.identity
@@ -144,7 +144,7 @@ class TypefaceView : NSView {
 
   private func drawGlyph(_ name: String, position: CGPoint, dirtyRect: CGRect) {
     guard let typeface = typeface,
-      let currentContext = NSGraphicsContext.current() else {
+      let currentContext = NSGraphicsContext.current else {
       return
     }
     NSGraphicsContext.saveGraphicsState()
@@ -217,17 +217,17 @@ class TypefaceView : NSView {
       case .lineToBezierPathElement:
         fallthrough
       case .moveToBezierPathElement:
-        NSRectFill(CGRect(
+        CGRect(
             x: current[0].x + pointRect.minX,
             y: current[0].y + pointRect.minY,
             width: pointRect.width,
-            height: pointRect.height))
+            height: pointRect.height).fill()
       case .curveToBezierPathElement:
-        NSRectFill(CGRect(
+        CGRect(
             x: current[2].x + pointRect.minX,
             y: current[2].y + pointRect.minY,
             width: pointRect.width,
-            height: pointRect.height))
+            height: pointRect.height).fill()
         var path = NSBezierPath()
         if previousType == .curveToBezierPathElement {
           path.move(to: previous[2])

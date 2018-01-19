@@ -790,7 +790,7 @@
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = CMMH8M4457;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0920;
 					};
 				};
 			};
@@ -1144,7 +1144,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1162,7 +1162,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

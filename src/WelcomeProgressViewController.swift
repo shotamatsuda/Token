@@ -39,7 +39,7 @@ class WelcomeProgressViewController : NSViewController,
     guard let window = view.window, let sheetParent = window.sheetParent else {
       return
     }
-    sheetParent.endSheet(window, returnCode: NSModalResponseContinue)
+    sheetParent.endSheet(window, returnCode: .continue)
   }
 
   @IBAction func cancel(_ sender: AnyObject?) {
@@ -48,7 +48,7 @@ class WelcomeProgressViewController : NSViewController,
     guard let window = view.window, let sheetParent = window.sheetParent else {
       return
     }
-    sheetParent.endSheet(window, returnCode: NSModalResponseCancel)
+    sheetParent.endSheet(window, returnCode: .cancel)
   }
 
   // MARK: Downloading
@@ -196,7 +196,7 @@ class WelcomeProgressViewController : NSViewController,
             object: window.windowController)
         return
       }
-      sheetParent.endSheet(window, returnCode: NSModalResponseOK)
+      sheetParent.endSheet(window, returnCode: .OK)
     }
   }
 

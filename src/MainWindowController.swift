@@ -132,7 +132,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       message: String,
       completionHandler: (() -> Void)?) {
     progressViewController = storyboard!.instantiateController(
-        withIdentifier: "ProgressViewController") as? ProgressViewController
+        withIdentifier: NSStoryboard.SceneIdentifier("ProgressViewController"))
+            as? ProgressViewController
     contentViewController!.presentViewControllerAsSheet(progressViewController!)
     progressViewController!.progressLabel!.stringValue = message
     typeface!.createFontToURL(url) {
@@ -153,8 +154,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
     }
     let panel = NSSavePanel()
     panel.nameFieldStringValue = typeface.postscriptName + ".otf"
-    panel.beginSheetModal(for: window!) { (result: Int) in
-      if result == NSFileHandlingPanelOKButton {
+    panel.beginSheetModal(for: window!) { (result) in
+      if result == .OK {
         self.createFontAtURL(
             panel.url!,
             message: String(
@@ -187,7 +188,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
         message: String(
             format: NSLocalizedString("Installing “%@”...", comment: ""),
             installURL.lastPathComponent)) {
-      NSWorkspace.shared().open(
+      NSWorkspace.shared.open(
           installURL.deletingLastPathComponent())
     }
   }
@@ -238,7 +239,9 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       return
     }
     if welcomeWindowController == nil {
-      let storyboard = NSStoryboard(name: "Welcome", bundle: nil)
+      let storyboard = NSStoryboard(
+          name: NSStoryboard.Name("Welcome"), 
+          bundle: nil)
       let controller = storyboard.instantiateInitialController()
       welcomeWindowController = controller as! WelcomeWindowController?
       NotificationCenter.default.addObserver(
@@ -253,7 +256,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
       return
     }
     window.beginSheet(sheet) { (response) in
-      if response != NSModalResponseContinue {
+      if response != .continue {
         self.welcomeWindowController = nil
       }
     }
@@ -270,8 +273,8 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
         comment: "")
     alert.addButton(withTitle: NSLocalizedString("Uninstall", comment: ""))
     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-    let completionHandler = { (returnCode: NSModalResponse) in
-      guard returnCode == NSAlertFirstButtonReturn else {
+    let completionHandler = { (returnCode: NSApplication.ModalResponse) in
+      guard returnCode == .alertFirstButtonReturn else {
         return
       }
       let fileManager = FileManager.default

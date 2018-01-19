@@ -60,12 +60,12 @@ class RoundedButtonCell : NSButtonCell {
       title.beginEditing()
       if isHighlighted {
         title.addAttribute(
-            NSForegroundColorAttributeName,
+            .foregroundColor,
             value: highlightedTextColor,
             range: range)
       } else {
         title.addAttribute(
-            NSForegroundColorAttributeName,
+            .foregroundColor,
             value: textColor,
             range: range)
       }

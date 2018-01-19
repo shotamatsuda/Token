@@ -42,7 +42,7 @@ class WelcomeAgreementViewController : NSViewController, WebUIDelegate {
     guard let window = view.window, let sheetParent = window.sheetParent else {
       return
     }
-    sheetParent.endSheet(window, returnCode: NSModalResponseCancel)
+    sheetParent.endSheet(window, returnCode: .cancel)
   }
 
   // MARK: WebUIDelegate

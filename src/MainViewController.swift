@@ -34,10 +34,10 @@ class MainViewController : NSViewController {
       return
     }
     switch identifier {
-    case "Typeface":
+    case NSStoryboardSegue.Identifier("Typeface"):
       typefaceViewController =
           segue.destinationController as? TypefaceViewController
-    case "Settings":
+    case NSStoryboardSegue.Identifier("Settings"):
       settingsViewController =
           segue.destinationController as? SettingsViewController
     default:
@@ -47,9 +47,7 @@ class MainViewController : NSViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    typefaceViewController?.view.appearance =
-        NSAppearance(named: NSAppearanceNameAqua)
-    settingsViewController?.view.appearance =
-        NSAppearance(named: NSAppearanceNameVibrantDark)
+    typefaceViewController?.view.appearance = NSAppearance(named: .aqua)
+    settingsViewController?.view.appearance = NSAppearance(named: .vibrantDark)
   }
 }

@@ -40,9 +40,9 @@ class SheetContentSegue : NSStoryboardSegue {
 
     // Temporarily disable auto layout
     sourceView.autoresizingMask =
-        [.viewMinXMargin, .viewMaxXMargin, .viewMinYMargin]
+        [.minXMargin, .maxXMargin, .minYMargin]
     destinationView.autoresizingMask =
-        [.viewMinXMargin, .viewMaxXMargin, .viewMinYMargin]
+        [.minXMargin, .maxXMargin, .minYMargin]
 
     // Horizontally centerize the destination view
     let size = destinationView.frame.size
@@ -64,7 +64,7 @@ class SheetContentSegue : NSStoryboardSegue {
     }, completionHandler: {
       sourceView.removeFromSuperview()
       sourceController.removeFromParentViewController()
-      destinationView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+      destinationView.autoresizingMask = [.width, .height]
     })
     window.setFrame(
         CGRect(origin: window.frame.origin, size: size),

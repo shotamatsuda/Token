@@ -31,7 +31,7 @@ extension NSBezierPath {
 
   convenience init(roundedRect: CGRect, corners: RectCorners, radius: CGFloat) {
     self.init()
-    guard let context = NSGraphicsContext.current() else {
+    guard let context = NSGraphicsContext.current else {
       return
     }
     let radius = min(radius, min(roundedRect.width, roundedRect.height) / 2.0)

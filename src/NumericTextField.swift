@@ -40,7 +40,7 @@ class NumericTextField : NSTextField {
   deinit {
     NotificationCenter.default.removeObserver(
         self,
-        name: NSNotification.Name.NSControlTextDidEndEditing,
+        name: NSControl.textDidEndEditingNotification,
         object: self)
   }
 
@@ -51,7 +51,7 @@ class NumericTextField : NSTextField {
     NotificationCenter.default.addObserver(
         self,
         selector: #selector(controlTextDidEndEditing(_:)),
-        name: NSNotification.Name.NSControlTextDidEndEditing,
+        name: NSControl.textDidEndEditingNotification,
         object: self)
   }
 
@@ -81,13 +81,13 @@ class NumericTextField : NSTextField {
 
     // Propagate the change through binding, and store the value after
     // propagation back to the double value of the text field.
-    guard let info = infoForBinding(NSValueBinding) else {
+    guard let info = infoForBinding(.value) else {
       return
     }
-    guard let keyPath = info[NSObservedKeyPathKey] as? String else {
+    guard let keyPath = info[.observedKeyPath] as? String else {
       return
     }
-    guard let observedObject = info[NSObservedObjectKey] as AnyObject? else {
+    guard let observedObject = info[.observedObject] as AnyObject? else {
       return
     }
     let result = doubleValue + Double(event.deltaX) * step
@@ -118,18 +118,18 @@ class NumericTextField : NSTextField {
     if isEditable {
       super.resetCursorRects()
     } else {
-      addCursorRect(bounds, cursor: NSCursor.resizeLeftRight())
+      addCursorRect(bounds, cursor: .resizeLeftRight)
     }
   }
 
   override func controlTextDidEndEditing(_ notification: Notification) {
-    guard let info = infoForBinding(NSValueBinding) else {
+    guard let info = infoForBinding(.value) else {
       return
     }
-    guard let keyPath = info[NSObservedKeyPathKey] as? String else {
+    guard let keyPath = info[.observedKeyPath] as? String else {
       return
     }
-    guard let observedObject = info[NSObservedObjectKey] as AnyObject? else {
+    guard let observedObject = info[.observedObject] as AnyObject? else {
       return
     }
     if let value = observedObject.value(forKeyPath: keyPath) as? NSNumber {
