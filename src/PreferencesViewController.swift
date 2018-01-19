@@ -25,7 +25,7 @@
 import AppKit
 
 class PreferencesViewController : NSViewController {
-  var updateCheckInterval: Int {
+  @objc var updateCheckInterval: Int {
     get {
       let interval = SUUpdater.shared().updateCheckInterval
       switch interval {
