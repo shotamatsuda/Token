@@ -156,7 +156,7 @@ class TypefaceViewController : NSViewController {
       "strokerBehavior", "strokeWidth", "capHeight",
       "strokeWidthUnit", "capHeightUnit"]
 
-  var typeface: Typeface? {
+  @objc var typeface: Typeface? {
     willSet {
       guard let typeface = typeface else {
         return
@@ -183,7 +183,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  var inverted: Bool = false {
+  @objc var inverted: Bool = false {
     didSet {
       typefaceView?.inverted = inverted
       if inverted {
@@ -194,7 +194,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  var outlined: Bool = false {
+  @objc var outlined: Bool = false {
     didSet {
       typefaceView?.outlined = outlined
     }
@@ -213,7 +213,7 @@ class TypefaceViewController : NSViewController {
   private var magnificationQueue: Array<Double> = Array<Double>()
 
   private var _magnification: Double = 1.0
-  var magnification: Double {
+  @objc var magnification: Double {
     get {
       return _magnification
     }
@@ -223,7 +223,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  var alwaysZoomsToFit: Bool = true {
+  @objc var alwaysZoomsToFit: Bool = true {
     didSet {
       if alwaysZoomsToFit != oldValue && alwaysZoomsToFit {
         zoomToFitAnimated(true)
