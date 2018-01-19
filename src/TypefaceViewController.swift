@@ -1,26 +1,5 @@
-//
-//  The MIT License
-//
-//  Copyright (C) 2015-2017 Shota Matsuda
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a
-//  copy of this software and associated documentation files (the "Software"),
-//  to deal in the Software without restriction, including without limitation
-//  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-//  and/or sell copies of the Software, and to permit persons to whom the
-//  Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-//  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//  DEALINGS IN THE SOFTWARE.
-//
+// The MIT License
+// Copyright (C) 2015-Present Shota Matsuda
 
 import AppKit
 
@@ -34,11 +13,11 @@ class TypefaceViewController : NSViewController {
     let defaultCenter = NotificationCenter.default
     defaultCenter.removeObserver(
         self,
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: typefaceView)
     defaultCenter.removeObserver(
         self,
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: scrollView)
   }
 
@@ -53,7 +32,7 @@ class TypefaceViewController : NSViewController {
     typefaceView?.typeface = typeface
 
     // Scroll view
-    scrollView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+    scrollView.autoresizingMask = [.width, .height]
     scrollView.hasHorizontalScroller = true
     scrollView.hasVerticalScroller = true
     scrollView.documentView = typefaceView
@@ -66,12 +45,12 @@ class TypefaceViewController : NSViewController {
     defaultCenter.addObserver(
         self,
         selector: #selector(contentViewFrameDidChange(_:)),
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: typefaceView)
     defaultCenter.addObserver(
         self,
         selector: #selector(contentViewFrameDidChange(_:)),
-        name: NSNotification.Name.NSViewFrameDidChange,
+        name: NSView.frameDidChangeNotification,
         object: scrollView)
 
     // Inject self to the responder chain
@@ -144,7 +123,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  func contentViewFrameDidChange(_ notification: Notification) {
+  @objc func contentViewFrameDidChange(_ notification: Notification) {
     if alwaysZoomsToFit {
       zoomToFitAnimated(false)
     }
@@ -156,7 +135,7 @@ class TypefaceViewController : NSViewController {
       "strokerBehavior", "strokeWidth", "capHeight",
       "strokeWidthUnit", "capHeightUnit"]
 
-  var typeface: Typeface? {
+  @objc var typeface: Typeface? {
     willSet {
       guard let typeface = typeface else {
         return
@@ -183,7 +162,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  var inverted: Bool = false {
+  @objc var inverted: Bool = false {
     didSet {
       typefaceView?.inverted = inverted
       if inverted {
@@ -194,7 +173,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  var outlined: Bool = false {
+  @objc var outlined: Bool = false {
     didSet {
       typefaceView?.outlined = outlined
     }
@@ -213,7 +192,7 @@ class TypefaceViewController : NSViewController {
   private var magnificationQueue: Array<Double> = Array<Double>()
 
   private var _magnification: Double = 1.0
-  var magnification: Double {
+  @objc var magnification: Double {
     get {
       return _magnification
     }
@@ -223,7 +202,7 @@ class TypefaceViewController : NSViewController {
     }
   }
 
-  var alwaysZoomsToFit: Bool = true {
+  @objc var alwaysZoomsToFit: Bool = true {
     didSet {
       if alwaysZoomsToFit != oldValue && alwaysZoomsToFit {
         zoomToFitAnimated(true)

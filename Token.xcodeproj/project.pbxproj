@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43C975D82011B32900633533 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C975D72011B32900633533 /* Window.swift */; };
 		9308C72F1CA29ACD004EDECA /* extra.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9308C72D1CA29ACD004EDECA /* extra.cc */; };
 		931043F81B94184F00DAC200 /* glyph.cc in Sources */ = {isa = PBXBuildFile; fileRef = 931043F71B94184F00DAC200 /* glyph.cc */; };
 		9321BA8C1CAE5057004284CA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936A9F341CAE452200CFBE5E /* Sparkle.framework */; };
@@ -275,6 +276,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43C975D72011B32900633533 /* Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		9308C72D1CA29ACD004EDECA /* extra.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cc; sourceTree = "<group>"; };
 		9308C72E1CA29ACD004EDECA /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
 		9308F4071C59E003005B31CC /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 		930125B01BC8E25B0004DE27 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				43C975D72011B32900633533 /* Window.swift */,
 				9308F4071C59E003005B31CC /* Location.swift */,
 				935DDCEF1BEB1A160070F741 /* RectCorners.swift */,
 				935DDCF31BEB23460070F741 /* FirstResponderView.swift */,
@@ -790,7 +793,7 @@
 					93FEF94D1AD97263009D0646 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = CMMH8M4457;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0920;
 					};
 				};
 			};
@@ -1062,6 +1065,7 @@
 				93654CDD1C82F6C5004C3CC9 /* NumberToPercentageTransformer.swift in Sources */,
 				9308C72F1CA29ACD004EDECA /* extra.cc in Sources */,
 				93C18FA11B930D440044AAEB /* extension_name.cc in Sources */,
+				43C975D82011B32900633533 /* Window.swift in Sources */,
 				937E194C1C97D40700090AEF /* TKNStroker.mm in Sources */,
 				937E19751C9A628D00090AEF /* Stroker.swift in Sources */,
 				93C18FA41B930D440044AAEB /* extension_value.cc in Sources */,
@@ -1144,7 +1148,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1162,7 +1166,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.takram.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Token;
 				SWIFT_OBJC_BRIDGING_HEADER = src/Token.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
