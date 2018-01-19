@@ -85,7 +85,7 @@ class MainWindowController : NSWindowController, NSWindowDelegate,
        menuItem.action == #selector(uninstallAdobeFDK(_:)) {
       return welcomeWindowController == nil
     }
-    return super.validateMenuItem(menuItem)
+    return true
   }
 
   // MARK: Settings
