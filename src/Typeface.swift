@@ -24,6 +24,7 @@
 
 import AppKit
 
+@objcMembers
 class Typeface : TKNTypeface, TypefaceDelegate {
   init(directoryURL: URL) {
     let url = directoryURL.appendingPathComponent("font.ufo")

@@ -24,6 +24,7 @@
 
 import AppKit
 
+@objcMembers
 class Stroker : TKNStroker {
   static private let MinStrokeWidth: Double = 10.0
   static private let MaxStrokeWidth: Double = 110.0
