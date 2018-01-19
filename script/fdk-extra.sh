@@ -30,7 +30,7 @@ readonly INSTALL_DIR="$1"
 
 # Collect all of the libraries into the target directory
 mkdir -p "${TARGET_DIR}"
-# cp -r "${PROJECT_DIR}/lib/fonttools/Lib/" "${TARGET_DIR}"
+cp -r "${PROJECT_DIR}/lib/fonttools/Lib/" "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/ufolib/Lib/" "${TARGET_DIR}"
 cp -r "${PROJECT_DIR}/lib/defcon/Lib/" "${TARGET_DIR}"
 cp "${PROJECT_DIR}/lib/python-modules/"*.py "${TARGET_DIR}"
